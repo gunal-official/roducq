@@ -33,10 +33,13 @@ export function GoogleSignInButton({ next = "/" }: { next?: string }) {
     setPending(true);
 
     const supabase = createClient();
-    const { error: oauthError } = await signInWithGoogle(
-      supabase,
-      window.location.origin + next
-    );
+    // Must land on the server route that exchanges the PKCE `code` for a
+    // session (see app/auth/callback/route.ts) — redirecting straight to
+    // `next` leaves the code un-redeemed and the visitor looks signed
+    // out, which is what caused the /login redirect loop. `next` rides
+    // along as a query param so the callback can forward the user on.
+    const redirectTo = `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}`;
+    const { error: oauthError } = await signInWithGoogle(supabase, redirectTo);
 
     if (oauthError) {
       setError("Google sign-in could not start — " + oauthError.message);

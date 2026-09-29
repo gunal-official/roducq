@@ -1,4 +1,4 @@
--- Phase: events/webhooks foundation — NookScript's own subscription state
+-- Phase: events/webhooks foundation — Roducq's own subscription state
 -- (Stripe Checkout for Free → Pro; NOT client invoicing, which lives in
 -- the invoices tables).
 --

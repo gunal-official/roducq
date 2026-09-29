@@ -34,7 +34,7 @@ function Brand() {
   return (
     <div className="mb-6 flex items-center justify-between">
       <span className="font-display text-lg font-bold tracking-tight">
-        nook<span className="text-accent">script</span>
+        rodu<span className="text-accent">cq</span>
       </span>
       <Badge variant="outline">Shared update — read only</Badge>
     </div>
@@ -89,11 +89,11 @@ export default async function SharePage({
 
       <PaperCard
         letterLabel="Client update"
-        letterhead={document.client_name ?? "nookscript"}
+        letterhead={document.client_name ?? "roducq"}
         meta={formatDate(document.updated_at)}
         footer={
           <p className="text-center text-xs text-muted-foreground">
-            Shared via nookscript — the sender can revoke this link at any
+            Shared via roducq — the sender can revoke this link at any
             time.
           </p>
         }

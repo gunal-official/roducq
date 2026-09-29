@@ -43,7 +43,7 @@ if (!url || !anon) {
 }
 
 const stamp = Date.now();
-const email = `nookscript-test-${stamp}@example.com`;
+const email = `roducq-test-${stamp}@example.com`;
 const password = `Test-${stamp}-Pw!`;
 const fullName = "Test Person";
 const workspaceName = `Test Workspace ${stamp}`;
@@ -117,7 +117,7 @@ check(
 
 // 6 ── Owner-only insert policy: a stranger cannot add themselves
 const { data: stranger, error: strangerErr } = await client.auth.signUp({
-  email: `nookscript-stranger-${stamp}@example.com`,
+  email: `roducq-stranger-${stamp}@example.com`,
   password,
 });
 if (strangerErr || !stranger.session) {
@@ -151,7 +151,7 @@ console.log(
 );
 console.log(
   "Cleanup: Dashboard → Authentication → Users → delete the two " +
-    "nookscript-* test users (profile/membership rows cascade). The empty " +
+    "roducq-* test users (profile/membership rows cascade). The empty " +
     `"${workspaceName}" row in workspaces can be deleted in Table Editor.`
 );
 process.exit(failures === 0 ? 0 : 1);

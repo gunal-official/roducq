@@ -3,7 +3,7 @@
 -- Runs automatically on `supabase db reset`, or paste into the SQL Editor
 -- AFTER the migrations. Idempotent (fixed UUIDs + ON CONFLICT DO NOTHING).
 --
--- Demo login: maya@nookscript.dev / password123
+-- Demo login: maya@roducq.dev / password123
 -- Any other existing user is added to the demo workspace as a 'member', so
 -- you can see the seeded brief while logged in as yourself.
 --
@@ -19,7 +19,7 @@ insert into auth.users (
   '00000000-0000-0000-0000-000000000001',
   '00000000-0000-0000-0000-000000000000',
   'authenticated', 'authenticated',
-  'maya@nookscript.dev',
+  'maya@roducq.dev',
   crypt('password123', gen_salt('bf')),
   now(),
   '{"provider":"email","providers":["email"]}'::jsonb,
@@ -32,8 +32,8 @@ insert into auth.identities (
 ) values (
   '00000000-0000-0000-0000-000000000003',
   '00000000-0000-0000-0000-000000000001',
-  'maya@nookscript.dev',
-  '{"sub":"00000000-0000-0000-0000-000000000001","email":"maya@nookscript.dev"}'::jsonb,
+  'maya@roducq.dev',
+  '{"sub":"00000000-0000-0000-0000-000000000001","email":"maya@roducq.dev"}'::jsonb,
   'email', now(), now(), now()
 ) on conflict do nothing;
 
@@ -364,7 +364,7 @@ on conflict (workspace_id, user_id) do nothing;
 --   http://localhost:3000/invite/00000000-0000-0000-0000-000000000063
 -- Accept it by creating the account teammate@brightloop.co (any password)
 -- via that link — or watch the email-mismatch guard by opening it while
--- logged in as maya@nookscript.dev. "on conflict do nothing" (no target)
+-- logged in as maya@roducq.dev. "on conflict do nothing" (no target)
 -- so a re-run survives both the id and the pending-email unique index.
 
 insert into public.team_invites (

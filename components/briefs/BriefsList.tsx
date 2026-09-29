@@ -63,7 +63,7 @@ function EmptyState({
             </h2>
             <p className="mt-1 max-w-sm text-sm text-muted-foreground">
               Paste a client email or call notes on the intake screen and
-              Nookscript will structure it into a brief.
+              Roducq will structure it into a brief.
             </p>
           </div>
           <Button asChild>

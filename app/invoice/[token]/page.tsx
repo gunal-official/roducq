@@ -50,7 +50,7 @@ function Brand({ token }: { token?: string }) {
   return (
     <div className="mb-6 flex flex-wrap items-center justify-between gap-3 print:hidden">
       <span className="font-display text-lg font-bold tracking-tight">
-        nook<span className="text-accent">script</span>
+        rodu<span className="text-accent">cq</span>
       </span>
       <div className="flex flex-wrap items-center gap-2">
         <Badge variant="outline">Shared invoice — read only</Badge>
@@ -221,7 +221,7 @@ export default async function PublicInvoicePage({
       </PaperCard>
 
       <p className="mt-6 text-center text-xs text-muted-foreground print:hidden">
-        Shared via nookscript — the sender can revoke this link at any
+        Shared via roducq — the sender can revoke this link at any
         time.
       </p>
     </main>

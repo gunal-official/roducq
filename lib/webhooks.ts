@@ -5,7 +5,7 @@
  * Zero dependencies: node:crypto only. Impure dispatch lives in
  * lib/webhook-dispatch.ts.
  *
- * Signature scheme (header `X-NookScript-Signature`):
+ * Signature scheme (header `X-Roducq-Signature`):
  *   signed_payload = `${timestampSec}.${rawBody}`
  *   v1 = hex(HMAC_SHA256(signing_secret, signed_payload))
  *   header = `t=${timestampSec},v1=${v1}` (multiple v1= values allowed
@@ -14,9 +14,9 @@
 
 import { createHmac, randomBytes, timingSafeEqual } from "node:crypto";
 
-export const SIGNATURE_HEADER = "x-nookscript-signature";
-export const EVENT_HEADER = "x-nookscript-event";
-export const DELIVERY_HEADER = "x-nookscript-delivery";
+export const SIGNATURE_HEADER = "x-roducq-signature";
+export const EVENT_HEADER = "x-roducq-event";
+export const DELIVERY_HEADER = "x-roducq-delivery";
 /** Signature freshness window for inbound verification (seconds). */
 export const SIGNATURE_TOLERANCE_SEC = 300;
 /** Attempt schedule: 1 immediate try + retries after these backoffs. */

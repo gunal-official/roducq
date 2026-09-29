@@ -21,7 +21,7 @@ export function AuthCard({
         href="/"
         className="inline-flex min-h-11 min-w-11 items-center mb-6 block text-center font-display text-2xl font-bold tracking-tight text-text"
       >
-        nook<span className="text-accent">script</span>
+        rodu<span className="text-accent">cq</span>
       </Link>
 
       <div className="rounded-lg border border-border bg-card p-8 shadow-sm">

@@ -41,7 +41,7 @@ const PRO_PLANNED = [
 ];
 
 const PRO_MAILTO =
-  "mailto:hello@nookscript.dev?subject=nookscript%20Pro%20early%20access";
+  "mailto:hello@roducq.dev?subject=roducq%20Pro%20early%20access";
 
 export function PlanCard({
   memberCount,
@@ -73,7 +73,7 @@ export function PlanCard({
           <CardTitle className="text-base">Plan</CardTitle>
         </div>
         <CardDescription>
-          Subscription and billing for NookScript itself — real plan state,
+          Subscription and billing for Roducq itself — real plan state,
           checkout via Stripe in the currency you choose.
         </CardDescription>
       </CardHeader>

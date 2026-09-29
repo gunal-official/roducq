@@ -131,7 +131,7 @@ const fixtures = [
         status: "sent",
         items: [
           {
-            description: "https://nookscript.app/invoice/00000000-0000-0000-0000-000000000070?utm=averyveryverylongunbreakablequerystringthatcannotwrap",
+            description: "https://roducq.app/invoice/00000000-0000-0000-0000-000000000070?utm=averyveryverylongunbreakablequerystringthatcannotwrap",
             quantity: 1,
             unit_amount_cents: 999999999,
           },
@@ -332,7 +332,7 @@ function checkFurniture(bytes, findings, name) {
     if (!joined.includes(`Page ${index + 1} of ${pages.length}`)) {
       findings.push(`${name}: page ${index + 1} has no correct page number`);
     }
-    if (!joined.includes("nookscript")) {
+    if (!joined.includes("roducq")) {
       findings.push(`${name}: page ${index + 1} has no generated-by footer`);
     }
   });

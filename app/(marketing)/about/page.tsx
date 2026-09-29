@@ -11,9 +11,9 @@ import {
 } from "@/components/ui/card";
 
 export const metadata: Metadata = {
-  title: "About — nookscript",
+  title: "About — roducq",
   description:
-    "What nookscript is: a writing studio that turns messy client communication into structured briefs, proposals, plans, and updates.",
+    "What roducq is: a writing studio that turns messy client communication into structured briefs, proposals, plans, and updates.",
 };
 
 const BUILT_TODAY = [
@@ -48,14 +48,14 @@ export default function AboutPage() {
     <div className="mx-auto max-w-3xl px-6 py-16">
       <h1 className="font-display text-3xl font-bold tracking-tight">About</h1>
       <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
-        nookscript is a <strong className="font-medium text-text">client-work writing studio</strong>{": "}
+        roducq is a <strong className="font-medium text-text">client-work writing studio</strong>{": "}
         a single workspace for the writing trail that runs through every
         freelance or studio engagement — intake, briefs, proposals, plans,
         and client updates.
       </p>
       <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
         Client work starts as scattered communication: an email here, a call
-        note there, a &ldquo;quick question&rdquo; in chat. nookscript takes
+        note there, a &ldquo;quick question&rdquo; in chat. roducq takes
         that raw material as-is and structures it — flagging gaps early,
         keeping every source attached, and carrying the result forward stage
         by stage instead of asking you to re-type it into five different

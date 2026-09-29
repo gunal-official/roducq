@@ -89,7 +89,7 @@ const clientB = createClient(url, anon); // member persona
 
 // ── personas + scratch workspace ──
 const { data: signUpA, error: errA } = await clientA.auth.signUp({
-  email: `nookscript-policy-a-${stamp}@example.com`,
+  email: `roducq-policy-a-${stamp}@example.com`,
   password,
   options: { data: { full_name: "Policy Probe A" } },
 });
@@ -113,7 +113,7 @@ check("create_workspace RPC (scratch workspace)", !wsErr && !!wsId, wsErr?.messa
 if (!wsId) process.exit(1);
 
 const { data: signUpB, error: errB } = await clientB.auth.signUp({
-  email: `nookscript-policy-b-${stamp}@example.com`,
+  email: `roducq-policy-b-${stamp}@example.com`,
   password,
   options: { data: { full_name: "Policy Probe B" } },
 });
@@ -326,7 +326,7 @@ console.log(
 );
 console.log(
   "Cleanup: Dashboard → Authentication → Users → delete the two " +
-    "nookscript-policy-* test users (their profile rows cascade). " +
+    "roducq-policy-* test users (their profile rows cascade). " +
     "The scratch workspace is deleted by the run itself — if the run " +
     "failed early, delete the “" + wsName + "” row in Table Editor."
 );

@@ -21,7 +21,13 @@ function LoginForm() {
   const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
+  // Surfaces a failed /auth/callback exchange (expired/replayed code,
+  // provider denial) instead of silently dropping the user back here.
+  const [error, setError] = useState<string | null>(
+    searchParams.get("error") === "oauth"
+      ? "Google sign-in didn’t complete — please try again."
+      : null
+  );
   const [pending, setPending] = useState(false);
   const configured = isSupabaseConfigured();
 

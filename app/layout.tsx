@@ -26,8 +26,8 @@ const jakarta = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "nookscript",
-  description: "nookscript — intake, briefs, proposals, and plans for client work.",
+  title: "roducq",
+  description: "roducq — intake, briefs, proposals, and plans for client work.",
 };
 
 export default function RootLayout({

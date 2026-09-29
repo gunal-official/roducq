@@ -142,7 +142,7 @@ export function WebhooksCard({
           <CardTitle className="text-base">Webhooks</CardTitle>
         </div>
         <CardDescription>
-          Outbound events — NookScript POSTs workspace events (briefs,
+          Outbound events — Roducq POSTs workspace events (briefs,
           proposals, plans, invoices, contracts, team, templates) to your
           URL, signed with an HMAC secret. 3 attempts, 15s / 60s apart.
         </CardDescription>
@@ -275,7 +275,7 @@ export function WebhooksCard({
           <div className="flex flex-wrap items-center gap-2">
             <Input
               type="url"
-              placeholder="https://example.com/hooks/nookscript"
+              placeholder="https://example.com/hooks/roducq"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
               aria-label="Webhook URL"

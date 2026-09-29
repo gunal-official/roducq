@@ -85,7 +85,7 @@ export async function registerWebhookEndpoint(input: {
  * Send a one-off signed test delivery to a registered endpoint
  * (suggestions pass 2/10). Owner-only. The ping uses the REAL delivery
  * shape and signature scheme under its own event type
- * (`nookscript.endpoint_test`) so a receiver's full verify-and-parse
+ * (`roducq.endpoint_test`) so a receiver's full verify-and-parse
  * pipeline runs; it is NOT an event row and writes no
  * webhook_deliveries entry (delivery rows require a real event).
  */
@@ -169,7 +169,7 @@ export async function testWebhookEndpoint(input: {
 
   const body = buildDeliveryBody({
     id: randomUUID(),
-    event_type: "nookscript.endpoint_test",
+    event_type: "roducq.endpoint_test",
     payload: { test: true, sent_at: new Date().toISOString() },
     created_at: new Date().toISOString(),
   });
@@ -182,7 +182,7 @@ export async function testWebhookEndpoint(input: {
         endpoint.signing_secret,
         Math.floor(Date.now() / 1000),
         "endpoint-test",
-        "nookscript.endpoint_test"
+        "roducq.endpoint_test"
       ),
       body,
       signal: AbortSignal.timeout(10_000),

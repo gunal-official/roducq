@@ -213,9 +213,9 @@ describe("sendToEndpoint — one signed POST", () => {
       const parsed = JSON.parse(call.body) as Record<string, unknown>;
       assert.equal(parsed.id, EVENT.id);
       assert.equal(parsed.event_type, "invoice.paid");
-      assert.equal(call.headers["x-nookscript-event"], "invoice.paid");
-      assert.equal(call.headers["x-nookscript-delivery"], "del-1");
-      const header = call.headers["x-nookscript-signature"];
+      assert.equal(call.headers["x-roducq-event"], "invoice.paid");
+      assert.equal(call.headers["x-roducq-delivery"], "del-1");
+      const header = call.headers["x-roducq-signature"];
       const t = Number(header.split(",")[0].slice(2));
       assert.deepEqual(
         verifySignedPayload({

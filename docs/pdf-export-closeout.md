@@ -37,7 +37,7 @@ rules), `docs/roles-spec.md` (why viewers can't export invoices).
 - **Deterministic by construction.** Every builder takes `generatedAt`;
   nothing calls `Date.now()` or `Intl` inside the document layer, so the
   same row always renders the same bytes on any server.
-- **Uncompressed streams.** A nookscript document is 3–32 KB. Plain text
+- **Uncompressed streams.** A roducq document is 3–32 KB. Plain text
   streams are greppable in tests and debuggable by a human.
 - **Injection is impossible by construction.** All client-authored text
   goes through the escaper; the test suite renders
