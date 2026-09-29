@@ -265,54 +265,86 @@ export function InvoiceComposer({
             No line items yet — add the first one below.
           </p>
         )}
-        {display.map(({ item, leaving }) => (
-          <div
-            key={item.id}
-            aria-hidden={leaving || undefined}
-            className={`flex flex-col gap-2 md:grid md:grid-cols-[1fr_5.5rem_7.5rem_6rem_2rem] md:items-center ${leaving ? "animate-row-out" : "animate-rise-in"}`}
-          >
-            <Input
-              value={item.description}
-              onChange={(e) => updateItem(items.findIndex((x) => x.id === item.id), { description: e.target.value })}
-              placeholder="What is being billed?"
-              aria-label="Line description"
-            />
-            <Input
-              value={item.quantity}
-              onChange={(e) => updateItem(items.findIndex((x) => x.id === item.id), { quantity: e.target.value })}
-              inputMode="numeric"
-              className="text-right"
-              aria-label="Line quantity"
-            />
-            <Input
-              value={item.unit_amount}
-              onChange={(e) => updateItem(items.findIndex((x) => x.id === item.id), { unit_amount: e.target.value })}
-              inputMode="decimal"
-              placeholder="0.00"
-              className="text-right"
-              aria-label="Line unit price"
-            />
-            <span className="truncate text-right text-sm text-muted-foreground">
-              {centsFromDollars(item.unit_amount) !== null &&
-              qtyFromInput(item.quantity) !== null
-                ? formatMoney(
-                    (centsFromDollars(item.unit_amount) ?? 0) *
-                      (qtyFromInput(item.quantity) ?? 0)
-                  )
-                : "—"}
-            </span>
-            <Button
-              type="button"
-              variant="ghost"
-              size="icon"
-              className="w-8 shrink-0"
-              onClick={() => removeItem(items.findIndex((x) => x.id === item.id))}
-              aria-label={`Remove line ${item.id}`}
+        {display.map(({ item, leaving }) => {
+          // Bind inputs to the CURRENT item from state, never to the
+          // motion snapshot: useMotionItems only re-syncs its entries
+          // when the id SET changes (add/remove row) — a pure content
+          // edit leaves `display` holding the pre-keystroke snapshot, so
+          // a snapshot-bound input re-renders with the stale value and
+          // swallows every keystroke. Leaving rows are already gone from
+          // `items`, so they fall back to the snapshot and keep showing
+          // their old content while collapsing out.
+          //
+          // `disabled` follows the same rule as aria-hidden: ONLY a row
+          // that is genuinely animating out (its id already left
+          // `items`) is disabled. On load every entry is seeded
+          // `leaving: false` and a row only flips when removed, so
+          // pre-existing rows render fully editable (no disabled
+          // attribute, normal text cursor) — and stay that way through
+          // StrictMode's double effect-run, which re-diffs the SAME id
+          // set and is therefore idempotent.
+          const index = items.findIndex((x) => x.id === item.id);
+          const live = index !== -1 ? items[index] : item;
+          return (
+            <div
+              key={item.id}
+              aria-hidden={leaving || undefined}
+              className={`flex flex-col gap-2 md:grid md:grid-cols-[1fr_5.5rem_7.5rem_6rem_2rem] md:items-center ${leaving ? "animate-row-out" : "animate-rise-in"}`}
             >
-              <Trash2 className="h-4 w-4"  aria-hidden="true" />
-            </Button>
-          </div>
-        ))}
+              <Input
+                value={live.description}
+                disabled={leaving || undefined}
+                onChange={(e) => {
+                  if (index !== -1) updateItem(index, { description: e.target.value });
+                }}
+                placeholder="What is being billed?"
+                aria-label="Line description"
+              />
+              <Input
+                value={live.quantity}
+                disabled={leaving || undefined}
+                onChange={(e) => {
+                  if (index !== -1) updateItem(index, { quantity: e.target.value });
+                }}
+                inputMode="numeric"
+                className="text-right"
+                aria-label="Line quantity"
+              />
+              <Input
+                value={live.unit_amount}
+                disabled={leaving || undefined}
+                onChange={(e) => {
+                  if (index !== -1) updateItem(index, { unit_amount: e.target.value });
+                }}
+                inputMode="decimal"
+                placeholder="0.00"
+                className="text-right"
+                aria-label="Line unit price"
+              />
+              <span className="truncate text-right text-sm text-muted-foreground">
+                {centsFromDollars(live.unit_amount) !== null &&
+                qtyFromInput(live.quantity) !== null
+                  ? formatMoney(
+                      (centsFromDollars(live.unit_amount) ?? 0) *
+                        (qtyFromInput(live.quantity) ?? 0)
+                    )
+                  : "—"}
+              </span>
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                className="w-8 shrink-0"
+                onClick={() => {
+                  if (index !== -1) removeItem(index);
+                }}
+                aria-label={`Remove line ${item.id}`}
+              >
+                <Trash2 className="h-4 w-4" aria-hidden="true" />
+              </Button>
+            </div>
+          );
+        })}
         <Button type="button" variant="ghost" size="sm" onClick={addItem}>
           <Plus className="mr-1.5 h-4 w-4"  aria-hidden="true" />
           Add line item
