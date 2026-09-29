@@ -64,7 +64,7 @@ export default async function VsPage({ params }: VsPageProps) {
           <div className="grid grid-cols-3 gap-4 text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
             <span></span>
             <span className="font-display text-sm font-bold normal-case tracking-tight text-text">
-              nook<span className="text-accent">script</span>
+              rodu<span className="text-accent">cq</span>
             </span>
             <CardTitle className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
               {entry.competitor}

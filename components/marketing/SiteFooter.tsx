@@ -10,7 +10,7 @@ export function SiteFooter() {
       <div className="mx-auto flex max-w-5xl flex-col gap-4 px-6 py-8">
         <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-muted-foreground">
           <Link href="/" className="inline-flex min-h-11 min-w-11 items-center font-display text-sm font-bold text-text">
-            nook<span className="text-accent">script</span>
+            rodu<span className="text-accent">cq</span>
           </Link>
           <Link href="/about" className="inline-flex min-h-11 min-w-11 items-center transition-colors hover:text-text">
             About

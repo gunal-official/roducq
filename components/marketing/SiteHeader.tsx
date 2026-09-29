@@ -17,7 +17,7 @@ export function SiteHeader() {
           href="/"
           className="inline-flex min-h-11 items-center font-display text-lg font-bold tracking-tight"
         >
-          nook<span className="text-accent">script</span>
+          rodu<span className="text-accent">cq</span>
         </Link>
 
         <nav className="hidden items-center gap-1 text-sm text-muted-foreground sm:flex">

@@ -34,7 +34,7 @@ function Brand() {
   return (
     <div className="mb-6 flex items-center justify-between">
       <span className="font-display text-lg font-bold tracking-tight">
-        nook<span className="text-accent">script</span>
+        rodu<span className="text-accent">cq</span>
       </span>
       <Badge variant="outline">Shared update — read only</Badge>
     </div>

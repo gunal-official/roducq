@@ -50,7 +50,7 @@ function Brand({ token }: { token?: string }) {
   return (
     <div className="mb-6 flex flex-wrap items-center justify-between gap-3 print:hidden">
       <span className="font-display text-lg font-bold tracking-tight">
-        nook<span className="text-accent">script</span>
+        rodu<span className="text-accent">cq</span>
       </span>
       <div className="flex flex-wrap items-center gap-2">
         <Badge variant="outline">Shared invoice — read only</Badge>

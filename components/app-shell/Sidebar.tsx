@@ -30,10 +30,10 @@ export function Sidebar({
           aria-hidden="true"
           className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-accent font-display text-base font-extrabold text-white shadow-rail"
         >
-          N
+          R
         </span>
         <span className="font-display text-lg font-bold tracking-tight max-desk:sr-only">
-          Nook
+          Roducq
         </span>
       </Link>
       <div className="mb-3 px-1 max-desk:hidden">

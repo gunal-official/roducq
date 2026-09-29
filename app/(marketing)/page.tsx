@@ -70,7 +70,7 @@ export default function HomePage() {
       <section className="mx-auto flex max-w-5xl flex-col items-center px-6 pb-20 pt-24 text-center">
         <Badge variant="secondary">For freelancers & small studios</Badge>
         <h1 className="mt-6 font-display text-[clamp(2.25rem,12vw,3.75rem)] font-bold tracking-tight sm:text-7xl">
-          nook<span className="text-accent">script</span>
+          rodu<span className="text-accent">cq</span>
         </h1>
         <p className="mt-4 font-display text-xl font-semibold tracking-tight sm:text-2xl">
           Messy client messages in. Polished proposals out.
