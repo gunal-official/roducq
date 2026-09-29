@@ -1,7 +1,7 @@
 # Events, Webhooks + Stripe Billing — Closeout
 
 Final summary of the 2026-09-26 phase: event recording, outbound webhooks,
-and Stripe Checkout billing for Nookscript's own Free → Pro subscription
+and Stripe Checkout billing for Roducq's own Free → Pro subscription
 (this is platform billing — client invoicing already existed). Written at
 `9d99507`, updated for global multi-currency Stripe billing (the product
 is global, not India-only — Stripe is the only provider; a Razorpay
@@ -33,12 +33,12 @@ billing" section), `.env.local.example` (all vars commented out).
 
 ### Webhook delivery contract (what receivers verify)
 
-- **Signature header** `X-NookScript-Signature: t=<unix-sec>,v1=<hex>`
+- **Signature header** `X-Roducq-Signature: t=<unix-sec>,v1=<hex>`
   where `v1 = HMAC_SHA256(signing_secret, "${t}.${raw_body}")`. Multiple
   `v1=` entries are accepted (any match wins, `timingSafeEqual`);
   `t` must be within ±300s of now.
-- **Headers** `X-NookScript-Event: <event_type>`,
-  `X-NookScript-Delivery: <delivery id>`.
+- **Headers** `X-Roducq-Event: <event_type>`,
+  `X-Roducq-Delivery: <delivery id>`.
 - **Envelope** `{ "id", "event_type", "payload", "created_at" }` — `id`
   is the stable event id (receivers dedupe on it; a rare accepted
   double-attempt shares it).

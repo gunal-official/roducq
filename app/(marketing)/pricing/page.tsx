@@ -15,9 +15,9 @@ import {
 import { formatPrice, getPricesConfig } from "@/lib/stripe";
 
 export const metadata: Metadata = {
-  title: "Pricing — nookscript",
+  title: "Pricing — roducq",
   description:
-    "nookscript pricing: the full pipeline is free — team, templates, webhooks included. Pro is a Stripe-billed subscription in your currency; upgrade from Settings any time.",
+    "roducq pricing: the full pipeline is free — team, templates, webhooks included. Pro is a Stripe-billed subscription in your currency; upgrade from Settings any time.",
 };
 
 // Pricing (global multi-currency, 2026-09-26): the amounts shown are
@@ -147,7 +147,7 @@ export default function PricingPage() {
       <p className="mt-8 text-xs text-muted-foreground">
         Questions about Pro or anything that&apos;s missing?{" "}
         <a
-          href="mailto:hello@nookscript.dev"
+          href="mailto:hello@roducq.dev"
           className="inline-flex min-h-11 min-w-11 items-center underline underline-offset-2 transition-colors hover:text-text"
         >
           Get in touch

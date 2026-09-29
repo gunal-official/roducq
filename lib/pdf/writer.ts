@@ -17,7 +17,7 @@
  *
  * WHAT IT DOES NOT: embedded fonts, images, links, outlines, encryption,
  * compression. Streams are written UNCOMPRESSED on purpose — a
- * nookscript PDF is a few kilobytes, and a plain-text content stream is
+ * roducq PDF is a few kilobytes, and a plain-text content stream is
  * greppable in tests and debuggable by a human with `less`.
  *
  * COORDINATES: PDF user space — origin BOTTOM-LEFT, y grows upward, units
@@ -243,8 +243,8 @@ export function renderPdf(pages: PdfPage[], meta: PdfMetadata): Uint8Array {
     `/Title ${textString(meta.title)}`,
     `/Author ${textString(meta.author)}`,
     meta.subject ? `/Subject ${textString(meta.subject)}` : "",
-    "/Creator (nookscript)",
-    "/Producer (nookscript pdf writer)",
+    "/Creator (roducq)",
+    "/Producer (roducq pdf writer)",
     `/CreationDate (${pdfDate(meta.createdAt)})`,
     `/ModDate (${pdfDate(meta.createdAt)})`,
   ]

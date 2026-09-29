@@ -31,7 +31,7 @@ const input = {
   to: "new@example.com",
   workspaceName: "Atelier North",
   inviterName: "Maya",
-  inviteUrl: "https://nookscript.dev/invite/tok",
+  inviteUrl: "https://roducq.dev/invite/tok",
   expiresAt: new Date("2026-10-03T12:00:00Z"),
 };
 
@@ -65,7 +65,7 @@ describe("sendInviteEmail — silent skip without SMTP", () => {
       process.env.SMTP_PORT = port;
       process.env.SMTP_USER = "u";
       process.env.SMTP_PASS = "p";
-      process.env.SMTP_FROM = "NookScript <hi@example.com>";
+      process.env.SMTP_FROM = "Roducq <hi@example.com>";
       const result = await sendInviteEmail(input);
       assert.deepEqual(result, { ok: false, reason: "not-configured" }, `port ${port}`);
     }

@@ -110,7 +110,7 @@ const RPCS = [
   {
     name: "create_workspace",
     migration: "20260922000000_workspace_auth_init.sql",
-    args: { workspace_name: "nookscript-live-probe" },
+    args: { workspace_name: "roducq-live-probe" },
     // guard: raises 'not_authenticated' under the anon key, before any insert
   },
   {

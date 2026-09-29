@@ -221,7 +221,7 @@ export default async function PublicInvoicePage({
       </PaperCard>
 
       <p className="mt-6 text-center text-xs text-muted-foreground print:hidden">
-        Shared via nookscript — the sender can revoke this link at any
+        Shared via roducq — the sender can revoke this link at any
         time.
       </p>
     </main>

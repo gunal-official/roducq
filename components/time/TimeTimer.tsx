@@ -32,7 +32,7 @@ import {
 import { localToday } from "@/lib/utils";
 import type { BriefOption } from "@/lib/types/time";
 
-const STORAGE_KEY = "nookscript.timer.v1";
+const STORAGE_KEY = "roducq.timer.v1";
 const GENERAL = "general";
 
 interface StoredTimer {

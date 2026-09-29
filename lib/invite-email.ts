@@ -23,7 +23,7 @@
  *   SMTP_PASS  — auth password (Gmail: an APP PASSWORD — regular
  *                passwords are rejected by Google for SMTP);
  *   SMTP_FROM  — sender shown to recipients (e.g.
- *                "NookScript <invites@yourdomain.com>").
+ *                "Roducq <invites@yourdomain.com>").
  *
  * This module imports NO next/ stuff — the caller (server action)
  * resolves the site URL from request headers and passes it in, which is
@@ -40,7 +40,7 @@ export type InviteEmailResult =
       detail?: string;
     };
 
-const DEFAULT_FROM_NAME = "NookScript";
+const DEFAULT_FROM_NAME = "Roducq";
 
 function readConfig(): {
   host: string;
@@ -81,7 +81,7 @@ export async function sendInviteEmail(input: {
   });
 
   const who = input.inviterName ? `${input.inviterName} ` : "";
-  const subject = `You're invited to ${input.workspaceName} on NookScript`;
+  const subject = `You're invited to ${input.workspaceName} on Roducq`;
   const expires = input.expiresAt.toLocaleDateString("en-US", {
     month: "long",
     day: "numeric",
@@ -89,7 +89,7 @@ export async function sendInviteEmail(input: {
   });
 
   const text = [
-    `${who}invited you to join ${input.workspaceName} on NookScript as a member.`,
+    `${who}invited you to join ${input.workspaceName} on Roducq as a member.`,
     "",
     `Open the invite (it expires ${expires}):`,
     input.inviteUrl,
@@ -102,7 +102,7 @@ export async function sendInviteEmail(input: {
   const html = `
     <div style="font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;max-width:480px;margin:0 auto;padding:24px 16px;color:#18181b;">
       <p style="font-size:15px;line-height:1.6;">${who}invited you to join
-        <strong>${input.workspaceName}</strong> on NookScript as a member.</p>
+        <strong>${input.workspaceName}</strong> on Roducq as a member.</p>
       <p style="padding:16px 0;">
         <a href="${input.inviteUrl}"
            style="display:inline-block;background:#18181b;color:#ffffff;text-decoration:none;font-size:14px;font-weight:600;padding:10px 18px;border-radius:0.35rem;">

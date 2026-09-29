@@ -143,8 +143,8 @@ describe("retry schedule + delivery envelope", () => {
   test("buildDeliveryHeaders signs the body and stamps ids", () => {
     const headers = buildDeliveryHeaders(RAW, SECRET, NOW, "d1", "invoice.paid");
     assert.equal(headers["content-type"], "application/json");
-    assert.equal(headers["x-nookscript-event"], "invoice.paid");
-    assert.equal(headers["x-nookscript-delivery"], "d1");
-    assert.equal(headers["x-nookscript-signature"], signPayload(SECRET, NOW, RAW));
+    assert.equal(headers["x-roducq-event"], "invoice.paid");
+    assert.equal(headers["x-roducq-delivery"], "d1");
+    assert.equal(headers["x-roducq-signature"], signPayload(SECRET, NOW, RAW));
   });
 });

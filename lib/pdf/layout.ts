@@ -3,7 +3,7 @@
  *
  * The writer paints at absolute coordinates with the origin bottom-left;
  * documents are written top-down. This module owns that inversion, plus the
- * three things every nookscript document needs and nothing else:
+ * three things every roducq document needs and nothing else:
  *
  *   1. PAGE FURNITURE — a letterhead header (workspace name + document kind
  *      + accent rule) redrawn on every page, and a footer with "Page i of n"
@@ -489,7 +489,7 @@ export function createLayout(options: LayoutOptions) {
 
     /** Stamp footers (page count is only knowable now) and serialise. */
     finish(): Uint8Array {
-      const stamp = `Generated ${pdfDateLabel(options.generatedAt)} \u00b7 nookscript`;
+      const stamp = `Generated ${pdfDateLabel(options.generatedAt)} \u00b7 roducq`;
       pages.forEach((p, index) => {
         drawLine(p, left, margin + 18, right, margin + 18, COLORS.hairline, 0.7);
         drawText(p, left, margin + 7, stamp, {

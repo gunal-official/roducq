@@ -1,4 +1,4 @@
-# nookscript
+# roducq
 
 Client-work writing studio: intake → AI briefs → proposals → plans → updates.
 Next.js 16 (App Router) · TypeScript · Tailwind · shadcn/ui · Supabase (auth + Postgres + RLS).
@@ -36,7 +36,7 @@ plus the `create_workspace()`, `update_brief_field()`,
 updated_at touch triggers.
 
 To load demo data (the “Brightloop Co. — Brand Identity Refresh” brief,
-plus a login-able demo user `maya@nookscript.dev` / `password123`), run
+plus a login-able demo user `maya@roducq.dev` / `password123`), run
 `supabase/seed.sql` in the SQL Editor afterwards (runs automatically on a
 local `supabase db reset`).
 
@@ -346,7 +346,7 @@ expire after 14 days, and are revocable.
    **member** of Atelier North; `/settings` → Team lists Maya (owner) +
    you, with invite controls hidden from you.
 3. **Email targeting** — open the same link while logged in as
-   `maya@nookscript.dev` and click *Join workspace* → blocked with
+   `maya@roducq.dev` and click *Join workspace* → blocked with
    "sent to a different email address" (the RPC compares account emails).
 4. **Owner side** — as Maya: `/settings` → Team shows the roster; invite
    a new address → the pending row appears with a copy-link button and a
@@ -634,7 +634,7 @@ or undoes invite creation.
   myaccount.google.com → Security → App passwords. Google rejects
   regular passwords for SMTP.
 - `SMTP_FROM` — sender shown to recipients
-  (`NookScript <invites@yourdomain.com>`). Gmail: the From domain must
+  (`Roducq <invites@yourdomain.com>`). Gmail: the From domain must
   match the account.
 
 Any of the five unset → the email is skipped SILENTLY (dev mode —
@@ -642,7 +642,7 @@ copy-link only, no warning).
 
 **Behavior:**
 1. SMTP configured → creating an invite emails the invite link to the
-   invitee (subject “You're invited to {workspace} on NookScript”; same
+   invitee (subject “You're invited to {workspace} on Roducq”; same
    link as the copy button; 14-day expiry stated in the body).
 2. Configured but the send fails → the invite is still created and
    shows in the pending list with its copy link; the card shows a
@@ -960,7 +960,7 @@ card). All vars are commented out in `.env.local.example`.
   them in Settings → Activity.
 - **Outbound webhooks** — Settings → Webhooks: register an HTTPS
   endpoint per workspace; every event is POSTed to it, HMAC-signed
-  (`X-NookScript-Signature: t=<sec>,v1=<hex>` where
+  (`X-Roducq-Signature: t=<sec>,v1=<hex>` where
   `v1 = HMAC_SHA256(secret, "${t}.${body}")`, ±300s freshness), with a
   delivery log (attempts 0/15s/60s then terminal `failed`), a test
   ping, and one-click secret rotation. SSRF-guarded (no

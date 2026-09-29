@@ -609,7 +609,7 @@ await db.exec(`
     confirmation_token, email_change, email_change_token_new, recovery_token
   ) values (
     '${MEMBER_UID}', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated',
-    'leo@nookscript.dev', 'pglite-test-password-hash', now(),
+    'leo@roducq.dev', 'pglite-test-password-hash', now(),
     '{"provider":"email","providers":["email"]}'::jsonb, '{"full_name":"Leo Park"}'::jsonb,
     now(), now(), '', '', '', ''
   ) on conflict (id) do nothing;
@@ -630,7 +630,7 @@ await db.exec(`
   insert into public.team_invites (
     id, workspace_id, email, token, invited_by, expires_at
   ) values (
-    '00000000-0000-0000-0000-000000000065', '${SEED_WS}', 'leo@nookscript.dev',
+    '00000000-0000-0000-0000-000000000065', '${SEED_WS}', 'leo@roducq.dev',
     '${EXPIRED_INVITE_TOKEN}', '${SEED_UID}', now() - interval '1 day'
   ) on conflict do nothing;
 `);

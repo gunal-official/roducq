@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: VsPageProps): Promise<Metadat
   const entry = VS_PAGES[slug];
   if (!entry) return {};
   return {
-    title: `${entry.heading} — nookscript`,
+    title: `${entry.heading} — roducq`,
     description: entry.intro,
   };
 }
@@ -75,7 +75,7 @@ export default async function VsPage({ params }: VsPageProps) {
           {entry.rows.map((row) => (
             <div key={row.feature} className="grid grid-cols-3 gap-4 px-5 py-4">
               <p className="text-sm font-medium">{row.feature}</p>
-              <p className="text-sm leading-relaxed text-text">{row.nookscript}</p>
+              <p className="text-sm leading-relaxed text-text">{row.roducq}</p>
               <p className="text-sm leading-relaxed text-muted-foreground">
                 {row.competitor}
               </p>
@@ -90,7 +90,7 @@ export default async function VsPage({ params }: VsPageProps) {
 
       <div className="mt-8 flex items-center gap-3">
         <Button asChild>
-          <Link href="/signup" className="inline-flex min-h-11 min-w-11 items-center">Try nookscript</Link>
+          <Link href="/signup" className="inline-flex min-h-11 min-w-11 items-center">Try roducq</Link>
         </Button>
         <Button asChild variant="outline">
           <Link href="/pricing">See pricing</Link>

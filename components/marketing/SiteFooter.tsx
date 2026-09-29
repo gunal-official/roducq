@@ -19,14 +19,14 @@ export function SiteFooter() {
             Pricing
           </Link>
           <Link href="/vs/notion" className="inline-flex min-h-11 min-w-11 items-center transition-colors hover:text-text">
-            nookscript vs Notion
+            roducq vs Notion
           </Link>
           <Link href="/login" className="inline-flex min-h-11 min-w-11 items-center transition-colors hover:text-text">
             Log in
           </Link>
         </div>
         <p className="text-xs text-muted-foreground">
-          © 2026 nookscript — client-work writing studio: intake → briefs →
+          © 2026 roducq — client-work writing studio: intake → briefs →
           proposals → plans → updates.
         </p>
       </div>

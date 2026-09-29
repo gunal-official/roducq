@@ -96,7 +96,7 @@ export function SourcePanel({
           <CardTitle className="text-base">Paste client text</CardTitle>
         </div>
         <CardDescription>
-          An email, a chat log, or call notes — nookscript drafts the brief.
+          An email, a chat log, or call notes — roducq drafts the brief.
         </CardDescription>
       </CardHeader>
 

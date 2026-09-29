@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/card";
 
 export const metadata: Metadata = {
-  title: "nookscript — client-work writing studio",
+  title: "roducq — client-work writing studio",
   description:
     "Turn messy client messages into structured briefs, proposals, plans, and weekly updates — one purpose-built pipeline.",
 };

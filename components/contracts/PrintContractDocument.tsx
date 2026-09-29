@@ -54,7 +54,7 @@ export function PrintContractDocument({
       </pre>
 
       <p className="mt-12 text-xs text-muted-foreground">
-        {workspaceName} — generated from nookscript
+        {workspaceName} — generated from roducq
       </p>
     </div>
   );

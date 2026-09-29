@@ -140,7 +140,7 @@ describe("renderPdf — metadata", () => {
     assert.equal(pdfDate(new Date("2026-09-27T10:30:00Z")), "D:20260927103000Z");
     const pdf = decodePdf(renderPdf([onePage()], META));
     assert.ok(pdf.includes("/CreationDate (D:20260927103000Z)"));
-    assert.ok(pdf.includes("/Producer (nookscript pdf writer)"));
+    assert.ok(pdf.includes("/Producer (roducq pdf writer)"));
   });
 
   test("identical input produces byte-identical output", () => {

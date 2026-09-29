@@ -84,7 +84,7 @@ describe("wrapText", () => {
   });
 
   test("an unbreakable run is hard-split instead of overflowing", () => {
-    const url = "https://nookscript.app/invoice/00000000-0000-0000-0000-000000000070";
+    const url = "https://roducq.app/invoice/00000000-0000-0000-0000-000000000070";
     const lines = wrapText(url, "Helvetica", 9.5, 120);
     assert.ok(lines.length > 1);
     for (const line of lines) {
