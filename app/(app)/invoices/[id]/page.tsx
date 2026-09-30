@@ -5,6 +5,16 @@
  * activity timeline with the audit stamps. The composer sits below for
  * editing — totals are computed here exactly as on the public view.
  *
+ * Status badges (draft/sent/paid/void) each read as a distinct color —
+ * see components/invoices/InvoiceStatusBadge.tsx — with "sent" using the
+ * new --info/--info-soft blue tokens instead of reusing accent orange.
+ *
+ * Printing: the on-screen editor + rail is wrapped in `print:hidden`;
+ * PrintInvoiceDocument (hidden on screen, `print:block`) renders instead,
+ * so browser print of this page — same as the app chrome, which is
+ * print:hidden at the (app) layout level — yields ONLY the invoice
+ * document, never the composer, stat tiles, link panel or timeline.
+ *
  * HOW TO TEST (locally — ⚠ invoices migration + seed applied first):
  *   1. From /invoices open the seeded INV-0002 (sent). The paper invoice
  *      shows line items; totals (subtotal → tax → total) match the
@@ -18,6 +28,8 @@
  *      button. Revoke → the URL shows "unavailable"; regenerate works.
  *   5. Bogus or foreign ids render the "not found" state (RLS hides
  *      them identically).
+ *   6. Print (button or browser, Ctrl/Cmd+P): the preview shows only the
+ *      invoice document — no sidebar/topbar, no composer, no rail cards.
  */
 
 import Link from "next/link";
@@ -44,6 +56,7 @@ import { InvoiceLinkPanel } from "@/components/invoices/InvoiceLinkPanel";
 import { InvoiceStatusBadge } from "@/components/invoices/InvoiceStatusBadge";
 import { InvoiceStatusSelect } from "@/components/invoices/InvoiceStatusSelect";
 import { PrintButton } from "@/components/invoices/PrintButton";
+import { PrintInvoiceDocument } from "@/components/invoices/PrintInvoiceDocument";
 import { DownloadPdfButton } from "@/components/ui/DownloadPdfButton";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -208,220 +221,228 @@ export default async function InvoiceDetailPage({
 
   return (
     <div className="mx-auto max-w-6xl">
-      <Link
-        href="/invoices"
-        className="mb-3 inline-flex min-h-11 min-w-11 items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-text"
-      >
-        <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-        Invoices
-      </Link>
+      {/* On-screen editor + document preview — hidden when printing; see
+          PrintInvoiceDocument below for what actually prints. */}
+      <div className="print:hidden">
+        <Link
+          href="/invoices"
+          className="mb-3 inline-flex min-h-11 min-w-11 items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-text"
+        >
+          <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+          Invoices
+        </Link>
 
-      <DocHeader
-        icon={Receipt}
-        title={invoice.title}
-        badges={<InvoiceStatusBadge status={invoice.status} />}
-        subtitle={`${invoiceNumberLabel(invoice.invoice_number)} · ${invoice.client_name}`}
-        actions={
-          <>
-            <DownloadPdfButton href={`/api/pdf/invoice/${invoice.id}`} />
-            <PrintButton />
-          </>
-        }
-      />
+        <DocHeader
+          icon={Receipt}
+          title={invoice.title}
+          badges={<InvoiceStatusBadge status={invoice.status} />}
+          subtitle={`${invoiceNumberLabel(invoice.invoice_number)} · ${invoice.client_name}`}
+          actions={
+            <>
+              <DownloadPdfButton href={`/api/pdf/invoice/${invoice.id}`} />
+              <PrintButton />
+            </>
+          }
+        />
 
-      {/* Stat tiles */}
-      <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <StatTile
-          icon={Wallet}
-          label="Total due"
-          value={formatMoney(totals.total_cents)}
-          hint={
-            invoice.tax_percent > 0
-              ? `incl. ${invoice.tax_percent}% tax`
-              : "No tax applied"
-          }
-          tone="accent"
-        />
-        <StatTile
-          icon={Clock}
-          label="Due date"
-          value={invoice.due_date ? formatDate(invoice.due_date) : "No due date"}
-          hint={
-            overdue
-              ? "Overdue"
-              : invoice.due_date
-                ? "Last day to pay"
-                : "Payable on receipt"
-          }
-          tone={overdue ? "error" : "muted"}
-        />
-        <StatTile
-          icon={CircleDollarSign}
-          label="Payment"
-          value={
-            invoice.paid_at
-              ? formatDate(invoice.paid_at)
-              : invoice.status === "sent"
-                ? "Awaiting"
-                : invoice.status === "void"
-                  ? "Void"
-                  : "Not sent"
-          }
-          hint={
-            invoice.paid_at
-              ? "Recorded in full"
-              : `Outstanding ${formatMoney(totals.total_cents)}`
-          }
-          tone={invoice.paid_at ? "success" : "muted"}
-        />
-      </div>
-
-      <div className="grid items-start gap-6 lg:grid-cols-[2fr_1fr]">
-        {/* ── Left: the invoice document + composer ── */}
-        <div className="space-y-6">
-          <PaperCard
-            letterLabel="Invoice"
-            letterhead={context.name}
-            meta={invoiceNumberLabel(invoice.invoice_number)}
-            footer={
-              <div className="space-y-1.5">
-                <p className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
-                  Notes
-                </p>
-                <p className="whitespace-pre-wrap text-sm leading-relaxed">
-                  {invoice.notes || "—"}
-                </p>
-              </div>
+        {/* Stat tiles */}
+        <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <StatTile
+            icon={Wallet}
+            label="Total due"
+            value={formatMoney(totals.total_cents)}
+            hint={
+              invoice.tax_percent > 0
+                ? `incl. ${invoice.tax_percent}% tax`
+                : "No tax applied"
             }
-          >
-            <div className="flex flex-wrap items-start justify-between gap-4">
-              <div>
-                <p className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
-                  Billed to
-                </p>
-                <p className="mt-1 font-display text-lg font-bold">
-                  {invoice.client_name}
-                </p>
-              </div>
-              <div className="text-right text-sm text-muted-foreground">
-                <p>Issued {formatDate(invoice.created_at)}</p>
-                <p>
-                  Due {invoice.due_date ? formatDate(invoice.due_date) : "on receipt"}
-                </p>
-              </div>
-            </div>
-
-            {/* Line items — wrapping rows (no clipped cells). */}
-            <div className="mt-6 border-t border-border">
-              {invoice.items.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b border-border py-3"
-                >
-                  <p className="min-w-0 flex-1 basis-full text-sm sm:basis-auto">
-                    {item.description}
-                  </p>
-                  <p className="w-12 shrink-0 text-right text-sm text-muted-foreground">
-                    ×{item.quantity}
-                  </p>
-                  <p className="w-20 shrink-0 text-right text-sm text-muted-foreground">
-                    {formatMoney(item.unit_amount_cents)}
-                  </p>
-                  <p className="w-24 shrink-0 text-right text-sm font-medium">
-                    {formatMoney(item.quantity * item.unit_amount_cents)}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            {/* Totals — computed, never stored. */}
-            <div className="mt-5 flex justify-end">
-              <dl className="w-full max-w-xs space-y-1.5 text-sm">
-                <div className="flex justify-between gap-6">
-                  <dt className="text-muted-foreground">Subtotal</dt>
-                  <dd>{formatMoney(totals.subtotal_cents)}</dd>
-                </div>
-                <div className="flex justify-between gap-6">
-                  <dt className="text-muted-foreground">
-                    Tax ({invoice.tax_percent}%)
-                  </dt>
-                  <dd>{formatMoney(totals.tax_cents)}</dd>
-                </div>
-                <div className="flex items-baseline justify-between gap-6 border-t border-border pt-2">
-                  <dt className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
-                    Total
-                  </dt>
-                  <dd className="font-display text-xl font-bold">
-                    {formatMoney(totals.total_cents)}
-                  </dd>
-                </div>
-              </dl>
-            </div>
-          </PaperCard>
-
-          <Card className="animate-rise-in">
-            <CardHeader className="space-y-1 border-b border-border px-5 py-3.5">
-              <CardTitle className="text-base">Edit invoice</CardTitle>
-              <CardDescription>
-                Line items are in dollars; the math is the same on the
-                client’s public view. Totals are computed, never stored.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="p-5">
-              <InvoiceComposer
-                invoiceId={invoice.id}
-                initialTitle={invoice.title}
-                initialClient={invoice.client_name}
-                initialItems={invoice.items}
-                initialTaxPercent={invoice.tax_percent}
-                initialNotes={invoice.notes}
-                initialDueDate={invoice.due_date}
-              />
-            </CardContent>
-          </Card>
+            tone="accent"
+          />
+          <StatTile
+            icon={Clock}
+            label="Due date"
+            value={invoice.due_date ? formatDate(invoice.due_date) : "No due date"}
+            hint={
+              overdue
+                ? "Overdue"
+                : invoice.due_date
+                  ? "Last day to pay"
+                  : "Payable on receipt"
+            }
+            tone={overdue ? "error" : "muted"}
+          />
+          <StatTile
+            icon={CircleDollarSign}
+            label="Payment"
+            value={
+              invoice.paid_at
+                ? formatDate(invoice.paid_at)
+                : invoice.status === "sent"
+                  ? "Awaiting"
+                  : invoice.status === "void"
+                    ? "Void"
+                    : "Not sent"
+            }
+            hint={
+              invoice.paid_at
+                ? "Recorded in full"
+                : `Outstanding ${formatMoney(totals.total_cents)}`
+            }
+            tone={invoice.paid_at ? "success" : "muted"}
+          />
         </div>
 
-        {/* ── Right: link + metadata rail ── */}
-        <div className="space-y-4">
-          <RailCard
-            icon={Link2}
-            title="Public link"
-            description="Read-only invoice the client can open and print — revocable any time."
-          >
-            <InvoiceLinkPanel invoiceId={invoice.id} invoiceLink={link} />
-          </RailCard>
+        <div className="grid items-start gap-6 lg:grid-cols-[2fr_1fr]">
+          {/* ── Left: the invoice document + composer ── */}
+          <div className="space-y-6">
+            <PaperCard
+              letterLabel="Invoice"
+              letterhead={context.name}
+              meta={invoiceNumberLabel(invoice.invoice_number)}
+              footer={
+                <div className="space-y-1.5">
+                  <p className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+                    Notes
+                  </p>
+                  <p className="whitespace-pre-wrap text-sm leading-relaxed">
+                    {invoice.notes || "—"}
+                  </p>
+                </div>
+              }
+            >
+              <div className="flex flex-wrap items-start justify-between gap-4">
+                <div>
+                  <p className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+                    Billed to
+                  </p>
+                  <p className="mt-1 font-display text-lg font-bold">
+                    {invoice.client_name}
+                  </p>
+                </div>
+                <div className="text-right text-sm text-muted-foreground">
+                  <p>Issued {formatDate(invoice.created_at)}</p>
+                  <p>
+                    Due {invoice.due_date ? formatDate(invoice.due_date) : "on receipt"}
+                  </p>
+                </div>
+              </div>
 
-          <RailCard icon={Receipt} title="Details">
-            <MetaRow label="Status">
-              <InvoiceStatusSelect
-                invoiceId={invoice.id}
-                status={invoice.status}
-              />
-            </MetaRow>
-            <MetaRow label="Number">
-              {invoiceNumberLabel(invoice.invoice_number)}
-            </MetaRow>
-            <MetaRow label="Client">{invoice.client_name}</MetaRow>
-            <MetaRow label="Due">
-              {invoice.due_date ? formatDate(invoice.due_date) : "On receipt"}
-            </MetaRow>
-            {invoice.sent_at && (
-              <MetaRow label="Sent">{formatDate(invoice.sent_at)}</MetaRow>
-            )}
-            {invoice.paid_at && (
-              <MetaRow label="Paid">{formatDate(invoice.paid_at)}</MetaRow>
-            )}
-            <MetaRow label="Created">
-              {formatDate(invoice.created_at)}
-            </MetaRow>
-            <MetaRow label="Updated">{timeAgo(invoice.updated_at)}</MetaRow>
-          </RailCard>
+              {/* Line items — wrapping rows (no clipped cells). */}
+              <div className="mt-6 border-t border-border">
+                {invoice.items.map((item) => (
+                  <div
+                    key={item.id}
+                    className="flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b border-border py-3"
+                  >
+                    <p className="min-w-0 flex-1 basis-full text-sm sm:basis-auto">
+                      {item.description}
+                    </p>
+                    <p className="w-12 shrink-0 text-right text-sm text-muted-foreground">
+                      ×{item.quantity}
+                    </p>
+                    <p className="w-20 shrink-0 text-right text-sm text-muted-foreground">
+                      {formatMoney(item.unit_amount_cents)}
+                    </p>
+                    <p className="w-24 shrink-0 text-right text-sm font-medium">
+                      {formatMoney(item.quantity * item.unit_amount_cents)}
+                    </p>
+                  </div>
+                ))}
+              </div>
 
-          <RailCard icon={Clock} title="Activity">
-            <ActivityTimeline events={events} />
-          </RailCard>
+              {/* Totals — computed, never stored. */}
+              <div className="mt-5 flex justify-end">
+                <dl className="w-full max-w-xs space-y-1.5 text-sm">
+                  <div className="flex justify-between gap-6">
+                    <dt className="text-muted-foreground">Subtotal</dt>
+                    <dd>{formatMoney(totals.subtotal_cents)}</dd>
+                  </div>
+                  <div className="flex justify-between gap-6">
+                    <dt className="text-muted-foreground">
+                      Tax ({invoice.tax_percent}%)
+                    </dt>
+                    <dd>{formatMoney(totals.tax_cents)}</dd>
+                  </div>
+                  <div className="flex items-baseline justify-between gap-6 border-t border-border pt-2">
+                    <dt className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+                      Total
+                    </dt>
+                    <dd className="font-display text-xl font-bold">
+                      {formatMoney(totals.total_cents)}
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+            </PaperCard>
+
+            <Card className="animate-rise-in">
+              <CardHeader className="space-y-1 border-b border-border px-5 py-3.5">
+                <CardTitle className="text-base">Edit invoice</CardTitle>
+                <CardDescription>
+                  Line items are in dollars; the math is the same on the
+                  client’s public view. Totals are computed, never stored.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="p-5">
+                <InvoiceComposer
+                  invoiceId={invoice.id}
+                  initialTitle={invoice.title}
+                  initialClient={invoice.client_name}
+                  initialItems={invoice.items}
+                  initialTaxPercent={invoice.tax_percent}
+                  initialNotes={invoice.notes}
+                  initialDueDate={invoice.due_date}
+                />
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* ── Right: link + metadata rail ── */}
+          <div className="space-y-4">
+            <RailCard
+              icon={Link2}
+              title="Public link"
+              description="Read-only invoice the client can open and print — revocable any time."
+            >
+              <InvoiceLinkPanel invoiceId={invoice.id} invoiceLink={link} />
+            </RailCard>
+
+            <RailCard icon={Receipt} title="Details">
+              <MetaRow label="Status">
+                <InvoiceStatusSelect
+                  invoiceId={invoice.id}
+                  status={invoice.status}
+                />
+              </MetaRow>
+              <MetaRow label="Number">
+                {invoiceNumberLabel(invoice.invoice_number)}
+              </MetaRow>
+              <MetaRow label="Client">{invoice.client_name}</MetaRow>
+              <MetaRow label="Due">
+                {invoice.due_date ? formatDate(invoice.due_date) : "On receipt"}
+              </MetaRow>
+              {invoice.sent_at && (
+                <MetaRow label="Sent">{formatDate(invoice.sent_at)}</MetaRow>
+              )}
+              {invoice.paid_at && (
+                <MetaRow label="Paid">{formatDate(invoice.paid_at)}</MetaRow>
+              )}
+              <MetaRow label="Created">
+                {formatDate(invoice.created_at)}
+              </MetaRow>
+              <MetaRow label="Updated">{timeAgo(invoice.updated_at)}</MetaRow>
+            </RailCard>
+
+            <RailCard icon={Clock} title="Activity">
+              <ActivityTimeline events={events} />
+            </RailCard>
+          </div>
         </div>
       </div>
+
+      {/* The printable document (browser print = the v1 export story):
+          only this renders when printing — see PrintInvoiceDocument. */}
+      <PrintInvoiceDocument invoice={invoice} workspaceName={context.name} />
     </div>
   );
 }

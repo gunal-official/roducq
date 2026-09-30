@@ -18,6 +18,11 @@
     --success-soft: #e3f5ec;
     --dark: #17171c;
     --accent-soft: color-mix(in srgb, var(--accent) 12%, var(--card));
+    /* "Sent" blue (Step 35 — invoice status badge redesign): Draft/Paid/
+       Void already read as muted/success/quiet-outline, so Sent gets its
+       own hue instead of reusing accent orange (which Paid also used). */
+    --info: #2f6fed;
+    --info-soft: color-mix(in srgb, var(--info) 12%, var(--card));
     --radius: 0.625rem;
   }
 
@@ -33,6 +38,8 @@
     --success-soft: #123226;
     --dark: #f2f2f5;
     --accent-soft: color-mix(in srgb, var(--accent) 18%, var(--card));
+    --info: #5b8dff;
+    --info-soft: color-mix(in srgb, var(--info) 18%, var(--card));
   }
 }
 
@@ -196,6 +203,8 @@
     --success-soft: #e3f5ec;
     --dark: #17171c;
     --accent-soft: color-mix(in srgb, var(--accent) 12%, var(--card));
+    --info: #2f6fed;
+    --info-soft: color-mix(in srgb, var(--info) 12%, var(--card));
   }
 
   body {

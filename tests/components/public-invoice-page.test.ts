@@ -117,11 +117,12 @@ describe("InvoiceStatusBadge print fix", () => {
     // status must go transparent with a printable border/text color.
     const matches = src.match(/print:bg-transparent/g) ?? [];
     assert.equal(matches.length, 4, "all four statuses fall back");
-    // The worst offender: Paid was white-on-accent → must not print
-    // white-on-white.
+    // The worst offender: Paid is white-on-success (Step 35 redesign
+    // moved it off accent onto the success/green token) → must not
+    // print white-on-white.
     assert.ok(
-      src.includes("print:border-accent") && src.includes("print:text-accent"),
-      "paid falls back to accent outline"
+      src.includes("print:border-success") && src.includes("print:text-success"),
+      "paid falls back to a success outline"
     );
   });
 
