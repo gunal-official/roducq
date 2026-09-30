@@ -25,9 +25,9 @@ import type { InvoiceStatus } from "@/lib/types/invoice";
  * Two layers of defense: the badge carries `print-exact`
  * (print-color-adjust: exact, defined in app/globals.css) so browsers
  * that honor it keep the authored fill; AND every status declares a
- * print:bg-transparent fallback (plus a printable border/text color for
- * the solid ones) so the label survives even when backgrounds are
- * stripped anyway.
+ * transparent-background print fallback (plus a printable border/text
+ * color for the solid ones) so the label survives even when backgrounds
+ * are stripped anyway.
  */
 const STATUS_STYLES: Record<
   InvoiceStatus,
