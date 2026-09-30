@@ -177,3 +177,59 @@
     transform: none;
   }
 }
+
+/* ── Print layout (Step 35 — public invoice paper) ───────────────────────
+   Print always renders on the LIGHT token set, even when the visitor is
+   in dark mode: browsers strip most backgrounds by default, so a dark
+   theme would otherwise print near-invisible light ink on white paper.
+   Shadows and entrance animations are also meaningless on paper — the
+   document prints as a flat, bordered sheet. Chrome elements opt out
+   individually via Tailwind's print:hidden. */
+@media print {
+  @page {
+    margin: 14mm;
+  }
+
+  :root,
+  .dark {
+    --bg: #ffffff;
+    --text: #17171c;
+    --accent: #ff6a2b;
+    --muted: #f0f0f3;
+    --card: #ffffff;
+    --border: #e9e9ee;
+    --error: #e5484d;
+    --success: #1f9d68;
+    --success-soft: #e3f5ec;
+    --dark: #17171c;
+    --accent-soft: color-mix(in srgb, var(--accent) 12%, var(--card));
+    --info: #2f6fed;
+    --info-soft: color-mix(in srgb, var(--info) 12%, var(--card));
+  }
+
+  body {
+    background: #ffffff !important;
+  }
+
+  /* Paper card prints as a flat sheet: no elevation, no entrance motion. */
+  .shadow-card,
+  .shadow-pop,
+  .shadow-rail {
+    box-shadow: none !important;
+  }
+  .animate-rise-in,
+  .animate-route-in,
+  .animate-fade-in,
+  .animate-pop-in,
+  .animate-slide-in {
+    animation: none !important;
+  }
+
+  /* Opt-in: keep authored colors (status badge tints) when the browser
+     would otherwise strip backgrounds. Fallback outline styles live on
+     the badge itself for browsers/settings that strip them anyway. */
+  .print-exact {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

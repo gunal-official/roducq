@@ -18,6 +18,16 @@ import type { InvoiceStatus } from "@/lib/types/invoice";
  *   void  = quiet red-tinted outline — visibly different from draft, but
  *           an outline (not a solid fill) since void is the audit-safe
  *           cancel, never a delete.
+ *
+ * Print fix (kept from the public-invoice print pass): browsers strip
+ * background colors by default when printing, which would turn "Paid"
+ * (white text on a solid success fill) into invisible white-on-white ink.
+ * Two layers of defense: the badge carries `print-exact`
+ * (print-color-adjust: exact, defined in app/globals.css) so browsers
+ * that honor it keep the authored fill; AND every status declares a
+ * print:bg-transparent fallback (plus a printable border/text color for
+ * the solid ones) so the label survives even when backgrounds are
+ * stripped anyway.
  */
 const STATUS_STYLES: Record<
   InvoiceStatus,
@@ -25,19 +35,21 @@ const STATUS_STYLES: Record<
 > = {
   draft: {
     label: "Draft",
-    className: "border-transparent bg-muted text-muted-foreground",
+    className:
+      "border-transparent bg-muted text-muted-foreground print:border-border print:bg-transparent",
   },
   sent: {
     label: "Sent",
-    className: "border-info bg-info-soft text-info",
+    className: "border-info bg-info-soft text-info print:bg-transparent",
   },
   paid: {
     label: "Paid",
-    className: "border-transparent bg-success text-white",
+    className:
+      "border-transparent bg-success text-white print:border-success print:bg-transparent print:text-success",
   },
   void: {
     label: "Void",
-    className: "border-error/30 bg-error/5 text-error",
+    className: "border-error/30 bg-error/5 text-error print:bg-transparent",
   },
 };
 
@@ -50,7 +62,7 @@ export function InvoiceStatusBadge({
 }) {
   const style = STATUS_STYLES[status] ?? STATUS_STYLES.draft;
   return (
-    <Badge className={cn("font-medium", style.className, className)}>
+    <Badge className={cn("print-exact font-medium", style.className, className)}>
       {style.label}
     </Badge>
   );
