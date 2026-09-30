@@ -37,6 +37,12 @@ const config = {
           DEFAULT: "var(--success)",
           soft: "var(--success-soft)",
         },
+        // "Sent" blue (Step 35 — invoice status badge redesign): a distinct
+        // hue from accent/success so Draft/Sent/Paid/Void read at a glance.
+        info: {
+          DEFAULT: "var(--info)",
+          soft: "var(--info-soft)",
+        },
         dark: {
           DEFAULT: "var(--dark)",
           foreground: "#ffffff",

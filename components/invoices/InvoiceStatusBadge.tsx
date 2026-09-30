@@ -3,14 +3,21 @@ import { cn } from "@/lib/utils";
 import type { InvoiceStatus } from "@/lib/types/invoice";
 
 /**
- * Status badge for invoices — fifth member of the badge family, with
- * invoices' 4-status vocabulary. The token palette is limited
- * (muted / accent / error), so each status reuses house conventions:
- * draft = solid muted (same as brief/proposal/update drafts), sent =
- * accent outline (same look as every other "sent"), paid = solid
- * accent (the terminal-success look of plan done / proposal
- * accepted), void = quiet outline (the "dead" look of plan
- * not_started — void is the audit-safe cancel, never a delete).
+ * Status badge for invoices (Step 35 redesign). Earlier revisions reused
+ * the accent orange for BOTH sent (outline) and paid (solid), which read
+ * as the same color family at a glance — not great for a money surface
+ * where "has this been paid yet?" is the first thing a member scans for.
+ *
+ * Each of the 4 statuses now gets its own read:
+ *   draft = quiet gray fill — nothing has happened yet.
+ *   sent  = blue outline (--info / --info-soft, new tokens) — the one
+ *           color no other badge in the app uses, so "awaiting payment"
+ *           never gets confused with the accent-orange brand color.
+ *   paid  = solid green (--success) — the terminal, good-news state,
+ *           matching the "paid" tone used on the dashboard/stat tiles.
+ *   void  = quiet red-tinted outline — visibly different from draft, but
+ *           an outline (not a solid fill) since void is the audit-safe
+ *           cancel, never a delete.
  */
 const STATUS_STYLES: Record<
   InvoiceStatus,
@@ -18,19 +25,19 @@ const STATUS_STYLES: Record<
 > = {
   draft: {
     label: "Draft",
-    className: "border-transparent bg-muted text-text",
+    className: "border-transparent bg-muted text-muted-foreground",
   },
   sent: {
     label: "Sent",
-    className: "border-accent bg-accent-soft text-accent",
+    className: "border-info bg-info-soft text-info",
   },
   paid: {
     label: "Paid",
-    className: "border-transparent bg-accent text-white",
+    className: "border-transparent bg-success text-white",
   },
   void: {
     label: "Void",
-    className: "border-border bg-card text-muted-foreground",
+    className: "border-error/30 bg-error/5 text-error",
   },
 };
 
