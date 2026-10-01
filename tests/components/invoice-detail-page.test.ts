@@ -107,8 +107,19 @@ describe("invoice detail page — print layout (only the document prints)", () =
 
   it("PrintInvoiceDocument is invisible on screen and print:block only", () => {
     assert.ok(
-      printDoc.includes('className="hidden max-w-3xl print:block"'),
+      printDoc.includes('className="print-document hidden print:block"'),
       "print document must be hidden on screen and shown only for print"
+    );
+  });
+
+  it("PrintInvoiceDocument carries no max-w-* cap of its own", () => {
+    // The page box is the only thing that should bound the sheet; a
+    // leftover max-w-3xl would fight .print-document's max-width:none.
+    assert.ok(
+      !/className="[^"]*\bmax-w-\w+[^"]*"/.test(
+        printDoc.slice(printDoc.indexOf("<div className="), printDoc.indexOf("</div>"))
+      ),
+      "root print container must not pin its own max-width"
     );
   });
 
@@ -122,12 +133,91 @@ describe("invoice detail page — print layout (only the document prints)", () =
   it("the (app) chrome (topbar/sidebar) is print:hidden at the layout level", () => {
     const layout = read("app/(app)/layout.tsx");
     assert.ok(
-      layout.includes('<div className="col-span-2 print:hidden">'),
+      layout.includes('<div className="app-topbar col-span-2 print:hidden">'),
       "topbar wrapper must be print:hidden"
     );
     assert.ok(
-      layout.includes('<div className="hidden print:hidden tab:block">'),
+      layout.includes('<div className="app-sidebar hidden print:hidden tab:block">'),
       "sidebar wrapper must be print:hidden"
     );
+  });
+});
+
+/**
+ * Regression: print preview of /invoices/:id collapsed into a narrow
+ * left column. The shell grid kept its sidebar tracks in print, and with
+ * the chrome display:none'd <main> auto-placed into the 64px `tab:`
+ * track (print media queries resolve against the ~710px page box, not
+ * the viewport). Tailwind print: variants tie on specificity with the
+ * grid-template-columns utilities, so the flattening lives in the print
+ * stylesheet behind stable class hooks.
+ */
+describe("print layout — app shell must flatten (narrow-column regression)", () => {
+  const layout = read("app/(app)/layout.tsx");
+  const css = read("app/globals.css");
+  const printBlock = css.slice(css.indexOf("@media print"));
+
+  /** Body of a rule inside the print block, by selector list. Anchored to
+   *  a line start so prose mentions of `.app-shell` in the explanatory
+   *  comment above the rules are not mistaken for the rules themselves. */
+  const rule = (selectors: string) => {
+    const pattern = new RegExp(
+      `^[ \\t]*${selectors.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s*{([^}]*)}`,
+      "m"
+    );
+    const match = printBlock.match(pattern);
+    assert.ok(match, `expected a \`${selectors}\` rule inside @media print`);
+    return match[1];
+  };
+
+  it("the shell exposes stable .app-shell / .app-main hooks", () => {
+    assert.match(
+      layout,
+      /className="app-shell grid /,
+      "grid wrapper must carry .app-shell"
+    );
+    assert.match(
+      layout,
+      /className="app-main /,
+      "<main> must carry .app-main"
+    );
+  });
+
+  it("the shell grid is hard-overridden to block in print", () => {
+    const shell = rule(".app-shell");
+    assert.match(shell, /display:\s*block\s*!important/, "display:block");
+    assert.match(
+      shell,
+      /grid-template-columns:\s*none\s*!important/,
+      "sidebar tracks removed"
+    );
+  });
+
+  it("main is released from the track, the viewport clamp and the scroller", () => {
+    const main = rule(".app-main");
+    assert.match(main, /width:\s*100%\s*!important/, "full width");
+    assert.match(main, /max-width:\s*none\s*!important/, "no max-width cap");
+    assert.match(main, /overflow:\s*visible\s*!important/, "no clipping");
+  });
+
+  it("h-dvh + overflow-hidden cannot clip a multi-page invoice", () => {
+    // Without these the printed document is truncated to one sheet.
+    const shell = rule(".app-shell");
+    assert.match(shell, /height:\s*auto\s*!important/, "height released");
+    assert.match(shell, /overflow:\s*visible\s*!important/, "overflow released");
+  });
+
+  it("topbar and sidebar are forced off the page", () => {
+    assert.match(
+      rule(".app-topbar,\n  .app-sidebar"),
+      /display:\s*none\s*!important/,
+      "chrome display:none !important in print"
+    );
+  });
+
+  it("the print document container cannot be width-constrained", () => {
+    const doc = rule(".print-document");
+    assert.match(doc, /width:\s*100%\s*!important/);
+    assert.match(doc, /max-width:\s*none\s*!important/);
   });
 });

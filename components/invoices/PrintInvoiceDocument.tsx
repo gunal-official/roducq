@@ -15,6 +15,11 @@ import type { Invoice } from "@/lib/types/invoice";
  * motion — none of that reads on paper): a letterhead line, billed-to,
  * line items, and the same subtotal → tax → total math the on-screen
  * paper card and the public /invoice/:token page use.
+ *
+ * The `print-document` hook is what guarantees full page width: the
+ * print stylesheet in app/globals.css flattens the (app) shell grid and
+ * releases any width/max-width cap on this container, so the sheet fills
+ * the page box instead of collapsing into the old sidebar track.
  */
 export function PrintInvoiceDocument({
   invoice,
@@ -26,7 +31,7 @@ export function PrintInvoiceDocument({
   const totals = invoiceTotals(invoice.items, invoice.tax_percent);
 
   return (
-    <div className="hidden max-w-3xl print:block">
+    <div className="print-document hidden print:block">
       <div className="flex items-baseline justify-between border-b border-border pb-3">
         <span className="font-display text-sm font-bold tracking-tight">
           {workspaceName}
