@@ -232,4 +232,61 @@
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
+
+  /* ── App shell: the (app) grid must not survive into print ────────────
+     Bug: printing /invoices/:id produced a very narrow left column that
+     wrapped word-by-word.
+
+     Why: the shell is `display:grid` with sidebar tracks
+     (tab:[64px_1fr], desk:[232px_1fr]). Browsers evaluate media queries
+     against the PAGE box, not the viewport — US Letter at 14mm margins
+     is ~710px, which sits in the `tab:` band (600–1023px). The sidebar
+     and topbar wrappers are print:hidden, so they drop out of flow
+     entirely, which makes <main> the FIRST in-flow grid item: it gets
+     auto-placed into column 1 — the 64px track. Hence the sliver.
+
+     A `print:block` utility on the wrapper is not a reliable fix: it has
+     the same specificity as the `tab:`/`desk:` grid-template-columns
+     utilities and would still leave the explicit column tracks in place.
+     So the shell carries stable .app-shell/.app-main hooks and we flatten
+     it here with !important.
+
+     h-dvh + overflow-hidden (shell) and overflow-y-auto (main) also have
+     to go: on paper they clip a long invoice to a single page instead of
+     letting it flow across sheets. */
+  .app-shell {
+    display: block !important;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+
+  .app-main {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: auto !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    background: transparent !important;
+  }
+
+  /* App chrome stays off the page. These wrappers already opt out with
+     print:hidden; restating it !important means a future utility (or a
+     component that sets its own display) cannot put the rail back. */
+  .app-topbar,
+  .app-sidebar {
+    display: none !important;
+  }
+
+  /* The printed document itself must be free to use the full page box.
+     On-screen max-w-* caps would otherwise re-narrow it on wider paper
+     (A3/landscape) once the shell is flattened. */
+  .print-document {
+    width: 100% !important;
+    max-width: none !important;
+    overflow: visible !important;
+  }
 }

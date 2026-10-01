@@ -49,7 +49,7 @@ export default async function AppLayout({
 
   return (
     <ToastProvider>
-    <div className="grid h-dvh grid-cols-1 grid-rows-[auto_1fr] overflow-hidden tab:grid-cols-[64px_1fr] desk:grid-cols-[232px_1fr]">
+    <div className="app-shell grid h-dvh grid-cols-1 grid-rows-[auto_1fr] overflow-hidden tab:grid-cols-[64px_1fr] desk:grid-cols-[232px_1fr]">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-card focus:px-3 focus:py-2 focus:text-sm focus:shadow-md print:hidden"
@@ -59,8 +59,12 @@ export default async function AppLayout({
       {/* Topbar + sidebar are print:hidden so browser print of any app
           page (the v1 export story — e.g. the contract document on
           /contracts/:id) yields a clean document, not the app chrome.
-          Wrappers carry the grid placement the components used to. */}
-      <div className="col-span-2 print:hidden">
+          Wrappers carry the grid placement the components used to.
+          The app-topbar/app-sidebar/app-shell/app-main hooks are stable
+          selectors the print stylesheet in globals.css overrides hard —
+          see the "App shell" block there for why Tailwind's print:
+          variants alone could not flatten the grid. */}
+      <div className="app-topbar col-span-2 print:hidden">
         <Topbar
           initials={initials}
           name={fullName}
@@ -70,14 +74,17 @@ export default async function AppLayout({
           canSeeMoney={context.canSeeMoney}
         />
       </div>
-      <div className="hidden print:hidden tab:block">
+      <div className="app-sidebar hidden print:hidden tab:block">
         <Sidebar
           workspaces={context.workspaces}
           activeWorkspaceId={context.id}
           canSeeMoney={context.canSeeMoney}
         />
       </div>
-      <main id="main" className="overflow-y-auto bg-bg px-4 pb-12 pt-6 sm:px-8">
+      <main
+        id="main"
+        className="app-main overflow-y-auto bg-bg px-4 pb-12 pt-6 sm:px-8"
+      >
         {children}
       </main>
       {context.canSeeMoney && (
