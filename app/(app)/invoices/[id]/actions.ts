@@ -23,6 +23,7 @@ import { revalidatePath } from "next/cache";
 
 import { requireEditor } from "@/lib/data/workspace-context";
 import { recordEvent } from "@/lib/events";
+import { canShareInvoice, invoiceShareBlockedError } from "@/lib/invoice-sharing";
 import { createClient } from "@/lib/supabase/server";
 import type { InvoiceItem, InvoiceStatus } from "@/lib/types/invoice";
 
@@ -171,6 +172,13 @@ export async function setInvoiceStatus(input: {
 // ── Public links (Step 17) ─────────────────────────────────────────────
 // Member actions only — invoice_links is fully member-gated; the public
 // read path is the get_shared_invoice RPC, untouched by these.
+//
+// SHARING GUARD: get_shared_invoice() only renders 'sent'/'paid'
+// invoices, so minting a token for a draft/void invoice hands the owner
+// a URL that reads "This link is invalid or has been revoked". Both
+// write paths below therefore re-check the live status from the DB
+// BEFORE writing — the disabled button in InvoiceLinkPanel is the
+// courtesy, this is the enforcement. See lib/invoice-sharing.ts.
 
 export async function createInvoiceLink(input: {
   invoiceId: string;
@@ -181,16 +189,21 @@ export async function createInvoiceLink(input: {
   const viewerGuard = await requireEditor();
   if (viewerGuard) return viewerGuard;
 
-  // The insert needs workspace_id; read it from the invoice (RLS-scoped,
-  // so foreign invoices simply look absent).
+  // The insert needs workspace_id; read it (plus the status the guard
+  // runs on) from the invoice — RLS-scoped, so foreign invoices simply
+  // look absent.
   const { data: invoice, error: fetchError } = await supabase
     .from("invoices")
-    .select("workspace_id")
+    .select("workspace_id, status")
     .eq("id", input.invoiceId)
     .maybeSingle();
 
   if (fetchError) return { error: fetchError.message };
   if (!invoice) return { error: "Invoice not found." };
+
+  if (!canShareInvoice(invoice.status)) {
+    return { error: invoiceShareBlockedError(invoice.status) };
+  }
 
   // token defaults to gen_random_uuid() at insert. unique(invoice_id)
   // turns a double-click race into a friendly error.
@@ -242,6 +255,22 @@ export async function regenerateInvoiceLink(input: {
     return { error: "Your session has expired. Please log in again." };
   const viewerGuard = await requireEditor();
   if (viewerGuard) return viewerGuard;
+
+  // Regenerating is a fresh share — same guard as creating one. An
+  // invoice that was sent, shared, then voided must not be able to
+  // quietly resurrect its link.
+  const { data: invoice, error: fetchError } = await supabase
+    .from("invoices")
+    .select("status")
+    .eq("id", input.invoiceId)
+    .maybeSingle();
+
+  if (fetchError) return { error: fetchError.message };
+  if (!invoice) return { error: "Invoice not found." };
+
+  if (!canShareInvoice(invoice.status)) {
+    return { error: invoiceShareBlockedError(invoice.status) };
+  }
 
   // Same row, fresh unguessable token (uuid v4 — the JS-side equivalent
   // of gen_random_uuid(), since PostgREST updates can't invoke SQL

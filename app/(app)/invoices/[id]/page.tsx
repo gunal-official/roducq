@@ -23,9 +23,17 @@
  *      items jsonb updates and the chip clears.
  *   3. Status: Sent → Paid stamps invoices.paid_at (tiles + timeline
  *      update after reload); Paid → Sent clears it; Void keeps stamps.
- *   4. Link panel: create → copy the /invoice/<token> URL → open it in an
- *      INCOGNITO window: the invoice renders read-only with a Print
- *      button. Revoke → the URL shows "unavailable"; regenerate works.
+ *   4. Link panel (SENT or PAID only): create → copy the /invoice/<token>
+ *      URL → open it in an INCOGNITO window: the invoice renders
+ *      read-only with a Print button. Revoke → the URL shows
+ *      "unavailable"; regenerate works.
+ *   4b. Flip the invoice to Draft (or Void): "Create public link" /
+ *      "Regenerate" go disabled and the panel explains "Public links
+ *      are available after the invoice is marked Sent." — because
+ *      get_shared_invoice() only renders sent/paid, a token minted on
+ *      a draft would open as "this link is invalid". The server
+ *      actions refuse the same transition, so a crafted request can't
+ *      route around the disabled button.
  *   5. Bogus or foreign ids render the "not found" state (RLS hides
  *      them identically).
  *   6. Print (button or browser, Ctrl/Cmd+P): the preview shows only the
@@ -404,7 +412,11 @@ export default async function InvoiceDetailPage({
               title="Public link"
               description="Read-only invoice the client can open and print — revocable any time."
             >
-              <InvoiceLinkPanel invoiceId={invoice.id} invoiceLink={link} />
+              <InvoiceLinkPanel
+                invoiceId={invoice.id}
+                invoiceLink={link}
+                invoiceStatus={invoice.status}
+              />
             </RailCard>
 
             <RailCard icon={Receipt} title="Details">

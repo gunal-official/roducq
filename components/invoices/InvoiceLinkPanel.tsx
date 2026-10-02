@@ -17,7 +17,12 @@
  *
  * Note for the client: only SENT and PAID invoices render behind the
  * link (draft/void return the same "unavailable" state as a revoked
- * one — indistinguishable by design).
+ * one — indistinguishable by design). Because of that, Create and
+ * Regenerate are DISABLED while the invoice is draft or void, with
+ * INVOICE_SHARE_HELP explaining why — minting a token for a draft
+ * only produces a URL that reads "this link is invalid". The same
+ * rule is re-enforced server-side in the actions; this is the
+ * courtesy half. Source of truth: lib/invoice-sharing.ts.
  */
 
 import { useEffect, useState } from "react";
@@ -30,14 +35,20 @@ import {
   revokeInvoiceLink,
 } from "@/app/(app)/invoices/[id]/actions";
 import { Button } from "@/components/ui/button";
-import type { InvoiceLink } from "@/lib/types/invoice";
+import { canShareInvoice, INVOICE_SHARE_HELP } from "@/lib/invoice-sharing";
+import type { InvoiceLink, InvoiceStatus } from "@/lib/types/invoice";
+
+/** Ties the disabled button to its explanation for screen readers. */
+const HELP_ID = "invoice-link-status-help";
 
 export function InvoiceLinkPanel({
   invoiceId,
   invoiceLink,
+  invoiceStatus,
 }: {
   invoiceId: string;
   invoiceLink: InvoiceLink | null;
+  invoiceStatus: InvoiceStatus;
 }) {
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -47,6 +58,10 @@ export function InvoiceLinkPanel({
   const linkUrl = invoiceLink ? `${origin}/invoice/${invoiceLink.token}` : null;
 
   const isActive = invoiceLink !== null && invoiceLink.revoked_at === null;
+
+  // Draft/void invoices never render behind a token (get_shared_invoice
+  // filters them out), so issuing one is blocked rather than broken.
+  const shareable = canShareInvoice(invoiceStatus);
 
   async function run(
     action: () => Promise<{ error?: string } | undefined>
@@ -69,16 +84,20 @@ export function InvoiceLinkPanel({
     <div className="space-y-3">
       {invoiceLink === null && (
         <>
-          <p className="text-xs leading-relaxed text-muted-foreground">
-            Anyone with the link can view this invoice — read-only, no
-            account needed. Draft and void invoices never render behind
-            a link. You can revoke it any time.
-          </p>
+          {/* The sales pitch only makes sense when the button works;
+              otherwise the helper text below carries the message. */}
+          {shareable && (
+            <p className="text-xs leading-relaxed text-muted-foreground">
+              Anyone with the link can view this invoice — read-only, no
+              account needed. You can revoke it any time.
+            </p>
+          )}
           <Button
             type="button"
             variant="secondary"
             className="w-full"
-            disabled={pending}
+            disabled={pending || !shareable}
+            aria-describedby={shareable ? undefined : HELP_ID}
             onClick={() => run(() => createInvoiceLink({ invoiceId }))}
           >
             {pending ? (
@@ -142,7 +161,8 @@ export function InvoiceLinkPanel({
             type="button"
             variant="secondary"
             className="w-full"
-            disabled={pending}
+            disabled={pending || !shareable}
+            aria-describedby={shareable ? undefined : HELP_ID}
             onClick={() =>
               run(() =>
                 regenerateInvoiceLink({ linkId: invoiceLink.id, invoiceId })
@@ -157,6 +177,15 @@ export function InvoiceLinkPanel({
             Regenerate link
           </Button>
         </>
+      )}
+
+      {/* Why the button above is dead. Rendered for the create AND the
+          regenerate state (not for an active link — revoking always
+          stays available). */}
+      {!shareable && !isActive && (
+        <p id={HELP_ID} className="text-xs leading-relaxed text-muted-foreground">
+          {INVOICE_SHARE_HELP}
+        </p>
       )}
 
       {error && <p className="text-xs text-error">{error}</p>}
