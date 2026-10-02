@@ -24,6 +24,7 @@ import { revalidatePath } from "next/cache";
 import { requireEditor } from "@/lib/data/workspace-context";
 import { recordEvent } from "@/lib/events";
 import { canShareInvoice, invoiceShareBlockedError } from "@/lib/invoice-sharing";
+import { invoiceTotals } from "@/lib/invoice-totals";
 import { createClient } from "@/lib/supabase/server";
 import type { InvoiceItem, InvoiceStatus } from "@/lib/types/invoice";
 
@@ -64,7 +65,8 @@ export async function saveInvoiceContent(input: {
     return { error: "Tax must be between 0 and 100." };
   }
   for (const item of input.items ?? []) {
-    if (!item.description?.trim()) return { error: "Every line needs a description." };
+    if (!item.description?.trim())
+      return { error: "Every line needs a description." };
     if (!Number.isInteger(item.quantity) || item.quantity < 1) {
       return { error: "Line quantities must be whole numbers of 1 or more." };
     }
@@ -74,8 +76,7 @@ export async function saveInvoiceContent(input: {
   }
 
   const supabase = await requireSession();
-  if (!supabase)
-    return { error: "Your session has expired. Please log in again." };
+  if (!supabase) return { error: "Your session has expired. Please log in again." };
   const viewerGuard = await requireEditor();
   if (viewerGuard) return viewerGuard;
 
@@ -111,8 +112,7 @@ export async function setInvoiceStatus(input: {
   }
 
   const supabase = await requireSession();
-  if (!supabase)
-    return { error: "Your session has expired. Please log in again." };
+  if (!supabase) return { error: "Your session has expired. Please log in again." };
   const viewerGuard = await requireEditor();
   if (viewerGuard) return viewerGuard;
 
@@ -120,7 +120,7 @@ export async function setInvoiceStatus(input: {
   // the stamps are computed from real state, not assumptions.
   const { data: invoice, error: fetchError } = await supabase
     .from("invoices")
-    .select("status, sent_at, paid_at, workspace_id, invoice_number, total_cents")
+    .select("status, sent_at, paid_at, workspace_id, invoice_number, items, tax_percent")
     .eq("id", input.invoiceId)
     .maybeSingle();
 
@@ -145,21 +145,24 @@ export async function setInvoiceStatus(input: {
     patch.paid_at = null;
   }
 
-  const { error } = await supabase
-    .from("invoices")
-    .update(patch)
-    .eq("id", input.invoiceId);
+  const { error } = await supabase.from("invoices").update(patch).eq("id", input.invoiceId);
 
   if (error) return { error: error.message };
 
+  // Record "invoice.paid" only on the transition into paid.
   if (input.status === "paid" && invoice.status !== "paid") {
+    const totals = invoiceTotals(
+      (invoice.items ?? []) as InvoiceItem[],
+      Number(invoice.tax_percent ?? 0),
+    );
+
     await recordEvent(supabase, {
       workspace_id: invoice.workspace_id,
       event_type: "invoice.paid",
       payload: {
         invoice_id: input.invoiceId,
         invoice_number: invoice.invoice_number,
-        total_cents: invoice.total_cents,
+        total_cents: totals.total_cents,
       },
     });
   }
@@ -180,12 +183,9 @@ export async function setInvoiceStatus(input: {
 // BEFORE writing — the disabled button in InvoiceLinkPanel is the
 // courtesy, this is the enforcement. See lib/invoice-sharing.ts.
 
-export async function createInvoiceLink(input: {
-  invoiceId: string;
-}): Promise<ActionResult> {
+export async function createInvoiceLink(input: { invoiceId: string }): Promise<ActionResult> {
   const supabase = await requireSession();
-  if (!supabase)
-    return { error: "Your session has expired. Please log in again." };
+  if (!supabase) return { error: "Your session has expired. Please log in again." };
   const viewerGuard = await requireEditor();
   if (viewerGuard) return viewerGuard;
 
@@ -230,8 +230,7 @@ export async function revokeInvoiceLink(input: {
   invoiceId: string;
 }): Promise<ActionResult> {
   const supabase = await requireSession();
-  if (!supabase)
-    return { error: "Your session has expired. Please log in again." };
+  if (!supabase) return { error: "Your session has expired. Please log in again." };
   const viewerGuard = await requireEditor();
   if (viewerGuard) return viewerGuard;
 
@@ -251,8 +250,7 @@ export async function regenerateInvoiceLink(input: {
   invoiceId: string;
 }): Promise<ActionResult> {
   const supabase = await requireSession();
-  if (!supabase)
-    return { error: "Your session has expired. Please log in again." };
+  if (!supabase) return { error: "Your session has expired. Please log in again." };
   const viewerGuard = await requireEditor();
   if (viewerGuard) return viewerGuard;
 
