@@ -24,6 +24,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import type { BriefSource } from "@/lib/types/brief";
 import { SourceBubbles } from "@/components/intake/SourceBubbles";
+import { SourceFilePicker } from "@/components/intake/SourceFilePicker";
 
 export const MIN_SOURCE_CHARS = 20;
 
@@ -96,7 +97,8 @@ export function SourcePanel({
           <CardTitle className="text-base">Paste client text</CardTitle>
         </div>
         <CardDescription>
-          An email, a chat log, or call notes — roducq drafts the brief.
+          An email, a chat log, or call notes — paste them, or add a .docx /
+          .txt / .md file. roducq drafts the brief.
         </CardDescription>
       </CardHeader>
 
@@ -111,6 +113,11 @@ export function SourcePanel({
           className="min-h-[340px] resize-y bg-muted/40 leading-relaxed"
         />
         {error ? <p className="mt-3 text-sm text-error">{error}</p> : null}
+        <SourceFilePicker
+          rawText={rawText}
+          onChange={onChange}
+          disabled={generating}
+        />
       </CardContent>
 
       <CardFooter className="flex-wrap gap-2 border-t border-border bg-muted/40 px-5 py-3.5">
