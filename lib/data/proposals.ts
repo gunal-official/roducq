@@ -5,6 +5,7 @@ import type { BriefDeliverable } from "@/lib/types/brief";
 import type {
   ProposalStatus,
   ProposalSummary,
+  ProposalVersion,
   ProposalWithBrief,
 } from "@/lib/types/proposal";
 
@@ -68,4 +69,40 @@ export async function getProposalById(
 
   if (error) throw error;
   return (data ?? null) as ProposalWithBrief | null;
+}
+
+/** Version history for one proposal, NEWEST first (v_N → v_1). RLS: any
+ *  workspace member reads history — viewers included; strangers get zero
+ *  rows, indistinguishable from "no versions". */
+export async function getProposalVersions(
+  proposalId: string
+): Promise<ProposalVersion[]> {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from("proposal_versions")
+    .select("*")
+    .eq("proposal_id", proposalId)
+    .order("version_number", { ascending: false });
+
+  if (error) throw error;
+  return (data ?? []) as ProposalVersion[];
+}
+
+/** One full snapshot for the read-only "View version" page. Returns null
+ *  when not found (or not visible via RLS); the page additionally
+ *  verifies the row belongs to the proposal it was reached from. */
+export async function getProposalVersionById(
+  versionId: string
+): Promise<ProposalVersion | null> {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from("proposal_versions")
+    .select("*")
+    .eq("id", versionId)
+    .maybeSingle();
+
+  if (error) throw error;
+  return (data ?? null) as ProposalVersion | null;
 }
