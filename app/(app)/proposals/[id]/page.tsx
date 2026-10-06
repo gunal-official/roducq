@@ -15,6 +15,11 @@
  *      redirects to /plans/<id>.
  *   5. Bogus or foreign-workspace ids render the "not found" state (RLS
  *      hides them identically — no cross-tenant leakage).
+ *   6. "Version history" (Queue #7): changing the status appends a new
+ *      version capturing the displaced state; "View" opens the read-only
+ *      snapshot at /proposals/<id>/versions/<versionId>; editors can
+ *      "Restore" (two-click confirm) — the pre-restore state is saved as
+ *      a new version first, so nothing is ever lost.
  */
 
 import Link from "next/link";
@@ -32,11 +37,17 @@ import {
   X,
 } from "lucide-react";
 
-import { getProposalById } from "@/lib/data/proposals";
+import {
+  getProposalById,
+  getProposalVersions,
+} from "@/lib/data/proposals";
+import { createClient } from "@/lib/supabase/server";
 import { formatDate, isUuid, timeAgo } from "@/lib/utils";
 import { GeneratePlanButton } from "@/components/proposals/GeneratePlanButton";
 import { CanEdit } from "@/components/app-shell/CanEdit";
+import { ProposalContent } from "@/components/proposals/ProposalContent";
 import { ProposalStatusBadge } from "@/components/proposals/ProposalStatusBadge";
+import { ProposalVersionHistory } from "@/components/proposals/ProposalVersionHistory";
 import { DownloadPdfButton } from "@/components/ui/DownloadPdfButton";
 import { ProposalStatusSelect } from "@/components/proposals/ProposalStatusSelect";
 import { Badge } from "@/components/ui/badge";
@@ -49,14 +60,6 @@ import {
   StatTile,
   type TimelineEvent,
 } from "@/components/ui/doc-detail";
-
-function FieldLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
-      {children}
-    </p>
-  );
-}
 
 function MetaRow({
   label,
@@ -129,6 +132,17 @@ export default async function ProposalDetailPage({
   if (!proposal) {
     return <NotFoundState />;
   }
+
+  // History is a separate member-scoped read (viewers included) — a
+  // stranger never reaches it because the proposal read above hid first.
+  const versions = await getProposalVersions(proposal.id);
+
+  // For "You" / "Teammate" attribution in the version history (brief
+  // history precedent).
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   const doneCount = proposal.deliverables.filter((d) => d.checked).length;
   const budgetCaptured = !!proposal.budget_timeline?.trim();
@@ -235,64 +249,10 @@ export default async function ProposalDetailPage({
             ) : undefined
           }
         >
-          <div className="space-y-6">
-            <div className="space-y-1.5">
-              <FieldLabel>Budget & timeline</FieldLabel>
-              {budgetCaptured ? (
-                <p className="text-[15px] leading-relaxed">
-                  {proposal.budget_timeline}
-                </p>
-              ) : (
-                <p className="text-sm italic text-muted-foreground">
-                  No budget or dates captured.
-                </p>
-              )}
-            </div>
-
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <FieldLabel>Deliverables</FieldLabel>
-                <span className="text-xs text-muted-foreground">
-                  {doneCount} of {proposal.deliverables.length} done
-                </span>
-              </div>
-              <ul className="space-y-1 rounded-md border border-border bg-muted/40 p-2">
-                {proposal.deliverables.length === 0 ? (
-                  <li className="px-1.5 py-1 text-sm text-muted-foreground">
-                    No deliverables captured.
-                  </li>
-                ) : (
-                  proposal.deliverables.map((d) => (
-                    <li
-                      key={d.id}
-                      className="flex items-start gap-2.5 rounded-md px-1.5 py-1.5"
-                    >
-                      <span
-                        className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-[4px] border ${
-                          d.checked
-                            ? "border-accent bg-accent text-white"
-                            : "border-border bg-card"
-                        }`}
-                      >
-                        {d.checked && (
-                          <Check className="h-3 w-3" strokeWidth={3.5} aria-hidden="true" />
-                        )}
-                      </span>
-                      <span
-                        className={
-                          d.checked
-                            ? "text-sm text-muted-foreground line-through"
-                            : "text-sm"
-                        }
-                      >
-                        {d.text}
-                      </span>
-                    </li>
-                  ))
-                )}
-              </ul>
-            </div>
-          </div>
+          <ProposalContent
+            budget_timeline={proposal.budget_timeline}
+            deliverables={proposal.deliverables}
+          />
         </PaperCard>
 
         {/* ── Right: action + metadata rail ── */}
@@ -349,6 +309,13 @@ export default async function ProposalDetailPage({
           <RailCard icon={Clock} title="Activity">
             <ActivityTimeline events={events} />
           </RailCard>
+
+          <ProposalVersionHistory
+            proposalId={proposal.id}
+            versions={versions}
+            current={proposal}
+            currentUserId={user?.id ?? null}
+          />
         </div>
       </div>
     </div>

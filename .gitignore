@@ -26,3 +26,6 @@ next-env.d.ts
 *.tsbuildinfo
 resp-next/
 tmp/
+
+# Arena slice exports (generated per slice; reported as md5+bytes in chat)
+/arena-patches/

@@ -581,7 +581,8 @@ await db.exec(`
     public.webhook_endpoints, public.webhook_deliveries,
     public.billing_subscriptions,
     public.email_accounts,
-    public.email_messages
+    public.email_messages,
+    public.proposal_versions
     to nstester;
   grant execute on function public.get_workspace_webhook_endpoints(uuid) to nstester;
 `);
@@ -2473,6 +2474,269 @@ await db.query("reset role");
   check("retry: claim never touches settled rows", failedClaim.rowCount === 0);
   await db.query("reset role");
 }
+
+// ── Step 30: proposal version history ────────────────────────────
+// Table + append-only RLS + automatic snapshot triggers + the
+// restore_proposal_version() RPC. Uses its own fixture proposal so the
+// version counts below are deterministic regardless of what earlier
+// probes did to the seeded proposal.
+const VH_PROPOSAL = "00000000-0000-0000-0000-0000000000a1";
+const VH_VIEWER_UID = "00000000-0000-0000-0000-0000000000a2";
+const VH_STRANGER_UID = "00000000-0000-0000-0000-0000000000a3";
+
+const { rows: vhTables } = await db.query(
+  `select relname, relrowsecurity from pg_class
+    where relnamespace = 'public'::regnamespace and relname = 'proposal_versions'`
+);
+check(
+  "proposal_versions exists with RLS enabled",
+  vhTables.length === 1 && vhTables[0].relrowsecurity === true
+);
+
+const { rows: vhPolicyCounts } = await db.query(
+  `select cmd, count(*)::int as n from pg_policies
+    where schemaname = 'public' and tablename = 'proposal_versions'
+    group by cmd`
+);
+const vhPol = Object.fromEntries(vhPolicyCounts.map((r) => [r.cmd, r.n]));
+check(
+  "proposal_versions policies: 1 SELECT + 1 INSERT, ZERO UPDATE/DELETE (append-only)",
+  vhPol.SELECT === 1 && vhPol.INSERT === 1 && !vhPol.UPDATE && !vhPol.DELETE,
+  JSON.stringify(vhPol)
+);
+
+// Viewer fixture: reads history like any member, restores nothing.
+await db.exec(`
+  insert into auth.users (
+    id, instance_id, aud, role, email, encrypted_password, email_confirmed_at,
+    raw_app_meta_data, raw_user_meta_data, created_at, updated_at,
+    confirmation_token, email_change, email_change_token_new, recovery_token
+  ) values (
+    '${VH_VIEWER_UID}', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated',
+    'vera@roducq.dev', 'pglite-test-password-hash', now(),
+    '{"provider":"email","providers":["email"]}'::jsonb, '{"full_name":"Vera Voss"}'::jsonb,
+    now(), now(), '', '', '', ''
+  ) on conflict (id) do nothing;
+  insert into public.workspace_members (workspace_id, user_id, role)
+    values ('${SEED_WS}', '${VH_VIEWER_UID}', 'viewer')
+    on conflict (workspace_id, user_id) do nothing;
+`);
+
+// (1) Version creation — the insert trigger snapshots the creation state
+// with the actor attributed (runs as the owner via nstester + JWT sim).
+await db.query("set role nstester");
+await db.query("select set_config('app.jwt_sub', $1, false)", [SEED_UID]);
+await db.query(
+  `insert into public.proposals (id, workspace_id, brief_id, title, client_name, budget_timeline)
+   values ($1, $2, $3, 'Versioned proposal', 'Brightloop Co.', 'Kickoff Oct 12')`,
+  [VH_PROPOSAL, SEED_WS, SEED_BRIEF]
+);
+const { rows: vhCreated } = await db.query(
+  `select version_number, reason, title, client_name, status, budget_timeline, created_by
+     from public.proposal_versions where proposal_id = $1`,
+  [VH_PROPOSAL]
+);
+check(
+  "insert trigger captures version 1 (reason 'created', full snapshot, actor)",
+  vhCreated.length === 1 &&
+    vhCreated[0].version_number === 1 &&
+    vhCreated[0].reason === "created" &&
+    vhCreated[0].title === "Versioned proposal" &&
+    vhCreated[0].status === "draft" &&
+    vhCreated[0].budget_timeline === "Kickoff Oct 12" &&
+    vhCreated[0].created_by === SEED_UID,
+  JSON.stringify(vhCreated)
+);
+
+// First content edit: the outgoing state IS the stored creation state —
+// the dedup rule must skip a duplicate capture (count stays 1).
+const { rows: [vhProp1] } = await db.query(
+  "update public.proposals set status = 'sent' where id = $1 returning status",
+  [VH_PROPOSAL]
+);
+const { rows: [vhCount1] } = await db.query(
+  "select count(*)::int as n from public.proposal_versions where proposal_id = $1",
+  [VH_PROPOSAL]
+);
+check(
+  "first edit lands (status sent) and dedups against the 'created' snapshot (still 1 version)",
+  vhProp1?.status === "sent" && vhCount1?.n === 1
+);
+
+// Second edit: the outgoing state is NOT in history yet → captured as v2,
+// holding the PRE-change snapshot (sent, still the original budget).
+await db.query(
+  "update public.proposals set budget_timeline = 'Kickoff Oct 19' where id = $1",
+  [VH_PROPOSAL]
+);
+const { rows: vhOrdered } = await db.query(
+  `select version_number, reason, status, budget_timeline
+     from public.proposal_versions where proposal_id = $1
+     order by version_number desc`,
+  [VH_PROPOSAL]
+);
+check(
+  "second edit captured as version 2 ('edited') holding the PRE-change state; newest→oldest = [2,1]",
+  vhOrdered.length === 2 &&
+    vhOrdered[0].version_number === 2 &&
+    vhOrdered[0].reason === "edited" &&
+    vhOrdered[0].status === "sent" &&
+    vhOrdered[0].budget_timeline === "Kickoff Oct 12" &&
+    vhOrdered[1].version_number === 1,
+  JSON.stringify(vhOrdered)
+);
+
+// (2) Meaningful-change gate: a no-op UPDATE creates nothing.
+await db.query(
+  "update public.proposals set status = 'sent' where id = $1", // unchanged value
+  [VH_PROPOSAL]
+);
+const { rows: [vhCount2] } = await db.query(
+  "select count(*)::int as n from public.proposal_versions where proposal_id = $1",
+  [VH_PROPOSAL]
+);
+check("no-op update (same status) creates NO version", vhCount2?.n === 2);
+
+// (3) Restore: back to v1 (the creation state) — auditable by design.
+const { rows: [vhV1] } = await db.query(
+  "select id from public.proposal_versions where proposal_id = $1 and version_number = 1",
+  [VH_PROPOSAL]
+);
+const { rows: [vhRestored] } = await db.query(
+  "select public.restore_proposal_version($1, $2) as new_version_id",
+  [VH_PROPOSAL, vhV1.id]
+);
+const { rows: [vhAfterRestore] } = await db.query(
+  "select status, budget_timeline from public.proposals where id = $1",
+  [VH_PROPOSAL]
+);
+const { rows: [vhV3] } = await db.query(
+  `select version_number, reason, status, budget_timeline, created_by
+     from public.proposal_versions
+    where proposal_id = $1 order by version_number desc limit 1`,
+  [VH_PROPOSAL]
+);
+check(
+  "restore applies the snapshot (draft + original budget back on the proposal)",
+  vhAfterRestore?.status === "draft" &&
+    vhAfterRestore?.budget_timeline === "Kickoff Oct 12"
+);
+check(
+  "restore is auditable: ONE new version 3 'restored' capturing the PRE-restore state, attributed",
+  !!vhRestored?.new_version_id &&
+    vhV3?.version_number === 3 &&
+    vhV3?.reason === "restored" &&
+    vhV3?.status === "sent" &&
+    vhV3?.budget_timeline === "Kickoff Oct 19" &&
+    vhV3?.created_by === SEED_UID,
+  JSON.stringify(vhV3)
+);
+
+// No-op restore (the version we JUST restored to is now current) is refused.
+let vhNoopBlocked = false;
+try {
+  await db.query("select public.restore_proposal_version($1, $2)", [
+    VH_PROPOSAL,
+    vhV1.id,
+  ]);
+} catch (e) {
+  vhNoopBlocked = /already_current/.test(e.message);
+}
+check("no-op restore is refused (already_current)", vhNoopBlocked);
+
+// A version id from ANOTHER proposal cannot be restored onto this one
+// (the seeded proposal is guaranteed to have at least its 'created'
+// snapshot — use one of its version ids as the cross-owned probe).
+let vhForeignVersionBlocked = false;
+const { rows: [vhSeedV] } = await db.query(
+  "select id from public.proposal_versions where proposal_id = $1 limit 1",
+  [SEED_PROPOSAL]
+);
+if (vhSeedV) {
+  try {
+    await db.query("select public.restore_proposal_version($1, $2)", [
+      VH_PROPOSAL,
+      vhSeedV.id,
+    ]);
+  } catch (e) {
+    vhForeignVersionBlocked = /version_not_found/.test(e.message);
+  }
+  check(
+    "a version from a DIFFERENT proposal cannot be restored onto this one",
+    vhForeignVersionBlocked
+  );
+}
+
+// (4) Viewer: can READ history, cannot restore, cannot append rows.
+await db.query("select set_config('app.jwt_sub', $1, false)", [VH_VIEWER_UID]);
+const { rows: vhViewerSees } = await db.query(
+  "select version_number from public.proposal_versions where proposal_id = $1 order by version_number",
+  [VH_PROPOSAL]
+);
+check(
+  "viewer (member, not editor) CAN read version history",
+  vhViewerSees.length === 3
+);
+let vhViewerRestoreBlocked = false;
+try {
+  await db.query("select public.restore_proposal_version($1, $2)", [
+    VH_PROPOSAL,
+    vhV1.id,
+  ]);
+} catch (e) {
+  vhViewerRestoreBlocked = /not_authorized/.test(e.message);
+}
+check("viewer restore is refused by the RPC editor gate", vhViewerRestoreBlocked);
+let vhViewerInsertBlocked = false;
+try {
+  await db.query(
+    `insert into public.proposal_versions (workspace_id, proposal_id, version_number, reason, title, status)
+     values ($1, $2, 99, 'edited', 'tamper', 'draft')`,
+    [SEED_WS, VH_PROPOSAL]
+  );
+} catch {
+  vhViewerInsertBlocked = true; // INSERT with check (editor-only) violation
+}
+check("viewer cannot INSERT a version row (RLS insert is editor-only)", vhViewerInsertBlocked);
+
+// (5) Workspace isolation: a stranger sees NO history rows at all.
+await db.query("select set_config('app.jwt_sub', $1, false)", [VH_STRANGER_UID]);
+const { rows: vhStrangerSees } = await db.query(
+  "select id from public.proposal_versions where proposal_id = $1",
+  [VH_PROPOSAL]
+);
+check("stranger sees zero version rows (workspace isolation)", vhStrangerSees.length === 0);
+let vhStrangerRestoreBlocked = false;
+try {
+  await db.query("select public.restore_proposal_version($1, $2)", [
+    VH_PROPOSAL,
+    vhV1.id,
+  ]);
+} catch (e) {
+  vhStrangerRestoreBlocked = /not_authorized/.test(e.message);
+}
+check("stranger restore is refused", vhStrangerRestoreBlocked);
+
+// (6) Append-only at runtime: UPDATE/DELETE silently touch zero rows even
+// for the owner (privileges are granted to nstester — RLS alone denies).
+await db.query("select set_config('app.jwt_sub', $1, false)", [SEED_UID]);
+const vhTamper = await db.query(
+  "update public.proposal_versions set title = 'tampered' where proposal_id = $1 returning id",
+  [VH_PROPOSAL]
+);
+const vhPurge = await db.query(
+  "delete from public.proposal_versions where proposal_id = $1 returning id",
+  [VH_PROPOSAL]
+);
+const { rows: [vhUntouched] } = await db.query(
+  "select count(*)::int as n from public.proposal_versions where proposal_id = $1 and title <> 'tampered'",
+  [VH_PROPOSAL]
+);
+check(
+  "no UPDATE/DELETE policies: tamper + purge affect 0 rows; 3 versions intact",
+  vhTamper.rows.length === 0 && vhPurge.rows.length === 0 && vhUntouched?.n === 3
+);
+await db.query("reset role");
 
 console.log(failures === 0 ? "\nAll database checks passed ✔" : `\n${failures} check(s) FAILED`);
 process.exit(failures === 0 ? 0 : 1);
