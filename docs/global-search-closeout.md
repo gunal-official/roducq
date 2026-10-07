@@ -58,8 +58,8 @@ escaped **twice, in the right order**:
 ## 4. Gates
 
 - `npx tsc --noEmit` ✅ · `npm run lint` ✅
-- `npm test` — **430 pass / 0 fail** (409 baseline + 21 new:
-  18 lib + 3 structural) ✅
+- `npm test` — **431 pass / 0 fail** (409 baseline + 22 new:
+  18 lib + 4 structural) ✅
 - `npm run build` — `/search` route registered ✅
 - `npm run verify:db` ✅ (no schema change — search adds none)
 - `npm run verify:pdf` ✅ (CI gate, unaffected, re-run anyway)
@@ -75,10 +75,13 @@ escaped **twice, in the right order**:
 - **`ilike` prefix-anywhere** (`%q%`) relies on the small per-workspace
   row counts; no trigram index added (nothing to migrate until volume
   says so).
-- **Not in the responsive audit harness.** `scripts/verify-responsive.mjs`
-  has a fixed PAGES list and its Supabase stub would need `or=` support
-  to serve `/search?q=…` results; the page follows the audited card/list
-  patterns, and adding it to the harness is the follow-up if the stub
-  grows filter support.
+- **Now in the responsive audit harness** (follow-up, done).
+  `/search?q=Harbor` sits in the `scripts/verify-responsive.mjs` PAGES
+  list. The stub needed no `or=` support after all: its list responses
+  ignore unrecognised filters and serve the Harbor fixtures, so all six
+  group cards render and the sweep measures a fully-populated page. That
+  audit is what caught the six "View all →" links sitting under the 44px
+  tap-target floor — they are now `min-h-11` rows rather than bare inline
+  anchors.
 - Highlighting degrades to plain text (never corrupts) for the few code
   points whose `toLowerCase()` shifts length (the `İ` class).

@@ -251,10 +251,10 @@ export default async function SearchPage({
                         />
                       ))}
                     </ul>
-                    <div className="border-t border-border px-3 pb-1 pt-2">
+                    <div className="mt-1 border-t border-border">
                       <Link
                         href={group.listHref}
-                        className="text-xs font-medium text-muted-foreground transition-colors duration-150 hover:text-text"
+                        className="flex min-h-11 items-center rounded-lg px-3 text-xs font-medium text-muted-foreground transition-colors duration-150 hover:text-text"
                       >
                         View all {group.label.toLowerCase()} →
                       </Link>
