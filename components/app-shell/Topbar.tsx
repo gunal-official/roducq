@@ -62,16 +62,25 @@ export function Topbar({
 
       <WorkspaceSwitcher workspaces={workspaces} activeWorkspaceId={activeWorkspaceId} />
 
-      <div className="relative order-last w-full sm:order-none sm:w-auto sm:flex-1 sm:max-w-sm">
+      {/* Global search (plain GET form → /search, the server-rendered
+          results page). Works without JavaScript; type="search" gives the
+          native Escape-to-clear. The wrapper classes are load-bearing for
+          the mobile row layout (structural tests + Step 33 audit). */}
+      <form
+        action="/search"
+        role="search"
+        className="relative order-last w-full sm:order-none sm:w-auto sm:flex-1 sm:max-w-sm"
+      >
         <Search aria-hidden="true" className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
         <label htmlFor="global-search" className="sr-only">Search</label>
         <Input
           id="global-search"
           type="search"
+          name="q"
           placeholder="Search..."
           className="h-11 w-full rounded-full border-transparent bg-muted pl-10 shadow-none"
         />
-      </div>
+      </form>
 
       <div className="ml-auto flex items-center gap-1 sm:gap-2">
         <Link
