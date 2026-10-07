@@ -76,12 +76,8 @@ escaped **twice, in the right order**:
   row counts; no trigram index added (nothing to migrate until volume
   says so).
 - **Now in the responsive audit harness** (follow-up, done).
-  `/search?q=Harbor` sits in the `scripts/verify-responsive.mjs` PAGES
-  list. The stub needed no `or=` support after all: its list responses
-  ignore unrecognised filters and serve the Harbor fixtures, so all six
-  group cards render and the sweep measures a fully-populated page. That
-  audit is what caught the six "View all →" links sitting under the 44px
-  tap-target floor — they are now `min-h-11` rows rather than bare inline
-  anchors.
+  `/search?q=Harbor` sits in the `scripts/verify-responsive.mjs` PAGES list.
+  The slug is also in `COMPLEX`, so the 320/768 runs capture the full page (six stacked cards extend below the fold).
+  The stub needed no `or=` support after all: its list responses ignore unrecognised filters and serve the Harbor fixtures, so all six group cards render and the sweep measures a fully-populated page. That audit is what caught the six "View all →" links sitting under the 44px tap-target floor — they are now `min-h-11` rows rather than bare inline anchors.
 - Highlighting degrades to plain text (never corrupts) for the few code
   points whose `toLowerCase()` shifts length (the `İ` class).

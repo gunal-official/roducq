@@ -49,6 +49,10 @@ describe("Global search", () => {
 
   it("harness: /search is swept by the responsive audit", () => {
     const src = read("scripts/verify-responsive.mjs");
+
+    const complexStart = src.indexOf("const COMPLEX");
+    const complexLine = src.slice(complexStart, src.indexOf("\n", complexStart));
+    assert.ok(complexLine.includes('"search"'));
     // "Harbor" matches every fixture group, so all six cards — and their
     // six "View all →" links — render under the tap-target metric.
     assert.ok(
