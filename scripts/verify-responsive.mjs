@@ -131,6 +131,7 @@ const PAGES = [
   { slug: "time", url: "/time", auth: true },
   { slug: "reports", url: "/reports", auth: true },
   { slug: "settings", url: "/settings", auth: true },
+  { slug: "search", url: "/search?q=Harbor", auth: true },
 ];
 const COMPLEX = new Set(["invoice-detail", "time", "reports", "settings"]);
 

@@ -37,8 +37,23 @@ describe("Global search", () => {
     assert.ok(src.includes("timeAgo"));
     assert.ok(src.includes("group.detailHref(hit.id)"));
     assert.ok(src.includes("View all"));
+    // The six "View all →" links are 44px tap targets in their own right,
+    // not bare inline anchors — the generic min-h-11 check above is already
+    // satisfied by the hit rows, so pin the link itself.
+    const viewAllJsx = src.indexOf("View all {group.label");
+    const viewAllLink = src.slice(src.lastIndexOf("<Link", viewAllJsx), viewAllJsx);
+    assert.ok(viewAllLink.includes("min-h-11"));
     // The refine box is the same plain GET form.
     assert.ok(src.includes('action="/search"'));
+  });
+
+  it("harness: /search is swept by the responsive audit", () => {
+    const src = read("scripts/verify-responsive.mjs");
+    // "Harbor" matches every fixture group, so all six cards — and their
+    // six "View all →" links — render under the tap-target metric.
+    assert.ok(
+      src.includes('{ slug: "search", url: "/search?q=Harbor", auth: true }'),
+    );
   });
 
   it("data layer: one scoped, capped, error-throwing query per group", () => {
