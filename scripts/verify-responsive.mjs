@@ -133,7 +133,7 @@ const PAGES = [
   { slug: "settings", url: "/settings", auth: true },
   { slug: "search", url: "/search?q=Harbor", auth: true },
 ];
-const COMPLEX = new Set(["invoice-detail", "time", "reports", "settings"]);
+const COMPLEX = new Set(["invoice-detail", "time", "reports", "settings", "search"]);
 
 // ───────────────────────── fixtures (rich rows — every page renders) ──
 const NOW = "2026-09-25T10:00:00Z";
