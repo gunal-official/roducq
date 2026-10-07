@@ -1,0 +1,92 @@
+From bbdd9bf7e2be0d71acf03426adbe9d75c0004a2f Mon Sep 17 00:00:00 2001
+From: arena-agent <297053741+arena-agent@users.noreply.github.com>
+Date: Wed, 7 Oct 2026 19:03:33 +0000
+Subject: [PATCH] Search sweep refinements: full-page capture + hover
+ affordance
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Follow-ups to the review notes on the previous commit:
+
+- scripts/verify-responsive.mjs: add "search" to COMPLEX. Six stacked
+  group cards run past the fold at 320/768, so without this the sweep
+  screenshots only captured the top of the page — the cards the change
+  is about were never in the evidence.
+- app/(app)/search/page.tsx: give the "View all →" rows the same
+  `hover:bg-muted` affordance the hit rows already have. A full-width
+  44px row that only changes text colour on hover reads as unfinished.
+- tests + doc: lock the COMPLEX membership (verified load-bearing — the
+  assertion fails if the slug is removed) and note both in the closeout.
+
+Test count unchanged at 431 — these are assertions on existing tests.
+
+Co-authored-by: arena-agent <297053741+arena-agent@users.noreply.github.com>
+---
+ app/(app)/search/page.tsx       | 2 +-
+ docs/global-search-closeout.md  | 4 +++-
+ scripts/verify-responsive.mjs   | 2 +-
+ tests/components/search.test.ts | 5 +++++
+ 4 files changed, 10 insertions(+), 3 deletions(-)
+
+diff --git a/app/(app)/search/page.tsx b/app/(app)/search/page.tsx
+index b76a0cd..ca4f0c1 100644
+--- a/app/(app)/search/page.tsx
++++ b/app/(app)/search/page.tsx
+@@ -254,7 +254,7 @@ export default async function SearchPage({
+                     <div className="mt-1 border-t border-border">
+                       <Link
+                        href={group.listHref}
+-                        className="flex min-h-11 items-center rounded-lg px-3 text-xs font-medium text-muted-foreground transition-colors duration-150 hover:text-text"
++                        className="flex min-h-11 items-center rounded-lg px-3 text-xs font-medium text-muted-foreground transition-colors duration-150 hover:bg-muted hover:text-text"
+                       >
+                         View all {group.label.toLowerCase()} →
+                       </Link>
+diff --git a/docs/global-search-closeout.md b/docs/global-search-closeout.md
+index 621d9a5..9af4dcc 100644
+--- a/docs/global-search-closeout.md
++++ b/docs/global-search-closeout.md
+@@ -82,6 +82,8 @@ escaped **twice, in the right order**:
+   group cards render and the sweep measures a fully-populated page. That
+   audit is what caught the six "View all →" links sitting under the 44px
+   tap-target floor — they are now `min-h-11` rows rather than bare inline
+-  anchors.
++  anchors, with the same `hover:bg-muted` affordance as the hit rows. The
++  slug is in the harness's `COMPLEX` set, so 320/768 capture the full page:
++  six stacked cards run well past the fold.
+ - Highlighting degrades to plain text (never corrupts) for the few code
+   points whose `toLowerCase()` shifts length (the `İ` class).
+diff --git a/scripts/verify-responsive.mjs b/scripts/verify-responsive.mjs
+index 804ccbe..523c2d3 100644
+--- a/scripts/verify-responsive.mjs
++++ b/scripts/verify-responsive.mjs
+@@ -133,7 +133,7 @@ const PAGES = [
+   { slug: "settings", url: "/settings", auth: true },
+   { slug: "search", url: "/search?q=Harbor", auth: true },
+ ];
+-const COMPLEX = new Set(["invoice-detail", "time", "reports", "settings"]);
++const COMPLEX = new Set(["invoice-detail", "time", "reports", "settings", "search"]);
+ 
+ // ───────────────────────── fixtures (rich rows — every page renders) ──
+ const NOW = "2026-09-25T10:00:00Z";
+diff --git a/tests/components/search.test.ts b/tests/components/search.test.ts
+index a5356dd..0b8985b 100644
+--- a/tests/components/search.test.ts
++++ b/tests/components/search.test.ts
+@@ -54,6 +54,11 @@ describe("Global search", () => {
+     assert.ok(
+       src.includes('{ slug: "search", url: "/search?q=Harbor", auth: true }'),
+     );
++    // Six stacked cards run past the fold, so the slug joins COMPLEX to get
++    // the fullPage capture at 320/768 rather than just the top of the page.
++    const complexStart = src.indexOf("const COMPLEX");
++    const complexLine = src.slice(complexStart, src.indexOf("\n", complexStart));
++    assert.ok(complexLine.includes('"search"'));
+   });
+ 
+   it("data layer: one scoped, capped, error-throwing query per group", () => {
+     const src = read("lib/data/search.ts");
+     assert.ok(src.includes('"server-only"')); // never imported client-side
+-- 
+2.39.5
+
