@@ -55,3 +55,8 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Sweep failed." }, { status: 500 });
   }
 }
+
+
+export async function GET(request: Request) {
+  return POST(request);
+}
