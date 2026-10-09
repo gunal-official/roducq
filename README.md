@@ -1060,6 +1060,37 @@ limits: `docs/email-intake-closeout.md`.
 
 ---
 
+## Slack + Notion OAuth (2026-10-09)
+
+Workspace owners can connect **Slack** and **Notion** from
+**Settings → Integrations**. Production redirect URLs (already configured
+on the Slack app):
+
+- `https://roducq.nanexi.com/api/slack/callback`
+- `http://localhost:3000/api/slack/callback`
+
+Routes (never 404 once deployed):
+
+- `GET /api/slack/connect` → 302 to Slack authorize (`oauth/v2/authorize`)
+- `GET /api/slack/callback` → `oauth.v2.access` token exchange + persist
+- `GET /api/notion/connect` → 302 to Notion authorize
+- `GET /api/notion/callback` → Notion token exchange + persist
+
+A bare `curl -I` on a callback (no `code`) returns **400**, not 404.
+Tokens are AES-256-GCM encrypted at rest; OAuth `state` is HMAC-signed
+with `AUTH_SECRET` (falls back to `SUPABASE_SERVICE_ROLE_KEY`). One Slack
+workspace and one Notion workspace per Roducq workspace (v1). There is
+**no** `/api/cron/slack` — don't schedule one.
+
+Env (all optional — see `.env.local.example`): `SLACK_CLIENT_ID` /
+`SLACK_CLIENT_SECRET` / `SLACK_BOT_SCOPES` / `SLACK_SIGNING_SECRET`,
+`NOTION_CLIENT_ID` / `NOTION_CLIENT_SECRET`, `AUTH_SECRET`. Apply
+migration `20261009000000_integration_connections.sql`. Full setup:
+`docs/integrations-closeout.md`.
+
+
+---
+
 ## PDF export (2026-09-27)
 
 **Invoices, contracts and proposals download as real PDF files** — not a

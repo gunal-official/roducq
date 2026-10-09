@@ -1,10 +1,11 @@
 // Edge-runtime Sentry init (Step 14) — covers middleware. Imported by
-// instrumentation.ts only when SENTRY_DSN is set; inert otherwise.
+// instrumentation.ts only when a DSN is set; inert otherwise.
 import * as Sentry from "@sentry/nextjs";
 
-if (process.env.SENTRY_DSN) {
+const dsn = process.env.SENTRY_DSN || process.env.NEXT_PUBLIC_SENTRY_DSN;
+if (dsn) {
   Sentry.init({
-    dsn: process.env.SENTRY_DSN,
+    dsn,
     tracesSampleRate: 0.1,
   });
 }

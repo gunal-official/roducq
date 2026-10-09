@@ -257,6 +257,7 @@ function startStub() {
           last_error: null,
         }]);
       }
+      if (p.startsWith("/rest/v1/integration_connections")) return send([]);
       if (p.startsWith("/rest/v1/email_messages")) {
         if (!process.env.EMAIL_DEMO) return send([]);
         return send([

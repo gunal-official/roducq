@@ -104,6 +104,7 @@ const TABLES = [
   { name: "updates", migration: "20260923020000_updates_schema.sql" },
   { name: "share_links", migration: "20260923030000_share_links_schema.sql" },
   { name: "templates", migration: "20260923040000_templates_schema.sql" },
+  { name: "integration_connections", migration: "20261009000000_integration_connections.sql" },
 ];
 
 const RPCS = [

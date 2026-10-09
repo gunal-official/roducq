@@ -12,7 +12,12 @@ import { createClient as createSupabaseClient } from "@supabase/supabase-js";
  *   4. the mailbox server actions (app/(app)/settings/email-actions) —
  *      owner/editor-gated before the service write;
  *   5. the mailbox sync sweep (app/api/cron/email) — gated by
- *      `Authorization: Bearer <CRON_SECRET>`.
+ *      `Authorization: Bearer <CRON_SECRET>`;
+ *   6. Slack/Notion OAuth callbacks (app/api/{slack,notion}/callback) —
+ *      gated by the signed state claim (lib/email/state);
+ *   7. the integrations disconnect action
+ *      (app/(app)/settings/integration-actions) — owner-gated before the
+ *      service write.
  * Never import this from a page, component, or server action that runs
  * as a user without first passing its user-facing authorization checks —
  * plain user reads use lib/supabase/server.

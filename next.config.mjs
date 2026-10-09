@@ -10,7 +10,11 @@ const nextConfig = {
   // without needing a second documented variable. A DSN is a public
   // ingestion endpoint by design (it can't read data, only submit events).
   env: {
-    NEXT_PUBLIC_SENTRY_DSN: process.env.SENTRY_DSN ?? "",
+    // Accept either name: operators often set NEXT_PUBLIC_SENTRY_DSN
+    // (Sentry wizard) while server init historically read SENTRY_DSN.
+    // Mapping both onto the public prefix keeps client + server in sync.
+    NEXT_PUBLIC_SENTRY_DSN:
+      process.env.SENTRY_DSN || process.env.NEXT_PUBLIC_SENTRY_DSN || "",
   },
 
   // Step 14 — security headers. Production only: in dev, Next's HMR/websockets

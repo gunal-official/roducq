@@ -47,9 +47,13 @@
 
 import { CheckoutNotice } from "@/components/settings/CheckoutNotice";
 import { EmailNotice } from "@/components/settings/EmailNotice";
+import { IntegrationsCard } from "@/components/settings/IntegrationsCard";
+import { IntegrationsNotice } from "@/components/settings/IntegrationsNotice";
 import { MailboxCard } from "@/components/settings/MailboxCard";
+import { getIntegrationConnections } from "@/lib/data/integrations";
 import { getMailboxAccounts } from "@/lib/data/mailbox";
 import { hasTokenKey } from "@/lib/email/crypto";
+import { hasIntegrationKey } from "@/lib/integrations/crypto";
 import { getPricesConfig } from "@/lib/stripe";
 import { EventsCard } from "@/components/settings/EventsCard";
 import { PlanCard } from "@/components/settings/PlanCard";
@@ -83,6 +87,7 @@ export default async function SettingsPage() {
     webhookDeliveries,
     recentEvents,
     mailboxAccounts,
+    integrationConnections,
   ] = await Promise.all([
       workspace ? getTemplates(workspace.id) : Promise.resolve([]),
       getTeamMembers(),
@@ -132,6 +137,7 @@ export default async function SettingsPage() {
       // Mailbox connections for the Mailbox card (future-list item
       // "Gmail/Outlook") — empty array when no workspace / on error.
       getMailboxAccounts(),
+      getIntegrationConnections(),
     ]);
 
   // event_id → event_type for the delivery log lines: the recent-25
@@ -166,6 +172,8 @@ export default async function SettingsPage() {
       <CheckoutNotice />
       {/* One-time toast when returning from a mailbox OAuth connect (?email=) */}
       <EmailNotice />
+      {/* One-time toast when returning from Slack/Notion OAuth (?slack= / ?notion=) */}
+      <IntegrationsNotice />
       <DocHeader
         icon={SettingsIcon}
         title="Settings"
@@ -206,6 +214,17 @@ export default async function SettingsPage() {
           Boolean(process.env.AZURE_CLIENT_ID && process.env.AZURE_CLIENT_SECRET)
         }
         tokenKeyOk={hasTokenKey(process.env.EMAIL_TOKEN_ENCRYPTION_KEY)}
+      />
+      <IntegrationsCard
+        connections={integrationConnections}
+        isOwner={isOwner}
+        slackConfigured={Boolean(
+          process.env.SLACK_CLIENT_ID && process.env.SLACK_CLIENT_SECRET
+        )}
+        notionConfigured={Boolean(
+          process.env.NOTION_CLIENT_ID && process.env.NOTION_CLIENT_SECRET
+        )}
+        tokenKeyOk={hasIntegrationKey()}
       />
       <EventsCard events={recentEvents} />
       {workspace && isOwner && <WorkspaceDangerCard name={workspace.name} />}

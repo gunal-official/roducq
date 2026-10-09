@@ -582,7 +582,8 @@ await db.exec(`
     public.billing_subscriptions,
     public.email_accounts,
     public.email_messages,
-    public.proposal_versions
+    public.proposal_versions,
+    public.integration_connections
     to nstester;
   grant execute on function public.get_workspace_webhook_endpoints(uuid) to nstester;
 `);
@@ -2395,6 +2396,66 @@ await db.query("reset role");
     [SEED_WS]
   );
   check("mailbox: attached mail drops out of the staging view", stagedAfter.rows[0]?.n === 0);
+  await db.query("reset role");
+}
+
+// ── Slack / Notion OAuth connections ──
+{
+  await db.query("select set_config('app.jwt_sub', $1, false)", [SEED_UID]);
+  await db.query("set role nstester");
+  const none = await db.query(
+    "select count(*)::int as n from public.integration_connections where workspace_id = $1",
+    [SEED_WS]
+  );
+  check("integrations: no connections by default", none.rows[0]?.n === 0);
+  const write = await db
+    .query(
+      "insert into public.integration_connections (workspace_id, provider, external_id, access_token_enc) values ($1, 'slack', 'T1', 'v1.a.b.c')",
+      [SEED_WS]
+    )
+    .then(() => ({ ok: true }))
+    .catch(() => ({ ok: false }));
+  check("RLS: users cannot write integration_connections (service role only)", write.ok === false);
+  await db.query("reset role");
+
+  await db.query(
+    "insert into public.integration_connections (workspace_id, provider, external_id, display_name, access_token_enc, status) values ($1, 'slack', 'T9TK3CUKW', 'Slack Softball Team', 'v1.ct.tag', 'active')",
+    [SEED_WS]
+  );
+  const badProvider = await db
+    .query(
+      "insert into public.integration_connections (workspace_id, provider, external_id, access_token_enc) values ($1, 'discord', 'x', 'y')",
+      [SEED_WS]
+    )
+    .then(() => ({ ok: true }))
+    .catch(() => ({ ok: false }));
+  check("integration_connections.provider CHECK rejects unknown providers", badProvider.ok === false);
+  const dup = await db
+    .query(
+      "insert into public.integration_connections (workspace_id, provider, external_id, access_token_enc) values ($1, 'slack', 'TOTHER', 'z')",
+      [SEED_WS]
+    )
+    .then(() => ({ ok: true }))
+    .catch(() => ({ ok: false }));
+  check("integration_connections unique (workspace, provider) holds", dup.ok === false);
+
+  await db.query(
+    "insert into public.integration_connections (workspace_id, provider, external_id, display_name, access_token_enc) values ($1, 'notion', 'ws-notion', 'Client wiki', 'v1.nt.tag')",
+    [SEED_WS]
+  );
+
+  await db.query("select set_config('app.jwt_sub', $1, false)", [SEED_UID]);
+  await db.query("set role nstester");
+  const seen = await db.query(
+    "select provider, display_name from public.integration_connections where workspace_id = $1 order by provider",
+    [SEED_WS]
+  );
+  check(
+    "integrations: owner can SELECT slack + notion connections",
+    seen.rows.length === 2 &&
+      seen.rows[0].provider === "notion" &&
+      seen.rows[1].provider === "slack"
+  );
   await db.query("reset role");
 }
 
