@@ -73,52 +73,52 @@ export const VS_PAGES: Record<string, VsPageEntry> = {
     competitor: "Bonsai",
     heading: "roducq vs Bonsai",
     intro:
-      "Bonsai is a full freelance business suite — proposals, contracts, invoicing, time tracking, expenses, taxes. roducq is smaller on purpose: just the writing trail of client work, pipeline included, nothing to assemble.",
+      "Bonsai runs the business around your client work — proposals, e-signed contracts, tracked hours, invoices that chase payment, expenses, tax prep. roducq runs the writing: the trail from a raw client message to a brief, a plan, and the weekly update. The two overlap less than the category suggests.",
     rows: [
       {
         feature: "Client intake",
         roducq:
           "Paste raw emails, call notes, chat logs — every message stays verbatim, threaded onto its brief.",
         competitor:
-          "CRM contacts and project records; client messages aren't parsed into briefs.",
+          "CRM records with intake forms and scheduling links that qualify a lead before the call.",
       },
       {
         feature: "Structured briefs",
         roducq:
           "Gap-flagged brief drafts with tracked open questions and full edit history.",
         competitor:
-          "Proposals and contracts are the built-in document types; briefs aren't a stage.",
+          "No brief stage — scope is written straight into the proposal or contract.",
       },
       {
-        feature: "Proposals & plans",
+        feature: "Proposals & contracts",
         roducq:
-          "Generated stage by stage — scope, deliverables, and budget carry through automatically.",
+          "Generated stage by stage from the brief — scope, deliverables and budget carry through; a contract is marked signed in the app.",
         competitor:
-          "Strong proposal templates with e-sign; delivery plans aren't generated from them.",
+          "Proposal templates with interactive pricing and e-signature; an accepted proposal pre-fills the contract.",
       },
       {
         feature: "Client updates",
         roducq:
-          "Composed from plan progress — weekly updates without re-typing.",
+          "Composed from plan progress — the weekly update without re-typing it.",
         competitor:
-          "Client portal for files and invoices; weekly writing isn't drafted from plan progress.",
+          "Clients follow tasks and progress in the portal; written updates aren't drafted for you.",
       },
       {
-        feature: "Public share links",
+        feature: "Getting paid",
         roducq:
-          "Token-gated, revocable read-only links scoped to a single update.",
+          "Invoices with line items and tax, exported as a PDF — payment happens wherever you already take it.",
         competitor:
-          "Clients sign in to a portal rather than opening per-document links.",
+          "Invoices pull in tracked hours and expenses, take card payments, and chase late payers automatically.",
       },
       {
-        feature: "Setup cost",
+        feature: "Sharing with a client",
         roducq:
-          "Nothing to design — the pipeline already exists; you just run client work through it.",
+          "Token-gated, revocable read-only links scoped to a single document.",
         competitor:
-          "Turn on the modules you need — time, expenses, payments, tax prep.",
+          "A branded portal the client signs in to — proposals, contracts, files and invoices in one place.",
       },
     ],
     takeaway:
-      "If you want the business back office — contracts, payments, time, tax — Bonsai is the fuller suite. If the writing trail is the job, roducq does just that, already assembled.",
+      "If the job is the business around the work — signed contracts, hours that become invoices, expenses that reconcile at tax time — Bonsai is the fuller suite, and roducq doesn't try to be it. If the job is the writing trail, roducq starts assembled: paste the messages, get the brief, send the update. They cover different halves of a practice, and nothing stops you running both.",
   },
 };

@@ -14,8 +14,8 @@
  */
 
 import { invoiceTotals } from "../invoice-totals.ts";
-import { createLayout, pdfDateLabel, COLORS } from "./layout.ts";
-import type { PageSizeName } from "./writer.ts";
+import { createLayout, pdfDateLabel, COLORS, type StatusTone } from "./layout.ts";
+import type { PageSizeName, Rgb } from "./writer.ts";
 
 export interface PdfResult {
   bytes: Uint8Array;
@@ -123,6 +123,37 @@ function titleCase(status: string): string {
   return status.charAt(0).toUpperCase() + status.slice(1);
 }
 
+/**
+ * Invoice status → print colours, mirroring
+ * components/invoices/InvoiceStatusBadge.tsx.
+ *
+ * The badge owns this mapping on screen: draft is a quiet gray fill, sent is
+ * --info blue, paid is solid --success green, void a red-tinted outline.
+ * Before this map existed every invoice PDF drew the same orange bar whatever
+ * the status, so a paid invoice and a draft one looked alike — on a money
+ * document, "has this been paid?" is the first thing a reader scans for.
+ *
+ * One place the PDF deliberately differs from the screen, and it is the
+ * screen's own print behaviour: `paid` is green INK on a soft green wash
+ * rather than white on a solid green fill. The badge carries
+ * `print:bg-transparent print:text-success` for exactly this reason — a
+ * white-on-green label vanishes the moment a print path drops background
+ * fills, and paper is that path.
+ *
+ * Fills are the house 12% wash (lib/design-tokens.soft) rather than the
+ * badge's 5%/12% per-status values: one ratio, and a touch more presence at
+ * print size.
+ */
+export const INVOICE_STATUS_TONES: Record<
+  InvoicePdfInput["status"],
+  StatusTone
+> = {
+  draft: { bar: COLORS.border, text: COLORS.muted, fill: COLORS.zebra },
+  sent: { bar: COLORS.info, text: COLORS.info, fill: COLORS.infoSoft },
+  paid: { bar: COLORS.success, text: COLORS.success, fill: COLORS.successSoft },
+  void: { bar: COLORS.error, text: COLORS.error, fill: COLORS.errorSoft },
+} satisfies Record<string, { bar: Rgb; text: Rgb; fill: Rgb }>;
+
 export function buildInvoicePdf(input: InvoicePdfInput): PdfResult {
   const label = invoiceLabel(input.invoiceNumber);
   const totals = invoiceTotals(input.items.map((item, i) => ({ id: String(i), ...item })), input.taxPercent);
@@ -149,14 +180,21 @@ export function buildInvoicePdf(input: InvoicePdfInput): PdfResult {
         : input.status === "void"
           ? "This invoice has been voided"
           : "Not sent yet";
-  doc.statusStrip(titleCase(input.status), statusNote);
+  doc.statusStrip(
+    titleCase(input.status),
+    statusNote,
+    INVOICE_STATUS_TONES[input.status]
+  );
 
   doc.gap(6);
   doc.metaGrid(
     [
       { label: "Billed to", value: input.clientName },
       { label: "Invoice", value: label },
-      { label: "Due", value: pdfDateLabel(input.dueDate) },
+      // "On receipt" — the screen says the same thing when there's no due
+      // date (app/(app)/invoices/[id]/page.tsx). An em dash there read as
+      // missing data rather than a real term.
+      { label: "Due", value: input.dueDate ? pdfDateLabel(input.dueDate) : "On receipt" },
       { label: "Issued", value: pdfDateLabel(input.sentAt) },
       { label: "Paid", value: pdfDateLabel(input.paidAt) },
       { label: "Amount due", value: money(totals.total_cents) },

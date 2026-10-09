@@ -33,17 +33,66 @@ import {
   type Rgb,
 } from "./writer.ts";
 import { ellipsize, measureText, wrapParagraphs, wrapText, type PdfFont } from "./metrics.ts";
+import { hexToRgb, mix, soft, TOKENS } from "../design-tokens.ts";
 
-/** The ui.webp design tokens, as print colours. */
+const rgb = hexToRgb;
+
+/**
+ * The house palette — derived from lib/design-tokens.ts, i.e. the same
+ * numbers app/globals.css declares as CSS variables, converted to the 0–1
+ * RGB the writer wants.
+ *
+ * This map used to be hand-copied from the CSS, and it drifted: `ink` was
+ * #1a1a1f where --text is #17171c, `hairline` was #e5e7eb where --border is
+ * #e9e9ee. Nothing caught it, because nothing compared the two. Everything
+ * below is now either a token read straight through or a documented mix off
+ * one — see the two derived entries for why they aren't 1:1.
+ */
 export const COLORS = {
-  accent: { r: 1, g: 0.416, b: 0.169 }, // #ff6a2b
-  ink: { r: 0.102, g: 0.102, b: 0.122 }, // #1a1a1f
-  muted: { r: 0.42, g: 0.447, b: 0.502 }, // #6b7280
-  hairline: { r: 0.898, g: 0.906, b: 0.922 }, // #e5e7eb
-  zebra: { r: 0.969, g: 0.969, b: 0.976 }, // #f7f7f9
-  border: { r: 0.78, g: 0.788, b: 0.812 }, // #c7c9cf — readable at 6pt
-  white: { r: 1, g: 1, b: 1 },
+  // ── Tokens, read straight through ────────────────────────────────────────
+  accent: rgb(TOKENS.accent),
+  ink: rgb(TOKENS.text),
+  hairline: rgb(TOKENS.border),
+  zebra: rgb(TOKENS.muted),
+  white: rgb(TOKENS.card),
+  success: rgb(TOKENS.success),
+  successSoft: rgb(TOKENS.successSoft),
+  info: rgb(TOKENS.info),
+  error: rgb(TOKENS.error),
+
+  // ── Derived ──────────────────────────────────────────────────────────────
+  /**
+   * Secondary ink. The screen's muted foreground is a 52% wash of --text
+   * (`color-mix(in srgb, var(--text) 52%, transparent)`) — comfortable at
+   * 14px on a backlit display, and it disappears at 8pt on paper. Print
+   * mixes toward the ink instead of the page: 62%, which lands within a
+   * couple of points of the #6b7280 this entry used to hardcode and stays
+   * warm, because --text is warm.
+   */
+  muted: rgb(mix(TOKENS.text, TOKENS.card, 0.62)),
+  /**
+   * Checkbox and rule outlines that must survive at 6pt. 25% ink — tuned to
+   * hold the contrast of the #c7c9cf this entry replaced, while being mixed
+   * off --text rather than picked by eye.
+   */
+  border: rgb(mix(TOKENS.text, TOKENS.card, 0.25)),
+
+  /** Soft tints, by the same 12%-over-card formula CSS uses. */
+  accentSoft: rgb(soft(TOKENS.accent)),
+  infoSoft: rgb(soft(TOKENS.info)),
+  errorSoft: rgb(soft(TOKENS.error)),
 } as const satisfies Record<string, Rgb>;
+
+/**
+ * Colours for a status chip: the leading bar, the label ink, and the wash
+ * behind them. Lets a document's status read the way the on-screen badge
+ * does instead of painting every status in the brand accent.
+ */
+export interface StatusTone {
+  bar: Rgb;
+  text: Rgb;
+  fill: Rgb;
+}
 
 const BODY: PdfFont = "Helvetica";
 const BOLD: PdfFont = "Helvetica-Bold";
@@ -463,17 +512,24 @@ export function createLayout(options: LayoutOptions) {
       y = dateY - 8;
     },
 
-    /** A tinted status strip — the print stand-in for the app's badge. */
-    statusStrip(label: string, note?: string) {
+    /**
+     * Status chip — the print stand-in for the app's badge. With a `tone`,
+     * the bar and label take the status colour
+     * the on-screen badge uses, so a paid invoice reads green on paper the
+     * way it reads green in the app. Without one it keeps the accent-on-zebra
+     * treatment for document kinds whose status has no distinct screen colour
+     * yet (contracts, proposals).
+     */
+    statusStrip(label: string, note?: string, tone?: StatusTone) {
       const height = 22;
       ensure(height + 6);
-      drawRect(page, left, y - height, contentWidth, height, COLORS.zebra);
-      drawRect(page, left, y - height, 3, height, COLORS.accent);
+      drawRect(page, left, y - height, contentWidth, height, tone?.fill ?? COLORS.zebra);
+      drawRect(page, left, y - height, 3, height, tone?.bar ?? COLORS.accent);
       const baseline = y - height + 7.5;
       drawText(page, left + 12, baseline, label.toUpperCase(), {
         font: BOLD,
         size: SIZES.label,
-        color: COLORS.ink,
+        color: tone?.text ?? COLORS.ink,
         charSpacing: 0.6,
       });
       if (note) {
