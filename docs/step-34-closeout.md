@@ -69,7 +69,19 @@ user-flow commands, gotchas).
    **Trigger:** reference screenshots pasted inline (index, settings,
    breif-id first) → reconciliation runs page-by-page and **the reference
    wins** over this build wherever they disagree. Bonsai `/vs/bonsai` copy
-   is additionally flagged for review against its reference PDF.
+   is additionally flagged for review against its reference PDF — it was
+   rewritten on 2026-10-10 (sharper framing, competitor column checked
+   against Bonsai's published feature set), and that rewrite is itself
+   still unreviewed against the reference.
+
+   **Shrunk 2026-10-10:** the palette no longer has two copies to
+   reconcile. `lib/design-tokens.ts` is the single source, and
+   `tests/lib/design-tokens.test.ts` checks both the CSS variables and the
+   PDF palette against it — including that the `@media print` block and the
+   light theme agree. Whatever parity gap remains is a rendering decision,
+   not a constant that quietly drifted. (The PDF's ink was `#1a1a1f` while
+   `--text` is `#17171c`, and its hairline was `#e5e7eb` while `--border`
+   is `#e9e9ee` — both fixed.)
 2. **eslint 9 → 10 bump.** Attempted `eslint@10.11.0` (2026-09-26): lint
    crashes with `TypeError: Error while loading rule 'react/display-name':
    contextOrFilename.getFilename is not a function` inside
