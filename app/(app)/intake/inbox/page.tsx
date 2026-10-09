@@ -19,16 +19,19 @@
 import { Inbox as InboxIcon, MessageSquare } from "lucide-react";
 
 import { getInboxThreads } from "@/lib/data/inbox";
+import { getIntegrationStaging } from "@/lib/data/integrations";
 import { getMailboxStaging } from "@/lib/data/mailbox";
 import { getWorkspaceContext } from "@/lib/data/workspace-context";
 import { InboxThreadList } from "@/components/intake/InboxThreadList";
+import { IntegrationStaging } from "@/components/intake/IntegrationStaging";
 import { MailboxStaging } from "@/components/intake/MailboxStaging";
 import { DocHeader } from "@/components/ui/doc-detail";
 
 export default async function IntakeInboxPage() {
-  const [threads, staging, context] = await Promise.all([
+  const [threads, staging, imports, context] = await Promise.all([
     getInboxThreads(),
     getMailboxStaging(),
+    getIntegrationStaging(),
     getWorkspaceContext(),
   ]);
 
@@ -44,6 +47,15 @@ export default async function IntakeInboxPage() {
         <div className="mb-6">
           <MailboxStaging
             messages={staging}
+            canEdit={context?.canEdit ?? false}
+          />
+        </div>
+      )}
+
+      {imports.length > 0 && (
+        <div className="mb-6">
+          <IntegrationStaging
+            items={imports}
             canEdit={context?.canEdit ?? false}
           />
         </div>

@@ -62,6 +62,28 @@ describe("Settings integrations UI", () => {
     assert.ok(src.includes("Notion"));
     assert.ok(src.includes('data-proof="integrations"'));
   });
+
+  it("card exposes Import now (on-demand, no cron)", () => {
+    const src = read("components/settings/IntegrationsCard.tsx");
+    assert.ok(src.includes("Import now"));
+    assert.ok(src.includes("importIntegrationNow"));
+  });
+});
+
+describe("Inbox staging", () => {
+  it("inbox mounts IntegrationStaging next to MailboxStaging", () => {
+    const src = read("app/(app)/intake/inbox/page.tsx");
+    assert.ok(src.includes("IntegrationStaging"));
+    assert.ok(src.includes("getIntegrationStaging"));
+    assert.ok(src.includes("MailboxStaging"));
+  });
+
+  it("staged-imports card can create a brief", () => {
+    const src = read("components/intake/IntegrationStaging.tsx");
+    assert.ok(src.includes('data-proof="staged-imports"'));
+    assert.ok(src.includes("createBriefFromImport"));
+    assert.ok(src.includes("Create brief"));
+  });
 });
 
 describe("env docs", () => {

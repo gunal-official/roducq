@@ -1,19 +1,32 @@
 "use client";
 
 /**
- * Integrations card — connect Slack and/or Notion to this workspace.
+ * Integrations card — connect Slack and/or Notion to this workspace,
+ * then Import now to stage recent messages/pages in the Inbox.
  * Owner-managed (the OAuth connect is owner-gated in /api/{slack,notion}/connect);
  * members see the connections, not the controls (mailbox/webhooks precedent).
  *
  * v1 shape: one Slack workspace + one Notion workspace per Roducq
- * workspace (disconnect to swap).
+ * workspace (disconnect to swap). Import is on-demand — there is no
+ * /api/cron/slack.
  */
 
 import { useState, useTransition } from "react";
 
-import { BookOpen, Hash, Plug, Trash2, X } from "lucide-react";
+import {
+  BookOpen,
+  Hash,
+  Loader2,
+  Plug,
+  RefreshCw,
+  Trash2,
+  X,
+} from "lucide-react";
 
-import { disconnectIntegration } from "@/app/(app)/settings/integration-actions";
+import {
+  disconnectIntegration,
+  importIntegrationNow,
+} from "@/app/(app)/settings/integration-actions";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -25,6 +38,7 @@ import {
 import { useToast } from "@/components/ui/toast";
 import type { IntegrationConnectionSummary } from "@/lib/data/integrations";
 import type { IntegrationProvider } from "@/lib/integrations/oauth";
+import { timeAgo } from "@/lib/utils";
 
 export function IntegrationsCard({
   connections,
@@ -45,6 +59,22 @@ export function IntegrationsCard({
   const [pending, startTransition] = useTransition();
   const [confirmId, setConfirmId] = useState<string | null>(null);
   const toast = useToast();
+
+  function runImport(id: string, provider: IntegrationProvider) {
+    startTransition(async () => {
+      const result = await importIntegrationNow(id);
+      if (result?.error) {
+        toast(result.error);
+      } else {
+        const n = result?.imported ?? 0;
+        toast(
+          n > 0
+            ? `${provider === "slack" ? "Slack" : "Notion"} imported — ${n} item(s) staged in the Inbox.`
+            : `${provider === "slack" ? "Slack" : "Notion"} imported — nothing new.`
+        );
+      }
+    });
+  }
 
   function runDisconnect(id: string, provider: IntegrationProvider) {
     setConfirmId(null);
@@ -70,7 +100,8 @@ export function IntegrationsCard({
           <div>
             <CardTitle>Integrations</CardTitle>
             <CardDescription>
-              Connect Slack and Notion — tokens stay encrypted on the server.
+              Connect Slack and Notion, then import recent messages and pages
+              into the Inbox — tokens stay encrypted on the server.
             </CardDescription>
           </div>
         </div>
@@ -86,8 +117,9 @@ export function IntegrationsCard({
           pending={pending}
           confirmId={confirmId}
           setConfirmId={setConfirmId}
+          onImport={runImport}
           onDisconnect={runDisconnect}
-          missingHint="Slack: set SLACK_CLIENT_ID + SLACK_CLIENT_SECRET (OAuth app with redirect /api/slack/callback) to enable this."
+          missingHint="Slack: set SLACK_CLIENT_ID + SLACK_CLIENT_SECRET (OAuth app with redirect /api/slack/callback and history/read bot scopes) to enable this."
         />
         <ProviderRow
           provider="notion"
@@ -99,6 +131,7 @@ export function IntegrationsCard({
           pending={pending}
           confirmId={confirmId}
           setConfirmId={setConfirmId}
+          onImport={runImport}
           onDisconnect={runDisconnect}
           missingHint="Notion: set NOTION_CLIENT_ID + NOTION_CLIENT_SECRET (public integration with redirect /api/notion/callback) to enable this."
         />
@@ -123,6 +156,7 @@ function ProviderRow({
   pending,
   confirmId,
   setConfirmId,
+  onImport,
   onDisconnect,
   missingHint,
 }: {
@@ -135,6 +169,7 @@ function ProviderRow({
   pending: boolean;
   confirmId: string | null;
   setConfirmId: (id: string | null) => void;
+  onImport: (id: string, provider: IntegrationProvider) => void;
   onDisconnect: (id: string, provider: IntegrationProvider) => void;
   missingHint: string;
 }) {
@@ -144,6 +179,12 @@ function ProviderRow({
     const title =
       connection.display_name ||
       (provider === "slack" ? "Slack workspace" : "Notion workspace");
+    const synced =
+      connection.status === "needs_reauth"
+        ? "Needs re-authorization — connect again to restore import."
+        : connection.last_synced_at
+          ? `Last imported ${timeAgo(connection.last_synced_at)}`
+          : "Never imported yet";
     return (
       <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-border p-3">
         <div className="min-w-0">
@@ -153,11 +194,7 @@ function ProviderRow({
               {label}
             </span>
           </p>
-          <p className="mt-0.5 text-xs text-muted-foreground">
-            {connection.status === "needs_reauth"
-              ? "Needs re-authorization — connect again to restore access."
-              : "Connected"}
-          </p>
+          <p className="mt-0.5 text-xs text-muted-foreground">{synced}</p>
           {connection.status === "active" && connection.last_error && (
             <p className="mt-0.5 text-xs text-error">{connection.last_error}</p>
           )}
@@ -201,14 +238,34 @@ function ProviderRow({
               </Button>
             </div>
           ) : (
-            <Button
-              variant="ghost"
-              size="icon"
-              aria-label={`Disconnect ${label}`}
-              onClick={() => setConfirmId(connection.id)}
-            >
-              <Trash2 size={16} strokeWidth={1.5} aria-hidden="true" />
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                disabled={pending}
+                onClick={() => onImport(connection.id, provider)}
+              >
+                {pending ? (
+                  <Loader2
+                    size={16}
+                    strokeWidth={1.5}
+                    aria-hidden="true"
+                    className="animate-spin"
+                  />
+                ) : (
+                  <RefreshCw size={16} strokeWidth={1.5} aria-hidden="true" />
+                )}
+                Import now
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                aria-label={`Disconnect ${label}`}
+                onClick={() => setConfirmId(connection.id)}
+              >
+                <Trash2 size={16} strokeWidth={1.5} aria-hidden="true" />
+              </Button>
+            </div>
           ))}
       </div>
     );

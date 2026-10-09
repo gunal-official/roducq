@@ -4,9 +4,10 @@
 `/api/notion/connect`, and `/api/notion/callback`. This ships those exact
 App Router routes, encrypted token storage, and a Settings entry.
 
-Deliberate boundaries: **connect + persist only** (no Slack event
-subscriptions, no Notion page sync, no `/api/cron/slack`). Cron email +
-webhooks GET compatibility is unchanged.
+Deliberate boundaries for this slice: **connect + persist** (no Slack
+event subscriptions, no `/api/cron/slack`). Intake import of recent
+messages/pages is the follow-up in `docs/integration-imports-closeout.md`.
+Cron email + webhooks GET compatibility is unchanged.
 
 ## 1. What's in the app now
 
@@ -40,9 +41,9 @@ or SHA-256(`AUTH_SECRET` / service role).
 - `http://localhost:3000/api/slack/callback`
 
 Bot token scopes must include whatever you set as `SLACK_BOT_SCOPES`
-(default `chat:write`). Set `SLACK_CLIENT_ID` + `SLACK_CLIENT_SECRET`.
-`SLACK_SIGNING_SECRET` is optional (needed later for Events/slash
-commands; unused by connect).
+(default covers history/read + `chat:write` so Import now works). Set
+`SLACK_CLIENT_ID` + `SLACK_CLIENT_SECRET`. `SLACK_SIGNING_SECRET` is
+optional (needed later for Events/slash commands; unused by connect).
 
 **Notion:** public integration → OAuth redirect URI
 `https://<your-domain>/api/notion/callback` (and localhost). Set
