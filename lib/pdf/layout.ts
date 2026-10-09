@@ -512,9 +512,9 @@ export function createLayout(options: LayoutOptions) {
       y = dateY - 8;
     },
 
-    /** A tinted status strip — the print stand-in for the app's badge. */
     /**
-     * Status chip. With a `tone`, the bar and label take the status colour
+     * Status chip — the print stand-in for the app's badge. With a `tone`,
+     * the bar and label take the status colour
      * the on-screen badge uses, so a paid invoice reads green on paper the
      * way it reads green in the app. Without one it keeps the accent-on-zebra
      * treatment for document kinds whose status has no distinct screen colour
