@@ -1082,11 +1082,20 @@ with `AUTH_SECRET` (falls back to `SUPABASE_SERVICE_ROLE_KEY`). One Slack
 workspace and one Notion workspace per Roducq workspace (v1). There is
 **no** `/api/cron/slack` — don't schedule one.
 
+**Import + dedupe (2026-10-10).** Owners click **Import now** on a
+connected workspace; ≤25 newest Slack messages / Notion pages stage in
+the Inbox (`unique(connection_id, external_id)` — re-import is
+idempotent). Editors turn any staged item into a brief (`chat` for
+Slack, `manual` for Notion). Apply migration
+`20261010000000_integration_imports.sql`. Closeout:
+`docs/integration-imports-closeout.md`.
+
 Env (all optional — see `.env.local.example`): `SLACK_CLIENT_ID` /
 `SLACK_CLIENT_SECRET` / `SLACK_BOT_SCOPES` / `SLACK_SIGNING_SECRET`,
 `NOTION_CLIENT_ID` / `NOTION_CLIENT_SECRET`, `AUTH_SECRET`. Apply
-migration `20261009000000_integration_connections.sql`. Full setup:
-`docs/integrations-closeout.md`.
+migrations `20261009000000_integration_connections.sql` then
+`20261010000000_integration_imports.sql`. Full setup:
+`docs/integrations-closeout.md` + `docs/integration-imports-closeout.md`.
 
 
 ---

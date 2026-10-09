@@ -583,7 +583,8 @@ await db.exec(`
     public.email_accounts,
     public.email_messages,
     public.proposal_versions,
-    public.integration_connections
+    public.integration_connections,
+    public.integration_imports
     to nstester;
   grant execute on function public.get_workspace_webhook_endpoints(uuid) to nstester;
 `);
@@ -2456,6 +2457,92 @@ await db.query("reset role");
       seen.rows[0].provider === "notion" &&
       seen.rows[1].provider === "slack"
   );
+  await db.query("reset role");
+}
+
+// ── Slack / Notion intake import + dedupe ──
+{
+  const slackId = (
+    await db.query(
+      "select id from public.integration_connections where workspace_id = $1 and provider = 'slack'",
+      [SEED_WS]
+    )
+  ).rows[0]?.id;
+  const notionId = (
+    await db.query(
+      "select id from public.integration_connections where workspace_id = $1 and provider = 'notion'",
+      [SEED_WS]
+    )
+  ).rows[0]?.id;
+
+  await db.query("select set_config('app.jwt_sub', $1, false)", [SEED_UID]);
+  await db.query("set role nstester");
+  const importWrite = await db
+    .query(
+      "insert into public.integration_imports (workspace_id, connection_id, provider, external_id, title, author, occurred_at) values ($1, $2, 'slack', 'C1:1.0', 'Nope', 'x', now())",
+      [SEED_WS, slackId]
+    )
+    .then(() => ({ ok: true }))
+    .catch(() => ({ ok: false }));
+  check("RLS: users cannot write integration_imports (service role only)", importWrite.ok === false);
+  await db.query("reset role");
+
+  await db.query(
+    "insert into public.integration_imports (workspace_id, connection_id, provider, external_id, title, author, snippet, body_text, occurred_at) values ($1, $2, 'slack', 'C09ABC:1712345678.000100', 'Kickoff in #general', 'Ada', 'Kickoff snippet', 'Kickoff body', now() - interval '10 minutes')",
+    [SEED_WS, slackId]
+  );
+  const dupImport = await db
+    .query(
+      "insert into public.integration_imports (workspace_id, connection_id, provider, external_id, title, author, occurred_at) values ($1, $2, 'slack', 'C09ABC:1712345678.000100', 'dup', 'Ada', now())",
+      [SEED_WS, slackId]
+    )
+    .then(() => ({ ok: true }))
+    .catch(() => ({ ok: false }));
+  check(
+    "integration_imports unique (connection_id, external_id) holds (idempotent import)",
+    dupImport.ok === false
+  );
+
+  // Same external_id on a DIFFERENT connection is allowed (per-connection dedupe).
+  await db.query(
+    "insert into public.integration_imports (workspace_id, connection_id, provider, external_id, title, author, occurred_at) values ($1, $2, 'notion', 'C09ABC:1712345678.000100', 'Same id, other provider', 'Notion', now() - interval '5 minutes')",
+    [SEED_WS, notionId]
+  );
+
+  const badProvider = await db
+    .query(
+      "insert into public.integration_imports (workspace_id, connection_id, provider, external_id, title, author, occurred_at) values ($1, $2, 'discord', 'x', 'x', 'x', now())",
+      [SEED_WS, slackId]
+    )
+    .then(() => ({ ok: true }))
+    .catch(() => ({ ok: false }));
+  check("integration_imports.provider CHECK rejects unknown providers", badProvider.ok === false);
+
+  await db.query("select set_config('app.jwt_sub', $1, false)", [SEED_UID]);
+  await db.query("set role nstester");
+  const staged = await db.query(
+    "select count(*)::int as n from public.integration_imports where workspace_id = $1 and attached_brief_id is null",
+    [SEED_WS]
+  );
+  check("imports: owner sees the staged (unattached) items", staged.rows[0]?.n === 2);
+  await db.query("reset role");
+
+  await db.query(
+    "update public.integration_imports set attached_brief_id = $2 where workspace_id = $1 and provider = 'slack'",
+    [SEED_WS, SEED_BRIEF]
+  );
+  await db.query("select set_config('app.jwt_sub', $1, false)", [SEED_UID]);
+  await db.query("set role nstester");
+  const stagedAfter = await db.query(
+    "select count(*)::int as n from public.integration_imports where workspace_id = $1 and attached_brief_id is null",
+    [SEED_WS]
+  );
+  check("imports: attached items drop out of the staging view", stagedAfter.rows[0]?.n === 1);
+
+  const lastSynced = await db.query(
+    "select count(*)::int as n from information_schema.columns where table_schema = 'public' and table_name = 'integration_connections' and column_name = 'last_synced_at'"
+  );
+  check("integrations: last_synced_at column exists", lastSynced.rows[0]?.n === 1);
   await db.query("reset role");
 }
 
