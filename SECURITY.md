@@ -32,7 +32,8 @@ users touch this app.
   the dashboard (scheduled snapshots on free; PITR is a paid-tier option).
   Nothing in the repo can verify this. Decide a restore story for client
   data (`brief_sources`, share links) — these are client communications.
-- [ ] **Observability**: Sentry only activates when `SENTRY_DSN` is set —
+- [ ] **Observability**: Sentry only activates when `SENTRY_DSN` or
+  `NEXT_PUBLIC_SENTRY_DSN` is set —
   the wiring ships inert by default, so set the env var in production or
   error tracking silently stays off. Wire source-map upload separately
   (Sentry wizard) if stack traces should be readable.

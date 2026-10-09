@@ -2,9 +2,10 @@
 // when SENTRY_DSN is set. Guarded here too (register() calls this lazily).
 import * as Sentry from "@sentry/nextjs";
 
-if (process.env.SENTRY_DSN) {
+const dsn = process.env.SENTRY_DSN || process.env.NEXT_PUBLIC_SENTRY_DSN;
+if (dsn) {
   Sentry.init({
-    dsn: process.env.SENTRY_DSN,
+    dsn,
     tracesSampleRate: 0.1,
   });
 }
