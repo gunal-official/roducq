@@ -315,8 +315,9 @@ content only).
 2. `/about` and `/pricing` render real copy: pricing is **Free / Pro
    (Early access)** with no invented prices — the Pro CTA is a plain
    mailto, not a fake checkout.
-3. `/vs/notion` renders the data-driven comparison (content map in
-   `app/(marketing)/vs/[slug]/vs-pages.ts`); any other slug 404s.
+3. `/vs/<slug>` renders the data-driven comparison (content map in
+   `app/(marketing)/vs/[slug]/vs-pages.ts`); any other slug 404s. See the
+   `/vs` hub section below for the full list.
 4. Shared chrome: sticky `SiteHeader` (logo, About/Pricing, Log in /
    Sign up, theme toggle) and `SiteFooter` via the new
    `app/(marketing)/layout.tsx`; all four pages stay public per the
@@ -1284,3 +1285,27 @@ responsive audit passed ✔  (evidence: ~/responsive-evidence/step32-after)
 | 375px: no horizontal scroll, nav works, buttons tappable, no clipped text | `step33-seven/pages/375/*` (every page) + `interact/320/drawer-open.png`, `drawer-navigate` — audit: `overflowX=0 tap<44=0 cut=0` |
 | Dialog animations smooth (open AND close) | `dialog-template` fit proof + `motion-dialog-exit` sample (`t0:1/anims:1 mid:0.14 gone@~220`) + `dialog-exit.gif` |
 | Icons intentional & consistent | `docs/icon-audit.md` + sidebar/form/team renders (`complex/1024/settings.png`, `pages/1024/*`, `interact/320/drawer-open.png`) |
+
+## Verify /vs comparisons hub (marketing)
+
+Static marketing pages — no migration, no env, no DB surface.
+
+1. `/vs` lists all nine comparisons (Notion, Bonsai, HoneyBook, Dubsado,
+   17hats, FreshBooks, ClickUp, Basecamp, PandaDoc) as cards. Each card links
+   to `/vs/<slug>`.
+2. Every `/vs/<slug>` returns 200, shows an "All comparisons" link back to
+   `/vs`, and ends with a "Compare roducq with other tools" link to `/vs`.
+   Any other slug 404s (`dynamicParams = false`).
+3. Header nav and footer both link to `/vs` ("Compare"). The header link is
+   hidden below `sm`; the footer link is the mobile path.
+4. The limitation note (`VS_LIMITATION_NOTE` in `vs-pages.ts`) appears on the
+   hub and on every detail page. It says competitor details are as of
+   October 2026 from public sources and not exhaustive.
+5. Content lives only in `vs-pages.ts`. Competitor copy is product shape, not
+   prices, and stays non-disparaging. Re-check each vendor's site before
+   changing a row.
+6. Responsive audit: `/vs` and all nine `/vs/<slug>` routes are in the
+   `scripts/verify-responsive.mjs` marketing sweep (`npm run verify:responsive`).
+7. Offline checks: `npm test` includes `tests/components/vs-comparisons.test.ts`
+   (slug set, required fields, back-links, nav links, limitation note, harness
+   coverage).

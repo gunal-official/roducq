@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
  * Shared marketing chrome (Step 13): logo lockup on the left, light nav,
  * auth CTAs + theme toggle on the right. Server component — ThemeToggle is
  * the only client piece. Nav links collapse below sm (no hamburger needed;
- * About/Pricing remain reachable from the footer).
+ * About/Pricing/Compare remain reachable from the footer).
  */
 export function SiteHeader() {
   return (
@@ -26,6 +26,9 @@ export function SiteHeader() {
           </Link>
           <Link href="/pricing" className="inline-flex min-h-11 min-w-11 items-center transition-colors hover:text-text">
             Pricing
+          </Link>
+          <Link href="/vs" className="inline-flex min-h-11 min-w-11 items-center transition-colors hover:text-text">
+            Compare
           </Link>
         </nav>
 
