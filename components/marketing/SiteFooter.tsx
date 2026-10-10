@@ -18,8 +18,8 @@ export function SiteFooter() {
           <Link href="/pricing" className="inline-flex min-h-11 min-w-11 items-center transition-colors hover:text-text">
             Pricing
           </Link>
-          <Link href="/vs/notion" className="inline-flex min-h-11 min-w-11 items-center transition-colors hover:text-text">
-            roducq vs Notion
+          <Link href="/vs" className="inline-flex min-h-11 min-w-11 items-center transition-colors hover:text-text">
+            Compare
           </Link>
           <Link href="/login" className="inline-flex min-h-11 min-w-11 items-center transition-colors hover:text-text">
             Log in
