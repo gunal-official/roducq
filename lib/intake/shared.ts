@@ -14,9 +14,8 @@
  *  extract.ts/docx.ts) so both extractors share one import graph without
  *  a cycle: extract → docx → shared, handler → extract + shared. */
 export type ExtractErrorCode =
-  /** PDF refused, deliberately, with paste-instead instructions. */
-  | "pdf"
-  /** ZIP or PDF container, but not a readable document. */
+  /** PDF/ZIP container, but not a readable (or not a supported) document —
+   *  e.g. encrypted, no pages, or a ZIP that isn't a Word file. */
   | "format"
   /** Archive structure violated / deflate stream broken / XML undecodable. */
   | "corrupt"
@@ -42,12 +41,6 @@ export const MAX_UPLOAD_BYTES = 5 * 1024 * 1024; // 5 MB
 
 /** Output ceiling: extracted text is truncated past this many characters. */
 export const MAX_OUTPUT_CHARS = 100_000;
-
-/** The explicit refusal, verbatim, shown for PDF uploads (client pre-check
- *  AND server response must carry this exact string). */
-export const PDF_REFUSAL_MESSAGE =
-  "PDF upload isn’t supported yet — open it, copy the text, paste it " +
-  "(scanned PDFs won’t work).";
 
 export const TOO_LARGE_MESSAGE =
   "That file is too large — uploads are capped at 5 MB. Copy the text " +
@@ -77,7 +70,7 @@ export interface ExtractSuccessPayload {
     bytes: number;
     /** Character count of `text` (after any truncation). */
     chars: number;
-    format: "text" | "docx";
+    format: "text" | "docx" | "pdf";
     /** true when the document exceeded MAX_OUTPUT_CHARS and was cut. */
     truncated: boolean;
   };

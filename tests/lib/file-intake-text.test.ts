@@ -1,7 +1,9 @@
 /**
  * Unit tests for the TXT/Markdown branch of file intake (Queue item #6):
  * strict UTF-8 decode, newline normalization, and the magic-byte dispatch
- * in lib/intake/extract.ts — including the explicit PDF refusal.
+ * in lib/intake/extract.ts. The PDF branch itself is covered in depth by
+ * ./file-intake-pdf.test.ts; this file only checks that %PDF- bytes are
+ * routed there (not swallowed by the text/ZIP branches).
  */
 
 import { describe, test } from "node:test";
@@ -11,10 +13,7 @@ import {
   extractPlainText,
   extractUploadText,
 } from "../../lib/intake/extract.ts";
-import {
-  ExtractError,
-  PDF_REFUSAL_MESSAGE,
-} from "../../lib/intake/shared.ts";
+import { ExtractError } from "../../lib/intake/shared.ts";
 
 const enc = new TextEncoder();
 
@@ -78,22 +77,16 @@ describe("extractUploadText — magic-byte dispatch", () => {
     );
   });
 
-  test("%PDF- magic is refused with the exact locked message", () => {
+  test("%PDF- magic dispatches to the PDF branch, not the text branch", () => {
+    // A minimal, incomplete PDF: enough to prove dispatch, not enough to
+    // extract anything — it should fail IN the PDF branch (format/corrupt/
+    // empty), never be silently read as text or rejected as not_text.
     const pdf = enc.encode("%PDF-1.7\n%âãÏÓ\n1 0 obj\n<< >>\nendobj\n");
     assert.throws(
       () => extractUploadText(pdf),
-      (err: unknown) => {
-        assert.ok(err instanceof ExtractError);
-        assert.equal((err as ExtractError).code, "pdf");
-        assert.equal((err as ExtractError).message, PDF_REFUSAL_MESSAGE);
-        return true;
-      }
-    );
-    // The refusal wording is part of the contract — guard it verbatim.
-    assert.equal(
-      PDF_REFUSAL_MESSAGE,
-      "PDF upload isn’t supported yet — open it, copy the text, " +
-        "paste it (scanned PDFs won’t work)."
+      (err: unknown) =>
+        err instanceof ExtractError &&
+        ["format", "corrupt", "empty"].includes((err as ExtractError).code)
     );
   });
 

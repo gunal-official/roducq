@@ -11,7 +11,7 @@
  *   400 — not multipart, or no file under the "file" field.
  *   413 — upload over MAX_UPLOAD_BYTES (checked both on the declared
  *         Content-Length and on the actual part size).
- *   415 — unsupported container (PDF refusal lives here, verbatim).
+ *   415 — unsupported container (encrypted PDF, non-DOCX ZIP, ...).
  *   422 — corrupt/empty/not-text (parseable request, unusable content).
  *   200 — { text, meta } (see shared.ts); output truncated at
  *         MAX_OUTPUT_CHARS with meta.truncated=true.
@@ -52,7 +52,6 @@ function json(body: unknown, status: number): Response {
 
 function statusForError(error: ExtractError): number {
   switch (error.code) {
-    case "pdf":
     case "format":
       return 415; // Unsupported Media Type — the doc is healthy, we don't eat it
     case "corrupt":

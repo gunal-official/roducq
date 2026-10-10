@@ -98,7 +98,7 @@ export function SourcePanel({
         </div>
         <CardDescription>
           An email, a chat log, or call notes — paste them, or add a .docx /
-          .txt / .md file. roducq drafts the brief.
+          .pdf / .txt / .md file. roducq drafts the brief.
         </CardDescription>
       </CardHeader>
 
