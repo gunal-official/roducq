@@ -15,10 +15,10 @@
  *   - filled rectangles and straight lines (rules, table zebra, marks)
  *   - a Document Information dictionary (title/author/subject/dates)
  *
- * WHAT IT DOES NOT: embedded fonts, images, links, outlines, encryption,
- * compression. Streams are written UNCOMPRESSED on purpose — a
- * roducq PDF is a few kilobytes, and a plain-text content stream is
- * greppable in tests and debuggable by a human with `less`.
+ * WHAT IT DOES NOT: embedded fonts, links, outlines, encryption. Text
+ * content streams remain uncompressed on purpose — they are greppable in
+ * tests and debuggable by a human with `less`. Image data uses FlateDecode
+ * for PNG pixels or DCTDecode for JPEG passthrough.
  *
  * COORDINATES: PDF user space — origin BOTTOM-LEFT, y grows upward, units
  * are points (1/72"). lib/pdf/layout.ts is the top-down flow layer on top.
@@ -51,6 +51,22 @@ export interface TextOptions {
 export interface PdfPageSize {
   width: number;
   height: number;
+}
+
+/** Decoded or passthrough image payload for a PDF Image XObject. */
+export interface PdfImage {
+  /** Stable content hash, used to share one XObject across all pages. */
+  key: string;
+  width: number;
+  height: number;
+  colorSpace: "DeviceRGB" | "DeviceGray" | "DeviceCMYK";
+  filter: "FlateDecode" | "DCTDecode";
+  /** Compressed PNG pixel bytes or the original JPEG file bytes. */
+  data: Uint8Array;
+  /** Compressed 8-bit grayscale alpha plane (PNG /SMask), when needed. */
+  alphaData?: Uint8Array;
+  /** Optional PDF Decode array for Adobe-inverted CMYK JPEGs. */
+  decodeArray?: string;
 }
 
 /** ISO A4 and US Letter, in points. */
@@ -122,10 +138,12 @@ export interface PdfPage {
   size: PdfPageSize;
   ops: string[];
   fonts: Set<PdfFont>;
+  /** Page-local resource names → shared document-level image payloads. */
+  images: Map<string, PdfImage>;
 }
 
 export function createPage(size: PdfPageSize): PdfPage {
-  return { size, ops: [], fonts: new Set() };
+  return { size, ops: [], fonts: new Set(), images: new Map() };
 }
 
 /** Draw a single line of text with its BASELINE at (x, y). */
@@ -171,6 +189,28 @@ export function drawRect(
   );
 }
 
+/** Draw an image XObject into the requested rectangle. */
+export function drawImage(
+  page: PdfPage,
+  image: PdfImage,
+  x: number,
+  y: number,
+  width: number,
+  height: number
+): void {
+  const existing = [...page.images.entries()].find(
+    ([, resource]) => resource.key === image.key
+  );
+  const resourceName = existing?.[0] ?? `Im${page.images.size + 1}`;
+  if (!existing) page.images.set(resourceName, image);
+  page.ops.push(
+    "q",
+    `${fmt(width)} 0 0 ${fmt(height)} ${fmt(x)} ${fmt(y)} cm`,
+    `/${resourceName} Do`,
+    "Q"
+  );
+}
+
 /** Straight line from (x1, y1) to (x2, y2). */
 export function drawLine(
   page: PdfPage,
@@ -192,13 +232,25 @@ export function drawLine(
   );
 }
 
+/** Split binary data into a latin1 string without overflowing the call stack. */
+function bytesToLatin1(bytes: Uint8Array): string {
+  const chunks: string[] = [];
+  const chunkSize = 8192;
+  for (let offset = 0; offset < bytes.length; offset += chunkSize) {
+    chunks.push(String.fromCharCode(...bytes.subarray(offset, offset + chunkSize)));
+  }
+  return chunks.join("");
+}
+
 /**
  * Serialise pages into PDF bytes.
  *
  * Object layout: 1 Catalog, 2 Pages, 3 Info, then per page a Page dict and
- * its Contents stream, then one Font object per font actually used. The
- * cross-reference table records each object's byte offset, so the body is
- * assembled as latin1 text and measured as it grows.
+ * its Contents stream, then the fonts and unique image XObjects actually
+ * used. Identical image keys share one PDF object across every page; an
+ * alpha-bearing PNG gets exactly one companion grayscale /SMask object.
+ * The cross-reference table is measured over latin1 text, where one code
+ * unit is exactly one output byte.
  */
 export function renderPdf(pages: PdfPage[], meta: PdfMetadata): Uint8Array {
   if (pages.length === 0) throw new Error("renderPdf: no pages");
@@ -213,6 +265,17 @@ export function renderPdf(pages: PdfPage[], meta: PdfMetadata): Uint8Array {
   // /Font dictionary that resolves nothing is a broken reader experience.
   if (usedFonts.length === 0) usedFonts.push("Helvetica");
 
+  const usedImages: PdfImage[] = [];
+  const seenImageKeys = new Set<string>();
+  for (const page of pages) {
+    page.images.forEach((image) => {
+      if (!seenImageKeys.has(image.key)) {
+        seenImageKeys.add(image.key);
+        usedImages.push(image);
+      }
+    });
+  }
+
   const CATALOG = 1;
   const PAGES = 2;
   const INFO = 3;
@@ -220,7 +283,15 @@ export function renderPdf(pages: PdfPage[], meta: PdfMetadata): Uint8Array {
   const pageObjId = (i: number) => firstPageObj + i * 2;
   const contentObjId = (i: number) => firstPageObj + i * 2 + 1;
   const fontObjId = (i: number) => firstPageObj + pages.length * 2 + i;
-  const totalObjects = 3 + pages.length * 2 + usedFonts.length;
+
+  let nextObjectId = firstPageObj + pages.length * 2 + usedFonts.length;
+  const imageObjectIds = new Map<string, { image: number; alpha: number | null }>();
+  for (const image of usedImages) {
+    const imageId = nextObjectId++;
+    const alphaId = image.alphaData ? nextObjectId++ : null;
+    imageObjectIds.set(image.key, { image: imageId, alpha: alphaId });
+  }
+  const totalObjects = nextObjectId - 1;
 
   const fontResources = usedFonts
     .map((font, i) => `/${FONT_RESOURCE[font]} ${fontObjId(i)} 0 R`)
@@ -229,6 +300,28 @@ export function renderPdf(pages: PdfPage[], meta: PdfMetadata): Uint8Array {
   const objects: string[] = [];
   const push = (id: number, body: string) => {
     objects[id] = `${id} 0 obj\n${body}\nendobj\n`;
+  };
+  const pushImageStream = (
+    id: number,
+    width: number,
+    height: number,
+    colorSpace: PdfImage["colorSpace"],
+    filter: PdfImage["filter"],
+    data: Uint8Array,
+    extras: string[] = []
+  ) => {
+    const dictionary = [
+      "/Type /XObject",
+      "/Subtype /Image",
+      `/Width ${width}`,
+      `/Height ${height}`,
+      `/ColorSpace /${colorSpace}`,
+      "/BitsPerComponent 8",
+      `/Filter /${filter}`,
+      `/Length ${data.byteLength}`,
+      ...extras,
+    ].join(" ");
+    push(id, `<< ${dictionary} >>\nstream\n${bytesToLatin1(data)}\nendstream`);
   };
 
   push(CATALOG, `<< /Type /Catalog /Pages ${PAGES} 0 R >>`);
@@ -253,12 +346,23 @@ export function renderPdf(pages: PdfPage[], meta: PdfMetadata): Uint8Array {
   push(INFO, `<< ${info} >>`);
 
   pages.forEach((page, i) => {
+    const xobjectResources = [...page.images.entries()]
+      .map(([name, image]) => {
+        const ids = imageObjectIds.get(image.key);
+        if (!ids) throw new Error(`renderPdf: missing image resource ${image.key}`);
+        return `/${name} ${ids.image} 0 R`;
+      })
+      .join(" ");
+    const resources =
+      `/Resources << /Font << ${fontResources} >>` +
+      (xobjectResources ? ` /XObject << ${xobjectResources} >>` : "") +
+      " >>";
+
     push(
       pageObjId(i),
       `<< /Type /Page /Parent ${PAGES} 0 R ` +
         `/MediaBox [0 0 ${fmt(page.size.width)} ${fmt(page.size.height)}] ` +
-        `/Resources << /Font << ${fontResources} >> >> ` +
-        `/Contents ${contentObjId(i)} 0 R >>`
+        `${resources} /Contents ${contentObjId(i)} 0 R >>`
     );
     const stream = page.ops.join("\n");
     push(
@@ -275,11 +379,40 @@ export function renderPdf(pages: PdfPage[], meta: PdfMetadata): Uint8Array {
     );
   });
 
+  for (const image of usedImages) {
+    const ids = imageObjectIds.get(image.key);
+    if (!ids) throw new Error(`renderPdf: missing image object ${image.key}`);
+    const extras = [
+      ...(image.decodeArray ? [`/Decode ${image.decodeArray}`] : []),
+      ...(ids.alpha !== null ? [`/SMask ${ids.alpha} 0 R`] : []),
+    ];
+    pushImageStream(
+      ids.image,
+      image.width,
+      image.height,
+      image.colorSpace,
+      image.filter,
+      image.data,
+      extras
+    );
+    if (ids.alpha !== null && image.alphaData) {
+      pushImageStream(
+        ids.alpha,
+        image.width,
+        image.height,
+        "DeviceGray",
+        "FlateDecode",
+        image.alphaData
+      );
+    }
+  }
+
   // %PDF header + a binary comment line: the convention that tells tools
   // handling the file (mail servers, proxies) to treat it as binary.
   let body = "%PDF-1.7\n%\u00E2\u00E3\u00CF\u00D3\n";
   const offsets: number[] = [];
   for (let id = 1; id <= totalObjects; id += 1) {
+    if (!objects[id]) throw new Error(`renderPdf: object ${id} was not written`);
     offsets[id] = body.length;
     body += objects[id];
   }
@@ -294,11 +427,6 @@ export function renderPdf(pages: PdfPage[], meta: PdfMetadata): Uint8Array {
     `trailer\n<< /Size ${totalObjects + 1} /Root ${CATALOG} 0 R ` +
     `/Info ${INFO} 0 R >>\nstartxref\n${xrefOffset}\n%%EOF\n`;
 
-  // latin1 by construction: every char in the document is a WinAnsi byte
-  // (lib/pdf/encoding.ts guarantees it), so the string's length IS its byte
-  // length — which is what the xref offsets and /Length entries above were
-  // computed from. Written out by hand rather than with Buffer so the writer
-  // stays runtime-agnostic (Node, edge, or a browser worker).
   const text = body + xref + trailer;
   const bytes = new Uint8Array(text.length);
   for (let i = 0; i < text.length; i += 1) bytes[i] = text.charCodeAt(i) & 0xff;

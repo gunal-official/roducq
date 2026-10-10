@@ -22,6 +22,7 @@
  */
 
 import { ReportsView } from "@/components/reports/ReportsView";
+import { DownloadPdfButton } from "@/components/ui/DownloadPdfButton";
 import { computeReport } from "@/lib/reports";
 import { getInvoices } from "@/lib/data/invoices";
 import { getTimeEntries } from "@/lib/data/time";
@@ -43,14 +44,19 @@ export default async function ReportsPage() {
 
   return (
     <div className="mx-auto max-w-6xl">
-      <div className="mb-6">
-        <h1 className="font-display text-2xl font-bold tracking-tight">
-          Reports
-        </h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          The workspace rollup — money, hours, and contracts, computed
-          live from your data.
-        </p>
+      <div className="mb-6 flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <h1 className="font-display text-2xl font-bold tracking-tight">
+            Reports
+          </h1>
+          <p className="mt-1 text-sm text-muted-foreground">
+            The workspace rollup — money, hours, and contracts, computed
+            live from your data.
+          </p>
+        </div>
+        {context?.canSeeMoney && (
+          <DownloadPdfButton href="/api/pdf/reports" label="Download PDF" />
+        )}
       </div>
 
       <ReportsView report={report} />

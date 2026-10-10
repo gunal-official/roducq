@@ -28,6 +28,7 @@ import { pdfResponse, requestedPageSize } from "@/lib/pdf/response";
 import { isUuid } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
 
 function unavailable() {
   return new Response("This link is invalid or has been revoked.", {
@@ -56,6 +57,7 @@ export async function GET(
 
   const result = buildInvoicePdf({
     workspaceName: invoice.workspace_name,
+    logoDataUrl: invoice.logo_data_url,
     generatedAt: new Date(),
     pageSize: requestedPageSize(request),
     invoiceNumber: invoice.invoice_number,

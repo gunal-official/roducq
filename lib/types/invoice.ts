@@ -76,4 +76,5 @@ export interface SharedInvoice {
   sent_at: string | null;
   paid_at: string | null;
   workspace_name: string;
+  logo_data_url: string | null;
 }

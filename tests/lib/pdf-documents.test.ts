@@ -14,7 +14,11 @@ import assert from "node:assert/strict";
 import {
   buildContractPdf,
   buildInvoicePdf,
+  buildPlanPdf,
   buildProposalPdf,
+  buildReportsPdf,
+  buildTimePdf,
+  buildUpdatePdf,
   slugify,
   type InvoicePdfInput,
 } from "../../lib/pdf/documents.ts";
@@ -25,8 +29,10 @@ import {
   documentText,
   flatText,
   pageStreams,
+  parseObjects,
   placedRuns,
 } from "./pdf-read.ts";
+import { makeLogoPngDataUrl } from "./pdf-image-fixture.ts";
 
 const GENERATED_AT = new Date("2026-09-27T10:30:00Z");
 const MARGIN = 54;
@@ -375,6 +381,158 @@ describe("buildProposalPdf", () => {
       buildProposalPdf(PROPOSAL).filename,
       "proposal-website-relaunch-proposal.pdf"
     );
+  });
+});
+
+describe("PDF v2 document builders", () => {
+  test("buildUpdatePdf includes client context and readable Markdown copy", () => {
+    const result = buildUpdatePdf({
+      workspaceName: "Brightloop Co.",
+      generatedAt: GENERATED_AT,
+      title: "Week two update",
+      clientName: "Aurora Labs",
+      status: "sent",
+      body: "## Week two\n\n- **Review** complete.\n\nSee [prototype](https://example.com/prototype).",
+      sourcePlanTitle: "Website relaunch",
+      createdAt: "2026-09-20T09:00:00Z",
+      updatedAt: "2026-09-27T09:00:00Z",
+    });
+    const text = flatText(result.bytes);
+    assert.match(text, /UPDATE/);
+    assert.match(text, /Aurora Labs/);
+    assert.match(text, /Week two/);
+    assert.match(text, /Review complete\./);
+    assert.match(text, /prototype \(https:\/\/example\.com\/prototype\)/);
+    assert.match(text, /Website relaunch/);
+    assert.ok(!text.includes("**"));
+    assert.equal(result.filename, "update-week-two-update.pdf");
+  });
+
+  test("buildPlanPdf includes status, budget, and checked task text", () => {
+    const result = buildPlanPdf({
+      workspaceName: "Brightloop Co.",
+      generatedAt: GENERATED_AT,
+      title: "Brand identity rollout",
+      clientName: "Aurora Labs",
+      status: "in_progress",
+      budgetTimeline: "$18,000 over eight weeks.",
+      tasks: [
+        { text: "Approve the visual direction", checked: true },
+        { text: "Prepare final assets", checked: false },
+      ],
+      sourceProposalTitle: "Identity proposal",
+      createdAt: "2026-09-20T09:00:00Z",
+      updatedAt: "2026-09-27T09:00:00Z",
+    });
+    const text = flatText(result.bytes);
+    assert.match(text, /PLAN/);
+    assert.match(text, /IN PROGRESS/);
+    assert.match(text, /1 of 2 tasks complete/);
+    assert.match(text, /\$18,000 over eight weeks/);
+    assert.match(text, /Approve the visual direction/);
+    assert.match(text, /Prepare final assets/);
+    assert.match(text, /Identity proposal/);
+    assert.equal(result.filename, "plan-brand-identity-rollout.pdf");
+  });
+
+  test("buildTimePdf totals the fixed day/month windows and lists entries", () => {
+    const result = buildTimePdf({
+      workspaceName: "Brightloop Co.",
+      generatedAt: GENERATED_AT,
+      today: "2026-09-27",
+      entries: [
+        {
+          workedOn: "2026-09-27",
+          description: "Concept exploration",
+          durationMinutes: 95,
+          briefTitle: "Brand refresh",
+        },
+        {
+          workedOn: "2026-09-26",
+          description: "Client follow-up",
+          durationMinutes: 45,
+          briefTitle: null,
+        },
+      ],
+    });
+    const text = flatText(result.bytes);
+    assert.match(text, /TIME LOG/);
+    assert.match(text, /1h 35m/); // today
+    assert.match(text, /2h 20m/); // month + all time
+    assert.match(text, /Concept exploration/);
+    assert.match(text, /Brand refresh/);
+    assert.match(text, /Client follow-up/);
+    assert.match(text, /General/);
+    assert.equal(result.filename, "time-log-brightloop-co.pdf");
+  });
+
+  test("buildReportsPdf prints money, time, brief, and contract rollups", () => {
+    const result = buildReportsPdf({
+      workspaceName: "Brightloop Co.",
+      generatedAt: GENERATED_AT,
+      report: {
+        money: {
+          draft_cents: 125000,
+          outstanding_cents: 300000,
+          collected_cents: 500000,
+          draft_count: 1,
+          sent_count: 2,
+          paid_count: 3,
+          void_count: 1,
+        },
+        time: {
+          today_minutes: 95,
+          month_minutes: 340,
+          all_minutes: 780,
+          by_brief: [
+            {
+              brief_id: "brief-1",
+              title: "Brand refresh",
+              minutes: 240,
+              entry_count: 4,
+            },
+          ],
+        },
+        contracts: {
+          draft_count: 1,
+          sent_count: 2,
+          signed_count: 3,
+          void_count: 1,
+          expiring_soon_count: 1,
+          expired_count: 2,
+        },
+      },
+    });
+    const text = flatText(result.bytes);
+    assert.match(text, /Workspace report/);
+    assert.match(text, /\$5,000\.00/);
+    assert.match(text, /\$3,000\.00/);
+    assert.match(text, /1h 35m/);
+    assert.match(text, /Brand refresh/);
+    assert.match(text, /EXPIRING WITHIN 30 DAYS/);
+    assert.equal(result.filename, "workspace-report-brightloop-co.pdf");
+  });
+
+  test("a logo is embedded once and referenced from every generated page", () => {
+    const longInvoice = buildInvoicePdf({
+      ...INVOICE,
+      logoDataUrl: makeLogoPngDataUrl(),
+      items: Array.from({ length: 45 }, (_, i) => ({
+        description: `Logo pagination item ${i + 1} — a long enough line to fill several pages`,
+        quantity: 1,
+        unit_amount_cents: 1000,
+      })),
+    });
+    const pdf = decodePdf(longInvoice.bytes);
+    const objects = parseObjects(pdf);
+    const pages = objects.filter((object) => object.body.includes("/Type /Page "));
+    const logoRefs = pages.map((page) => /\/XObject << \/Im1 (\d+) 0 R >>/.exec(page.body)?.[1]);
+    assert.ok(pages.length >= 2);
+    assert.ok(logoRefs.every((ref) => ref === logoRefs[0]));
+    const imageObjects = objects.filter((object) => object.body.includes("/Subtype /Image"));
+    assert.equal(imageObjects.length, 2, "one RGB image plus one alpha mask, not per-page copies");
+    assert.match(imageObjects.find((object) => object.id === Number(logoRefs[0]))?.body ?? "", /\/SMask \d+ 0 R/);
+    assert.ok(pageStreams(pdf).every((stream) => stream.includes("/Im1 Do")));
   });
 });
 

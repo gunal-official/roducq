@@ -37,6 +37,7 @@ import { formatDate, isUuid, timeAgo } from "@/lib/utils";
 import { ComposeUpdateButton } from "@/components/plans/ComposeUpdateButton";
 import { CanEdit } from "@/components/app-shell/CanEdit";
 import { ExportMarkdownButton } from "@/components/plans/ExportMarkdownButton";
+import { DownloadPdfButton } from "@/components/ui/DownloadPdfButton";
 import { PlanStatusBadge } from "@/components/plans/PlanStatusBadge";
 import { PlanStatusSelect } from "@/components/plans/PlanStatusSelect";
 import { TaskChecklist } from "@/components/plans/TaskChecklist";
@@ -175,6 +176,12 @@ export default async function PlanDetailPage({
         title={plan.title}
         badges={<PlanStatusBadge status={plan.status} />}
         subtitle={plan.client_name ?? undefined}
+        actions={
+          <DownloadPdfButton
+            href={`/api/pdf/plan/${plan.id}`}
+            label="Download PDF"
+          />
+        }
       />
 
       {/* Stat tiles */}

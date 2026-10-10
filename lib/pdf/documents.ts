@@ -14,6 +14,7 @@
  */
 
 import { invoiceTotals } from "../invoice-totals.ts";
+import type { Report } from "../reports.ts";
 import { createLayout, pdfDateLabel, COLORS, type StatusTone } from "./layout.ts";
 import type { PageSizeName, Rgb } from "./writer.ts";
 
@@ -24,6 +25,7 @@ export interface PdfResult {
 
 interface BaseInput {
   workspaceName: string;
+  logoDataUrl?: string | null;
   generatedAt: Date;
   pageSize?: PageSizeName;
 }
@@ -161,6 +163,7 @@ export function buildInvoicePdf(input: InvoicePdfInput): PdfResult {
   const doc = createLayout({
     pageSize: input.pageSize,
     workspaceName: input.workspaceName,
+    logoDataUrl: input.logoDataUrl,
     documentKind: "Invoice",
     title: `${label} ${EM_DASH} ${input.title}`,
     subject: `Invoice for ${input.clientName}`,
@@ -249,6 +252,7 @@ export function buildContractPdf(input: ContractPdfInput): PdfResult {
   const doc = createLayout({
     pageSize: input.pageSize,
     workspaceName: input.workspaceName,
+    logoDataUrl: input.logoDataUrl,
     documentKind: "Contract",
     title: input.title,
     subject: `Engagement agreement with ${input.clientName}`,
@@ -310,6 +314,7 @@ export function buildProposalPdf(input: ProposalPdfInput): PdfResult {
   const doc = createLayout({
     pageSize: input.pageSize,
     workspaceName: input.workspaceName,
+    logoDataUrl: input.logoDataUrl,
     documentKind: "Proposal",
     title: input.title,
     subject: `Proposal for ${client}`,
@@ -361,5 +366,302 @@ export function buildProposalPdf(input: ProposalPdfInput): PdfResult {
   return {
     bytes: doc.finish(),
     filename: `proposal-${slugify(input.title)}.pdf`,
+  };
+}
+
+export interface UpdatePdfInput extends BaseInput {
+  title: string;
+  clientName: string | null;
+  status: "draft" | "sent";
+  body: string;
+  sourcePlanTitle: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+/** Render common Markdown syntax as plain PDF copy, not visible delimiters. */
+function markdownToPdfText(markdown: string): string {
+  return markdown
+    .replace(/\r\n?/g, "\n")
+    .replace(/^\s{0,3}#{1,6}\s+/gm, "")
+    .replace(/^\s*(?:[-*+]|\d+\.)\s+/gm, "• ")
+    .replace(/\*\*(.+?)\*\*/g, "$1")
+    .replace(/__(.+?)__/g, "$1")
+    .replace(/`([^`]+)`/g, "$1")
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, "$1 ($2)")
+    .replace(/^>\s?/gm, "")
+    .replace(/^\s*[-*_]{3,}\s*$/gm, "");
+}
+
+export function buildUpdatePdf(input: UpdatePdfInput): PdfResult {
+  const doc = createLayout({
+    pageSize: input.pageSize,
+    workspaceName: input.workspaceName,
+    logoDataUrl: input.logoDataUrl,
+    documentKind: "Update",
+    title: input.title,
+    subject: input.clientName
+      ? `Client update for ${input.clientName}`
+      : "Client update",
+    generatedAt: input.generatedAt,
+  });
+
+  doc.gap(6);
+  doc.titleBlock(input.title, input.clientName ?? "Client update");
+  doc.gap(14);
+  doc.statusStrip(
+    titleCase(input.status),
+    `Updated ${pdfDateLabel(input.updatedAt)}`
+  );
+  doc.gap(6);
+  doc.metaGrid(
+    [
+      { label: "Client", value: input.clientName ?? EM_DASH },
+      { label: "Created", value: pdfDateLabel(input.createdAt) },
+      { label: "Source plan", value: input.sourcePlanTitle ?? EM_DASH },
+    ],
+    3
+  );
+  doc.rule(10, 14);
+  doc.heading("Update");
+  doc.gap(4);
+  const body = markdownToPdfText(input.body).trim();
+  doc.paragraph(body.length > 0 ? body : "No update details recorded.");
+
+  return {
+    bytes: doc.finish(),
+    filename: `update-${slugify(input.title)}.pdf`,
+  };
+}
+
+export interface PlanPdfInput extends BaseInput {
+  title: string;
+  clientName: string | null;
+  status: "not_started" | "in_progress" | "done";
+  budgetTimeline: string | null;
+  tasks: { text: string; checked: boolean }[];
+  sourceProposalTitle: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+const PLAN_STATUS_LABELS: Record<PlanPdfInput["status"], string> = {
+  not_started: "Not started",
+  in_progress: "In progress",
+  done: "Done",
+};
+
+export function buildPlanPdf(input: PlanPdfInput): PdfResult {
+  const doneCount = input.tasks.filter((task) => task.checked).length;
+  const doc = createLayout({
+    pageSize: input.pageSize,
+    workspaceName: input.workspaceName,
+    logoDataUrl: input.logoDataUrl,
+    documentKind: "Plan",
+    title: input.title,
+    subject: input.clientName
+      ? `Delivery plan for ${input.clientName}`
+      : "Delivery plan",
+    generatedAt: input.generatedAt,
+  });
+
+  doc.gap(6);
+  doc.titleBlock(input.title, input.clientName ?? "Delivery plan");
+  doc.gap(14);
+  doc.statusStrip(
+    PLAN_STATUS_LABELS[input.status],
+    `${doneCount} of ${input.tasks.length} tasks complete`
+  );
+  doc.gap(6);
+  doc.metaGrid(
+    [
+      { label: "Client", value: input.clientName ?? EM_DASH },
+      { label: "Created", value: pdfDateLabel(input.createdAt) },
+      { label: "Updated", value: pdfDateLabel(input.updatedAt) },
+      { label: "Source proposal", value: input.sourceProposalTitle ?? EM_DASH },
+    ],
+    3
+  );
+  doc.rule(10, 14);
+  doc.heading("Budget & timeline");
+  doc.gap(4);
+  doc.paragraph(
+    input.budgetTimeline?.trim() || "No budget or dates captured.",
+    input.budgetTimeline?.trim() ? {} : { color: COLORS.muted, italic: true }
+  );
+  doc.rule(10, 14);
+  doc.heading("Tasks");
+  doc.gap(4);
+  if (input.tasks.length === 0) {
+    doc.paragraph("No tasks listed yet.", { color: COLORS.muted, italic: true });
+  } else {
+    doc.checklist(input.tasks.map((task) => ({ text: task.text, done: task.checked })));
+  }
+
+  return {
+    bytes: doc.finish(),
+    filename: `plan-${slugify(input.title)}.pdf`,
+  };
+}
+
+export interface TimePdfEntry {
+  workedOn: string;
+  description: string;
+  durationMinutes: number;
+  briefTitle: string | null;
+}
+
+export interface TimePdfInput extends BaseInput {
+  entries: TimePdfEntry[];
+  today: string;
+}
+
+function formatPdfDuration(minutes: number): string {
+  const hours = Math.floor(minutes / 60);
+  const remainder = minutes % 60;
+  if (hours === 0) return `${remainder}m`;
+  return remainder === 0 ? `${hours}h` : `${hours}h ${remainder}m`;
+}
+
+export function buildTimePdf(input: TimePdfInput): PdfResult {
+  const monthPrefix = input.today.slice(0, 7);
+  const todayMinutes = input.entries
+    .filter((entry) => entry.workedOn === input.today)
+    .reduce((sum, entry) => sum + entry.durationMinutes, 0);
+  const monthMinutes = input.entries
+    .filter((entry) => entry.workedOn.startsWith(monthPrefix))
+    .reduce((sum, entry) => sum + entry.durationMinutes, 0);
+  const allMinutes = input.entries.reduce(
+    (sum, entry) => sum + entry.durationMinutes,
+    0
+  );
+
+  const doc = createLayout({
+    pageSize: input.pageSize,
+    workspaceName: input.workspaceName,
+    logoDataUrl: input.logoDataUrl,
+    documentKind: "Time log",
+    title: "Workspace time log",
+    subject: "Workspace time entries",
+    generatedAt: input.generatedAt,
+  });
+
+  doc.gap(6);
+  doc.titleBlock(
+    "Time log",
+    `${input.entries.length} ${input.entries.length === 1 ? "entry" : "entries"} · through ${pdfDateLabel(input.generatedAt)}`
+  );
+  doc.gap(12);
+  doc.metaGrid(
+    [
+      { label: "Today", value: formatPdfDuration(todayMinutes) },
+      { label: "This month", value: formatPdfDuration(monthMinutes) },
+      { label: "All time", value: formatPdfDuration(allMinutes) },
+      { label: "Entries", value: String(input.entries.length) },
+    ],
+    4
+  );
+  doc.rule(10, 12);
+  doc.table({
+    columns: [
+      { header: "Worked on", width: 1.5 },
+      { header: "Description", width: 4.4 },
+      { header: "Brief", width: 2.2 },
+      { header: "Duration", width: 1.3, align: "right", wrap: false },
+    ],
+    rows: input.entries.map((entry) => [
+      pdfDateLabel(entry.workedOn),
+      entry.description,
+      entry.briefTitle ?? "General",
+      formatPdfDuration(entry.durationMinutes),
+    ]),
+    emptyText: "No time entries recorded yet.",
+  });
+
+  return {
+    bytes: doc.finish(),
+    filename: `time-log-${slugify(input.workspaceName)}.pdf`,
+  };
+}
+
+export interface ReportsPdfInput extends BaseInput {
+  report: Report;
+}
+
+export function buildReportsPdf(input: ReportsPdfInput): PdfResult {
+  const { money: totals, time, contracts } = input.report;
+  const doc = createLayout({
+    pageSize: input.pageSize,
+    workspaceName: input.workspaceName,
+    logoDataUrl: input.logoDataUrl,
+    documentKind: "Reports",
+    title: "Workspace report",
+    subject: "Workspace money, time, and contract summary",
+    generatedAt: input.generatedAt,
+  });
+
+  doc.gap(6);
+  doc.titleBlock("Workspace report", `As of ${pdfDateLabel(input.generatedAt)}`);
+  doc.gap(12);
+  doc.heading("Money");
+  doc.gap(4);
+  doc.metaGrid(
+    [
+      { label: "Collected", value: money(totals.collected_cents) },
+      { label: "Outstanding", value: money(totals.outstanding_cents) },
+      { label: "Draft", value: money(totals.draft_cents) },
+      { label: "Paid invoices", value: String(totals.paid_count) },
+      { label: "Sent invoices", value: String(totals.sent_count) },
+      { label: "Draft invoices", value: String(totals.draft_count) },
+      { label: "Void invoices", value: String(totals.void_count) },
+    ],
+    3
+  );
+
+  doc.rule(8, 10);
+  doc.heading("Time");
+  doc.gap(4);
+  doc.metaGrid(
+    [
+      { label: "Today", value: formatPdfDuration(time.today_minutes) },
+      { label: "This month", value: formatPdfDuration(time.month_minutes) },
+      { label: "All time", value: formatPdfDuration(time.all_minutes) },
+    ],
+    3
+  );
+  if (time.by_brief.length > 0) {
+    doc.gap(4);
+    doc.table({
+      columns: [
+        { header: "This month by brief", width: 5.2 },
+        { header: "Entries", width: 1.3, align: "right", wrap: false },
+        { header: "Time", width: 1.5, align: "right", wrap: false },
+      ],
+      rows: time.by_brief.map((bar) => [
+        bar.title,
+        String(bar.entry_count),
+        formatPdfDuration(bar.minutes),
+      ]),
+    });
+  }
+
+  doc.rule(8, 10);
+  doc.heading("Contracts");
+  doc.gap(4);
+  doc.metaGrid(
+    [
+      { label: "Signed", value: String(contracts.signed_count) },
+      { label: "Sent", value: String(contracts.sent_count) },
+      { label: "Draft", value: String(contracts.draft_count) },
+      { label: "Void", value: String(contracts.void_count) },
+      { label: "Expiring within 30 days", value: String(contracts.expiring_soon_count) },
+      { label: "Expired", value: String(contracts.expired_count) },
+    ],
+    3
+  );
+
+  return {
+    bytes: doc.finish(),
+    filename: `workspace-report-${slugify(input.workspaceName)}.pdf`,
   };
 }

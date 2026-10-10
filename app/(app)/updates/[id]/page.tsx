@@ -42,6 +42,7 @@ import { getWorkspaceContext } from "@/lib/data/workspace-context";
 import { CanEdit } from "@/components/app-shell/CanEdit";
 import { formatDate, isUuid, timeAgo } from "@/lib/utils";
 import { ExportUpdateMarkdownButton } from "@/components/updates/ExportUpdateMarkdownButton";
+import { DownloadPdfButton } from "@/components/ui/DownloadPdfButton";
 import { ShareLinkPanel } from "@/components/updates/ShareLinkPanel";
 import { UpdateComposer } from "@/components/updates/UpdateComposer";
 import { UpdateStatusBadge } from "@/components/updates/UpdateStatusBadge";
@@ -184,6 +185,12 @@ export default async function UpdateDetailPage({
         title={update.title}
         badges={<UpdateStatusBadge status={update.status} />}
         subtitle={update.client_name ?? undefined}
+        actions={
+          <DownloadPdfButton
+            href={`/api/pdf/update/${update.id}`}
+            label="Download PDF"
+          />
+        }
       />
 
       {/* Stat tiles */}

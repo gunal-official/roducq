@@ -1,15 +1,82 @@
-# PDF export — closeout (2026-09-27)
+# PDF export — v2 closeout (2026-10-10)
 
-**Scope:** the future-list item "real PDF export". Until now the export
-story was `window.print()`; the three client-facing documents — invoice,
-contract, proposal — now download as actual PDF files, from the member
-app and (for invoices) from the public client link.
+This closes PDF v2 on top of the original PDF writer (v1, 2026-09-27).
+V2 adds workspace letterhead logos and PDF exports for updates, plans,
+time logs, and reports. The v1 implementation notes and historical audit
+are retained below, explicitly marked as an archive; v2 verification and
+production instructions are recorded first. Companion docs: `README.md`
+("PDF export" section), `docs/icon-audit.md` (download glyph rules), and
+`docs/roles-spec.md` (why viewers can't export money).
 
-Written at the phase HEAD. Companion docs: `README.md` ("PDF export"
-section), `docs/icon-audit.md` (the download glyph follows the standing
-rules), `docs/roles-spec.md` (why viewers can't export invoices).
+## PDF v2 — what changed
 
-## 1. What shipped
+| Piece | File | What it is |
+|---|---|---|
+| Image decoder | `lib/pdf/images.ts`, `lib/pdf/image-constants.ts` | Bounded PNG/JPEG data-URL validation; PNG color/alpha decoded with built-in zlib, JPEG retained as DCT bytes; dimensions and CRCs checked |
+| Writer | `lib/pdf/writer.ts` | Adds PDF Image XObjects, `/SMask` alpha objects, JPEG `/DCTDecode`, and content-key deduplication across pages; no new runtime packages |
+| Letterhead | `lib/pdf/layout.ts` | Optional workspace logo repeated in every page header; image objects are shared in the document |
+| Builders | `lib/pdf/documents.ts` | Adds pure `buildUpdatePdf`, `buildPlanPdf`, `buildTimePdf`, and `buildReportsPdf` builders |
+| Branding data | `lib/data/workspace-branding.ts` | Reads the active workspace name + optional data-URL logo through ordinary RLS |
+| Settings | `components/settings/WorkspaceBrandingCard.tsx`, `app/(app)/settings/actions.ts` | Owner-only PNG/JPEG upload/replace/remove; server-side format, size, dimensions, and decode validation |
+| Migration | `supabase/migrations/20261010010000_workspace_logo.sql` | Adds the bounded `workspaces.logo_data_url` column and includes the logo in the safe public-invoice RPC payload |
+| Routes | `app/api/pdf/[kind]/[id]/route.ts`, `app/api/pdf/time/route.ts`, `app/api/pdf/reports/route.ts` | Authenticated update/plan detail routes plus workspace-level time/report routes; time and reports keep the `canSeeMoney` gate |
+| Public route | `app/api/pdf/shared/invoice/[token]/route.ts` | Adds the optional workspace logo to the token-gated invoice PDF |
+| Gate | `scripts/verify-pdf.mjs` (`npm run verify:pdf`) | Now audits all four new builders along with the original documents |
+
+**Image constraints:** PNG or JPEG only, maximum uploaded file size 256 KiB,
+maximum 4 megapixels, bounded data URL stored in the workspace database.
+No Storage bucket or environment variable is added. PNG alpha is represented
+as an 8-bit grayscale `/SMask`; JPEG compressed data is passed through as
+`/DCTDecode`. Image/font dependencies are unchanged. **Font embedding and
+subsetting are not part of v2.**
+
+### V2 verification
+
+All requested local gates passed on this branch:
+
+- `npm test` — **541/541 tests passed**.
+- `npm run lint` — passed.
+- `npx tsc --noEmit` — passed.
+- `npm run build` — passed; build includes `/api/pdf/time`,
+  `/api/pdf/reports`, and the expanded `/api/pdf/[kind]/[id]` route.
+- `npm run verify:db` — all **30 migrations** apply; schema, bounded logo,
+  owner/member RLS, removal, and shared invoice logo assertions passed.
+- `npm run verify:pdf` — **14 documents · 20 pages · 0 findings**; structure,
+  xref offsets, stream lengths, margins, page furniture, required/forbidden
+  text, determinism, and filenames passed.
+
+### Production rollout and smoke test
+
+1. Apply `supabase/migrations/20261010010000_workspace_logo.sql` to the
+   production Supabase database before deploying/using v2. No new Vercel
+   environment variables and no Storage bucket/policy setup are expected.
+2. Sign in as a workspace owner at `https://roducq.nanexi.com/settings`,
+   upload a PNG or JPEG (≤256 KiB), refresh Settings, and verify the preview
+   persists. Remove/re-upload if checking both mutations.
+3. From an owner account, verify the four new downloads (replace `<id>` with
+   records in that workspace):
+   - `https://roducq.nanexi.com/api/pdf/update/<id>`
+   - `https://roducq.nanexi.com/api/pdf/plan/<id>`
+   - `https://roducq.nanexi.com/api/pdf/time`
+   - `https://roducq.nanexi.com/api/pdf/reports`
+4. Confirm each response downloads a valid PDF and the configured logo is
+   visible in its letterhead. Also smoke-test an existing export, e.g.
+   `/api/pdf/invoice/<id>` or `/api/pdf/shared/invoice/<live-sent-token>`.
+   The detail-page links are `/updates/<id>`, `/plans/<id>`, `/time`, and
+   `/reports`; the time and reports PDF routes remain unavailable to
+   viewers without `canSeeMoney`.
+
+The production Supabase/Vercel round trip remains an operator-side check;
+local validation above uses PGlite and does not claim the production
+migration or a live logo upload has already been applied.
+
+## V1 archive (2026-09-27)
+
+The following sections describe the original v1 implementation and its
+historical verification. Statements there about three document types, no
+logo/images, and operator setup are superseded by the v2 section above.
+
+### 1. What shipped in v1
 
 | Piece | File | What it is |
 |---|---|---|
@@ -44,7 +111,7 @@ rules), `docs/roles-spec.md` (why viewers can't export invoices).
   `Acme (EU) \ Ltd) Tj 0 0 0 rg (injected` and asserts it comes back as
   text, not as operators.
 
-## 2. Verification
+### 2. Verification in v1
 
 All green at the phase HEAD:
 
@@ -93,7 +160,7 @@ Supabase credentials. What was proven here instead: with Supabase
 unconfigured, every PDF route answers **404, never 500** (curl against
 `next dev`, all five URL shapes).
 
-## 3. Honest limitations (v1)
+### 3. Honest limitations in v1
 
 - **Base-14 fonts only.** Helvetica regular/bold/oblique. Text outside
   WinAnsi transliterates where honest and otherwise renders "?" — CJK,
@@ -114,7 +181,7 @@ unconfigured, every PDF route answers **404, never 500** (curl against
 - **No caching.** Every request rebuilds (a few ms) and answers
   `no-store`; documents change whenever their rows do.
 
-## 4. Operator setup
+### 4. Operator setup in v1
 
 None. No env var, no migration, no external service — the feature is
 pure computation over rows the app already reads.

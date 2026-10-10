@@ -28,6 +28,7 @@
  */
 
 import { TimeLog } from "@/components/time/TimeLog";
+import { DownloadPdfButton } from "@/components/ui/DownloadPdfButton";
 import { getTimeEntries } from "@/lib/data/time";
 import { getBriefs } from "@/lib/data/briefs";
 import { getWorkspaceContext } from "@/lib/data/workspace-context";
@@ -51,13 +52,16 @@ export default async function TimePage() {
 
   return (
     <div className="mx-auto max-w-3xl">
-      <div className="mb-6">
-        <h1 className="font-display text-2xl font-bold tracking-tight">
-          Time
-        </h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Your hours log — grouped by the day the work happened.
-        </p>
+      <div className="mb-6 flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <h1 className="font-display text-2xl font-bold tracking-tight">
+            Time
+          </h1>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Your hours log — grouped by the day the work happened.
+          </p>
+        </div>
+        <DownloadPdfButton href="/api/pdf/time" label="Download PDF" />
       </div>
 
       <TimeLog

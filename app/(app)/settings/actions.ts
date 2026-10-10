@@ -18,6 +18,7 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 import { getWorkspaceContext } from "@/lib/data/workspace-context";
+import { LogoImageError, decodeLogoDataUrl } from "@/lib/pdf/images";
 import { recordEvent } from "@/lib/events";
 import { createClient } from "@/lib/supabase/server";
 import {
@@ -76,6 +77,48 @@ export async function updateWorkspaceName(input: {
 
   revalidatePath("/settings");
   revalidatePath("/", "layout"); // sidebar shows the name on every app page
+  return { error: undefined };
+}
+
+/**
+ * Persist/remove the workspace letterhead image. PNG and JPEG data is
+ * bounded and decoded before storage; workspaces' owner-only UPDATE policy
+ * remains the database-level authorization gate.
+ */
+export async function updateWorkspaceLogo(input: {
+  logoDataUrl: string | null;
+}): Promise<ActionResult> {
+  const { supabase, membership } = await getMembership();
+  if (!membership) {
+    return { error: "Your session has expired. Please log in again." };
+  }
+  if (membership.role !== "owner") {
+    return { error: "Only workspace owners can manage the workspace logo." };
+  }
+  if (!input || (input.logoDataUrl !== null && typeof input.logoDataUrl !== "string")) {
+    return { error: "Choose a valid PNG or JPEG image." };
+  }
+
+  if (input.logoDataUrl !== null) {
+    try {
+      decodeLogoDataUrl(input.logoDataUrl);
+    } catch (error) {
+      return {
+        error:
+          error instanceof LogoImageError
+            ? error.message
+            : "The logo image could not be decoded.",
+      };
+    }
+  }
+
+  const { error } = await supabase
+    .from("workspaces")
+    .update({ logo_data_url: input.logoDataUrl })
+    .eq("id", membership.workspace_id);
+
+  if (error) return { error: error.message };
+  revalidatePath("/settings");
   return { error: undefined };
 }
 
