@@ -13,6 +13,7 @@ import assert from "node:assert/strict";
 
 import {
   createPage,
+  drawImage,
   drawLine,
   drawRect,
   drawText,
@@ -78,6 +79,37 @@ describe("renderPdf — file structure", () => {
     assert.match(pdf, new RegExp(`/Size ${objects.length + 1}\\b`));
     assert.match(pdf, /\/Type \/Pages \/Count 3\b/);
     assert.equal(pageStreams(pdf).length, 3);
+  });
+
+  test("one image XObject (and alpha mask) is shared across every page", () => {
+    const image = {
+      key: "same-logo-content",
+      width: 2,
+      height: 1,
+      colorSpace: "DeviceRGB" as const,
+      filter: "FlateDecode" as const,
+      data: new Uint8Array([0x78, 0x9c]),
+      alphaData: new Uint8Array([0x78, 0x9c]),
+    };
+    const first = createPage(PAGE_SIZES.a4);
+    const second = createPage(PAGE_SIZES.a4);
+    drawImage(first, image, 54, 760, 24, 12);
+    drawImage(second, image, 54, 760, 24, 12);
+
+    const pdf = decodePdf(renderPdf([first, second], META));
+    const objects = parseObjects(pdf);
+    const pages = objects.filter((object) => object.body.includes("/Type /Page "));
+    const refs = pages.map((page) => /\/XObject << \/Im1 (\d+) 0 R >>/.exec(page.body)?.[1]);
+    assert.equal(pages.length, 2);
+    assert.ok(refs.every((ref) => ref === refs[0]));
+    assert.equal(objects.filter((object) => object.body.includes("/Subtype /Image")).length, 2);
+    assert.match(objects.find((object) => object.id === Number(refs[0]))?.body ?? "", /\/SMask \d+ 0 R/);
+    assert.equal((pdf.match(/\/Im1 Do/g) ?? []).length, 2);
+
+    const offsets = parseXref(pdf);
+    for (let id = 1; id < offsets.length; id += 1) {
+      assert.ok(pdf.startsWith(`${id} 0 obj`, offsets[id]));
+    }
   });
 
   test("each content stream's /Length is its real byte length", () => {

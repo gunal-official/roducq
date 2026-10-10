@@ -13,8 +13,8 @@
  *               analogue of the responsive audit's overflow detector);
  *   furniture — letterhead + "Page i of n" on every page, numbering sound;
  *   fidelity  — required strings present, forbidden ones absent (no
- *               "Invalid Date", no "NaN", no "undefined", no stray "?"
- *               where the input was renderable);
+ *               "Invalid Date", no "NaN", no "undefined", and no
+ *               accidental object stringification);
  *   determinism — building twice yields byte-identical output.
  *
  * Samples are written out for eyeballing (default ~/pdf-evidence, override
@@ -31,7 +31,11 @@ import { join } from "node:path";
 import {
   buildContractPdf,
   buildInvoicePdf,
+  buildPlanPdf,
   buildProposalPdf,
+  buildReportsPdf,
+  buildTimePdf,
+  buildUpdatePdf,
 } from "../lib/pdf/documents.ts";
 import { measureText } from "../lib/pdf/metrics.ts";
 import { PAGE_SIZES } from "../lib/pdf/writer.ts";
@@ -265,6 +269,102 @@ const fixtures = [
       }),
     minPages: 2,
     expect: ["Deliverable 70"],
+  },
+  {
+    name: "update-sent",
+    build: () =>
+      buildUpdatePdf({
+        workspaceName: "Brightloop Co.",
+        generatedAt: GENERATED_AT,
+        title: "Week two client update",
+        clientName: "Aurora Labs",
+        status: "sent",
+        body: "## Progress\n\n- Design review is complete.\n\nThe prototype is ready for feedback.",
+        sourcePlanTitle: "Website relaunch",
+        createdAt: "2026-09-20T09:00:00Z",
+        updatedAt: "2026-09-27T09:00:00Z",
+      }),
+    expect: ["UPDATE", "Aurora Labs", "Design review is complete.", "Website relaunch"],
+  },
+  {
+    name: "plan-in-progress",
+    build: () =>
+      buildPlanPdf({
+        workspaceName: "Brightloop Co.",
+        generatedAt: GENERATED_AT,
+        title: "Brand rollout plan",
+        clientName: "Aurora Labs",
+        status: "in_progress",
+        budgetTimeline: "$18,000 over eight weeks.",
+        tasks: [
+          { text: "Approve the visual direction", checked: true },
+          { text: "Prepare final assets", checked: false },
+        ],
+        sourceProposalTitle: "Identity proposal",
+        createdAt: "2026-09-20T09:00:00Z",
+        updatedAt: "2026-09-27T09:00:00Z",
+      }),
+    expect: ["PLAN", "IN PROGRESS", "Approve the visual direction", "Identity proposal"],
+  },
+  {
+    name: "time-log",
+    build: () =>
+      buildTimePdf({
+        workspaceName: "Brightloop Co.",
+        generatedAt: GENERATED_AT,
+        today: "2026-09-27",
+        entries: [
+          {
+            workedOn: "2026-09-27",
+            description: "Prototype review and refinements",
+            durationMinutes: 95,
+            briefTitle: "Brand refresh",
+          },
+          {
+            workedOn: "2026-09-26",
+            description: "Client follow-up",
+            durationMinutes: 45,
+            briefTitle: null,
+          },
+        ],
+      }),
+    expect: ["TIME LOG", "1h 35m", "Prototype review and refinements", "General"],
+  },
+  {
+    name: "workspace-reports",
+    build: () =>
+      buildReportsPdf({
+        workspaceName: "Brightloop Co.",
+        generatedAt: GENERATED_AT,
+        report: {
+          money: {
+            draft_cents: 125000,
+            outstanding_cents: 300000,
+            collected_cents: 500000,
+            draft_count: 1,
+            sent_count: 2,
+            paid_count: 3,
+            void_count: 1,
+          },
+          time: {
+            today_minutes: 95,
+            month_minutes: 340,
+            all_minutes: 780,
+            by_brief: [
+              { brief_id: "brief-1", title: "Brand refresh", minutes: 240, entry_count: 4 },
+            ],
+          },
+          contracts: {
+            draft_count: 1,
+            sent_count: 2,
+            signed_count: 3,
+            void_count: 1,
+            expiring_soon_count: 1,
+            expired_count: 2,
+          },
+        },
+      }),
+    expect: ["$5,000.00", "Brand refresh", "EXPIRING WITHIN 30 DAYS"],
   },
 ];
 

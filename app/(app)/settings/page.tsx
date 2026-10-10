@@ -62,6 +62,8 @@ import { TeamCard } from "@/components/settings/TeamCard";
 import { TemplatesList } from "@/components/settings/TemplatesList";
 import { WorkspaceDangerCard } from "@/components/settings/WorkspaceDangerCard";
 import { WorkspaceNameCard } from "@/components/settings/WorkspaceNameCard";
+import { WorkspaceBrandingCard } from "@/components/settings/WorkspaceBrandingCard";
+import { getWorkspaceBranding } from "@/lib/data/workspace-branding";
 import { getPendingInvites, getTeamMembers } from "@/lib/data/team";
 import { getTemplates } from "@/lib/data/templates";
 import { getWorkspaceContext } from "@/lib/data/workspace-context";
@@ -88,6 +90,7 @@ export default async function SettingsPage() {
     recentEvents,
     mailboxAccounts,
     integrationConnections,
+    logoDataUrl,
   ] = await Promise.all([
       workspace ? getTemplates(workspace.id) : Promise.resolve([]),
       getTeamMembers(),
@@ -138,6 +141,9 @@ export default async function SettingsPage() {
       // "Gmail/Outlook") — empty array when no workspace / on error.
       getMailboxAccounts(),
       getIntegrationConnections(),
+      workspace
+        ? getWorkspaceBranding(workspace.id).then((branding) => branding?.logoDataUrl ?? null)
+        : Promise.resolve(null),
     ]);
 
   // event_id → event_type for the delivery log lines: the recent-25
@@ -181,6 +187,13 @@ export default async function SettingsPage() {
       />
 
       {workspace && <WorkspaceNameCard name={workspace.name} isOwner={isOwner} />}
+      {workspace && (
+        <WorkspaceBrandingCard
+          key={workspace.id}
+          logoDataUrl={logoDataUrl}
+          isOwner={isOwner}
+        />
+      )}
       {workspace && (
         <TeamCard
           members={members}

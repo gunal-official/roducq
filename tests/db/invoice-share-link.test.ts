@@ -150,6 +150,10 @@ before(async () => {
     [WS]
   );
   await db.query(
+    "update public.workspaces set logo_data_url = 'data:image/png;base64,AQID' where id = $1",
+    [WS]
+  );
+  await db.query(
     `insert into public.workspace_members (workspace_id, user_id, role)
        values ($1, $2, 'owner') on conflict do nothing`,
     [WS, UID]
@@ -216,6 +220,7 @@ describe("get_shared_invoice() — which invoices render behind a token", () => 
     assert.equal(rows[0].status, "sent");
     assert.equal(rows[0].title, "Sent invoice");
     assert.equal(rows[0].workspace_name, "Share Test Studio");
+    assert.equal(rows[0].logo_data_url, "data:image/png;base64,AQID");
   });
 
   it("returns the invoice for a PAID invoice", async () => {

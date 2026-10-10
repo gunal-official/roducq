@@ -173,6 +173,19 @@ check(
   rlsRows.length === 15 && rlsRows.every((r) => r.relrowsecurity),
   rlsRows.map((r) => `${r.relname}=${r.relrowsecurity}`).join(" ")
 );
+const { rows: [workspaceLogoSchema] } = await db.query(`
+  select
+    (select count(*)::int from information_schema.columns
+      where table_schema = 'public' and table_name = 'workspaces'
+        and column_name = 'logo_data_url') as logo_column,
+    (select count(*)::int from pg_constraint
+      where conname = 'workspaces_logo_data_url_check') as logo_constraint
+`);
+check(
+  "workspace logo column + bounded PNG/JPEG data-url constraint exist",
+  workspaceLogoSchema?.logo_column === 1 && workspaceLogoSchema?.logo_constraint === 1,
+  JSON.stringify(workspaceLogoSchema)
+);
 
 // ── Trigger: auth user → profile + initials ──
 const { rows: [profile] } = await db.query(
@@ -907,7 +920,7 @@ await db.query("reset role");
 // definer RPC is anon-callable and self-gated
 await db.query("set role nstester");
 const { rows: sharedInvoice } = await db.query(
-  "select invoice_number, client_name, status, items, workspace_name from public.get_shared_invoice($1)",
+  "select invoice_number, client_name, status, items, workspace_name, logo_data_url from public.get_shared_invoice($1)",
   [SENT_INVOICE_TOKEN]
 );
 check(
@@ -918,7 +931,8 @@ check(
     sharedInvoice[0].status === "sent" &&
     Array.isArray(sharedInvoice[0].items) &&
     sharedInvoice[0].items.length === 2 &&
-    sharedInvoice[0].workspace_name === "Atelier North",
+    sharedInvoice[0].workspace_name === "Atelier North" &&
+    sharedInvoice[0].logo_data_url === null,
   sharedInvoice[0]?.title
 );
 
@@ -1375,6 +1389,20 @@ check(
   renamedWs?.name
 );
 
+const testLogo = "data:image/png;base64,AQID";
+const { rowCount: ownerLogoCount } = await db.query(
+  "update public.workspaces set logo_data_url = $1 where id = $2",
+  [testLogo, SEED_WS]
+);
+const { rows: [ownerLogo] } = await db.query(
+  "select logo_data_url from public.workspaces where id = $1",
+  [SEED_WS]
+);
+check(
+  "RLS: OWNER can set a bounded PNG workspace logo",
+  ownerLogoCount === 1 && ownerLogo?.logo_data_url === testLogo
+);
+
 await db.query("select set_config('app.jwt_sub', $1, false)", [MEMBER_UID]);
 const { rowCount: memberRenameCount } = await db.query(
   "update public.workspaces set name = 'hijacked name' where id = $1",
@@ -1388,6 +1416,18 @@ check(
   "RLS: plain member CANNOT rename the workspace (owner-only)",
   memberRenameCount === 0 && afterMemberAttempt?.name === "Atelier North (renamed)"
 );
+const { rowCount: memberLogoCount } = await db.query(
+  "update public.workspaces set logo_data_url = 'data:image/jpeg;base64,AQID' where id = $1",
+  [SEED_WS]
+);
+const { rows: [afterMemberLogoAttempt] } = await db.query(
+  "select logo_data_url from public.workspaces where id = $1",
+  [SEED_WS]
+);
+check(
+  "RLS: plain member CANNOT set or replace the workspace logo",
+  memberLogoCount === 0 && afterMemberLogoAttempt?.logo_data_url === testLogo
+);
 
 await db.query("select set_config('app.jwt_sub', $1, false)", [SEED_UID]);
 const { rowCount: foreignRenameCount } = await db.query(
@@ -1398,6 +1438,34 @@ check(
   "RLS: cannot rename a foreign workspace",
   foreignRenameCount === 0
 );
+
+let invalidLogoRejected = false;
+try {
+  await db.query(
+    "update public.workspaces set logo_data_url = 'data:image/gif;base64,AQID' where id = $1",
+    [SEED_WS]
+  );
+} catch {
+  invalidLogoRejected = true;
+}
+check("workspace logo CHECK rejects unsupported image MIME types", invalidLogoRejected);
+
+let oversizedLogoRejected = false;
+try {
+  await db.query(
+    "update public.workspaces set logo_data_url = $1 where id = $2",
+    [`data:image/png;base64,${"A".repeat(350000)}`, SEED_WS]
+  );
+} catch {
+  oversizedLogoRejected = true;
+}
+check("workspace logo CHECK caps the persisted data URL size", oversizedLogoRejected);
+
+const { rowCount: ownerLogoRemoveCount } = await db.query(
+  "update public.workspaces set logo_data_url = null where id = $1",
+  [SEED_WS]
+);
+check("RLS: OWNER can remove the workspace logo", ownerLogoRemoveCount === 1);
 // restore the seeded name so the file stays self-describing
 await db.query("update public.workspaces set name = 'Atelier North' where id = $1", [SEED_WS]);
 await db.query("reset role");

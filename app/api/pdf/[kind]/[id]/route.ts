@@ -1,37 +1,27 @@
 /**
- * GET /api/pdf/<kind>/<id> — download a workspace document as a PDF
- * (PDF export, 2026-09-27). Kinds: invoice · contract · proposal.
+ * GET /api/pdf/<kind>/<id> — download a workspace document as a PDF.
+ * Supported kinds: invoice, contract, proposal, update, and plan.
  *
- * AUTH: session cookie only. Every read goes through the ordinary
- * RLS-scoped data layer (lib/data/*), so a member of another workspace
- * gets exactly what they get in the UI — nothing — and the route answers
- * 404 rather than 403 (same "indistinguishable" posture as the pages).
- * Invoices additionally require `canSeeMoney`: viewers never see money in
- * the app (docs/roles-spec.md) and must not be able to export it either.
- *
- * The bytes are built by the pure builders in lib/pdf/documents.ts — this
- * file only resolves rows → input objects → an attachment response.
- *
- * HOW TO TEST (locally, signed in, seed applied):
- *   1. /invoices/<id> → "PDF" downloads INV-0002-<client>.pdf; open it:
- *      letterhead, line items, subtotal → tax → total identical to screen.
- *   2. /contracts/<id> and /proposals/<id> → same button, same parity.
- *   3. Append ?size=letter for US Letter instead of the A4 default.
- *   4. Signed out (or a foreign / bogus id) → 404 "Not found". Deliberately
- *      NOT a /login redirect: this is a file endpoint, not a page, and one
- *      answer for "no session", "not yours" and "doesn't exist" leaks the
- *      least (same posture as the public token surfaces).
+ * AUTH: session cookie only. Rows and workspace branding are resolved
+ * through ordinary RLS-scoped data access, so foreign-workspace ids look
+ * absent. Invoices additionally require `canSeeMoney`, matching the app's
+ * viewer policy. Every generated file is private and non-cacheable.
  */
 
-import { getContractById } from "@/lib/data/contracts";
 import { getBriefById } from "@/lib/data/briefs";
+import { getContractById } from "@/lib/data/contracts";
 import { getInvoiceById } from "@/lib/data/invoices";
+import { getPlanById } from "@/lib/data/plans";
 import { getProposalById } from "@/lib/data/proposals";
+import { getUpdateById } from "@/lib/data/updates";
+import { getWorkspaceBranding } from "@/lib/data/workspace-branding";
 import { getWorkspaceContext } from "@/lib/data/workspace-context";
 import {
   buildContractPdf,
   buildInvoicePdf,
+  buildPlanPdf,
   buildProposalPdf,
+  buildUpdatePdf,
   type PdfResult,
 } from "@/lib/pdf/documents";
 import { pdfResponse, requestedPageSize } from "@/lib/pdf/response";
@@ -39,8 +29,9 @@ import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { isUuid } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
 
-const KINDS = ["invoice", "contract", "proposal"] as const;
+const KINDS = ["invoice", "contract", "proposal", "update", "plan"] as const;
 type Kind = (typeof KINDS)[number];
 
 function notFound() {
@@ -56,8 +47,6 @@ export async function GET(
 ) {
   const { kind, id } = await params;
   if (!KINDS.includes(kind as Kind) || !isUuid(id)) return notFound();
-  // Fail closed, never 500, when the app has no Supabase configured — the
-  // same posture the proxy takes for protected pages.
   if (!isSupabaseConfigured()) return notFound();
 
   const context = await getWorkspaceContext();
@@ -72,8 +61,11 @@ export async function GET(
     if (!context.canSeeMoney) return notFound();
     const invoice = await getInvoiceById(id);
     if (!invoice) return notFound();
+    const branding = await getWorkspaceBranding(invoice.workspace_id);
+    if (!branding) return notFound();
     result = buildInvoicePdf({
-      workspaceName: context.name,
+      workspaceName: branding.name,
+      logoDataUrl: branding.logoDataUrl,
       generatedAt,
       pageSize,
       invoiceNumber: invoice.invoice_number,
@@ -90,9 +82,12 @@ export async function GET(
   } else if (kind === "contract") {
     const contract = await getContractById(id);
     if (!contract) return notFound();
+    const branding = await getWorkspaceBranding(contract.workspace_id);
+    if (!branding) return notFound();
     const brief = contract.brief_id ? await getBriefById(contract.brief_id) : null;
     result = buildContractPdf({
-      workspaceName: context.name,
+      workspaceName: branding.name,
+      logoDataUrl: branding.logoDataUrl,
       generatedAt,
       pageSize,
       title: contract.title,
@@ -105,24 +100,67 @@ export async function GET(
       sentAt: contract.sent_at,
       signedAt: contract.signed_at,
     });
-  } else {
+  } else if (kind === "proposal") {
     const proposal = await getProposalById(id);
     if (!proposal) return notFound();
+    const branding = await getWorkspaceBranding(proposal.workspace_id);
+    if (!branding) return notFound();
     result = buildProposalPdf({
-      workspaceName: context.name,
+      workspaceName: branding.name,
+      logoDataUrl: branding.logoDataUrl,
       generatedAt,
       pageSize,
       title: proposal.title,
       clientName: proposal.client_name,
       status: proposal.status,
-      deliverables: (proposal.deliverables ?? []).map((d) => ({
-        text: d.text,
-        checked: d.checked,
+      deliverables: (proposal.deliverables ?? []).map((deliverable) => ({
+        text: deliverable.text,
+        checked: deliverable.checked,
       })),
       budgetTimeline: proposal.budget_timeline,
       briefTitle: proposal.brief?.title ?? null,
       createdAt: proposal.created_at,
       updatedAt: proposal.updated_at,
+    });
+  } else if (kind === "update") {
+    const update = await getUpdateById(id);
+    if (!update) return notFound();
+    const branding = await getWorkspaceBranding(update.workspace_id);
+    if (!branding) return notFound();
+    result = buildUpdatePdf({
+      workspaceName: branding.name,
+      logoDataUrl: branding.logoDataUrl,
+      generatedAt,
+      pageSize,
+      title: update.title,
+      clientName: update.client_name,
+      status: update.status,
+      body: update.body ?? "",
+      sourcePlanTitle: update.plan?.title ?? null,
+      createdAt: update.created_at,
+      updatedAt: update.updated_at,
+    });
+  } else {
+    const plan = await getPlanById(id);
+    if (!plan) return notFound();
+    const branding = await getWorkspaceBranding(plan.workspace_id);
+    if (!branding) return notFound();
+    result = buildPlanPdf({
+      workspaceName: branding.name,
+      logoDataUrl: branding.logoDataUrl,
+      generatedAt,
+      pageSize,
+      title: plan.title,
+      clientName: plan.client_name,
+      status: plan.status,
+      budgetTimeline: plan.budget_timeline,
+      tasks: (plan.tasks ?? []).map((task) => ({
+        text: task.text,
+        checked: task.checked,
+      })),
+      sourceProposalTitle: plan.proposal?.title ?? null,
+      createdAt: plan.created_at,
+      updatedAt: plan.updated_at,
     });
   }
 

@@ -1100,47 +1100,53 @@ migrations `20261009000000_integration_connections.sql` then
 
 ---
 
-## PDF export (2026-09-27)
+## PDF export (v2, 2026-10-10)
 
-**Invoices, contracts and proposals download as real PDF files** — not a
-browser print dialog. `/invoices/:id`, `/contracts/:id` and
-`/proposals/:id` carry a **PDF** button next to Print, and the public
-invoice page `/invoice/<token>` offers **Download PDF** to the client
-(same token, same visibility rules — a revoked or draft link 404s).
+**Invoices, contracts, proposals, updates, plans, time logs and reports
+export as real PDF files** — not a browser print dialog. Detail pages
+expose their PDF downloads; the time and reports pages have workspace-level
+downloads. The public invoice page `/invoice/<token>`
+offers **Download PDF** with the same visibility rules (a revoked or
+non-public draft link 404s).
 
-- **Routes** — `GET /api/pdf/<invoice|contract|proposal>/<id>` (session,
-  RLS-scoped; invoices additionally require `canSeeMoney`, so viewers
-  can't export money) and `GET /api/pdf/shared/invoice/<token>` (public,
-  token-gated, rate-limited with the other public surfaces). Add
+- **Routes** — `GET /api/pdf/<invoice|contract|proposal|update|plan>/<id>`
+  uses the signed-in session and RLS-scoped data; invoices additionally
+  require `canSeeMoney`. Workspace exports use
+  `GET /api/pdf/time` and `GET /api/pdf/reports`; both preserve the
+  `canSeeMoney` gate. `GET /api/pdf/shared/invoice/<token>` is public,
+  token-gated, and rate-limited with the other public surfaces. Add
   `?size=letter` for US Letter; the default is A4.
-- **Zero new dependencies.** `lib/pdf/` is a small PDF 1.7 writer: page
-  tree + content streams + an xref table (`writer.ts`), Adobe base-14
-  font metrics for measurement (`metrics.ts` + the generated
-  `metrics-data.ts`), a UTF-8 → WinAnsi encoder (`encoding.ts`), a
-  top-down flow layout with page breaks and repeated letterheads
-  (`layout.ts`), and the three documents (`documents.ts`). The house
-  no-runtime-deps rule, same as Stripe and the mailbox sync.
-- **Parity with the screen** — the same `lib/invoice-totals.ts` math, the
-  same statuses and stamps, the ui.webp look (letterhead, accent rule,
-  status strip, zebra line items, accent total). Money and dates are
-  formatted without `Intl`, so a server's locale can't shift a document
-  a client keeps.
-- **Gate** — `npm run verify:pdf` builds ten documents (including
-  hostile ones: 400-character titles, 60 line items, unbreakable URLs,
-  CJK/emoji, PDF-operator injection strings) and reads every byte back:
-  xref offsets, `/Length`, page count, "no text outside the margins",
-  page furniture, forbidden strings, determinism. It is offline (no env,
-  no network, no browser) and runs in CI with the other five gates.
+- **Workspace branding** — owners can upload or remove a PNG/JPEG in
+  **Settings → Branding & logo**. A validated data URL (maximum 256 KB)
+  is stored on `workspaces.logo_data_url` and reused in each PDF's
+  letterhead, including the public invoice PDF. Members can view the
+  setting but only owners can change it. Apply
+  `supabase/migrations/20261010010000_workspace_logo.sql` when deploying;
+  no new Vercel environment variables or Storage bucket are needed.
+- **Zero new dependencies.** The PDF 1.7 writer/layout in `lib/pdf/`
+  still uses base-14 fonts and a handwritten xref/content writer. PNGs
+  are decoded with Node's built-in zlib; alpha becomes a PDF `/SMask`.
+  JPEG streams are passed through as `/DCTDecode`. Image objects are
+  content-deduplicated across pages. There is no font embedding or
+  subsetting in this release.
+- **Consistent document vocabulary** — invoice totals use the existing
+  `lib/invoice-totals.ts` math; the PDF layout shares statuses, dates,
+  letterhead, accent rule, status strip, tables and page furniture across
+  all document builders. PDFs are server generated and non-cacheable.
+- **Gate** — `npm run verify:pdf` builds 14 representative documents
+  (including hostile text and all four v2 builders) and checks the PDF
+  header/EOF, xref offsets, stream lengths, page count, margins, letterhead
+  and footers, required/forbidden text, deterministic bytes and ASCII
+  filenames. It is offline (no environment, network or browser).
   Samples land in `~/pdf-evidence` (override with `PDF_SHOTS_DIR=…`).
 
 ```bash
-npm run verify:pdf     # 10 documents, 16 pages → "pdf audit passed ✔"
+npm run verify:pdf     # 14 documents, 20 pages → "pdf audit passed ✔"
 ```
 
-Limitations (v1, deliberate): base-14 fonts only, so scripts outside
-Latin-1 transliterate (₹ → "Rs.") or render as "?" — an embedded font is
-the fix when a customer needs one; no images/logo; no shared-update or
-plan/report PDFs yet; streams are uncompressed (documents are a few KB).
+Limitations: base-14 fonts only, so scripts outside Latin-1 transliterate
+(₹ → "Rs.") or render as "?"; font embedding/subsetting is intentionally
+out of scope. Workspace logos are PNG/JPEG only and capped at 256 KB.
 Full summary: `docs/pdf-export-closeout.md`.
 
 

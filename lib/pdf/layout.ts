@@ -23,17 +23,20 @@
 
 import {
   createPage,
+  drawImage,
   drawLine,
   drawRect,
   drawText,
   PAGE_SIZES,
   renderPdf,
   type PageSizeName,
+  type PdfImage,
   type PdfPage,
   type Rgb,
 } from "./writer.ts";
 import { ellipsize, measureText, wrapParagraphs, wrapText, type PdfFont } from "./metrics.ts";
 import { hexToRgb, mix, soft, TOKENS } from "../design-tokens.ts";
+import { decodeLogoDataUrl } from "./images.ts";
 
 const rgb = hexToRgb;
 
@@ -110,6 +113,8 @@ export interface LayoutOptions {
   pageSize?: PageSizeName;
   /** Letterhead: the workspace the document belongs to. */
   workspaceName: string;
+  /** Optional persisted PNG/JPEG data URL, painted on every page header. */
+  logoDataUrl?: string | null;
   /** "Invoice" / "Contract" / "Proposal" — the right-hand header chip. */
   documentKind: string;
   /** PDF /Title (what a reader shows in its title bar / the print dialog). */
@@ -163,7 +168,17 @@ export function createLayout(options: LayoutOptions) {
   const contentWidth = size.width - margin * 2;
   const left = margin;
   const right = size.width - margin;
-  const headerBottom = size.height - margin - 38;
+  let logo: PdfImage | null = null;
+  if (options.logoDataUrl) {
+    try {
+      logo = decodeLogoDataUrl(options.logoDataUrl);
+    } catch {
+      // A malformed legacy value should not take down a document download;
+      // the workspace name and the rest of the letterhead remain available.
+    }
+  }
+  const headerBottom = size.height - margin - (logo ? 50 : 38);
+  const headerRuleY = size.height - margin - (logo ? 34 : 22);
   const footerTop = margin + 26;
 
   const pages: PdfPage[] = [];
@@ -171,20 +186,37 @@ export function createLayout(options: LayoutOptions) {
   let y = 0;
 
   function drawHeader() {
-    drawText(page, left, size.height - margin - 10, options.workspaceName, {
-      font: BOLD,
-      size: 11,
-      color: COLORS.ink,
-    });
     const kind = options.documentKind.toUpperCase();
     const kindWidth = measureText(kind, BOLD, SIZES.label) + 1.2 * (kind.length - 1);
-    drawText(page, right - kindWidth, size.height - margin - 10, kind, {
+    const kindX = right - kindWidth;
+    let nameX = left;
+
+    if (logo) {
+      const maxLogoWidth = Math.min(58, contentWidth / 4);
+      const maxLogoHeight = 27;
+      const scale = Math.min(maxLogoWidth / logo.width, maxLogoHeight / logo.height);
+      const logoWidth = logo.width * scale;
+      const logoHeight = logo.height * scale;
+      const logoY = headerRuleY + 4 + (maxLogoHeight - logoHeight) / 2;
+      drawImage(page, logo, left, logoY, logoWidth, logoHeight);
+      nameX += logoWidth + 9;
+    }
+
+    const workspaceNameWidth = Math.max(0, kindX - nameX - 14);
+    drawText(
+      page,
+      nameX,
+      size.height - margin - 10,
+      ellipsize(options.workspaceName, BOLD, 11, workspaceNameWidth),
+      { font: BOLD, size: 11, color: COLORS.ink }
+    );
+    drawText(page, kindX, size.height - margin - 10, kind, {
       font: BOLD,
       size: SIZES.label,
       color: COLORS.accent,
       charSpacing: 1.2,
     });
-    drawRect(page, left, size.height - margin - 22, contentWidth, 1.6, COLORS.accent);
+    drawRect(page, left, headerRuleY, contentWidth, 1.6, COLORS.accent);
   }
 
   function startPage() {

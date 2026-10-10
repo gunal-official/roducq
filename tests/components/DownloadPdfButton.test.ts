@@ -37,6 +37,10 @@ describe("document surfaces wire the download", () => {
     ["app/(app)/invoices/[id]/page.tsx", /\/api\/pdf\/invoice\/\$\{invoice\.id\}/],
     ["app/(app)/contracts/[id]/page.tsx", /\/api\/pdf\/contract\/\$\{contract\.id\}/],
     ["app/(app)/proposals/[id]/page.tsx", /\/api\/pdf\/proposal\/\$\{proposal\.id\}/],
+    ["app/(app)/updates/[id]/page.tsx", /\/api\/pdf\/update\/\$\{update\.id\}/],
+    ["app/(app)/plans/[id]/page.tsx", /\/api\/pdf\/plan\/\$\{plan\.id\}/],
+    ["app/(app)/time/page.tsx", /\/api\/pdf\/time/],
+    ["app/(app)/reports/page.tsx", /\/api\/pdf\/reports/],
     ["app/invoice/[token]/page.tsx", /\/api\/pdf\/shared\/invoice\/\$\{token\}/],
   ];
 
