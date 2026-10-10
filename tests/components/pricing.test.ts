@@ -54,6 +54,7 @@ const stripComments = (src: string) =>
 const PLANS = read("app/(marketing)/pricing/plans.ts");
 const PLANS_TSX = read("app/(marketing)/pricing/pricing-plans.tsx");
 const PAGE = read("app/(marketing)/pricing/page.tsx");
+const STRIPE_LIB = read("lib/stripe.ts");
 const HARNESS = read("scripts/verify-responsive.mjs");
 
 const bySlug = (slug: string) => {
@@ -288,6 +289,59 @@ describe("/pricing stays in the responsive harness", () => {
       /\{\s*slug:\s*"marketing-pricing",\s*url:\s*"\/pricing",\s*auth:\s*false\s*\}/,
       "scripts/verify-responsive.mjs must keep the marketing-pricing route"
     );
+  });
+});
+
+describe("/pricing launch-offer callout", () => {
+  it("page calls getPricingOffer with the billing-configured flag", () => {
+    assert.match(PAGE, /getPricingOffer\(pricesConfig\.ok\)/);
+  });
+
+  it("renders the callout only when an offer exists (null short-circuits)", () => {
+    assert.match(PAGE, /\{offer \? \(/);
+    assert.match(PAGE, /data-testid="pricing-offer"/);
+  });
+
+  it("shows badge, code and text from the resolved offer", () => {
+    assert.match(PAGE, /\{offer\.badge\}/);
+    assert.match(PAGE, /\{offer\.code\}/);
+    assert.match(PAGE, /\{offer\.text\}/);
+    assert.match(PAGE, /font-mono/, "promo code renders in monospace for readability");
+  });
+
+  it("getPricingOffer lives in lib/stripe.ts and returns null when billing is off", () => {
+    assert.match(STRIPE_LIB, /export function getPricingOffer/);
+    assert.match(STRIPE_LIB, /if \(!billingConfigured\) return null/);
+  });
+
+  it("defaults mention no seat/quota/AI claims and point to a real code", () => {
+    assert.match(STRIPE_LIB, /DEFAULT_OFFER_BADGE = "LAUNCH OFFER"/);
+    assert.match(STRIPE_LIB, /DEFAULT_OFFER_CODE = "LAUNCH20"/);
+    // The default text carries a percentage + duration, not a cap.
+    assert.match(STRIPE_LIB, /Save 20%/);
+    assert.match(STRIPE_LIB, /3 months/);
+  });
+
+  it("Checkout session enables promotion codes and hardcodes no coupon", () => {
+    assert.match(
+      STRIPE_LIB,
+      /\["allow_promotion_codes", "true"\]/,
+      "Stripe Checkout must enable the 'Add promotion code' field"
+    );
+    // Strip comments before the literal check — prose may legitimately
+    // mention "coupon" as a category the code does NOT emit.
+    assert.doesNotMatch(
+      stripComments(STRIPE_LIB),
+      /coupon/i,
+      "no hardcoded Stripe coupon id — codes are dashboard-managed"
+    );
+  });
+
+  it("env vars are documented in .env.local.example", () => {
+    const envExample = read(".env.local.example");
+    assert.match(envExample, /PRICING_OFFER_BADGE/);
+    assert.match(envExample, /PRICING_OFFER_TEXT/);
+    assert.match(envExample, /PRICING_OFFER_CODE/);
   });
 });
 

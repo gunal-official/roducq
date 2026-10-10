@@ -10,9 +10,13 @@ import assert from "node:assert/strict";
 import {
   buildCheckoutSessionParams,
   buildPortalSessionParams,
+  DEFAULT_OFFER_BADGE,
+  DEFAULT_OFFER_CODE,
+  DEFAULT_OFFER_TEXT,
   findPrice,
   findPriceById,
   formatPrice,
+  getPricingOffer,
   parsePricesEnv,
   parseStripeEvent,
 } from "../../lib/stripe.ts";
@@ -266,6 +270,80 @@ describe("buildCheckoutSessionParams (hosted Checkout contract)", () => {
       customerEmail: null,
     }).reduce((m, [k, v]) => ({ ...m, [k]: v }), {})));
   });
+
+  test("enables promotion codes so customers can enter codes on Checkout", () => {
+    const params = buildCheckoutSessionParams({
+      workspaceId: "w", priceId: "p", successUrl: "s", cancelUrl: "c",
+    });
+    const map = Object.fromEntries(params);
+    assert.equal(
+      map["allow_promotion_codes"],
+      "true",
+      "Stripe Checkout must surface 'Add promotion code'"
+    );
+  });
+
+  test("never hardcodes a coupon or discount param", () => {
+    const params = buildCheckoutSessionParams({
+      workspaceId: "w", priceId: "p", successUrl: "s", cancelUrl: "c",
+    });
+    // Guard the param keys — these are the form fields sent to Stripe, so
+    // neither coupon[] nor discounts[] must appear (promotion codes are
+    // enabled instead, which the customer enters on Checkout).
+    for (const [k] of params) {
+      assert.doesNotMatch(k, /^coupon/i, `no hardcoded coupon param: ${k}`);
+      assert.doesNotMatch(k, /^discounts?\[?/i, `no hardcoded discount param: ${k}`);
+    }
+  });
+});
+
+describe("getPricingOffer (/pricing launch-offer banner)", () => {
+  const saved: NodeJS.ProcessEnv = { ...process.env };
+
+  const resetOfferEnv = () => {
+    delete process.env.PRICING_OFFER_BADGE;
+    delete process.env.PRICING_OFFER_TEXT;
+    delete process.env.PRICING_OFFER_CODE;
+  };
+
+  test("returns null when billing is not configured (banner stays hidden)", () => {
+    resetOfferEnv();
+    assert.equal(getPricingOffer(false), null);
+  });
+
+  test("returns defaults when billing is on and all env vars are unset", () => {
+    resetOfferEnv();
+    const offer = getPricingOffer(true);
+    assert.ok(offer, "offer should render when billing configured");
+    assert.equal(offer!.badge, DEFAULT_OFFER_BADGE);
+    assert.equal(offer!.text, DEFAULT_OFFER_TEXT);
+    assert.equal(offer!.code, DEFAULT_OFFER_CODE);
+  });
+
+  test("PRICING_OFFER_TEXT=\"\" hides the banner even with billing on", () => {
+    resetOfferEnv();
+    process.env.PRICING_OFFER_TEXT = "";
+    assert.equal(getPricingOffer(true), null);
+  });
+
+  test("each piece can be overridden independently; blank code falls back", () => {
+    resetOfferEnv();
+    process.env.PRICING_OFFER_BADGE = "SPRING DEAL";
+    process.env.PRICING_OFFER_TEXT = "Half off for the first year.";
+    process.env.PRICING_OFFER_CODE = "SPRING50";
+    const offer = getPricingOffer(true);
+    assert.ok(offer);
+    assert.equal(offer!.badge, "SPRING DEAL");
+    assert.equal(offer!.text, "Half off for the first year.");
+    assert.equal(offer!.code, "SPRING50");
+    // unset code falls back
+    delete process.env.PRICING_OFFER_CODE;
+    const fallback = getPricingOffer(true)!;
+    assert.equal(fallback.code, DEFAULT_OFFER_CODE);
+  });
+
+  // Restore env for later tests.
+  process.env = saved;
 });
 
 describe("buildPortalSessionParams (Customer Portal contract)", () => {
