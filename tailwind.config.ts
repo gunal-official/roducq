@@ -93,7 +93,8 @@ const config = {
       fontFamily: {
         // 2026-09 design guide. Display (headings, numbers, brand): Georgia,
         // falling back to Times — system serifs, nothing to download. Body:
-        // Inter via next/font/google (app/layout.tsx sets --font-inter).
+        // Inter self-hosted via next/font/local (app/layout.tsx sets
+        // --font-inter, woff2s in app/fonts/).
         display: ["Georgia", '"Times New Roman"', "Times", "serif"],
         sans: [
           "var(--font-inter)",

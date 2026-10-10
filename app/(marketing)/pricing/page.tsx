@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { Ticket } from "lucide-react";
 
+import { Badge } from "@/components/ui/badge";
 import { PricingPlans } from "./pricing-plans";
 import {
   ANNUAL_PRICES,
@@ -10,7 +12,7 @@ import {
   type BillingInterval,
   type IntervalView,
 } from "./plans";
-import { formatPrice, getPricesConfig } from "@/lib/stripe";
+import { formatPrice, getPricingOffer, getPricesConfig } from "@/lib/stripe";
 
 export const metadata: Metadata = {
   title: "Pricing — roducq",
@@ -27,6 +29,10 @@ export const metadata: Metadata = {
  * Annual tab carries what exists for annual billing today, which is
  * nothing — so it renders the honest "not offered yet" note and no
  * discount chip instead of a saving nobody can be charged.
+ *
+ * When Stripe billing is configured, an optional launch-offer callout
+ * can appear above the tiers (see lib/stripe.ts → getPricingOffer). It
+ * is hidden when billing is off, or when PRICING_OFFER_TEXT="".
  *
  * Tier copy lives in ./plans.ts; the card/toggle markup in
  * ./pricing-plans.tsx. Structural + truthfulness tests:
@@ -46,6 +52,8 @@ export default function PricingPage() {
     annual: buildAnnualView([], monthlyPrices, ANNUAL_PRICES),
   };
 
+  const offer = getPricingOffer(pricesConfig.ok);
+
   return (
     <div className="mx-auto max-w-5xl px-6 py-16">
       <header className="mx-auto max-w-3xl text-center">
@@ -59,6 +67,30 @@ export default function PricingPage() {
           {HERO.intro}
         </p>
       </header>
+
+      {offer ? (
+        <div
+          className="mx-auto mt-10 flex max-w-3xl flex-col items-center gap-3 rounded-xl border border-accent/30 bg-accent-soft px-5 py-4 text-center sm:flex-row sm:gap-4 sm:text-left"
+          data-testid="pricing-offer"
+          role="note"
+          aria-label="Pricing offer"
+        >
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent/15">
+            <Ticket className="h-5 w-5 text-accent" aria-hidden="true" />
+          </span>
+          <div className="flex-1 space-y-1.5">
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:justify-start">
+              <Badge variant="default" className="text-[11px]">
+                {offer.badge}
+              </Badge>
+              <span className="font-mono text-sm font-semibold tracking-wide text-accent">
+                {offer.code}
+              </span>
+            </div>
+            <p className="text-sm text-text">{offer.text}</p>
+          </div>
+        </div>
+      ) : null}
 
       <div className="mt-12">
         <PricingPlans views={views} />

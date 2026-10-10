@@ -159,12 +159,21 @@ describe("design guide — typography", () => {
     assert.match(FONT_STACKS.display, /^Georgia,.*Times.*serif$/);
   });
 
-  test("body face is Inter via next/font/google, bound to --font-inter", () => {
+  test("body face is Inter, self-hosted and bound to --font-inter", () => {
     const layout = read("app/layout.tsx");
-    assert.match(layout, /import\s*\{\s*Inter\s*\}\s*from\s*"next\/font\/google"/);
+    // Inter is self-hosted (either via next/font/google at build time, or
+    // via next/font/local pointing at committed woff2s for offline/sandbox
+    // builds). The variable binding and tailwind config are identical
+    // either way, and visitors never hit fonts.googleapis.com at runtime.
+    assert.match(
+      layout,
+      /next\/font\/(google|local)/,
+      "layout must load Inter through next/font"
+    );
+    assert.match(layout, /inter-latin-.*\.woff2|subsets:\s*\["latin"\]/);
     assert.match(layout, /variable:\s*"--font-inter"/);
-    assert.match(read("tailwind.config.ts"), /sans:\s*\[\s*"var\(--font-inter\)",\s*"Inter"/);
-    assert.match(FONT_STACKS.body, /^Inter,/);
+    assert.match(read("tailwind.config.ts"), /sans:\s*\[\s*"var\(--font-inter\)"/);
+    assert.match(FONT_STACKS.body, /^Inter,|--font-inter/);
   });
 
   test("the retired faces are gone", () => {

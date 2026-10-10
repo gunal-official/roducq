@@ -107,6 +107,11 @@ export function buildCheckoutSessionParams(input: {
     ["metadata[workspace_id]", input.workspaceId],
     ["success_url", input.successUrl],
     ["cancel_url", input.cancelUrl],
+    // Enable Stripe's "Add promotion code" field on hosted Checkout. The
+    // operator creates codes in the Stripe dashboard; nothing is hardcoded
+    // server-side so the same code path works for launch offers, partner
+    // codes and ad-hoc credits without another deploy.
+    ["allow_promotion_codes", "true"],
   ];
   if (input.customerEmail) params.push(["customer_email", input.customerEmail]);
   return params;
@@ -308,4 +313,44 @@ export function formatPrice(amount: number, currency: string): string {
     minimumFractionDigits: whole ? 0 : 2,
     maximumFractionDigits: whole ? 0 : 2,
   }).format(amount);
+}
+
+// ── Pricing launch-offer banner ──────────────────────────────────────
+// Optional copy block shown at the top of /pricing ONLY when Stripe
+// billing is configured. Three env vars, all optional:
+//   PRICING_OFFER_BADGE — short pill label (default: "LAUNCH OFFER")
+//   PRICING_OFFER_TEXT  — the sentence. Empty string = hide banner.
+//   PRICING_OFFER_CODE  — the promo code customers enter at Checkout.
+// The banner claims nothing about seat counts, usage caps or AI limits
+// because roducq enforces none — the copy stays a time-boxed percentage
+// off and a code, and disappears the moment PRICING_OFFER_TEXT is blank.
+
+export const DEFAULT_OFFER_BADGE = "LAUNCH OFFER";
+export const DEFAULT_OFFER_TEXT =
+  "Save 20% for your first 3 months — enter the code at Checkout.";
+export const DEFAULT_OFFER_CODE = "LAUNCH20";
+
+export interface PricingOffer {
+  badge: string;
+  text: string;
+  code: string;
+}
+
+/**
+ * Resolve the offer banner from env. Returns null when it should NOT
+ * render — i.e. when billing isn't configured at all, or when the
+ * operator has explicitly set PRICING_OFFER_TEXT="" to hide it.
+ *
+ * Defaults (all three env vars unset): badge "LAUNCH OFFER", text
+ * "Save 20% for your first 3 months…", code "LAUNCH20". Each piece can
+ * be overridden independently; the code falls back to LAUNCH20 if the
+ * badge/text are customized but the code isn't.
+ */
+export function getPricingOffer(billingConfigured: boolean): PricingOffer | null {
+  if (!billingConfigured) return null;
+  const rawText = (process.env.PRICING_OFFER_TEXT ?? DEFAULT_OFFER_TEXT).trim();
+  if (!rawText) return null; // explicit opt-out
+  const badge = (process.env.PRICING_OFFER_BADGE ?? DEFAULT_OFFER_BADGE).trim() || DEFAULT_OFFER_BADGE;
+  const code = (process.env.PRICING_OFFER_CODE ?? DEFAULT_OFFER_CODE).trim() || DEFAULT_OFFER_CODE;
+  return { badge, text: rawText, code };
 }
