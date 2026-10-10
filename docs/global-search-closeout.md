@@ -1,4 +1,4 @@
-# Global search closeout (2026-10-07)
+# Global search closeout (v1: 2026-10-07; v2: 2026-10-10)
 
 **Scope:** the topbar "Search..." box — decorative since Step 34 — wired
 to a real, server-rendered workspace search. Titles and client names
@@ -64,18 +64,24 @@ escaped **twice, in the right order**:
 - `npm run verify:db` ✅ (no schema change — search adds none)
 - `npm run verify:pdf` ✅ (CI gate, unaffected, re-run anyway)
 
-## 5. Known limits / follow-ups (v1 decisions, not drops)
+## 5. V2 scope and boundaries (2026-10-10)
 
-- **Titles + client names only.** Body text, deliverables and task
-  lists are not indexed — a full-text `tsvector` migration is the v2
-  path if wanted.
-- **Six hits per group** (`SEARCH_GROUP_LIMIT`), newest first — search
-  is a jump surface; every group card links to its filtered-elsewhere
-  list. No pagination.
-- **`ilike` prefix-anywhere** (`%q%`) relies on the small per-workspace
-  row counts; no trigram index added (nothing to migrate until volume
-  says so).
-- **Now in the responsive audit harness** (follow-up, done).
+- **Search only `title` and `client_name`.** Every group uses a
+  case-insensitive Postgres `ilike` contains pattern (`%q%`) on those two
+  columns only. User input is escaped at both the Postgres LIKE and
+  PostgREST `or=` transport layers; see §3.
+- **No body or full-text search.** Bodies, deliverables, task lists and
+  other content columns are not searched. V2 adds no `tsvector` column,
+  index or migration.
+- **Six newest hits per group.** Results are ordered by `updated_at desc`
+  and capped at `SEARCH_GROUP_LIMIT` (6) per entity group. Search remains
+  a jump surface, not an exhaustive result set.
+- **Link to the full list; no pagination.** Each non-empty result group's
+  “View all” link opens that entity's regular list page (`listHref`). The
+  search results themselves have no pages, cursor or load-more control.
+- **Substring matching** (`%q%`) relies on the small per-workspace row
+  counts; no trigram index added (nothing to migrate until volume says so).
+- **Responsive audit**: search is in the audit harness.
   `/search?q=Harbor` sits in the `scripts/verify-responsive.mjs` PAGES list.
   The slug is also in `COMPLEX`, so the 320/768 runs capture the full page (six stacked cards extend below the fold).
   The stub needed no `or=` support after all: its list responses ignore unrecognised filters and serve the Harbor fixtures, so all six group cards render and the sweep measures a fully-populated page. That audit is what caught the six "View all →" links sitting under the 44px tap-target floor — they are now `min-h-11` rows rather than bare inline anchors.
