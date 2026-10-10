@@ -1,10 +1,11 @@
 /**
- * File intake (Queue item #6) — type detection and TXT/MD extraction.
- * Server-side only (the DOCX branch pulls in node:zlib via ./docx).
+ * File intake (Queue item #6) — type detection and TXT/MD/PDF extraction.
+ * Server-side only (the DOCX and PDF branches pull in node:zlib via
+ * ./docx and ./pdf).
  *
  * Detection is by MAGIC BYTES ONLY — the filename and the browser's
  * declared MIME type are never trusted:
- *   %PDF-                         → explicit refusal (see shared.ts)
+ *   %PDF-                         → PDF reader (./pdf.ts)
  *   PK\x03\x04 / PK\x05\x06 / PK\x07\x08 → ZIP container → DOCX walker
  *   anything else                 → TXT/Markdown as strict UTF-8
  * A `.docx` that is really plain text is read as text; a `.txt` that is
@@ -13,13 +14,10 @@
  */
 
 import { extractDocxText } from "./docx.ts";
-import {
-  ExtractError,
-  looksLikePdf,
-  PDF_REFUSAL_MESSAGE,
-} from "./shared.ts";
+import { extractPdfText } from "./pdf.ts";
+import { ExtractError, looksLikePdf } from "./shared.ts";
 
-export type UploadFormat = "text" | "docx";
+export type UploadFormat = "text" | "docx" | "pdf";
 
 export interface ExtractedUpload {
   text: string;
@@ -57,8 +55,8 @@ export function extractPlainText(bytes: Uint8Array): string {
   if (BINARY_CHAR.test(text)) {
     throw new ExtractError(
       "not_text",
-      "That looks like a binary file, not text. roducq reads .docx, .txt " +
-        "and .md — PDFs and other formats need the paste-instead route."
+      "That looks like a binary file, not text. roducq reads .docx, .pdf, " +
+        ".txt and .md — other formats need the paste-instead route."
     );
   }
 
@@ -72,7 +70,7 @@ export function extractUploadText(bytes: Uint8Array): ExtractedUpload {
     throw new ExtractError("empty", "That file is empty — nothing to read.");
   }
   if (looksLikePdf(bytes)) {
-    throw new ExtractError("pdf", PDF_REFUSAL_MESSAGE);
+    return { text: extractPdfText(bytes), format: "pdf" };
   }
   if (isZipContainer(bytes)) {
     return { text: extractDocxText(bytes), format: "docx" };

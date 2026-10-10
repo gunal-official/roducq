@@ -17,10 +17,10 @@ import {
 import {
   MAX_OUTPUT_CHARS,
   MAX_UPLOAD_BYTES,
-  PDF_REFUSAL_MESSAGE,
   TOO_LARGE_MESSAGE,
 } from "../../lib/intake/shared.ts";
 import { buildDocx, documentXml, p, t } from "./file-intake-zip.ts";
+import { buildSimplePdf } from "./file-intake-pdf.ts";
 
 const authed: ExtractAuthGate = { isAuthenticated: async () => true };
 const anon: ExtractAuthGate = { isAuthenticated: async () => false };
@@ -129,27 +129,49 @@ describe("POST /api/intake/extract — happy path", () => {
   });
 });
 
-describe("POST /api/intake/extract — PDF refusal", () => {
-  test("PDF bytes are refused with the exact locked message (415)", async () => {
-    const fakePdf = enc.encode("%PDF-1.4\n1 0 obj\n<<>>\nendobj\n%%EOF");
+describe("POST /api/intake/extract — PDF", () => {
+  test("a text-based PDF upload is extracted (200), not refused", async () => {
+    const pdf = buildSimplePdf(
+      "BT /F1 12 Tf 72 700 Td (Hi Maya, let's kick off the rebrand.) Tj ET"
+    );
     const res = await handleExtractRequest(
-      post(formWithFile(fakePdf, "contract.pdf", "application/pdf")),
+      post(formWithFile(pdf, "contract.pdf", "application/pdf")),
       authed
     );
-    assert.equal(res.status, 415);
+    assert.equal(res.status, 200);
     const body = await res.json();
-    assert.equal(body.code, "pdf");
-    assert.equal(body.error, PDF_REFUSAL_MESSAGE);
+    assert.equal(body.text, "Hi Maya, let's kick off the rebrand.");
+    assert.equal(body.meta.format, "pdf");
   });
 
   test("…even when the browser mislabels the part as application/octet-stream", async () => {
-    const fakePdf = enc.encode("%PDF-1.7\n%âã\n");
+    const pdf = buildSimplePdf("BT /F1 12 Tf 72 700 Td (Mislabeled) Tj ET");
     const res = await handleExtractRequest(
-      post(formWithFile(fakePdf, "blob.bin", "application/octet-stream")),
+      post(formWithFile(pdf, "blob.bin", "application/octet-stream")),
+      authed
+    );
+    assert.equal(res.status, 200);
+    assert.equal((await res.json()).meta.format, "pdf");
+  });
+
+  test("a PDF with no catalog/pages is a 415, not a 500", async () => {
+    const fakePdf = enc.encode("%PDF-1.4\n1 0 obj\n<<>>\nendobj\n%%EOF");
+    const res = await handleExtractRequest(
+      post(formWithFile(fakePdf, "broken.pdf", "application/pdf")),
       authed
     );
     assert.equal(res.status, 415);
-    assert.equal((await res.json()).code, "pdf");
+    assert.equal((await res.json()).code, "format");
+  });
+
+  test("a scanned (image-only, no text layer) PDF is a 422-empty", async () => {
+    const scanned = buildSimplePdf("q 1 0 0 RG 0 0 612 792 re f Q");
+    const res = await handleExtractRequest(
+      post(formWithFile(scanned, "scan.pdf", "application/pdf")),
+      authed
+    );
+    assert.equal(res.status, 422);
+    assert.equal((await res.json()).code, "empty");
   });
 });
 

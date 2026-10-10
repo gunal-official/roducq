@@ -2,8 +2,8 @@
  * POST /api/intake/extract — file intake, Queue item #6.
  *
  * Multipart form in («file» field), extracted plain text out. Supported:
- * .docx, .txt, .md — detected by MAGIC BYTES, never by name or declared
- * MIME. PDF is refused with an explicit “paste instead” message.
+ * .docx, .pdf, .txt, .md — detected by MAGIC BYTES, never by name or
+ * declared MIME. Encrypted/password-protected PDFs are refused (415).
  * Limits: 5 MB upload, 100k characters out (truncated, flagged).
  *
  * EXTRACT-ONLY: bytes are parsed in memory and discarded; nothing is
@@ -21,7 +21,7 @@ import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { createClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
-export const runtime = "nodejs"; // node:zlib (DOCX inflate) — never edge
+export const runtime = "nodejs"; // node:zlib (DOCX/PDF inflate) — never edge
 
 export async function POST(request: Request) {
   return handleExtractRequest(request, {
