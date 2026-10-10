@@ -183,7 +183,7 @@ export default async function BriefDetailPage({
                         className="flex items-start gap-2.5 rounded-md px-1.5 py-1.5"
                       >
                         <span
-                          className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-[4px] border ${
+                          className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-sm border ${
                             d.checked
                               ? "border-accent bg-accent text-white"
                               : "border-border bg-card"

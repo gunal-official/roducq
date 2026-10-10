@@ -6,9 +6,16 @@
  * own <html> and <body> — no Tailwind/globals are guaranteed, hence
  * inline styles only. Reports to Sentry when SENTRY_DSN is configured
  * (lazy import: with it unset, the SDK chunk is never loaded).
+ *
+ * Styling comes from lib/design-tokens.ts (2026-09 design guide) rather
+ * than hardcoded hex, so this page can't drift from the rest of the app.
+ * Light tokens only: the theme class isn't available once the root
+ * layout has been replaced.
  */
 
 import { useEffect } from "react";
+
+import { FONT_STACKS, mix, RADIUS, TOKENS } from "@/lib/design-tokens";
 
 export default function GlobalError({
   error,
@@ -36,28 +43,45 @@ export default function GlobalError({
           alignItems: "center",
           justifyContent: "center",
           minHeight: "100vh",
-          fontFamily: "system-ui, sans-serif",
-          background: "#faf9f7",
-          color: "#191610",
+          fontFamily: FONT_STACKS.body,
+          background: TOKENS.bg,
+          color: TOKENS.text,
           textAlign: "center",
           padding: "0 16px",
         }}
       >
-        <h2 style={{ fontSize: 20, fontWeight: 600, margin: 0 }}>
+        <h2
+          style={{
+            fontFamily: FONT_STACKS.display,
+            fontSize: 22,
+            fontWeight: 600,
+            margin: 0,
+          }}
+        >
           Something went wrong
         </h2>
-        <p style={{ fontSize: 14, color: "#6b665c", marginTop: 8, maxWidth: 320 }}>
+        <p
+          style={{
+            fontSize: 14,
+            color: mix(TOKENS.text, TOKENS.bg, 0.62),
+            marginTop: 8,
+            maxWidth: 320,
+          }}
+        >
           {error.message || "An unexpected error occurred. Please try again."}
         </p>
         <button
           onClick={reset}
           style={{
             marginTop: 20,
+            fontFamily: "inherit",
             fontSize: 14,
+            fontWeight: 600,
             padding: "8px 16px",
-            borderRadius: 6,
-            border: "1px solid #e3dfd6",
-            background: "#fff",
+            borderRadius: RADIUS,
+            border: `1px solid ${TOKENS.accent}`,
+            background: TOKENS.accent,
+            color: "#ffffff",
             cursor: "pointer",
           }}
         >

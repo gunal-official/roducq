@@ -39,7 +39,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
           <div
             key={t.id}
             role="status"
-            className={`pointer-events-auto rounded-[0.35rem] border border-border bg-card px-4 py-3 text-sm shadow-lg ${t.leaving ? "animate-toast-out" : "animate-rise-in"}`}
+            className={`pointer-events-auto rounded-md border border-border bg-card px-4 py-3 text-sm shadow-lg ${t.leaving ? "animate-toast-out" : "animate-rise-in"}`}
           >
             {t.title}
           </div>

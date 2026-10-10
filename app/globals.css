@@ -3,40 +3,42 @@
 @tailwind utilities;
 
 @layer base {
-  /* ── Design tokens (Step 34 — ui.webp language) ─────────────────────────
-     Warm-gray backdrop, pure white cards, vivid orange accent, near-black
-     ink, soft elevation. Pills are rounded-full; cards 20px; inputs 10px. */
+  /* ── Design tokens (2026-09 design guide) ───────────────────────────────
+     Warm ivory backdrop, near-white cards, burnt orange-red accent,
+     espresso ink. One compact radius (0.35rem) for every surface; pills
+     and avatars stay rounded-full. lib/design-tokens.ts mirrors the
+     literal-hex values below (screen ↔ PDF ↔ email parity). */
   :root {
-    --bg: #f5f5f7;
-    --text: #17171c;
-    --accent: #ff6a2b;
-    --muted: #f0f0f3;
-    --card: #ffffff;
-    --border: #e9e9ee;
+    --bg: #fefbfa;
+    --text: #16100f;
+    --accent: #c12c01;
+    --muted: #f6f0ef;
+    --card: #fffffe;
+    --border: #e3dcda;
     --error: #e5484d;
     --success: #1f9d68;
     --success-soft: #e3f5ec;
-    --dark: #17171c;
+    --dark: #16100f;
     --accent-soft: color-mix(in srgb, var(--accent) 12%, var(--card));
     /* "Sent" blue (Step 35 — invoice status badge redesign): Draft/Paid/
        Void already read as muted/success/quiet-outline, so Sent gets its
-       own hue instead of reusing accent orange (which Paid also used). */
+       own hue instead of reusing the accent (which Paid also used). */
     --info: #2f6fed;
     --info-soft: color-mix(in srgb, var(--info) 12%, var(--card));
-    --radius: 0.625rem;
+    --radius: 0.35rem;
   }
 
   .dark {
-    --bg: #121216;
-    --text: #f2f2f5;
-    --accent: #ff7a45;
-    --muted: #26262e;
-    --card: #1b1b22;
-    --border: #f5ffff14;
+    --bg: #120b0a;
+    --text: #f6f0ef;
+    --accent: #f35e3d;
+    --muted: #2a2220;
+    --card: #1c1412;
+    --border: #f5ffff1a;
     --error: #f2656a;
     --success: #3ecf8e;
     --success-soft: #123226;
-    --dark: #f2f2f5;
+    --dark: #f6f0ef;
     --accent-soft: color-mix(in srgb, var(--accent) 18%, var(--card));
     --info: #5b8dff;
     --info-soft: color-mix(in srgb, var(--info) 18%, var(--card));
@@ -59,7 +61,7 @@
   }
 }
 
-/* ── Presentation helpers (ui.webp) ──────────────────────────────────────── */
+/* ── Presentation helpers ──────────────────────────────────────── */
 /* Tinted icon chip: soft colored tile behind a small icon (stat cards, active
    nav, empty states). Usage: <span class="icon-chip icon-chip-accent">… */
 .icon-chip {
@@ -193,15 +195,15 @@
   :root,
   .dark {
     --bg: #ffffff;
-    --text: #17171c;
-    --accent: #ff6a2b;
-    --muted: #f0f0f3;
-    --card: #ffffff;
-    --border: #e9e9ee;
+    --text: #16100f;
+    --accent: #c12c01;
+    --muted: #f6f0ef;
+    --card: #fffffe;
+    --border: #e3dcda;
     --error: #e5484d;
     --success: #1f9d68;
     --success-soft: #e3f5ec;
-    --dark: #17171c;
+    --dark: #16100f;
     --accent-soft: color-mix(in srgb, var(--accent) 12%, var(--card));
     --info: #2f6fed;
     --info-soft: color-mix(in srgb, var(--info) 12%, var(--card));

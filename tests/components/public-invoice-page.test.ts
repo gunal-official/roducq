@@ -83,12 +83,12 @@ describe("print layout (app/globals.css)", () => {
     const printBlock = css.slice(css.indexOf("@media print"));
     assert.ok(printBlock.includes(".dark"), "dark tokens overridden in print");
     assert.ok(
-      printBlock.includes("--card: #ffffff"),
-      "card prints on white"
+      printBlock.includes("--card: #fffffe"),
+      "card prints on (near) white — the light --card token"
     );
     assert.ok(
-      printBlock.includes("--text: #17171c"),
-      "ink prints near-black"
+      printBlock.includes("--text: #16100f"),
+      "ink prints espresso (the light --text token)"
     );
   });
 

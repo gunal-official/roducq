@@ -11,8 +11,8 @@
  *
  * Two copies of one palette is how a PDF quietly stops looking like the
  * product, and it had already happened: the PDF's `ink` was `#1a1a1f` where
- * the app's `--text` is `#17171c`, and its `hairline` was `#e5e7eb` where
- * `--border` is `#e9e9ee`. Nothing failed, because nothing was checking.
+ * the app's `--text` was `#17171c`, and its `hairline` was `#e5e7eb` where
+ * `--border` was `#e9e9ee`. Nothing failed, because nothing was checking.
  *
  * Now: these hex values ARE the tokens. `lib/pdf/layout.ts` derives its RGB
  * palette from them, and `tests/lib/design-tokens.test.ts` parses
@@ -26,9 +26,15 @@
  * two agree on every token.
  *
  * The one token that legitimately differs between screen and print is `bg`:
- * the screen sits on a warm-gray backdrop (#f5f5f7), paper is white. `bg`
+ * the screen sits on a warm ivory backdrop (#fefbfa), paper is white. `bg`
  * here keeps the screen value because that is what `--bg` means — the
  * surface behind a card, which only a screen has.
+ *
+ * PALETTE (2026-09 design guide): warm ivory backdrop, near-white card,
+ * espresso ink, burnt orange-red accent. The same values feed the PDF
+ * (lib/pdf/layout.ts), the invite email (lib/invite-email.ts) and the root
+ * error boundary (app/global-error.tsx); tests/lib/design-guide.test.ts
+ * pins them to the guide.
  *
  * NOT THE REFERENCE PIXEL PASS. This makes the two surfaces share one
  * palette; it does not prove the result matches the 15 reference PDFs. That
@@ -48,20 +54,39 @@ export type Hex = `#${string}`;
  * than two constants that can disagree.
  */
 export const TOKENS = {
-  bg: "#f5f5f7",
-  text: "#17171c",
-  accent: "#ff6a2b",
-  muted: "#f0f0f3",
-  card: "#ffffff",
-  border: "#e9e9ee",
+  bg: "#fefbfa",
+  text: "#16100f",
+  accent: "#c12c01",
+  muted: "#f6f0ef",
+  card: "#fffffe",
+  border: "#e3dcda",
   error: "#e5484d",
   success: "#1f9d68",
   successSoft: "#e3f5ec",
-  dark: "#17171c",
+  dark: "#16100f",
   info: "#2f6fed",
 } as const satisfies Record<string, Hex>;
 
 export type TokenName = keyof typeof TOKENS;
+
+/**
+ * The one corner radius (`--radius` in `:root`). Surfaces that can't read CSS
+ * variables — inline-styled email HTML, the root error boundary — use this
+ * instead of hardcoding their own number.
+ */
+export const RADIUS = "0.35rem";
+
+/**
+ * Font stacks for surfaces outside the Tailwind/next-font pipeline. Family
+ * names are single-quoted so the stacks drop safely into a double-quoted
+ * HTML `style="…"` attribute (email).
+ */
+export const FONT_STACKS = {
+  /** Headings, numbers, brand — system serifs, nothing to download. */
+  display: "Georgia, 'Times New Roman', Times, serif",
+  /** Body copy. Inter when installed/loaded, else the platform UI face. */
+  body: "Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif",
+} as const;
 
 /**
  * Token name → CSS custom property in `:root`. The parity test walks this
@@ -100,7 +125,7 @@ function channelHex(value: number): string {
     .padStart(2, "0");
 }
 
-/** `#ff6a2b` → `{ r: 1, g: 0.415…, b: 0.168… }`. */
+/** `#c12c01` → `{ r: 0.756…, g: 0.172…, b: 0.003… }`. */
 export function hexToRgb(hex: string): RgbTriplet {
   const match = /^#([0-9a-f]{6})$/i.exec(hex.trim());
   if (!match) throw new Error(`Not a 6-digit hex colour: ${hex}`);
