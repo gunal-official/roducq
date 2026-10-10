@@ -14,8 +14,8 @@ const config = {
       screens: { tab: "600px", desk: "1024px" },
       colors: {
         // Raw design tokens (CSS variables defined in app/globals.css).
-        // Step 34 retuned to the ui.webp language: warm gray backdrop, white
-        // cards, vivid orange accent, near-black ink.
+        // 2026-09 design guide: warm ivory backdrop, near-white cards, burnt
+        // orange-red accent, espresso ink.
         bg: "var(--bg)",
         text: "var(--text)",
         accent: {
@@ -70,29 +70,31 @@ const config = {
         },
       },
       borderRadius: {
-        // --radius = 0.625rem (inputs/buttons); lg doubles to 20px cards —
-        // the ui.webp scale. Pills use rounded-full in components.
-        lg: "calc(var(--radius) * 2)", // 1.25rem — card-level containers
+        // 2026-09 design guide: ONE compact radius (--radius = 0.35rem) for
+        // cards, inputs, buttons, menus and chips alike — the larger steps
+        // collapse onto it so legacy rounded-lg/xl call sites stay compact.
+        // `sm` is the inner step (checkboxes, tiny marks), still derived from
+        // the token. Pills/avatars keep rounded-full. No arbitrary radii —
+        // tests/lib/design-guide.test.ts fails on any `rounded-[…]`.
+        "2xl": "var(--radius)",
+        xl: "var(--radius)",
+        lg: "var(--radius)",
         md: "var(--radius)",
         DEFAULT: "var(--radius)",
-        sm: "calc(var(--radius) / 2)",
+        sm: "calc(var(--radius) - 0.15rem)", // 0.2rem
       },
       boxShadow: {
-        // Soft elevation language from ui.webp: hairline + wide low shadow.
-        card: "0 1px 2px rgb(21 21 24 / 0.04), 0 12px 32px -16px rgb(21 21 24 / 0.10)",
-        pop: "0 8px 30px -6px rgb(21 21 24 / 0.14)",
-        rail: "0 1px 2px rgb(21 21 24 / 0.05)",
+        // Soft elevation: hairline + wide low shadow, tinted with the
+        // espresso ink (--text #16100f = rgb 22 16 15) instead of cool gray.
+        card: "0 1px 2px rgb(22 16 15 / 0.04), 0 12px 32px -16px rgb(22 16 15 / 0.10)",
+        pop: "0 8px 30px -6px rgb(22 16 15 / 0.14)",
+        rail: "0 1px 2px rgb(22 16 15 / 0.05)",
       },
       fontFamily: {
-        // Plus Jakarta Sans self-hosted via @fontsource-variable (no build-time
-        // fetch): display headings, numbers, brand. Inter stays the body face.
-        display: [
-          "var(--font-display)",
-          "Plus Jakarta Sans",
-          "ui-sans-serif",
-          "system-ui",
-          "sans-serif",
-        ],
+        // 2026-09 design guide. Display (headings, numbers, brand): Georgia,
+        // falling back to Times — system serifs, nothing to download. Body:
+        // Inter via next/font/google (app/layout.tsx sets --font-inter).
+        display: ["Georgia", '"Times New Roman"', "Times", "serif"],
         sans: [
           "var(--font-inter)",
           "Inter",

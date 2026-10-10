@@ -32,6 +32,21 @@
 
 import nodemailer from "nodemailer";
 
+import { FONT_STACKS, mix, RADIUS, TOKENS } from "./design-tokens.ts";
+
+/**
+ * Email palette — the app's light tokens (email clients have no dark-mode
+ * contract worth trusting). Secondary/footer ink are mixed off --text the
+ * same way the PDF derives its muted ink, so the email stays warm.
+ */
+const EMAIL = {
+  ink: TOKENS.text,
+  accent: TOKENS.accent,
+  onAccent: "#ffffff",
+  secondary: mix(TOKENS.text, TOKENS.card, 0.62),
+  footer: mix(TOKENS.text, TOKENS.card, 0.45),
+} as const;
+
 export type InviteEmailResult =
   | { ok: true }
   | {
@@ -100,20 +115,20 @@ export async function sendInviteEmail(input: {
   ].join("\n");
 
   const html = `
-    <div style="font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;max-width:480px;margin:0 auto;padding:24px 16px;color:#18181b;">
+    <div style="font-family:${FONT_STACKS.body};max-width:480px;margin:0 auto;padding:24px 16px;color:${EMAIL.ink};">
       <p style="font-size:15px;line-height:1.6;">${who}invited you to join
         <strong>${input.workspaceName}</strong> on Roducq as a member.</p>
       <p style="padding:16px 0;">
         <a href="${input.inviteUrl}"
-           style="display:inline-block;background:#18181b;color:#ffffff;text-decoration:none;font-size:14px;font-weight:600;padding:10px 18px;border-radius:0.35rem;">
+           style="display:inline-block;background:${EMAIL.accent};color:${EMAIL.onAccent};text-decoration:none;font-size:14px;font-weight:600;padding:10px 18px;border-radius:${RADIUS};">
           Open the invite
         </a>
       </p>
-      <p style="font-size:13px;line-height:1.6;color:#71717a;">
+      <p style="font-size:13px;line-height:1.6;color:${EMAIL.secondary};">
         The link expires ${expires}. Already have an account? Sign in
         first, then open the link.
       </p>
-      <p style="font-size:12px;color:#a1a1aa;margin-top:24px;">${DEFAULT_FROM_NAME}</p>
+      <p style="font-size:12px;color:${EMAIL.footer};margin-top:24px;">${DEFAULT_FROM_NAME}</p>
     </div>
   `.trim();
 

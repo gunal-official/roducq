@@ -933,9 +933,12 @@ shrink, invoice line-items stacking below md, TeamCard select sizing.
   AWS-Lambda Linux x86-64 binaries only and could never run on any Mac —
   removed entirely (no Lambda/CI path used it; CI gates are tsc + build +
   verify:db).
-- Inter is self-hosted via `@fontsource-variable/inter` (loaded through
-  `next/font/local`) instead of `next/font/google` — no build-time dependency
-  on fonts.googleapis.com. See the comment in `app/layout.tsx`.
+- Fonts (2026-09 design guide): Inter body via `next/font/google` (fetched
+  at build time, self-hosted from the deployment — `next build` needs to reach
+  fonts.googleapis.com); Georgia/Times display via `font-display` (system
+  serifs, nothing to load). If a build environment can't reach Google Fonts,
+  switch Inter to `next/font/local` with a committed woff2 — see the comment
+  in `app/layout.tsx`.
 - Design tokens live as CSS variables in `app/globals.css` (light + `.dark`),
   consumed by Tailwind (`tailwind.config.ts`). Dark mode via `next-themes`
   with the `dark` class; default is `system`.
@@ -1161,10 +1164,14 @@ two parked items with triggers: PDF pixel-parity + the eslint-10 bump).
 
 ### Design language (34(a) → ongoing)
 
-Tokens in `app/globals.css` (light + `.dark`): vivid orange accent, warm-gray
-backdrop, white 20px cards (`rounded-lg` = `--radius * 2`), pill buttons and
-chips, soft elevation (`shadow-card`/`shadow-pop`), Plus Jakarta Sans display
-face over Inter body. Shell: grouped nav (Workspace/Money/Account) with
+Tokens in `app/globals.css` (light + `.dark`), retuned by the 2026-09 design
+guide: warm ivory backdrop (`#fefbfa`), espresso ink (`#16100f`), burnt
+orange-red accent (`#c12c01`; dark `#f35e3d`), one compact `--radius` of
+`0.35rem` for every surface (pills/avatars stay `rounded-full`, no arbitrary
+`rounded-[…]`), soft warm elevation (`shadow-card`/`shadow-pop`), Georgia/Times
+display face over Inter body. PDF, invite email and the root error boundary
+read the same values from `lib/design-tokens.ts`; `tests/lib/design-guide.test.ts`
+pins them. Shell: grouped nav (Workspace/Money/Account) with
 tinted icon chips. Empty states use the shared `icon-chip` pattern.
 
 ### Next 16 notes (34(a-fix2/4)) — read before adding pages

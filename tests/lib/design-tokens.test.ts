@@ -2,7 +2,7 @@
  * The pixel-parity contract between screen and print.
  *
  * The two surfaces used to carry their own copy of the palette, and the two
- * copies drifted (the PDF's ink was #1a1a1f while the app's --text is
+ * copies drifted (the PDF's ink was #1a1a1f while the app's --text was
  * #17171c). These tests are the thing that was missing: they fail when one
  * side moves without the other.
  *
@@ -126,7 +126,7 @@ describe("design tokens", () => {
   });
 
   test("print mode agrees with the light theme on every token but the page", () => {
-    // The one sanctioned difference is --bg: the screen sits on a warm-gray
+    // The one sanctioned difference is --bg: the screen sits on a warm ivory
     // backdrop, paper is white. Anything else diverging means a token was
     // re-tinted in one mode and forgotten in the other.
     for (const [name, cssVar] of Object.entries(TOKEN_CSS_VAR)) {
@@ -168,8 +168,8 @@ describe("design tokens", () => {
   test("mix is the sRGB blend CSS color-mix() performs", () => {
     assert.equal(mix(TOKENS.text, TOKENS.card, 1), TOKENS.text);
     assert.equal(mix(TOKENS.text, TOKENS.card, 0), TOKENS.card);
-    // 50/50 between near-black ink and white card.
-    assert.equal(mix(TOKENS.text, TOKENS.card, 0.5), "#8b8b8e");
+    // 50/50 between espresso ink and near-white card.
+    assert.equal(mix(TOKENS.text, TOKENS.card, 0.5), "#8b8887");
     // Out-of-range weights clamp instead of producing impossible channels.
     assert.equal(mix(TOKENS.text, TOKENS.card, 4), TOKENS.text);
     assert.equal(mix(TOKENS.text, TOKENS.card, -1), TOKENS.card);
@@ -188,7 +188,7 @@ describe("design tokens", () => {
 describe("PDF palette", () => {
   test("print colours are the tokens, not a second copy of them", () => {
     // The exact drift this work fixed: ink was #1a1a1f where --text is
-    // #17171c, and hairline was #e5e7eb where --border is #e9e9ee.
+    // #17171c, and hairline was #e5e7eb where --border was #e9e9ee.
     for (const [name, token] of [
       ["accent", "accent"],
       ["ink", "text"],

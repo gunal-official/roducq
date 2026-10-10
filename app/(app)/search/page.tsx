@@ -67,7 +67,7 @@ function Highlighted({ text, q }: { text: string | null; q: string }) {
         segment.hit ? (
           <mark
             key={i}
-            className="rounded-[2px] bg-accent/15 px-0.5 text-text"
+            className="rounded-sm bg-accent/15 px-0.5 text-text"
           >
             {segment.text}
           </mark>

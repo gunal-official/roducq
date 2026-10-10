@@ -1,27 +1,22 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Inter } from "next/font/google";
 
 import "./globals.css";
 
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 
-// Both faces are self-hosted via @fontsource (the same Google fonts, without a
-// build-time network dependency on fonts.googleapis.com). Inter is the body
-// face; Plus Jakarta Sans is the display face (ui.webp language: headings,
-// numbers, brand). To use next/font/google instead, swap for e.g.
-// `const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })`.
-const inter = localFont({
-  src: "../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2",
+// 2026-09 design guide. Body face: Inter via next/font/google — fetched once
+// at build time and self-hosted from the deployment, so visitors never hit
+// fonts.googleapis.com. Display face: Georgia/Times (tailwind `font-display`),
+// system serifs with nothing to load.
+//
+// Build reliability: if CI/Vercel ever can't reach Google Fonts during
+// `next build`, swap this for next/font/local pointing at a committed Inter
+// woff2 (same --font-inter variable, no other change needed).
+const inter = Inter({
+  subsets: ["latin"],
   variable: "--font-inter",
-  weight: "100 900",
-  display: "swap",
-});
-
-const jakarta = localFont({
-  src: "../node_modules/@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-wght-normal.woff2",
-  variable: "--font-display",
-  weight: "200 800",
   display: "swap",
 });
 
@@ -40,7 +35,6 @@ export default function RootLayout({
       <body
         className={cn(
           inter.variable,
-          jakarta.variable,
           "min-h-screen bg-background font-sans text-foreground antialiased"
         )}
       >
