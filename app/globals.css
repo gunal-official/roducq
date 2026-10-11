@@ -52,6 +52,10 @@
     --radius-surface: 12px;
     /* Legacy alias; new components should use a semantic radius. */
     --radius: var(--radius-control);
+
+    /* Phase 2 shell: translucent chrome (topbar, phone tab bar). Resolves
+       against whichever --ember-background the active theme provides. */
+    --bg-translucent: color-mix(in srgb, var(--ember-background) 82%, transparent);
   }
 
   /* Warm charcoal surfaces and softened ember accents are intentional—not
@@ -220,6 +224,18 @@
   }
 }
 
+/* ── Phase 2 phone shell: clear the fixed bottom tab bar ───────────────
+   The tab bar is 3.5rem of content + a hairline border + the iOS home
+   indicator inset; app content must never end underneath it. Screen-only
+   and unlayered so it wins over the base pb utility on <main>; print
+   keeps its own padding reset in the print block below (that rule wins
+   on paper because the shell media query here is screen-scoped). */
+@media screen and (max-width: 599.98px) {
+  .app-main {
+    padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
 /* ── Print layout (Step 35 — public invoice paper) ───────────────────────
    Print always renders on the LIGHT token set, even when the visitor is
    in dark mode: browsers strip most backgrounds by default, so a dark
@@ -292,7 +308,7 @@
      wrapped word-by-word.
 
      Why: the shell is `display:grid` with sidebar tracks
-     (tab:[64px_1fr], desk:[232px_1fr]). Browsers evaluate media queries
+     (tab:[64px_1fr], desk:[256px_1fr]). Browsers evaluate media queries
      against the PAGE box, not the viewport — US Letter at 14mm margins
      is ~710px, which sits in the `tab:` band (600–1023px). The sidebar
      and topbar wrappers are print:hidden, so they drop out of flow

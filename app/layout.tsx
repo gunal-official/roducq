@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 
 import "./globals.css";
@@ -35,6 +35,14 @@ const firaCode = localFont({
 export const metadata: Metadata = {
   title: "roducq",
   description: "roducq — intake, briefs, proposals, and plans for client work.",
+};
+
+/* viewport-fit=cover lets iOS report real safe-area insets, which the fixed
+   phone tab bar and drawer pad against (env(safe-area-inset-*)). */
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({

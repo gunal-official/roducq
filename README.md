@@ -1267,10 +1267,16 @@ responsive audit passed ✔  (evidence: ~/responsive-evidence/step32-after)
    decorative icons,
    `aria-label` on every icon-only control, 44×44 targets.
 3. **Navigation** — one icon-bearing nav model (`components/app-shell/nav-items.ts`):
-   mobile <600 = hamburger → slide-in drawer (every item a 44px icon+label row);
-   tablet 600–1023 = 64px icon rail (title tooltips); desktop ≥1024 = 232px
-   sidebar. Topbar works at every width: full-width search row on mobile,
-   touch-usable workspace switcher, account menu with every destination.
+   phone <600 = fixed bottom tab bar (Pipeline · Inbox · Briefs · Proposals +
+   a "More" tab that opens the slide-in drawer with every remaining route),
+   safe-area aware via `env(safe-area-inset-bottom)`; tablet 600–1023 = 64px
+   icon rail (title tooltips); desktop ≥1024 = 256px sidebar with collapsible
+   sections and a 3px terracotta active indicator. Active highlighting is
+   unique per route (`isNavActive`) — `/intake/inbox` lights Inbox only.
+   Topbar works at every width: translucent blurred chrome, full-width search
+   row on mobile, touch-usable workspace switcher, account menu with every
+   destination. Evidence: `docs/screenshots/shell-*.png` (Phase 2 closeout:
+   `docs/ember-studio-phase2-closeout.md`).
 4. **Motion** — route transitions (templates), dialog exit guaranteed via
    forceMount presence (measured: opacity 1→0.07 mid, unmount ~220ms — it was
    an instant unmount before), list enter/leave (`useMotionItems` on invoice

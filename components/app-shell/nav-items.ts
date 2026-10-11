@@ -68,9 +68,44 @@ export const NAV_ITEMS: readonly NavItem[] = NAV_GROUPS.flatMap(
 /** Money surfaces — hidden from viewers (Step 29 hide rule). */
 export const MONEY_HREFS = new Set(["/invoices", "/time"]);
 
-/** Exact page = active; nested pages light their section (aria-current="page"). */
+/** Raw matcher: exact page, or any nested page under the section. Note this
+ *  alone lights BOTH /intake and /intake/inbox on the inbox page — shell
+ *  highlighting must go through isNavActive (most-specific-match wins). */
 export function isActive(pathname: string, href: string): boolean {
   return href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
+}
+
+/** Every registered nav href (specificity resolution is registry-wide). */
+const NAV_HREFS: readonly string[] = NAV_ITEMS.map((item) => item.href);
+
+/** Unique active-route matcher (Phase 2 fix): when a pathname matches
+ *  several registered hrefs by prefix (e.g. /intake/inbox matches both
+ *  /intake and /intake/inbox), ONLY the most specific one is active, so
+ *  Intake and Inbox never light up together. */
+export function isNavActive(pathname: string, href: string): boolean {
+  if (!isActive(pathname, href)) return false;
+  return !NAV_HREFS.some(
+    (other) =>
+      other.length > href.length && isActive(pathname, other)
+  );
+}
+
+/** Phone bottom-bar destinations (Phase 2): the four highest-traffic routes,
+ *  none of them money-gated, so every role sees the same bar. The fifth slot
+ *  is the "More" tab, which opens the full MobileNav drawer for the rest. */
+export const MOBILE_TAB_HREFS: readonly string[] = [
+  "/",
+  "/intake/inbox",
+  "/briefs",
+  "/proposals",
+];
+
+/** Bottom-bar items in tab order, honoring the viewer money-hide rule. */
+export function mobileTabItems(canSeeMoney: boolean): NavItem[] {
+  return MOBILE_TAB_HREFS.map((href) => NAV_ITEMS.find((i) => i.href === href)).filter(
+    (item): item is NavItem =>
+      !!item && (canSeeMoney || !MONEY_HREFS.has(item.href))
+  );
 }
 
 /** Groups minus money items the viewer may not see. */
