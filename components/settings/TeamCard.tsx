@@ -45,13 +45,7 @@ import {
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { SectionCard } from "@/components/ui/page";
 import { Input } from "@/components/ui/input";
 import type { PendingInvite, TeamMember } from "@/lib/data/team";
 import { formatDate, getInitials } from "@/lib/utils";
@@ -429,8 +423,11 @@ export function TeamCard({
   pendingInvites,
   isOwner,
   currentUserId,
+  sectionId,
 }: {
   members: TeamMember[];
+  /** Anchor id for the settings page's section nav. */
+  sectionId?: string;
   pendingInvites: PendingInvite[];
   isOwner: boolean;
   /** The signed-in user's id — their own row gets Leave (Step 26)
@@ -497,88 +494,85 @@ export function TeamCard({
   }
 
   return (
-    <Card>
-      <CardHeader className="space-y-1 border-b border-border px-5 py-3.5">
-        <div className="flex items-center gap-2.5">
-          <span className="icon-chip icon-chip-muted h-8 w-8">
-            <Users className="h-4 w-4" aria-hidden="true" />
-          </span>
-          <CardTitle className="text-base">Team</CardTitle>
-        </div>
-        <CardDescription>
+    <SectionCard
+      icon={Users}
+      title="Team"
+      description={
+        <>
           Everyone who can see this workspace.{" "}
           {!isOwner && (
             <span className="italic">
               View only — owners manage invites, roles, and removals.
             </span>
           )}
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="p-5">
-        <ul className="divide-y divide-border">
-          {memberRows.map(({ item, leaving }) => (
-            <MemberRow
-              key={item.id}
-              member={item.member}
-              removable={isRemovable(item.member)}
-              roleOptions={roleOptionsFor(item.member)}
-              leavable={isLeavable(item.member)}
-              rowClass={leaving ? "animate-row-out overflow-hidden" : "animate-rise-in"}
-              leaving={leaving}
+        </>
+      }
+      id={sectionId}
+      bodyClassName="p-5"
+    >
+      <ul className="divide-y divide-border">
+        {memberRows.map(({ item, leaving }) => (
+          <MemberRow
+            key={item.id}
+            member={item.member}
+            removable={isRemovable(item.member)}
+            roleOptions={roleOptionsFor(item.member)}
+            leavable={isLeavable(item.member)}
+            rowClass={leaving ? "animate-row-out overflow-hidden" : "animate-rise-in"}
+            leaving={leaving}
+          />
+        ))}
+      </ul>
+
+      {isOwner && (
+        <div className="mt-5 border-t border-border pt-5">
+          <p className="text-sm font-medium">Invite a teammate</p>
+          <p className="mt-0.5 text-xs text-muted-foreground">
+            They’ll join as a member. The link is emailed to them when
+            SMTP is configured — otherwise copy it below and send it
+            yourself.
+          </p>
+          <form onSubmit={handleCreate} className="mt-3 flex gap-2">
+            <Input
+              type="email"
+              required
+              placeholder="teammate@studio.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              aria-label="Teammate email"
             />
-          ))}
-        </ul>
+            <Button type="submit" disabled={pending} className="shrink-0">
+              {pending ? (
+                <Loader2 className="mr-1.5 h-4 w-4 animate-spin"  aria-hidden="true" />
+              ) : (
+                <UserPlus className="mr-1.5 h-4 w-4"  aria-hidden="true" />
+              )}
+              Create invite
+            </Button>
+          </form>
+          {error && <p className="mt-2 text-sm text-error">{error}</p>}
+          {warning && (
+            <p className="mt-2 text-sm text-muted-foreground">{warning}</p>
+          )}
 
-        {isOwner && (
-          <div className="mt-5 border-t border-border pt-5">
-            <p className="text-sm font-medium">Invite a teammate</p>
-            <p className="mt-0.5 text-xs text-muted-foreground">
-              They’ll join as a member. The link is emailed to them when
-              SMTP is configured — otherwise copy it below and send it
-              yourself.
-            </p>
-            <form onSubmit={handleCreate} className="mt-3 flex gap-2">
-              <Input
-                type="email"
-                required
-                placeholder="teammate@studio.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                aria-label="Teammate email"
-              />
-              <Button type="submit" disabled={pending} className="shrink-0">
-                {pending ? (
-                  <Loader2 className="mr-1.5 h-4 w-4 animate-spin"  aria-hidden="true" />
-                ) : (
-                  <UserPlus className="mr-1.5 h-4 w-4"  aria-hidden="true" />
-                )}
-                Create invite
-              </Button>
-            </form>
-            {error && <p className="mt-2 text-sm text-error">{error}</p>}
-            {warning && (
-              <p className="mt-2 text-sm text-muted-foreground">{warning}</p>
-            )}
-
-            {pendingInvites.length > 0 && (
-              <div className="mt-4">
-                <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                  Pending invites
-                </p>
-                <ul className="mt-2 divide-y divide-border rounded-md border border-border px-3">
-                  {pendingInvites.map((invite) => (
-                    <InviteRow
-                      key={invite.id}
-                      invite={invite}
-                      origin={origin}
-                    />
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
-        )}
-      </CardContent>
-    </Card>
+          {pendingInvites.length > 0 && (
+            <div className="mt-4">
+              <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                Pending invites
+              </p>
+              <ul className="mt-2 divide-y divide-border rounded-md border border-border px-3">
+                {pendingInvites.map((invite) => (
+                  <InviteRow
+                    key={invite.id}
+                    invite={invite}
+                    origin={origin}
+                  />
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      )}
+    </SectionCard>
   );
 }

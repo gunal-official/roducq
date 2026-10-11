@@ -60,7 +60,9 @@ describe("Settings integrations UI", () => {
     assert.ok(src.includes("/api/${provider}/connect"));
     assert.ok(src.includes('label="Slack"'));
     assert.ok(src.includes("Notion"));
-    assert.ok(src.includes('data-proof="integrations"'));
+    // Evidence hook. Phase 3 builds this card on the shared SectionCard,
+    // whose `proof` prop renders the `data-proof` attribute.
+    assert.ok(/data-proof="integrations"|proof="integrations"/.test(src));
   });
 
   it("card exposes Import now (on-demand, no cron)", () => {
@@ -80,7 +82,8 @@ describe("Inbox staging", () => {
 
   it("staged-imports card can create a brief", () => {
     const src = read("components/intake/IntegrationStaging.tsx");
-    assert.ok(src.includes('data-proof="staged-imports"'));
+    // Evidence hook: SectionCard's `proof` prop renders `data-proof`.
+    assert.ok(/data-proof="staged-imports"|proof="staged-imports"/.test(src));
     assert.ok(src.includes("createBriefFromImport"));
     assert.ok(src.includes("Create brief"));
   });

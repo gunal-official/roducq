@@ -120,6 +120,12 @@
 .icon-chip-muted {
   @apply bg-muted text-muted-foreground;
 }
+/* Danger/error emphasis (danger-zone head, error-toned section cards).
+   Amber stays reserved for highlights/notifications per the icon audit. */
+.icon-chip-error {
+  @apply text-error;
+  background: color-mix(in srgb, var(--error) 12%, var(--card));
+}
 
 /* ── Motion system (Step 33) — transform/opacity only, 150–250ms ─────────── */
 @keyframes fade-in {

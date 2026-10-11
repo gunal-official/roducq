@@ -1,9 +1,14 @@
 "use client";
 
 /**
- * Right panel of /intake — the editable generated brief.
+ * Right panel of /intake — the editable generated brief (Phase 3).
  * States: "empty" (nothing generated yet), "loading" (skeleton while the
  * generator runs), "form" (editable draft + Open Questions + Save).
+ *
+ * Layout: one column on phones, and the short fields (title, client) pair
+ * up from 600px so the desktop panel reads as a compact form rather than a
+ * stack of full-width rows. The head/body/footer rhythm matches the source
+ * panel opposite it (shared SectionCard).
  *
  * How to test: see the comment at the top of app/(app)/intake/page.tsx.
  */
@@ -13,17 +18,10 @@ import { Check, Loader2, Sparkles } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { EmptyState, SectionCard } from "@/components/ui/page";
 import type { BriefDeliverable, BriefQuestion } from "@/lib/types/brief";
 
 export interface BriefDraftFields {
@@ -59,8 +57,8 @@ function QuestionsBox({ questions }: { questions: BriefQuestion[] }) {
   const open = questions.filter((q) => q.status === "open");
 
   return (
-    <div className="rounded-lg border border-accent bg-accent-soft p-4">
-      <div className="mb-3 flex items-center justify-between">
+    <div className="rounded-surface border border-accent bg-accent-soft p-4">
+      <div className="mb-3 flex items-center justify-between gap-3">
         <h3 className="font-display text-sm font-semibold tracking-tight">
           Open questions
         </h3>
@@ -118,42 +116,33 @@ export function BriefForm({
 }) {
   if (mode === "empty") {
     return (
-      <div className="flex min-h-[420px] flex-col items-center justify-center gap-3 rounded-lg border border-dashed border-border bg-card/50 px-8 text-center">
-        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-muted">
-          <Sparkles className="h-4 w-4 text-muted-foreground"  aria-hidden="true" />
-        </span>
-        <div>
-          <p className="font-display font-semibold">Brief preview</p>
-          <p className="mt-1 max-w-xs text-sm text-muted-foreground">
-            Paste client text on the left and hit Generate — the editable
-            brief draft appears here.
-          </p>
-        </div>
-      </div>
+      <EmptyState
+        icon={Sparkles}
+        title="Brief preview"
+        description="Paste client text and hit Generate — the editable brief draft appears here."
+        className="min-h-[420px] justify-center"
+      />
     );
   }
 
   if (mode === "loading") {
     return (
-      <Card>
-        <CardHeader className="flex-row items-center gap-2 space-y-0 border-b border-border px-5 py-3.5">
-          <Loader2 className="h-4 w-4 animate-spin text-accent"  aria-hidden="true" />
-          <CardTitle className="text-base">
-            Generating your brief…
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4 p-5">
-          <SkeletonRow className="h-8 w-2/3" />
-          <SkeletonRow className="h-20 w-full" />
-          <div className="space-y-2">
-            <SkeletonRow className="h-5 w-1/2" />
-            <SkeletonRow className="h-5 w-3/4" />
-            <SkeletonRow className="h-5 w-2/3" />
-          </div>
-          <SkeletonRow className="h-16 w-full" />
-          <SkeletonRow className="h-24 w-full border border-accent" />
-        </CardContent>
-      </Card>
+      <SectionCard
+        icon={Loader2}
+        iconClassName="animate-spin"
+        title="Generating your brief…"
+        bodyClassName="space-y-4 p-5"
+      >
+        <SkeletonRow className="h-8 w-2/3" />
+        <SkeletonRow className="h-20 w-full" />
+        <div className="space-y-2">
+          <SkeletonRow className="h-5 w-1/2" />
+          <SkeletonRow className="h-5 w-3/4" />
+          <SkeletonRow className="h-5 w-2/3" />
+        </div>
+        <SkeletonRow className="h-16 w-full" />
+        <SkeletonRow className="h-24 w-full border border-accent" />
+      </SectionCard>
     );
   }
 
@@ -161,15 +150,52 @@ export function BriefForm({
 
   return (
     <div className="space-y-4">
-      <Card>
-        <CardHeader className="space-y-1 border-b border-border px-5 py-3.5">
-          <CardTitle className="text-base">Brief draft</CardTitle>
-          <CardDescription>
-            Generated draft — edit anything, then save.
-          </CardDescription>
-        </CardHeader>
-
-        <CardContent className="space-y-5 p-5">
+      <SectionCard
+        icon={Sparkles}
+        title="Brief draft"
+        description="Generated draft — edit anything, then save."
+        tone="accent"
+        footer={
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="min-w-0 text-sm">
+              {saveError ? (
+                <span className="text-error">{saveError}</span>
+              ) : savedLabel && !dirty ? (
+                <span className="flex items-center gap-1.5 text-muted-foreground">
+                  <Check className="h-4 w-4 text-accent" aria-hidden="true" />
+                  {savedLabel}
+                </span>
+              ) : dirty ? (
+                <span className="text-muted-foreground">Unsaved changes</span>
+              ) : null}
+            </div>
+            <div className="ml-auto flex flex-wrap items-center gap-2">
+              {briefId && (
+                <Button asChild variant="outline" size="sm">
+                  <Link
+                    href={`/briefs/${briefId}`}
+                    className="inline-flex min-h-11 min-w-11 items-center"
+                  >
+                    Open in Briefs
+                  </Link>
+                </Button>
+              )}
+              <Button onClick={onSave} disabled={!dirty || saving}>
+                {saving ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                    Saving…
+                  </>
+                ) : (
+                  "Save brief"
+                )}
+              </Button>
+            </div>
+          </div>
+        }
+        proof="intake-brief-draft"
+      >
+        <div className="grid gap-5 tab:grid-cols-2">
           <div className="space-y-1.5">
             <FieldLabel htmlFor="brief-title">Title</FieldLabel>
             <Input
@@ -190,7 +216,7 @@ export function BriefForm({
             />
           </div>
 
-          <div className="space-y-1.5">
+          <div className="space-y-1.5 tab:col-span-2">
             <FieldLabel htmlFor="brief-objective">Objective</FieldLabel>
             <Textarea
               id="brief-objective"
@@ -201,14 +227,14 @@ export function BriefForm({
             />
           </div>
 
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
+          <div className="space-y-2 tab:col-span-2">
+            <div className="flex items-center justify-between gap-3">
               <FieldLabel>Deliverables</FieldLabel>
               <span className="text-xs text-muted-foreground">
                 {doneCount} of {draft.deliverables.length} done
               </span>
             </div>
-            <div className="space-y-1 rounded-md border border-border bg-muted/40 p-2">
+            <div className="space-y-1 rounded-control border border-border bg-muted/40 p-2">
               {draft.deliverables.length === 0 ? (
                 <p className="px-1.5 py-1 text-sm text-muted-foreground">
                   No concrete deliverables were detected.
@@ -217,7 +243,7 @@ export function BriefForm({
                 draft.deliverables.map((d) => (
                   <label
                     key={d.id}
-                    className="flex cursor-pointer items-start gap-2.5 rounded-md px-1.5 py-1.5 hover:bg-card"
+                    className="flex cursor-pointer items-start gap-2.5 rounded-control px-1.5 py-1.5 hover:bg-card"
                   >
                     <Checkbox
                       checked={d.checked}
@@ -247,8 +273,8 @@ export function BriefForm({
             </div>
           </div>
 
-          <div className="space-y-1.5">
-            <FieldLabel htmlFor="brief-budget">Budget & timeline</FieldLabel>
+          <div className="space-y-1.5 tab:col-span-2">
+            <FieldLabel htmlFor="brief-budget">Budget &amp; timeline</FieldLabel>
             <Textarea
               id="brief-budget"
               rows={2}
@@ -257,40 +283,8 @@ export function BriefForm({
               placeholder="Budget, deadlines, kickoff…"
             />
           </div>
-        </CardContent>
-
-        <CardFooter className="border-t border-border bg-muted/40 px-5 py-3.5">
-          <div className="flex items-center gap-2 text-sm">
-            {saveError ? (
-              <span className="text-error">{saveError}</span>
-            ) : savedLabel && !dirty ? (
-              <span className="flex items-center gap-1.5 text-muted-foreground">
-                <Check className="h-4 w-4 text-accent"  aria-hidden="true" />
-                {savedLabel}
-              </span>
-            ) : dirty ? (
-              <span className="text-muted-foreground">Unsaved changes</span>
-            ) : null}
-          </div>
-          <div className="ml-auto flex items-center gap-2">
-            {briefId && (
-              <Button asChild variant="outline" size="sm">
-                <Link href={`/briefs/${briefId}`} className="inline-flex min-h-11 min-w-11 items-center">Open in Briefs</Link>
-              </Button>
-            )}
-            <Button onClick={onSave} disabled={!dirty || saving}>
-              {saving ? (
-                <>
-                  <Loader2 className="h-4 w-4 animate-spin"  aria-hidden="true" />
-                  Saving…
-                </>
-              ) : (
-                "Save brief"
-              )}
-            </Button>
-          </div>
-        </CardFooter>
-      </Card>
+        </div>
+      </SectionCard>
 
       <QuestionsBox questions={questions} />
     </div>
