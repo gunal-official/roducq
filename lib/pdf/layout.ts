@@ -35,7 +35,7 @@ import {
   type Rgb,
 } from "./writer.ts";
 import { ellipsize, measureText, wrapParagraphs, wrapText, type PdfFont } from "./metrics.ts";
-import { hexToRgb, mix, soft, TOKENS } from "../design-tokens.ts";
+import { hexToRgb, soft, TOKENS } from "../design-tokens.ts";
 import { decodeLogoDataUrl } from "./images.ts";
 
 const rgb = hexToRgb;
@@ -45,43 +45,28 @@ const rgb = hexToRgb;
  * numbers app/globals.css declares as CSS variables, converted to the 0–1
  * RGB the writer wants.
  *
- * This map used to be hand-copied from the CSS, and it drifted: `ink` was
- * #1a1a1f where --text is #17171c, `hairline` was #e5e7eb where --border is
- * #e9e9ee. Nothing caught it, because nothing compared the two. Everything
- * below is now either a token read straight through or a documented mix off
- * one — see the two derived entries for why they aren't 1:1.
+ * The map is derived from the canonical Ember Studio values in
+ * `lib/design-tokens.ts`; no private PDF palette is maintained here.
  */
 export const COLORS = {
   // ── Tokens, read straight through ────────────────────────────────────────
-  accent: rgb(TOKENS.accent),
+  accent: rgb(TOKENS.terracotta),
   ink: rgb(TOKENS.text),
   hairline: rgb(TOKENS.border),
-  zebra: rgb(TOKENS.muted),
-  white: rgb(TOKENS.card),
+  zebra: rgb(TOKENS.surface),
+  white: rgb(TOKENS.background),
   success: rgb(TOKENS.success),
   successSoft: rgb(TOKENS.successSoft),
   info: rgb(TOKENS.info),
   error: rgb(TOKENS.error),
 
-  // ── Derived ──────────────────────────────────────────────────────────────
-  /**
-   * Secondary ink. The screen's muted foreground is a 52% wash of --text
-   * (`color-mix(in srgb, var(--text) 52%, transparent)`) — comfortable at
-   * 14px on a backlit display, and it disappears at 8pt on paper. Print
-   * mixes toward the ink instead of the page: 62%, which lands within a
-   * couple of points of the #6b7280 this entry used to hardcode and stays
-   * warm, because --text is warm.
-   */
-  muted: rgb(mix(TOKENS.text, TOKENS.card, 0.62)),
-  /**
-   * Checkbox and rule outlines that must survive at 6pt. 25% ink — tuned to
-   * hold the contrast of the #c7c9cf this entry replaced, while being mixed
-   * off --text rather than picked by eye.
-   */
-  border: rgb(mix(TOKENS.text, TOKENS.card, 0.25)),
+  // ── Shared semantic tones ────────────────────────────────────────────────
+  muted: rgb(TOKENS.secondaryText),
+  border: rgb(TOKENS.border),
 
-  /** Soft tints, by the same 12%-over-card formula CSS uses. */
-  accentSoft: rgb(soft(TOKENS.accent)),
+  /** Soft tints, by the same 12%-over-surface formula CSS uses. */
+  accentSoft: rgb(soft(TOKENS.terracotta)),
+
   infoSoft: rgb(soft(TOKENS.info)),
   errorSoft: rgb(soft(TOKENS.error)),
 } as const satisfies Record<string, Rgb>;

@@ -166,7 +166,7 @@ export function TimeTimer({ briefs }: { briefs: BriefOption[] }) {
       <button
         type="button"
         onClick={start}
-        className="fixed bottom-5 right-5 z-50 flex min-h-11 min-w-11 max-w-[calc(100vw-2.5rem)] items-center gap-2 rounded-full border border-border bg-card px-4 py-2.5 text-sm font-medium shadow-md transition-colors hover:bg-muted print:hidden"
+        className="fixed bottom-5 right-5 z-50 flex min-h-11 min-w-11 max-w-[calc(100vw-2.5rem)] items-center gap-2 rounded-control border border-border bg-card px-4 py-2.5 text-sm font-medium shadow-md transition-colors hover:bg-muted print:hidden"
       >
         <Timer className="h-4 w-4 text-accent" />
         Start timer
@@ -176,7 +176,7 @@ export function TimeTimer({ briefs }: { briefs: BriefOption[] }) {
 
   if (phase === "running") {
     return (
-      <div className="fixed bottom-5 right-5 z-50 flex max-w-[calc(100vw-2.5rem)] items-center gap-2 rounded-full border border-border bg-card p-1.5 pr-2.5 shadow-md print:hidden">
+      <div className="fixed bottom-5 right-5 z-50 flex max-w-[calc(100vw-2.5rem)] items-center gap-2 rounded-surface border border-border bg-card p-1.5 pr-2.5 shadow-md print:hidden">
         <span className="shrink-0 pl-2 text-sm font-semibold tabular-nums text-text">
           {formatElapsed(elapsedSeconds())}
         </span>
@@ -185,7 +185,7 @@ export function TimeTimer({ briefs }: { briefs: BriefOption[] }) {
           onChange={(e) => setLabel(e.target.value)}
           placeholder="What are you working on?"
           aria-label="What are you working on?"
-          className="h-11 w-28 min-w-0 sm:w-48 bg-transparent text-sm text-text placeholder:text-muted-foreground focus:outline-none"
+          className="h-11 w-28 min-w-0 rounded-control bg-transparent text-sm text-text placeholder:text-muted-foreground focus:outline-none sm:w-48"
         />
         <Button size="sm" className="h-11 shrink-0 gap-1.5" onClick={openStopForm}>
           <Square className="h-4 w-4" />
@@ -196,7 +196,7 @@ export function TimeTimer({ briefs }: { briefs: BriefOption[] }) {
           onClick={discard}
           title="Discard this session"
           aria-label="Discard this session"
-          className="min-h-11 flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-text"
+          className="min-h-11 flex h-11 w-11 shrink-0 items-center justify-center rounded-control text-muted-foreground transition-colors hover:bg-muted hover:text-text"
         >
           <X className="h-4 w-4"  aria-hidden="true" />
         </button>
@@ -206,7 +206,7 @@ export function TimeTimer({ briefs }: { briefs: BriefOption[] }) {
 
   // stop form — Cancel returns to RUNNING (the timer keeps going).
   return (
-    <div className="fixed bottom-5 right-5 z-50 w-[min(20rem,calc(100vw-2.5rem))] rounded-md border border-border bg-card p-4 shadow-lg print:hidden">
+    <div className="fixed bottom-5 right-5 z-50 w-[min(20rem,calc(100vw-2.5rem))] rounded-surface border border-border bg-card p-4 shadow-lg print:hidden">
       <p className="mb-3 flex items-center gap-2 text-sm font-semibold">
         <Timer className="h-4 w-4 text-accent" />
         Log this session

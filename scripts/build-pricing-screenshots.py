@@ -19,7 +19,10 @@ ROOT = Path(__file__).resolve().parent.parent
 DOCS = ROOT / "docs" / "screenshots"
 DOCS.mkdir(parents=True, exist_ok=True)
 
-# ---- Fonts (DejaVu family is preinstalled; Sans ≈ Inter, Serif ≈ Georgia) ----
+# ---- Approximation fonts for this Pillow-only evidence renderer -------------
+# Production uses self-hosted Source Sans 3 / Playfair Display / Fira Code.
+# DejaVu is preinstalled in the sandbox, so these screenshots approximate
+# those families without depending on a browser or system font installation.
 FONT_SANS = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
 FONT_SANS_BOLD = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 FONT_SERIF_BOLD = "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf"
@@ -131,28 +134,33 @@ def rgb_hex(rgb):
 
 THEMES = {
     "light": {
-        "bg": (254, 251, 250),
-        "card": (255, 255, 254),
-        "text": (22, 16, 15),
-        "muted": (107, 92, 88),
-        "border": (227, 220, 218),
-        "accent": (193, 44, 1),
+        "bg": (250, 250, 249),          # --ember-background #fafaf9
+        "card": (245, 245, 244),        # --ember-surface #f5f5f4
+        "text": (28, 25, 23),           # --ember-text #1c1917
+        "muted": (87, 83, 78),          # --ember-secondary-text #57534e
+        "border": (214, 211, 209),      # --ember-border #d6d3d1
+        "accent": (194, 65, 12),        # --ember-terracotta #c2410c
+        "highlight": (245, 158, 11),    # --ember-amber #f59e0b
         "badge_fg": (255, 255, 255),
+        "on_accent": (255, 255, 255),
         "success": (31, 157, 104),
     },
     "dark": {
-        "bg": (18, 11, 10),
-        "card": (28, 20, 18),
-        "text": (246, 240, 239),
-        "muted": (176, 159, 154),
-        "border": (53, 42, 39),
-        "accent": (243, 94, 61),
-        "badge_fg": (18, 11, 10),
-        "success": (62, 207, 142),
+        "bg": (28, 25, 23),             # --ember-background #1c1917
+        "card": (41, 37, 36),           # --ember-surface #292524
+        "text": (250, 250, 249),        # --ember-text #fafaf9
+        "muted": (231, 229, 228),       # --ember-secondary-text #e7e5e4
+        "border": (87, 83, 78),         # --ember-border #57534e
+        "accent": (251, 146, 60),       # --ember-terracotta #fb923c
+        "highlight": (251, 191, 36),    # --ember-amber #fbbf24
+        "badge_fg": (28, 25, 23),
+        "on_accent": (28, 25, 23),
+        "success": (74, 222, 128),
     },
 }
 for tn, t in THEMES.items():
-    t["accent_soft"] = mix(t["accent"], t["card"], 0.13 if tn == "light" else 0.18)
+    t["accent_soft"] = mix(t["accent"], t["card"], 0.12 if tn == "light" else 0.18)
+    t["highlight_soft"] = mix(t["highlight"], t["card"], 0.18)
 
 # ---- Sample price lines (mirroring .env.local.example; same render rules
 # as lib/stripe.ts → formatPrice) ----
@@ -244,7 +252,7 @@ class Canvas:
             h += lh
         return h
 
-    def rect(self, x, y, w, h, *, fill=None, stroke=None, radius=6, width=1):
+    def rect(self, x, y, w, h, *, fill=None, stroke=None, radius=12, width=1):
         fill = fill or self.T["card"]
         self.draw.rounded_rectangle(
             [s(x), s(y), s(x + w), s(y + h)],
@@ -304,10 +312,10 @@ def render(theme_name, path, *, show_offer, billing):
         cw = CONTENT_W - 200
         cx = PAD_X + 100
         ch = 84
-        # border color (mix accent + card 0.3)
-        c.rect(cx, c.y / SCALE, cw, ch, fill=T["accent_soft"],
-               stroke=mix(T["accent"], T["card"], 0.3), radius=12)
-        c.circle(cx + 28, c.y / SCALE + ch / 2, 20, mix(T["accent"], T["card"], 0.15))
+        # Highlight border color (mix amber + surface 0.3).
+        c.rect(cx, c.y / SCALE, cw, ch, fill=T["highlight_soft"],
+               stroke=mix(T["highlight"], T["card"], 0.3), radius=12)
+        c.circle(cx + 28, c.y / SCALE + ch / 2, 20, mix(T["highlight"], T["card"], 0.15))
         # Simple filled ticket glyph as filled small rect + notch marks
         # (skip for brevity — circle alone reads as chip icon)
         pill_w = 130
@@ -326,16 +334,16 @@ def render(theme_name, path, *, show_offer, billing):
     # Toggle
     tw, th = 240, 44
     tx = 640 - tw / 2
-    c.rect(tx, c.y / SCALE, tw, th, fill=T["card"], radius=8)
+    c.rect(tx, c.y / SCALE, tw, th, fill=T["card"], radius=12)
     for i, bi in enumerate(["monthly", "annual"]):
         seg_w = tw / 2
         sx = tx + i * seg_w
         active = bi == "monthly"
         if active:
             c.rect(sx + 4, c.y / SCALE + 4, seg_w - 8, th - 8,
-                   fill=T["accent"], radius=6)
+                   fill=T["accent"], radius=8)
             c.text(sx + seg_w / 2, c.y / SCALE + th / 2, "Monthly" if bi == "monthly" else "Annual",
-                   size=14, color=(255, 255, 255), weight="bold", anchor="mm")
+                   size=14, color=T["on_accent"], weight="bold", anchor="mm")
         else:
             c.text(sx + seg_w / 2, c.y / SCALE + th / 2, "Monthly" if bi == "monthly" else "Annual",
                    size=14, color=T["muted"], weight="bold", anchor="mm")
@@ -351,11 +359,11 @@ def render(theme_name, path, *, show_offer, billing):
         highlighted = tier["slug"] == "team"
         c.rect(cx, card_top, card_w, card_h,
                fill=T["card"],
-               stroke=T["accent"] if highlighted else T["border"],
-               radius=10, width=2 if highlighted else 1)
+               stroke=T["highlight"] if highlighted else T["border"],
+               radius=12, width=2 if highlighted else 1)
         cy = card_top + 26
         # icon chip
-        c.rect(cx + 24, cy - 6, 36, 36, fill=T["accent_soft"], radius=10)
+        c.rect(cx + 24, cy - 6, 36, 36, fill=T["accent_soft"], radius=12)
         glyph = {"starter": "↑", "team": "◈", "studio": "■"}[tier["slug"]]
         c.text(cx + 42, cy + 12, glyph, size=16, color=T["accent"],
                weight="bold", anchor="mm")
@@ -415,7 +423,7 @@ def render(theme_name, path, *, show_offer, billing):
                stroke=T["accent"] if is_primary else T["border"],
                radius=8, width=0 if is_primary else 1)
         c.text(cx + card_w / 2, btn_y + 26, tier["cta"]["label"],
-               size=14, color=(255, 255, 255) if is_primary else T["text"],
+               size=14, color=T["on_accent"] if is_primary else T["text"],
                weight="bold", anchor="mm")
 
     c.y = s(card_top + card_h + 30)

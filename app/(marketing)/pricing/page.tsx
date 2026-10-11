@@ -70,13 +70,13 @@ export default function PricingPage() {
 
       {offer ? (
         <div
-          className="mx-auto mt-10 flex max-w-3xl flex-col items-center gap-3 rounded-xl border border-accent/30 bg-accent-soft px-5 py-4 text-center sm:flex-row sm:gap-4 sm:text-left"
+          className="mx-auto mt-10 flex max-w-3xl flex-col items-center gap-3 rounded-xl border border-highlight/40 bg-highlight-soft px-5 py-4 text-center sm:flex-row sm:gap-4 sm:text-left"
           data-testid="pricing-offer"
           role="note"
           aria-label="Pricing offer"
         >
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent/15">
-            <Ticket className="h-5 w-5 text-accent" aria-hidden="true" />
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-highlight/15">
+            <Ticket className="h-5 w-5 text-highlight" aria-hidden="true" />
           </span>
           <div className="flex-1 space-y-1.5">
             <div className="flex flex-wrap items-center justify-center gap-2 sm:justify-start">

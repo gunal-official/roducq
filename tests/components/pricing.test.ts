@@ -353,14 +353,15 @@ describe("/pricing design tokens", () => {
     }
   });
 
-  it("renders headings in the display face (Georgia) inside an Inter body", () => {
+  it("renders Playfair Display headings inside a Source Sans 3 body", () => {
     assert.match(PAGE, /font-display/, "hero heading uses the display stack");
     assert.match(PLANS_TSX, /font-display/, "tier names + prices use the display stack");
     const config = read("tailwind.config.ts");
-    assert.match(config, /display:\s*\["Georgia"/, "display stack is Georgia-led");
-    assert.match(config, /var\(--font-inter\)/, "body stack is Inter");
+    assert.match(config, /display:\s*\[\s*"var\(--font-playfair\)"/, "display stack is Playfair-led");
+    assert.match(config, /var\(--font-source-sans\)/, "body stack is Source Sans 3");
     const css = read("app/globals.css");
-    assert.match(css, /--radius:\s*0\.35rem/, "the 0.35rem radius token");
+    assert.match(css, /--radius-control:\s*8px/, "control radius is 8px");
+    assert.match(css, /--radius-surface:\s*12px/, "surface radius is 12px");
   });
 
   it("keeps tap targets at or above 44px for the harness", () => {

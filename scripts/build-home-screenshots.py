@@ -27,7 +27,10 @@ ROOT = Path(__file__).resolve().parent.parent
 DOCS = ROOT / "docs" / "screenshots"
 DOCS.mkdir(parents=True, exist_ok=True)
 
-# ---- Fonts (DejaVu family is preinstalled; Sans ~ Inter, Serif ~ Georgia) ----
+# ---- Approximation fonts for this Pillow-only evidence renderer -------------
+# Production uses self-hosted Source Sans 3 / Playfair Display / Fira Code.
+# DejaVu is preinstalled in the sandbox, so these screenshots approximate
+# those families without depending on a browser or system font installation.
 FONT_SANS = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
 FONT_SANS_BOLD = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 FONT_SERIF_BOLD = "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf"
@@ -111,34 +114,34 @@ def mix(a, b, t):
 
 THEMES = {
     "light": {
-        "bg": (254, 251, 250),
-        "band": (246, 240, 239),
-        "card": (255, 255, 254),
-        "text": (22, 16, 15),
-        "muted": (107, 92, 88),
-        "border": (227, 220, 218),
-        "accent": (193, 44, 1),
+        "bg": (250, 250, 249),          # --ember-background #fafaf9
+        "band": (231, 229, 228),        # --ember-surface-raised #e7e5e4
+        "card": (245, 245, 244),        # --ember-surface #f5f5f4
+        "text": (28, 25, 23),           # --ember-text #1c1917
+        "muted": (87, 83, 78),          # --ember-secondary-text #57534e
+        "border": (214, 211, 209),      # --ember-border #d6d3d1
+        "accent": (194, 65, 12),        # --ember-terracotta #c2410c
         "info": (47, 111, 237),
         "success": (31, 157, 104),
         "on_accent": (255, 255, 255),
     },
     "dark": {
-        "bg": (18, 11, 10),
-        "band": (42, 34, 32),
-        "card": (28, 20, 18),
-        "text": (246, 240, 239),
-        "muted": (176, 159, 154),
-        "border": (66, 53, 49),
-        "accent": (243, 94, 61),
-        "info": (91, 141, 255),
-        "success": (62, 207, 142),
-        "on_accent": (18, 11, 10),
+        "bg": (28, 25, 23),             # --ember-background #1c1917
+        "band": (68, 64, 60),           # --ember-surface-raised #44403c
+        "card": (41, 37, 36),           # --ember-surface #292524
+        "text": (250, 250, 249),        # --ember-text #fafaf9
+        "muted": (231, 229, 228),       # --ember-secondary-text #e7e5e4
+        "border": (87, 83, 78),         # --ember-border #57534e
+        "accent": (251, 146, 60),       # --ember-terracotta #fb923c
+        "info": (96, 165, 250),
+        "success": (74, 222, 128),
+        "on_accent": (28, 25, 23),
     },
 }
 for _t in THEMES.values():
     _pct = 0.12 if _t["bg"][0] > 128 else 0.18
     for _name in ("accent", "info", "success"):
-        # color-mix(in srgb, var(--x) 12%, var(--card)) — the accent-soft token
+        # color-mix(in srgb, var(--x) 12%, var(--card)) — the soft token
         _t[_name + "_soft"] = mix(_t[_name], _t["card"], _pct)
 
 
@@ -151,7 +154,7 @@ for _t in THEMES.values():
 SCALE = 2  # render at 2x, ship at 1x
 W, PAD = 1280, 80
 CW = W - 2 * PAD  # 1120 content width
-CARD_R = 6  # --radius 0.35rem ≈ 5.6px
+CARD_R = 12  # --radius-surface: cards and icon chips use 12px
 
 
 def s(v):
@@ -253,7 +256,7 @@ class Canvas:
         h = 48
         w = w or self.width(label, size=size, weight="bold") + 64
         self.rect(x, y, w, h, fill=T["accent"] if primary else T["card"],
-                  stroke=None if primary else T["border"], radius=h / 2)
+                  stroke=None if primary else T["border"], radius=8)
         self.text(x + w / 2, y + h / 2, label, size=size, weight="bold",
                   color=T["on_accent"] if primary else T["text"], anchor="mm")
         return w

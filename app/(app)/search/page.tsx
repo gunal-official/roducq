@@ -67,7 +67,7 @@ function Highlighted({ text, q }: { text: string | null; q: string }) {
         segment.hit ? (
           <mark
             key={i}
-            className="rounded-sm bg-accent/15 px-0.5 text-text"
+            className="rounded-sm bg-highlight-soft px-0.5 text-text"
           >
             {segment.text}
           </mark>
@@ -85,7 +85,7 @@ function HitLink({ hit, href, q }: { hit: SearchHit; href: string; q: string }) 
     <li>
       <Link
         href={href}
-        className="flex min-h-11 items-start gap-3 rounded-lg px-3 py-2 transition-colors duration-150 hover:bg-muted"
+        className="flex min-h-11 items-start gap-3 rounded-control px-3 py-2 transition-colors duration-150 hover:bg-muted"
       >
         <div className="min-w-0 flex-1">
           <p className="truncate text-sm font-medium">
@@ -190,10 +190,10 @@ export default async function SearchPage({
             defaultValue={q ?? ""}
             placeholder="Search title or client…"
             autoFocus={!q}
-            className="h-11 w-full rounded-full border-transparent bg-muted pl-10 shadow-none"
+            className="h-11 w-full rounded-control border-transparent bg-muted pl-10 shadow-none"
           />
         </div>
-        <Button type="submit" className="h-11 rounded-full px-5">
+        <Button type="submit" className="h-11 rounded-control px-5">
           Search
         </Button>
       </form>
@@ -254,7 +254,7 @@ export default async function SearchPage({
                     <div className="mt-1 border-t border-border">
                       <Link
                         href={group.listHref}
-                        className="flex min-h-11 items-center rounded-lg px-3 text-xs font-medium text-muted-foreground transition-colors duration-150 hover:bg-muted hover:text-text"
+                        className="flex min-h-11 items-center rounded-control px-3 text-xs font-medium text-muted-foreground transition-colors duration-150 hover:bg-muted hover:text-text"
                       >
                         View all {group.label.toLowerCase()} →
                       </Link>

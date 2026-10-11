@@ -933,15 +933,15 @@ shrink, invoice line-items stacking below md, TeamCard select sizing.
   AWS-Lambda Linux x86-64 binaries only and could never run on any Mac —
   removed entirely (no Lambda/CI path used it; CI gates are tsc + build +
   verify:db).
-- Fonts (2026-09 design guide): Inter body via `next/font/google` (fetched
-  at build time, self-hosted from the deployment — `next build` needs to reach
-  fonts.googleapis.com); Georgia/Times display via `font-display` (system
-  serifs, nothing to load). If a build environment can't reach Google Fonts,
-  switch Inter to `next/font/local` with a committed woff2 — see the comment
-  in `app/layout.tsx`.
-- Design tokens live as CSS variables in `app/globals.css` (light + `.dark`),
-  consumed by Tailwind (`tailwind.config.ts`). Dark mode via `next-themes`
-  with the `dark` class; default is `system`.
+- **Ember Studio fonts (Phase 1):** Playfair Display, Source Sans 3, and Fira
+  Code are variable WOFF2 assets committed under `app/fonts/` with their OFL
+  licenses, loaded through `next/font/local` in `app/layout.tsx`. Builds do
+  not fetch Google Fonts or require external font access.
+- **Design tokens:** canonical CSS variables live in `app/globals.css` and
+  are mirrored by `lib/design-tokens.ts` for PDF/email surfaces. Tailwind
+  consumes the same semantic palette while the legacy `--bg`, `--accent`,
+  `--card`, and related aliases remain available during migration. Dark mode
+  uses a warm charcoal/stone palette via `next-themes`; default is `system`.
 
 
 ---
@@ -1164,15 +1164,19 @@ two parked items with triggers: PDF pixel-parity + the eslint-10 bump).
 
 ### Design language (34(a) → ongoing)
 
-Tokens in `app/globals.css` (light + `.dark`), retuned by the 2026-09 design
-guide: warm ivory backdrop (`#fefbfa`), espresso ink (`#16100f`), burnt
-orange-red accent (`#c12c01`; dark `#f35e3d`), one compact `--radius` of
-`0.35rem` for every surface (pills/avatars stay `rounded-full`, no arbitrary
-`rounded-[…]`), soft warm elevation (`shadow-card`/`shadow-pop`), Georgia/Times
-display face over Inter body. PDF, invite email and the root error boundary
-read the same values from `lib/design-tokens.ts`; `tests/lib/design-guide.test.ts`
-pins them. Shell: grouped nav (Workspace/Money/Account) with
-tinted icon chips. Empty states use the shared `icon-chip` pattern.
+Phase 1 establishes the Ember Studio design system in `app/globals.css`
+(light + `.dark`) and `lib/design-tokens.ts`: the light palette uses
+terracotta `#c2410c`, hover `#9a3412`, amber `#f59e0b`, warm stone surfaces,
+and explicit text/border tokens; dark mode uses intentional warm charcoal
+and stone surfaces. Controls use 8px radii, cards/dialogs/popovers use 12px,
+and badges/avatars keep pill/circular shapes. Primary and active states use
+terracotta; amber is reserved for highlights and notifications; tabs use an
+underline indicator. Playfair Display, Source Sans 3, and Fira Code are
+self-hosted variable fonts. PDF, invite email and the root error boundary
+reuse the shared light tokens; `tests/lib/design-guide.test.ts` and
+`tests/lib/design-tokens.test.ts` guard palette, fonts, radii, and migration
+aliases. Shell: grouped nav (Workspace/Money/Account) with tinted icon chips.
+Empty states use the shared `icon-chip` pattern.
 
 ### Next 16 notes (34(a-fix2/4)) — read before adding pages
 

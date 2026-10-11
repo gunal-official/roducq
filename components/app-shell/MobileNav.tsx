@@ -44,7 +44,7 @@ export function MobileNav({
             type="button"
             aria-label="Close menu"
             onClick={onClose}
-            className="flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors duration-150 hover:bg-muted hover:text-text"
+            className="flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-control text-muted-foreground transition-colors duration-150 hover:bg-muted hover:text-text"
           >
             <X aria-hidden="true" className="h-[18px] w-[18px]" />
           </button>
@@ -67,7 +67,7 @@ export function MobileNav({
                     aria-current={active ? "page" : undefined}
                     onClick={onClose}
                     className={[
-                      "flex min-h-11 items-center gap-3 rounded-xl px-1.5 text-sm transition-colors duration-150",
+                      "flex min-h-11 items-center gap-3 rounded-control px-1.5 text-sm transition-colors duration-150",
                       "hover:bg-muted/70",
                       active
                         ? "bg-accent-soft font-semibold text-accent"

@@ -207,7 +207,7 @@ export function MailboxCard({
                   </a>
                 </Button>
               ) : (
-                <span className="inline-flex h-11 min-w-11 cursor-not-allowed items-center justify-center gap-2 whitespace-nowrap rounded-full border border-border bg-card px-5 py-2 text-sm font-semibold text-muted-foreground">
+                <span className="inline-flex h-11 min-w-11 cursor-not-allowed items-center justify-center gap-2 whitespace-nowrap rounded-control border border-border bg-card px-5 py-2 text-sm font-semibold text-muted-foreground">
                   <Mail size={16} strokeWidth={1.5} aria-hidden="true" />
                   Connect Gmail
                 </span>
@@ -220,7 +220,7 @@ export function MailboxCard({
                   </a>
                 </Button>
               ) : (
-                <span className="inline-flex h-11 min-w-11 cursor-not-allowed items-center justify-center gap-2 whitespace-nowrap rounded-full border border-border bg-card px-5 py-2 text-sm font-semibold text-muted-foreground">
+                <span className="inline-flex h-11 min-w-11 cursor-not-allowed items-center justify-center gap-2 whitespace-nowrap rounded-control border border-border bg-card px-5 py-2 text-sm font-semibold text-muted-foreground">
                   <Mail size={16} strokeWidth={1.5} aria-hidden="true" />
                   Connect Outlook
                 </span>

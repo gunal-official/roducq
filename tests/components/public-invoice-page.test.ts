@@ -83,12 +83,12 @@ describe("print layout (app/globals.css)", () => {
     const printBlock = css.slice(css.indexOf("@media print"));
     assert.ok(printBlock.includes(".dark"), "dark tokens overridden in print");
     assert.ok(
-      printBlock.includes("--card: #fffffe"),
-      "card prints on (near) white — the light --card token"
+      printBlock.includes("--ember-surface: #f5f5f4"),
+      "surfaces use the light Ember surface token"
     );
     assert.ok(
-      printBlock.includes("--text: #16100f"),
-      "ink prints espresso (the light --text token)"
+      printBlock.includes("--ember-text: #1c1917"),
+      "ink prints in the warm light-theme text token"
     );
   });
 

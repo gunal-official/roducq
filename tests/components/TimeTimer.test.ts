@@ -8,7 +8,7 @@ describe("TimeTimer", () => {
   it("keeps every control at 44px and unshrinkable at 320px", () => {
     const src = read("components/time/TimeTimer.tsx");
     assert.ok(src.includes("export function TimeTimer"));
-    assert.ok(src.includes('className="min-h-11 flex h-11 w-11 shrink-0 items-center justify-center rounded-full')); // discard
+    assert.ok(src.includes('className="min-h-11 flex h-11 w-11 shrink-0 items-center justify-center rounded-control')); // discard
     assert.ok(src.includes('className="h-11 shrink-0 gap-1.5')); // Stop
   });
 

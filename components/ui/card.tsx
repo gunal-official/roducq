@@ -2,8 +2,8 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-/* Card surfaces (ui.webp): white, 20px radius, hairline border + wide soft
-   shadow. CardTitle is the display face. */
+/* Card surfaces use the raised warm-neutral palette, a 12px radius, hairline
+   border, and soft elevation. CardTitle uses the Playfair Display face. */
 const Card = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
@@ -11,7 +11,7 @@ const Card = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "rounded-lg border border-border bg-card text-card-foreground shadow-card",
+      "rounded-surface border border-border bg-card text-card-foreground shadow-card",
       className
     )}
     {...props}
