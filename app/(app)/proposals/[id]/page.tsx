@@ -4,6 +4,12 @@
  * stat tiles (deliverables / budget / source), a "next step" CTA card that
  * turns the proposal into a delivery plan, and an activity timeline.
  *
+ * PHASE 4A LAYOUT CONTRACT
+ *   phone / tablet  the proposal document first, then the rail (next step,
+ *                   details, source, activity, version history).
+ *   desktop (1024+) the document on the left (2fr), the rail on the right (1fr).
+ *   The PDF export sits in the header on every width.
+ *
  * HOW TO TEST (locally — Supabase configured per README.md, seed loaded):
  *   1. From /proposals open the seeded "Brightloop Co." proposal.
  *   2. Status dropdown (Draft → Sent → Accepted / Declined): proposals.status
@@ -52,7 +58,6 @@ import { DownloadPdfButton } from "@/components/ui/DownloadPdfButton";
 import { ProposalStatusSelect } from "@/components/proposals/ProposalStatusSelect";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   ActivityTimeline,
   DocHeader,
@@ -60,6 +65,7 @@ import {
   StatTile,
   type TimelineEvent,
 } from "@/components/ui/doc-detail";
+import { SectionCard } from "@/components/ui/page";
 
 function MetaRow({
   label,
@@ -76,25 +82,22 @@ function MetaRow({
   );
 }
 
+/** A rail panel: the shared SectionCard with the rail's spacing. */
 function RailCard({
-  icon: Icon,
+  id,
+  icon,
   title,
   children,
 }: {
-  icon: React.ComponentType<{ className?: string }>;
+  id?: string;
+  icon: React.ComponentProps<typeof SectionCard>["icon"];
   title: string;
   children: React.ReactNode;
 }) {
   return (
-    <Card className="animate-rise-in">
-      <CardHeader className="flex-row items-center gap-2.5 space-y-0 border-b border-border px-5 py-3.5">
-        <span className="icon-chip icon-chip-muted h-8 w-8">
-          <Icon className="h-4 w-4" aria-hidden="true" />
-        </span>
-        <CardTitle className="text-base">{title}</CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-3.5 p-5">{children}</CardContent>
-    </Card>
+    <SectionCard id={id} icon={icon} title={title} className="animate-rise-in">
+      <div className="space-y-3.5">{children}</div>
+    </SectionCard>
   );
 }
 
@@ -229,7 +232,7 @@ export default async function ProposalDetailPage({
         />
       </div>
 
-      <div className="grid items-start gap-6 lg:grid-cols-[2fr_1fr]">
+      <div className="grid items-start gap-6 desk:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
         {/* ── Left: the proposal document ── */}
         <PaperCard
           letterLabel="Proposal"
@@ -257,14 +260,14 @@ export default async function ProposalDetailPage({
 
         {/* ── Right: action + metadata rail ── */}
         <div className="space-y-4">
-          <Card className="animate-rise-in" style={{ animationDelay: "40ms" }}>
-            <CardHeader className="flex-row items-center gap-2.5 space-y-0 border-b border-border px-5 py-3.5">
-              <span className="icon-chip icon-chip-accent h-8 w-8">
-                <Sparkles className="h-4 w-4" aria-hidden="true" />
-              </span>
-              <CardTitle className="text-base">Next step</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3 p-5">
+          <SectionCard
+            id="proposal-next-step"
+            icon={Sparkles}
+            tone="accent"
+            title="Next step"
+            className="animate-rise-in"
+          >
+            <div className="space-y-3">
               <p className="text-sm text-muted-foreground">
                 Turn this proposal into a delivery plan with tasks your
                 client can follow.
@@ -272,10 +275,10 @@ export default async function ProposalDetailPage({
               <CanEdit>
                 <GeneratePlanButton proposalId={proposal.id} />
               </CanEdit>
-            </CardContent>
-          </Card>
+            </div>
+          </SectionCard>
 
-          <RailCard icon={FileText} title="Details">
+          <RailCard id="proposal-details" icon={FileText} title="Details">
             <MetaRow label="Status">
               <CanEdit
                 fallback={<ProposalStatusBadge status={proposal.status} />}
@@ -294,8 +297,8 @@ export default async function ProposalDetailPage({
           </RailCard>
 
           {proposal.brief && (
-            <RailCard icon={BookOpen} title="Source">
-              <p className="text-sm">{proposal.brief.title}</p>
+            <RailCard id="proposal-source" icon={BookOpen} title="Source">
+              <p className="break-words text-sm">{proposal.brief.title}</p>
               <Link
                 href={`/briefs/${proposal.brief.id}`}
                 className="inline-flex min-h-11 min-w-11 items-center group gap-1.5 text-sm text-accent underline-offset-2 hover:underline"
@@ -306,7 +309,7 @@ export default async function ProposalDetailPage({
             </RailCard>
           )}
 
-          <RailCard icon={Clock} title="Activity">
+          <RailCard id="proposal-activity" icon={Clock} title="Activity">
             <ActivityTimeline events={events} />
           </RailCard>
 

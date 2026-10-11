@@ -1,82 +1,38 @@
 "use client";
 
 /**
- * Client side of /briefs — status filter tabs + search over the briefs the
+ * Client side of /briefs — status filter chips + search over the briefs the
  * server page already fetched (list sizes are small; filtering client-side
  * keeps this one round-trip with zero loading states).
+ *
+ * Phase 4A: the status filter is the shared FilterChips row (wraps, 44px
+ * targets) instead of the underline Tabs strip, which could not fit a 320px
+ * screen. Empty states use the shared EmptyState.
  */
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { FileText, Plus, Search, Eye, HelpCircle } from "lucide-react";
+import { Eye, FileText, HelpCircle, Plus, Search } from "lucide-react";
 
 import { StatusBadge } from "@/components/briefs/StatusBadge";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { FilterChips } from "@/components/ui/filter-chips";
 import { Input } from "@/components/ui/input";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { EmptyState } from "@/components/ui/page";
+import { ListStats, StackedBar, StatTile } from "@/components/ui/doc-detail";
 import { timeAgo } from "@/lib/utils";
-import { ListStats, StatTile, StackedBar } from "@/components/ui/doc-detail";
 import type { BriefStatus, BriefSummary } from "@/lib/types/brief";
 
 type StatusFilter = "all" | BriefStatus;
 
-const FILTER_TABS: { value: StatusFilter; label: string }[] = [
+const FILTER_OPTIONS: { value: StatusFilter; label: string }[] = [
   { value: "all", label: "All" },
   { value: "draft", label: "Draft" },
   { value: "in_review", label: "In review" },
   { value: "approved", label: "Approved" },
 ];
-
-function EmptyState({
-  hasBriefs,
-  onClearFilters,
-}: {
-  hasBriefs: boolean;
-  onClearFilters: () => void;
-}) {
-  return (
-    <div className="flex flex-col items-center justify-center gap-4 rounded-lg border border-dashed border-border py-16 text-center">
-      <span className="icon-chip icon-chip-accent">
-        <FileText className="h-5 w-5"  aria-hidden="true" />
-      </span>
-      {hasBriefs ? (
-        <>
-          <div>
-            <h2 className="font-display text-lg font-semibold tracking-tight">
-              No matching briefs
-            </h2>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Try a different search or status filter.
-            </p>
-          </div>
-          <Button variant="secondary" onClick={onClearFilters}>
-            Clear filters
-          </Button>
-        </>
-      ) : (
-        <>
-          <div>
-            <h2 className="font-display text-lg font-semibold tracking-tight">
-              No briefs yet
-            </h2>
-            <p className="mt-1 max-w-sm text-sm text-muted-foreground">
-              Paste a client email or call notes on the intake screen and
-              Roducq will structure it into a brief.
-            </p>
-          </div>
-          <Button asChild>
-            <Link href="/intake" className="inline-flex min-h-11 min-w-11 items-center">
-              <Plus className="mr-2 h-4 w-4"  aria-hidden="true" />
-              Create your first brief
-            </Link>
-          </Button>
-        </>
-      )}
-    </div>
-  );
-}
 
 function BriefCard({ brief }: { brief: BriefSummary }) {
   return (
@@ -86,12 +42,12 @@ function BriefCard({ brief }: { brief: BriefSummary }) {
           <div className="min-w-0">
             <Link
               href={`/briefs/${brief.id}`}
-              className="inline-flex min-h-11 min-w-11 items-center font-display text-base font-semibold leading-snug underline-offset-2 hover:underline"
+              className="inline-flex min-h-11 min-w-11 items-center break-words font-display text-base font-semibold leading-snug underline-offset-2 hover:underline"
             >
               {brief.title}
             </Link>
             {brief.client_name && (
-              <p className="mt-0.5 truncate text-sm text-muted-foreground">
+              <p className="truncate text-sm text-muted-foreground">
                 {brief.client_name}
               </p>
             )}
@@ -99,7 +55,7 @@ function BriefCard({ brief }: { brief: BriefSummary }) {
           <StatusBadge status={brief.status} className="shrink-0" />
         </div>
       </CardHeader>
-      <CardContent className="flex items-center justify-between gap-3 p-5">
+      <CardContent className="flex flex-wrap items-center justify-between gap-3 p-5">
         {brief.openQuestionCount > 0 ? (
           <Badge className="border-accent bg-accent-soft text-accent">
             {brief.openQuestionCount} open question
@@ -176,25 +132,21 @@ export function BriefsList({ briefs }: { briefs: BriefSummary[] }) {
           delay={80}
         />
       </ListStats>
-      <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
-        <Tabs
+
+      <div className="mb-5 flex flex-col gap-3 tab:flex-row tab:items-center tab:justify-between">
+        <FilterChips
+          label="Filter briefs by status"
           value={statusFilter}
-          onValueChange={(value) => setStatusFilter(value as StatusFilter)}
-        >
-          <TabsList>
-            {FILTER_TABS.map((tab) => (
-              <TabsTrigger key={tab.value} value={tab.value}>
-                {tab.label}
-                <span className="ml-1.5 text-xs text-muted-foreground">
-                  {statusCounts[tab.value]}
-                </span>
-              </TabsTrigger>
-            ))}
-          </TabsList>
-        </Tabs>
-        <div className="relative w-full sm:w-64">
-          <Search className="absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"  aria-hidden="true" />
+          onChange={setStatusFilter}
+          options={FILTER_OPTIONS.map((option) => ({
+            ...option,
+            count: statusCounts[option.value],
+          }))}
+        />
+        <div className="relative w-full tab:w-72">
+          <Search className="absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
           <Input
+            type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search title or client…"
@@ -205,13 +157,38 @@ export function BriefsList({ briefs }: { briefs: BriefSummary[] }) {
       </div>
 
       {visible.length === 0 ? (
-        <EmptyState
-          hasBriefs={briefs.length > 0}
-          onClearFilters={() => {
-            setStatusFilter("all");
-            setQuery("");
-          }}
-        />
+        briefs.length > 0 ? (
+          <EmptyState
+            icon={FileText}
+            title="No matching briefs"
+            description="Try a different search or status filter."
+            action={
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  setStatusFilter("all");
+                  setQuery("");
+                }}
+              >
+                Clear filters
+              </Button>
+            }
+          />
+        ) : (
+          <EmptyState
+            icon={FileText}
+            title="No briefs yet"
+            description="Paste a client email or call notes on the intake screen and Roducq will structure it into a brief."
+            action={
+              <Button asChild>
+                <Link href="/intake" className="inline-flex min-h-11 min-w-11 items-center">
+                  <Plus className="mr-2 h-4 w-4" aria-hidden="true" />
+                  Create your first brief
+                </Link>
+              </Button>
+            }
+          />
+        )
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {visible.map((brief) => (
