@@ -3,12 +3,14 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { X } from "lucide-react";
-import { isActive, visibleGroups } from "./nav-items";
+import { isNavActive, visibleGroups } from "./nav-items";
 import { WorkspaceSwitcher, type SwitcherWorkspace } from "./WorkspaceSwitcher";
 
-// Mobile (<tab) navigation: hamburger in the Topbar opens this drawer —
-// slide-in panel with grouped icon-chip rows (ui.webp language). Nothing
-// clips at 320px, every item is a 44px row.
+// Mobile (<tab) navigation: the topbar hamburger and the bottom tab bar's
+// "More" slot both open this drawer — slide-in panel with grouped icon-chip
+// rows (Ember Studio language). It carries every route the tab bar omits.
+// Nothing clips at 320px, every item is a 44px row, and the panel respects
+// top/bottom safe-area insets. Active highlighting is unique (isNavActive).
 export function MobileNav({
   open,
   onClose,
@@ -36,7 +38,7 @@ export function MobileNav({
       />
       <nav
         aria-label="Primary"
-        className="absolute left-0 top-0 flex h-full w-[min(288px,86vw)] flex-col gap-1 overflow-y-auto border-r border-border bg-card p-3 shadow-pop animate-slide-in"
+        className="absolute left-0 top-0 flex h-full w-[min(288px,86vw)] flex-col gap-1 overflow-y-auto border-r border-border bg-card p-3 pb-[max(0.75rem,env(safe-area-inset-bottom,0.75rem))] pt-[max(0.75rem,env(safe-area-inset-top,0.75rem))] shadow-pop animate-slide-in"
       >
         <div className="mb-2 flex items-center justify-between gap-2">
           <WorkspaceSwitcher workspaces={workspaces} activeWorkspaceId={activeWorkspaceId} />
@@ -59,7 +61,7 @@ export function MobileNav({
             </p>
             <div className="flex flex-col gap-1">
               {group.items.map(({ label, href, icon: Icon }) => {
-                const active = isActive(pathname, href);
+                const active = isNavActive(pathname, href);
                 return (
                   <Link
                     key={href}

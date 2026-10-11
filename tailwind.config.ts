@@ -21,6 +21,7 @@ const config = {
         surface: {
           DEFAULT: "var(--surface)",
           raised: "var(--surface-raised)",
+          translucent: "var(--bg-translucent)",
           foreground: "var(--text)",
         },
         accent: {

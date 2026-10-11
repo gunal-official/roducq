@@ -1005,6 +1005,44 @@ async function main() {
     }
   }
 
+  // ── shell shots (SHELL_SHOTS=1): interactive Phase-2 shell evidence —
+  // phone tab bar + open "More" drawer, desktop collapsed section, and both
+  // themes in each band. Opt-in, screenshots only (no assertions).
+  if (process.env.SHELL_SHOTS === "1") {
+    mkdirSync(join(SHOTS, "shell"), { recursive: true });
+    const shellShot = async (w, h, name, scheme, act) => {
+      const ctx = await browser.newContext({
+        viewport: { width: w, height: h },
+        deviceScaleFactor: 2,
+        colorScheme: scheme,
+      });
+      await ctx.addCookies([authCookie]);
+      const page = await ctx.newPage();
+      try {
+        await page.goto(`${BASE}/`, { waitUntil: "load", timeout: 20000 });
+        await page.waitForTimeout(600);
+        if (act) await act(page);
+        await page.screenshot({ path: join(SHOTS, "shell", `${name}.png`) });
+        say(`     shell-shot ${name} (${w}px ${scheme})`);
+      } catch (e) {
+        say(`✗    shell-shot ${name} failed: ${String(e).slice(0, 80)}`);
+      }
+      await ctx.close();
+    };
+    await shellShot(375, 740, "mobile-tabbar-light", "light", null);
+    await shellShot(375, 740, "mobile-drawer-light", "light", async (page) => {
+      await page.click('button[aria-label="More navigation"]', { timeout: 8000 });
+      await page.waitForTimeout(400);
+    });
+    await shellShot(375, 740, "mobile-tabbar-dark", "dark", null);
+    await shellShot(1440, 900, "desktop-sidebar-light", "light", null);
+    await shellShot(1440, 900, "desktop-collapsed-light", "light", async (page) => {
+      await page.click('aside button:has-text("Money")', { timeout: 8000 });
+      await page.waitForTimeout(300);
+    });
+    await shellShot(1440, 900, "desktop-sidebar-dark", "dark", null);
+  }
+
   writeFileSync(join(SHOTS, `summary${SUM_SUFFIX}.json`), JSON.stringify({ mode: MODE, results }, null, 2));
   await browser.close();
   freePort(APP_PORT);

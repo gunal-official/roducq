@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 
+import { MobileTabBar } from "@/components/app-shell/MobileTabBar";
 import { Sidebar } from "@/components/app-shell/Sidebar";
 import { Topbar } from "@/components/app-shell/Topbar";
 import { TimeTimer } from "@/components/time/TimeTimer";
@@ -49,7 +50,7 @@ export default async function AppLayout({
 
   return (
     <ToastProvider>
-    <div className="app-shell grid h-dvh grid-cols-1 grid-rows-[auto_1fr] overflow-hidden tab:grid-cols-[64px_1fr] desk:grid-cols-[232px_1fr]">
+    <div className="app-shell grid h-dvh grid-cols-1 grid-rows-[auto_1fr] overflow-hidden tab:grid-cols-[64px_1fr] desk:grid-cols-[256px_1fr]">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-card focus:px-3 focus:py-2 focus:text-sm focus:shadow-md print:hidden"
@@ -87,6 +88,14 @@ export default async function AppLayout({
       >
         {children}
       </main>
+      {/* Phone (<tab) bottom tab bar + "More" drawer. position:fixed, so it
+          takes no grid track; <main> clears it via globals.css (safe-area
+          aware). Print opts out with print:hidden on the bar itself. */}
+      <MobileTabBar
+        workspaces={context.workspaces}
+        activeWorkspaceId={context.id}
+        canSeeMoney={context.canSeeMoney}
+      />
       {context.canSeeMoney && (
         <TimeTimer briefs={briefs.map((b) => ({ id: b.id, title: b.title }))} />
       )}

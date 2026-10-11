@@ -11,8 +11,12 @@ import { Input } from "@/components/ui/input";
 import { Menu, MenuItem } from "@/components/ui/menu";
 import { MONEY_HREFS, NAV_ITEMS } from "./nav-items";
 
-/* Topbar (ui.webp shell): 8px-radius search and control buttons, circular avatar
-   chip. 44px tap targets everywhere. */
+/* Phase 2 topbar (Ember Studio shell): translucent warm surface with
+   backdrop blur over the page, hairline bottom border, 8px-radius search
+   and control buttons, circular avatar chip. 44px tap targets everywhere.
+   Notifications: the product has no notification service yet, so the
+   supported affordance is the Inbox shortcut (email/file intake alerts) —
+   a bell/counter is deliberately NOT faked here. */
 export function Topbar({
   initials,
   name,
@@ -42,7 +46,7 @@ export function Topbar({
   }, [navOpen]);
 
   return (
-    <header className="flex min-h-16 flex-wrap items-center gap-2 px-3 py-2 sm:px-5">
+    <header className="sticky top-0 z-30 flex min-h-16 flex-wrap items-center gap-2 border-b border-border bg-surface-translucent px-3 py-2 backdrop-blur-md sm:px-5">
       <button
         type="button"
         aria-label="Open menu"
