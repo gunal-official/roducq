@@ -32,19 +32,16 @@
 
 import nodemailer from "nodemailer";
 
-import { FONT_STACKS, mix, RADIUS, TOKENS } from "./design-tokens.ts";
+import { FONT_STACKS, RADIUS_CONTROL, TOKENS } from "./design-tokens.ts";
 
-/**
- * Email palette — the app's light tokens (email clients have no dark-mode
- * contract worth trusting). Secondary/footer ink are mixed off --text the
- * same way the PDF derives its muted ink, so the email stays warm.
- */
+/** Email clients have no reliable dark-mode contract, so they use the exact
+ * light palette and type stacks shared with the app and PDF exports. */
 const EMAIL = {
   ink: TOKENS.text,
-  accent: TOKENS.accent,
+  accent: TOKENS.terracotta,
   onAccent: "#ffffff",
-  secondary: mix(TOKENS.text, TOKENS.card, 0.62),
-  footer: mix(TOKENS.text, TOKENS.card, 0.45),
+  secondary: TOKENS.secondaryText,
+  footer: TOKENS.neutral,
 } as const;
 
 export type InviteEmailResult =
@@ -120,7 +117,7 @@ export async function sendInviteEmail(input: {
         <strong>${input.workspaceName}</strong> on Roducq as a member.</p>
       <p style="padding:16px 0;">
         <a href="${input.inviteUrl}"
-           style="display:inline-block;background:${EMAIL.accent};color:${EMAIL.onAccent};text-decoration:none;font-size:14px;font-weight:600;padding:10px 18px;border-radius:${RADIUS};">
+           style="display:inline-block;background:${EMAIL.accent};color:${EMAIL.onAccent};text-decoration:none;font-size:14px;font-weight:600;padding:10px 18px;border-radius:${RADIUS_CONTROL};">
           Open the invite
         </a>
       </p>

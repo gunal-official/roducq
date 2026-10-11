@@ -24,7 +24,7 @@ const STATUS_STYLES: Record<
   },
   signed: {
     label: "Signed",
-    className: "border-transparent bg-accent text-white",
+    className: "border-transparent bg-accent text-accent-foreground",
   },
   void: {
     label: "Void",

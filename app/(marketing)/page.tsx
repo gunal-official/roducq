@@ -254,7 +254,7 @@ export default function HomePage() {
               <li key={entry.slug}>
                 <Link
                   href={`/vs/${entry.slug}`}
-                  className="inline-flex min-h-11 items-center rounded-full border border-border bg-card px-4 text-sm font-medium text-text shadow-rail transition-colors hover:bg-muted"
+                  className="inline-flex min-h-11 items-center rounded-control border border-border bg-card px-4 text-sm font-medium text-text shadow-rail transition-colors hover:bg-muted"
                 >
                   roducq vs {entry.competitor}
                 </Link>

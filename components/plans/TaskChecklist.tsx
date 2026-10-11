@@ -95,7 +95,7 @@ export function TaskChecklist({
                   className={cn(
                     "mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-sm border",
                     task.checked
-                      ? "border-accent bg-accent text-white"
+                      ? "border-accent bg-accent text-accent-foreground"
                       : "border-border bg-card"
                   )}
                 >

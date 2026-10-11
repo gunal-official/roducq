@@ -20,7 +20,7 @@ const STATUS_STYLES: Record<
   },
   approved: {
     label: "Approved",
-    className: "border-transparent bg-accent text-white",
+    className: "border-transparent bg-accent text-accent-foreground",
   },
 };
 

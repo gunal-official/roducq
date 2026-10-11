@@ -64,7 +64,7 @@ function QuestionsBox({ questions }: { questions: BriefQuestion[] }) {
         <h3 className="font-display text-sm font-semibold tracking-tight">
           Open questions
         </h3>
-        <Badge className="border-transparent bg-accent text-white">
+        <Badge className="border-transparent bg-accent text-accent-foreground">
           {open.length} open
         </Badge>
       </div>

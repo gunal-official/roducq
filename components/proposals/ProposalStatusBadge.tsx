@@ -22,7 +22,7 @@ const STATUS_STYLES: Record<
   },
   accepted: {
     label: "Accepted",
-    className: "border-transparent bg-accent text-white",
+    className: "border-transparent bg-accent text-accent-foreground",
   },
   declined: {
     label: "Declined",

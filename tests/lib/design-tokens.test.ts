@@ -1,15 +1,13 @@
 /**
  * The pixel-parity contract between screen and print.
  *
- * The two surfaces used to carry their own copy of the palette, and the two
- * copies drifted (the PDF's ink was #1a1a1f while the app's --text was
- * #17171c). These tests are the thing that was missing: they fail when one
- * side moves without the other.
+ * The browser and PDF writer consume the same canonical Ember Studio
+ * palette, and these tests compare CSS variables, TypeScript tokens, and PDF
+ * colors so a screen/print change cannot drift silently.
  *
- * NOTE ON WHAT THIS IS NOT. This locks the palette to one source of truth. It
- * does NOT compare rendered output against the 15 reference PDFs — that pass
- * is still parked in docs/step-34-closeout.md §4 until the reference renders
- * land in the workspace, and no pixel goldens are generated here.
+ * This locks token parity; it does not compare rendered output against the
+ * 15 reference PDFs mentioned in docs/step-34-closeout.md §4. No PDF pixel
+ * goldens are generated here.
  */
 
 import { describe, test } from "node:test";
@@ -93,16 +91,17 @@ describe("design tokens", () => {
   test("every literal-hex :root token is mirrored in lib/design-tokens.ts", () => {
     // The drift this file exists to prevent: a token added or re-tinted in
     // CSS that the TS side never learned about.
-    const hexInCss = [...DECLARED.entries()]
+    const mirrored = Object.values(TOKEN_CSS_VAR).sort();
+    const managed = [...DECLARED.entries()]
+      .filter(([name]) => name.startsWith("--ember-") || ["--error", "--success", "--success-soft", "--info"].includes(name))
       .filter(([, value]) => /^#[0-9a-f]{6}$/i.test(value))
       .map(([name]) => name)
       .sort();
-    const mirrored = Object.values(TOKEN_CSS_VAR).sort();
 
     assert.deepEqual(
-      hexInCss,
+      managed,
       mirrored,
-      "app/globals.css and TOKEN_CSS_VAR disagree on which tokens are plain hex — update lib/design-tokens.ts"
+      "app/globals.css and TOKEN_CSS_VAR disagree on canonical literal tokens — update lib/design-tokens.ts"
     );
   });
 
@@ -130,7 +129,7 @@ describe("design tokens", () => {
     // backdrop, paper is white. Anything else diverging means a token was
     // re-tinted in one mode and forgotten in the other.
     for (const [name, cssVar] of Object.entries(TOKEN_CSS_VAR)) {
-      if (name === "bg") continue;
+      if (name === "background") continue;
       assert.equal(
         PRINT.get(cssVar)?.toLowerCase(),
         DECLARED.get(cssVar)?.toLowerCase(),
@@ -139,12 +138,13 @@ describe("design tokens", () => {
     }
   });
 
-  test("TOKENS.bg is the screen backdrop — paper overrides it to white", () => {
-    assert.equal(TOKENS.bg, DECLARED.get("--bg")?.toLowerCase());
-    assert.equal(PRINT.get("--bg")?.toLowerCase(), "#ffffff");
-    // And the shared palette keeps the screen value: --bg means "the surface
-    // behind a card", which only the screen has.
-    assert.notEqual(TOKENS.bg, PRINT.get("--bg")?.toLowerCase());
+  test("legacy background aliases resolve to the screen token; print uses paper white", () => {
+    assert.equal(TOKENS.bg, TOKENS.background);
+    assert.equal(DECLARED.get("--bg"), "var(--ember-background)");
+    assert.equal(PRINT.get("--ember-background")?.toLowerCase(), "#ffffff");
+    // `background` means the screen canvas in the shared palette; print is
+    // the only intentional exception because paper itself is white.
+    assert.notEqual(TOKENS.background, PRINT.get("--ember-background")?.toLowerCase());
   });
 
   test("hexToRgb / rgbToHex round-trip without losing a step", () => {
@@ -168,8 +168,8 @@ describe("design tokens", () => {
   test("mix is the sRGB blend CSS color-mix() performs", () => {
     assert.equal(mix(TOKENS.text, TOKENS.card, 1), TOKENS.text);
     assert.equal(mix(TOKENS.text, TOKENS.card, 0), TOKENS.card);
-    // 50/50 between espresso ink and near-white card.
-    assert.equal(mix(TOKENS.text, TOKENS.card, 0.5), "#8b8887");
+    // 50/50 between Ember ink and the light surface.
+    assert.equal(mix(TOKENS.text, TOKENS.card, 0.5), "#898786");
     // Out-of-range weights clamp instead of producing impossible channels.
     assert.equal(mix(TOKENS.text, TOKENS.card, 4), TOKENS.text);
     assert.equal(mix(TOKENS.text, TOKENS.card, -1), TOKENS.card);
@@ -187,14 +187,14 @@ describe("design tokens", () => {
 
 describe("PDF palette", () => {
   test("print colours are the tokens, not a second copy of them", () => {
-    // The exact drift this work fixed: ink was #1a1a1f where --text is
-    // #17171c, and hairline was #e5e7eb where --border was #e9e9ee.
+    // Assert the PDF writer continues to use the Ember text and border
+    // tokens directly, rather than maintaining a parallel print palette.
     for (const [name, token] of [
-      ["accent", "accent"],
+      ["accent", "terracotta"],
       ["ink", "text"],
       ["hairline", "border"],
-      ["zebra", "muted"],
-      ["white", "card"],
+      ["zebra", "surface"],
+      ["white", "background"],
       ["success", "success"],
       ["successSoft", "successSoft"],
       ["info", "info"],
@@ -208,21 +208,13 @@ describe("PDF palette", () => {
     }
   });
 
-  test("derived print colours still come off --text", () => {
-    // `muted` (secondary ink) and `border` (6pt outlines) are mixed, not
-    // copied — assert they are mixed off the ink token rather than being
-    // free-floating constants.
-    assert.equal(rgbToHex(COLORS.muted), mix(TOKENS.text, TOKENS.card, 0.62));
-    assert.equal(rgbToHex(COLORS.border), mix(TOKENS.text, TOKENS.card, 0.25));
+  test("PDF secondary and border tones reuse their explicit design tokens", () => {
+    assert.equal(rgbToHex(COLORS.muted), TOKENS.secondaryText);
+    assert.equal(rgbToHex(COLORS.border), TOKENS.border);
 
-    for (const name of ["muted", "border"] as const) {
-      const derived = hexToRgb(rgbToHex(COLORS[name]));
-      const ink = hexToRgb(TOKENS.text);
-      assert.ok(
-        derived.r > ink.r && derived.r < 1,
-        `COLORS.${name} should sit between the ink and the page`
-      );
-    }
+    const secondary = hexToRgb(rgbToHex(COLORS.muted));
+    const ink = hexToRgb(TOKENS.text);
+    assert.ok(secondary.r > ink.r && secondary.r < 1);
   });
 });
 
@@ -264,7 +256,7 @@ describe("invoice status parity", () => {
         `draft.${part} picked up the accent`
       );
     }
-    assert.equal(rgbToHex(INVOICE_STATUS_TONES.draft.fill), TOKENS.muted);
+    assert.equal(rgbToHex(INVOICE_STATUS_TONES.draft.fill), TOKENS.surface);
   });
 
   test("the four statuses are four different colours", () => {

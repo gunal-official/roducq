@@ -39,7 +39,7 @@ describe("InvoiceStatusBadge — Draft/Sent/Paid/Void redesign", () => {
 
   it("Paid is a solid success green (terminal, good-news state)", () => {
     assert.ok(
-      src.includes("bg-success text-white"),
+      src.includes("bg-success text-success-foreground"),
       "paid status should use --success, not accent"
     );
   });

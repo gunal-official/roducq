@@ -6,21 +6,30 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 
-// 2026-09 design guide. Body face: Inter, self-hosted via next/font/local
-// (latin woff2s committed under app/fonts/) so visitors never hit
-// fonts.googleapis.com and builds work offline. Display face:
-// Georgia/Times (tailwind `font-display`), system serifs with nothing
-// to load.
-const inter = localFont({
-  src: [
-    { path: "./fonts/inter-latin-400-normal.woff2", weight: "400", style: "normal" },
-    { path: "./fonts/inter-latin-500-normal.woff2", weight: "500", style: "normal" },
-    { path: "./fonts/inter-latin-600-normal.woff2", weight: "600", style: "normal" },
-    { path: "./fonts/inter-latin-700-normal.woff2", weight: "700", style: "normal" },
-  ],
-  variable: "--font-inter",
+// Ember Studio typography is fully self-hosted so the app renders offline
+// and visitors never need a request to a public font CDN.
+const playfair = localFont({
+  src: "./fonts/playfair-display-latin-wght-normal.woff2",
+  variable: "--font-playfair",
+  weight: "400 900",
   display: "swap",
-  fallback: ["system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
+  fallback: ["Georgia", "Times New Roman", "serif"],
+});
+
+const sourceSans = localFont({
+  src: "./fonts/source-sans-3-latin-wght-normal.woff2",
+  variable: "--font-source-sans",
+  weight: "200 900",
+  display: "swap",
+  fallback: ["system-ui", "-apple-system", "Segoe UI", "sans-serif"],
+});
+
+const firaCode = localFont({
+  src: "./fonts/fira-code-latin-wght-normal.woff2",
+  variable: "--font-fira-code",
+  weight: "300 700",
+  display: "swap",
+  fallback: ["ui-monospace", "SFMono-Regular", "monospace"],
 });
 
 export const metadata: Metadata = {
@@ -37,7 +46,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          inter.variable,
+          playfair.variable,
+          sourceSans.variable,
+          firaCode.variable,
           "min-h-screen bg-background font-sans text-foreground antialiased"
         )}
       >

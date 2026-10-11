@@ -45,7 +45,7 @@ const STATUS_STYLES: Record<
   paid: {
     label: "Paid",
     className:
-      "border-transparent bg-success text-white print:border-success print:bg-transparent print:text-success",
+      "border-transparent bg-success text-success-foreground print:border-success print:bg-transparent print:text-success",
   },
   void: {
     label: "Void",

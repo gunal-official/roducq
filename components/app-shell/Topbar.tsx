@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Menu, MenuItem } from "@/components/ui/menu";
 import { MONEY_HREFS, NAV_ITEMS } from "./nav-items";
 
-/* Topbar (ui.webp shell): filled pill search, round icon buttons, avatar user
+/* Topbar (ui.webp shell): 8px-radius search and control buttons, circular avatar
    chip. 44px tap targets everywhere. */
 export function Topbar({
   initials,
@@ -48,7 +48,7 @@ export function Topbar({
         aria-label="Open menu"
         aria-expanded={navOpen}
         onClick={() => setNavOpen(true)}
-        className="flex min-h-11 min-w-11 items-center justify-center rounded-full text-muted-foreground transition-colors duration-150 hover:bg-muted hover:text-text tab:hidden"
+        className="flex min-h-11 min-w-11 items-center justify-center rounded-control text-muted-foreground transition-colors duration-150 hover:bg-muted hover:text-text tab:hidden"
       >
         <MenuIcon aria-hidden="true" className="h-5 w-5" />
       </button>
@@ -78,7 +78,7 @@ export function Topbar({
           type="search"
           name="q"
           placeholder="Search..."
-          className="h-11 w-full rounded-full border-transparent bg-muted pl-10 shadow-none"
+          className="h-11 w-full rounded-control border-transparent bg-muted pl-10 shadow-none"
         />
       </form>
 
@@ -87,16 +87,16 @@ export function Topbar({
           href="/intake/inbox"
           aria-label="Inbox"
           title="Inbox"
-          className="flex min-h-11 min-w-11 items-center justify-center rounded-full text-muted-foreground transition-colors duration-150 hover:bg-muted hover:text-text"
+          className="flex min-h-11 min-w-11 items-center justify-center rounded-control text-muted-foreground transition-colors duration-150 hover:bg-muted hover:text-text"
         >
           <Inbox aria-hidden="true" className="h-[18px] w-[18px]" />
         </Link>
         <Menu label="Account menu" trigger={
           /* Menu wraps its trigger in a <button> — this MUST stay non-interactive
              (button-in-button = invalid HTML = hydration #418). */
-          <span className="flex items-center gap-2 rounded-full py-1 pl-1 pr-2">
+          <span className="flex items-center gap-2 rounded-control py-1 pl-1 pr-2">
             <Avatar className="h-8 w-8">
-              <AvatarFallback className="bg-accent text-xs font-semibold text-white">{initials}</AvatarFallback>
+              <AvatarFallback className="bg-accent text-xs font-semibold text-accent-foreground">{initials}</AvatarFallback>
             </Avatar>
             <span className="hidden max-w-[140px] truncate text-sm font-semibold md:inline">{name ?? email}</span>
           </span>

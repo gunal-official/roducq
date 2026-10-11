@@ -353,7 +353,7 @@ export default async function DashboardPage() {
                   <div key={stage.href} className="flex items-center gap-2">
                     <Link
                       href={stage.href}
-                      className="flex min-h-11 items-center gap-2 rounded-full border border-border bg-card px-3.5 text-sm transition-colors hover:border-accent hover:text-accent"
+                      className="flex min-h-11 items-center gap-2 rounded-control border border-border bg-card px-3.5 text-sm transition-colors hover:border-accent hover:text-accent"
                     >
                       <span className="icon-chip icon-chip-muted h-7 w-7">
                         <stage.icon className="h-4 w-4" aria-hidden="true" />

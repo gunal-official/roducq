@@ -37,7 +37,7 @@ export function Menu({ trigger, children, label }: { trigger: React.ReactNode; c
         aria-expanded={open}
         aria-label={label}
         onClick={() => setOpen((o) => !o)}
-        className="flex min-h-11 min-w-11 items-center justify-center rounded-md transition-colors duration-150 hover:bg-muted focus-visible:bg-muted"
+        className="flex min-h-11 min-w-11 items-center justify-center rounded-control transition-colors duration-150 hover:bg-muted focus-visible:bg-muted"
       >
         {trigger}
       </button>
@@ -45,7 +45,7 @@ export function Menu({ trigger, children, label }: { trigger: React.ReactNode; c
         <div
           role="menu"
           aria-label={label}
-          className="absolute right-0 top-full z-50 mt-1 min-w-[176px] rounded-md border border-border bg-background p-1 shadow-lg animate-pop-in"
+          className="absolute right-0 top-full z-50 mt-1 min-w-[176px] rounded-surface border border-border bg-background p-1 shadow-lg animate-pop-in"
         >
           {/* close is an event callback (menu-item onClick) — its btnRef
               read happens at invoke time, never during render; the rule
@@ -64,7 +64,7 @@ export function MenuItem({ children, onSelect }: { children: React.ReactNode; on
       type="button"
       role="menuitem"
       onClick={onSelect}
-      className="flex min-h-11 w-full items-center rounded-sm px-3 text-left text-sm text-text transition-colors duration-150 hover:bg-muted"
+      className="flex min-h-11 w-full items-center rounded-control px-3 text-left text-sm text-text transition-colors duration-150 hover:bg-muted"
     >
       {children}
     </button>

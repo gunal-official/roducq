@@ -7,7 +7,7 @@
  * inline styles only. Reports to Sentry when SENTRY_DSN is configured
  * (lazy import: with it unset, the SDK chunk is never loaded).
  *
- * Styling comes from lib/design-tokens.ts (2026-09 design guide) rather
+ * Styling comes from lib/design-tokens.ts (Ember Studio design system) rather
  * than hardcoded hex, so this page can't drift from the rest of the app.
  * Light tokens only: the theme class isn't available once the root
  * layout has been replaced.
@@ -15,7 +15,7 @@
 
 import { useEffect } from "react";
 
-import { FONT_STACKS, mix, RADIUS, TOKENS } from "@/lib/design-tokens";
+import { FONT_STACKS, RADIUS_CONTROL, TOKENS } from "@/lib/design-tokens";
 
 export default function GlobalError({
   error,
@@ -44,7 +44,7 @@ export default function GlobalError({
           justifyContent: "center",
           minHeight: "100vh",
           fontFamily: FONT_STACKS.body,
-          background: TOKENS.bg,
+          background: TOKENS.background,
           color: TOKENS.text,
           textAlign: "center",
           padding: "0 16px",
@@ -63,7 +63,7 @@ export default function GlobalError({
         <p
           style={{
             fontSize: 14,
-            color: mix(TOKENS.text, TOKENS.bg, 0.62),
+            color: TOKENS.secondaryText,
             marginTop: 8,
             maxWidth: 320,
           }}
@@ -78,9 +78,9 @@ export default function GlobalError({
             fontSize: 14,
             fontWeight: 600,
             padding: "8px 16px",
-            borderRadius: RADIUS,
-            border: `1px solid ${TOKENS.accent}`,
-            background: TOKENS.accent,
+            borderRadius: RADIUS_CONTROL,
+            border: `1px solid ${TOKENS.terracotta}`,
+            background: TOKENS.terracotta,
             color: "#ffffff",
             cursor: "pointer",
           }}

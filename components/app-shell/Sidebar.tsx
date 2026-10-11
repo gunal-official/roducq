@@ -28,7 +28,7 @@ export function Sidebar({
       <Link href="/" className="mb-4 flex h-11 items-center gap-2.5 px-1 desk:px-2">
         <span
           aria-hidden="true"
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-accent font-display text-base font-extrabold text-white shadow-rail"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-accent font-display text-base font-extrabold text-accent-foreground shadow-rail"
         >
           R
         </span>
@@ -58,7 +58,7 @@ export function Sidebar({
                   aria-current={active ? "page" : undefined}
                   title={label}
                   className={[
-                    "relative flex min-h-11 items-center gap-3 rounded-xl px-1.5 text-sm transition-colors duration-150",
+                    "relative flex min-h-11 items-center gap-3 rounded-control px-1.5 text-sm transition-colors duration-150",
                     "max-desk:justify-center max-desk:px-0",
                     "hover:bg-muted/70 focus-visible:bg-muted/70",
                     active

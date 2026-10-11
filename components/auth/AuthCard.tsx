@@ -2,7 +2,8 @@ import Link from "next/link";
 
 /**
  * Shared visual frame for /login, /signup, and /onboarding:
- * centered ~400px card on --bg, Georgia logo, card-level radius-lg.
+ * centered ~400px card on the Ember background, Playfair Display wordmark,
+ * and a 12px card radius.
  */
 export function AuthCard({
   title,

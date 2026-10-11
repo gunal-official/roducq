@@ -150,7 +150,7 @@ function MemberRow({
     >
       <div className="flex items-center gap-3">
         <Avatar className="h-8 w-8 shrink-0">
-          <AvatarFallback className="bg-accent text-xs font-semibold text-white">
+          <AvatarFallback className="bg-accent text-xs font-semibold text-accent-foreground">
             {initials}
           </AvatarFallback>
         </Avatar>

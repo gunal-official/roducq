@@ -3,13 +3,13 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
 
-/* Badges/chips (ui.webp): rounded-full pills with soft tinted fills. */
+/* Ember Studio badges use pill corners and token-tinted fills. */
 const badgeVariants = cva(
   "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
   {
     variants: {
       variant: {
-        default: "border-transparent bg-accent text-white",
+        default: "border-transparent bg-accent text-accent-foreground",
         soft: "border-transparent bg-accent-soft text-accent",
         success: "border-transparent bg-success-soft text-success",
         secondary: "border-transparent bg-muted text-text",

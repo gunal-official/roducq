@@ -117,7 +117,7 @@ export function PricingPlans({
                 className={cn(
                   "inline-flex min-h-11 items-center justify-center rounded-md px-4 text-sm font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                   active
-                    ? "bg-accent text-white"
+                    ? "bg-accent text-accent-foreground"
                     : "text-muted-foreground hover:text-text"
                 )}
               >
@@ -142,7 +142,7 @@ export function PricingPlans({
               key={tier.slug}
               className={cn(
                 "flex flex-col",
-                highlighted && "border-accent shadow-pop"
+                highlighted && "border-highlight shadow-pop"
               )}
               data-tier={tier.slug}
             >
