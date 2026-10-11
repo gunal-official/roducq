@@ -12,21 +12,18 @@ import { Loader2, Save, Building2 } from "lucide-react";
 
 import { updateWorkspaceName } from "@/app/(app)/settings/actions";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { SectionCard } from "@/components/ui/page";
 import { Input } from "@/components/ui/input";
 
 export function WorkspaceNameCard({
   name,
   isOwner,
+  sectionId,
 }: {
   name: string;
   isOwner: boolean;
+  /** Anchor id for the settings page's section nav. */
+  sectionId?: string;
 }) {
   const [value, setValue] = useState(name);
   const [saving, setSaving] = useState(false);
@@ -54,15 +51,11 @@ export function WorkspaceNameCard({
   }
 
   return (
-    <Card>
-      <CardHeader className="space-y-1 border-b border-border px-5 py-3.5">
-        <div className="flex items-center gap-2.5">
-          <span className="icon-chip icon-chip-muted h-8 w-8">
-            <Building2 className="h-4 w-4" aria-hidden="true" />
-          </span>
-          <CardTitle className="text-base">Workspace</CardTitle>
-        </div>
-        <CardDescription>
+    <SectionCard
+      icon={Building2}
+      title="Workspace"
+      description={
+        <>
           The workspace name appears in the sidebar and across the app.
           {!isOwner && (
             <span className="italic">
@@ -70,49 +63,50 @@ export function WorkspaceNameCard({
               View only — owners manage this.
             </span>
           )}
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="p-5">
-        {isOwner ? (
-          <div className="space-y-2.5">
-            <div className="flex items-center gap-2.5">
-              <Input
-                value={value}
-                onChange={(e) => {
-                  setValue(e.target.value);
-                  setSavedLabel(null);
-                }}
-                maxLength={80}
-                placeholder="Workspace name"
-                className="max-w-sm"
-              />
-              <Button
-                size="sm"
-                onClick={handleSave}
-                disabled={!dirty || saving}
-              >
-                {saving ? (
-                  <>
-                    <Loader2 className="h-4 w-4 animate-spin"  aria-hidden="true" />
-                    Saving…
-                  </>
-                ) : (
-                  <>
-                    <Save className="h-4 w-4"  aria-hidden="true" />
-                    Save
-                  </>
-                )}
-              </Button>
-            </div>
-            {error && <p className="text-xs text-error">{error}</p>}
-            {savedLabel && (
-              <p className="text-xs text-muted-foreground">{savedLabel}</p>
-            )}
+        </>
+      }
+      id={sectionId}
+      bodyClassName="p-5"
+    >
+      {isOwner ? (
+        <div className="space-y-2.5">
+          <div className="flex items-center gap-2.5">
+            <Input
+              value={value}
+              onChange={(e) => {
+                setValue(e.target.value);
+                setSavedLabel(null);
+              }}
+              maxLength={80}
+              placeholder="Workspace name"
+              className="max-w-sm"
+            />
+            <Button
+              size="sm"
+              onClick={handleSave}
+              disabled={!dirty || saving}
+            >
+              {saving ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin"  aria-hidden="true" />
+                  Saving…
+                </>
+              ) : (
+                <>
+                  <Save className="h-4 w-4"  aria-hidden="true" />
+                  Save
+                </>
+              )}
+            </Button>
           </div>
-        ) : (
-          <p className="text-sm font-medium">{name}</p>
-        )}
-      </CardContent>
-    </Card>
+          {error && <p className="text-xs text-error">{error}</p>}
+          {savedLabel && (
+            <p className="text-xs text-muted-foreground">{savedLabel}</p>
+          )}
+        </div>
+      ) : (
+        <p className="text-sm font-medium">{name}</p>
+      )}
+    </SectionCard>
   );
 }

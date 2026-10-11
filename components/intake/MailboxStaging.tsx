@@ -16,13 +16,7 @@ import { FilePlus2, Loader2, Mail } from "lucide-react";
 
 import { createBriefFromEmail } from "@/app/(app)/settings/email-actions";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { SectionCard } from "@/components/ui/page";
 import { useToast } from "@/components/ui/toast";
 import type { MailboxStagingMessage } from "@/lib/data/mailbox";
 import { timeAgo } from "@/lib/utils";
@@ -56,64 +50,56 @@ export function MailboxStaging({
   }
 
   return (
-    <Card data-proof="staged-mail">
-      <CardHeader>
-        <div className="flex items-center gap-3">
-          <span className="icon-chip icon-chip-accent h-10 w-10">
-            <Mail className="h-5 w-5" aria-hidden="true" />
-          </span>
-          <div>
-            <CardTitle>Staged mail</CardTitle>
-            <CardDescription>
-              New mail from connected mailboxes — create a brief from any
-              message.
-            </CardDescription>
-          </div>
-        </div>
-      </CardHeader>
-      <CardContent>
-        <ul>
-          {messages.map((m) => (
-            <li
-              key={m.id}
-              className="flex flex-wrap items-start justify-between gap-3 border-b border-border py-3 first:pt-0 last:border-0 last:pb-0"
-            >
-              <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-medium">
-                  {m.subject || "(no subject)"}
-                  <span className="ml-2 rounded-full bg-muted px-2 py-0.5 text-xs font-normal text-muted-foreground">
-                    {m.service === "gmail" ? "Gmail" : "Outlook"}
-                  </span>
+    <SectionCard
+      icon={Mail}
+      title="Staged mail"
+      description="New mail from connected mailboxes — create a brief from any message."
+      tone="accent"
+      bodyClassName="p-5"
+      proof="staged-mail"
+      className="animate-rise-in"
+    >
+      <ul className="divide-y divide-border">
+        {messages.map((m) => (
+          <li
+            key={m.id}
+            className="flex flex-wrap items-start justify-between gap-3 py-3 first:pt-0 last:pb-0"
+          >
+            <div className="min-w-0 flex-1">
+              <p className="truncate text-sm font-medium">
+                {m.subject || "(no subject)"}
+                <span className="ml-2 rounded-full bg-muted px-2 py-0.5 text-xs font-normal text-muted-foreground">
+                  {m.service === "gmail" ? "Gmail" : "Outlook"}
+                </span>
+              </p>
+              <p className="mt-0.5 truncate text-xs text-muted-foreground">
+                {m.sender} · {timeAgo(m.received_at)}
+              </p>
+              {m.snippet && (
+                <p className="mt-1 truncate text-xs text-muted-foreground">
+                  {m.snippet}
                 </p>
-                <p className="mt-0.5 truncate text-xs text-muted-foreground">
-                  {m.sender} · {timeAgo(m.received_at)}
-                </p>
-                {m.snippet && (
-                  <p className="mt-1 truncate text-xs text-muted-foreground">
-                    {m.snippet}
-                  </p>
-                )}
-              </div>
-              {canEdit && (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  disabled={pendingId !== null}
-                  onClick={() => createBrief(m.id)}
-                  aria-label={`Create a brief from "${m.subject || m.sender}"`}
-                >
-                  {pendingId === m.id ? (
-                    <Loader2 size={16} strokeWidth={1.5} aria-hidden="true" className="animate-spin" />
-                  ) : (
-                    <FilePlus2 size={16} strokeWidth={1.5} aria-hidden="true" />
-                  )}
-                  Create brief
-                </Button>
               )}
-            </li>
-          ))}
-        </ul>
-      </CardContent>
-    </Card>
+            </div>
+            {canEdit && (
+              <Button
+                variant="outline"
+                size="sm"
+                disabled={pendingId !== null}
+                onClick={() => createBrief(m.id)}
+                aria-label={`Create a brief from "${m.subject || m.sender}"`}
+              >
+                {pendingId === m.id ? (
+                  <Loader2 size={16} strokeWidth={1.5} aria-hidden="true" className="animate-spin" />
+                ) : (
+                  <FilePlus2 size={16} strokeWidth={1.5} aria-hidden="true" />
+                )}
+                Create brief
+              </Button>
+            )}
+          </li>
+        ))}
+      </ul>
+    </SectionCard>
   );
 }

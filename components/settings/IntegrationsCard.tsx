@@ -28,13 +28,7 @@ import {
   importIntegrationNow,
 } from "@/app/(app)/settings/integration-actions";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { SectionCard } from "@/components/ui/page";
 import { useToast } from "@/components/ui/toast";
 import type { IntegrationConnectionSummary } from "@/lib/data/integrations";
 import type { IntegrationProvider } from "@/lib/integrations/oauth";
@@ -46,8 +40,11 @@ export function IntegrationsCard({
   slackConfigured,
   notionConfigured,
   tokenKeyOk,
+  sectionId,
 }: {
   connections: IntegrationConnectionSummary[];
+  /** Anchor id for the settings page's section nav. */
+  sectionId?: string;
   isOwner: boolean;
   /** SLACK_CLIENT_ID + SLACK_CLIENT_SECRET set on the server. */
   slackConfigured: boolean;
@@ -91,58 +88,50 @@ export function IntegrationsCard({
   const notion = connections.find((c) => c.provider === "notion") ?? null;
 
   return (
-    <Card data-proof="integrations">
-      <CardHeader>
-        <div className="flex items-center gap-3">
-          <span className="icon-chip icon-chip-accent h-10 w-10">
-            <Plug className="h-5 w-5" aria-hidden="true" />
-          </span>
-          <div>
-            <CardTitle>Integrations</CardTitle>
-            <CardDescription>
-              Connect Slack and Notion, then import recent messages and pages
-              into the Inbox — tokens stay encrypted on the server.
-            </CardDescription>
-          </div>
-        </div>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        <ProviderRow
-          provider="slack"
-          label="Slack"
-          icon={Hash}
-          connection={slack}
-          isOwner={isOwner}
-          configured={slackConfigured && tokenKeyOk}
-          pending={pending}
-          confirmId={confirmId}
-          setConfirmId={setConfirmId}
-          onImport={runImport}
-          onDisconnect={runDisconnect}
-          missingHint="Slack: set SLACK_CLIENT_ID + SLACK_CLIENT_SECRET (OAuth app with redirect /api/slack/callback and history/read bot scopes) to enable this."
-        />
-        <ProviderRow
-          provider="notion"
-          label="Notion"
-          icon={BookOpen}
-          connection={notion}
-          isOwner={isOwner}
-          configured={notionConfigured && tokenKeyOk}
-          pending={pending}
-          confirmId={confirmId}
-          setConfirmId={setConfirmId}
-          onImport={runImport}
-          onDisconnect={runDisconnect}
-          missingHint="Notion: set NOTION_CLIENT_ID + NOTION_CLIENT_SECRET (public integration with redirect /api/notion/callback) to enable this."
-        />
-        {slackConfigured && notionConfigured && !tokenKeyOk && (
-          <p className="text-xs text-muted-foreground">
-            Also set AUTH_SECRET (or EMAIL_TOKEN_ENCRYPTION_KEY, 64 hex chars) —
-            it signs the OAuth state and encrypts stored tokens.
-          </p>
-        )}
-      </CardContent>
-    </Card>
+    <SectionCard
+      icon={Plug}
+      title="Integrations"
+      description="Connect Slack and Notion, then import recent messages and pages into the Inbox — tokens stay encrypted on the server."
+      tone="accent"
+      id={sectionId}
+      bodyClassName="space-y-4 p-5"
+      proof="integrations"
+    >
+      <ProviderRow
+        provider="slack"
+        label="Slack"
+        icon={Hash}
+        connection={slack}
+        isOwner={isOwner}
+        configured={slackConfigured && tokenKeyOk}
+        pending={pending}
+        confirmId={confirmId}
+        setConfirmId={setConfirmId}
+        onImport={runImport}
+        onDisconnect={runDisconnect}
+        missingHint="Slack: set SLACK_CLIENT_ID + SLACK_CLIENT_SECRET (OAuth app with redirect /api/slack/callback and history/read bot scopes) to enable this."
+      />
+      <ProviderRow
+        provider="notion"
+        label="Notion"
+        icon={BookOpen}
+        connection={notion}
+        isOwner={isOwner}
+        configured={notionConfigured && tokenKeyOk}
+        pending={pending}
+        confirmId={confirmId}
+        setConfirmId={setConfirmId}
+        onImport={runImport}
+        onDisconnect={runDisconnect}
+        missingHint="Notion: set NOTION_CLIENT_ID + NOTION_CLIENT_SECRET (public integration with redirect /api/notion/callback) to enable this."
+      />
+      {slackConfigured && notionConfigured && !tokenKeyOk && (
+        <p className="text-xs text-muted-foreground">
+          Also set AUTH_SECRET (or EMAIL_TOKEN_ENCRYPTION_KEY, 64 hex chars) —
+          it signs the OAuth state and encrypts stored tokens.
+        </p>
+      )}
+    </SectionCard>
   );
 }
 

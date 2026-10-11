@@ -183,6 +183,23 @@ const TIME_ENTRIES = [
   { id: "te-2", workspace_id: WS.id, brief_id: null, description: "Studio admin and long description that wraps on narrow screens to test layout", worked_on: "2026-09-23", duration_minutes: 45, created_at: NOW, updated_at: NOW },
   { id: "te-3", workspace_id: WS.id, brief_id: U.brief, description: "Moodboards", worked_on: "2026-09-22", duration_minutes: 240, created_at: NOW, updated_at: NOW },
 ];
+// Inbox threads (Phase 3): sources are embedded in the briefs rows, which is
+// exactly how getInboxThreads() reads them (`briefs?select=…,sources:brief_sources(*)`).
+// Two threads x 3 sources so the phone column, the filter chips and the
+// thread composer all have real content to lay out.
+const BRIEF_SOURCES = [
+  { id: "s1", brief_id: U.brief, source_type: "email", raw_content: "Client wrote: we need a refreshed identity before the spring campaign launch, including logo, colors, and a guidelines document for the franchisees.", metadata: { from: "Ada <ada@harborlane.com>" }, created_at: "2026-09-20T09:00:00Z" },
+  { id: "s2", brief_id: U.brief, source_type: "call_notes", raw_content: "Call notes: three stakeholders on the call. Dana owns sign-off on the final logo direction; the deadline is the spring campaign, not the summer one.", metadata: {}, created_at: "2026-09-24T15:30:00Z" },
+];
+const BRIEF_2 = "00000000-0000-0000-0000-000000000117";
+const BRIEF_2_SOURCES = [
+  { id: "s3", brief_id: BRIEF_2, workspace_id: WS.id, source_type: "chat", raw_content: "Slack: can we fold the packaging refresh into phase two? We have budget approved but it is not urgent.", metadata: { from: "#northwind-general" }, created_at: "2026-09-25T08:15:00Z" },
+];
+// Staged Slack/Notion imports (inbox rail) — unattached rows only.
+const INTEGRATION_IMPORTS = [
+  { id: "imp-1", workspace_id: WS.id, provider: "slack", title: "Kickoff thread", author: "Dana Whitfield", snippet: "Can you take the packaging refresh on as well?", occurred_at: "2026-09-25T09:00:00Z", attached_brief_id: null },
+  { id: "imp-2", workspace_id: WS.id, provider: "notion", title: "Brand audit — Q3", author: "Notion", snippet: "Audit notes and the competitor set for the rebrand.", occurred_at: "2026-09-24T11:00:00Z", attached_brief_id: null },
+];
 const INVITES = [{ id: "inv-1", email: "new-teammate@studio.com", token: "tok-inv-1", expires_at: "2026-10-02T10:00:00Z", created_at: NOW }];
 const SHARED_DOC = { title: UPDATE_ROW.title, client_name: UPDATE_ROW.client_name, status: "draft", body: UPDATE_ROW.body, updated_at: NOW };
 const SHARED_INVOICE = { invoice_number: 7, title: INVOICE.title, client_name: INVOICE.client_name, status: INVOICE.status, items: INV_ITEMS, tax_percent: 20, notes: INVOICE.notes, due_date: INVOICE.due_date, sent_at: NOW, paid_at: null, workspace_name: WS.name };
@@ -293,9 +310,15 @@ function startStub() {
       if (p.startsWith("/rest/v1/brief_sources")) return send([]);
       if (p.startsWith("/rest/v1/brief_questions")) return send([]);
       if (p.startsWith("/rest/v1/brief_edit_history")) return send([]);
+      if (p.startsWith("/rest/v1/integration_imports")) return send(process.env.EMPTY_FIXTURES ? [] : INTEGRATION_IMPORTS);
       if (p.startsWith("/rest/v1/briefs")) {
         if (eq("id")) return send(one(BRIEF_DETAIL));
-        const rows = [{ id: U.brief, title: BRIEF_ROW.title, client_name: BRIEF_ROW.client_name, status: BRIEF_ROW.status, updated_at: NOW, questions: [{ status: "open" }, { status: "resolved" }] }];
+        // `sources` is only read by the inbox's embedded-resource query; the
+        // list/detail mappers select their own columns and ignore it.
+        const rows = [
+          { id: U.brief, title: BRIEF_ROW.title, client_name: BRIEF_ROW.client_name, status: BRIEF_ROW.status, updated_at: NOW, questions: [{ status: "open" }, { status: "resolved" }], sources: BRIEF_SOURCES },
+          { id: BRIEF_2, title: "Northwind packaging", client_name: "Northwind Foods", status: "draft", updated_at: NOW, questions: [], sources: BRIEF_2_SOURCES },
+        ];
         return send(process.env.EMPTY_FIXTURES ? [] : rows);
       }
       if (p.startsWith("/rest/v1/proposals")) return send(eq("id") ? one(PROPOSAL) : process.env.EMPTY_FIXTURES ? [] : [{ id: PROPOSAL.id, title: PROPOSAL.title, client_name: PROPOSAL.client_name, status: PROPOSAL.status, updated_at: NOW, deliverables: PROPOSAL.deliverables }]);
@@ -366,6 +389,19 @@ process.on("unhandledRejection", (e) => { console.error(e); cleanup(); process.e
 // extraction shipped AWS-Lambda Linux x86-64 binaries only and could never
 // run on any Mac (Intel or Apple Silicon).
 function ensureChromium() {
+  // Escape hatch for sandboxes/CI images where the Playwright CDN is
+  // unreachable but a Chromium (or Chrome for Testing) binary already
+  // exists: point CHROMIUM_EXECUTABLE_PATH at it and the audit runs
+  // unchanged. Normal machines keep using the registry build.
+  const override = process.env.CHROMIUM_EXECUTABLE_PATH;
+  if (override) {
+    if (!existsSync(override)) {
+      console.error(`CHROMIUM_EXECUTABLE_PATH is set but does not exist: ${override}`);
+      process.exit(1);
+    }
+    console.log(`[verify-responsive] using Chromium at ${override}`);
+    return;
+  }
   const { chromium } = require("playwright-core");
   let ok = false;
   try {
@@ -379,6 +415,7 @@ function ensureChromium() {
       "Chromium is not installed for playwright-core on this machine.\n" +
         "One-time setup (downloads the platform-correct build):\n\n" +
         "    npx playwright-core install chromium\n\n" +
+        "…or point CHROMIUM_EXECUTABLE_PATH at an existing binary.\n\n" +
         "(npm script: npm run verify:responsive:setup)"
     );
     process.exit(1);
@@ -523,6 +560,9 @@ async function main() {
   const { chromium } = require("playwright-core");
   const browser = await chromium.launch({
     headless: true,
+    ...(process.env.CHROMIUM_EXECUTABLE_PATH
+      ? { executablePath: process.env.CHROMIUM_EXECUTABLE_PATH }
+      : {}),
     args: ["--no-sandbox", "--disable-gpu", "--disable-dev-shm-usage", "--hide-scrollbars"],
   });
 
@@ -1041,6 +1081,168 @@ async function main() {
       await page.waitForTimeout(300);
     });
     await shellShot(1440, 900, "desktop-sidebar-dark", "dark", null);
+  }
+
+  // ── Phase 3 layout probe (LAYOUT_PROOF=1) ─────────────────────────────
+  // Screenshots prove what a page looks like; this proves the responsive
+  // GRID contract the Phase 3 pages claim, with real geometry: which
+  // regions sit side by side at 1024+, and the order they stack in below
+  // it. Opt-in, assertion-only (no screenshots), exit code 1 on a breach.
+  if (process.env.LAYOUT_PROOF === "1") {
+    // [page url, left/lead region, right/follow region, stacked order]
+    // `stacked` names which region must come FIRST when the grid collapses.
+    const PROBES = [
+      {
+        slug: "pipeline",
+        url: "/",
+        first: '[data-proof="pipeline-flow"]',
+        second: '[data-proof="pipeline-money"], [data-proof="pipeline-activity"]',
+        stackedFirst: "first",
+      },
+      {
+        slug: "intake",
+        url: "/intake",
+        first: '[data-proof="intake-source"]',
+        second: '[data-proof="intake-brief"]',
+        stackedFirst: "first",
+      },
+      {
+        slug: "intake-inbox",
+        url: "/intake/inbox",
+        first: '[data-proof="inbox-threads"]',
+        second: '[data-proof="staged-imports"], [data-proof="staged-mail"]',
+        stackedFirst: "second", // the actionable staged rail leads on phones
+      },
+      {
+        slug: "settings",
+        url: "/settings",
+        first: 'nav[aria-label="Settings sections"]',
+        second: "#workspace",
+        stackedFirst: "second", // nav is desk-only, so content leads below 1024
+        navHidden: true,
+      },
+    ];
+
+    const boxes = (page, selector) =>
+      page.evaluate((sel) => {
+        const el = document.querySelector(sel);
+        if (!el) return null;
+        const r = el.getBoundingClientRect();
+        return {
+          left: Math.round(r.left),
+          right: Math.round(r.right),
+          top: Math.round(r.top + window.scrollY),
+          bottom: Math.round(r.bottom + window.scrollY),
+          w: Math.round(r.width),
+          h: Math.round(r.height),
+        };
+      }, selector);
+
+    for (const w of [375, 768, 1440]) {
+      const ctx = await browser.newContext({ viewport: { width: w, height: 900 }, deviceScaleFactor: 1 });
+      await ctx.addCookies([authCookie]);
+      const page = await ctx.newPage();
+      for (const probe of PROBES) {
+        try {
+          await page.goto(`${BASE}${probe.url}`, { waitUntil: "load", timeout: 25000 });
+          await page.waitForTimeout(500);
+          const a = await boxes(page, probe.first);
+          const b = await boxes(page, probe.second);
+          if (!a || !b) {
+            failures++;
+            say(`✗ ${String(w).padStart(4)} layout-${probe.slug}  missing region a=${!!a} b=${!!b}`);
+            continue;
+          }
+          let ok;
+          let detail;
+          if (w >= 1024) {
+            ok = a.left < b.left && a.right <= b.left + 1;
+            detail = `side-by-side a.right=${a.right} b.left=${b.left}`;
+          } else if (probe.navHidden) {
+            // The settings rail is desk-only: below 1024 it must be fully
+            // out of flow (a zero box), leaving the content to lead.
+            ok = a.w === 0 && a.h === 0 && b.w > 0;
+            detail = `nav hidden (${a.w}x${a.h}) content.w=${b.w}`;
+          } else {
+            const [lead, follow] =
+              probe.stackedFirst === "second" ? [b, a] : [a, b];
+            ok = lead.bottom <= follow.top + 1;
+            detail = `stacked lead.bottom=${lead.bottom} follow.top=${follow.top}`;
+          }
+          if (!ok) failures++;
+          say(`${ok ? "✓" : "✗"} ${String(w).padStart(4)} layout-${probe.slug.padEnd(13)} ${detail}`);
+          results.push({ page: `layout-${probe.slug}`, width: w, a, b, ok });
+        } catch (e) {
+          failures++;
+          say(`✗ ${String(w).padStart(4)} layout-${probe.slug}  ${String(e).slice(0, 80)}`);
+        }
+      }
+      await ctx.close();
+    }
+  }
+
+  // ── page shots (PAGE_SHOTS=1): Phase 3 evidence for the redesigned
+  // pages — Pipeline, Intake, Inbox, Settings at 375 / 768 / 1440 in both
+  // themes. Opt-in, screenshots only (no assertions).
+  //
+  // Two captures per combination:
+  //   • `{slug}-{w}-{scheme}.png`      the viewport as a user first sees it
+  //     (keeps the phone tab bar and the desktop sidebar in frame), and
+  //   • `{slug}-{w}-{scheme}-full.png` the whole page: the (app) shell
+  //     scrolls inside <main>, so the grid is flattened and fixed chrome
+  //     (bottom tab bar, timer pill) is hidden for the tall capture only.
+  if (process.env.PAGE_SHOTS === "1") {
+    const DIR = process.env.PAGE_SHOTS_DIR || join(SHOTS, "page-shots");
+    mkdirSync(DIR, { recursive: true });
+    const SHOT_PAGES = [
+      { slug: "pipeline", url: "/" },
+      { slug: "intake", url: "/intake" },
+      { slug: "intake-inbox", url: "/intake/inbox" },
+      { slug: "settings", url: "/settings" },
+    ];
+    const SHOT_WIDTHS = [
+      { w: 375, h: 812, scale: 2 },
+      { w: 768, h: 1024, scale: 2 },
+      { w: 1440, h: 980, scale: 1 },
+    ];
+    for (const scheme of ["light", "dark"]) {
+      for (const { w, h, scale } of SHOT_WIDTHS) {
+        const ctx = await browser.newContext({
+          viewport: { width: w, height: h },
+          deviceScaleFactor: scale,
+          colorScheme: scheme,
+        });
+        await ctx.addCookies([authCookie]);
+        const page = await ctx.newPage();
+        for (const pg of SHOT_PAGES) {
+          try {
+            await page.goto(`${BASE}${pg.url}`, { waitUntil: "load", timeout: 25000 });
+            await page.waitForTimeout(700);
+            await page.screenshot({ path: join(DIR, `${pg.slug}-${w}-${scheme}.png`) }).catch(() => {});
+
+            // Tall capture: flatten the shell grid, hide fixed chrome.
+            await page.addStyleTag({
+              content:
+                "html,body{height:auto!important;overflow:visible!important}" +
+                ".app-shell{display:block!important;height:auto!important;min-height:100dvh;overflow:visible!important}" +
+                ".app-main{height:auto!important;overflow:visible!important;padding-bottom:1.5rem!important}" +
+                ".app-topbar,.app-sidebar{display:none!important}",
+            });
+            await page.evaluate(() => {
+              for (const el of document.querySelectorAll("body *")) {
+                if (getComputedStyle(el).position === "fixed") el.style.display = "none";
+              }
+            });
+            await page.waitForTimeout(250);
+            await page.screenshot({ path: join(DIR, `${pg.slug}-${w}-${scheme}-full.png`), fullPage: true }).catch(() => {});
+            say(`     page-shot ${pg.slug}-${w}-${scheme}`);
+          } catch (e) {
+            say(`✗    page-shot ${pg.slug}-${w}-${scheme} failed: ${String(e).slice(0, 90)}`);
+          }
+        }
+        await ctx.close();
+      }
+    }
   }
 
   writeFileSync(join(SHOTS, `summary${SUM_SUFFIX}.json`), JSON.stringify({ mode: MODE, results }, null, 2));

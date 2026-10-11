@@ -20,17 +20,19 @@
 
 import { IntakeClient } from "@/components/intake/IntakeClient";
 import { CanEdit } from "@/components/app-shell/CanEdit";
+import { EmptyState } from "@/components/ui/page";
+import { Lock } from "lucide-react";
 
 export default function IntakePage() {
   return (
     <CanEdit
       fallback={
-        <div className="border border-border bg-card p-8">
-          <p className="text-sm text-muted-foreground">
-            View only — you can’t make changes. Intake is for owners and
-            members.
-          </p>
-        </div>
+        <EmptyState
+          icon={Lock}
+          title="View only"
+          description="Intake is for owners and members — viewers can read every brief but can’t draft new ones."
+          tone="muted"
+        />
       }
     >
       <IntakeClient aiConfigured={Boolean(process.env.OPENAI_API_KEY)} />

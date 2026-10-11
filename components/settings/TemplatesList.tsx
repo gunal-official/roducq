@@ -17,13 +17,7 @@ import { FileText, Loader2, Pencil, Plus, Trash2, LayoutTemplate } from "lucide-
 import { deleteTemplate } from "@/app/(app)/settings/actions";
 import { TemplateDialog } from "@/components/settings/TemplateDialog";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { SectionCard } from "@/components/ui/page";
 import type { Template } from "@/lib/types/template";
 
 type DialogState = { mode: "create" } | { mode: "edit"; template: Template } | null;
@@ -154,59 +148,57 @@ function TemplateRow({
 export function TemplatesList({
   templates,
   isOwner,
+  sectionId,
 }: {
   templates: Template[];
   isOwner: boolean;
+  /** Anchor id for the settings page's section nav. */
+  sectionId?: string;
 }) {
   const [dialog, setDialog] = useState<DialogState>(null);
 
   return (
     <>
-      <Card>
-        <CardHeader className="space-y-1 border-b border-border px-5 py-3.5">
-          <div className="flex items-center justify-between gap-3">
-            <div className="space-y-1">
-              <div className="flex items-center gap-2.5">
-          <span className="icon-chip icon-chip-muted h-8 w-8">
-            <LayoutTemplate className="h-4 w-4" aria-hidden="true" />
-          </span>
-          <CardTitle className="text-base">Templates</CardTitle>
-        </div>
-              <CardDescription>
-                Reusable text snippets for the workspace.{" "}
-                {!isOwner && (
-                  <span className="italic">View only — owners manage these.</span>
-                )}
-              </CardDescription>
-            </div>
-            {isOwner && templates.length > 0 && (
-              <Button size="sm" onClick={() => setDialog({ mode: "create" })}>
-                <Plus className="mr-1.5 h-4 w-4"  aria-hidden="true" />
-                New template
-              </Button>
+      <SectionCard
+        icon={LayoutTemplate}
+        title="Templates"
+        description={
+          <>
+            Reusable text snippets for the workspace.{" "}
+            {!isOwner && (
+              <span className="italic">View only — owners manage these.</span>
             )}
-          </div>
-        </CardHeader>
-        <CardContent className="p-5">
-          {templates.length === 0 ? (
-            <EmptyState
-              isOwner={isOwner}
-              onCreate={() => setDialog({ mode: "create" })}
-            />
-          ) : (
-            <ul className="divide-y divide-border">
-              {templates.map((template) => (
-                <TemplateRow
-                  key={template.id}
-                  template={template}
-                  isOwner={isOwner}
-                  onEdit={(t) => setDialog({ mode: "edit", template: t })}
-                />
-              ))}
-            </ul>
-          )}
-        </CardContent>
-      </Card>
+          </>
+        }
+        id={sectionId}
+        bodyClassName="p-5"
+        actions={
+          isOwner && templates.length > 0 ? (
+            <Button size="sm" onClick={() => setDialog({ mode: "create" })}>
+              <Plus className="mr-1.5 h-4 w-4"  aria-hidden="true" />
+              New template
+            </Button>
+          ) : undefined
+        }
+      >
+        {templates.length === 0 ? (
+          <EmptyState
+            isOwner={isOwner}
+            onCreate={() => setDialog({ mode: "create" })}
+          />
+        ) : (
+          <ul className="divide-y divide-border">
+            {templates.map((template) => (
+              <TemplateRow
+                key={template.id}
+                template={template}
+                isOwner={isOwner}
+                onEdit={(t) => setDialog({ mode: "edit", template: t })}
+              />
+            ))}
+          </ul>
+        )}
+      </SectionCard>
 
       <TemplateDialog
         open={dialog !== null}

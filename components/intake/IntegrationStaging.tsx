@@ -16,13 +16,7 @@ import { FilePlus2, Hash, Loader2 } from "lucide-react";
 
 import { createBriefFromImport } from "@/app/(app)/settings/integration-actions";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { SectionCard } from "@/components/ui/page";
 import { useToast } from "@/components/ui/toast";
 import type { IntegrationStagingItem } from "@/lib/data/integrations";
 import { timeAgo } from "@/lib/utils";
@@ -56,72 +50,64 @@ export function IntegrationStaging({
   }
 
   return (
-    <Card data-proof="staged-imports">
-      <CardHeader>
-        <div className="flex items-center gap-3">
-          <span className="icon-chip icon-chip-accent h-10 w-10">
-            <Hash className="h-5 w-5" aria-hidden="true" />
-          </span>
-          <div>
-            <CardTitle>Staged imports</CardTitle>
-            <CardDescription>
-              Recent Slack messages and Notion pages — create a brief from any
-              item. Re-importing the same id is a no-op.
-            </CardDescription>
-          </div>
-        </div>
-      </CardHeader>
-      <CardContent>
-        <ul>
-          {items.map((item) => {
-            const label = item.provider === "notion" ? "Notion" : "Slack";
-            return (
-              <li
-                key={item.id}
-                className="flex flex-wrap items-start justify-between gap-3 border-b border-border py-3 first:pt-0 last:border-0 last:pb-0"
-              >
-                <div className="min-w-0 flex-1">
-                  <p className="truncate text-sm font-medium">
-                    {item.title || "(untitled)"}
-                    <span className="ml-2 rounded-full bg-muted px-2 py-0.5 text-xs font-normal text-muted-foreground">
-                      {label}
-                    </span>
+    <SectionCard
+      icon={Hash}
+      title="Staged imports"
+      description="Recent Slack messages and Notion pages — create a brief from any item. Re-importing the same id is a no-op."
+      tone="accent"
+      bodyClassName="p-5"
+      proof="staged-imports"
+      className="animate-rise-in"
+    >
+      <ul className="divide-y divide-border">
+        {items.map((item) => {
+          const label = item.provider === "notion" ? "Notion" : "Slack";
+          return (
+            <li
+              key={item.id}
+              className="flex flex-wrap items-start justify-between gap-3 py-3 first:pt-0 last:pb-0"
+            >
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-sm font-medium">
+                  {item.title || "(untitled)"}
+                  <span className="ml-2 rounded-full bg-muted px-2 py-0.5 text-xs font-normal text-muted-foreground">
+                    {label}
+                  </span>
+                </p>
+                <p className="mt-0.5 truncate text-xs text-muted-foreground">
+                  {item.author} · {timeAgo(item.occurred_at)}
+                </p>
+                {item.snippet && (
+                  <p className="mt-1 truncate text-xs text-muted-foreground">
+                    {item.snippet}
                   </p>
-                  <p className="mt-0.5 truncate text-xs text-muted-foreground">
-                    {item.author} · {timeAgo(item.occurred_at)}
-                  </p>
-                  {item.snippet && (
-                    <p className="mt-1 truncate text-xs text-muted-foreground">
-                      {item.snippet}
-                    </p>
-                  )}
-                </div>
-                {canEdit && (
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    disabled={pendingId !== null}
-                    onClick={() => createBrief(item.id)}
-                    aria-label={`Create a brief from "${item.title || item.author}"`}
-                  >
-                    {pendingId === item.id ? (
-                      <Loader2
-                        size={16}
-                        strokeWidth={1.5}
-                        aria-hidden="true"
-                        className="animate-spin"
-                      />
-                    ) : (
-                      <FilePlus2 size={16} strokeWidth={1.5} aria-hidden="true" />
-                    )}
-                    Create brief
-                  </Button>
                 )}
-              </li>
-            );
-          })}
-        </ul>
-      </CardContent>
-    </Card>
+              </div>
+              {canEdit && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  disabled={pendingId !== null}
+                  onClick={() => createBrief(item.id)}
+                  aria-label={`Create a brief from "${item.title || item.author}"`}
+                >
+                  {pendingId === item.id ? (
+                    <Loader2
+                      size={16}
+                      strokeWidth={1.5}
+                      aria-hidden="true"
+                      className="animate-spin"
+                    />
+                  ) : (
+                    <FilePlus2 size={16} strokeWidth={1.5} aria-hidden="true" />
+                  )}
+                  Create brief
+                </Button>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+    </SectionCard>
   );
 }

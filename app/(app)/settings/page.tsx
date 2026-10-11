@@ -68,8 +68,21 @@ import { getPendingInvites, getTeamMembers } from "@/lib/data/team";
 import { getTemplates } from "@/lib/data/templates";
 import { getWorkspaceContext } from "@/lib/data/workspace-context";
 import { createClient } from "@/lib/supabase/server";
-import { DocHeader } from "@/components/ui/doc-detail";
-import { Settings as SettingsIcon } from "lucide-react";
+import { PageHeader } from "@/components/ui/page";
+import { SettingsNav, type SettingsSectionLink } from "@/components/settings/SettingsNav";
+import {
+  Activity,
+  Building2,
+  CreditCard,
+  ImagePlus,
+  LayoutTemplate,
+  Mail,
+  Plug,
+  Settings as SettingsIcon,
+  TriangleAlert,
+  Users,
+  Webhook,
+} from "lucide-react";
 
 export default async function SettingsPage() {
   // Everything on this page — name, roster, invites, templates — renders
@@ -172,75 +185,119 @@ export default async function SettingsPage() {
     Boolean(process.env.STRIPE_SECRET_KEY) && pricesConfig.ok;
   const isOwner = workspace?.role === "owner";
 
+  // The section nav lists only the cards this page actually renders — a
+  // viewer never gets a link to the owner-only danger zone.
+  const sections: SettingsSectionLink[] = [
+    { id: "workspace", label: "Workspace", icon: Building2 },
+    { id: "branding", label: "Branding", icon: ImagePlus },
+    { id: "team", label: "Team", icon: Users },
+    { id: "templates", label: "Templates", icon: LayoutTemplate },
+    { id: "plan", label: "Plan & billing", icon: CreditCard },
+    { id: "webhooks", label: "Webhooks", icon: Webhook },
+    { id: "mailbox", label: "Mailbox", icon: Mail },
+    { id: "integrations", label: "Integrations", icon: Plug },
+    { id: "activity", label: "Activity", icon: Activity },
+    ...(workspace && isOwner
+      ? [{ id: "danger", label: "Danger zone", icon: TriangleAlert }]
+      : []),
+  ];
+
   return (
-    <div className="mx-auto max-w-3xl space-y-6">
+    <div className="mx-auto max-w-6xl">
       {/* One-time toast when returning from Stripe Checkout (?checkout=) */}
       <CheckoutNotice />
       {/* One-time toast when returning from a mailbox OAuth connect (?email=) */}
       <EmailNotice />
       {/* One-time toast when returning from Slack/Notion OAuth (?slack= / ?notion=) */}
       <IntegrationsNotice />
-      <DocHeader
+
+      <PageHeader
         icon={SettingsIcon}
+        eyebrow={workspace?.name}
         title="Settings"
-        subtitle="Workspace configuration — name, team, reusable text snippets, and your plan."
+        subtitle="Workspace configuration — name, team, reusable text snippets, integrations, and your plan."
       />
 
-      {workspace && <WorkspaceNameCard name={workspace.name} isOwner={isOwner} />}
-      {workspace && (
-        <WorkspaceBrandingCard
-          key={workspace.id}
-          logoDataUrl={logoDataUrl}
-          isOwner={isOwner}
-        />
-      )}
-      {workspace && (
-        <TeamCard
-          members={members}
-          pendingInvites={pendingInvites}
-          isOwner={isOwner}
-          currentUserId={user?.id ?? null}
-        />
-      )}
-      <TemplatesList templates={templates} isOwner={isOwner} />
-      <PlanCard
-        memberCount={members.length}
-        templateCount={templates.length}
-        plan={plan}
-        billingConfigured={billingConfigured}
-        prices={prices}
-        billing={billing}
-      />
-      <WebhooksCard
-        endpoints={webhookEndpoints}
-        deliveries={webhookDeliveries}
-        eventTypes={eventTypes}
-        isOwner={isOwner}
-      />
-      <MailboxCard
-        accounts={mailboxAccounts}
-        isOwner={isOwner}
-        gmailConfigured={
-          Boolean(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET)
-        }
-        outlookConfigured={
-          Boolean(process.env.AZURE_CLIENT_ID && process.env.AZURE_CLIENT_SECRET)
-        }
-        tokenKeyOk={hasTokenKey(process.env.EMAIL_TOKEN_ENCRYPTION_KEY)}
-      />
-      <IntegrationsCard
-        connections={integrationConnections}
-        isOwner={isOwner}
-        slackConfigured={Boolean(
-          process.env.SLACK_CLIENT_ID && process.env.SLACK_CLIENT_SECRET
-        )}
-        notionConfigured={Boolean(
-          process.env.NOTION_CLIENT_ID && process.env.NOTION_CLIENT_SECRET
-        )}
-        tokenKeyOk={hasIntegrationKey()}
-      />
-      <EventsCard events={recentEvents} />
-      {workspace && isOwner && <WorkspaceDangerCard name={workspace.name} />}
+      {/* Desktop (1024+): section rail + content. Below that: one column. */}
+      <div className="grid items-start gap-6 desk:grid-cols-[13.75rem_minmax(0,1fr)]">
+        <SettingsNav sections={sections} />
+
+        <div className="min-w-0 space-y-6">
+          {workspace && (
+            <WorkspaceNameCard
+              name={workspace.name}
+              isOwner={isOwner}
+              sectionId="workspace"
+            />
+          )}
+          {workspace && (
+            <WorkspaceBrandingCard
+              key={workspace.id}
+              logoDataUrl={logoDataUrl}
+              isOwner={isOwner}
+              sectionId="branding"
+            />
+          )}
+          {workspace && (
+            <TeamCard
+              members={members}
+              pendingInvites={pendingInvites}
+              isOwner={isOwner}
+              currentUserId={user?.id ?? null}
+              sectionId="team"
+            />
+          )}
+          <TemplatesList
+            templates={templates}
+            isOwner={isOwner}
+            sectionId="templates"
+          />
+          <PlanCard
+            memberCount={members.length}
+            templateCount={templates.length}
+            plan={plan}
+            billingConfigured={billingConfigured}
+            prices={prices}
+            billing={billing}
+            sectionId="plan"
+          />
+          <WebhooksCard
+            endpoints={webhookEndpoints}
+            deliveries={webhookDeliveries}
+            eventTypes={eventTypes}
+            isOwner={isOwner}
+            sectionId="webhooks"
+          />
+          <MailboxCard
+            accounts={mailboxAccounts}
+            isOwner={isOwner}
+            gmailConfigured={Boolean(
+              process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET
+            )}
+            outlookConfigured={Boolean(
+              process.env.AZURE_CLIENT_ID && process.env.AZURE_CLIENT_SECRET
+            )}
+            tokenKeyOk={hasTokenKey(process.env.EMAIL_TOKEN_ENCRYPTION_KEY)}
+            sectionId="mailbox"
+          />
+          <IntegrationsCard
+            connections={integrationConnections}
+            isOwner={isOwner}
+            slackConfigured={Boolean(
+              process.env.SLACK_CLIENT_ID && process.env.SLACK_CLIENT_SECRET
+            )}
+            notionConfigured={Boolean(
+              process.env.NOTION_CLIENT_ID && process.env.NOTION_CLIENT_SECRET
+            )}
+            tokenKeyOk={hasIntegrationKey()}
+            sectionId="integrations"
+          />
+          <EventsCard events={recentEvents} sectionId="activity" />
+          {workspace && isOwner && (
+            <WorkspaceDangerCard name={workspace.name} sectionId="danger" />
+          )}
+        </div>
+      </div>
     </div>
   );
 }

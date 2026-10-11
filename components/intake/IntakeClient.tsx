@@ -15,8 +15,9 @@ import {
 } from "@/app/(app)/intake/actions";
 import { BriefForm, type BriefDraftFields } from "@/components/intake/BriefForm";
 import { SourcePanel } from "@/components/intake/SourcePanel";
-import { DocHeader } from "@/components/ui/doc-detail";
-import { PenLine } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { PageHeader } from "@/components/ui/page";
+import { PenLine, RotateCcw } from "lucide-react";
 import type { BriefQuestion, BriefSource } from "@/lib/types/brief";
 import type { GeneratedBriefBundle } from "@/app/(app)/intake/actions";
 import type { EditableBriefField } from "@/lib/types/brief";
@@ -126,17 +127,30 @@ export function IntakeClient({ aiConfigured }: { aiConfigured: boolean }) {
   }
 
   const generating = phase === "generating";
+  // Phones stack the two panels; once a draft exists the draft leads (that
+  // is what the user came to edit) and the source thread follows. From
+  // 1024px the two sit side by side in source → draft reading order.
+  const draftFirst = phase !== "input";
 
   return (
     <div className="mx-auto max-w-6xl">
-      <DocHeader
+      <PageHeader
         icon={PenLine}
+        eyebrow="Workspace"
         title="Intake"
         subtitle="Paste what the client sent you. Get a structured, gap-flagged brief back."
+        actions={
+          phase !== "input" ? (
+            <Button variant="outline" onClick={handleReset}>
+              <RotateCcw className="h-4 w-4" aria-hidden="true" />
+              Start over
+            </Button>
+          ) : undefined
+        }
       />
 
       {engine === "heuristic" && phase === "preview" && (
-        <div className="mb-4 rounded-md border border-border bg-muted px-3 py-2.5 text-sm text-muted-foreground">
+        <div className="mb-4 rounded-control border border-border bg-muted px-3 py-2.5 text-sm text-muted-foreground">
           Drafted with the built-in local parser (deterministic). Set{" "}
           <code className="text-text">OPENAI_API_KEY</code> in{" "}
           <code className="text-text">.env.local</code> for AI-powered
@@ -144,31 +158,45 @@ export function IntakeClient({ aiConfigured }: { aiConfigured: boolean }) {
         </div>
       )}
 
-      <div className="grid items-start gap-6 lg:grid-cols-[2fr_3fr]">
-        <SourcePanel
-          mode={phase === "preview" || generating ? "thread" : "input"}
-          rawText={rawText}
-          onChange={setRawText}
-          onGenerate={handleGenerate}
-          generating={generating}
-          error={generateError}
-          aiConfigured={aiConfigured}
-          source={source}
-          onReset={handleReset}
-        />
+      <div className="grid items-start gap-6 desk:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
+        <div
+          data-proof="intake-source"
+          className={
+            draftFirst ? "order-2 min-w-0 desk:order-1" : "order-1 min-w-0 desk:order-1"
+          }
+        >
+          <SourcePanel
+            mode={phase === "preview" || generating ? "thread" : "input"}
+            rawText={rawText}
+            onChange={setRawText}
+            onGenerate={handleGenerate}
+            generating={generating}
+            error={generateError}
+            aiConfigured={aiConfigured}
+            source={source}
+            onReset={handleReset}
+          />
+        </div>
 
-        <BriefForm
-          mode={phase === "input" ? "empty" : generating ? "loading" : "form"}
-          draft={draft ?? { title: "", clientName: "", objective: "", budgetTimeline: "", deliverables: [] }}
-          onChange={(patch) => setDraft((d) => (d ? { ...d, ...patch } : d))}
-          questions={questions}
-          dirty={dirty}
-          saving={saving}
-          savedLabel={savedLabel}
-          saveError={saveError}
-          onSave={handleSave}
-          briefId={briefId}
-        />
+        <div
+          data-proof="intake-brief"
+          className={
+            draftFirst ? "order-1 min-w-0 desk:order-2" : "order-2 min-w-0 desk:order-2"
+          }
+        >
+          <BriefForm
+            mode={phase === "input" ? "empty" : generating ? "loading" : "form"}
+            draft={draft ?? { title: "", clientName: "", objective: "", budgetTimeline: "", deliverables: [] }}
+            onChange={(patch) => setDraft((d) => (d ? { ...d, ...patch } : d))}
+            questions={questions}
+            dirty={dirty}
+            saving={saving}
+            savedLabel={savedLabel}
+            saveError={saveError}
+            onSave={handleSave}
+            briefId={briefId}
+          />
+        </div>
       </div>
     </div>
   );
