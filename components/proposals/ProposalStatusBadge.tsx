@@ -3,10 +3,13 @@ import { cn } from "@/lib/utils";
 import type { ProposalStatus } from "@/lib/types/proposal";
 
 /**
- * Status badge for proposals — mirrors the StatusBadge approach for
- * briefs, with proposals' own 4-status vocabulary. Sketching → out the
- * door → a yes/no outcome, so: draft = muted, sent = accent outline,
- * accepted = solid accent, declined = error tint.
+ * Status badge for proposals. Phase 4A aligns it with the invoice badges so
+ * "where is this in the money/sales cycle" reads the same across the app:
+ *   draft    = quiet muted fill (not sent yet)
+ *   sent     = info blue outline (awaiting the client — the same "awaiting"
+ *              read as an invoice that has been sent)
+ *   accepted = solid success green (won)
+ *   declined = error tint (lost)
  */
 const STATUS_STYLES: Record<
   ProposalStatus,
@@ -18,11 +21,11 @@ const STATUS_STYLES: Record<
   },
   sent: {
     label: "Sent",
-    className: "border-accent bg-accent-soft text-accent",
+    className: "border-info bg-info-soft text-info",
   },
   accepted: {
     label: "Accepted",
-    className: "border-transparent bg-accent text-accent-foreground",
+    className: "border-transparent bg-success text-success-foreground",
   },
   declined: {
     label: "Declined",

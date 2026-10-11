@@ -1,81 +1,38 @@
 "use client";
 
 /**
- * Client side of /proposals — status filter tabs + search over the list the
- * server page fetched. Mirrors components/briefs/BriefsList.tsx (Step 6);
- * proposals originate from briefs, so the empty state points to /briefs
- * rather than offering an inline create.
+ * Client side of /proposals — status filter chips + search over the list the
+ * server page fetched. Mirrors components/briefs/BriefsList.tsx; proposals
+ * originate from briefs, so the empty state points to /briefs rather than
+ * offering an inline create.
+ *
+ * Phase 4A: shared FilterChips (wraps, 44px targets) and EmptyState.
  */
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { FileSignature, Search, Hourglass, CheckCircle2, ListChecks } from "lucide-react";
+import { FileText, Search, Hourglass, CheckCircle2, ListChecks } from "lucide-react";
 
 import { ProposalStatusBadge } from "@/components/proposals/ProposalStatusBadge";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { FilterChips } from "@/components/ui/filter-chips";
 import { Input } from "@/components/ui/input";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { EmptyState } from "@/components/ui/page";
+import { ListStats, StatTile } from "@/components/ui/doc-detail";
 import { timeAgo } from "@/lib/utils";
-import { ListStats, StatTile, StackedBar } from "@/components/ui/doc-detail";
 import type { ProposalStatus, ProposalSummary } from "@/lib/types/proposal";
 
 type StatusFilter = "all" | ProposalStatus;
 
-const FILTER_TABS: { value: StatusFilter; label: string }[] = [
+const FILTER_OPTIONS: { value: StatusFilter; label: string }[] = [
   { value: "all", label: "All" },
   { value: "draft", label: "Draft" },
   { value: "sent", label: "Sent" },
   { value: "accepted", label: "Accepted" },
   { value: "declined", label: "Declined" },
 ];
-
-function EmptyState({
-  hasProposals,
-  onClearFilters,
-}: {
-  hasProposals: boolean;
-  onClearFilters: () => void;
-}) {
-  return (
-    <div className="flex flex-col items-center justify-center gap-4 rounded-lg border border-dashed border-border py-16 text-center">
-      <span className="icon-chip icon-chip-accent">
-        <FileSignature className="h-5 w-5" />
-      </span>
-      {hasProposals ? (
-        <>
-          <div>
-            <h2 className="font-display text-lg font-semibold tracking-tight">
-              No matching proposals
-            </h2>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Try a different search or status filter.
-            </p>
-          </div>
-          <Button variant="secondary" onClick={onClearFilters}>
-            Clear filters
-          </Button>
-        </>
-      ) : (
-        <>
-          <div>
-            <h2 className="font-display text-lg font-semibold tracking-tight">
-              No proposals yet
-            </h2>
-            <p className="mt-1 max-w-sm text-sm text-muted-foreground">
-              Proposals are generated from briefs — open a brief and click
-              “Generate proposal” to draft one.
-            </p>
-          </div>
-          <Button asChild>
-            <Link href="/briefs" className="inline-flex min-h-11 min-w-11 items-center">Open briefs</Link>
-          </Button>
-        </>
-      )}
-    </div>
-  );
-}
 
 function ProposalCard({ proposal }: { proposal: ProposalSummary }) {
   return (
@@ -85,12 +42,12 @@ function ProposalCard({ proposal }: { proposal: ProposalSummary }) {
           <div className="min-w-0">
             <Link
               href={`/proposals/${proposal.id}`}
-              className="inline-flex min-h-11 min-w-11 items-center font-display text-base font-semibold leading-snug underline-offset-2 hover:underline"
+              className="inline-flex min-h-11 min-w-11 items-center break-words font-display text-base font-semibold leading-snug underline-offset-2 hover:underline"
             >
               {proposal.title}
             </Link>
             {proposal.client_name && (
-              <p className="mt-0.5 truncate text-sm text-muted-foreground">
+              <p className="truncate text-sm text-muted-foreground">
                 {proposal.client_name}
               </p>
             )}
@@ -101,7 +58,7 @@ function ProposalCard({ proposal }: { proposal: ProposalSummary }) {
           />
         </div>
       </CardHeader>
-      <CardContent className="flex items-center justify-between gap-3 p-5">
+      <CardContent className="flex flex-wrap items-center justify-between gap-3 p-5">
         {proposal.deliverablesTotal > 0 ? (
           <Badge variant="secondary">
             {proposal.deliverablesDone}/{proposal.deliverablesTotal}{" "}
@@ -155,7 +112,7 @@ export function ProposalsList({ proposals }: { proposals: ProposalSummary[] }) {
   return (
     <div>
       <ListStats cols={4}>
-        <StatTile icon={FileSignature} label="Total proposals" value={proposals.length} hint="All time" />
+        <StatTile icon={FileText} label="Total proposals" value={proposals.length} hint="All time" />
         <StatTile
           icon={Hourglass}
           label="In play"
@@ -180,25 +137,21 @@ export function ProposalsList({ proposals }: { proposals: ProposalSummary[] }) {
           delay={120}
         />
       </ListStats>
-      <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
-        <Tabs
+
+      <div className="mb-5 flex flex-col gap-3 tab:flex-row tab:items-center tab:justify-between">
+        <FilterChips
+          label="Filter proposals by status"
           value={statusFilter}
-          onValueChange={(value) => setStatusFilter(value as StatusFilter)}
-        >
-          <TabsList>
-            {FILTER_TABS.map((tab) => (
-              <TabsTrigger key={tab.value} value={tab.value}>
-                {tab.label}
-                <span className="ml-1.5 text-xs text-muted-foreground">
-                  {statusCounts[tab.value]}
-                </span>
-              </TabsTrigger>
-            ))}
-          </TabsList>
-        </Tabs>
-        <div className="relative w-full sm:w-64">
-          <Search className="absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"  aria-hidden="true" />
+          onChange={setStatusFilter}
+          options={FILTER_OPTIONS.map((option) => ({
+            ...option,
+            count: statusCounts[option.value],
+          }))}
+        />
+        <div className="relative w-full tab:w-72">
+          <Search className="absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
           <Input
+            type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search title or client…"
@@ -209,13 +162,37 @@ export function ProposalsList({ proposals }: { proposals: ProposalSummary[] }) {
       </div>
 
       {visible.length === 0 ? (
-        <EmptyState
-          hasProposals={proposals.length > 0}
-          onClearFilters={() => {
-            setStatusFilter("all");
-            setQuery("");
-          }}
-        />
+        proposals.length > 0 ? (
+          <EmptyState
+            icon={FileText}
+            title="No matching proposals"
+            description="Try a different search or status filter."
+            action={
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  setStatusFilter("all");
+                  setQuery("");
+                }}
+              >
+                Clear filters
+              </Button>
+            }
+          />
+        ) : (
+          <EmptyState
+            icon={FileText}
+            title="No proposals yet"
+            description="Proposals are generated from briefs — open a brief and click “Generate proposal” to draft one."
+            action={
+              <Button asChild>
+                <Link href="/briefs" className="inline-flex min-h-11 min-w-11 items-center">
+                  Open briefs
+                </Link>
+              </Button>
+            }
+          />
+        )
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {visible.map((proposal) => (

@@ -99,6 +99,8 @@ const U = {
   update: "00000000-0000-0000-0000-000000000114",
   invoice: "00000000-0000-0000-0000-000000000115",
   contract: "00000000-0000-0000-0000-000000000116",
+  version: "00000000-0000-0000-0000-000000000118",
+  versionOld: "00000000-0000-0000-0000-000000000119",
 };
 
 const PAGES = [
@@ -128,6 +130,7 @@ const PAGES = [
   { slug: "brief-detail", url: `/briefs/${U.brief}`, auth: true },
   { slug: "proposals", url: "/proposals", auth: true },
   { slug: "proposal-detail", url: `/proposals/${U.proposal}`, auth: true },
+  { slug: "proposal-version", url: `/proposals/${U.proposal}/versions/${U.version}`, auth: true },
   { slug: "plans", url: "/plans", auth: true },
   { slug: "plan-detail", url: `/plans/${U.plan}`, auth: true },
   { slug: "updates", url: "/updates", auth: true },
@@ -167,6 +170,12 @@ const BRIEF_DETAIL = {
   edit_history: [{ id: "h1", brief_id: U.brief, user_id: null, action_type: "generated", description: "Brief generated from email", created_at: NOW }],
 };
 const PROPOSAL = { id: U.proposal, workspace_id: WS.id, brief_id: U.brief, title: "Harbor Lane — phase 1 proposal", client_name: "Harbor Lane Studio", status: "sent", budget_timeline: "£12,000 excl. VAT — 50% up front and 50% on delivery. Six-week timeline from kickoff; workshop in week one.", deliverables: [{ id: "d1", text: "Logo suite with wordmark and monogram variants", checked: true }, { id: "d2", text: "Brand guidelines document", checked: false }], body: "Scope and terms…", created_at: NOW, updated_at: NOW, brief: { id: U.brief, title: BRIEF_ROW.title } };
+// Proposal version history (Queue #7): two frozen snapshots, newest first in
+// the list. v1 is the creation state, v2 the state displaced by a status change.
+const PROPOSAL_VERSIONS = [
+  { id: U.version, workspace_id: WS.id, proposal_id: U.proposal, version_number: 2, title: PROPOSAL.title, client_name: PROPOSAL.client_name, status: "draft", budget_timeline: "£10,000 excl. VAT — 50% up front. Five-week timeline from kickoff.", deliverables: [{ id: "d1", text: "Logo suite with wordmark and monogram variants", checked: false }, { id: "d2", text: "Brand guidelines document", checked: false }], reason: "edited", created_by: "usr-a", created_at: NOW },
+  { id: U.versionOld, workspace_id: WS.id, proposal_id: U.proposal, version_number: 1, title: PROPOSAL.title, client_name: PROPOSAL.client_name, status: "draft", budget_timeline: null, deliverables: [], reason: "created", created_by: null, created_at: NOW },
+];
 const PLAN = { id: U.plan, workspace_id: WS.id, proposal_id: U.proposal, title: "Harbor Lane — delivery plan", client_name: "Harbor Lane Studio", status: "in_progress", tasks: [{ id: "t1", text: "Discovery workshop and stakeholder interviews", checked: true }, { id: "t2", text: "Moodboards", checked: false }, { id: "t3", text: "Logo exploration rounds", checked: false }], created_at: NOW, updated_at: NOW, proposal: { id: U.proposal, title: PROPOSAL.title } };
 const UPDATE_ROW = { id: U.update, workspace_id: WS.id, plan_id: U.plan, title: "Weekly update — week 3", body: "## Progress\n\nDiscovery wrapped. Two moodboard directions ready for review.\n\n## Next\n\nLogo exploration.", client_name: "Harbor Lane Studio", status: "draft", created_at: NOW, updated_at: NOW, plan: { id: U.plan, title: PLAN.title } };
 const INV_ITEMS = [
@@ -320,6 +329,11 @@ function startStub() {
           { id: BRIEF_2, title: "Northwind packaging", client_name: "Northwind Foods", status: "draft", updated_at: NOW, questions: [], sources: BRIEF_2_SOURCES },
         ];
         return send(process.env.EMPTY_FIXTURES ? [] : rows);
+      }
+      if (p.startsWith("/rest/v1/proposal_versions")) {
+        const vid = eq("id");
+        if (vid) return send(one(PROPOSAL_VERSIONS.find((v) => v.id === vid) ?? null));
+        return send(eq("proposal_id") === U.proposal ? PROPOSAL_VERSIONS : []);
       }
       if (p.startsWith("/rest/v1/proposals")) return send(eq("id") ? one(PROPOSAL) : process.env.EMPTY_FIXTURES ? [] : [{ id: PROPOSAL.id, title: PROPOSAL.title, client_name: PROPOSAL.client_name, status: PROPOSAL.status, updated_at: NOW, deliverables: PROPOSAL.deliverables }]);
       if (p.startsWith("/rest/v1/plans")) return send(eq("id") ? one(PLAN) : process.env.EMPTY_FIXTURES ? [] : [{ id: PLAN.id, title: PLAN.title, client_name: PLAN.client_name, status: PLAN.status, updated_at: NOW, tasks: PLAN.tasks }]);
@@ -1194,12 +1208,25 @@ async function main() {
   if (process.env.PAGE_SHOTS === "1") {
     const DIR = process.env.PAGE_SHOTS_DIR || join(SHOTS, "page-shots");
     mkdirSync(DIR, { recursive: true });
-    const SHOT_PAGES = [
-      { slug: "pipeline", url: "/" },
-      { slug: "intake", url: "/intake" },
-      { slug: "intake-inbox", url: "/intake/inbox" },
-      { slug: "settings", url: "/settings" },
-    ];
+    // PAGE_SHOTS_SET=phase4a selects the Phase 4A set (Briefs, Proposals);
+    // the default stays the Phase 3 set so earlier evidence is reproducible.
+    const SHOT_SETS = {
+      phase3: [
+        { slug: "pipeline", url: "/" },
+        { slug: "intake", url: "/intake" },
+        { slug: "intake-inbox", url: "/intake/inbox" },
+        { slug: "settings", url: "/settings" },
+      ],
+      phase4a: [
+        { slug: "briefs", url: "/briefs" },
+        { slug: "brief-detail", url: `/briefs/${U.brief}` },
+        { slug: "proposals", url: "/proposals" },
+        { slug: "proposal-detail", url: `/proposals/${U.proposal}` },
+        { slug: "proposal-version", url: `/proposals/${U.proposal}/versions/${U.version}` },
+      ],
+    };
+    const SHOT_PAGES = SHOT_SETS[process.env.PAGE_SHOTS_SET || "phase3"];
+    if (!SHOT_PAGES) throw new Error(`unknown PAGE_SHOTS_SET=${process.env.PAGE_SHOTS_SET}`);
     const SHOT_WIDTHS = [
       { w: 375, h: 812, scale: 2 },
       { w: 768, h: 1024, scale: 2 },

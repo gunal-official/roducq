@@ -29,8 +29,8 @@ import { ProposalStatusBadge } from "@/components/proposals/ProposalStatusBadge"
 import { RestoreVersionButton } from "@/components/proposals/RestoreVersionButton";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { DocHeader, PaperCard } from "@/components/ui/doc-detail";
+import { SectionCard } from "@/components/ui/page";
 import {
   getProposalById,
   getProposalVersionById,
@@ -130,7 +130,7 @@ export default async function ProposalVersionPage({
       />
 
       {/* Read-only banner */}
-      <div className="mb-6 flex items-start gap-3 rounded-lg border border-border bg-muted/40 px-4 py-3">
+      <div className="mb-6 flex items-start gap-3 rounded-surface border border-border bg-muted/40 px-4 py-3">
         <span className="icon-chip icon-chip-muted h-8 w-8 shrink-0">
           <Lock className="h-4 w-4" aria-hidden="true" />
         </span>
@@ -146,7 +146,7 @@ export default async function ProposalVersionPage({
         </div>
       </div>
 
-      <div className="grid items-start gap-6 lg:grid-cols-[2fr_1fr]">
+      <div className="grid items-start gap-6 desk:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
         {/* ── Left: the frozen document ── */}
         <PaperCard
           letterLabel="Proposal"
@@ -162,14 +162,14 @@ export default async function ProposalVersionPage({
         {/* ── Right: metadata + restore rail ── */}
         <div className="space-y-4">
           {!isCurrent && (
-            <Card className="animate-rise-in">
-              <CardHeader className="flex-row items-center gap-2.5 space-y-0 border-b border-border px-5 py-3.5">
-                <span className="icon-chip icon-chip-accent h-8 w-8">
-                  <History className="h-4 w-4" aria-hidden="true" />
-                </span>
-                <CardTitle className="text-base">Restore</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3 p-5">
+            <SectionCard
+              id="version-restore"
+              icon={History}
+              tone="accent"
+              title="Restore"
+              className="animate-rise-in"
+            >
+              <div className="space-y-3">
                 <p className="text-sm text-muted-foreground">
                   Make this version the proposal’s content. What’s live
                   right now is saved as a new version first — nothing is
@@ -184,18 +184,17 @@ export default async function ProposalVersionPage({
                     className="w-full"
                   />
                 </CanEdit>
-              </CardContent>
-            </Card>
+              </div>
+            </SectionCard>
           )}
 
-          <Card className="animate-rise-in" style={{ animationDelay: "40ms" }}>
-            <CardHeader className="flex-row items-center gap-2.5 space-y-0 border-b border-border px-5 py-3.5">
-              <span className="icon-chip icon-chip-muted h-8 w-8">
-                <Clock className="h-4 w-4" aria-hidden="true" />
-              </span>
-              <CardTitle className="text-base">Snapshot</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3.5 p-5">
+          <SectionCard
+            id="version-snapshot"
+            icon={Clock}
+            title="Snapshot"
+            className="animate-rise-in"
+          >
+            <div className="space-y-3.5">
               <MetaRow label="Version">v{version.version_number}</MetaRow>
               <MetaRow label="Captured">
                 {formatDate(version.created_at)}
@@ -215,8 +214,8 @@ export default async function ProposalVersionPage({
                   <Badge variant="secondary">Current content</Badge>
                 </MetaRow>
               )}
-            </CardContent>
-          </Card>
+            </div>
+          </SectionCard>
         </div>
       </div>
     </div>

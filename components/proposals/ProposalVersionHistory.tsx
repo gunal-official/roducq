@@ -10,6 +10,9 @@
  *
  * Viewers see the same list without the Restore affordance: RLS lets
  * every member read history, requireEditor()/the RPC gate restoring.
+ *
+ * Phase 4A: rendered as a SectionCard and a shared HistoryList, so it reads
+ * the same as the brief's edit history.
  */
 
 import Link from "next/link";
@@ -19,7 +22,7 @@ import { CanEdit } from "@/components/app-shell/CanEdit";
 import { RestoreVersionButton } from "@/components/proposals/RestoreVersionButton";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { HistoryItem, HistoryList, SectionCard } from "@/components/ui/page";
 import { versionMatchesCurrent, versionReasonLabel } from "@/lib/proposal-versions";
 import type {
   ProposalVersion,
@@ -42,44 +45,41 @@ export function ProposalVersionHistory({
   currentUserId: string | null;
 }) {
   return (
-    <Card className="animate-rise-in" style={{ animationDelay: "120ms" }}>
-      <CardHeader className="flex-row items-center gap-2.5 space-y-0 border-b border-border px-5 py-3.5">
-        <span className="icon-chip icon-chip-muted h-8 w-8">
-          <History className="h-4 w-4" aria-hidden="true" />
-        </span>
-        <CardTitle className="text-base">Version history</CardTitle>
-      </CardHeader>
-      <CardContent className="p-5">
-        <ul className="space-y-0">
+    <SectionCard
+      id="version-history"
+      icon={History}
+      title="Version history"
+      footer={
+        <p className="text-xs text-muted-foreground">
+          Snapshots are taken automatically when content changes and can’t
+          be edited or deleted.
+        </p>
+      }
+    >
+      {versions.length === 0 ? (
+        <p className="text-sm text-muted-foreground">No versions yet.</p>
+      ) : (
+        <HistoryList label="Proposal versions">
           {versions.map((version, i) => {
             const isCurrent = versionMatchesCurrent(version, current);
             return (
-              <li
+              <HistoryItem
                 key={version.id}
-                className="relative flex gap-3 pb-5 last:pb-0"
-              >
-                <div className="flex flex-col items-center">
-                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                  {i < versions.length - 1 && (
-                    <span className="mt-1 w-px flex-1 bg-border" />
-                  )}
-                </div>
-                <div className="min-w-0 flex-1 pb-1">
-                  <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm leading-snug">
-                    <span className="font-medium">
-                      v{version.version_number}
-                    </span>
-                    <span className="text-muted-foreground">
+                current={isCurrent}
+                last={i === versions.length - 1}
+                title={
+                  <>
+                    v{version.version_number}
+                    <span className="font-normal text-muted-foreground">
+                      {" · "}
                       {versionReasonLabel(version.reason)}
                     </span>
-                    {isCurrent && (
-                      <Badge variant="secondary">Current</Badge>
-                    )}
-                  </p>
-                  <p className="mt-0.5 truncate text-xs text-muted-foreground">
-                    “{version.title}”
-                  </p>
-                  <p className="mt-0.5 text-xs text-muted-foreground">
+                  </>
+                }
+                badge={isCurrent ? <Badge variant="secondary">Current</Badge> : undefined}
+                detail={`“${version.title}”`}
+                meta={
+                  <>
                     {version.created_by === null
                       ? "System"
                       : currentUserId && version.created_by === currentUserId
@@ -87,8 +87,10 @@ export function ProposalVersionHistory({
                         : "Teammate"}
                     {" · "}
                     {timeAgo(version.created_at)}
-                  </p>
-                  <div className="mt-2 flex flex-wrap items-center gap-1.5">
+                  </>
+                }
+                actions={
+                  <>
                     <Button asChild variant="ghost" size="sm">
                       <Link
                         href={`/proposals/${proposalId}/versions/${version.id}`}
@@ -106,20 +108,13 @@ export function ProposalVersionHistory({
                         />
                       </CanEdit>
                     )}
-                  </div>
-                </div>
-              </li>
+                  </>
+                }
+              />
             );
           })}
-        </ul>
-        {versions.length === 0 && (
-          <p className="text-sm text-muted-foreground">No versions yet.</p>
-        )}
-        <p className="mt-4 border-t border-border pt-3 text-xs text-muted-foreground">
-          Snapshots are taken automatically when content changes and can’t
-          be edited or deleted.
-        </p>
-      </CardContent>
-    </Card>
+        </HistoryList>
+      )}
+    </SectionCard>
   );
 }

@@ -3,8 +3,13 @@ import { cn } from "@/lib/utils";
 import type { BriefStatus } from "@/lib/types/brief";
 
 /**
- * Shared status badge for briefs — used on /briefs/:id (Step 5) and the
- * /briefs list (Step 6). Keep variants in one place so all screens agree.
+ * Shared status badge for briefs — used on /briefs/:id and the /briefs list.
+ *
+ * Phase 4A semantics (matches the invoice/contract badges):
+ *   draft     = quiet muted fill — nothing has happened yet.
+ *   in_review = soft terracotta outline — waiting on someone (the existing
+ *               "in progress" tint; amber stays on its allowlisted surfaces).
+ *   approved  = solid success green — the terminal, good-news state.
  */
 const STATUS_STYLES: Record<
   BriefStatus,
@@ -20,7 +25,7 @@ const STATUS_STYLES: Record<
   },
   approved: {
     label: "Approved",
-    className: "border-transparent bg-accent text-accent-foreground",
+    className: "border-transparent bg-success text-success-foreground",
   },
 };
 

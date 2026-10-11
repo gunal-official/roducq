@@ -216,3 +216,78 @@ export function EmptyState({
     </div>
   );
 }
+
+/* ── History list ──────────────────────────────────────────────────────
+   One vocabulary for "what changed, when, and by whom": a dot rail, a
+   title line, a muted meta line and an optional action row. Brief edit
+   history and proposal version history both render through it, so the
+   two audit trails read the same. Presentational; server-safe. */
+
+export function HistoryList({
+  label,
+  children,
+  className,
+}: {
+  /** Accessible name for the list, e.g. "Brief history". */
+  label: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <ol aria-label={label} className={cn("space-y-0", className)}>
+      {children}
+    </ol>
+  );
+}
+
+export function HistoryItem({
+  title,
+  detail,
+  meta,
+  badge,
+  actions,
+  current = false,
+  last = false,
+}: {
+  title: React.ReactNode;
+  /** Secondary line under the title, e.g. a quoted version title. */
+  detail?: React.ReactNode;
+  /** Attribution and time, e.g. "You · 2 hours ago". */
+  meta?: React.ReactNode;
+  /** Small inline marker next to the title, e.g. "Current". */
+  badge?: React.ReactNode;
+  /** Row actions (44px targets), e.g. View / Restore. */
+  actions?: React.ReactNode;
+  /** Highlights the dot for the live item. */
+  current?: boolean;
+  /** Last row: no trailing rail segment. */
+  last?: boolean;
+}) {
+  return (
+    <li className="relative flex gap-3 pb-5 last:pb-0">
+      <div className="flex flex-col items-center">
+        <span
+          aria-hidden="true"
+          className={cn(
+            "mt-1.5 h-2 w-2 shrink-0 rounded-full",
+            current ? "bg-accent" : "bg-neutral"
+          )}
+        />
+        {!last && <span aria-hidden="true" className="mt-1 w-px flex-1 bg-border" />}
+      </div>
+      <div className="min-w-0 flex-1 pb-1">
+        <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm leading-snug">
+          <span className="break-words font-medium">{title}</span>
+          {badge}
+        </p>
+        {detail && (
+          <p className="mt-0.5 break-words text-xs text-muted-foreground">{detail}</p>
+        )}
+        {meta && <p className="mt-0.5 text-xs text-muted-foreground">{meta}</p>}
+        {actions && (
+          <div className="mt-2 flex flex-wrap items-center gap-1.5">{actions}</div>
+        )}
+      </div>
+    </li>
+  );
+}
