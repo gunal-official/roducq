@@ -11,7 +11,7 @@
  */
 
 import Link from "next/link";
-import { ArrowRight, Check, CreditCard, Sparkles } from "lucide-react";
+import { ArrowRight, Check, CreditCard, FlaskConical, Sparkles } from "lucide-react";
 
 import { ManageBillingButton } from "@/components/settings/ManageBillingButton";
 import { formatPrice, type RazorpayPlanConfig } from "@/lib/razorpay";
@@ -37,11 +37,17 @@ const PRO_PLANNED = [
 const PRO_MAILTO =
   "mailto:hello@roducq.dev?subject=roducq%20Pro%20early%20access";
 
+/** Test-mode indicator copy (fixed wording — see docs/RAZORPAY_TEST_MODE_SETUP.md). */
+export const TEST_MODE_TITLE = "Razorpay Test Mode";
+export const TEST_MODE_TEXT =
+  "Payments are currently being tested. No live Razorpay charges will be processed.";
+
 export function PlanCard({
   memberCount,
   templateCount,
   plan,
   billingConfigured,
+  razorpayTestMode,
   prices,
   billing,
   legacyNotice,
@@ -53,6 +59,10 @@ export function PlanCard({
   templateCount: number;
   plan: "free" | "pro";
   billingConfigured: boolean;
+  /** True only when billing is configured AND running in Razorpay Test Mode
+   * (lib/razorpay.ts → isRazorpayTestModeActive). Drives the indicator below;
+   * never true in Live Mode, which the config gate refuses outright. */
+  razorpayTestMode?: boolean;
   prices: RazorpayPlanConfig[];
   billing: {
     status: string;
@@ -73,6 +83,19 @@ export function PlanCard({
       className="animate-rise-in"
       proof="plan"
     >
+      {/* Test Mode indicator — only rendered when Test Mode is actually active. */}
+      {razorpayTestMode ? (
+        <div
+          className="flex gap-2.5 rounded-lg border border-accent bg-accent-soft p-3"
+          data-testid="razorpay-test-mode"
+        >
+          <FlaskConical className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
+          <div className="space-y-0.5">
+            <p className="text-sm font-semibold text-accent">{TEST_MODE_TITLE}</p>
+            <p className="text-sm text-muted-foreground">{TEST_MODE_TEXT}</p>
+          </div>
+        </div>
+      ) : null}
       {/* Current plan + usage */}
       <div className="flex flex-wrap items-center gap-3">
         <p className="font-display text-2xl font-bold tracking-tight">

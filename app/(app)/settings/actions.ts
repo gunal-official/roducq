@@ -25,6 +25,7 @@ import {
   createRazorpaySubscription,
   findPlan,
   formatPrice,
+  getRazorpayClientConfig,
   getRazorpayPlansConfig,
   getRazorpayServerConfig,
 } from "@/lib/razorpay";
@@ -236,7 +237,9 @@ export async function deleteTemplate(input: {
 /** Razorpay checkout: owner-only; plan resolved server-side from
  * RAZORPAY_PLANS (browser names only a currency). Returns the subscription
  * id + PUBLIC key id for Checkout.js; entitlement is granted only by
- * /api/razorpay/verify after signature + server-side subscription check. */
+ * /api/razorpay/verify after signature + server-side subscription check.
+ * Refuses to run at all unless billing is configured AND in Test Mode
+ * (getRazorpayServerConfig's production safety gate). */
 export type RazorpayCheckoutResult =
   | { error: string }
   | { subscriptionId: string; keyId: string; currency: string; amount: number };
@@ -246,6 +249,12 @@ export async function createRazorpayCheckout(currency: string): Promise<Razorpay
   if (membership.role !== "owner") return { error: "Only workspace owners can manage billing." };
   const cfg = getRazorpayServerConfig();
   if (!cfg.ok) return { error: cfg.error };
+  // Resolve the PUBLIC checkout key first: a NEXT_PUBLIC_RAZORPAY_KEY_ID that
+  // disagrees with the server key would open Checkout against a different
+  // Razorpay account. Checked BEFORE anything is created so a misconfigured
+  // deploy can't leave an orphaned subscription behind.
+  const clientCfg = getRazorpayClientConfig();
+  if (!clientCfg.ok) return { error: clientCfg.error };
   const plansConfig = getRazorpayPlansConfig();
   if (!plansConfig.ok) return { error: plansConfig.error };
   const plan = findPlan(plansConfig.plans, currency);

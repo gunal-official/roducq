@@ -54,7 +54,7 @@ import { getIntegrationConnections } from "@/lib/data/integrations";
 import { getMailboxAccounts } from "@/lib/data/mailbox";
 import { hasTokenKey } from "@/lib/email/crypto";
 import { hasIntegrationKey } from "@/lib/integrations/crypto";
-import { getPricesConfig } from "@/lib/razorpay";
+import { getPricesConfig, isRazorpayTestModeActive } from "@/lib/razorpay";
 import { EventsCard } from "@/components/settings/EventsCard";
 import { PlanCard } from "@/components/settings/PlanCard";
 import { WebhooksCard } from "@/components/settings/WebhooksCard";
@@ -189,6 +189,10 @@ export default async function SettingsPage() {
   const prices = pricesConfig.ok ? pricesConfig.prices : [];
   const billingConfigured =
     Boolean(process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_SECRET) && pricesConfig.ok;
+  // Test Mode indicator: true only when the whole Razorpay test path is
+  // configured and provably in Test Mode. Live Mode never reaches here —
+  // getRazorpayServerConfig refuses it (see lib/razorpay.ts safety gate).
+  const razorpayTestMode = isRazorpayTestModeActive();
   const isOwner = workspace?.role === "owner";
 
   // The section nav lists only the cards this page actually renders — a
@@ -265,6 +269,7 @@ export default async function SettingsPage() {
             templateCount={templates.length}
             plan={plan}
             billingConfigured={billingConfigured}
+            razorpayTestMode={razorpayTestMode}
             prices={prices}
             billing={billing}
             legacyNotice={legacyNotice}

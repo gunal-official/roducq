@@ -10,6 +10,7 @@
     "build": "next build",
     "start": "next start -H 0.0.0.0",
     "lint": "eslint .",
+    "billing:plans": "node scripts/create-razorpay-plans.mjs",
     "verify:db": "node scripts/verify-db.mjs",
     "verify:pdf": "node scripts/verify-pdf.mjs",
     "verify:responsive": "node scripts/verify-responsive.mjs",
