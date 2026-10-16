@@ -32,6 +32,14 @@ const firaCode = localFont({
   fallback: ["ui-monospace", "SFMono-Regular", "monospace"],
 });
 
+const manrope = localFont({
+  src: "./fonts/manrope-latin-wght-normal.woff2",
+  variable: "--font-manrope",
+  weight: "200 800",
+  display: "swap",
+  fallback: ["ui-sans-serif", "system-ui", "sans-serif"],
+});
+
 export const metadata: Metadata = {
   title: "roducq",
   description: "roducq — intake, briefs, proposals, and plans for client work.",
@@ -57,6 +65,7 @@ export default function RootLayout({
           playfair.variable,
           sourceSans.variable,
           firaCode.variable,
+          manrope.variable,
           "min-h-screen bg-background font-sans text-foreground antialiased"
         )}
       >

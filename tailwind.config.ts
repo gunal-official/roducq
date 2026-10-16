@@ -120,6 +120,13 @@ const config = {
           "SFMono-Regular",
           "monospace",
         ],
+        manrope: [
+          "var(--font-manrope)",
+          "\"Manrope\"",
+          "ui-sans-serif",
+          "system-ui",
+          "sans-serif",
+        ],
       },
     },
   },

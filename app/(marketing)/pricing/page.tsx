@@ -55,7 +55,7 @@ export default function PricingPage() {
   const offer = getPricingOffer(pricesConfig.ok);
 
   return (
-    <div className="mx-auto max-w-5xl px-6 py-16">
+    <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:px-10">
       <header className="mx-auto max-w-3xl text-center">
         <p className="text-xs font-semibold uppercase tracking-widest text-accent">
           {HERO.eyebrow}
