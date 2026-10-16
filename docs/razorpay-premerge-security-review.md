@@ -1,5 +1,7 @@
 # Razorpay Pre-Merge Security Review — RoduCQ
 
+> **Superseded in part (2026-10-16, follow-up).** The "dedup after billing update" fix described in §2 (Moderate: webhook partial failure) narrowed the failure window but did **not** make processing atomic, and the `provider='razorpay'` settings filter in §2 (High) hid legitimate legacy Stripe paid periods. Both are replaced by `docs/razorpay-security-hardening.md`: one atomic database function for webhook processing, and a provider-aware entitlement policy.
+
 **Date**: 2026-10-16  
 **PR**: [#42](https://github.com/gunal-official/roducq/pull/42) (MERGED)  
 **Production**: https://roducq.nanexi.com  

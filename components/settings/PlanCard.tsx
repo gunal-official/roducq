@@ -44,6 +44,7 @@ export function PlanCard({
   billingConfigured,
   prices,
   billing,
+  legacyNotice,
   sectionId,
 }: {
   memberCount: number;
@@ -58,6 +59,8 @@ export function PlanCard({
     currency: string | null;
     amount: number | null;
   } | null;
+  /** Owner-facing note for legacy (pre-Razorpay) billing; null when none. */
+  legacyNotice?: string | null;
 }) {
   const isPro = plan === "pro";
   return (
@@ -123,15 +126,18 @@ export function PlanCard({
           ))}
         </ul>
         <div className="flex flex-wrap items-center gap-3 pt-1">
+          {legacyNotice ? (
+            <p className="w-full text-sm text-muted-foreground">{legacyNotice}</p>
+          ) : null}
           {isPro ? (
-            billingConfigured ? (
+            billingConfigured && !legacyNotice ? (
               <ManageBillingButton />
             ) : (
               <p className="text-sm text-muted-foreground">
                 Your workspace is on Pro — billing is managed through Razorpay; see your Razorpay payment confirmation.
               </p>
             )
-          ) : billingConfigured ? (
+          ) : billingConfigured && !legacyNotice ? (
             <PlanCheckoutButton prices={prices} />
           ) : (
             <Button asChild variant="outline">

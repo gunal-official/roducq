@@ -96,17 +96,19 @@ const STATUS_MAP: Record<string, BillingStatus> = { created: "created", authenti
 export function mapRazorpayStatus(raw: string | null | undefined): BillingStatus | null {
   if (!raw) return null; return STATUS_MAP[raw.toLowerCase()] ?? null;
 }
-/** ONLY 'active' grants Pro. authenticated/pending = payment not settled; halted = retries exhausted; paused/cancelled/completed/expired grant nothing. */
+/** Status-only helper. Workspace entitlement is decided by lib/billing/entitlements.ts (resolveEntitlement), which also needs paid_through. */
 export function grantsPro(status: BillingStatus | string | null | undefined): boolean { return status === "active"; }
 
 // ── Webhook parsing (actual Razorpay event names) ─────────────────────
 export const RAZORPAY_WEBHOOK_EVENTS = new Set(["subscription.authenticated","subscription.activated","subscription.charged","subscription.pending","subscription.halted","subscription.paused","subscription.resumed","subscription.cancelled","subscription.completed","subscription.updated","payment.failed"]);
 export type RazorpayWebhookEvent =
-  | { kind: "subscription"; eventType: string; subscriptionId: string; customerId: string | null; planId: string | null; razorpayStatus: string | null; workspaceId: string | null; createdAt: number | null }
+  | { kind: "subscription"; eventType: string; subscriptionId: string; customerId: string | null; planId: string | null; razorpayStatus: string | null; workspaceId: string | null; createdAt: number | null; currentEnd: number | null }
   | { kind: "payment_failed"; eventType: string; subscriptionId: string | null; createdAt: number | null }
   | { kind: "ignored"; type: string }
   | { kind: "invalid" };
 function str(v: unknown): string | null { return typeof v === "string" && v ? v : null; }
+/** Razorpay timestamps are unix seconds; anything else is treated as absent. */
+function unixSeconds(v: unknown): number | null { return typeof v === "number" && Number.isFinite(v) && v > 0 ? v : null; }
 export function parseRazorpayWebhookEvent(raw: string): RazorpayWebhookEvent {
   let body: any; try { body = JSON.parse(raw); } catch { return { kind: "invalid" }; }
   if (!body || typeof body.event !== "string") return { kind: "invalid" };
@@ -118,7 +120,7 @@ export function parseRazorpayWebhookEvent(raw: string): RazorpayWebhookEvent {
   const sub = body.payload?.subscription?.entity;
   if (!sub || !str(sub.id)) return { kind: "invalid" };
   const notes = (sub.notes ?? {}) as Record<string, unknown>;
-  return { kind: "subscription", eventType: body.event, subscriptionId: sub.id, customerId: str(sub.customer_id), planId: str(sub.plan_id), razorpayStatus: str(sub.status), workspaceId: str(notes.workspace_id), createdAt };
+  return { kind: "subscription", eventType: body.event, subscriptionId: sub.id, customerId: str(sub.customer_id), planId: str(sub.plan_id), razorpayStatus: str(sub.status), workspaceId: str(notes.workspace_id), createdAt, currentEnd: unixSeconds(sub.current_end) };
 }
 /** Event-type → status when payload status is absent (defensive). */
 export function statusForWebhookEvent(eventType: string, payloadStatus: string | null): BillingStatus | null {
@@ -132,10 +134,10 @@ function authHeader(keyId: string, keySecret: string) { return `Basic ${Buffer.f
 export function buildCreateSubscriptionBody(input: { planId: string; workspaceId: string }) {
   return { plan_id: input.planId, total_count: SUBSCRIPTION_TOTAL_COUNT, quantity: 1, customer_notify: true, notes: { workspace_id: input.workspaceId } };
 }
-export interface RazorpaySubscription { id: string; status: string; plan_id: string; customer_id: string | null; notes: Record<string, string>; }
+export interface RazorpaySubscription { id: string; status: string; plan_id: string; customer_id: string | null; notes: Record<string, string>; /** Razorpay's end of the current paid cycle (unix seconds), or null. */ current_end: number | null; }
 function toSubscription(d: any): RazorpaySubscription | null {
   if (!d || typeof d.id !== "string") return null;
-  return { id: d.id, status: typeof d.status === "string" ? d.status : "", plan_id: typeof d.plan_id === "string" ? d.plan_id : "", customer_id: str(d.customer_id), notes: (d.notes ?? {}) as Record<string, string> };
+  return { id: d.id, status: typeof d.status === "string" ? d.status : "", plan_id: typeof d.plan_id === "string" ? d.plan_id : "", customer_id: str(d.customer_id), notes: (d.notes ?? {}) as Record<string, string>, current_end: unixSeconds(d.current_end) };
 }
 export async function createRazorpaySubscription(input: { keyId: string; keySecret: string; planId: string; workspaceId: string; fetchFn?: typeof fetch }): Promise<{ ok: true; subscription: RazorpaySubscription } | { ok: false; error: string }> {
   try {

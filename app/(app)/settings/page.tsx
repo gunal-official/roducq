@@ -67,6 +67,7 @@ import { getWorkspaceBranding } from "@/lib/data/workspace-branding";
 import { getPendingInvites, getTeamMembers } from "@/lib/data/team";
 import { getTemplates } from "@/lib/data/templates";
 import { getWorkspaceContext } from "@/lib/data/workspace-context";
+import { legacyBillingNotice, parseLegacyAccessUntil, resolveEntitlement } from "@/lib/billing/entitlements";
 import { createClient } from "@/lib/supabase/server";
 import { PageHeader } from "@/components/ui/page";
 import { SettingsNav, type SettingsSectionLink } from "@/components/settings/SettingsNav";
@@ -119,9 +120,8 @@ export default async function SettingsPage() {
       workspace
         ? supabase
             .from("billing_subscriptions")
-            .select("status, currency, amount")
+            .select("provider, status, currency, amount, paid_through, razorpay_subscription_id")
             .eq("workspace_id", workspace.id)
-            .eq("provider", "razorpay")
             .maybeSingle()
             .then(({ data }) => data)
         : Promise.resolve(null),
@@ -179,7 +179,12 @@ export default async function SettingsPage() {
       .in("id", missingDeliveryEventIds);
     for (const row of extra ?? []) eventTypes[row.id] = row.event_type;
   }
-  const plan = billing?.status === "active" ? "pro" : "free";
+  // Provider-aware entitlement (lib/billing/entitlements.ts): Razorpay rows and
+  // operator-verified legacy Stripe rows are both honoured; nothing is granted
+  // on status alone, and nothing is revoked silently.
+  const entitlement = resolveEntitlement(billing, new Date(), parseLegacyAccessUntil(process.env.LEGACY_STRIPE_ACCESS_UNTIL));
+  const plan = entitlement.plan;
+  const legacyNotice = billing?.provider === "stripe" ? legacyBillingNotice(entitlement) : null;
   const pricesConfig = getPricesConfig();
   const prices = pricesConfig.ok ? pricesConfig.prices : [];
   const billingConfigured =
@@ -262,6 +267,7 @@ export default async function SettingsPage() {
             billingConfigured={billingConfigured}
             prices={prices}
             billing={billing}
+            legacyNotice={legacyNotice}
             sectionId="plan"
           />
           <WebhooksCard

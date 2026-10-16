@@ -118,31 +118,31 @@ describe("SECURITY: webhook signature — raw-body requirement", () => {
   test("source: webhook route uses raw request.text() for signature verification", () => {
     const src = readFileSync(new URL("../../app/api/razorpay/webhook/route.ts", import.meta.url), "utf8");
     assert.match(src, /await request\.text\(\)/, "webhook must read raw body for HMAC");
-    assert.match(src, /verifyWebhookSignature/, "webhook must verify signature");
+    assert.match(readFileSync(new URL("../../lib/billing/webhook-processor.ts", import.meta.url), "utf8"), /verifyWebhookSignature\(\{/, "webhook must verify signature over the raw body");
   });
 });
 
 describe("SECURITY: cross-workspace subscription binding", () => {
   test("verify route checks workspace_id in subscription notes against requesting workspace", () => {
-    const src = readFileSync(new URL("../../app/api/razorpay/verify/route.ts", import.meta.url), "utf8");
+    const src = readFileSync(new URL("../../app/api/razorpay/verify/route.ts", import.meta.url), "utf8") + readFileSync(new URL("../../lib/billing/checkout-verify.ts", import.meta.url), "utf8");
     assert.match(src, /sub\.notes\?\.workspace_id/, "verify must check subscription notes workspace_id");
     assert.match(src, /context\.id/, "verify must compare against requesting workspace");
     assert.match(src, /does not belong to this workspace/, "verify must reject cross-workspace subscription");
   });
 
   test("verify route fetches subscription server-side (not trusting browser)", () => {
-    const src = readFileSync(new URL("../../app/api/razorpay/verify/route.ts", import.meta.url), "utf8");
+    const src = readFileSync(new URL("../../app/api/razorpay/verify/route.ts", import.meta.url), "utf8") + readFileSync(new URL("../../lib/billing/checkout-verify.ts", import.meta.url), "utf8");
     assert.match(src, /fetchRazorpaySubscription/, "verify must fetch subscription from Razorpay API");
   });
 
   test("verify route checks plan_id against configured plans", () => {
-    const src = readFileSync(new URL("../../app/api/razorpay/verify/route.ts", import.meta.url), "utf8");
+    const src = readFileSync(new URL("../../app/api/razorpay/verify/route.ts", import.meta.url), "utf8") + readFileSync(new URL("../../lib/billing/checkout-verify.ts", import.meta.url), "utf8");
     assert.match(src, /findPlanById/, "verify must check plan against server config");
     assert.match(src, /not a configured RoduCQ plan/, "verify must reject unknown plans");
   });
 
   test("verify route requires owner role", () => {
-    const src = readFileSync(new URL("../../app/api/razorpay/verify/route.ts", import.meta.url), "utf8");
+    const src = readFileSync(new URL("../../app/api/razorpay/verify/route.ts", import.meta.url), "utf8") + readFileSync(new URL("../../lib/billing/checkout-verify.ts", import.meta.url), "utf8");
     assert.match(src, /owner/, "verify must check owner role");
   });
 });
@@ -232,37 +232,50 @@ describe("SECURITY: webhook event allowlist", () => {
   });
 });
 
-describe("SECURITY: webhook idempotency — dedup after billing update", () => {
-  test("webhook route inserts dedup AFTER billing update (source-level guard)", () => {
-    const src = readFileSync(new URL("../../app/api/razorpay/webhook/route.ts", import.meta.url), "utf8");
-    // The last dedup insert for the subscription path must come AFTER the upsert
-    const upsertPos = src.indexOf('billing_subscriptions").upsert');
-    const dedupPos = src.lastIndexOf('billing_webhook_events").insert');
-    assert.ok(upsertPos > 0, "must have a billing_subscriptions upsert");
-    assert.ok(dedupPos > upsertPos, "dedup insert must come AFTER billing upsert");
+describe("SECURITY: atomic webhook processing (single transaction)", () => {
+  test("webhook route no longer performs separate ledger and billing writes", () => {
+    const src = readFileSync(new URL("../../app/api/razorpay/webhook/route.ts", import.meta.url), "utf8") + readFileSync(new URL("../../lib/billing/webhook-processor.ts", import.meta.url), "utf8");
+    assert.doesNotMatch(src, /billing_webhook_events"\)\.insert/, "no standalone ledger insert");
+    assert.doesNotMatch(src, /billing_subscriptions"\)\.upsert/, "no standalone billing upsert");
+    assert.doesNotMatch(src, /billing_subscriptions"\)\.update/, "no standalone billing update");
   });
 
-  test("webhook route source has SECURITY comment explaining the ordering", () => {
+  test("state change and ledger record happen in ONE database function call", () => {
+    const src = readFileSync(new URL("../../lib/billing/webhook-processor.ts", import.meta.url), "utf8") + readFileSync(new URL("../../app/api/razorpay/webhook/route.ts", import.meta.url), "utf8");
+    assert.match(src, /apply_razorpay_subscription_event/, "the atomic function is the only write path");
+    const mig = readFileSync(new URL("../../supabase/migrations/20261016120000_razorpay_atomic_ledger_entitlements.sql", import.meta.url), "utf8");
+    assert.match(mig, /language plpgsql[\s\S]*security definer/i, "function is SECURITY DEFINER");
+    assert.match(mig, /set search_path = public, pg_temp/, "fixed search_path");
+    assert.match(mig, /on conflict do nothing/, "idempotency claim is atomic");
+  });
+
+  test("ledger claim precedes state change inside the function, so a failure rolls back both", () => {
+    const mig = readFileSync(new URL("../../supabase/migrations/20261016120000_razorpay_atomic_ledger_entitlements.sql", import.meta.url), "utf8");
+    const claim = mig.indexOf("on conflict do nothing");
+    const write = mig.indexOf("insert into public.billing_subscriptions");
+    const update = mig.indexOf("update public.billing_subscriptions set");
+    assert.ok(claim > 0 && write > claim && update > claim, "claim must come before the state write");
+  });
+
+  test("the security comment documents the atomic design and the failure mode", () => {
     const src = readFileSync(new URL("../../app/api/razorpay/webhook/route.ts", import.meta.url), "utf8");
-    assert.match(src, /SECURITY/, "must have a SECURITY comment explaining dedup ordering");
-    assert.match(src, /partial failure/, "must document the partial failure scenario");
+    assert.match(src, /SECURITY/, "must have a SECURITY comment");
+    assert.match(src, /ONE database transaction/, "must document the single-transaction design");
   });
 });
 
 describe("SECURITY: out-of-order event guard", () => {
-  test("webhook route checks last_billing_event_at for subscription events", () => {
-    const src = readFileSync(new URL("../../app/api/razorpay/webhook/route.ts", import.meta.url), "utf8");
-    assert.match(src, /last_billing_event_at/, "must check event timestamps");
-    assert.match(src, /stale/, "must return stale for out-of-order events");
+  test("ordering uses Razorpay created_at and the stored last_billing_event_at (database function)", () => {
+    const mig = readFileSync(new URL("../../supabase/migrations/20261016120000_razorpay_atomic_ledger_entitlements.sql", import.meta.url), "utf8");
+    assert.match(mig, /last_billing_event_at/, "must check event timestamps");
+    assert.match(mig, /'stale'/, "must return stale for out-of-order events");
+    assert.match(readFileSync(new URL("../../lib/billing/webhook-processor.ts", import.meta.url), "utf8"), /eventCreatedAt: new Date\(event\.createdAt \* 1000\)/, "event time comes from Razorpay created_at");
   });
 
-  test("webhook route checks last_billing_event_at for payment_failed events", () => {
-    const src = readFileSync(new URL("../../app/api/razorpay/webhook/route.ts", import.meta.url), "utf8");
-    // payment_failed path must also check timestamps
-    const paymentFailedIdx = src.indexOf("payment_failed");
-    const afterPaymentFailed = src.slice(paymentFailedIdx);
-    assert.match(afterPaymentFailed, /last_billing_event_at/, "payment_failed must check timestamps");
-    assert.match(afterPaymentFailed, /stale/, "payment_failed must return stale for old events");
+  test("payment_failed is conditional on the stored state and subject to the same ordering", () => {
+    const proc = readFileSync(new URL("../../lib/billing/webhook-processor.ts", import.meta.url), "utf8");
+    assert.match(proc, /onlyIfActive: true/, "payment failures only downgrade an active subscription");
+    assert.match(readFileSync(new URL("../../supabase/migrations/20261016120000_razorpay_atomic_ledger_entitlements.sql", import.meta.url), "utf8"), /p_only_if_active and v_row\.status <> 'active'/, "database enforces the active-only rule");
   });
 
   test("statusForWebhookEvent provides fallback when payload status is absent", () => {
@@ -274,16 +287,16 @@ describe("SECURITY: out-of-order event guard", () => {
   });
 });
 
-describe("SECURITY: legacy Stripe entitlements are blocked", () => {
-  test("settings page filters billing by provider='razorpay'", () => {
+describe("SECURITY: legacy Stripe entitlements are provider-aware (not blocked, not granted blindly)", () => {
+  test("settings page no longer filters billing by provider='razorpay' (that hid legacy paid periods)", () => {
     const src = readFileSync(new URL("../../app/(app)/settings/page.tsx", import.meta.url), "utf8");
-    assert.match(src, /\.eq\("provider",\s*"razorpay"\)/, "billing query must filter by provider=razorpay");
+    assert.doesNotMatch(src, /\.eq\("provider",\s*"razorpay"\)/, "provider filter must not hide legacy rows");
+    assert.match(src, /resolveEntitlement\(billing/, "entitlement comes from the shared policy");
   });
 
-  test("settings page plan determination uses Razorpay-filtered billing", () => {
+  test("settings page never grants Pro from status alone", () => {
     const src = readFileSync(new URL("../../app/(app)/settings/page.tsx", import.meta.url), "utf8");
-    assert.match(src, /billing\?\.status === "active".*\? "pro" : "free"/, "plan is status-based");
-    assert.match(src, /\.eq\("provider",\s*"razorpay"\)/, "billing query must be provider-filtered");
+    assert.doesNotMatch(src, /billing\?\.status === "active" \? "pro"/, "status-only grant removed");
   });
 
   test("migration preserves Stripe columns (non-destructive)", () => {
@@ -442,12 +455,12 @@ describe("SECURITY: key mode detection prevents test/live confusion", () => {
 describe("SECURITY: no secrets are logged", () => {
   test("webhook route does not log signature material", () => {
     const src = readFileSync(new URL("../../app/api/razorpay/webhook/route.ts", import.meta.url), "utf8");
-    assert.match(src, /console\.error.*err\.message/, "must log only error message");
+    assert.match(src, /console\.error\(result\.log\)/, "must log only the processor's sanitized log line");
     assert.doesNotMatch(src, /console\.log.*signature|console\.log.*secret|console\.log.*key/i, "must not log secrets");
   });
 
   test("verify route does not log signature material", () => {
-    const src = readFileSync(new URL("../../app/api/razorpay/verify/route.ts", import.meta.url), "utf8");
+    const src = readFileSync(new URL("../../app/api/razorpay/verify/route.ts", import.meta.url), "utf8") + readFileSync(new URL("../../lib/billing/checkout-verify.ts", import.meta.url), "utf8");
     assert.doesNotMatch(src, /console\.log.*signature|console\.log.*secret|console\.log.*key/i, "must not log secrets");
   });
 
