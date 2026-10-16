@@ -100,7 +100,11 @@ function ProductPreview() {
               ))}
             </div>
           </aside>
-          <div className="min-w-0 p-4 sm:p-6">
+          {/* `sm:pb-12` keeps the mock's trailing rows clear of the floating
+              "Nothing gets lost" callout anchored to the card's bottom-left:
+              without it the callout covers the bottom half of the
+              "2 of 4 complete" row from the `sm` breakpoint up. */}
+          <div className="min-w-0 p-4 sm:p-6 sm:pb-12">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
                 <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">Client project · updated just now</p>
@@ -138,7 +142,7 @@ function ProductPreview() {
           </div>
         </div>
       </div>
-      <div className="absolute -bottom-5 -left-3 hidden items-center gap-3 rounded-control border border-border bg-card p-3 shadow-xl sm:flex">
+      <div className="absolute -bottom-5 -left-3 z-10 hidden items-center gap-3 rounded-control border border-border bg-card p-3 shadow-xl sm:flex">
         <span className="icon-chip icon-chip-success !h-9 !w-9"><Check className="h-5 w-5" aria-hidden="true" /></span>
         <span><span className="block text-xs font-semibold">Nothing gets lost</span><span className="text-xs text-muted-foreground">The original message stays attached</span></span>
       </div>
