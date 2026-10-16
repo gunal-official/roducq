@@ -5,7 +5,7 @@
  * capability claim on /pricing has to be backed by something real:
  *
  *   • Prices are NEVER written here. The paid row is the operator's
- *     STRIPE_PRICES config (lib/stripe.ts → getPricesConfig), rendered
+ *     RAZORPAY_PLANS config (lib/razorpay.ts → getPricesConfig), rendered
  *     through formatPrice. No config, no price row — no invented numbers.
  *   • Feature rows describe product SHAPE only (what exists today, or
  *     what is explicitly marked "planned"). roducq enforces no briefs per
@@ -15,12 +15,12 @@
  *     choice, it is what the code does: billing_subscriptions is keyed by
  *     workspace_id (supabase/migrations/20260926100000_billing.sql) and
  *     Checkout is created with a hardcoded quantity of 1
- *     (lib/stripe.ts → buildCheckoutSessionParams).
+ *     (lib/razorpay.ts → buildCreateSubscriptionBody).
  *
  * Annual billing follows the same rule. The operator has created one
  * recurring MONTHLY price per currency, so ANNUAL_PRICES is empty and the
  * "Save 17%" chip does not render — describeAnnualDiscount() returns null
- * for it. Wire real annual Stripe prices into ANNUAL_PRICES (and let
+ * for it. Wire real annual Razorpay prices into ANNUAL_PRICES (and let
  * PlanCheckoutButton hand those price ids to Checkout) and the annual tab
  * plus its discount chip light up on their own, computed from the amounts.
  *
@@ -29,7 +29,7 @@
  * in tests/components/pricing.test.ts can assert on it directly.
  */
 
-import type { StripePriceConfig } from "@/lib/stripe";
+import type { RazorpayPlanConfig } from "@/lib/razorpay";
 
 export type BillingInterval = "monthly" | "annual";
 
@@ -52,17 +52,17 @@ export const INTENDED_ANNUAL_DISCOUNT_PERCENT = 17;
 
 /**
  * Annual prices. Empty because the operator has created one recurring
- * MONTHLY price per currency (see .env.local.example → STRIPE_PRICES).
- * Add real annual Stripe prices here AND route them through Checkout
+ * MONTHLY price per currency (see .env.local.example → RAZORPAY_PLANS).
+ * Add real annual Razorpay prices here AND route them through Checkout
  * before the annual tab claims a saving.
  */
-export const ANNUAL_PRICES: StripePriceConfig[] = [];
+export const ANNUAL_PRICES: RazorpayPlanConfig[] = [];
 
 /** Shown on the annual tab while no annual price exists to charge. */
 export const ANNUAL_UNAVAILABLE_NOTE =
-  "Annual billing isn't offered yet — subscriptions bill monthly through Stripe, and you can cancel from Settings or the Stripe portal at any time. Tell us if an annual arrangement would help and we'll set one up.";
+  "Annual billing isn't offered yet — subscriptions bill monthly through Razorpay, and you can cancel from Settings at any time. Tell us if an annual arrangement would help and we'll set one up.";
 
-/** Shown on the paid row when STRIPE_PRICES is absent entirely. */
+/** Shown on the paid row when RAZORPAY_PLANS is absent entirely. */
 export const PRICES_UNCONFIGURED_NOTE =
   "Billing isn't configured for this install yet — start free and we'll be in touch about pricing.";
 
@@ -89,7 +89,7 @@ export function describeAnnualDiscountPercent(
 
 /** True once at least one real annual price exists to bill against. */
 export function annualBillingAvailable(
-  annual: StripePriceConfig[] = ANNUAL_PRICES
+  annual: RazorpayPlanConfig[] = ANNUAL_PRICES
 ): boolean {
   return annual.length > 0;
 }
@@ -100,8 +100,8 @@ export function annualBillingAvailable(
  * partial config shows no chip rather than a rounded lie.
  */
 export function annualDiscountLabel(
-  monthly: StripePriceConfig[],
-  annual: StripePriceConfig[]
+  monthly: RazorpayPlanConfig[],
+  annual: RazorpayPlanConfig[]
 ): string | null {
   if (!annualBillingAvailable(annual) || monthly.length === 0) return null;
   const percents = monthly.map((m) => {
@@ -124,7 +124,7 @@ export interface PlanTier {
   /**
    * How the price row is sourced:
    *   "free"       — $0, always true (row absent in billing_subscriptions)
-   *   "configured" — the live Stripe prices, read from env at render
+   *   "configured" — the live Razorpay prices, read from env at render
    *   "contact"    — no price published, honest conversation instead
    */
   pricing: "free" | "configured" | "contact";
@@ -141,7 +141,7 @@ export const HERO = {
   eyebrow: "Pricing",
   title: "Plans that scale with how your team works.",
   intro:
-    "One product, no feature paywalls. Everything that ships today is on the free plan — team, roles, the full intake-to-invoice pipeline. The paid plan is the same product with a Stripe subscription behind it, so the tiers below describe how you'll use roducq, not what gets switched off.",
+    "One product, no feature paywalls. Everything that ships today is on the free plan — team, roles, the full intake-to-invoice pipeline. The paid plan is the same product with a Razorpay subscription behind it, so the tiers below describe how you'll use roducq, not what gets switched off.",
 } as const;
 
 /**
@@ -174,14 +174,14 @@ export const PLAN_TIERS: PlanTier[] = [
     name: "Team",
     eyebrow: "Agencies running client work",
     tagline:
-      "The same product, billed per workspace through Stripe. Upgrade from Settings, cancel any time.",
+      "The same product, billed per workspace through Razorpay. Upgrade from Settings, cancel any time.",
     badge: "Most popular",
     pricing: "configured",
     billingNote: "Per workspace per month — not per seat.",
     features: [
       "Everything in Starter, with no limits added",
-      "Billing through Stripe, in the currency you choose",
-      "Manage or cancel from the Stripe billing portal",
+      "Billing through Razorpay, in the currency you choose",
+      "Manage or cancel from Settings (Razorpay subscription)",
       "Early builds of whatever ships next",
     ],
     planned: [
@@ -218,7 +218,7 @@ export const PLAN_TIERS: PlanTier[] = [
  * that no tier is a usage cap — because none is enforced in code.
  */
 export const FOOTER_NOTE =
-  "Prices exclude tax where applicable. The paid plan bills monthly through Stripe and is cancellable any time from Settings or the Stripe billing portal — your workspace returns to the free plan when the subscription ends, and your data stays put. No plan on this page is a usage limit: roducq does not meter briefs, seats or AI generations today.";
+  "Prices exclude tax where applicable. The paid plan bills monthly through Razorpay and is cancellable any time from Settings — your workspace returns to the free plan when the subscription ends, and your data stays put. No plan on this page is a usage limit: roducq does not meter briefs, seats or AI generations today.";
 
 /**
  * One rendered interval tab. Built server-side from the real config and
@@ -252,8 +252,8 @@ export function buildMonthlyView(
 
 export function buildAnnualView(
   lines: string[],
-  monthly: StripePriceConfig[],
-  annual: StripePriceConfig[]
+  monthly: RazorpayPlanConfig[],
+  annual: RazorpayPlanConfig[]
 ): IntervalView {
   const available = annualBillingAvailable(annual);
   return {

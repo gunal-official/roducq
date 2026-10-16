@@ -69,7 +69,7 @@ function PriceRow({
     );
   }
   // The configured (paid) tier — the only row that ever shows a figure, and
-  // it shows exactly what the operator's Stripe config says.
+  // it shows exactly what the operator's Razorpay config says.
   if (!view.available) {
     return (
       <p className="text-sm text-muted-foreground">

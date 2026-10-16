@@ -240,7 +240,7 @@ export const PRICING_TEASER = {
   eyebrow: "Pricing",
   title: "Free to start. Billed per workspace, never per seat.",
   intro:
-    "Everything that ships today sits on the free plan — the full pipeline, team invites with roles, templates and webhooks. The paid plan is the same product with a Stripe subscription behind it, and it cancels any time.",
+    "Everything that ships today sits on the free plan — the full pipeline, team invites with roles, templates and webhooks. The paid plan is the same product with a Razorpay subscription behind it, and it cancels any time.",
   bullets: [
     "$0 for the whole product, for as long as you like",
     "One subscription per workspace, not per person",

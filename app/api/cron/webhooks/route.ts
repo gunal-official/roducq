@@ -18,7 +18,7 @@ import { createServiceClient } from "@/lib/supabase/service";
  * CRON_SECRET unset → 503 (the sweep simply never runs — in-process
  * retries still work on long-lived servers). Supabase must be
  * configured; the sweep writes through the SERVICE ROLE (same trust
- * model as the Stripe webhook route).
+ * model as the Razorpay webhook route).
  */
 
 export const dynamic = "force-dynamic";

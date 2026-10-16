@@ -2,19 +2,19 @@
  * Plan & billing (Step 34(b), billing live in the events/webhooks
  * foundation phase; global multi-currency 2026-09-26) — the
  * subscription surface reflects REAL state from billing_subscriptions
- * (row absent = Free, 'active' = Pro; the Stripe webhooks own those
- * transitions). Upgrade = hosted Stripe Checkout (test-mode keys) in
+ * (row absent = Free, 'active' = Pro; the Razorpay webhooks own those
+ * transitions). Upgrade = Razorpay Checkout (Checkout.js) in
  * the currency the owner picks; when billing env is absent the early
  * access mailto remains as the honest fallback. Prices shown are the
- * operator's STRIPE_PRICES config (display data) — the charged amount
- * is always Stripe's.
+ * operator's RAZORPAY_PLANS config (display data) — the charged amount
+ * is always Razorpay's.
  */
 
 import Link from "next/link";
 import { ArrowRight, Check, CreditCard, Sparkles } from "lucide-react";
 
 import { ManageBillingButton } from "@/components/settings/ManageBillingButton";
-import { formatPrice, type StripePriceConfig } from "@/lib/stripe";
+import { formatPrice, type RazorpayPlanConfig } from "@/lib/razorpay";
 import { PlanCheckoutButton } from "@/components/settings/PlanCheckoutButton";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -52,7 +52,7 @@ export function PlanCard({
   templateCount: number;
   plan: "free" | "pro";
   billingConfigured: boolean;
-  prices: StripePriceConfig[];
+  prices: RazorpayPlanConfig[];
   billing: {
     status: string;
     currency: string | null;
@@ -64,7 +64,7 @@ export function PlanCard({
     <SectionCard
       icon={CreditCard}
       title="Plan"
-      description="Subscription and billing for Roducq itself — real plan state, checkout via Stripe in the currency you choose."
+      description="Subscription and billing for Roducq itself — real plan state, checkout via Razorpay in the currency you choose."
       id={sectionId}
       bodyClassName="space-y-5 p-5"
       className="animate-rise-in"
@@ -84,6 +84,9 @@ export function PlanCard({
             Early access
           </Badge>
         )}
+        {billing && !isPro && billing.status !== "canceled" ? (
+          <Badge variant="secondary">{billing.status === "halted" || billing.status === "pending" ? "Payment needs attention" : billing.status}</Badge>
+        ) : null}
         <p className="w-full text-sm text-muted-foreground sm:w-auto">
           {isPro && billing?.currency && billing.amount != null
             ? `${formatPrice(billing.amount, billing.currency)} ${billing.currency} · `
@@ -125,8 +128,7 @@ export function PlanCard({
               <ManageBillingButton />
             ) : (
               <p className="text-sm text-muted-foreground">
-                Your workspace is on Pro — billing is managed through your
-                Stripe receipt.
+                Your workspace is on Pro — billing is managed through Razorpay; see your Razorpay payment confirmation.
               </p>
             )
           ) : billingConfigured ? (
@@ -146,11 +148,14 @@ export function PlanCard({
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
+        {billing && (billing.status === "halted" || billing.status === "pending") ? (
+          <p className="text-xs text-destructive">Your last Razorpay payment did not complete — Pro stays off until a payment succeeds. Update your payment method in Razorpay Checkout by upgrading again, or contact support.</p>
+        ) : null}
         <p className="text-xs text-muted-foreground">
           {isPro
-            ? "Manage or cancel the subscription anytime in the Stripe billing portal — the plan flips back to Free when the subscription ends."
+            ? "Cancel anytime from here — Razorpay stops future charges at the end of the current cycle, and the plan flips back to Free when the subscription ends."
             : billingConfigured
-              ? "Pick a currency, then upgrade opens Stripe Checkout (test mode). The plan updates here once Stripe confirms payment."
+              ? "Pick a currency, then upgrade opens Razorpay Checkout. The plan updates here once Razorpay confirms payment."
               : "Changing plans is by request until billing is configured — early users keep Free exactly as it is today. Nothing to cancel, ever."}
         </p>
       </div>

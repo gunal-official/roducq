@@ -205,7 +205,7 @@ describe("/ pricing teaser", () => {
 
   it("keeps the teaser honest about the free plan", () => {
     assert.match(PRICING_TEASER.intro, /free plan/i);
-    assert.match(PRICING_TEASER.intro, /Stripe/);
+    assert.match(PRICING_TEASER.intro, /Razorpay/);
     assert.match(PRICING_TEASER.intro, /cancel/i);
   });
 });

@@ -54,7 +54,7 @@ const stripComments = (src: string) =>
 const PLANS = read("app/(marketing)/pricing/plans.ts");
 const PLANS_TSX = read("app/(marketing)/pricing/pricing-plans.tsx");
 const PAGE = read("app/(marketing)/pricing/page.tsx");
-const STRIPE_LIB = read("lib/stripe.ts");
+const STRIPE_LIB = read("lib/razorpay.ts");
 const HARNESS = read("scripts/verify-responsive.mjs");
 
 const bySlug = (slug: string) => {
@@ -116,7 +116,7 @@ describe("/pricing hero + content", () => {
 
   it("footer note exists and states the cancellation + no-limits contract", () => {
     assert.ok(FOOTER_NOTE.length > 150, "footer note should carry the contract");
-    assert.match(FOOTER_NOTE, /Stripe/);
+    assert.match(FOOTER_NOTE, /Razorpay/);
     assert.match(FOOTER_NOTE, /cancel/i);
     assert.match(FOOTER_NOTE, /not a usage limit|no plan on this page is a usage limit/i);
   });
@@ -136,7 +136,7 @@ describe("/pricing billing toggle", () => {
   });
 
   it("annual is unavailable today and says so honestly", () => {
-    assert.deepEqual(ANNUAL_PRICES, [], "no annual Stripe prices exist yet");
+    assert.deepEqual(ANNUAL_PRICES, [], "no annual Razorpay prices exist yet");
     assert.equal(annualBillingAvailable(), false);
     const view = buildAnnualView([], [], ANNUAL_PRICES);
     assert.equal(view.available, false);
@@ -188,15 +188,15 @@ describe("/pricing discount arithmetic", () => {
 
   it("today's config yields no chip label — the badge is derived, never hardcoded", () => {
     assert.equal(annualDiscountLabel([], ANNUAL_PRICES), null);
-    assert.equal(annualDiscountLabel([{ currency: "USD", priceId: "price_m", amount: 19 }], ANNUAL_PRICES), null);
+    assert.equal(annualDiscountLabel([{ currency: "USD", planId: "price_m", amount: 19 }], ANNUAL_PRICES), null);
     // ...and lights up the moment real annual prices land.
-    const monthly = [{ currency: "USD", priceId: "price_m", amount: 19 }];
-    const annual = [{ currency: "USD", priceId: "price_a", amount: 190 }];
+    const monthly = [{ currency: "USD", planId: "price_m", amount: 19 }];
+    const annual = [{ currency: "USD", planId: "price_a", amount: 190 }];
     assert.equal(annualDiscountLabel(monthly, annual), "Save 17%");
     // A partial config (EUR has no annual price) shows nothing.
     assert.equal(
       annualDiscountLabel(
-        [...monthly, { currency: "EUR", priceId: "price_me", amount: 17 }],
+        [...monthly, { currency: "EUR", planId: "price_me", amount: 17 }],
         annual
       ),
       null
@@ -238,18 +238,18 @@ describe("/pricing truthfulness", () => {
   });
 
   it("says billing is per workspace, because the code charges one unit", () => {
-    const stripe = read("lib/stripe.ts");
+    const razorpay = read("lib/razorpay.ts");
     assert.match(
-      stripe,
-      /\["line_items\[0\]\[quantity\]", "1"\]/,
-      "Checkout still sends a hardcoded quantity of 1"
+      razorpay,
+      /quantity: 1/,
+      "subscription creation still sends a hardcoded quantity of 1"
     );
     assert.match(bySlug("team").billingNote, /per workspace/i);
     assert.match(bySlug("team").billingNote, /not per seat/i);
     assert.match(PLANS_TSX, /per workspace/);
   });
 
-  it("publishes no price literal — every figure comes from Stripe config", () => {
+  it("publishes no price literal — every figure comes from Razorpay config", () => {
     // The only number allowed in the shipped data is the free tier's $0.
     const code = stripComments(PLANS_TSX);
     const figures = code.match(/\$\d[\d,]*(?:\.\d{2})?/g) ?? [];
@@ -309,7 +309,7 @@ describe("/pricing launch-offer callout", () => {
     assert.match(PAGE, /font-mono/, "promo code renders in monospace for readability");
   });
 
-  it("getPricingOffer lives in lib/stripe.ts and returns null when billing is off", () => {
+  it("getPricingOffer lives in lib/razorpay.ts and returns null when billing is off", () => {
     assert.match(STRIPE_LIB, /export function getPricingOffer/);
     assert.match(STRIPE_LIB, /if \(!billingConfigured\) return null/);
   });
@@ -322,18 +322,11 @@ describe("/pricing launch-offer callout", () => {
     assert.match(STRIPE_LIB, /3 months/);
   });
 
-  it("Checkout session enables promotion codes and hardcodes no coupon", () => {
-    assert.match(
-      STRIPE_LIB,
-      /\["allow_promotion_codes", "true"\]/,
-      "Stripe Checkout must enable the 'Add promotion code' field"
-    );
-    // Strip comments before the literal check — prose may legitimately
-    // mention "coupon" as a category the code does NOT emit.
+  it("no hardcoded Razorpay offer id — offers are dashboard-managed", () => {
     assert.doesNotMatch(
       stripComments(STRIPE_LIB),
-      /coupon/i,
-      "no hardcoded Stripe coupon id — codes are dashboard-managed"
+      /offer_[A-Za-z0-9]{6,}/,
+      "no hardcoded Razorpay offer id — offers are dashboard-managed"
     );
   });
 

@@ -24,9 +24,9 @@ describe("docs/screenshots copy stays in sync with /pricing source", () => {
   // script uses at build time).
   const jiti = require(resolve(ROOT, "node_modules/jiti"))(__filename);
   const plans = jiti(resolve(ROOT, "app/(marketing)/pricing/plans.ts"));
-  const stripe = jiti(resolve(ROOT, "lib/stripe.ts"));
+  const stripe = jiti(resolve(ROOT, "lib/razorpay.ts"));
 
-  it("offer defaults in lib/stripe.ts match defaults used by the screenshots", () => {
+  it("offer defaults in lib/razorpay.ts match defaults used by the screenshots", () => {
     assert.equal(stripe.DEFAULT_OFFER_BADGE, "LAUNCH OFFER");
     assert.equal(stripe.DEFAULT_OFFER_CODE, "LAUNCH20");
     assert.match(stripe.DEFAULT_OFFER_TEXT, /Save 20%/);
@@ -37,7 +37,7 @@ describe("docs/screenshots copy stays in sync with /pricing source", () => {
     assert.equal(plans.HERO.eyebrow, "Pricing");
     assert.equal(plans.HERO.title, "Plans that scale with how your team works.");
     assert.match(plans.HERO.intro, /no feature paywalls/);
-    assert.match(plans.FOOTER_NOTE, /Stripe/);
+    assert.match(plans.FOOTER_NOTE, /Razorpay/);
     assert.ok(plans.FOOTER_NOTE.includes("usage limit"), "footer should call out there's no usage limit");
   });
 
@@ -52,9 +52,9 @@ describe("docs/screenshots copy stays in sync with /pricing source", () => {
     assert.match(team.billingNote, /not per seat/i);
   });
 
-  it("Checkout session still enables promotion codes (no hardcoded coupon)", () => {
-    const stripeSrc = read("lib/stripe.ts");
-    assert.match(stripeSrc, /\["allow_promotion_codes", "true"\]/);
+  it("no hardcoded Razorpay offer id in billing lib", () => {
+    const src = read("lib/razorpay.ts");
+    assert.doesNotMatch(src, /offer_[A-Za-z0-9]{6,}/);
   });
 
   it("all three screenshot PNGs exist on disk", () => {

@@ -956,7 +956,7 @@ shrink, invoice line-items stacking below md, TeamCard select sizing.
 
 ---
 
-## Events, webhooks + Stripe billing (2026-09-26 phase)
+## Events, webhooks + billing (2026-09-26 phase; Razorpay since 2026-10-16)
 
 **Closeout**: `docs/billing-webhooks-closeout.md` — full phase summary
 (event types, the webhook delivery contract, the billing flow, honest
@@ -983,16 +983,20 @@ card). All vars are commented out in `.env.local.example`.
   re-processes due `pending` deliveries with an atomic 1h-lease claim;
   point any scheduler at it once a minute (serverless recovery for
   frozen in-process retries).
-- **Stripe billing (global, multi-currency)** — the Plan card's
-  "Upgrade to Pro" lets the owner pick a currency and opens a hosted
-  Stripe Checkout session for that currency's price (no card forms in
-  the app; cards accepted in 135+ currencies worldwide; TEST-mode keys
-  in dev). Exactly two Stripe webhooks flip the subscription
-  (`checkout.session.completed` → active, `customer.subscription.deleted`
-  → canceled); Pro workspaces get a hosted Customer Portal link. The
-  prices shown (Settings + /pricing) are the operator's `STRIPE_PRICES`
-  config — one recurring price per currency; the charged amount is
-  always Stripe's.
+- **Razorpay billing (RoduCQ's only payment provider)** — the Plan
+  card's "Upgrade to Pro" lets the owner pick a currency; the server
+  creates a Razorpay Subscription for the server-configured Plan and
+  the browser opens Razorpay Checkout.js. Paid access is granted only
+  after HMAC payment-signature verification plus a server-side
+  subscription fetch (`/api/razorpay/verify`), or a verified
+  `/api/razorpay/webhook`. Cancellation happens in Settings (cancel at
+  cycle end) — there is no Stripe-style portal. The prices shown
+  (Settings + /pricing) are the operator's `RAZORPAY_PLANS` config —
+  one Razorpay Plan per currency; the charged amount is always
+  Razorpay's. HISTORICAL: the 2026-09-26 phase originally shipped
+  Stripe (`docs/billing-webhooks-closeout.md`); legacy Stripe columns
+  and rows are preserved for financial history, no active flow uses
+  them. Full audit: `docs/razorpay-production-audit.md`.
 
 ### Six new migrations
 
@@ -1006,13 +1010,14 @@ all migrations.
 
 | Var | Needed for |
 |---|---|
-| `STRIPE_SECRET_KEY` + `STRIPE_PRICES` | the in-app upgrade button — JSON array, one recurring price per currency, e.g. `[{"currency":"USD","priceId":"price_...","amount":19}]` |
-| `STRIPE_WEBHOOK_SECRET` + `SUPABASE_SERVICE_ROLE_KEY` | `/api/stripe/webhook` — register exactly `checkout.session.completed` + `customer.subscription.deleted` |
+| `RAZORPAY_KEY_ID` + `RAZORPAY_KEY_SECRET` + `RAZORPAY_PLANS` | the in-app upgrade button — JSON array, one Razorpay Plan per currency, e.g. `[{"currency":"INR","planId":"plan_...","amount":1499}]` |
+| `RAZORPAY_WEBHOOK_SECRET` + `SUPABASE_SERVICE_ROLE_KEY` | `/api/razorpay/webhook` — allowlisted `subscription.*` + `payment.failed` events |
 | `CRON_SECRET` | the retry sweep at `/api/cron/webhooks` |
 
-Local dev: `stripe listen --forward-to localhost:3000/api/stripe/webhook`;
-smoke card `4242 4242 4242 4242`. Full checklist:
-`docs/billing-webhooks-closeout.md` §3.
+Local dev: use Razorpay TEST-mode keys (`rzp_test_...`) and a local
+webhook tunnel to `/api/razorpay/webhook`. Do not use live keys or real
+charges without authorization. Full checklist:
+`docs/razorpay-production-audit.md`.
 
 
 ---

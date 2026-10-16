@@ -3,8 +3,8 @@ import { createClient as createSupabaseClient } from "@supabase/supabase-js";
 /**
  * Service-role Supabase client — BYPASSES RLS. Server-side only; every
  * caller has its own trust boundary:
- *   1. the Stripe webhook route (app/api/stripe/webhook) — gated by the
- *      verified `Stripe-Signature` (test-mode keys only);
+ *   1. the Razorpay webhook + verify routes (app/api/razorpay/*) — gated by
+ *      verified Razorpay signatures / authenticated owner checks;
  *   2. the webhook retry sweep (app/api/cron/webhooks) — gated by
  *      `Authorization: Bearer <CRON_SECRET>`;
  *   3. the mailbox OAuth callback (app/api/email/callback) — gated by

@@ -14,20 +14,19 @@
  */
 
 import { revalidatePath } from "next/cache";
-import { headers } from "next/headers";
-import { redirect } from "next/navigation";
 
 import { getWorkspaceContext } from "@/lib/data/workspace-context";
 import { LogoImageError, decodeLogoDataUrl } from "@/lib/pdf/images";
 import { recordEvent } from "@/lib/events";
 import { createClient } from "@/lib/supabase/server";
 import {
-  createBillingPortalSession,
-  createCheckoutSession,
-  findPrice,
+  cancelRazorpaySubscription as cancelRzp,
+  createRazorpaySubscription,
+  findPlan,
   formatPrice,
-  getPricesConfig,
-} from "@/lib/stripe";
+  getRazorpayPlansConfig,
+  getRazorpayServerConfig,
+} from "@/lib/razorpay";
 
 export type ActionResult = { error?: string } | undefined;
 
@@ -233,117 +232,43 @@ export async function deleteTemplate(input: {
   return { error: undefined };
 }
 
-/**
- * Start a hosted Stripe Checkout session for the Free → Pro upgrade
- * (Phase: events/webhooks foundation; global multi-currency 2026-09-26).
- * Owner-only; TEST-mode keys only (STRIPE_SECRET_KEY = sk_test_…,
- * STRIPE_PRICES = JSON array of one recurring price per currency).
- * `currency` must be one of the configured codes. On success this NEVER
- * returns — the browser lands on Stripe's hosted page; state changes
- * arrive via /api/stripe/webhook, not from this action.
- */
-export async function startCheckout(currency: string): Promise<ActionResult> {
-  const { supabase, membership } = await getMembership();
-  if (!membership) {
-    return { error: "Your session has expired. Please log in again." };
+/** Razorpay checkout: owner-only; plan resolved server-side from
+ * RAZORPAY_PLANS (browser names only a currency). Returns the subscription
+ * id + PUBLIC key id for Checkout.js; entitlement is granted only by
+ * /api/razorpay/verify after signature + server-side subscription check. */
+export type RazorpayCheckoutResult =
+  | { error: string }
+  | { subscriptionId: string; keyId: string; currency: string; amount: number };
+export async function createRazorpayCheckout(currency: string): Promise<RazorpayCheckoutResult> {
+  const { membership } = await getMembership();
+  if (!membership) return { error: "Your session has expired. Please log in again." };
+  if (membership.role !== "owner") return { error: "Only workspace owners can manage billing." };
+  const cfg = getRazorpayServerConfig();
+  if (!cfg.ok) return { error: cfg.error };
+  const plansConfig = getRazorpayPlansConfig();
+  if (!plansConfig.ok) return { error: plansConfig.error };
+  const plan = findPlan(plansConfig.plans, currency);
+  if (!plan) {
+    const available = plansConfig.plans.map((p) => `${formatPrice(p.amount, p.currency)} ${p.currency}`).join(" · ");
+    return { error: `Pro is not available in ${currency.toUpperCase()} yet — configured: ${available}.` };
   }
-  if (membership.role !== "owner") {
-    return { error: "Only workspace owners can manage billing." };
-  }
-
-  const secretKey = process.env.STRIPE_SECRET_KEY;
-  if (!secretKey) {
-    return {
-      error:
-        "Billing is not configured yet — set STRIPE_SECRET_KEY and STRIPE_PRICES (test mode).",
-    };
-  }
-  const pricesConfig = getPricesConfig();
-  if (!pricesConfig.ok) {
-    return { error: pricesConfig.error };
-  }
-  const price = findPrice(pricesConfig.prices, currency);
-  if (!price) {
-    const available = pricesConfig.prices
-      .map((p) => `${formatPrice(p.amount, p.currency)} ${p.currency}`)
-      .join(" · ");
-    return {
-      error: `Pro is not available in ${currency.toUpperCase()} yet — configured: ${available}.`,
-    };
-  }
-
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("email")
-    .eq("id", (await supabase.auth.getUser()).data.user?.id ?? "")
-    .maybeSingle();
-
-  const h = await headers();
-  const host = h.get("origin") ?? (h.get("x-forwarded-host") ? `https://${h.get("x-forwarded-host")}` : "http://localhost:3000");
-
-  const session = await createCheckoutSession({
-    secretKey,
-    workspaceId: membership.workspace_id,
-    priceId: price.priceId,
-    successUrl: `${host}/settings?checkout=success`,
-    cancelUrl: `${host}/settings?checkout=canceled`,
-    customerEmail: profile?.email ?? null,
-  });
-  if (!session.ok) return { error: session.error };
-
-  redirect(session.url);
+  const created = await createRazorpaySubscription({ keyId: cfg.keyId, keySecret: cfg.keySecret, planId: plan.planId, workspaceId: membership.workspace_id });
+  if (!created.ok) return { error: created.error };
+  return { subscriptionId: created.subscription.id, keyId: cfg.keyId, currency: plan.currency, amount: plan.amount };
 }
 
-/**
- * Open the hosted Stripe Customer Portal for the workspace's
- * subscription (suggestions pass 5/10). Owner-only, TEST-mode keys.
- * The browser lands on Stripe's hosted page where the owner can cancel
- * or update the subscription; the plan state HERE still flips only via
- * the two webhooks (customer.subscription.deleted included) — the
- * portal manages Stripe's side, the webhooks own ours.
- */
-export async function openCustomerPortal(): Promise<ActionResult> {
+/** Cancel the workspace's Razorpay subscription at cycle end (owner-only).
+ * Local status flips via the subscription.cancelled webhook. */
+export async function cancelRazorpaySubscription(): Promise<ActionResult> {
   const { supabase, membership } = await getMembership();
-  if (!membership) {
-    return { error: "Your session has expired. Please log in again." };
-  }
-  if (membership.role !== "owner") {
-    return { error: "Only workspace owners can manage billing." };
-  }
-
-  const secretKey = process.env.STRIPE_SECRET_KEY;
-  if (!secretKey) {
-    return {
-      error:
-        "Billing is not configured yet — set STRIPE_SECRET_KEY (test mode).",
-    };
-  }
-
-  const { data: billing } = await supabase
-    .from("billing_subscriptions")
-    .select("status, stripe_customer_id")
-    .eq("workspace_id", membership.workspace_id)
-    .maybeSingle();
-
-  if (!billing || !billing.stripe_customer_id) {
-    return {
-      error: "No subscription to manage yet — complete checkout first.",
-    };
-  }
-
-  const h = await headers();
-  const host =
-    h.get("origin") ??
-    (h.get("x-forwarded-host")
-      ? `https://${h.get("x-forwarded-host")}`
-      : "http://localhost:3000");
-
-  const session = await createBillingPortalSession({
-    secretKey,
-    customerId: billing.stripe_customer_id,
-    returnUrl: `${host}/settings`,
-  });
-  if (!session.ok) return { error: session.error };
-
-  redirect(session.url);
+  if (!membership) return { error: "Your session has expired. Please log in again." };
+  if (membership.role !== "owner") return { error: "Only workspace owners can manage billing." };
+  const cfg = getRazorpayServerConfig();
+  if (!cfg.ok) return { error: cfg.error };
+  const { data: billing } = await supabase.from("billing_subscriptions").select("razorpay_subscription_id").eq("workspace_id", membership.workspace_id).maybeSingle();
+  if (!billing?.razorpay_subscription_id) return { error: "No Razorpay subscription to cancel yet — complete checkout first." };
+  const result = await cancelRzp({ keyId: cfg.keyId, keySecret: cfg.keySecret, subscriptionId: billing.razorpay_subscription_id, cancelAtCycleEnd: true });
+  if (!result.ok) return { error: result.error };
+  revalidatePath("/settings");
+  return { error: undefined };
 }

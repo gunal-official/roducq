@@ -977,7 +977,7 @@ async function main() {
   // ── interaction-state probes (RUN_INTERACT=1): drive the timer pill, its
   // stop form, a select popover, the inline destructive confirm, the
   // checkout-return toasts, and — when billing env is set — the Pro
-  // upgrade flow (currency switch + upgrade click → actionable Stripe
+  // upgrade flow (currency switch + upgrade click → actionable Razorpay
   // toast) at 320+768.
   if (process.env.RUN_INTERACT === "1") {
     for (const w of [320, 768]) {
@@ -1080,10 +1080,10 @@ async function main() {
         // E) billing upgrade flow (only when billing env is set): the
         // currency switch is client state; the upgrade click must reach
         // the server action and surface an actionable toast. The sandbox
-        // has no route to api.stripe.com, so "Could not reach Stripe." is
+        // has no route to api.razorpay.com, so "Could not reach Razorpay." is
         // the expected error — the point is: no silent failure, no
         // redirect off /settings.
-        if (process.env.STRIPE_PRICES && process.env.STRIPE_SECRET_KEY) {
+        if (process.env.RAZORPAY_PLANS && process.env.RAZORPAY_KEY_SECRET) {
           await page.goto(`${BASE}/settings`, { waitUntil: "load", timeout: 20000 });
           await page.waitForTimeout(400);
           const upBtn = page.locator('button:has-text("Upgrade to Pro")').first();
@@ -1111,16 +1111,16 @@ async function main() {
             const stayed = new URL(page.url()).pathname === "/settings";
             m = await page.evaluate(METRICS_FN);
             x = await extra();
-            ok = /Stripe/i.test(toastText) && stayed && m.overflowX === 0 && m.small.length === 0;
+            ok = /Razorpay/i.test(toastText) && stayed && m.overflowX === 0 && m.small.length === 0;
             await record("billing-upgrade", ok, m);
           }
         }
 
-        // F) checkout return flow: landing back from hosted Stripe Checkout
+        // F) checkout return flow: landing back from Razorpay Checkout
         // with ?checkout=success|canceled lands exactly one toast, strips
         // the param, and a refresh must NOT re-toast (fires once).
         for (const [param, expected] of [
-          ["success", "Back from Stripe Checkout"],
+          ["success", "Back from Razorpay Checkout"],
           ["canceled", "Checkout canceled"],
         ]) {
           await page.goto(`${BASE}/settings?checkout=${param}`, { waitUntil: "load", timeout: 20000 });

@@ -7,7 +7,7 @@
  * editor guard (viewers read, never write).
  *
  * Token access + message upserts + attached-brief marking go through the
- * SERVICE client (bypasses RLS) — same trust model as the Stripe webhook
+ * SERVICE client (bypasses RLS) — same trust model as the Razorpay webhook
  * route; the user-facing checks above are the authorization boundary.
  */
 

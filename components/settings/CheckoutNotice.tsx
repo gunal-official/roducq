@@ -2,8 +2,8 @@
 
 /**
  * Checkout return notice (suggestions pass 6/10) — one-time toast when
- * the browser returns from Stripe Checkout with ?checkout=success or
- * ?checkout=canceled. The plan state itself arrives via the Stripe
+ * the browser returns from Razorpay Checkout with ?checkout=success or
+ * ?checkout=canceled. The plan state itself arrives via the Razorpay
  * webhook (asynchronously), so the copy says exactly that instead of
  * claiming the plan already flipped. Fires once per mount (StrictMode
  * safe) and strips the query param so a refresh doesn't re-toast.
@@ -29,7 +29,7 @@ function CheckoutNoticeInner() {
     }
     toast(
       result === "success"
-        ? "Back from Stripe Checkout — the plan activates here as soon as Stripe confirms the payment."
+        ? "Back from Razorpay Checkout — the plan activates here as soon as Razorpay confirms the payment."
         : "Checkout canceled — nothing was charged."
     );
   }, [searchParams, toast]);
