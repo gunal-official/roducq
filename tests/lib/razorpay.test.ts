@@ -76,13 +76,17 @@ describe("route/action wiring guards", () => {
   test("no active Stripe billing code remains", () => {
     assert.throws(() => read("lib/stripe.ts")); assert.throws(() => read("app/api/stripe/webhook/route.ts"));
     assert.doesNotMatch(read("app/(app)/settings/actions.ts"), /STRIPE|createCheckoutSession|openCustomerPortal/);
-    assert.match(read("app/api/razorpay/webhook/route.ts"), /verifyWebhookSignature/);
-    assert.match(read("app/api/razorpay/verify/route.ts"), /verifyPaymentSignature/);
-    assert.match(read("app/api/razorpay/verify/route.ts"), /fetchRazorpaySubscription/);
+    // Webhook and verify logic moved into lib/billing/* (dependency-injected, unit-tested).
+    assert.match(read("lib/billing/webhook-processor.ts"), /verifyWebhookSignature/);
+    assert.match(read("app/api/razorpay/webhook/route.ts"), /processRazorpayWebhook/);
+    assert.match(read("lib/billing/checkout-verify.ts"), /verifyPaymentSignature/);
+    assert.match(read("app/api/razorpay/verify/route.ts"), /verifyRazorpayCheckout/);
+    assert.match(read("lib/billing/checkout-verify.ts"), /fetchSubscription/);
   });
-  test("duplicate/out-of-order guards present in webhook route", () => {
-    const src = read("app/api/razorpay/webhook/route.ts");
-    assert.match(src, /billing_webhook_events/); assert.match(src, /last_billing_event_at/); assert.match(src, /duplicate/);
+  test("duplicate/out-of-order guards live in the atomic database function", () => {
+    const migration = read("supabase/migrations/20261016120000_razorpay_atomic_ledger_entitlements.sql");
+    assert.match(migration, /billing_webhook_events/); assert.match(migration, /last_billing_event_at/); assert.match(migration, /'duplicate'/);
+    assert.match(read("lib/billing/webhook-processor.ts"), /deriveEventKey/);
   });
   test("checkout never trusts browser plan/amount", () => {
     assert.match(read("components/settings/PlanCheckoutButton.tsx"), /checkout\.razorpay\.com\/v1\/checkout\.js/);

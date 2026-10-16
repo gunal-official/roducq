@@ -13,6 +13,7 @@
  *      actions anyway returns "Only workspace owners…".
  */
 
+import { canStartNewRazorpaySubscription } from "@/lib/billing/entitlements";
 import { revalidatePath } from "next/cache";
 
 import { getWorkspaceContext } from "@/lib/data/workspace-context";
@@ -252,6 +253,17 @@ export async function createRazorpayCheckout(currency: string): Promise<Razorpay
     const available = plansConfig.plans.map((p) => `${formatPrice(p.amount, p.currency)} ${p.currency}`).join(" · ");
     return { error: `Pro is not available in ${currency.toUpperCase()} yet — configured: ${available}.` };
   }
+  // Refuse before creating anything at Razorpay if the workspace already has a
+  // subscription the database would not replace (prevents orphaned, paid-for
+  // subscriptions and double billing with a live legacy Stripe plan).
+  const { supabase } = await getMembership();
+  const { data: billingRow } = await supabase
+    .from("billing_subscriptions")
+    .select("provider, status, paid_through")
+    .eq("workspace_id", membership.workspace_id)
+    .maybeSingle();
+  const blocked = canStartNewRazorpaySubscription(billingRow, new Date());
+  if (blocked) return { error: blocked };
   const created = await createRazorpaySubscription({ keyId: cfg.keyId, keySecret: cfg.keySecret, planId: plan.planId, workspaceId: membership.workspace_id });
   if (!created.ok) return { error: created.error };
   return { subscriptionId: created.subscription.id, keyId: cfg.keyId, currency: plan.currency, amount: plan.amount };
