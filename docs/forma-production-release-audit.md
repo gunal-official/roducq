@@ -283,6 +283,13 @@ Verified after fix: 0 occluded text nodes at 640/768/900/1024/1280/1440; light a
 full sweeps re-run green; `marketing-home` Phase-F metrics identical before vs after
 (axe 0, exactly 1 H1, CLS 0, 0 failures); `npm test` / `lint` / `tsc` / `build` re-run green.
 
+Evidence frames, same geometry and 3× scale, captioned in place:
+
+- `docs/screenshots/forma-production-audit/hero-callout-occlusion-before-1440.png` — the
+  row is behind the callout (the check mark and the top half of "2 of 4 complete" are cut).
+- `docs/screenshots/forma-production-audit/hero-callout-fixed-after-1440.png` — the whole
+  row reads cleanly, the callout keeps its overhang.
+
 **Open question for the reviewer:** whether the fix belongs in the product mock at all —
 deliberately bleeding a decorative callout over artwork is a legitimate Forma-style choice,
 so "reserve space" and "re-anchor the callout to clear the row" are both defensible.
