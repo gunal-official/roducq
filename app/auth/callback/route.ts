@@ -1,56 +1,91 @@
 import { NextResponse } from "next/server";
 
+import { parseRecoveryLinkError } from "@/lib/auth/password-recovery";
+import {
+  RECOVERY_COOKIE,
+  createRecoveryGrantValue,
+  recoveryCookieOptions,
+} from "@/lib/auth/recovery-grant";
 import { createClient } from "@/lib/supabase/server";
 
 /**
- * OAuth return leg (Google today; any future provider goes through the
- * same seam). `signInWithGoogle` (lib/auth/oauth.ts) sends the browser to
- * Google with `redirectTo` pointed HERE — never at a bare page — because
- * the PKCE code in `?code=` has to be exchanged for a session server-side
- * before any page load can see a logged-in user. Land the code on an
- * ordinary page instead and the browser client never redeems it: the
- * request has no session yet, the proxy's `isAppPath` guard (see
- * lib/supabase/middleware.ts) treats the visitor as signed out, and it
- * bounces straight back to /login — the infinite loop this route exists
- * to prevent.
+ * OAuth + password-recovery return leg. `signInWithGoogle`
+ * (lib/auth/oauth.ts) and the recovery email (lib/auth/password-recovery.ts)
+ * both send the browser here — never at a bare page — because the PKCE
+ * code in `?code=` has to be exchanged for a session server-side before
+ * any page load can see a logged-in user.
+ *
+ * Recovery: the reset email's redirectTo carries `recovery=1&next=
+ * /reset-password`. After a successful exchange this route sets the
+ * recovery-grant cookie (lib/auth/recovery-grant.ts) — the proof the
+ * reset page's server action requires before it will update a password —
+ * and lands on /reset-password. Expired/already-used links (Supabase
+ * appends error/error_code instead of a code) land on /reset-password
+ * with a generic expired flag; no code or token is ever logged.
  *
  * `next` is the same-site landing path the caller wants after a
- * successful exchange (e.g. `/intake`, or an `/invite/:token` deep link);
- * it is re-validated here (defense in depth — the query string is
- * attacker-controlled even though every caller already guards it before
- * building the redirect URL).
+ * successful exchange; it is re-validated here (defense in depth — the
+ * query string is attacker-controlled even though every caller already
+ * guards it before building the redirect URL). A recovery request always
+ * lands on /reset-password regardless of `next`.
  */
 
 export const dynamic = "force-dynamic";
 
 function safeNext(next: string | null): string {
-  return next && next.startsWith("/") && !next.startsWith("//") ? next : "/dashboard";
+  return next && next.startsWith("/") && !next.startsWith("//") && !next.includes("\\") ? next : "/dashboard";
 }
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
   const origin = url.origin;
-  const next = safeNext(url.searchParams.get("next"));
+  const isRecovery = url.searchParams.get("recovery") === "1";
+  const next = isRecovery ? "/reset-password" : safeNext(url.searchParams.get("next"));
 
-  // The provider's own cancel/deny path lands here without a code.
-  if (url.searchParams.get("error")) {
+  // The provider's own cancel/deny path, and expired/used recovery links,
+  // land here without a code.
+  if (url.searchParams.get("error") || url.searchParams.get("error_code")) {
+    if (isRecovery || parseRecoveryLinkError({ search: url.search })) {
+      const kind = parseRecoveryLinkError({ search: url.search }) ?? "invalid";
+      return NextResponse.redirect(
+        `${origin}/reset-password?error=${kind === "expired" ? "expired" : "invalid"}`
+      );
+    }
     return NextResponse.redirect(`${origin}/login?error=oauth`);
   }
 
   const code = url.searchParams.get("code");
   if (!code) {
-    return NextResponse.redirect(`${origin}/login?error=oauth`);
+    return isRecovery
+      ? NextResponse.redirect(`${origin}/reset-password?error=invalid`)
+      : NextResponse.redirect(`${origin}/login?error=oauth`);
   }
 
   const supabase = await createClient();
-  const { error } = await supabase.auth.exchangeCodeForSession(code);
+  const { data, error } = await supabase.auth.exchangeCodeForSession(code);
 
   if (error) {
-    return NextResponse.redirect(`${origin}/login?error=oauth`);
+    return isRecovery
+      ? NextResponse.redirect(`${origin}/reset-password?error=expired`)
+      : NextResponse.redirect(`${origin}/login?error=oauth`);
+  }
+
+  const response = NextResponse.redirect(`${origin}${next}`);
+
+  // Bind the grant to this exact recovery session (see recovery-grant.ts).
+  if (isRecovery && data.session?.access_token) {
+    response.cookies.set(
+      RECOVERY_COOKIE,
+      createRecoveryGrantValue(data.session.access_token),
+      {
+        ...recoveryCookieOptions,
+        secure: url.protocol === "https:",
+      }
+    );
   }
 
   // Session cookies are set. If the user has no workspace yet (brand new
   // Google sign-up), the (app) layout redirects to /onboarding itself —
   // this route doesn't need to know which case it is.
-  return NextResponse.redirect(`${origin}${next}`);
+  return response;
 }

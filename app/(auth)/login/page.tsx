@@ -29,6 +29,7 @@ function LoginForm() {
       ? "Google sign-in didn’t complete — please try again."
       : null
   );
+  const passwordUpdated = searchParams.get("reset") === "success";
   const [pending, setPending] = useState(false);
   const configured = isSupabaseConfigured();
 
@@ -110,17 +111,36 @@ function LoginForm() {
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <AuthField
-          id="password"
-          label="Password"
-          icon={Lock}
-          type="password"
-          required
-          autoComplete="current-password"
-          placeholder="••••••••"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <div>
+          <AuthField
+            id="password"
+            label="Password"
+            icon={Lock}
+            type="password"
+            required
+            autoComplete="current-password"
+            placeholder="••••••••"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <div className="mt-1 flex justify-end">
+            <Link
+              href="/forgot-password"
+              className="inline-flex min-h-11 items-center px-2 text-sm font-semibold text-accent hover:underline"
+            >
+              Forgot password?
+            </Link>
+          </div>
+        </div>
+
+        {passwordUpdated ? (
+          <p
+            role="status"
+            className="rounded-control border border-border bg-muted px-3 py-2.5 text-sm text-text"
+          >
+            Password updated — sign in with your new password.
+          </p>
+        ) : null}
 
         {error ? (
           <p

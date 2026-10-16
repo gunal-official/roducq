@@ -29,7 +29,13 @@ const APP_PREFIXES = [
 ];
 
 /** Auth pages an already-signed-in user should be bounced away from. */
-const AUTH_PAGES = ["/login", "/signup"];
+/**
+ * /reset-password is deliberately NOT here: following a recovery link
+ * creates a session, and bouncing that session to /intake would make
+ * password recovery impossible. The reset page + its server action
+ * require recovery proof, so a normal session gains nothing there.
+ */
+const AUTH_PAGES = ["/login", "/signup", "/forgot-password"];
 
 function isAppPath(pathname: string): boolean {
   return APP_PREFIXES.some(

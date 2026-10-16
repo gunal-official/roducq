@@ -1,0 +1,266 @@
+[
+  {
+    "file": "/home/user/roducq/docs/screenshots/password-recovery/login-light-375.png",
+    "theme": "light",
+    "width": 375,
+    "overflowX": 0,
+    "h1": "Log in",
+    "focus": {
+      "tag": "A",
+      "label": "RoduCQ home",
+      "outline": "2px solid"
+    }
+  },
+  {
+    "file": "/home/user/roducq/docs/screenshots/password-recovery/forgot-password-light-375.png",
+    "theme": "light",
+    "width": 375,
+    "overflowX": 0,
+    "h1": "Forgot password?",
+    "focus": {
+      "tag": "A",
+      "label": "RoduCQ home",
+      "outline": "2px solid"
+    }
+  },
+  {
+    "file": "/home/user/roducq/docs/screenshots/password-recovery/reset-password-link-error-light-375.png",
+    "theme": "light",
+    "width": 375,
+    "overflowX": 0,
+    "h1": "Reset link problem",
+    "focus": {
+      "tag": "A",
+      "label": "RoduCQ home",
+      "outline": "2px solid"
+    }
+  },
+  {
+    "file": "/home/user/roducq/docs/screenshots/password-recovery/login-light-768.png",
+    "theme": "light",
+    "width": 768,
+    "overflowX": 0,
+    "h1": "Log in",
+    "focus": {
+      "tag": "A",
+      "label": "RoduCQ home",
+      "outline": "2px solid"
+    }
+  },
+  {
+    "file": "/home/user/roducq/docs/screenshots/password-recovery/forgot-password-light-768.png",
+    "theme": "light",
+    "width": 768,
+    "overflowX": 0,
+    "h1": "Forgot password?",
+    "focus": {
+      "tag": "A",
+      "label": "RoduCQ home",
+      "outline": "2px solid"
+    }
+  },
+  {
+    "file": "/home/user/roducq/docs/screenshots/password-recovery/reset-password-link-error-light-768.png",
+    "theme": "light",
+    "width": 768,
+    "overflowX": 0,
+    "h1": "Reset link problem",
+    "focus": {
+      "tag": "A",
+      "label": "RoduCQ home",
+      "outline": "2px solid"
+    }
+  },
+  {
+    "file": "/home/user/roducq/docs/screenshots/password-recovery/login-light-1440.png",
+    "theme": "light",
+    "width": 1440,
+    "overflowX": 0,
+    "h1": "Log in",
+    "focus": {
+      "tag": "A",
+      "label": "RoduCQ home",
+      "outline": "2px solid"
+    }
+  },
+  {
+    "file": "/home/user/roducq/docs/screenshots/password-recovery/forgot-password-light-1440.png",
+    "theme": "light",
+    "width": 1440,
+    "overflowX": 0,
+    "h1": "Forgot password?",
+    "focus": {
+      "tag": "A",
+      "label": "RoduCQ home",
+      "outline": "2px solid"
+    }
+  },
+  {
+    "file": "/home/user/roducq/docs/screenshots/password-recovery/reset-password-link-error-light-1440.png",
+    "theme": "light",
+    "width": 1440,
+    "overflowX": 0,
+    "h1": "Reset link problem",
+    "focus": {
+      "tag": "A",
+      "label": "RoduCQ home",
+      "outline": "2px solid"
+    }
+  },
+  {
+    "file": "/home/user/roducq/docs/screenshots/password-recovery/login-dark-375.png",
+    "theme": "dark",
+    "width": 375,
+    "overflowX": 0,
+    "h1": "Log in",
+    "focus": {
+      "tag": "A",
+      "label": "RoduCQ home",
+      "outline": "2px solid"
+    }
+  },
+  {
+    "file": "/home/user/roducq/docs/screenshots/password-recovery/forgot-password-dark-375.png",
+    "theme": "dark",
+    "width": 375,
+    "overflowX": 0,
+    "h1": "Forgot password?",
+    "focus": {
+      "tag": "A",
+      "label": "RoduCQ home",
+      "outline": "2px solid"
+    }
+  },
+  {
+    "file": "/home/user/roducq/docs/screenshots/password-recovery/reset-password-link-error-dark-375.png",
+    "theme": "dark",
+    "width": 375,
+    "overflowX": 0,
+    "h1": "Reset link problem",
+    "focus": {
+      "tag": "A",
+      "label": "RoduCQ home",
+      "outline": "2px solid"
+    }
+  },
+  {
+    "file": "/home/user/roducq/docs/screenshots/password-recovery/login-dark-768.png",
+    "theme": "dark",
+    "width": 768,
+    "overflowX": 0,
+    "h1": "Log in",
+    "focus": {
+      "tag": "A",
+      "label": "RoduCQ home",
+      "outline": "2px solid"
+    }
+  },
+  {
+    "file": "/home/user/roducq/docs/screenshots/password-recovery/forgot-password-dark-768.png",
+    "theme": "dark",
+    "width": 768,
+    "overflowX": 0,
+    "h1": "Forgot password?",
+    "focus": {
+      "tag": "A",
+      "label": "RoduCQ home",
+      "outline": "2px solid"
+    }
+  },
+  {
+    "file": "/home/user/roducq/docs/screenshots/password-recovery/reset-password-link-error-dark-768.png",
+    "theme": "dark",
+    "width": 768,
+    "overflowX": 0,
+    "h1": "Reset link problem",
+    "focus": {
+      "tag": "A",
+      "label": "RoduCQ home",
+      "outline": "2px solid"
+    }
+  },
+  {
+    "file": "/home/user/roducq/docs/screenshots/password-recovery/login-dark-1440.png",
+    "theme": "dark",
+    "width": 1440,
+    "overflowX": 0,
+    "h1": "Log in",
+    "focus": {
+      "tag": "A",
+      "label": "RoduCQ home",
+      "outline": "2px solid"
+    }
+  },
+  {
+    "file": "/home/user/roducq/docs/screenshots/password-recovery/forgot-password-dark-1440.png",
+    "theme": "dark",
+    "width": 1440,
+    "overflowX": 0,
+    "h1": "Forgot password?",
+    "focus": {
+      "tag": "A",
+      "label": "RoduCQ home",
+      "outline": "2px solid"
+    }
+  },
+  {
+    "file": "/home/user/roducq/docs/screenshots/password-recovery/reset-password-link-error-dark-1440.png",
+    "theme": "dark",
+    "width": 1440,
+    "overflowX": 0,
+    "h1": "Reset link problem",
+    "focus": {
+      "tag": "A",
+      "label": "RoduCQ home",
+      "outline": "2px solid"
+    }
+  },
+  {
+    "file": "/home/user/roducq/docs/screenshots/password-recovery/forgot-password-submitted-light-375.png",
+    "theme": "light",
+    "width": 375,
+    "overflowX": 0,
+    "h1": "Check your email",
+    "focus": {
+      "tag": "A",
+      "label": "Back to sign in",
+      "outline": "2px solid"
+    }
+  },
+  {
+    "file": "/home/user/roducq/docs/screenshots/password-recovery/reset-password-light-375.png",
+    "theme": "light",
+    "width": 375,
+    "overflowX": 0,
+    "h1": "Set a new password",
+    "focus": {
+      "tag": "A",
+      "label": "RoduCQ home",
+      "outline": "2px solid"
+    }
+  },
+  {
+    "file": "/home/user/roducq/docs/screenshots/password-recovery/forgot-password-submitted-dark-375.png",
+    "theme": "dark",
+    "width": 375,
+    "overflowX": 0,
+    "h1": "Check your email",
+    "focus": {
+      "tag": "A",
+      "label": "Back to sign in",
+      "outline": "2px solid"
+    }
+  },
+  {
+    "file": "/home/user/roducq/docs/screenshots/password-recovery/reset-password-dark-375.png",
+    "theme": "dark",
+    "width": 375,
+    "overflowX": 0,
+    "h1": "Set a new password",
+    "focus": {
+      "tag": "A",
+      "label": "RoduCQ home",
+      "outline": "2px solid"
+    }
+  }
+]
