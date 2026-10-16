@@ -1,0 +1,135 @@
+{
+  "generatedAt": "2026-10-16T08:46:15.710Z",
+  "shots": [
+    {
+      "slug": "art-brief-source-light",
+      "ok": true,
+      "note": "intake → brief connector",
+      "file": "art-brief-source-light.png",
+      "w": 488,
+      "h": 183
+    },
+    {
+      "slug": "art-proposal-document-light",
+      "ok": true,
+      "note": "proposal document",
+      "file": "art-proposal-document-light.png",
+      "w": 488,
+      "h": 183
+    },
+    {
+      "slug": "art-plan-progress-light",
+      "ok": true,
+      "note": "task milestone rail (real counts)",
+      "file": "art-plan-progress-light.png",
+      "w": 488,
+      "h": 146
+    },
+    {
+      "slug": "art-update-timeline-light",
+      "ok": true,
+      "note": "update connector (real entries)",
+      "file": "art-update-timeline-light.png",
+      "w": 488,
+      "h": 98
+    },
+    {
+      "slug": "art-brief-source-dark",
+      "ok": true,
+      "note": "intake → brief connector",
+      "file": "art-brief-source-dark.png",
+      "w": 488,
+      "h": 183
+    },
+    {
+      "slug": "art-proposal-document-dark",
+      "ok": true,
+      "note": "proposal document",
+      "file": "art-proposal-document-dark.png",
+      "w": 488,
+      "h": 183
+    },
+    {
+      "slug": "art-plan-progress-dark",
+      "ok": true,
+      "note": "task milestone rail (real counts)",
+      "file": "art-plan-progress-dark.png",
+      "w": 488,
+      "h": 146
+    },
+    {
+      "slug": "art-update-timeline-dark",
+      "ok": true,
+      "note": "update connector (real entries)",
+      "file": "art-update-timeline-dark.png",
+      "w": 488,
+      "h": 98
+    },
+    {
+      "slug": "art-brief-source-reduced-motion",
+      "ok": true,
+      "note": "reduced motion: drawing must still be complete",
+      "file": "art-brief-source-reduced-motion.png",
+      "w": 488,
+      "h": 183
+    },
+    {
+      "slug": "art-proposal-document-reduced-motion",
+      "ok": true,
+      "note": "reduced motion: drawing must still be complete",
+      "file": "art-proposal-document-reduced-motion.png",
+      "w": 488,
+      "h": 183
+    },
+    {
+      "slug": "art-plan-progress-reduced-motion",
+      "ok": true,
+      "note": "reduced motion: drawing must still be complete",
+      "file": "art-plan-progress-reduced-motion.png",
+      "w": 488,
+      "h": 146
+    },
+    {
+      "slug": "art-update-timeline-reduced-motion",
+      "ok": true,
+      "note": "reduced motion: drawing must still be complete",
+      "file": "art-update-timeline-reduced-motion.png",
+      "w": 488,
+      "h": 98
+    },
+    {
+      "slug": "plan-task-board",
+      "ok": true,
+      "note": "grouped task board with the real progress rail",
+      "file": "plan-task-board.png",
+      "w": 665,
+      "h": 281
+    },
+    {
+      "slug": "plan-task-board-toggle",
+      "ok": true,
+      "note": "a task click: optimistic flip, then server truth",
+      "file": "plan-task-board-toggle.png",
+      "w": 665,
+      "h": 281
+    },
+    {
+      "slug": "plan-task-row-states",
+      "ok": true,
+      "rows": [
+        {
+          "text": "Moodboards",
+          "pressed": "false"
+        },
+        {
+          "text": "Logo exploration rounds",
+          "pressed": "false"
+        },
+        {
+          "text": "Discovery workshop and stakeholder inter",
+          "pressed": "true"
+        }
+      ]
+    }
+  ]
+}

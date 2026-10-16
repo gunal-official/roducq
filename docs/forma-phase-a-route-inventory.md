@@ -108,12 +108,15 @@ Phase A is the design foundation, not the finished application redesign.
 
 - [x] **Phase B — Application shell:** sidebar and topbar, workspace switcher,
       mobile tabs/drawer, account menu and responsive shell states.
-- [ ] **Phase C — Daily workflow:** Dashboard/Pipeline, Intake and Inbox,
+- [x] **Phase C — Daily workflow:** Dashboard/Pipeline, Intake and Inbox,
       including Settings, empty/loading/error states and responsive compositions.
-      Phase C implementation is in place; browser/reference review and new
-      screenshots remain blocked. See `forma-phase-c-closeout.md`.
-- [ ] **Phase D — Delivery workflow:** Briefs and Proposals (including proposal
-      versions), Plans and Updates (including share/print surfaces).
+      Implementation complete; the routes are re-measured by the Phase D audit.
+      See `forma-phase-c-closeout.md` (its browser limitation is resolved — see
+      `forma-phase-d-closeout.md` §6.2).
+- [x] **Phase D — Delivery workflow:** Briefs and Proposals (including proposal
+      versions), Plans and the task workspace, Updates and the composer.
+      Implemented, measured in real Chromium at 320–1440 in both themes, with
+      reduced-motion artwork proof. See `forma-phase-d-closeout.md`.
 - [ ] **Phase E — Financial workflow:** Invoices, Contracts, Time and Reports;
       preserve existing calculations, permissions, exports and print output.
 - [ ] **Phase F — Workspace and finishing pass:** Settings and Search; forms,
@@ -125,7 +128,11 @@ Phase A is the design foundation, not the finished application redesign.
 
 ## Verification and screenshot evidence
 
-- `npm test` — passed (711 tests).
+Phase A's numbers are kept below as the historical record of that phase; the
+current gates are in the per-phase closeouts (Phase D: 758 tests, real-Chromium
+audit, screenshots in `docs/screenshots/forma-phase-d/`).
+
+- `npm test` — passed (711 tests at the time of Phase A).
 - `npm run lint` — passed.
 - `npx tsc --noEmit` — passed.
 - `npm run build` — passed.
@@ -143,3 +150,11 @@ Phase A is the design foundation, not the finished application redesign.
 Re-run the responsive audit and capture the six theme/viewport combinations
 on a browser-enabled machine before treating visual browser verification as
 complete.
+
+> **Update (Phase D, 2026-10-16):** the browser gap described above is closed
+> in this environment — Chromium was provisioned from the
+> `@sparticuz/chromium` bundle plus its `al2023` shared libraries and
+> `verify:responsive` ran unmodified at 320/375/414/600/768/1024/1440 in both
+> themes. See `forma-phase-d-closeout.md` §6.2 for the exact chain and §6.3 for
+> the measured results; page and artwork screenshots are committed under
+> `docs/screenshots/forma-phase-d/`.

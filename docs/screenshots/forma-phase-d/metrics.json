@@ -1,0 +1,1456 @@
+{
+  "generatedAt": "2026-10-16T08:46:15Z",
+  "phase": "D",
+  "combinations": 63,
+  "results": [
+    {
+      "page": "briefs",
+      "width": 320,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "BUTTON",
+        "h": 44,
+        "w": 44,
+        "label": "Open menu"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Open menu"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "brief-detail",
+      "width": 320,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "BUTTON",
+        "h": 44,
+        "w": 44,
+        "label": "Open menu"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Open menu"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "proposals",
+      "width": 320,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "BUTTON",
+        "h": 44,
+        "w": 44,
+        "label": "Open menu"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Open menu"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "proposal-detail",
+      "width": 320,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "BUTTON",
+        "h": 44,
+        "w": 44,
+        "label": "Open menu"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Open menu"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "proposal-version",
+      "width": 320,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "BUTTON",
+        "h": 44,
+        "w": 44,
+        "label": "Open menu"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Open menu"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "plans",
+      "width": 320,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "BUTTON",
+        "h": 44,
+        "w": 44,
+        "label": "Open menu"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Open menu"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "plan-detail",
+      "width": 320,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "BUTTON",
+        "h": 44,
+        "w": 44,
+        "label": "Open menu"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Open menu"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "updates",
+      "width": 320,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "BUTTON",
+        "h": 44,
+        "w": 44,
+        "label": "Open menu"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Open menu"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "update-detail",
+      "width": 320,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "BUTTON",
+        "h": 44,
+        "w": 44,
+        "label": "Open menu"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Open menu"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "briefs",
+      "width": 375,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "BUTTON",
+        "h": 44,
+        "w": 44,
+        "label": "Open menu"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Open menu"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "brief-detail",
+      "width": 375,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "BUTTON",
+        "h": 44,
+        "w": 44,
+        "label": "Open menu"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Open menu"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "proposals",
+      "width": 375,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "BUTTON",
+        "h": 44,
+        "w": 44,
+        "label": "Open menu"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Open menu"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "proposal-detail",
+      "width": 375,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "BUTTON",
+        "h": 44,
+        "w": 44,
+        "label": "Open menu"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Open menu"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "proposal-version",
+      "width": 375,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "BUTTON",
+        "h": 44,
+        "w": 44,
+        "label": "Open menu"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Open menu"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "plans",
+      "width": 375,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "BUTTON",
+        "h": 44,
+        "w": 44,
+        "label": "Open menu"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Open menu"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "plan-detail",
+      "width": 375,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "BUTTON",
+        "h": 44,
+        "w": 44,
+        "label": "Open menu"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Open menu"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "updates",
+      "width": 375,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "BUTTON",
+        "h": 44,
+        "w": 44,
+        "label": "Open menu"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Open menu"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "update-detail",
+      "width": 375,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "BUTTON",
+        "h": 44,
+        "w": 44,
+        "label": "Open menu"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Open menu"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "briefs",
+      "width": 414,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "BUTTON",
+        "h": 44,
+        "w": 44,
+        "label": "Open menu"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Open menu"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "brief-detail",
+      "width": 414,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "BUTTON",
+        "h": 44,
+        "w": 44,
+        "label": "Open menu"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Open menu"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "proposals",
+      "width": 414,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "BUTTON",
+        "h": 44,
+        "w": 44,
+        "label": "Open menu"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Open menu"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "proposal-detail",
+      "width": 414,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "BUTTON",
+        "h": 44,
+        "w": 44,
+        "label": "Open menu"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Open menu"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "proposal-version",
+      "width": 414,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "BUTTON",
+        "h": 44,
+        "w": 44,
+        "label": "Open menu"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Open menu"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "plans",
+      "width": 414,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "BUTTON",
+        "h": 44,
+        "w": 44,
+        "label": "Open menu"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Open menu"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "plan-detail",
+      "width": 414,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "BUTTON",
+        "h": 44,
+        "w": 44,
+        "label": "Open menu"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Open menu"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "updates",
+      "width": 414,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "BUTTON",
+        "h": 44,
+        "w": 44,
+        "label": "Open menu"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Open menu"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "update-detail",
+      "width": 414,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "BUTTON",
+        "h": 44,
+        "w": 44,
+        "label": "Open menu"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Open menu"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "briefs",
+      "width": 600,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 512,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "brief-detail",
+      "width": 600,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 512,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "proposals",
+      "width": 600,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 512,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "proposal-detail",
+      "width": 600,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 512,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "proposal-version",
+      "width": 600,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 512,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "plans",
+      "width": 600,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 512,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "plan-detail",
+      "width": 600,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 512,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "updates",
+      "width": 600,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 512,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "update-detail",
+      "width": 600,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 512,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "briefs",
+      "width": 768,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 315,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "brief-detail",
+      "width": 768,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 315,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "proposals",
+      "width": 768,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 315,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "proposal-detail",
+      "width": 768,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 315,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "proposal-version",
+      "width": 768,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 315,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "plans",
+      "width": 768,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 315,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "plan-detail",
+      "width": 768,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 315,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "updates",
+      "width": 768,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 315,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "update-detail",
+      "width": 768,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 315,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "briefs",
+      "width": 1024,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 379,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "brief-detail",
+      "width": 1024,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 379,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "proposals",
+      "width": 1024,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 379,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "proposal-detail",
+      "width": 1024,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 379,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "proposal-version",
+      "width": 1024,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 379,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "plans",
+      "width": 1024,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 379,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "plan-detail",
+      "width": 1024,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 379,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "updates",
+      "width": 1024,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 379,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "update-detail",
+      "width": 1024,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 379,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "briefs",
+      "width": 1440,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 384,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "brief-detail",
+      "width": 1440,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 384,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "proposals",
+      "width": 1440,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 384,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "proposal-detail",
+      "width": 1440,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 384,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "proposal-version",
+      "width": 1440,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 384,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "plans",
+      "width": 1440,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 384,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "plan-detail",
+      "width": 1440,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 384,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "updates",
+      "width": 1440,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 384,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "update-detail",
+      "width": 1440,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "INPUT",
+        "h": 44,
+        "w": 384,
+        "label": "Search..."
+      },
+      "minW": {
+        "tag": "A",
+        "w": 44,
+        "h": 44,
+        "label": "Inbox"
+      },
+      "pageErrors": []
+    }
+  ]
+}

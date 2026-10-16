@@ -1,10 +1,16 @@
 "use client";
 
 /**
- * Client side of /plans — status filter tabs + search over the list the
- * server page fetched. Mirrors components/proposals/ProposalsList.tsx
- * (Step 7); plans originate from proposals, so the empty state points to
- * /proposals rather than offering an inline create.
+ * Client side of /plans — status filter chips + search over the list the
+ * server page fetched. Mirrors components/proposals/ProposalsList.tsx;
+ * plans originate from proposals, so the empty state points to /proposals
+ * rather than offering an inline create.
+ *
+ * Phase D: the tab strip is gone in favour of the shared wrapping
+ * FilterChips (the same control Briefs and Proposals use, and the one that
+ * survives 320px), the page opens with a lavender delivery band whose
+ * milestone rail is drawn from the real task counts, and every plan is a
+ * work card with a real tasks-done rail.
  */
 
 import Link from "next/link";
@@ -12,107 +18,24 @@ import { useMemo, useState } from "react";
 import { ListTodo, Search, Timer, CheckCircle2, ListChecks } from "lucide-react";
 
 import { PlanStatusBadge } from "@/components/plans/PlanStatusBadge";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { FilterChips } from "@/components/ui/filter-chips";
 import { Input } from "@/components/ui/input";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { timeAgo } from "@/lib/utils";
+import { EmptyState } from "@/components/ui/page";
 import { ListStats, StatTile, StackedBar } from "@/components/ui/doc-detail";
+import { PlanProgressArt } from "@/components/workflow/ClientWorkArt";
+import { WorkBand, WorkCard } from "@/components/workflow/WorkCard";
+import { timeAgo } from "@/lib/utils";
 import type { PlanStatus, PlanSummary } from "@/lib/types/plan";
 
 type StatusFilter = "all" | PlanStatus;
 
-const FILTER_TABS: { value: StatusFilter; label: string }[] = [
+const FILTER_OPTIONS: { value: StatusFilter; label: string }[] = [
   { value: "all", label: "All" },
   { value: "not_started", label: "Not started" },
   { value: "in_progress", label: "In progress" },
   { value: "done", label: "Done" },
 ];
-
-function EmptyState({
-  hasPlans,
-  onClearFilters,
-}: {
-  hasPlans: boolean;
-  onClearFilters: () => void;
-}) {
-  return (
-    <div className="flex flex-col items-center justify-center gap-4 rounded-lg border border-dashed border-border py-16 text-center">
-      <span className="icon-chip icon-chip-accent">
-        <ListTodo className="h-5 w-5" />
-      </span>
-      {hasPlans ? (
-        <>
-          <div>
-            <h2 className="font-display text-lg font-semibold tracking-tight">
-              No matching plans
-            </h2>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Try a different search or status filter.
-            </p>
-          </div>
-          <Button variant="secondary" onClick={onClearFilters}>
-            Clear filters
-          </Button>
-        </>
-      ) : (
-        <>
-          <div>
-            <h2 className="font-display text-lg font-semibold tracking-tight">
-              No plans yet
-            </h2>
-            <p className="mt-1 max-w-sm text-sm text-muted-foreground">
-              Plans are generated from proposals — open a proposal and click
-              “Generate plan” to turn its deliverables into a task list.
-            </p>
-          </div>
-          <Button asChild>
-            <Link href="/proposals" className="inline-flex min-h-11 min-w-11 items-center">Open proposals</Link>
-          </Button>
-        </>
-      )}
-    </div>
-  );
-}
-
-function PlanCard({ plan }: { plan: PlanSummary }) {
-  return (
-    <Card className="transition-shadow hover:shadow-md">
-      <CardHeader className="space-y-1 border-b border-border px-5 py-3.5">
-        <div className="flex items-start justify-between gap-3">
-          <div className="min-w-0">
-            <Link
-              href={`/plans/${plan.id}`}
-              className="inline-flex min-h-11 min-w-11 items-center font-display text-base font-semibold leading-snug underline-offset-2 hover:underline"
-            >
-              {plan.title}
-            </Link>
-            {plan.client_name && (
-              <p className="mt-0.5 truncate text-sm text-muted-foreground">
-                {plan.client_name}
-              </p>
-            )}
-          </div>
-          <PlanStatusBadge status={plan.status} className="shrink-0" />
-        </div>
-      </CardHeader>
-      <CardContent className="flex items-center justify-between gap-3 p-5">
-        {plan.tasksTotal > 0 ? (
-          <Badge variant="secondary">
-            {plan.tasksDone}/{plan.tasksTotal} task
-            {plan.tasksTotal === 1 ? "" : "s"} done
-          </Badge>
-        ) : (
-          <span />
-        )}
-        <span className="text-xs text-muted-foreground">
-          Updated {timeAgo(plan.updated_at)}
-        </span>
-      </CardContent>
-    </Card>
-  );
-}
 
 export function PlansList({ plans }: { plans: PlanSummary[] }) {
   const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
@@ -146,9 +69,38 @@ export function PlansList({ plans }: { plans: PlanSummary[] }) {
   const tasksDone = plans.reduce((n, p) => n + p.tasksDone, 0);
   const tasksTotal = plans.reduce((n, p) => n + p.tasksTotal, 0);
 
+  /** The band's rail mirrors the aggregate, one node per task up to 14. */
+  const railTasks = Array.from({ length: tasksTotal }, (_, i) => ({
+    id: `task-${i}`,
+    checked: i < tasksDone,
+  }));
+
   return (
     <div>
-      <ListStats cols={4}>
+      <WorkBand
+        kicker="Plans"
+        title="The delivery workspace"
+        description="A plan turns an accepted proposal into work you can tick off. Nothing is marked done for you — every milestone on the rail is a task someone completed."
+        art={<PlanProgressArt tasks={railTasks} />}
+        stats={[
+          { value: plans.length, label: "plans" },
+          { value: `${tasksDone}/${tasksTotal}`, label: "tasks done" },
+          { value: inProgress, label: "in progress" },
+        ]}
+      />
+
+      <ListStats
+        cols={4}
+        bar={
+          <StackedBar
+            segments={[
+              { label: "Not started", weight: statusCounts.not_started, className: "bg-muted-foreground/50" },
+              { label: "In progress", weight: statusCounts.in_progress, className: "bg-accent" },
+              { label: "Done", weight: statusCounts.done, className: "bg-success" },
+            ]}
+          />
+        }
+      >
         <StatTile icon={ListTodo} label="Total plans" value={plans.length} hint="All time" />
         <StatTile
           icon={Timer}
@@ -174,25 +126,21 @@ export function PlansList({ plans }: { plans: PlanSummary[] }) {
           delay={120}
         />
       </ListStats>
-      <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
-        <Tabs
+
+      <div className="work-toolbar flex flex-col gap-3 tab:flex-row tab:items-center tab:justify-between">
+        <FilterChips
+          label="Filter plans by status"
           value={statusFilter}
-          onValueChange={(value) => setStatusFilter(value as StatusFilter)}
-        >
-          <TabsList>
-            {FILTER_TABS.map((tab) => (
-              <TabsTrigger key={tab.value} value={tab.value}>
-                {tab.label}
-                <span className="ml-1.5 text-xs text-muted-foreground">
-                  {statusCounts[tab.value]}
-                </span>
-              </TabsTrigger>
-            ))}
-          </TabsList>
-        </Tabs>
-        <div className="relative w-full sm:w-64">
-          <Search className="absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"  aria-hidden="true" />
+          onChange={setStatusFilter}
+          options={FILTER_OPTIONS.map((option) => ({
+            ...option,
+            count: statusCounts[option.value],
+          }))}
+        />
+        <div className="relative w-full tab:w-72">
+          <Search className="absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
           <Input
+            type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search title or client…"
@@ -203,17 +151,58 @@ export function PlansList({ plans }: { plans: PlanSummary[] }) {
       </div>
 
       {visible.length === 0 ? (
-        <EmptyState
-          hasPlans={plans.length > 0}
-          onClearFilters={() => {
-            setStatusFilter("all");
-            setQuery("");
-          }}
-        />
+        plans.length > 0 ? (
+          <EmptyState
+            icon={ListTodo}
+            title="No matching plans"
+            description="Try a different search or status filter."
+            action={
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  setStatusFilter("all");
+                  setQuery("");
+                }}
+              >
+                Clear filters
+              </Button>
+            }
+          />
+        ) : (
+          <EmptyState
+            icon={ListTodo}
+            title="No plans yet"
+            description="Plans are generated from proposals — open a proposal and click “Generate plan” to turn its deliverables into a task list."
+            action={
+              <Button asChild>
+                <Link href="/proposals" className="inline-flex min-h-11 min-w-11 items-center">
+                  Open proposals
+                </Link>
+              </Button>
+            }
+          />
+        )
       ) : (
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        <div className="work-grid grid gap-4 sm:grid-cols-2 desk:grid-cols-3">
           {visible.map((plan) => (
-            <PlanCard key={plan.id} plan={plan} />
+            <WorkCard
+              key={plan.id}
+              href={`/plans/${plan.id}`}
+              title={plan.title}
+              client={plan.client_name}
+              icon={ListChecks}
+              badge={<PlanStatusBadge status={plan.status} />}
+              progress={
+                plan.tasksTotal > 0
+                  ? {
+                      label: "Tasks",
+                      done: plan.tasksDone,
+                      total: plan.tasksTotal,
+                    }
+                  : null
+              }
+              meta={<span className="work-card-time">Updated {timeAgo(plan.updated_at)}</span>}
+            />
           ))}
         </div>
       )}

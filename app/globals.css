@@ -766,3 +766,209 @@
 @media (prefers-reduced-motion: reduce) {
   .forma-core *, .forma-core *::before, .forma-core *::after { animation: none !important; transition: none !important; }
 }
+
+/* Phase D: delivery-workflow planes (Briefs, Proposals, Plans, Updates).
+   The scoped aliases below restate the supplied Forma palette for these four
+   surfaces; every rule that follows is written against the aliases, never a
+   literal, so the dark block is the single place a dark value is chosen. */
+.forma-briefs, .forma-proposals, .forma-plans, .forma-updates {
+  --forma-background: #F9F7FC;
+  --forma-text: #1B1426;
+  --forma-secondary-text: #687083;
+  --forma-surface-raised: #F2EEF8;
+  --forma-lavender: #EFEBFF;
+  --forma-muted-surface: #EEE9F5;
+  --forma-accent-border: #AC7DFC;
+  --bg: var(--forma-background);
+  --surface-raised: var(--forma-surface-raised);
+  --muted: var(--forma-muted-surface);
+  --lavender: var(--forma-lavender);
+  --accent: var(--forma-purple);
+  --accent-hover: var(--forma-purple-hover);
+  --text: var(--forma-text);
+  /* Secondary copy on the tinted surfaces of this phase (lavender band,
+     muted panels) measured 4.16–4.25:1 against #EEE9F5 / #EFEBFF — under
+     WCAG AA for body text. Mixing the supplied secondary tone 90/10 with
+     the body tone keeps the palette's hue while clearing AA on every Phase D
+     surface (measured 4.74:1 on the darkest one, 5.65:1 on white). The
+     supplied #687083 is still the declared token above. */
+  --secondary-text: color-mix(in srgb, var(--forma-secondary-text) 90%, var(--forma-text));
+  --work-secondary-text: var(--secondary-text);
+  --border: color-mix(in srgb, var(--forma-plum) 14%, transparent);
+  --work-hairline: var(--border);
+  /* The artwork's paper. In light mode that is the plain surface; in dark
+     mode the sheets sit on the lavender plane and a plain #211b29 fill reads
+     as a hole punched in the band, so the alias lifts them. */
+  --work-sheet: var(--surface);
+  --work-shadow: 0 24px 48px -34px color-mix(in srgb, var(--forma-plum) 70%, transparent);
+  --work-shadow-hover: 0 30px 56px -30px color-mix(in srgb, var(--forma-plum) 62%, transparent);
+}
+.dark .forma-briefs, .dark .forma-proposals, .dark .forma-plans, .dark .forma-updates {
+  --forma-background: #17121e;
+  --forma-text: #f3eef9;
+  --forma-secondary-text: #b7adca;
+  --forma-surface-raised: #2b2236;
+  --forma-lavender: #312447;
+  --forma-muted-surface: #251d31;
+  --forma-accent-border: #6d5a9c;
+  --secondary-text: color-mix(in srgb, var(--forma-secondary-text) 90%, var(--forma-text));
+  --border: color-mix(in srgb, #e6dcff 16%, transparent);
+  --work-hairline: var(--border);
+  --work-sheet: color-mix(in srgb, var(--forma-lavender) 42%, var(--surface));
+  --work-shadow: 0 24px 48px -34px rgb(0 0 0 / .85);
+  --work-shadow-hover: 0 30px 56px -30px rgb(0 0 0 / .9);
+}
+
+/* ── Back link ───────────────────────────────────────────────────────── */
+.work-back { display: inline-flex; min-height: 44px; min-width: 44px; align-items: center; gap: .375rem; margin-bottom: .5rem; font-size: .875rem; color: var(--secondary-text); transition: color var(--duration-normal, 200ms), transform var(--duration-normal, 200ms); }
+.work-back:hover { color: var(--accent); transform: translateX(-2px); }
+
+/* ── Showcase band ───────────────────────────────────────────────────── */
+.work-band { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); align-items: center; gap: 1.5rem; margin-bottom: 1.5rem; padding: 2rem; border: 1px solid var(--work-hairline); border-radius: 28px; background: var(--lavender); box-shadow: var(--work-shadow); }
+.work-band-title { margin-top: .6rem; font-size: clamp(1.5rem, 2.4vw, 2.1rem); font-weight: 600; line-height: 1.15; letter-spacing: -.05em; }
+.work-band-description { margin-top: .75rem; max-width: 52ch; font-size: .875rem; line-height: 1.8; color: var(--secondary-text); }
+.work-band-stats { display: flex; flex-wrap: wrap; gap: 1.75rem; margin-top: 1.5rem; }
+.work-band-stat dt { font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--secondary-text); }
+.work-band-stat dd { margin-top: .2rem; font-family: var(--font-manrope), ui-sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -.04em; color: var(--text); }
+.work-band-art { min-width: 0; }
+.work-band-art > svg { display: block; width: 100%; height: auto; }
+
+/* ── Toolbar ─────────────────────────────────────────────────────────── */
+.forma-briefs .work-toolbar, .forma-proposals .work-toolbar, .forma-plans .work-toolbar, .forma-updates .work-toolbar { margin-bottom: 1.5rem; padding: .7rem; border-radius: 20px; border: 1px solid var(--work-hairline); background: var(--muted); }
+.forma-briefs .work-toolbar .forma-filters, .forma-proposals .work-toolbar .forma-filters, .forma-plans .work-toolbar .forma-filters, .forma-updates .work-toolbar .forma-filters { padding: 0; border-radius: 0; background: transparent; margin-bottom: 0; }
+.forma-briefs .work-toolbar .forma-filters button:not([aria-pressed="true"]), .forma-proposals .work-toolbar .forma-filters button:not([aria-pressed="true"]), .forma-plans .work-toolbar .forma-filters button:not([aria-pressed="true"]), .forma-updates .work-toolbar .forma-filters button:not([aria-pressed="true"]) { border-color: transparent; background: transparent; }
+/* The pressed chip keeps the accent fill the shared control gives it; only
+   its radius is tightened inside the Phase D toolbar. */
+.forma-briefs .work-toolbar .forma-filters button[aria-pressed="true"], .forma-proposals .work-toolbar .forma-filters button[aria-pressed="true"], .forma-plans .work-toolbar .forma-filters button[aria-pressed="true"], .forma-updates .work-toolbar .forma-filters button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent); color: var(--on-accent); box-shadow: var(--shell-shadow-lift); }
+.forma-briefs .work-toolbar input, .forma-proposals .work-toolbar input, .forma-plans .work-toolbar input, .forma-updates .work-toolbar input { background: var(--surface); }
+
+/* ── Work cards ──────────────────────────────────────────────────────── */
+.work-grid { align-items: stretch; }
+.work-card { display: flex; flex-direction: column; gap: 1rem; height: 100%; padding: 1.15rem 1.25rem; border: 1px solid var(--work-hairline); border-radius: 22px; background: var(--surface); box-shadow: var(--work-shadow); transition: transform var(--duration-normal, 200ms), box-shadow var(--duration-normal, 200ms), border-color var(--duration-normal, 200ms); }
+.work-card-head { display: flex; align-items: flex-start; gap: .75rem; }
+.work-card-icon { display: inline-flex; height: 2.25rem; width: 2.25rem; flex: none; align-items: center; justify-content: center; border-radius: 12px; background: var(--lavender); color: var(--accent); }
+.work-card-identity { min-width: 0; flex: 1 1 auto; }
+.work-card-title { display: inline-flex; min-height: 44px; min-width: 44px; align-items: center; font-family: var(--font-manrope), ui-sans-serif; font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: -.02em; color: var(--text); overflow-wrap: anywhere; }
+.work-card-title:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.work-card-client { margin-top: .1rem; font-size: .8125rem; color: var(--secondary-text); overflow-wrap: anywhere; }
+.work-card-badge { flex: none; }
+.work-card-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem; margin-top: auto; padding-top: .85rem; border-top: 1px solid var(--work-hairline); }
+.work-card-time, .work-card-quiet { font-size: .75rem; color: var(--secondary-text); }
+.work-card-excerpt { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; width: 100%; font-size: .8125rem; line-height: 1.6; color: var(--secondary-text); }
+.work-progress { display: flex; flex-direction: column; gap: .4rem; }
+.work-progress-head { display: flex; align-items: baseline; justify-content: space-between; gap: .5rem; font-size: .7rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--secondary-text); }
+.work-progress-value { font-family: var(--font-manrope), ui-sans-serif; letter-spacing: -.01em; color: var(--text); text-transform: none; }
+.work-progress-rail { height: 6px; border-radius: 9999px; background: var(--muted); overflow: hidden; }
+.work-progress-fill { display: block; height: 100%; border-radius: 9999px; background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 55%, var(--forma-accent-border))); transition: width var(--duration-slow, 400ms) ease-out; }
+
+/* ── Detail-page document band ───────────────────────────────────────── */
+.work-doc-band { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: center; gap: 1.25rem; margin-bottom: 1.5rem; padding: 1.5rem 1.75rem; border: 1px solid var(--work-hairline); border-radius: 24px; background: var(--lavender); }
+.work-doc-band-art { min-width: 0; }
+.work-doc-band-art > svg { display: block; width: 100%; height: auto; max-height: 120px; }
+.work-doc-band-copy { min-width: 0; }
+.work-doc-band-note { margin-top: .5rem; max-width: 54ch; font-size: .875rem; line-height: 1.75; color: var(--secondary-text); }
+.work-doc-band-chips { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .9rem; }
+.work-notice { border-radius: 20px; border: 1px solid var(--work-hairline); background: var(--muted); padding: .85rem 1rem; }
+
+/* ── Document body vocabulary ────────────────────────────────────────── */
+.doc-list { display: flex; flex-direction: column; gap: .25rem; border: 1px solid var(--work-hairline); border-radius: 18px; background: var(--muted); padding: .6rem; }
+.doc-list-row { display: flex; align-items: flex-start; gap: .65rem; padding: .4rem .5rem; border-radius: 12px; }
+.doc-list-empty { padding: .35rem .5rem; font-size: .875rem; color: var(--secondary-text); }
+.doc-tick { display: inline-flex; height: 1.1rem; width: 1.1rem; flex: none; align-items: center; justify-content: center; margin-top: .1rem; border-radius: 6px; border: 1px solid var(--work-hairline); background: var(--surface); color: transparent; }
+.doc-tick-done { border-color: var(--forma-success); background: var(--forma-success-soft); color: var(--forma-success); }
+.work-question { border: 1px solid var(--work-hairline); border-radius: 18px; background: var(--surface); padding: .9rem 1rem; }
+.work-source-quote { max-height: 14rem; overflow-y: auto; padding: .75rem .85rem; border: 1px solid var(--work-hairline); border-radius: 16px; background: var(--muted); }
+
+/* ── Task workspace ──────────────────────────────────────────────────── */
+.task-board { display: flex; flex-direction: column; gap: .9rem; }
+.task-note { font-size: .75rem; line-height: 1.6; color: var(--secondary-text); }
+.task-group { display: flex; flex-direction: column; gap: .5rem; }
+.task-group-title { display: flex; align-items: center; gap: .5rem; font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--secondary-text); }
+.task-group-count { display: inline-flex; min-width: 1.5rem; justify-content: center; padding: .05rem .35rem; border-radius: 9999px; background: var(--lavender); font-family: var(--font-manrope), ui-sans-serif; font-size: .7rem; font-weight: 700; letter-spacing: 0; color: var(--accent); }
+.task-list { display: flex; flex-direction: column; gap: .3rem; }
+.task-row { display: flex; width: 100%; min-height: 44px; align-items: flex-start; gap: .7rem; padding: .55rem .65rem; border: 1px solid transparent; border-radius: 14px; background: var(--muted); text-align: left; transition: background var(--duration-normal, 200ms), border-color var(--duration-normal, 200ms), transform var(--duration-normal, 200ms); }
+.task-row:hover { border-color: var(--forma-accent-border); background: var(--lavender); }
+.task-row:disabled { cursor: default; }
+.task-row-done { background: color-mix(in srgb, var(--muted) 60%, var(--surface)); }
+.task-tick { display: inline-flex; height: 1.15rem; width: 1.15rem; flex: none; align-items: center; justify-content: center; margin-top: .1rem; border-radius: 6px; border: 1px solid var(--work-hairline); background: var(--surface); color: transparent; transition: background var(--duration-normal, 200ms), border-color var(--duration-normal, 200ms); }
+.task-tick-done { border-color: var(--accent); background: var(--accent); color: var(--on-accent); }
+.task-text { min-width: 0; font-size: .875rem; line-height: 1.6; overflow-wrap: anywhere; }
+.task-text-done { color: var(--secondary-text); text-decoration: line-through; }
+.task-readonly { margin-left: auto; flex: none; font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--secondary-text); }
+.task-spin { margin-left: auto; flex: none; color: var(--accent); }
+.task-empty, .task-empty-inline { font-size: .875rem; color: var(--secondary-text); }
+.task-error { font-size: .75rem; color: var(--forma-error); }
+
+/* ── Composer ────────────────────────────────────────────────────────── */
+.composer { display: flex; flex-direction: column; gap: 1rem; }
+.composer-field { display: flex; flex-direction: column; gap: .4rem; }
+.composer-field-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem; }
+.composer-body { background: var(--bg); }
+.composer-hint { font-size: .7rem; line-height: 1.6; color: var(--secondary-text); }
+.composer-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem; padding: .75rem .85rem; border: 1px solid var(--work-hairline); border-radius: 18px; background: var(--muted); }
+.composer-error { font-size: .75rem; color: var(--forma-error); }
+
+/* ── Artwork ─────────────────────────────────────────────────────────── */
+.work-art { width: 100%; height: auto; color: var(--accent); overflow: visible; }
+.art-surface { fill: var(--work-sheet); stroke: var(--forma-accent-border); stroke-width: 1.5; }
+.art-lift { fill: var(--muted); }
+.art-band { fill: var(--accent); opacity: .16; }
+.art-band-square { fill: var(--accent); opacity: .16; }
+.art-rule { stroke: var(--work-hairline); stroke-width: 3; stroke-linecap: round; fill: none; }
+.art-rule-strong { stroke: var(--accent); stroke-width: 4; opacity: .85; }
+.art-tail { fill: var(--work-sheet); stroke: var(--forma-accent-border); stroke-width: 1.5; }
+.art-connector { stroke: var(--accent); stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 0; fill: none; }
+.art-node { fill: var(--work-sheet); stroke: var(--accent); stroke-width: 2; }
+.art-seal { fill: var(--forma-success-soft); stroke: var(--forma-success); stroke-width: 1.5; }
+.art-seal-check { fill: none; stroke: var(--forma-success); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.art-chip { fill: var(--accent); opacity: .3; }
+.art-track { stroke: var(--work-hairline); stroke-width: 3; stroke-linecap: round; fill: none; }
+.art-track-fill { stroke: var(--accent); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 0; fill: none; }
+.art-dot { fill: var(--work-sheet); stroke: var(--work-hairline); stroke-width: 2; }
+.art-dot-done { fill: var(--accent); stroke: var(--accent); }
+.art-dot-latest { fill: var(--work-sheet); stroke: var(--accent); stroke-width: 3; }
+.art-dot-check { fill: none; stroke: var(--on-accent); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.art-plan .art-track, .art-plan .art-track-fill { stroke-width: 4; }
+@media (prefers-reduced-motion: no-preference) {
+  .forma-briefs .work-card, .forma-proposals .work-card, .forma-plans .work-card, .forma-updates .work-card { animation: forma-rise var(--duration-slow, 400ms) ease-out; }
+  .work-doc-band, .work-band { animation: forma-rise var(--duration-slow, 400ms) ease-out; }
+  .art-connector { animation: d-connect 1.1s ease-out; }
+  .art-node { animation: d-pop var(--duration-slow, 400ms) ease-out; }
+  .art-node-2 { animation-delay: 180ms; }
+  .art-rule-1 { animation: d-wipe 700ms ease-out 120ms; }
+  .art-rule-2 { animation: d-wipe 700ms ease-out 260ms; }
+  .art-rule-3 { animation: d-wipe 700ms ease-out 380ms; }
+  .art-track-fill { animation: d-progress 1.2s ease-out; }
+  .art-milestone { animation: d-pop var(--duration-slow, 400ms) ease-out; }
+  .art-thread { animation: d-thread var(--duration-slow, 400ms) ease-out; }
+  .art-seal, .art-seal-check { animation: d-pop 500ms ease-out 260ms; }
+  .task-tick, .task-text { transition: color var(--duration-normal, 200ms), background var(--duration-normal, 200ms), text-decoration-color var(--duration-normal, 200ms); }
+}
+@keyframes d-connect { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes d-progress { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes d-pop { from { transform: scale(.55); } to { transform: scale(1); } }
+@keyframes d-thread { from { opacity: .3; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes d-wipe { from { transform: scaleX(.2); } to { transform: scaleX(1); } }
+.art-rule-1, .art-rule-2, .art-rule-3, .art-milestone, .art-thread, .art-node, .art-seal, .art-seal-check { transform-origin: center; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .work-card:hover { transform: translateY(-3px); box-shadow: var(--work-shadow-hover); border-color: var(--forma-accent-border); }
+}
+@media (max-width: 899px) {
+  .work-band { grid-template-columns: minmax(0, 1fr); padding: 1.4rem; gap: .75rem; border-radius: 24px; }
+  .work-band-stats { gap: 1.25rem; margin-top: 1.1rem; }
+  .work-doc-band { grid-template-columns: minmax(0, 1fr); padding: 1.15rem; gap: .6rem; }
+  .work-doc-band-art > svg { max-height: 96px; }
+}
+@media (max-width: 599px) {
+  .work-band-title { font-size: 1.45rem; }
+  .work-card { border-radius: 20px; padding: 1rem; }
+  .work-doc-band-chips { gap: .4rem; }
+  .composer-actions { justify-content: stretch; }
+  .composer-actions > *:last-child { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .forma-briefs *, .forma-briefs *::before, .forma-briefs *::after,
+  .forma-proposals *, .forma-proposals *::before, .forma-proposals *::after,
+  .forma-plans *, .forma-plans *::before, .forma-plans *::after,
+  .forma-updates *, .forma-updates *::before, .forma-updates *::after { animation: none !important; transition: none !important; }
+}

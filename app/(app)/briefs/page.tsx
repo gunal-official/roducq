@@ -39,7 +39,7 @@ export default async function BriefsPage() {
   const briefs = context ? await getBriefs(context.id) : [];
 
   return (
-    <div className="mx-auto max-w-6xl">
+    <div className="forma-core forma-briefs mx-auto max-w-6xl">
       <PageHeader
         icon={ClipboardList}
         eyebrow={context?.name}

@@ -1,8 +1,15 @@
 /**
- * /updates/:id — the client update document (Step 34(b)): the update
- * rendered as a paper document (letterhead + body), stat tiles (status /
- * source plan / public link), the composer below for editors, share-link
- * panel, markdown export, and an activity timeline.
+ * /updates/:id — the client update document (Step 34(b) → Phase D): the
+ * update rendered as a Forma sheet (letterhead + body), a chronological
+ * connector band drawn from the update's real activity entries, stat tiles
+ * (status / source plan / public link), the composer below for editors, a
+ * share-link panel, markdown export, and an activity timeline.
+ *
+ * PHASE D LAYOUT CONTRACT
+ *   phone / tablet  one column: document, then the composer, then the rail
+ *                   panels (public link, details, source, activity).
+ *   desktop (1024+) document + composer on the left (2fr), rail on the right
+ *                   (1fr) — the same split as Briefs, Proposals and Plans.
  *
  * HOW TO TEST (locally — Supabase configured per README.md, ⚠ apply the
  * new updates migration + seed first):
@@ -32,6 +39,7 @@ import {
   FileText,
   Link2,
   Megaphone,
+  PenLine,
   Send,
 } from "lucide-react";
 
@@ -47,9 +55,9 @@ import { ShareLinkPanel } from "@/components/updates/ShareLinkPanel";
 import { UpdateComposer } from "@/components/updates/UpdateComposer";
 import { UpdateStatusBadge } from "@/components/updates/UpdateStatusBadge";
 import { UpdateStatusSelect } from "@/components/updates/UpdateStatusSelect";
+import { UpdateTimelineArt } from "@/components/workflow/ClientWorkArt";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   ActivityTimeline,
   DocHeader,
@@ -57,6 +65,7 @@ import {
   StatTile,
   type TimelineEvent,
 } from "@/components/ui/doc-detail";
+import { EmptyState, SectionCard } from "@/components/ui/page";
 
 function MetaRow({
   label,
@@ -73,50 +82,20 @@ function MetaRow({
   );
 }
 
-function RailCard({
-  icon: Icon,
-  title,
-  description,
-  children,
-}: {
-  icon: React.ComponentType<{ className?: string }>;
-  title: string;
-  description?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <Card className="animate-rise-in">
-      <CardHeader className="flex-row items-center gap-2.5 space-y-0 border-b border-border px-5 py-3.5">
-        <span className="icon-chip icon-chip-muted h-8 w-8">
-          <Icon className="h-4 w-4" aria-hidden="true" />
-        </span>
-        <div className="space-y-1">
-          <CardTitle className="text-base">{title}</CardTitle>
-          {description && <CardDescription>{description}</CardDescription>}
-        </div>
-      </CardHeader>
-      <CardContent className="space-y-3.5 p-5">{children}</CardContent>
-    </Card>
-  );
-}
-
 function NotFoundState() {
   return (
-    <div className="flex h-full flex-col items-center justify-center gap-4 text-center">
-      <Badge variant="secondary">Not found</Badge>
-      <div>
-        <h1 className="font-display text-2xl font-bold tracking-tight">
-          Update not found
-        </h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          This update doesn’t exist — or it belongs to a workspace you’re
-          not a member of.
-        </p>
-      </div>
-      <Button asChild variant="secondary">
-        <Link href="/updates" className="inline-flex min-h-11 min-w-11 items-center">Back to updates</Link>
-      </Button>
-    </div>
+    <EmptyState
+      icon={Megaphone}
+      title="Update not found"
+      description="This update doesn’t exist — or it belongs to a workspace you’re not a member of."
+      action={
+        <Button asChild variant="secondary">
+          <Link href="/updates" className="inline-flex min-h-11 min-w-11 items-center">
+            Back to updates
+          </Link>
+        </Button>
+      }
+    />
   );
 }
 
@@ -171,11 +150,8 @@ export default async function UpdateDetailPage({
   ];
 
   return (
-    <div className="mx-auto max-w-6xl">
-      <Link
-        href="/updates"
-        className="mb-3 inline-flex min-h-11 min-w-11 items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-text"
-      >
+    <div className="forma-core forma-updates mx-auto max-w-6xl">
+      <Link href="/updates" className="work-back">
         <ArrowLeft className="h-4 w-4" aria-hidden="true" />
         Updates
       </Link>
@@ -192,6 +168,30 @@ export default async function UpdateDetailPage({
           />
         }
       />
+
+      {/* The chronological band: one node per real activity entry. */}
+      <div className="work-doc-band work-doc-band-update">
+        <div className="work-doc-band-art">
+          <UpdateTimelineArt entries={events.length} />
+        </div>
+        <div className="work-doc-band-copy">
+          <p className="forma-kicker">Where this update stands</p>
+          <p className="work-doc-band-note">
+            {update.status === "sent"
+              ? `Marked sent ${timeAgo(update.updated_at)}. Editing it afterwards changes the saved copy, not what the client already received.`
+              : "Drafted and saved — it stays private until you mark it sent."}
+          </p>
+          <div className="work-doc-band-chips">
+            <UpdateStatusBadge status={update.status} />
+            <Badge variant="secondary">
+              {update.body.trim().split(/\s+/).filter(Boolean).length} words
+            </Badge>
+            <Badge variant="secondary">
+              {shareLink ? "Public link live" : "No public link"}
+            </Badge>
+          </div>
+        </div>
+      </div>
 
       {/* Stat tiles */}
       <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -224,9 +224,9 @@ export default async function UpdateDetailPage({
         />
       </div>
 
-      <div className="grid items-start gap-6 lg:grid-cols-[2fr_1fr]">
+      <div className="grid items-start gap-6 desk:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
         {/* ── Left: the update document + composer ── */}
-        <div className="space-y-6">
+        <div className="min-w-0 space-y-6">
           <PaperCard
             letterLabel="Client update"
             letterhead={update.client_name ?? "Client update"}
@@ -254,58 +254,58 @@ export default async function UpdateDetailPage({
           </PaperCard>
 
           <CanEdit>
-            <Card className="animate-rise-in">
-              <CardHeader className="space-y-1 border-b border-border px-5 py-3.5">
-                <CardTitle className="text-base">Edit update</CardTitle>
-                <CardDescription>
-                  Edit the title and body, then save — the client gets the
-                  exported markdown.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="p-5">
-                <UpdateComposer
-                  updateId={update.id}
-                  initialTitle={update.title}
-                  initialBody={update.body}
-                  templates={templates}
-                />
-              </CardContent>
-            </Card>
+            <SectionCard
+              id="update-composer"
+              icon={PenLine}
+              tone="accent"
+              title="Edit update"
+              description="Edit the title and body, then save — the client gets the exported markdown."
+            >
+              <UpdateComposer
+                updateId={update.id}
+                initialTitle={update.title}
+                initialBody={update.body}
+                templates={templates}
+              />
+            </SectionCard>
           </CanEdit>
         </div>
 
         {/* ── Right: share + metadata rail ── */}
-        <div className="space-y-4">
-          <RailCard
+        <div className="min-w-0 space-y-6">
+          <SectionCard
+            id="update-share"
             icon={Link2}
             title="Public link"
             description="Read-only update the client can open — revocable any time."
           >
             <ShareLinkPanel updateId={update.id} shareLink={shareLink} />
-          </RailCard>
+          </SectionCard>
 
-          <RailCard icon={Megaphone} title="Details">
-            <MetaRow label="Status">
-              <CanEdit fallback={<UpdateStatusBadge status={update.status} />}>
-                <UpdateStatusSelect updateId={update.id} status={update.status} />
-              </CanEdit>
-            </MetaRow>
-            {update.client_name && (
-              <MetaRow label="Client">{update.client_name}</MetaRow>
-            )}
-            <MetaRow label="Created">{formatDate(update.created_at)}</MetaRow>
-            <MetaRow label="Updated">{timeAgo(update.updated_at)}</MetaRow>
-            <div className="border-t border-border pt-3.5">
-              <ExportUpdateMarkdownButton
-                title={update.title}
-                body={update.body}
-              />
+          <SectionCard id="update-details" icon={Megaphone} title="Details">
+            <div className="space-y-3.5">
+              <MetaRow label="Status">
+                <CanEdit fallback={<UpdateStatusBadge status={update.status} />}>
+                  <UpdateStatusSelect updateId={update.id} status={update.status} />
+                </CanEdit>
+              </MetaRow>
+              {update.client_name && (
+                <MetaRow label="Client">{update.client_name}</MetaRow>
+              )}
+              <MetaRow label="Created">{formatDate(update.created_at)}</MetaRow>
+              <MetaRow label="Updated">{timeAgo(update.updated_at)}</MetaRow>
+              <div className="border-t border-border pt-3.5">
+                <ExportUpdateMarkdownButton
+                  title={update.title}
+                  body={update.body}
+                />
+              </div>
             </div>
-          </RailCard>
+          </SectionCard>
 
           {update.plan && (
-            <RailCard icon={BookOpen} title="Source">
-              <p className="text-sm">{update.plan.title}</p>
+            <SectionCard id="update-source" icon={BookOpen} title="Source">
+              <p className="break-words text-sm">{update.plan.title}</p>
               <Link
                 href={`/plans/${update.plan.id}`}
                 className="inline-flex min-h-11 min-w-11 items-center group gap-1.5 text-sm text-accent underline-offset-2 hover:underline"
@@ -313,12 +313,12 @@ export default async function UpdateDetailPage({
                 View source plan
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
-            </RailCard>
+            </SectionCard>
           )}
 
-          <RailCard icon={Clock} title="Activity">
+          <SectionCard id="update-activity" icon={Clock} title="Activity">
             <ActivityTimeline events={events} />
-          </RailCard>
+          </SectionCard>
         </div>
       </div>
     </div>

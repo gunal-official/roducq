@@ -82,8 +82,8 @@ export function UpdateComposer({
   }
 
   return (
-    <div className="space-y-4">
-      <div className="space-y-1.5">
+    <div className="composer">
+      <div className="composer-field">
         <FieldLabel>Title</FieldLabel>
         <Input
           value={title}
@@ -92,8 +92,8 @@ export function UpdateComposer({
           aria-label="Title"
         />
       </div>
-      <div className="space-y-1.5">
-        <div className="flex items-center justify-between gap-3">
+      <div className="composer-field">
+        <div className="composer-field-head">
           <FieldLabel>Body (markdown)</FieldLabel>
           {templates.length > 0 ? (
             <Select
@@ -137,10 +137,14 @@ export function UpdateComposer({
           onChange={(e) => setBody(e.target.value)}
           placeholder="Write the client update…"
           aria-label="Body (markdown)"
-          className="min-h-[320px] font-mono text-sm leading-relaxed"
+          className="composer-body min-h-[320px] font-mono text-sm leading-relaxed"
         />
+        <p className="composer-hint">
+          Markdown is kept as written — the client receives it as the
+          exported document and the PDF.
+        </p>
       </div>
-      <div className="flex items-center justify-between gap-3">
+      <div className="composer-actions">
         <div className="text-xs">
           {dirty ? (
             <Badge className="border-accent bg-accent-soft text-accent">
@@ -163,7 +167,11 @@ export function UpdateComposer({
           Save update
         </Button>
       </div>
-      {error && <p className="text-xs text-error">{error}</p>}
+      {error && (
+        <p className="composer-error" role="alert">
+          {error}
+        </p>
+      )}
     </div>
   );
 }

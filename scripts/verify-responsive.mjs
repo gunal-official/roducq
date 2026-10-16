@@ -472,6 +472,12 @@ const METRICS_FN = () => {
     if (offenders.length > 14) break;
   }
   const small = [];
+  // `nearMiss` records every interactive control whose rendered height lands
+  // in the 43–43.99px window: the audit's rounding tolerance passes them, but
+  // a reviewer deserves the exact number instead of a "0 tap<44" claim.
+  const nearMiss = [];
+  let minH = { tag: null, h: Infinity, w: 0, label: "" };
+  let minW = { tag: null, h: 0, w: Infinity, label: "" };
   for (const el of document.querySelectorAll('a[href], button, input:not([type="hidden"]), select, textarea, [role="button"]')) {
     const r = el.getBoundingClientRect();
     if (r.width === 0 || r.height === 0) continue;
@@ -481,8 +487,19 @@ const METRICS_FN = () => {
       small.push({ tag: el.tagName, w: Math.round(r.width), h: Math.round(r.height), label: (el.getAttribute("aria-label") || el.textContent || el.getAttribute("placeholder") || "").trim().slice(0, 28) });
       if (small.length > 15) break;
     }
+    if (r.height < 44 && r.width >= 43.5) {
+      nearMiss.push({ tag: el.tagName, w: Math.round(r.width), h: r.height.toFixed(2), label: (el.getAttribute("aria-label") || el.textContent || el.getAttribute("placeholder") || "").trim().slice(0, 32) });
+      if (nearMiss.length > 20) break;
+    }
+    const label = (el.getAttribute("aria-label") || el.textContent || el.getAttribute("placeholder") || "").trim().slice(0, 32);
+    if (r.height > 0 && r.height < minH.h) {
+      minH = { tag: el.tagName, h: Number(r.height.toFixed(2)), w: Math.round(r.width), label };
+    }
+    if (r.width > 0 && r.width < minW.w) {
+      minW = { tag: el.tagName, w: Number(r.width.toFixed(2)), h: Math.round(r.height), label };
+    }
   }
-  return { vw, vh, overflowX, offenders, cutoffs: cutoffs.slice(0, 8), fixed, small };
+  return { vw, vh, overflowX, offenders, cutoffs: cutoffs.slice(0, 8), fixed, small, nearMiss, minH, minW };
 };
 
 // ───────────────────────── main ──
@@ -622,6 +639,19 @@ async function main() {
           pageErrors.push("nav:" + String(e2).slice(0, 100));
         }
       }
+      // Let arrival animations settle before measuring. `forma-rise` starts at
+      // `scale(.985)`, and getBoundingClientRect() reports the transformed box
+      // — so a card measured mid-arrival reads ~43.3px for a 44px control.
+      // Infinite loops (the workflow pulse) never finish, hence the cap.
+      await page
+        .evaluate(async () => {
+          const running = document.getAnimations().filter((a) => a.playState === "running");
+          await Promise.race([
+            Promise.all(running.map((a) => a.finished.catch(() => {}))),
+            new Promise((r) => setTimeout(r, 1500)),
+          ]);
+        })
+        .catch(() => {});
       let m = null;
       try { m = await page.evaluate(METRICS_FN); } catch (e) { pageErrors.push("eval:" + String(e).slice(0, 80)); }
       const shot = (dir, name) => page.screenshot({ path: join(SHOTS, dir, String(w), `${name}.png`), fullPage: COMPLEX.has(pg.slug) && (w === 320 || w === 768) }).catch(() => {});
@@ -655,9 +685,14 @@ async function main() {
       const bad = !m || (m.overflowX > 0 || m.offenders.length > 0 || m.cutoffs.length > 0 || m.fixed.some((f) => f.escapes));
       const tapGate = !!m && m.small.length > 0;
       if (bad || tapGate || pageErrors.length) failures += 1;
-      results.push({ page: pg.slug, width: w, overflowX: m?.overflowX ?? -1, offenders: m?.offenders ?? [], cutoffs: m?.cutoffs ?? [], fixedEscapes: (m?.fixed ?? []).filter((f) => f.escapes), smallTaps: m?.small ?? [], pageErrors });
+      results.push({ page: pg.slug, width: w, overflowX: m?.overflowX ?? -1, offenders: m?.offenders ?? [], cutoffs: m?.cutoffs ?? [], fixedEscapes: (m?.fixed ?? []).filter((f) => f.escapes), smallTaps: m?.small ?? [], nearMiss: m?.nearMiss ?? [], minH: m?.minH ?? null, minW: m?.minW ?? null, pageErrors });
       const flag = pageErrors.length ? "✗E" : bad ? "✗" : tapGate ? "△" : "✓";
-      say(`${flag} ${String(w).padStart(4)} ${pg.slug.padEnd(18)} overflowX=${m?.overflowX ?? "?"} off=${m?.offenders.length ?? "?"} cut=${m?.cutoffs.length ?? "?"} tap<44=${m?.small.length ?? "?"}${pageErrors.length ? ` ERR:${pageErrors[0]}` : ""}`);
+      // The shortest control by HEIGHT (touch rows) and by WIDTH (icon-only
+      // controls), printed as exact numbers with their labels, so a reviewer
+      // can see what "tap<44=0" is actually resting on.
+      const fmt = (o, k) => (o && typeof o[k] === "number" && Number.isFinite(o[k]) ? `${o[k]}px (${o.label || o.tag})` : "n/a");
+      const shortest = `minH=${fmt(m?.minH, "h")} minW=${fmt(m?.minW, "w")}`;
+      say(`${flag} ${String(w).padStart(4)} ${pg.slug.padEnd(18)} overflowX=${m?.overflowX ?? "?"} off=${m?.offenders.length ?? "?"} cut=${m?.cutoffs.length ?? "?"} tap<44=${m?.small.length ?? "?"} shortestControl=${shortest}${pageErrors.length ? ` ERR:${pageErrors[0]}` : ""}`);
     }
     await ctx.close();
   }
@@ -1224,6 +1259,18 @@ async function main() {
         { slug: "proposal-detail", url: `/proposals/${U.proposal}` },
         { slug: "proposal-version", url: `/proposals/${U.proposal}/versions/${U.version}` },
       ],
+      // Phase D — the client-work surfaces (Briefs, Proposals, Plans,
+      // Updates: list + detail each) at 375 / 768 / 1440 in both themes.
+      phaseD: [
+        { slug: "briefs", url: "/briefs" },
+        { slug: "brief-detail", url: `/briefs/${U.brief}` },
+        { slug: "proposals", url: "/proposals" },
+        { slug: "proposal-detail", url: `/proposals/${U.proposal}` },
+        { slug: "plans", url: "/plans" },
+        { slug: "plan-detail", url: `/plans/${U.plan}` },
+        { slug: "updates", url: "/updates" },
+        { slug: "update-detail", url: `/updates/${U.update}` },
+      ],
     };
     const SHOT_PAGES = SHOT_SETS[process.env.PAGE_SHOTS_SET || "phase3"];
     if (!SHOT_PAGES) throw new Error(`unknown PAGE_SHOTS_SET=${process.env.PAGE_SHOTS_SET}`);
@@ -1270,6 +1317,95 @@ async function main() {
         await ctx.close();
       }
     }
+  }
+
+  // ── Phase D artwork shots (ART_SHOTS=1): element-level crops of the
+  // original client-work drawings, plus the task board mid-toggle. Runs on
+  // the same fixtures, cookie and browser as everything above, so the crops
+  // cannot drift from the app the audit just measured.
+  //
+  // For every drawing: light, dark, and a `prefers-reduced-motion: reduce`
+  // pass. The reduced-motion crop is the visual proof of the "complete
+  // without an animation" claim — if a drawing depended on its keyframes,
+  // that frame would be empty.
+  if (process.env.ART_SHOTS === "1") {
+    const DIR = process.env.ART_SHOTS_DIR || join(SHOTS, "phase-d-art");
+    mkdirSync(DIR, { recursive: true });
+    const ART = [
+      { slug: "art-brief-source", url: "/briefs", sel: ".work-band-art svg", note: "intake → brief connector" },
+      { slug: "art-proposal-document", url: "/proposals", sel: ".work-band-art svg", note: "proposal document" },
+      { slug: "art-plan-progress", url: "/plans", sel: ".work-band-art svg", note: "task milestone rail (real counts)" },
+      { slug: "art-update-timeline", url: "/updates", sel: ".work-band-art svg", note: "update connector (real entries)" },
+    ];
+    const report = [];
+    const crop = async (page, slug, sel, note) => {
+      await page.waitForSelector(sel, { timeout: 15000 }).catch(() => {});
+      const el = await page.$(sel);
+      if (!el) { report.push({ slug, ok: false, reason: "selector missing", url: page.url() }); say(`✗    art ${slug} — ${sel} not found on ${page.url()}`); return; }
+      const box = await el.boundingBox();
+      if (!box || box.width < 4) { report.push({ slug, ok: false, reason: "zero-sized" }); return; }
+      await el.screenshot({ path: join(DIR, `${slug}.png`) }).catch(() => {});
+      report.push({ slug, ok: true, note, file: `${slug}.png`, w: Math.round(box.width), h: Math.round(box.height) });
+      say(`     art ${slug} ${Math.round(box.width)}x${Math.round(box.height)}`);
+    };
+
+    for (const scheme of ["light", "dark"]) {
+      const ctx = await browser.newContext({ viewport: { width: 1440, height: 980 }, deviceScaleFactor: 2, colorScheme: scheme });
+      await ctx.addCookies([authCookie]);
+      const page = await ctx.newPage();
+      for (const art of ART) {
+        try {
+          await page.goto(`${BASE}${art.url}`, { waitUntil: "load", timeout: 25000 });
+          await page.waitForTimeout(900); // arrival animation settles
+          await crop(page, `${art.slug}-${scheme}`, art.sel, art.note);
+        } catch (e) {
+          report.push({ slug: `${art.slug}-${scheme}`, ok: false, reason: String(e).slice(0, 120) });
+          say(`✗    art ${art.slug}-${scheme} failed: ${String(e).slice(0, 90)}`);
+        }
+      }
+      await ctx.close();
+    }
+
+    for (const art of ART) {
+      const ctx = await browser.newContext({ viewport: { width: 1440, height: 980 }, deviceScaleFactor: 2, colorScheme: "light", reducedMotion: "reduce" });
+      await ctx.addCookies([authCookie]);
+      const page = await ctx.newPage();
+      try {
+        await page.goto(`${BASE}${art.url}`, { waitUntil: "load", timeout: 25000 });
+        await page.waitForTimeout(600);
+        await crop(page, `${art.slug}-reduced-motion`, art.sel, "reduced motion: drawing must still be complete");
+      } catch (e) {
+        report.push({ slug: `${art.slug}-reduced-motion`, ok: false, reason: String(e).slice(0, 120) });
+      }
+      await ctx.close();
+    }
+
+    // The task board: grouped reading order, then the same board with a task
+    // toggled (the optimistic flip; a failed action rolls it back).
+    const boardCtx = await browser.newContext({ viewport: { width: 1440, height: 1400 }, deviceScaleFactor: 2, colorScheme: "light" });
+    await boardCtx.addCookies([authCookie]);
+    const boardPage = await boardCtx.newPage();
+    try {
+      await boardPage.goto(`${BASE}/plans/${U.plan}`, { waitUntil: "load", timeout: 25000 });
+      await boardPage.waitForTimeout(800);
+      await boardPage.locator(".task-row").first().scrollIntoViewIfNeeded().catch(() => {});
+      await crop(boardPage, "plan-task-board", ".task-board", "grouped task board with the real progress rail");
+      await boardPage.locator(".task-row").nth(1).click({ timeout: 4000 }).catch(() => {});
+      await boardPage.waitForTimeout(500);
+      await crop(boardPage, "plan-task-board-toggle", ".task-board", "a task click: optimistic flip, then server truth");
+      const rows = await boardPage.evaluate(() =>
+        [...document.querySelectorAll(".task-row")].map((r) => ({ text: r.innerText.split("\n")[0].slice(0, 40), pressed: r.getAttribute("aria-pressed") }))
+      );
+      report.push({ slug: "plan-task-row-states", ok: true, rows });
+      say(`     task rows: ${JSON.stringify(rows)}`);
+    } catch (e) {
+      report.push({ slug: "plan-task-board", ok: false, reason: String(e).slice(0, 120) });
+      say(`✗    art plan-task-board failed: ${String(e).slice(0, 90)}`);
+    }
+    await boardCtx.close();
+
+    writeFileSync(join(DIR, "art-report.json"), JSON.stringify({ generatedAt: new Date().toISOString(), shots: report }, null, 2));
+    say(`     art report → ${join(DIR, "art-report.json")}`);
   }
 
   // ── Forma Phase B shots (FORMA_SHOTS=1): the application shell and the
@@ -1543,6 +1679,19 @@ async function main() {
   }
 
   writeFileSync(join(SHOTS, `summary${SUM_SUFFIX}.json`), JSON.stringify({ mode: MODE, results }, null, 2));
+  // Full per-page metrics (overflow, cut-offs, escaping fixed chrome, the
+  // sub-44 target list and the 43–43.99px near-miss list) as their own
+  // artifact, so evidence can be quoted without re-reading the log.
+  try {
+    writeFileSync(
+      join(SHOTS, `metrics${SUM_SUFFIX}.json`),
+      JSON.stringify(
+        results.map((r) => r),
+        null,
+        2
+      )
+    );
+  } catch {}
   await browser.close();
   freePort(APP_PORT);
   stub.close();

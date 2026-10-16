@@ -11,12 +11,18 @@
  * component re-renders with fresh `tasks`, which we re-sync into state.
  * Toggles are disabled while a save is in flight, because the action is
  * read-modify-write on the whole array — overlapping toggles could race.
+ *
+ * Phase D: the board groups tasks into what is left and what is done, each
+ * row is a 44px target on a lavender surface, and the progress rail reads
+ * from the same counts as the rows. Nothing here completes a task on its
+ * own — the copy says so, and the only way a task changes is the click.
  */
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Check, Loader2 } from "lucide-react";
 
 import { toggleTask } from "@/app/(app)/plans/[id]/actions";
+import { WorkProgress } from "@/components/workflow/WorkCard";
 import { cn } from "@/lib/utils";
 import type { PlanTask } from "@/lib/types/plan";
 
@@ -43,9 +49,11 @@ export function TaskChecklist({
   }
 
   const doneCount = tasks.filter((t) => t.checked).length;
+  const openTasks = tasks.filter((t) => !t.checked);
+  const finishedTasks = tasks.filter((t) => t.checked);
 
   async function handleToggle(task: PlanTask) {
-    if (pending) return;
+    if (pending || readOnly) return;
 
     setPending(true);
     setError(null);
@@ -70,53 +78,85 @@ export function TaskChecklist({
     }
   }
 
-  return (
-    <div className="space-y-2">
-      <div className="flex items-center justify-between">
-        <p className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
-          Tasks
-        </p>
-        <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
-          {pending && <Loader2 className="h-3 w-3 animate-spin"  aria-hidden="true" />}
-          {doneCount} of {tasks.length} done
-        </span>
+  function TaskRow({ task }: { task: PlanTask }) {
+    return (
+      <li>
+        <button
+          type="button"
+          onClick={() => handleToggle(task)}
+          disabled={pending || readOnly}
+          aria-pressed={task.checked}
+          className={cn("task-row", task.checked && "task-row-done")}
+        >
+          <span className={cn("task-tick", task.checked && "task-tick-done")} aria-hidden="true">
+            {task.checked && <Check className="h-3 w-3" strokeWidth={3.5} />}
+          </span>
+          <span className={cn("task-text", task.checked && "task-text-done")}>
+            {task.text}
+          </span>
+          {readOnly && <span className="task-readonly">Read-only</span>}
+          {pending && !readOnly && (
+            <Loader2 className="task-spin h-3.5 w-3.5 animate-spin" aria-hidden="true" />
+          )}
+        </button>
+      </li>
+    );
+  }
+
+  if (tasks.length === 0) {
+    return (
+      <div className="task-board">
+        <p className="task-empty">No tasks in this plan.</p>
       </div>
-      <ul className="space-y-1 rounded-md border border-border bg-muted/40 p-2">
-        {tasks.length === 0 ? (
-          <li className="px-1.5 py-1 text-sm text-muted-foreground">
-            No tasks in this plan.
-          </li>
+    );
+  }
+
+  return (
+    <div className="task-board">
+      <WorkProgress label="Tasks ticked off" done={doneCount} total={tasks.length} />
+      <p className="task-note">
+        {readOnly
+          ? "You have view access — tasks are ticked off by editors."
+          : "Ticking a task saves it straight away. Nothing is marked done for you."}
+      </p>
+
+      <section aria-labelledby="tasks-open" className="task-group">
+        <h3 id="tasks-open" className="task-group-title">
+          To do
+          <span className="task-group-count">{openTasks.length}</span>
+        </h3>
+        {openTasks.length === 0 ? (
+          <p className="task-empty-inline">
+            Every task in this plan is ticked off.
+          </p>
         ) : (
-          tasks.map((task) => (
-            <li key={task.id}>
-              <button className="min-h-11 flex w-full items-start gap-2.5 rounded-md px-1.5 py-1.5 text-left transition-colors hover:bg-muted disabled:cursor-wait disabled:opacity-70"
-              >
-                <span
-                  className={cn(
-                    "mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-sm border",
-                    task.checked
-                      ? "border-accent bg-accent text-accent-foreground"
-                      : "border-border bg-card"
-                  )}
-                >
-                  {task.checked && (
-                    <Check className="h-3 w-3" strokeWidth={3.5}  aria-hidden="true" />
-                  )}
-                </span>
-                <span
-                  className={cn(
-                    "text-sm",
-                    task.checked && "text-muted-foreground line-through"
-                  )}
-                >
-                  {task.text}
-                </span>
-              </button>
-            </li>
-          ))
+          <ul className="task-list">
+            {openTasks.map((task) => (
+              <TaskRow key={task.id} task={task} />
+            ))}
+          </ul>
         )}
-      </ul>
-      {error && <p className="text-xs text-error">{error}</p>}
+      </section>
+
+      {finishedTasks.length > 0 && (
+        <section aria-labelledby="tasks-done" className="task-group">
+          <h3 id="tasks-done" className="task-group-title">
+            Completed
+            <span className="task-group-count">{finishedTasks.length}</span>
+          </h3>
+          <ul className="task-list">
+            {finishedTasks.map((task) => (
+              <TaskRow key={task.id} task={task} />
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {error && (
+        <p className="task-error" role="alert">
+          {error}
+        </p>
+      )}
     </div>
   );
 }

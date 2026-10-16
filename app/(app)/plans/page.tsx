@@ -17,7 +17,9 @@
  *      (both actions revalidate /plans).
  */
 
+import { ListChecks } from "lucide-react";
 import { PlansList } from "@/components/plans/PlansList";
+import { PageHeader } from "@/components/ui/page";
 import { getPlans } from "@/lib/data/plans";
 import { getWorkspaceContext } from "@/lib/data/workspace-context";
 
@@ -27,15 +29,13 @@ export default async function PlansPage() {
   const plans = context ? await getPlans(context.id) : [];
 
   return (
-    <div className="mx-auto max-w-6xl">
-      <div className="mb-6">
-        <h1 className="font-display text-2xl font-bold tracking-tight">
-          Plans
-        </h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Generated from proposals — open a proposal to create one.
-        </p>
-      </div>
+    <div className="forma-core forma-plans mx-auto max-w-6xl">
+      <PageHeader
+        icon={ListChecks}
+        eyebrow={context?.name}
+        title="Plans"
+        subtitle="Generated from proposals — open a proposal to create one."
+      />
 
       <PlansList plans={plans} />
     </div>

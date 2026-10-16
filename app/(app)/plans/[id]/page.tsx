@@ -1,15 +1,23 @@
 /**
- * /plans/:id — the delivery plan document (Step 34(b)): the plan rendered
- * as a paper document whose body IS the interactive task checklist, stat
- * tiles (tasks / status / source proposal), a "send an update" CTA card,
+ * /plans/:id — the delivery plan document (Step 34(b) → Phase D): the plan
+ * rendered as a Forma sheet whose body IS the interactive task workspace —
+ * a milestone rail drawn from the real task counts, the grouped checklist,
+ * stat tiles (tasks / status / source proposal), a "send an update" panel,
  * markdown export, and an activity timeline.
+ *
+ * PHASE D LAYOUT CONTRACT
+ *   phone / tablet  one column: the plan sheet (progress rail, budget, the
+ *                   grouped task board), then the rail panels underneath.
+ *   desktop (1024+) the sheet on the left (2fr), the rail on the right (1fr)
+ *                   — the same split as Briefs and Proposals, at the same
+ *                   `desk` breakpoint.
  *
  * HOW TO TEST (locally — Supabase configured per README.md, ⚠ apply the
  * new plans migration + seed first):
  *   1. From /plans open the seeded "Brightloop Co." plan.
- *   2. Click a task checkbox: it flips immediately (optimistic), persists
- *      via toggleTask, and the "N of M done" counter + tiles + /plans card
- *      badge stay in sync.
+ *   2. Click a task: it flips immediately (optimistic), moves between the
+ *      "To do" and "Completed" groups, persists via toggleTask, and the
+ *      rail, the counter and the /plans card stay in sync.
  *   3. Status dropdown (Not started → In progress → Done): plans.status
  *      updates; list badge matches after navigating back.
  *   4. "Compose update" creates a draft client update from this plan.
@@ -41,9 +49,9 @@ import { DownloadPdfButton } from "@/components/ui/DownloadPdfButton";
 import { PlanStatusBadge } from "@/components/plans/PlanStatusBadge";
 import { PlanStatusSelect } from "@/components/plans/PlanStatusSelect";
 import { TaskChecklist } from "@/components/plans/TaskChecklist";
+import { PlanProgressArt } from "@/components/workflow/ClientWorkArt";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   ActivityTimeline,
   DocHeader,
@@ -51,10 +59,11 @@ import {
   StatTile,
   type TimelineEvent,
 } from "@/components/ui/doc-detail";
+import { EmptyState, SectionCard } from "@/components/ui/page";
 
 function FieldLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+    <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
       {children}
     </p>
   );
@@ -75,45 +84,20 @@ function MetaRow({
   );
 }
 
-function RailCard({
-  icon: Icon,
-  title,
-  children,
-}: {
-  icon: React.ComponentType<{ className?: string }>;
-  title: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <Card className="animate-rise-in">
-      <CardHeader className="flex-row items-center gap-2.5 space-y-0 border-b border-border px-5 py-3.5">
-        <span className="icon-chip icon-chip-muted h-8 w-8">
-          <Icon className="h-4 w-4" aria-hidden="true" />
-        </span>
-        <CardTitle className="text-base">{title}</CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-3.5 p-5">{children}</CardContent>
-    </Card>
-  );
-}
-
 function NotFoundState() {
   return (
-    <div className="flex h-full flex-col items-center justify-center gap-4 text-center">
-      <Badge variant="secondary">Not found</Badge>
-      <div>
-        <h1 className="font-display text-2xl font-bold tracking-tight">
-          Plan not found
-        </h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          This plan doesn’t exist — or it belongs to a workspace you’re not
-          a member of.
-        </p>
-      </div>
-      <Button asChild variant="secondary">
-        <Link href="/plans" className="inline-flex min-h-11 min-w-11 items-center">Back to plans</Link>
-      </Button>
-    </div>
+    <EmptyState
+      icon={ListChecks}
+      title="Plan not found"
+      description="This plan doesn’t exist — or it belongs to a workspace you’re not a member of."
+      action={
+        <Button asChild variant="secondary">
+          <Link href="/plans" className="inline-flex min-h-11 min-w-11 items-center">
+            Back to plans
+          </Link>
+        </Button>
+      }
+    />
   );
 }
 
@@ -162,11 +146,8 @@ export default async function PlanDetailPage({
   ];
 
   return (
-    <div className="mx-auto max-w-6xl">
-      <Link
-        href="/plans"
-        className="mb-3 inline-flex min-h-11 min-w-11 items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-text"
-      >
+    <div className="forma-core forma-plans mx-auto max-w-6xl">
+      <Link href="/plans" className="work-back">
         <ArrowLeft className="h-4 w-4" aria-hidden="true" />
         Plans
       </Link>
@@ -183,6 +164,32 @@ export default async function PlanDetailPage({
           />
         }
       />
+
+      {/* The delivery band: the milestone rail is drawn from this plan's real
+          tasks — one node per task, filled when it is ticked off. */}
+      <div className="work-doc-band work-doc-band-plan">
+        <div className="work-doc-band-art">
+          <PlanProgressArt tasks={plan.tasks} />
+        </div>
+        <div className="work-doc-band-copy">
+          <p className="forma-kicker">Delivery progress</p>
+          <p className="work-doc-band-note">
+            {plan.tasks.length === 0
+              ? "No tasks yet — generate the plan from its proposal."
+              : `${doneCount} of ${plan.tasks.length} tasks are ticked off. ${
+                  plan.tasks.length - doneCount
+                } still to do.`}
+          </p>
+          <div className="work-doc-band-chips">
+            <Badge variant="secondary">
+              {plan.tasks.length} task{plan.tasks.length === 1 ? "" : "s"}
+            </Badge>
+            <Badge variant="secondary">
+              Updated {timeAgo(plan.updated_at)}
+            </Badge>
+          </div>
+        </div>
+      </div>
 
       {/* Stat tiles */}
       <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -214,18 +221,23 @@ export default async function PlanDetailPage({
         />
       </div>
 
-      <div className="grid items-start gap-6 lg:grid-cols-[2fr_1fr]">
-        {/* ── Left: the plan document (checklist body) ── */}
+      <div className="grid items-start gap-6 desk:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
+        {/* ── Left: the plan sheet (task workspace) ── */}
         <PaperCard
           letterLabel="Delivery plan"
           letterhead={plan.client_name ?? "Delivery plan"}
           meta={formatDate(plan.created_at)}
         >
-          <div className="space-y-6">
-            <div className="space-y-1.5">
-              <FieldLabel>Budget & timeline</FieldLabel>
+          <div className="space-y-8">
+            <section aria-labelledby="plan-budget" className="space-y-2">
+              <h2
+                id="plan-budget"
+                className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground"
+              >
+                Budget & timeline
+              </h2>
               {plan.budget_timeline ? (
-                <p className="text-[15px] leading-relaxed">
+                <p className="max-w-prose whitespace-pre-line text-[15px] leading-relaxed">
                   {plan.budget_timeline}
                 </p>
               ) : (
@@ -233,34 +245,33 @@ export default async function PlanDetailPage({
                   No budget or dates captured.
                 </p>
               )}
-            </div>
+            </section>
 
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <FieldLabel>Tasks</FieldLabel>
-                <span className="text-xs text-muted-foreground">
-                  {doneCount} of {plan.tasks.length} done
-                </span>
-              </div>
+            <section aria-labelledby="plan-tasks" className="space-y-3">
+              <h2
+                id="plan-tasks"
+                className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground"
+              >
+                Tasks
+              </h2>
               <CanEdit
                 fallback={<TaskChecklist planId={plan.id} tasks={plan.tasks} readOnly />}
               >
                 <TaskChecklist planId={plan.id} tasks={plan.tasks} />
               </CanEdit>
-            </div>
+            </section>
           </div>
         </PaperCard>
 
         {/* ── Right: action + metadata rail ── */}
-        <div className="space-y-4">
-          <Card className="animate-rise-in" style={{ animationDelay: "40ms" }}>
-            <CardHeader className="flex-row items-center gap-2.5 space-y-0 border-b border-border px-5 py-3.5">
-              <span className="icon-chip icon-chip-accent h-8 w-8">
-                <Send className="h-4 w-4" aria-hidden="true" />
-              </span>
-              <CardTitle className="text-base">Client update</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3 p-5">
+        <div className="min-w-0 space-y-6">
+          <SectionCard
+            id="plan-update"
+            icon={Send}
+            tone="accent"
+            title="Client update"
+          >
+            <div className="space-y-3">
               <p className="text-sm text-muted-foreground">
                 Keep {plan.client_name ?? "the client"} in the loop — draft
                 this week’s update from the plan.
@@ -268,33 +279,35 @@ export default async function PlanDetailPage({
               <CanEdit>
                 <ComposeUpdateButton planId={plan.id} />
               </CanEdit>
-            </CardContent>
-          </Card>
-
-          <RailCard icon={ClipboardList} title="Details">
-            <MetaRow label="Status">
-              <CanEdit fallback={<PlanStatusBadge status={plan.status} />}>
-                <PlanStatusSelect planId={plan.id} status={plan.status} />
-              </CanEdit>
-            </MetaRow>
-            {plan.client_name && (
-              <MetaRow label="Client">{plan.client_name}</MetaRow>
-            )}
-            <MetaRow label="Created">{formatDate(plan.created_at)}</MetaRow>
-            <MetaRow label="Updated">{timeAgo(plan.updated_at)}</MetaRow>
-            <div className="border-t border-border pt-3.5">
-              <ExportMarkdownButton
-                title={plan.title}
-                clientName={plan.client_name}
-                budgetTimeline={plan.budget_timeline}
-                tasks={plan.tasks}
-              />
             </div>
-          </RailCard>
+          </SectionCard>
+
+          <SectionCard id="plan-details" icon={ClipboardList} title="Details">
+            <div className="space-y-3.5">
+              <MetaRow label="Status">
+                <CanEdit fallback={<PlanStatusBadge status={plan.status} />}>
+                  <PlanStatusSelect planId={plan.id} status={plan.status} />
+                </CanEdit>
+              </MetaRow>
+              {plan.client_name && (
+                <MetaRow label="Client">{plan.client_name}</MetaRow>
+              )}
+              <MetaRow label="Created">{formatDate(plan.created_at)}</MetaRow>
+              <MetaRow label="Updated">{timeAgo(plan.updated_at)}</MetaRow>
+              <div className="border-t border-border pt-3.5">
+                <ExportMarkdownButton
+                  title={plan.title}
+                  clientName={plan.client_name}
+                  budgetTimeline={plan.budget_timeline}
+                  tasks={plan.tasks}
+                />
+              </div>
+            </div>
+          </SectionCard>
 
           {plan.proposal && (
-            <RailCard icon={BookOpen} title="Source">
-              <p className="text-sm">{plan.proposal.title}</p>
+            <SectionCard id="plan-source" icon={BookOpen} title="Source">
+              <p className="break-words text-sm">{plan.proposal.title}</p>
               <Link
                 href={`/proposals/${plan.proposal.id}`}
                 className="inline-flex min-h-11 min-w-11 items-center group gap-1.5 text-sm text-accent underline-offset-2 hover:underline"
@@ -302,12 +315,12 @@ export default async function PlanDetailPage({
                 View source proposal
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
-            </RailCard>
+            </SectionCard>
           )}
 
-          <RailCard icon={Clock} title="Activity">
+          <SectionCard id="plan-activity" icon={Clock} title="Activity">
             <ActivityTimeline events={events} />
-          </RailCard>
+          </SectionCard>
         </div>
       </div>
     </div>
