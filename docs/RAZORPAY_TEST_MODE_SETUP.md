@@ -312,9 +312,14 @@ RoduCQ therefore:
 
 ## 6. Vercel configuration
 
-There is no `vercel.json`; Vercel auto-detects the Next.js app. Set env vars in
-Project → Settings → Environment Variables for **Production**, **Preview** and
-**Development**:
+There is no `vercel.json`; Vercel auto-detects the Next.js app. A Vercel project
+**is** already connected to this repository — the `Vercel` status check on PR #45
+passed, so preview deployments build cleanly with these changes. What is still
+outstanding is the environment-variable configuration below (needs Dashboard or
+CLI access).
+
+Set env vars in Project → Settings → Environment Variables for **Production**,
+**Preview** and **Development**:
 
 | Variable | Production | Preview | Dev | Sensitive? |
 | --- | --- | --- | --- | --- |
@@ -578,7 +583,8 @@ Legend: **PASS** verified by a command run in this milestone · **FAIL** ·
 | 3 | Supabase migrations apply | **PASS** (offline) | `npm run verify:db`: both Razorpay migrations apply in PGlite; RLS blocks user writes to billing state. Applying to the live project is **BLOCKED** |
 | 4 | Webhook URL registered | **BLOCKED** | Needs Dashboard access (§5) |
 | 5 | Webhook signing secret configured | **BLOCKED** | Needs Dashboard access (§5) |
-| 6 | Vercel environment variables configured | **BLOCKED** | No Vercel project/credentials; `vercel` CLI not installed. Manual steps in §6 |
+| 6 | Vercel environment variables configured | **BLOCKED** | Env vars are not set — no Dashboard/CLI access (`vercel` CLI not installed). Manual steps in §6. Note: a Vercel project **is** connected to this repo (see the row below) |
+| 6b | Vercel deployment build succeeds | **PASS** | The `Vercel` status check on PR #45 passed — the preview deployment built. Env-var configuration is still outstanding |
 | 7 | Test workspace created | **NOT TESTED** | Needs a deployed instance + auth |
 | 8 | Subscription checkout opened | **BLOCKED** | Needs items 1, 2, 6 |
 | 9 | Test payment completed | **BLOCKED** | Needs item 8 |
@@ -597,8 +603,10 @@ Legend: **PASS** verified by a command run in this milestone · **FAIL** ·
 
 - Implementation, automated tests, offline schema verification and documentation:
   **done and passing**.
-- Live Test Mode checkout + live webhook round-trip: **BLOCKED** on Razorpay
-  credentials, Supabase project access and Vercel project access.
+- Live Test Mode checkout + live webhook round-trip: **BLOCKED** on Razorpay Test
+  Mode credentials, Supabase project access, and Vercel environment-variable
+  access. (The Vercel project itself is connected and its deployment build is
+  verified — see item 6b.)
 - The mocked results above exercise the real `lib/billing/*` code paths and a
   real Postgres (PGlite), but they are **not** a substitute for a live Test Mode
   payment. Do not treat this milestone as verified end to end until items 1, 2,
