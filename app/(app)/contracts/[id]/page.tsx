@@ -4,6 +4,11 @@
  * signature block, a signing-flow rail (Draft → Sent → Signed with audit
  * stamps), an activity timeline, and the composer below for editors.
  *
+ * PHASE E: the page is a Forma financial plane — the lavender signing band
+ * (drawing + honest stage copy + the letter's own chips) sits between the
+ * head and the stat tiles, and the hand-rolled rail cards became shared
+ * SectionCards. The letter, signing flow, stamps and exports are untouched.
+ *
  * Exporting: "PDF" downloads a generated document from
  * /api/pdf/contract/<id> (lib/pdf — real file, page numbers, signature
  * block). Printing stays as it was: the on-screen UI is the editor +
@@ -52,10 +57,9 @@ import {
 import { ContractStatusSelect } from "@/components/contracts/ContractStatusSelect";
 import { PrintContractDocument } from "@/components/contracts/PrintContractDocument";
 import { PrintButton } from "@/components/invoices/PrintButton";
+import { ContractStagesArt } from "@/components/workflow/FinancialArt";
 import { DownloadPdfButton } from "@/components/ui/DownloadPdfButton";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   ActivityTimeline,
   DocHeader,
@@ -63,11 +67,12 @@ import {
   StatTile,
   type TimelineEvent,
 } from "@/components/ui/doc-detail";
+import { EmptyState, SectionCard } from "@/components/ui/page";
 import type { ContractStatus } from "@/lib/types/contract";
 
 function FieldLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+    <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
       {children}
     </p>
   );
@@ -101,7 +106,7 @@ const FLOW_STEPS: {
 function SigningFlow({ status }: { status: ContractStatus }) {
   const stepIndex = FLOW_STEPS.findIndex((s) => s.key === status);
   return (
-    <div className="flex items-center gap-1.5">
+    <div className="flex flex-wrap items-center gap-1.5">
       {FLOW_STEPS.map((step, i) => {
         const active = i === stepIndex;
         const done = status !== "void" && i < stepIndex;
@@ -125,45 +130,20 @@ function SigningFlow({ status }: { status: ContractStatus }) {
   );
 }
 
-function RailCard({
-  icon: Icon,
-  title,
-  children,
-}: {
-  icon: React.ComponentType<{ className?: string }>;
-  title: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <Card className="animate-rise-in">
-      <CardHeader className="flex-row items-center gap-2.5 space-y-0 border-b border-border px-5 py-3.5">
-        <span className="icon-chip icon-chip-muted h-8 w-8">
-          <Icon className="h-4 w-4" aria-hidden="true" />
-        </span>
-        <CardTitle className="text-base">{title}</CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-3.5 p-5">{children}</CardContent>
-    </Card>
-  );
-}
-
 function NotFoundState() {
   return (
-    <div className="flex h-full flex-col items-center justify-center gap-4 text-center">
-      <Badge variant="secondary">Not found</Badge>
-      <div>
-        <h1 className="font-display text-2xl font-bold tracking-tight">
-          Contract not found
-        </h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          This contract doesn’t exist — or it belongs to a workspace
-          you’re not a member of.
-        </p>
-      </div>
-      <Button asChild variant="secondary">
-        <Link href="/contracts" className="inline-flex min-h-11 min-w-11 items-center">Back to contracts</Link>
-      </Button>
-    </div>
+    <EmptyState
+      icon={FileSignature}
+      title="Contract not found"
+      description="This contract doesn’t exist — or it belongs to a workspace you’re not a member of."
+      action={
+        <Button asChild variant="secondary">
+          <Link href="/contracts" className="inline-flex min-h-11 min-w-11 items-center">
+            Back to contracts
+          </Link>
+        </Button>
+      }
+    />
   );
 }
 
@@ -256,14 +236,25 @@ export default async function ContractDetailPage({
       : []),
   ];
 
+  // The band's honest one-liner: where this agreement stands, in words.
+  const stageNote =
+    contract.status === "signed"
+      ? `Signed${contract.signed_by ? ` by ${contract.signed_by}` : ""} on ${formatDate(
+          contract.signed_at!
+        )} — the stamp is never overwritten.`
+      : contract.status === "void"
+        ? "Voided — the audit-safe cancel. Every stamp and edit is kept."
+        : contract.status === "sent"
+          ? isExpired
+            ? "Sent, and the offer window has passed — the client can still reply, but the expiry has lapsed."
+            : `Sent${contract.expires_on ? ` — the offer stands until ${formatDate(contract.expires_on)}` : ""}. Awaiting the client’s signature.`
+          : "Still a draft — nothing has been sent to the client, and the signature line is unclaimed.";
+
   return (
-    <div className="mx-auto max-w-6xl">
+    <div className="forma-core forma-contracts mx-auto max-w-6xl">
       {/* On-screen editor + letter — hidden when printing. */}
       <div className="print:hidden">
-        <Link
-          href="/contracts"
-          className="mb-3 inline-flex min-h-11 min-w-11 items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-text"
-        >
+        <Link href="/contracts" className="work-back">
           <ArrowLeft className="h-4 w-4" aria-hidden="true" />
           Contracts
         </Link>
@@ -288,6 +279,21 @@ export default async function ContractDetailPage({
             </>
           }
         />
+
+        {/* The signing band: the drawing is decorative; the note and chips
+            state the agreement's real stage in words. */}
+        <div className="work-doc-band">
+          <div className="work-doc-band-art">
+            <ContractStagesArt />
+          </div>
+          <div className="work-doc-band-copy">
+            <p className="forma-kicker">Signing</p>
+            <p className="work-doc-band-note">{stageNote}</p>
+            <div className="work-doc-band-chips">
+              <SigningFlow status={contract.status} />
+            </div>
+          </div>
+        </div>
 
         {/* Stat tiles */}
         <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -328,9 +334,9 @@ export default async function ContractDetailPage({
           />
         </div>
 
-        <div className="grid items-start gap-6 lg:grid-cols-[2fr_1fr]">
+        <div className="grid items-start gap-6 desk:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
           {/* ── Left: the engagement letter + composer ── */}
-          <div className="space-y-6">
+          <div className="min-w-0 space-y-6">
             <PaperCard
               letterLabel="Engagement letter"
               letterhead={context.name}
@@ -392,83 +398,86 @@ export default async function ContractDetailPage({
             </PaperCard>
 
             <CanEdit>
-              <Card className="animate-rise-in">
-                <CardHeader className="space-y-1 border-b border-border px-5 py-3.5">
-                  <CardTitle className="text-base">Edit terms</CardTitle>
-                </CardHeader>
-                <CardContent className="p-5">
-                  <ContractComposer
-                    contract={contract}
-                    briefTitles={briefTitles}
-                    clientSuggestions={clientSuggestions}
-                  />
-                </CardContent>
-              </Card>
+              <SectionCard
+                icon={PenLine}
+                title="Edit terms"
+                description="The letter above re-renders from these fields when you save."
+              >
+                <ContractComposer
+                  contract={contract}
+                  briefTitles={briefTitles}
+                  clientSuggestions={clientSuggestions}
+                />
+              </SectionCard>
             </CanEdit>
           </div>
 
           {/* ── Right: signing + metadata rail ── */}
           <div className="space-y-4">
-            <RailCard icon={FileSignature} title="Signing">
-              <SigningFlow status={contract.status} />
-              {contract.status === "void" && (
-                <p className="flex items-center gap-1.5 text-sm text-error">
-                  <Ban className="h-4 w-4" aria-hidden="true" />
-                  Void — this agreement is closed out.
-                </p>
-              )}
-              <div className="border-t border-border pt-3.5">
-                <MetaRow label="Move to">
-                  <CanEdit
-                    fallback={<ContractStatusBadge status={contract.status} />}
-                  >
-                    <ContractStatusSelect
-                      contractId={contract.id}
-                      status={contract.status}
-                    />
-                  </CanEdit>
-                </MetaRow>
-              </div>
-            </RailCard>
-
-            <RailCard icon={BookOpen} title="Details">
-              <MetaRow label="Client">{contract.client_name}</MetaRow>
-              <MetaRow label="Brief">
-                {contract.brief_id ? (
-                  <Link
-                    href={`/briefs/${contract.brief_id}`}
-                    className="inline-block min-h-11 min-w-11 break-words px-0.5 py-3 text-accent underline-offset-2 hover:underline"
-                  >
-                    {briefTitle ?? "View brief"}
-                  </Link>
-                ) : (
-                  "Standalone"
+            <SectionCard icon={FileSignature} title="Signing">
+              <div className="space-y-3.5">
+                <SigningFlow status={contract.status} />
+                {contract.status === "void" && (
+                  <p className="flex items-center gap-1.5 text-sm text-error">
+                    <Ban className="h-4 w-4" aria-hidden="true" />
+                    Void — this agreement is closed out.
+                  </p>
                 )}
-              </MetaRow>
-              {contract.sent_at && (
-                <MetaRow label="Sent">{formatDate(contract.sent_at)}</MetaRow>
-              )}
-              {contract.signed_at && (
-                <MetaRow label="Signed">
-                  {formatDate(contract.signed_at)}
-                </MetaRow>
-              )}
-              {contract.signed_by && (
-                <MetaRow label="Signed by">{contract.signed_by}</MetaRow>
-              )}
-              <MetaRow label="Created">
-                {formatDate(contract.created_at)}
-              </MetaRow>
-              <MetaRow label="Updated">{timeAgo(contract.updated_at)}</MetaRow>
-              <div className="flex flex-wrap gap-2 border-t border-border pt-3.5">
-                <DownloadPdfButton href={`/api/pdf/contract/${contract.id}`} />
-                <PrintButton />
+                <div className="border-t border-border pt-3.5">
+                  <MetaRow label="Move to">
+                    <CanEdit
+                      fallback={<ContractStatusBadge status={contract.status} />}
+                    >
+                      <ContractStatusSelect
+                        contractId={contract.id}
+                        status={contract.status}
+                      />
+                    </CanEdit>
+                  </MetaRow>
+                </div>
               </div>
-            </RailCard>
+            </SectionCard>
 
-            <RailCard icon={Clock} title="Activity">
+            <SectionCard icon={BookOpen} title="Details">
+              <div className="space-y-3.5">
+                <MetaRow label="Client">{contract.client_name}</MetaRow>
+                <MetaRow label="Brief">
+                  {contract.brief_id ? (
+                    <Link
+                      href={`/briefs/${contract.brief_id}`}
+                      className="inline-block min-h-11 min-w-11 break-words px-0.5 py-3 text-accent underline-offset-2 hover:underline"
+                    >
+                      {briefTitle ?? "View brief"}
+                    </Link>
+                  ) : (
+                    "Standalone"
+                  )}
+                </MetaRow>
+                {contract.sent_at && (
+                  <MetaRow label="Sent">{formatDate(contract.sent_at)}</MetaRow>
+                )}
+                {contract.signed_at && (
+                  <MetaRow label="Signed">
+                    {formatDate(contract.signed_at)}
+                  </MetaRow>
+                )}
+                {contract.signed_by && (
+                  <MetaRow label="Signed by">{contract.signed_by}</MetaRow>
+                )}
+                <MetaRow label="Created">
+                  {formatDate(contract.created_at)}
+                </MetaRow>
+                <MetaRow label="Updated">{timeAgo(contract.updated_at)}</MetaRow>
+                <div className="flex flex-wrap gap-2 border-t border-border pt-3.5">
+                  <DownloadPdfButton href={`/api/pdf/contract/${contract.id}`} />
+                  <PrintButton />
+                </div>
+              </div>
+            </SectionCard>
+
+            <SectionCard icon={Clock} title="Activity">
               <ActivityTimeline events={events} />
-            </RailCard>
+            </SectionCard>
           </div>
         </div>
       </div>

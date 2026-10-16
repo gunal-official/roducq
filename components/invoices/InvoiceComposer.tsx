@@ -66,14 +66,6 @@ function taxFromInput(s: string): number | null {
   return n >= 0 && n <= 100 ? n : null;
 }
 
-function FieldLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
-      {children}
-    </p>
-  );
-}
-
 export function InvoiceComposer({
   invoiceId,
   initialTitle,
@@ -229,42 +221,54 @@ export function InvoiceComposer({
   }
 
   return (
-    <div className="space-y-5">
+    <div className="composer">
       <div className="grid gap-4 sm:grid-cols-2">
-        <div className="space-y-1.5">
-          <FieldLabel>Title</FieldLabel>
+        <div className="composer-field">
+          <label htmlFor="invoice-composer-title" className="composer-hint">
+            Title
+          </label>
           <Input
+            id="invoice-composer-title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Invoice title"
-            aria-label="Title"
           />
         </div>
-        <div className="space-y-1.5">
-          <FieldLabel>Client</FieldLabel>
+        <div className="composer-field">
+          <label htmlFor="invoice-composer-client" className="composer-hint">
+            Client
+          </label>
           <Input
+            id="invoice-composer-client"
             value={client}
             onChange={(e) => setClient(e.target.value)}
             placeholder="Client name"
-            aria-label="Client"
           />
         </div>
       </div>
 
       {/* ── Line items ── */}
-      <div className="space-y-2">
-        <div className="hidden items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-muted-foreground md:grid md:grid-cols-[1fr_5.5rem_7.5rem_6rem_2rem]">
-          <span>Description</span>
-          <span className="text-right">Qty</span>
-          <span className="text-right">Unit</span>
-          <span className="text-right">Amount</span>
-          <span />
+      <div className="composer-field">
+        <div className="composer-field-head">
+          <span className="composer-hint">Line items</span>
+          <span className="composer-hint">
+            Amounts in dollars · live totals below use the same math as the
+            client’s view
+          </span>
         </div>
-        {items.length === 0 && (
-          <p className="rounded-md border border-dashed border-border px-3 py-4 text-center text-sm text-muted-foreground">
-            No line items yet — add the first one below.
-          </p>
-        )}
+        <div className="line-items">
+          <div className="line-item-head" aria-hidden="true">
+            <span>Description</span>
+            <span>Qty</span>
+            <span>Unit</span>
+            <span>Amount</span>
+            <span />
+          </div>
+          {items.length === 0 && (
+            <p className="rounded-xl border border-dashed border-border px-3 py-4 text-center text-sm text-muted-foreground">
+              No line items yet — add the first one below.
+            </p>
+          )}
         {display.map(({ item, leaving }) => {
           // Bind inputs to the CURRENT item from state, never to the
           // motion snapshot: useMotionItems only re-syncs its entries
@@ -289,7 +293,7 @@ export function InvoiceComposer({
             <div
               key={item.id}
               aria-hidden={leaving || undefined}
-              className={`flex flex-col gap-2 md:grid md:grid-cols-[1fr_5.5rem_7.5rem_6rem_2rem] md:items-center ${leaving ? "animate-row-out" : "animate-rise-in"}`}
+              className={`line-item-row ${leaving ? "animate-row-out" : "animate-rise-in"}`}
             >
               <Input
                 value={live.description}
@@ -349,69 +353,87 @@ export function InvoiceComposer({
           <Plus className="mr-1.5 h-4 w-4"  aria-hidden="true" />
           Add line item
         </Button>
+        </div>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-3">
-        <div className="space-y-1.5">
-          <FieldLabel>Tax %</FieldLabel>
+        <div className="composer-field">
+          <label htmlFor="invoice-composer-tax" className="composer-hint">
+            Tax %
+          </label>
           <Input
+            id="invoice-composer-tax"
             value={tax}
             onChange={(e) => setTax(e.target.value)}
             inputMode="decimal"
             placeholder="0"
-            aria-label="Tax %"
             className="w-24"
           />
         </div>
-        <div className="space-y-1.5">
-          <FieldLabel>Due date</FieldLabel>
+        <div className="composer-field">
+          <label htmlFor="invoice-composer-due" className="composer-hint">
+            Due date
+          </label>
           <Input
+            id="invoice-composer-due"
             type="date"
             value={dueDate}
             onChange={(e) => setDueDate(e.target.value)}
-            aria-label="Due date"
             className="w-44"
           />
         </div>
-        <div className="space-y-1.5 sm:col-span-1" />
+        <div className="hidden sm:block" />
       </div>
 
-      <div className="space-y-1.5">
-        <FieldLabel>Notes (shown to the client)</FieldLabel>
+      <div className="composer-field">
+        <label htmlFor="invoice-composer-notes" className="composer-hint">
+          Notes (shown to the client)
+        </label>
         <Textarea
+          id="invoice-composer-notes"
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
           placeholder="e.g. Net 14 — please pay within 14 days of the due date."
-          aria-label="Notes (shown to the client)"
           rows={3}
+          className="composer-body"
         />
       </div>
 
       {/* ── Live totals (same math as the saved/public views) ── */}
-      <div className="space-y-1 border-t border-border pt-3 text-sm">
-        <div className="flex justify-between text-muted-foreground">
-          <span>Subtotal</span>
-          <span>{formatMoney(liveTotals.subtotal_cents)}</span>
-        </div>
-        <div className="flex justify-between text-muted-foreground">
-          <span>Tax ({taxFromInput(tax) ?? 0}%)</span>
-          <span>{formatMoney(liveTotals.tax_cents)}</span>
-        </div>
-        <div className="flex justify-between font-display text-base font-bold tracking-tight">
-          <span>Total</span>
-          <span>{formatMoney(liveTotals.total_cents)}</span>
-        </div>
+      <div className="ledger-totals border-t border-border pt-3">
+        <dl>
+          <div className="ledger-totals-row">
+            <dt className="ledger-totals-label">Subtotal</dt>
+            <dd className="ledger-totals-value">
+              {formatMoney(liveTotals.subtotal_cents)}
+            </dd>
+          </div>
+          <div className="ledger-totals-row">
+            <dt className="ledger-totals-label">Tax ({taxFromInput(tax) ?? 0}%)</dt>
+            <dd className="ledger-totals-value">
+              {formatMoney(liveTotals.tax_cents)}
+            </dd>
+          </div>
+          <div className="ledger-totals-row ledger-totals-final">
+            <dt className="ledger-totals-label">Total</dt>
+            <dd className="ledger-totals-value">
+              {formatMoney(liveTotals.total_cents)}
+            </dd>
+          </div>
+        </dl>
       </div>
 
-      {error && <p className="text-xs text-error">{error}</p>}
+      {error && (
+        <p className="composer-error" role="alert">
+          {error}
+        </p>
+      )}
 
-      <div className="flex items-center justify-between gap-3 border-t border-border pt-4">
+      <div className="composer-actions">
         {dirty ? (
           <Badge variant="secondary">Unsaved changes</Badge>
         ) : (
-          <span className="text-xs text-muted-foreground">
-            All changes saved
-          </span>
+          <span className="composer-hint">All changes saved</span>
         )}
         <Button
           type="button"

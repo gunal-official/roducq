@@ -117,11 +117,14 @@ Phase A is the design foundation, not the finished application redesign.
       versions), Plans and the task workspace, Updates and the composer.
       Implemented, measured in real Chromium at 320–1440 in both themes, with
       reduced-motion artwork proof. See `forma-phase-d-closeout.md`.
-- [ ] **Phase E — Financial workflow:** Invoices, Contracts, Time and Reports;
-      preserve existing calculations, permissions, exports and print output.
-- [ ] **Phase F — Workspace and finishing pass:** Settings and Search; forms,
+- [x] **Phase E — Financial workflow:** Invoices, Contracts, Time and Reports,
+      plus Search; preserve existing calculations, permissions, exports and
+      print output. Implemented, measured in real Chromium at 320–1440 in both
+      themes, with reduced-motion artwork proof. See `forma-phase-e-closeout.md`.
+- [ ] **Phase F — Workspace and finishing pass:** cross-cutting forms,
       dialogs, tables, cards and menus; animated SVGs and motion; accessibility,
-      and complete light/dark/responsive review at 375px, 768px and 1440px.
+      and complete light/dark/responsive review at 375px, 768px and 1440px
+      (Search itself was pulled into Phase E — see its closeout §2).
 - [ ] Audit every authenticated route in the table above in both themes; no
       route should be called Forma-redesigned solely because it inherits the
       Phase A tokens.

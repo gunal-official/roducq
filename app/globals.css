@@ -972,3 +972,186 @@
   .forma-plans *, .forma-plans *::before, .forma-plans *::after,
   .forma-updates *, .forma-updates *::before, .forma-updates *::after { animation: none !important; transition: none !important; }
 }
+
+/* Phase E: financial-workflow planes (Invoices, Contracts, Time, Reports,
+   Search). Same alias discipline as Phase D: the five planes restate the
+   supplied Forma palette through scoped custom properties, every rule below
+   is written against the aliases, and the shared work-* vocabulary the
+   Phase D planes already own is re-exposed for these planes by selector
+   group — so no Phase C/D selector is edited and those pages cannot drift. */
+.forma-invoices, .forma-contracts, .forma-time, .forma-reports, .forma-search {
+  --forma-background: #F9F7FC;
+  --forma-text: #1B1426;
+  --forma-secondary-text: #687083;
+  --forma-surface-raised: #F2EEF8;
+  --forma-lavender: #EFEBFF;
+  --forma-muted-surface: #EEE9F5;
+  --forma-accent-border: #AC7DFC;
+  --bg: var(--forma-background);
+  --surface-raised: var(--forma-surface-raised);
+  --muted: var(--forma-muted-surface);
+  --lavender: var(--forma-lavender);
+  --accent: var(--forma-purple);
+  --accent-hover: var(--forma-purple-hover);
+  --text: var(--forma-text);
+  /* Same documented 90/10 mix as Phase D: the supplied #687083 measures
+     4.16–4.25:1 on the tinted surfaces — under AA for body copy — so it is
+     mixed 90/10 with the body tone to clear 4.5:1 on every Phase E surface
+     while keeping the palette's hue. The supplied tone stays declared above. */
+  --secondary-text: color-mix(in srgb, var(--forma-secondary-text) 90%, var(--forma-text));
+  --border: color-mix(in srgb, var(--forma-plum) 14%, transparent);
+  --work-hairline: var(--border);
+  --work-sheet: var(--surface);
+  --work-shadow: 0 24px 48px -34px color-mix(in srgb, var(--forma-plum) 70%, transparent);
+  --work-shadow-hover: 0 30px 56px -30px color-mix(in srgb, var(--forma-plum) 62%, transparent);
+}
+.dark .forma-invoices, .dark .forma-contracts, .dark .forma-time, .dark .forma-reports, .dark .forma-search {
+  --forma-background: #17121e;
+  --forma-text: #f3eef9;
+  --forma-secondary-text: #b7adca;
+  --forma-surface-raised: #2b2236;
+  --forma-lavender: #312447;
+  --forma-muted-surface: #251d31;
+  --forma-accent-border: #6d5a9c;
+  --secondary-text: color-mix(in srgb, var(--forma-secondary-text) 90%, var(--forma-text));
+  --border: color-mix(in srgb, #e6dcff 16%, transparent);
+  --work-hairline: var(--border);
+  --work-sheet: color-mix(in srgb, var(--forma-lavender) 42%, var(--surface));
+  --work-shadow: 0 24px 48px -34px rgb(0 0 0 / .85);
+  --work-shadow-hover: 0 30px 56px -30px rgb(0 0 0 / .9);
+}
+
+/* ── The shared list vocabulary, re-exposed for the Phase E planes ────── */
+.forma-invoices .work-toolbar, .forma-contracts .work-toolbar, .forma-time .work-toolbar, .forma-reports .work-toolbar, .forma-search .work-toolbar { margin-bottom: 1.5rem; padding: .7rem; border-radius: 20px; border: 1px solid var(--work-hairline); background: var(--muted); }
+.forma-invoices .work-toolbar .forma-filters, .forma-contracts .work-toolbar .forma-filters, .forma-time .work-toolbar .forma-filters, .forma-reports .work-toolbar .forma-filters, .forma-search .work-toolbar .forma-filters { padding: 0; border-radius: 0; background: transparent; margin-bottom: 0; }
+.forma-invoices .work-toolbar .forma-filters button:not([aria-pressed="true"]), .forma-contracts .work-toolbar .forma-filters button:not([aria-pressed="true"]), .forma-time .work-toolbar .forma-filters button:not([aria-pressed="true"]), .forma-reports .work-toolbar .forma-filters button:not([aria-pressed="true"]), .forma-search .work-toolbar .forma-filters button:not([aria-pressed="true"]) { border-color: transparent; background: transparent; }
+.forma-invoices .work-toolbar .forma-filters button[aria-pressed="true"], .forma-contracts .work-toolbar .forma-filters button[aria-pressed="true"], .forma-time .work-toolbar .forma-filters button[aria-pressed="true"], .forma-reports .work-toolbar .forma-filters button[aria-pressed="true"], .forma-search .work-toolbar .forma-filters button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent); color: var(--on-accent); box-shadow: var(--shell-shadow-lift); }
+.forma-invoices .work-toolbar input, .forma-contracts .work-toolbar input, .forma-time .work-toolbar input, .forma-reports .work-toolbar input, .forma-search .work-toolbar input { background: var(--surface); }
+
+/* ── Financial figure: the amount row on invoice/contract cards ───────── */
+.work-card-figure { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .35rem .75rem; padding: .75rem .9rem; border: 1px solid var(--work-hairline); border-radius: 14px; background: var(--muted); }
+.work-card-figure-number { font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--secondary-text); font-variant-numeric: tabular-nums; }
+.work-card-figure-amount { font-family: var(--font-manrope), ui-sans-serif; font-size: 1.2rem; font-weight: 700; letter-spacing: -.03em; line-height: 1.2; color: var(--text); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+
+/* ── Ledger rows (the invoice document's line items) ─────────────────── */
+.ledger { display: flex; flex-direction: column; }
+.ledger-head { display: none; }
+.ledger-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: .25rem 1rem; padding: .7rem .2rem; border-bottom: 1px solid var(--work-hairline); }
+.ledger-row:last-child { border-bottom: 0; }
+.ledger-desc { min-width: 0; flex: 1 1 14rem; font-size: .9375rem; line-height: 1.6; overflow-wrap: anywhere; }
+.ledger-qty, .ledger-unit { flex: none; font-size: .8125rem; color: var(--secondary-text); font-variant-numeric: tabular-nums; }
+.ledger-amount { flex: none; margin-left: auto; font-size: .9375rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+@media (min-width: 600px) {
+  .ledger-head { display: flex; gap: 1rem; padding: 0 .2rem .45rem; border-bottom: 1px solid var(--work-hairline); font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--secondary-text); }
+  .ledger-head .ledger-amount { margin-left: auto; font-size: .68rem; }
+  .ledger-row { flex-wrap: nowrap; }
+  .ledger-amount { margin-left: 0; }
+}
+.ledger-totals { margin-top: 1.1rem; display: flex; justify-content: flex-end; }
+.ledger-totals dl { width: 100%; max-width: 20rem; display: flex; flex-direction: column; gap: .45rem; }
+.ledger-totals-row { display: flex; align-items: baseline; justify-content: space-between; gap: 1.25rem; font-size: .875rem; }
+.ledger-totals-label { color: var(--secondary-text); }
+.ledger-totals-value { font-variant-numeric: tabular-nums; }
+.ledger-totals-final { margin-top: .35rem; padding-top: .6rem; border-top: 1px solid var(--work-hairline); }
+.ledger-totals-final .ledger-totals-label { font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.ledger-totals-final .ledger-totals-value { font-family: var(--font-manrope), ui-sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -.04em; color: var(--text); }
+
+/* ── Time workspace ──────────────────────────────────────────────────── */
+.time-summary { display: flex; flex-wrap: wrap; gap: .65rem; margin-bottom: 1.25rem; }
+.time-summary-chip { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem; padding: .55rem .85rem; border: 1px solid var(--work-hairline); border-radius: 14px; background: var(--muted); font-size: .75rem; color: var(--secondary-text); }
+.time-summary-value { font-family: var(--font-manrope), ui-sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: -.02em; color: var(--text); font-variant-numeric: tabular-nums; }
+.time-day { display: flex; flex-direction: column; gap: .45rem; }
+.time-day-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .5rem; }
+.time-day-title { font-family: var(--font-manrope), ui-sans-serif; font-size: .95rem; font-weight: 700; letter-spacing: -.02em; }
+.time-day-total { font-size: .75rem; color: var(--secondary-text); font-variant-numeric: tabular-nums; }
+.time-list { display: flex; flex-direction: column; gap: .35rem; border: 1px solid var(--work-hairline); border-radius: 18px; background: var(--muted); padding: .5rem; }
+.time-row { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .75rem; padding: .45rem .6rem; border: 1px solid transparent; border-radius: 14px; background: var(--surface); transition: border-color var(--duration-normal, 200ms), background var(--duration-normal, 200ms); }
+.time-row:hover { border-color: var(--forma-accent-border); }
+.time-row-body { min-width: 0; flex: 1 1 12rem; }
+.time-row-desc { font-size: .875rem; line-height: 1.5; overflow-wrap: anywhere; }
+.time-row-brief { margin-top: .1rem; font-size: .72rem; color: var(--secondary-text); }
+.time-row-duration { flex: none; font-family: var(--font-manrope), ui-sans-serif; font-size: .95rem; font-weight: 700; letter-spacing: -.01em; font-variant-numeric: tabular-nums; }
+.time-row-actions { display: flex; flex: none; align-items: center; gap: .25rem; }
+
+/* ── Reports chart ───────────────────────────────────────────────────── */
+.report-stat { display: flex; align-items: baseline; justify-content: space-between; gap: .75rem; font-size: .9rem; }
+.report-stat-label { color: var(--secondary-text); }
+.report-stat-hint { margin-left: .4rem; font-size: .72rem; color: var(--secondary-text); }
+.report-stat-value { flex: none; font-weight: 600; font-variant-numeric: tabular-nums; }
+.report-chart { display: flex; flex-direction: column; gap: .8rem; }
+.report-chart-row { display: flex; flex-direction: column; gap: .3rem; }
+.report-chart-head { display: flex; align-items: baseline; justify-content: space-between; gap: .75rem; font-size: .8rem; }
+.report-chart-title { min-width: 0; overflow-wrap: anywhere; }
+.report-chart-value { flex: none; color: var(--secondary-text); font-variant-numeric: tabular-nums; }
+.report-chart-rail { height: 8px; border-radius: 9999px; background: var(--muted); overflow: hidden; }
+.report-chart-fill { display: block; height: 100%; border-radius: 9999px; background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 55%, var(--forma-accent-border))); transform-origin: left center; }
+
+/* ── Search surface ──────────────────────────────────────────────────── */
+.search-hero { display: grid; grid-template-columns: minmax(0, 1fr); align-items: center; gap: 1.25rem; margin-bottom: 1.5rem; padding: 1.5rem 1.75rem; border: 1px solid var(--work-hairline); border-radius: 24px; background: var(--lavender); box-shadow: var(--work-shadow); }
+.search-hero-form { display: flex; flex-direction: column; gap: .6rem; }
+.search-hero-input { height: 3rem; border-radius: 16px; border-color: transparent; background: var(--surface); box-shadow: var(--work-shadow); font-size: 1rem; }
+.search-hero-input:focus { border-color: var(--accent); }
+.search-hero-meta { font-size: .75rem; line-height: 1.6; color: var(--secondary-text); }
+.search-hero-art { min-width: 0; }
+.search-hero-art > svg { display: block; width: 100%; height: auto; max-height: 132px; }
+.search-hit { display: flex; min-height: 44px; align-items: flex-start; gap: .75rem; border-radius: 12px; padding: .5rem .65rem; transition: background var(--duration-normal, 200ms); }
+.search-hit:hover { background: var(--lavender); }
+.search-hit-title { font-size: .875rem; font-weight: 600; line-height: 1.45; overflow-wrap: anywhere; }
+.search-hit-meta { margin-top: .1rem; font-size: .75rem; color: var(--secondary-text); overflow-wrap: anywhere; }
+.search-hit mark { border-radius: 4px; padding: 0 .15em; }
+.search-hit-code { margin-left: auto; flex: none; }
+.search-more { display: flex; min-height: 44px; align-items: center; border-radius: 12px; padding: 0 .65rem; font-size: .75rem; font-weight: 600; color: var(--secondary-text); transition: background var(--duration-normal, 200ms), color var(--duration-normal, 200ms); }
+.search-more:hover { background: var(--lavender); color: var(--accent); }
+@media (min-width: 900px) {
+  .search-hero { grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); padding: 1.75rem 2rem; }
+}
+
+/* ── Line-item editor rows (container-query aware) ─────────────────────
+   The composer sits in the 2fr column of the detail split, so a viewport
+   media query cannot know how wide the row actually is (at the 1024–1200
+   desk band the column is ~320px). The rows therefore lay out against
+   their own container: one line while it fits, and a wrapped 2-column
+   arrangement (description full-width, then qty/unit, then amount/remove)
+   below 32rem — every control stays ≥44px in both arrangements. */
+.line-items { container-type: inline-size; display: flex; flex-direction: column; gap: .5rem; }
+.line-item-head { display: grid; grid-template-columns: minmax(0,1fr) minmax(3rem,5.5rem) minmax(4.5rem,7.5rem) minmax(3.5rem,6rem) minmax(2.75rem,auto); gap: .5rem; padding: 0 .1rem .45rem; font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--secondary-text); }
+.line-item-head > :nth-child(2), .line-item-head > :nth-child(3), .line-item-head > :nth-child(4) { text-align: right; }
+.line-item-row { display: grid; grid-template-columns: minmax(0,1fr) minmax(3rem,5.5rem) minmax(4.5rem,7.5rem) minmax(3.5rem,6rem) minmax(2.75rem,auto); gap: .5rem; align-items: center; }
+.line-item-row > :nth-child(2), .line-item-row > :nth-child(3) { text-align: right; }
+@container (max-width: 31.99rem) {
+  .line-item-head { display: none; }
+  .line-item-row { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .line-item-row > :first-child { grid-column: 1 / -1; }
+}
+
+/* ── Phase E artwork ─────────────────────────────────────────────────── */
+.art-split-track { fill: var(--muted); stroke: var(--work-hairline); stroke-width: 1; }
+.art-split-success { fill: var(--forma-success); transform-origin: left center; }
+.art-split-accent { fill: var(--accent); transform-origin: left center; }
+.art-split-muted { fill: color-mix(in srgb, var(--secondary-text) 45%, transparent); transform-origin: left center; }
+.art-clock-track { stroke: var(--work-hairline); stroke-width: 3; fill: none; }
+.art-clock-fill { stroke: var(--accent); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 0; fill: none; }
+.art-hand { stroke: var(--accent); stroke-width: 3.5; stroke-linecap: round; fill: none; }
+.art-hand-minute { stroke: var(--text); stroke-width: 3; stroke-linecap: round; fill: none; }
+
+/* ── Phase E motion (arrival-only, transform/opacity/dash-offset) ────── */
+@media (prefers-reduced-motion: no-preference) {
+  .forma-invoices .work-card, .forma-contracts .work-card, .forma-time .work-card, .forma-reports .work-card, .forma-search .work-card { animation: forma-rise var(--duration-slow, 400ms) ease-out; }
+  .art-split-success, .art-split-accent, .art-split-muted { animation: e-split 900ms ease-out; }
+  .art-split-accent { animation-delay: 140ms; }
+  .art-split-muted { animation-delay: 280ms; }
+  .art-clock-fill { animation: d-progress 1.2s ease-out; }
+  .art-hand { animation: e-hand 900ms ease-out 200ms; }
+  .art-hand-minute { animation: e-hand 900ms ease-out 340ms; }
+  .report-chart-fill { animation: e-split 1s ease-out; }
+  .search-hero { animation: forma-rise var(--duration-slow, 400ms) ease-out; }
+}
+@keyframes e-split { from { transform: scaleX(.05); } to { transform: scaleX(1); } }
+@keyframes e-hand { from { transform: rotate(-26deg); } to { transform: rotate(0deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .forma-invoices *, .forma-invoices *::before, .forma-invoices *::after,
+  .forma-contracts *, .forma-contracts *::before, .forma-contracts *::after,
+  .forma-time *, .forma-time *::before, .forma-time *::after,
+  .forma-reports *, .forma-reports *::before, .forma-reports *::after,
+  .forma-search *, .forma-search *::before, .forma-search *::after { animation: none !important; transition: none !important; }
+}

@@ -1,0 +1,142 @@
+{
+  "generatedAt": "2026-10-16T10:17:27.231Z",
+  "shots": [
+    {
+      "slug": "art-invoice-flow-light",
+      "ok": true,
+      "note": "invoice → paid connector",
+      "file": "art-invoice-flow-light.png",
+      "w": 488,
+      "h": 183
+    },
+    {
+      "slug": "art-contract-stages-light",
+      "ok": true,
+      "note": "engagement letter + signature",
+      "file": "art-contract-stages-light.png",
+      "w": 488,
+      "h": 183
+    },
+    {
+      "slug": "art-time-elapsed-light",
+      "ok": true,
+      "note": "elapsed-time clock",
+      "file": "art-time-elapsed-light.png",
+      "w": 321,
+      "h": 120
+    },
+    {
+      "slug": "art-report-split-light",
+      "ok": true,
+      "note": "money split (real cents, role=img)",
+      "file": "art-report-split-light.png",
+      "w": 488,
+      "h": 183
+    },
+    {
+      "slug": "art-search-light",
+      "ok": true,
+      "note": "search surface",
+      "file": "art-search-light.png",
+      "w": 388,
+      "h": 132
+    },
+    {
+      "slug": "art-invoice-flow-dark",
+      "ok": true,
+      "note": "invoice → paid connector",
+      "file": "art-invoice-flow-dark.png",
+      "w": 488,
+      "h": 183
+    },
+    {
+      "slug": "art-contract-stages-dark",
+      "ok": true,
+      "note": "engagement letter + signature",
+      "file": "art-contract-stages-dark.png",
+      "w": 488,
+      "h": 183
+    },
+    {
+      "slug": "art-time-elapsed-dark",
+      "ok": true,
+      "note": "elapsed-time clock",
+      "file": "art-time-elapsed-dark.png",
+      "w": 321,
+      "h": 120
+    },
+    {
+      "slug": "art-report-split-dark",
+      "ok": true,
+      "note": "money split (real cents, role=img)",
+      "file": "art-report-split-dark.png",
+      "w": 488,
+      "h": 183
+    },
+    {
+      "slug": "art-search-dark",
+      "ok": true,
+      "note": "search surface",
+      "file": "art-search-dark.png",
+      "w": 388,
+      "h": 132
+    },
+    {
+      "slug": "art-invoice-flow-reduced-motion",
+      "ok": true,
+      "note": "reduced motion: drawing must still be complete",
+      "file": "art-invoice-flow-reduced-motion.png",
+      "w": 488,
+      "h": 183
+    },
+    {
+      "slug": "art-contract-stages-reduced-motion",
+      "ok": true,
+      "note": "reduced motion: drawing must still be complete",
+      "file": "art-contract-stages-reduced-motion.png",
+      "w": 488,
+      "h": 183
+    },
+    {
+      "slug": "art-time-elapsed-reduced-motion",
+      "ok": true,
+      "note": "reduced motion: drawing must still be complete",
+      "file": "art-time-elapsed-reduced-motion.png",
+      "w": 321,
+      "h": 120
+    },
+    {
+      "slug": "art-report-split-reduced-motion",
+      "ok": true,
+      "note": "reduced motion: drawing must still be complete",
+      "file": "art-report-split-reduced-motion.png",
+      "w": 488,
+      "h": 183
+    },
+    {
+      "slug": "art-search-reduced-motion",
+      "ok": true,
+      "note": "reduced motion: drawing must still be complete",
+      "file": "art-search-reduced-motion.png",
+      "w": 388,
+      "h": 132
+    },
+    {
+      "slug": "report-split-label",
+      "ok": true,
+      "label": "Invoice money split: $0.00 collected, $1,428.00 outstanding, $0.00 in draft.",
+      "bandStats": [
+        "COLLECTED $0.00",
+        "HOURS THIS MONTH 7h 15m",
+        "CONTRACTS 1"
+      ]
+    },
+    {
+      "slug": "invoice-figures",
+      "ok": true,
+      "figures": [
+        "INV-0007 · $1,428.00"
+      ]
+    }
+  ]
+}

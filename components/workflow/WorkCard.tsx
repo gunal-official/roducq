@@ -91,6 +91,30 @@ export function WorkProgress({
   );
 }
 
+/* ── Financial figure ──────────────────────────────────────────────────
+   The amount row a money document earns: the document's number (or date)
+   beside its computed total. Presentational; the value is passed in from
+   a real row — never formatted here, never invented. */
+
+export function CardFigure({
+  label,
+  amount,
+  className,
+}: {
+  /** The document's identifier, e.g. INV-0001 or an expiry date. */
+  label: React.ReactNode;
+  /** The real formatted amount (or count) from the row. */
+  amount: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <p className={cn("work-card-figure", className)}>
+      <span className="work-card-figure-number">{label}</span>
+      <span className="work-card-figure-amount">{amount}</span>
+    </p>
+  );
+}
+
 /* ── Work card ───────────────────────────────────────────────────────── */
 
 export function WorkCard({
@@ -99,6 +123,7 @@ export function WorkCard({
   client,
   badge,
   icon: Icon,
+  figure,
   meta,
   progress,
   className,
@@ -109,6 +134,8 @@ export function WorkCard({
   /** Status badge (kept out of the heading link). */
   badge?: React.ReactNode;
   icon: LucideIcon;
+  /** Financial figure row (number + amount), for money documents. */
+  figure?: React.ReactNode;
   /** Footer line: the card's own timestamps. */
   meta?: React.ReactNode;
   /** Real completion fraction, when the record has one. */
@@ -129,6 +156,8 @@ export function WorkCard({
         </div>
         {badge && <div className="work-card-badge">{badge}</div>}
       </div>
+
+      {figure}
 
       {progress && (
         <WorkProgress

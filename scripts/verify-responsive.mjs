@@ -148,6 +148,15 @@ const COMPLEX = new Set(["invoice-detail", "time", "reports", "settings", "searc
 
 // ───────────────────────── fixtures (rich rows — every page renders) ──
 const NOW = "2026-09-25T10:00:00Z";
+// The time/money fixtures mirror the SEED's now()-relative dates, so /time
+// shows its Today group + this-month totals and /reports shows its by-brief
+// chart no matter when the audit runs (a frozen 2026-09 date would render
+// "0m this month" and an empty chart once the real clock moved on).
+const dayOffset = (days) => {
+  const d = new Date();
+  d.setDate(d.getDate() + days);
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+};
 const USERS = { "usr-a": { full_name: "Maya Chen", avatar_initials: "MC" } };
 const WS = { id: "ws-1", name: "Atelier North" };
 let ROSTER = [
@@ -183,14 +192,14 @@ const INV_ITEMS = [
   { id: "i2", description: "Logo design", quantity: 3, unit_amount_cents: 12000 },
   { id: "i3", description: "Brand guidelines document", quantity: 1, unit_amount_cents: 38000 },
 ];
-const INVOICE = { id: U.invoice, workspace_id: WS.id, invoice_number: 7, title: "Harbor Lane — phase 1", client_name: "Harbor Lane Studio", status: "sent", items: INV_ITEMS, tax_percent: 20, notes: "Net 14 — please pay within 14 days of the due date. Bank transfer preferred.", due_date: "2026-10-15", sent_at: NOW, paid_at: null, created_at: NOW, updated_at: NOW };
+const INVOICE = { id: U.invoice, workspace_id: WS.id, invoice_number: 7, title: "Harbor Lane — phase 1", client_name: "Harbor Lane Studio", status: "sent", items: INV_ITEMS, tax_percent: 20, notes: "Net 14 — please pay within 14 days of the due date. Bank transfer preferred.", due_date: dayOffset(20), sent_at: NOW, paid_at: null, created_at: NOW, updated_at: NOW };
 const INVOICE_LINK = { id: "il-1", workspace_id: WS.id, invoice_id: U.invoice, token: "tok-bill-1", created_at: NOW, revoked_at: null };
-const CONTRACT = { id: U.contract, workspace_id: WS.id, brief_id: U.brief, client_name: "Harbor Lane Studio", title: "Harbor Lane — engagement letter", status: "sent", terms: "Scope: brand identity refresh as per the attached proposal. Fee: £12,000 excl. VAT, invoiced 50% up front and 50% on delivery. Payment: net 14. Cancellation: 30 days notice in writing. Exclusivity: 90 days post-delivery within the hospitality sector.", expires_on: "2026-12-01", signed_by: "Dana Whitfield (Brightloop)", sent_at: NOW, signed_at: null, created_at: NOW, updated_at: NOW };
+const CONTRACT = { id: U.contract, workspace_id: WS.id, brief_id: U.brief, client_name: "Harbor Lane Studio", title: "Harbor Lane — engagement letter", status: "sent", terms: "Scope: brand identity refresh as per the attached proposal. Fee: £12,000 excl. VAT, invoiced 50% up front and 50% on delivery. Payment: net 14. Cancellation: 30 days notice in writing. Exclusivity: 90 days post-delivery within the hospitality sector.", expires_on: dayOffset(42), signed_by: "Dana Whitfield (Brightloop)", sent_at: NOW, signed_at: null, created_at: NOW, updated_at: NOW };
 let TE_SEQ = 0;
 const TIME_ENTRIES = [
-  { id: "te-1", workspace_id: WS.id, brief_id: U.brief, description: "Discovery workshop and stakeholder interviews", worked_on: "2026-09-24", duration_minutes: 150, created_at: NOW, updated_at: NOW },
-  { id: "te-2", workspace_id: WS.id, brief_id: null, description: "Studio admin and long description that wraps on narrow screens to test layout", worked_on: "2026-09-23", duration_minutes: 45, created_at: NOW, updated_at: NOW },
-  { id: "te-3", workspace_id: WS.id, brief_id: U.brief, description: "Moodboards", worked_on: "2026-09-22", duration_minutes: 240, created_at: NOW, updated_at: NOW },
+  { id: "te-1", workspace_id: WS.id, brief_id: U.brief, description: "Discovery workshop and stakeholder interviews", worked_on: dayOffset(0), duration_minutes: 150, created_at: NOW, updated_at: NOW },
+  { id: "te-2", workspace_id: WS.id, brief_id: null, description: "Studio admin and long description that wraps on narrow screens to test layout", worked_on: dayOffset(-1), duration_minutes: 45, created_at: NOW, updated_at: NOW },
+  { id: "te-3", workspace_id: WS.id, brief_id: U.brief, description: "Moodboards", worked_on: dayOffset(-2), duration_minutes: 240, created_at: NOW, updated_at: NOW },
 ];
 // Inbox threads (Phase 3): sources are embedded in the briefs rows, which is
 // exactly how getInboxThreads() reads them (`briefs?select=…,sources:brief_sources(*)`).
@@ -1271,6 +1280,17 @@ async function main() {
         { slug: "updates", url: "/updates" },
         { slug: "update-detail", url: `/updates/${U.update}` },
       ],
+      // Phase E — the financial surfaces (Invoices, Contracts, Time,
+      // Reports, Search) at 375 / 768 / 1440 in both themes.
+      phaseE: [
+        { slug: "invoices", url: "/invoices" },
+        { slug: "invoice-detail", url: `/invoices/${U.invoice}` },
+        { slug: "contracts", url: "/contracts" },
+        { slug: "contract-detail", url: `/contracts/${U.contract}` },
+        { slug: "time", url: "/time" },
+        { slug: "reports", url: "/reports" },
+        { slug: "search", url: "/search?q=Harbor" },
+      ],
     };
     const SHOT_PAGES = SHOT_SETS[process.env.PAGE_SHOTS_SET || "phase3"];
     if (!SHOT_PAGES) throw new Error(`unknown PAGE_SHOTS_SET=${process.env.PAGE_SHOTS_SET}`);
@@ -1331,12 +1351,25 @@ async function main() {
   if (process.env.ART_SHOTS === "1") {
     const DIR = process.env.ART_SHOTS_DIR || join(SHOTS, "phase-d-art");
     mkdirSync(DIR, { recursive: true });
-    const ART = [
-      { slug: "art-brief-source", url: "/briefs", sel: ".work-band-art svg", note: "intake → brief connector" },
-      { slug: "art-proposal-document", url: "/proposals", sel: ".work-band-art svg", note: "proposal document" },
-      { slug: "art-plan-progress", url: "/plans", sel: ".work-band-art svg", note: "task milestone rail (real counts)" },
-      { slug: "art-update-timeline", url: "/updates", sel: ".work-band-art svg", note: "update connector (real entries)" },
-    ];
+    // ART_SHOTS_SET selects the artwork set: phaseD (default — keeps the
+    // committed Phase D evidence reproducible) or phaseE (financial art).
+    const ART_SETS = {
+      phaseD: [
+        { slug: "art-brief-source", url: "/briefs", sel: ".work-band-art svg", note: "intake → brief connector" },
+        { slug: "art-proposal-document", url: "/proposals", sel: ".work-band-art svg", note: "proposal document" },
+        { slug: "art-plan-progress", url: "/plans", sel: ".work-band-art svg", note: "task milestone rail (real counts)" },
+        { slug: "art-update-timeline", url: "/updates", sel: ".work-band-art svg", note: "update connector (real entries)" },
+      ],
+      phaseE: [
+        { slug: "art-invoice-flow", url: "/invoices", sel: ".work-band-art svg", note: "invoice → paid connector" },
+        { slug: "art-contract-stages", url: "/contracts", sel: ".work-band-art svg", note: "engagement letter + signature" },
+        { slug: "art-time-elapsed", url: "/time", sel: ".work-band-art svg", note: "elapsed-time clock" },
+        { slug: "art-report-split", url: "/reports", sel: ".work-band-art svg", note: "money split (real cents, role=img)" },
+        { slug: "art-search", url: "/search?q=Harbor", sel: ".search-hero-art svg", note: "search surface" },
+      ],
+    };
+    const ART = ART_SETS[process.env.ART_SHOTS_SET || "phaseD"];
+    if (!ART) throw new Error(`unknown ART_SHOTS_SET=${process.env.ART_SHOTS_SET}`);
     const report = [];
     const crop = async (page, slug, sel, note) => {
       await page.waitForSelector(sel, { timeout: 15000 }).catch(() => {});
@@ -1382,27 +1415,62 @@ async function main() {
 
     // The task board: grouped reading order, then the same board with a task
     // toggled (the optimistic flip; a failed action rolls it back).
-    const boardCtx = await browser.newContext({ viewport: { width: 1440, height: 1400 }, deviceScaleFactor: 2, colorScheme: "light" });
-    await boardCtx.addCookies([authCookie]);
-    const boardPage = await boardCtx.newPage();
-    try {
-      await boardPage.goto(`${BASE}/plans/${U.plan}`, { waitUntil: "load", timeout: 25000 });
-      await boardPage.waitForTimeout(800);
-      await boardPage.locator(".task-row").first().scrollIntoViewIfNeeded().catch(() => {});
-      await crop(boardPage, "plan-task-board", ".task-board", "grouped task board with the real progress rail");
-      await boardPage.locator(".task-row").nth(1).click({ timeout: 4000 }).catch(() => {});
-      await boardPage.waitForTimeout(500);
-      await crop(boardPage, "plan-task-board-toggle", ".task-board", "a task click: optimistic flip, then server truth");
-      const rows = await boardPage.evaluate(() =>
-        [...document.querySelectorAll(".task-row")].map((r) => ({ text: r.innerText.split("\n")[0].slice(0, 40), pressed: r.getAttribute("aria-pressed") }))
-      );
-      report.push({ slug: "plan-task-row-states", ok: true, rows });
-      say(`     task rows: ${JSON.stringify(rows)}`);
-    } catch (e) {
-      report.push({ slug: "plan-task-board", ok: false, reason: String(e).slice(0, 120) });
-      say(`✗    art plan-task-board failed: ${String(e).slice(0, 90)}`);
+    // Phase E set: instead of the task board, capture the meaningful money
+    // split's generated label + the invoice figure rows — the evidence that
+    // the drawing and the cards carry real data.
+    if ((process.env.ART_SHOTS_SET || "phaseD") === "phaseD") {
+      const boardCtx = await browser.newContext({ viewport: { width: 1440, height: 1400 }, deviceScaleFactor: 2, colorScheme: "light" });
+      await boardCtx.addCookies([authCookie]);
+      const boardPage = await boardCtx.newPage();
+      try {
+        await boardPage.goto(`${BASE}/plans/${U.plan}`, { waitUntil: "load", timeout: 25000 });
+        await boardPage.waitForTimeout(800);
+        await boardPage.locator(".task-row").first().scrollIntoViewIfNeeded().catch(() => {});
+        await crop(boardPage, "plan-task-board", ".task-board", "grouped task board with the real progress rail");
+        await boardPage.locator(".task-row").nth(1).click({ timeout: 4000 }).catch(() => {});
+        await boardPage.waitForTimeout(500);
+        await crop(boardPage, "plan-task-board-toggle", ".task-board", "a task click: optimistic flip, then server truth");
+        const rows = await boardPage.evaluate(() =>
+          [...document.querySelectorAll(".task-row")].map((r) => ({ text: r.innerText.split("\n")[0].slice(0, 40), pressed: r.getAttribute("aria-pressed") }))
+        );
+        report.push({ slug: "plan-task-row-states", ok: true, rows });
+        say(`     task rows: ${JSON.stringify(rows)}`);
+      } catch (e) {
+        report.push({ slug: "plan-task-board", ok: false, reason: String(e).slice(0, 120) });
+        say(`✗    art plan-task-board failed: ${String(e).slice(0, 90)}`);
+      }
+      await boardCtx.close();
+    } else {
+      const moneyCtx = await browser.newContext({ viewport: { width: 1440, height: 1400 }, deviceScaleFactor: 2, colorScheme: "light" });
+      await moneyCtx.addCookies([authCookie]);
+      const moneyPage = await moneyCtx.newPage();
+      try {
+        await moneyPage.goto(`${BASE}/reports`, { waitUntil: "load", timeout: 25000 });
+        await moneyPage.waitForTimeout(800);
+        const splitLabel = await moneyPage.evaluate(() =>
+          document.querySelector(".work-band-art svg[role='img']")?.getAttribute("aria-label") ?? null
+        );
+        const statValues = await moneyPage.evaluate(() =>
+          [...document.querySelectorAll(".work-band-stat")].map((s) => s.innerText.replace(/\n/g, " "))
+        );
+        report.push({ slug: "report-split-label", ok: !!splitLabel, label: splitLabel, bandStats: statValues });
+        say(`     report split label: ${splitLabel}`);
+      } catch (e) {
+        report.push({ slug: "report-split-label", ok: false, reason: String(e).slice(0, 120) });
+      }
+      try {
+        await moneyPage.goto(`${BASE}/invoices`, { waitUntil: "load", timeout: 25000 });
+        await moneyPage.waitForTimeout(600);
+        const figures = await moneyPage.evaluate(() =>
+          [...document.querySelectorAll(".work-card-figure")].map((f) => f.innerText.replace(/\n/g, " · "))
+        );
+        report.push({ slug: "invoice-figures", ok: figures.length > 0, figures });
+        say(`     invoice figures: ${JSON.stringify(figures)}`);
+      } catch (e) {
+        report.push({ slug: "invoice-figures", ok: false, reason: String(e).slice(0, 120) });
+      }
+      await moneyCtx.close();
     }
-    await boardCtx.close();
 
     writeFileSync(join(DIR, "art-report.json"), JSON.stringify({ generatedAt: new Date().toISOString(), shots: report }, null, 2));
     say(`     art report → ${join(DIR, "art-report.json")}`);

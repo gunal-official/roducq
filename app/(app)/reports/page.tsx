@@ -5,6 +5,10 @@
  * TS — nothing stored that can drift), render. No client island: fixed
  * windows, no picker, zero interactivity.
  *
+ * PHASE E: the page is a Forma financial plane (forma-reports) — shared
+ * PageHeader; the band and sections live in ReportsView. The queries and
+ * computeReport are untouched.
+ *
  * HOW TO TEST (locally — requires the Step 17–19 seeds):
  *   1. Open /reports. MONEY: Collected $0.00 (0 paid), Outstanding
  *      $3,150.00 (1 sent — INV-0002 with its 5% tax), Draft $1,950.00
@@ -21,8 +25,11 @@
  *      navigate back and the numbers follow — no cache, all computed.
  */
 
+import { ChartNoAxesColumn } from "lucide-react";
+
 import { ReportsView } from "@/components/reports/ReportsView";
 import { DownloadPdfButton } from "@/components/ui/DownloadPdfButton";
+import { PageHeader } from "@/components/ui/page";
 import { computeReport } from "@/lib/reports";
 import { getInvoices } from "@/lib/data/invoices";
 import { getTimeEntries } from "@/lib/data/time";
@@ -43,21 +50,18 @@ export default async function ReportsPage() {
   const report = computeReport({ invoices, entries, contracts, briefs });
 
   return (
-    <div className="mx-auto max-w-6xl">
-      <div className="mb-6 flex flex-wrap items-start justify-between gap-3">
-        <div>
-          <h1 className="font-display text-2xl font-bold tracking-tight">
-            Reports
-          </h1>
-          <p className="mt-1 text-sm text-muted-foreground">
-            The workspace rollup — money, hours, and contracts, computed
-            live from your data.
-          </p>
-        </div>
-        {context?.canSeeMoney && (
-          <DownloadPdfButton href="/api/pdf/reports" label="Download PDF" />
-        )}
-      </div>
+    <div className="forma-core forma-reports mx-auto max-w-6xl">
+      <PageHeader
+        icon={ChartNoAxesColumn}
+        eyebrow={context?.name}
+        title="Reports"
+        subtitle="The workspace rollup — money, hours, and contracts, computed live from your data."
+        actions={
+          context?.canSeeMoney ? (
+            <DownloadPdfButton href="/api/pdf/reports" label="Download PDF" />
+          ) : undefined
+        }
+      />
 
       <ReportsView report={report} />
     </div>
