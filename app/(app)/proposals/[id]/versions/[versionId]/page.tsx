@@ -57,6 +57,7 @@ function MetaRow({
 function NotFoundState({ proposalId }: { proposalId: string }) {
   return (
     <EmptyState
+      headingAs="h1"
       icon={FileText}
       title="Version not found"
       description="This version doesn’t exist, belongs to a different proposal — or to a workspace you’re not a member of."

@@ -1,18 +1,22 @@
 /** Original RoduCQ artwork. A process map, not a completion/status chart. */
 export function WorkflowArt() {
+  const stages = ["Intake", "Brief", "Proposal", "Plan", "Update"];
   return (
+    <div className="workflow-map">
     <svg className="workflow-art" viewBox="0 0 720 146" role="img" aria-label="Intake to Brief to Proposal to Plan to Update. Each stage requires your review and action.">
       <path className="workflow-connector" d="M72 62H648" fill="none" stroke="currentColor" strokeWidth="2" pathLength="1" />
-      {["Intake", "Brief", "Proposal", "Plan", "Update"].map((label, i) => (
+      {stages.map((label, i) => (
         <g key={label} transform={`translate(${18 + i * 144} 28)`}>
           <rect className="workflow-node" width="108" height="68" rx="20" />
-          <text x="54" y="30" textAnchor="middle" className="workflow-number">0{i + 1}</text>
-          <text x="54" y="51" textAnchor="middle" className="workflow-label">{label}</text>
+          <path d="M30 25h48M30 38h36M30 51h42" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
           {i < 4 && <path d="M119 29l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="2" />}
         </g>
       ))}
       <circle className="workflow-pulse" cx="72" cy="62" r="5" fill="currentColor" />
     </svg>
+    {/* Native text stays 12px on phones; SVG text would shrink to 4px. */}
+    <ol className="workflow-labels" aria-hidden="true">{stages.map((stage) => <li key={stage}>{stage}</li>)}</ol>
+    </div>
   );
 }
 

@@ -2,6 +2,8 @@ import Link from "next/link";
 import { ChevronRight, Scale } from "lucide-react";
 import type { Metadata } from "next";
 
+import { ProposalDocumentArt } from "@/components/workflow/ClientWorkArt";
+
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { VS_LIMITATION_NOTE, VS_PAGE_LIST } from "./[slug]/vs-pages";
@@ -32,13 +34,7 @@ export default function VsHubPage() {
             practice. Pick the one closest to your work.
           </p>
         </div>
-        <div className="hidden items-center justify-center lg:flex">
-          <svg viewBox="0 0 200 200" className="h-44 w-44 text-accent motion-safe:animate-[spin_18s_linear_infinite]" aria-hidden="true" fill="none">
-            <circle cx="100" cy="100" r="88" stroke="currentColor" strokeWidth="1" strokeDasharray="4 6" opacity="0.3" />
-            <circle cx="100" cy="100" r="60" stroke="currentColor" strokeWidth="1.5" opacity="0.5" />
-            <circle cx="100" cy="100" r="10" fill="currentColor" />
-          </svg>
-        </div>
+        <div className="marketing-art mx-auto"><ProposalDocumentArt /></div>
       </div>
 
       <p className="mt-8 rounded-md border border-border bg-muted/40 px-4 py-3 text-xs leading-relaxed text-muted-foreground">
@@ -56,9 +52,9 @@ export default function VsHubPage() {
               <Card className="h-full transition-colors hover:bg-muted/40">
                 <CardContent className="flex h-full items-start justify-between gap-3 p-5">
                   <div>
-                    <p className="font-display text-base font-bold tracking-tight">
+                    <h2 className="font-display text-base font-bold tracking-tight">
                       roducq vs {entry.competitor}
-                    </p>
+                    </h2>
                     <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
                       {entry.summary}
                     </p>

@@ -1,0 +1,278 @@
+[
+  {
+    "source": "app/(app)/briefs/[id]/page.tsx",
+    "pattern": "/briefs/[id]",
+    "kind": "page",
+    "group": "application"
+  },
+  {
+    "source": "app/(app)/briefs/page.tsx",
+    "pattern": "/briefs",
+    "kind": "page",
+    "group": "application"
+  },
+  {
+    "source": "app/(app)/contracts/[id]/page.tsx",
+    "pattern": "/contracts/[id]",
+    "kind": "page",
+    "group": "application"
+  },
+  {
+    "source": "app/(app)/contracts/page.tsx",
+    "pattern": "/contracts",
+    "kind": "page",
+    "group": "application"
+  },
+  {
+    "source": "app/(app)/dashboard/page.tsx",
+    "pattern": "/dashboard",
+    "kind": "page",
+    "group": "application"
+  },
+  {
+    "source": "app/(app)/intake/inbox/page.tsx",
+    "pattern": "/intake/inbox",
+    "kind": "page",
+    "group": "application"
+  },
+  {
+    "source": "app/(app)/intake/page.tsx",
+    "pattern": "/intake",
+    "kind": "page",
+    "group": "application"
+  },
+  {
+    "source": "app/(app)/invoices/[id]/page.tsx",
+    "pattern": "/invoices/[id]",
+    "kind": "page",
+    "group": "application"
+  },
+  {
+    "source": "app/(app)/invoices/page.tsx",
+    "pattern": "/invoices",
+    "kind": "page",
+    "group": "application"
+  },
+  {
+    "source": "app/(app)/plans/[id]/page.tsx",
+    "pattern": "/plans/[id]",
+    "kind": "page",
+    "group": "application"
+  },
+  {
+    "source": "app/(app)/plans/page.tsx",
+    "pattern": "/plans",
+    "kind": "page",
+    "group": "application"
+  },
+  {
+    "source": "app/(app)/proposals/[id]/page.tsx",
+    "pattern": "/proposals/[id]",
+    "kind": "page",
+    "group": "application"
+  },
+  {
+    "source": "app/(app)/proposals/[id]/versions/[versionId]/page.tsx",
+    "pattern": "/proposals/[id]/versions/[versionId]",
+    "kind": "page",
+    "group": "application"
+  },
+  {
+    "source": "app/(app)/proposals/page.tsx",
+    "pattern": "/proposals",
+    "kind": "page",
+    "group": "application"
+  },
+  {
+    "source": "app/(app)/reports/page.tsx",
+    "pattern": "/reports",
+    "kind": "page",
+    "group": "application"
+  },
+  {
+    "source": "app/(app)/search/page.tsx",
+    "pattern": "/search",
+    "kind": "page",
+    "group": "application"
+  },
+  {
+    "source": "app/(app)/settings/page.tsx",
+    "pattern": "/settings",
+    "kind": "page",
+    "group": "application"
+  },
+  {
+    "source": "app/(app)/time/page.tsx",
+    "pattern": "/time",
+    "kind": "page",
+    "group": "application"
+  },
+  {
+    "source": "app/(app)/updates/[id]/page.tsx",
+    "pattern": "/updates/[id]",
+    "kind": "page",
+    "group": "application"
+  },
+  {
+    "source": "app/(app)/updates/page.tsx",
+    "pattern": "/updates",
+    "kind": "page",
+    "group": "application"
+  },
+  {
+    "source": "app/(auth)/login/page.tsx",
+    "pattern": "/login",
+    "kind": "page",
+    "group": "authentication"
+  },
+  {
+    "source": "app/(auth)/onboarding/page.tsx",
+    "pattern": "/onboarding",
+    "kind": "page",
+    "group": "authentication"
+  },
+  {
+    "source": "app/(auth)/signup/page.tsx",
+    "pattern": "/signup",
+    "kind": "page",
+    "group": "authentication"
+  },
+  {
+    "source": "app/(marketing)/about/page.tsx",
+    "pattern": "/about",
+    "kind": "page",
+    "group": "marketing"
+  },
+  {
+    "source": "app/(marketing)/page.tsx",
+    "pattern": "/",
+    "kind": "page",
+    "group": "marketing"
+  },
+  {
+    "source": "app/(marketing)/pricing/page.tsx",
+    "pattern": "/pricing",
+    "kind": "page",
+    "group": "marketing"
+  },
+  {
+    "source": "app/(marketing)/vs/[slug]/page.tsx",
+    "pattern": "/vs/[slug]",
+    "kind": "page",
+    "group": "marketing"
+  },
+  {
+    "source": "app/(marketing)/vs/page.tsx",
+    "pattern": "/vs",
+    "kind": "page",
+    "group": "marketing"
+  },
+  {
+    "source": "app/api/cron/email/route.ts",
+    "pattern": "/api/cron/email",
+    "kind": "handler",
+    "group": "operational"
+  },
+  {
+    "source": "app/api/cron/webhooks/route.ts",
+    "pattern": "/api/cron/webhooks",
+    "kind": "handler",
+    "group": "operational"
+  },
+  {
+    "source": "app/api/email/callback/route.ts",
+    "pattern": "/api/email/callback",
+    "kind": "handler",
+    "group": "operational"
+  },
+  {
+    "source": "app/api/email/connect/route.ts",
+    "pattern": "/api/email/connect",
+    "kind": "handler",
+    "group": "operational"
+  },
+  {
+    "source": "app/api/intake/extract/route.ts",
+    "pattern": "/api/intake/extract",
+    "kind": "handler",
+    "group": "operational"
+  },
+  {
+    "source": "app/api/notion/callback/route.ts",
+    "pattern": "/api/notion/callback",
+    "kind": "handler",
+    "group": "operational"
+  },
+  {
+    "source": "app/api/notion/connect/route.ts",
+    "pattern": "/api/notion/connect",
+    "kind": "handler",
+    "group": "operational"
+  },
+  {
+    "source": "app/api/pdf/[kind]/[id]/route.ts",
+    "pattern": "/api/pdf/[kind]/[id]",
+    "kind": "handler",
+    "group": "operational"
+  },
+  {
+    "source": "app/api/pdf/reports/route.ts",
+    "pattern": "/api/pdf/reports",
+    "kind": "handler",
+    "group": "operational"
+  },
+  {
+    "source": "app/api/pdf/shared/invoice/[token]/route.ts",
+    "pattern": "/api/pdf/shared/invoice/[token]",
+    "kind": "handler",
+    "group": "operational"
+  },
+  {
+    "source": "app/api/pdf/time/route.ts",
+    "pattern": "/api/pdf/time",
+    "kind": "handler",
+    "group": "operational"
+  },
+  {
+    "source": "app/api/slack/callback/route.ts",
+    "pattern": "/api/slack/callback",
+    "kind": "handler",
+    "group": "operational"
+  },
+  {
+    "source": "app/api/slack/connect/route.ts",
+    "pattern": "/api/slack/connect",
+    "kind": "handler",
+    "group": "operational"
+  },
+  {
+    "source": "app/api/stripe/webhook/route.ts",
+    "pattern": "/api/stripe/webhook",
+    "kind": "handler",
+    "group": "operational"
+  },
+  {
+    "source": "app/auth/callback/route.ts",
+    "pattern": "/auth/callback",
+    "kind": "handler",
+    "group": "operational"
+  },
+  {
+    "source": "app/invite/[token]/page.tsx",
+    "pattern": "/invite/[token]",
+    "kind": "page",
+    "group": "public product"
+  },
+  {
+    "source": "app/invoice/[token]/page.tsx",
+    "pattern": "/invoice/[token]",
+    "kind": "page",
+    "group": "public product"
+  },
+  {
+    "source": "app/share/[token]/page.tsx",
+    "pattern": "/share/[token]",
+    "kind": "page",
+    "group": "public product"
+  }
+]

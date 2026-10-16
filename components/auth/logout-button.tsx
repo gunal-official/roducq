@@ -18,9 +18,11 @@ import { cn } from "@/lib/utils";
 export function LogoutButton({
   className,
   iconOnly = true,
+  role,
 }: {
   className?: string;
   iconOnly?: boolean;
+  role?: "menuitem";
 }) {
   const router = useRouter();
   const [pending, setPending] = useState(false);
@@ -38,6 +40,7 @@ export function LogoutButton({
 
   return (
     <Button
+      role={role}
       variant="ghost"
       size="sm"
       onClick={handleLogout}

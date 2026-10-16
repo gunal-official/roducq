@@ -1,0 +1,3050 @@
+[
+  {
+    "scheme": "light",
+    "page": "marketing-home",
+    "width": 375,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".sm\\:text-lg"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+      },
+      {
+        "target": [
+          ".h-7"
+        ],
+        "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+      },
+      {
+        "target": [
+          ".max-w-2xl.relative.mx-auto > .sm\\:text-5xl"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "signup",
+    "width": 375,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".mt-1\\.5"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "invite-token",
+    "width": 375,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".mt-1\\.5"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "public-invite",
+    "width": 375,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".mt-1\\.5"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "marketing-home",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          "button[aria-label=\"Use system theme\"]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      },
+      {
+        "target": [
+          ".h-7"
+        ],
+        "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "pipeline",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "dashboard-direct",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "marketing-about",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "marketing-pricing",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".font-medium"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "marketing-vs-notion",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "marketing-vs",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "marketing-vs-bonsai",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "marketing-vs-honeybook",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "marketing-vs-dubsado",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "marketing-vs-17hats",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "marketing-vs-freshbooks",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "marketing-vs-clickup",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "marketing-vs-basecamp",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "marketing-vs-pandadoc",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "login",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-lg"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-lg > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-3xl"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".leading-relaxed"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(1)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(2)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(3)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(4)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(5)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "signup",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-lg"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-lg > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-3xl"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".leading-relaxed"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(1)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(2)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(3)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(4)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(5)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "invite-token",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".mt-1\\.5"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "onboarding",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-lg"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-lg > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-3xl"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".mt-4"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(1)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(2)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(3)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(4)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(5)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "intake",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "intake-inbox",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "briefs",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "brief-detail",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "proposals",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "proposal-detail",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "proposal-version",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "plans",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "plan-detail",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "updates",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "update-detail",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "invoices",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "invoice-detail",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "contracts",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "contract-detail",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "time",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "reports",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "settings",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "search",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "brief-unavailable",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "proposal-unavailable",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "version-unavailable",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "plan-unavailable",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "update-unavailable",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "invoice-unavailable",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "page": "contract-unavailable",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "marketing-home",
+    "width": 375,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".sm\\:text-lg"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+      },
+      {
+        "target": [
+          ".h-7"
+        ],
+        "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+      },
+      {
+        "target": [
+          ".max-w-2xl.relative.mx-auto > .sm\\:text-5xl"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "signup",
+    "width": 375,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".mt-1\\.5"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "invite-token",
+    "width": 375,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".mt-1\\.5"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "public-invite",
+    "width": 375,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".mt-1\\.5"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "marketing-home",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          "button[aria-label=\"Use system theme\"]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      },
+      {
+        "target": [
+          ".h-7"
+        ],
+        "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "pipeline",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "dashboard-direct",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "marketing-about",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "marketing-pricing",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".font-medium"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "marketing-vs-notion",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "marketing-vs",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "marketing-vs-bonsai",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "marketing-vs-honeybook",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "marketing-vs-dubsado",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "marketing-vs-17hats",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "marketing-vs-freshbooks",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "marketing-vs-clickup",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "marketing-vs-basecamp",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "marketing-vs-pandadoc",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "login",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-lg"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-lg > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-3xl"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".leading-relaxed"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(1)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(2)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(3)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(4)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(5)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "signup",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-lg"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-lg > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-3xl"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".leading-relaxed"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(1)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(2)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(3)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(4)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(5)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "invite-token",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".mt-1\\.5"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "onboarding",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-lg"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-lg > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-3xl"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".mt-4"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(1)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(2)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(3)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(4)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(5)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "intake",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "intake-inbox",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "briefs",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "brief-detail",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "proposals",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "proposal-detail",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "proposal-version",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "plans",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "plan-detail",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "updates",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "update-detail",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "invoices",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "invoice-detail",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "contracts",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "contract-detail",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "time",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "reports",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "settings",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "search",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "brief-unavailable",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "proposal-unavailable",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "version-unavailable",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "plan-unavailable",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "update-unavailable",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "invoice-unavailable",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "page": "contract-unavailable",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "marketing-home",
+    "width": 375,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".sm\\:text-lg"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+      },
+      {
+        "target": [
+          ".h-7"
+        ],
+        "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+      },
+      {
+        "target": [
+          ".max-w-2xl.relative.mx-auto > .sm\\:text-5xl"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "signup",
+    "width": 375,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".mt-1\\.5"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "invite-token",
+    "width": 375,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".mt-1\\.5"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "public-invite",
+    "width": 375,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".mt-1\\.5"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "marketing-home",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          "button[aria-label=\"Use system theme\"]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      },
+      {
+        "target": [
+          ".h-7"
+        ],
+        "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "pipeline",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "dashboard-direct",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "marketing-about",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "marketing-pricing",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".font-medium"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "marketing-vs-notion",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "marketing-vs",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "marketing-vs-bonsai",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "marketing-vs-honeybook",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "marketing-vs-dubsado",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "marketing-vs-17hats",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "marketing-vs-freshbooks",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "marketing-vs-clickup",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "marketing-vs-basecamp",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "marketing-vs-pandadoc",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".bg-accent-soft"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "login",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-lg"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-lg > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-3xl"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".leading-relaxed"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(1)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(2)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(3)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(4)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(5)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "signup",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-lg"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-lg > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-3xl"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".leading-relaxed"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(1)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(2)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(3)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(4)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(5)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "invite-token",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".mt-1\\.5"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "onboarding",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-lg"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-lg > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-3xl"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".mt-4"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(1)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(2)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(3)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(4)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          "li:nth-child(5)"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "intake",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "intake-inbox",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "briefs",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "brief-detail",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "proposals",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "proposal-detail",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "proposal-version",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "plans",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "plan-detail",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "updates",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "update-detail",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "invoices",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "invoice-detail",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "contracts",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "contract-detail",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "time",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "reports",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "settings",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "search",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "brief-unavailable",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "proposal-unavailable",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "version-unavailable",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "plan-unavailable",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "update-unavailable",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "invoice-unavailable",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  },
+  {
+    "scheme": "empty",
+    "page": "contract-unavailable",
+    "width": 1440,
+    "rule": "color-contrast",
+    "nodes": [
+      {
+        "target": [
+          ".text-\\[17px\\]"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      },
+      {
+        "target": [
+          ".text-\\[17px\\] > .text-accent"
+        ],
+        "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+      }
+    ]
+  }
+]

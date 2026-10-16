@@ -43,7 +43,7 @@ export function DocHeader({
             {badges}
           </div>
           {subtitle && (
-            <p className="mt-1 truncate text-sm text-muted-foreground">
+            <p className="mt-1 break-words text-sm text-muted-foreground">
               {subtitle}
             </p>
           )}
@@ -99,19 +99,19 @@ export function StatTile({
         <Icon className="h-4 w-4" aria-hidden="true" />
       </span>
       <span className="min-w-0">
-        <span className="block text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+        <span className="block text-xs font-medium uppercase tracking-wider text-muted-foreground">
           {label}
         </span>
         <span
           className={cn(
-            "mt-0.5 block truncate font-display text-lg font-bold",
+            "mt-0.5 block break-words font-display text-lg font-bold",
             valueTone
           )}
         >
           {value}
         </span>
         {hint && (
-          <span className="mt-0.5 block truncate text-xs text-muted-foreground">
+          <span className="mt-0.5 block break-words text-xs text-muted-foreground">
             {hint}
           </span>
         )}
@@ -155,21 +155,21 @@ export function PaperCard({
   footer?: React.ReactNode;
 }) {
   return (
-    <div className="overflow-hidden rounded-lg border border-border bg-card shadow-card animate-rise-in">
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border bg-muted/40 px-6 py-3">
+    <div className="paper-card min-w-0 rounded-surface border border-border bg-card shadow-card animate-rise-in">
+      <div className="flex flex-wrap items-center justify-between gap-2 rounded-t-surface border-b border-border bg-muted/40 px-5 py-3 sm:px-6">
         <span className="font-display text-sm font-bold tracking-tight">
           {letterhead}
         </span>
-        <span className="flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+        <span className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
           {meta && <span>{meta}</span>}
           <span className="rounded-full border border-border bg-card px-2.5 py-0.5">
             {letterLabel}
           </span>
         </span>
       </div>
-      <div className="p-6 sm:p-8">{children}</div>
+      <div className="paper-body p-5 sm:p-8">{children}</div>
       {footer && (
-        <div className="border-t border-border bg-muted/30 px-6 py-5 sm:px-8">
+        <div className="rounded-b-surface border-t border-border bg-muted/30 px-5 py-5 sm:px-8">
           {footer}
         </div>
       )}
@@ -216,7 +216,7 @@ export function ActivityTimeline({ events }: { events: TimelineEvent[] }) {
                   {e.detail}
                 </span>
               )}
-              <span className="mt-0.5 block text-[11px] text-muted-foreground">
+              <span className="mt-0.5 block text-xs text-muted-foreground">
                 {e.at}
               </span>
             </span>

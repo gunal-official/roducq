@@ -388,8 +388,13 @@ describe("Phase E — artwork", () => {
 
   it("scales the split rails to the real billed total", () => {
     assert.ok(art.includes("const billed ="), "the total is computed from the passed cents");
-    assert.ok(art.includes("(cents / billed) * 100"), "rails scale to real shares");
-    assert.ok(art.includes("billed > 0 ? Math.max(8,"), "empty data draws no fake fill");
+    // Phase F removes the former 2% / 8px minimum: it drew non-zero
+    // collected/draft fills when only the outstanding bucket had money.
+    // Require the exact proportional helper instead (behavior tested in
+    // chart-geometry.test.ts), not the old misleading source shape.
+    assert.ok(art.includes("width={proportionalWidth(rail.cents, billed, 276)}"), "rails scale to exact real shares, including zero");
+    assert.ok(!art.includes("Math.max(8,") && !art.includes("Math.max(2,"), "no invented floor for zero or small buckets");
+    assert.ok(art.includes("<figcaption"), "visible labels supplement the accessible money-split label");
   });
 
   it("uses tokens, not literal brand colours", () => {

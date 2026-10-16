@@ -80,7 +80,7 @@ export default function PricingPage() {
           </span>
           <div className="flex-1 space-y-1.5">
             <div className="flex flex-wrap items-center justify-center gap-2 sm:justify-start">
-              <Badge variant="default" className="text-[11px]">
+              <Badge variant="default" className="text-xs">
                 {offer.badge}
               </Badge>
               <span className="font-mono text-sm font-semibold tracking-wide text-accent">

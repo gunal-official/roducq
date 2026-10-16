@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ChevronDown, Inbox, Menu as MenuIcon, Search } from "lucide-react";
 import { LogoutButton } from "@/components/auth/logout-button";
@@ -40,7 +40,10 @@ export function Topbar({
   canSeeMoney: boolean;
 }) {
   const [navOpen, setNavOpen] = useState(false);
-  const items = NAV_ITEMS.filter((item) => canSeeMoney || !MONEY_HREFS.has(item.href));
+  const menuTriggerRef = useRef<HTMLButtonElement>(null);
+  const items = NAV_ITEMS.filter(
+    (item) => canSeeMoney || !MONEY_HREFS.has(item.href),
+  );
 
   // Escape closes the mobile drawer (its close button + overlay handle the rest).
   useEffect(() => {
@@ -57,6 +60,7 @@ export function Topbar({
       <button
         type="button"
         aria-label="Open menu"
+        ref={menuTriggerRef}
         aria-expanded={navOpen}
         onClick={() => setNavOpen(true)}
         className="flex min-h-11 min-w-11 items-center justify-center rounded-control text-muted-foreground transition-colors duration-150 hover:bg-muted hover:text-text tab:hidden"
@@ -74,6 +78,7 @@ export function Topbar({
       </Link>
 
       <MobileNav
+        returnFocusRef={menuTriggerRef}
         open={navOpen}
         onClose={() => setNavOpen(false)}
         workspaces={workspaces}
@@ -99,10 +104,16 @@ export function Topbar({
       <form
         action="/search"
         role="search"
+        aria-label="Global search"
         className="relative order-last w-full sm:order-none sm:w-auto sm:flex-1 sm:max-w-sm"
       >
-        <Search aria-hidden="true" className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-        <label htmlFor="global-search" className="sr-only">Search</label>
+        <Search
+          aria-hidden="true"
+          className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
+        />
+        <label htmlFor="global-search" className="sr-only">
+          Search
+        </label>
         <Input
           id="global-search"
           type="search"
@@ -121,17 +132,27 @@ export function Topbar({
         >
           <Inbox aria-hidden="true" className="h-[18px] w-[18px]" />
         </Link>
-        <Menu label="Account menu" trigger={
-          /* Menu wraps its trigger in a <button> — this MUST stay non-interactive
+        <Menu
+          label="Account menu"
+          trigger={
+            /* Menu wraps its trigger in a <button> — this MUST stay non-interactive
              (button-in-button = invalid HTML = hydration #418). */
-          <span className="flex items-center gap-2 rounded-control py-1 pl-1 pr-1.5">
-            <Avatar className="h-8 w-8 ring-2 ring-accent-soft">
-              <AvatarFallback className="bg-accent text-xs font-bold text-accent-foreground">{initials}</AvatarFallback>
-            </Avatar>
-            <span className="hidden max-w-[140px] truncate text-sm font-semibold md:inline">{name ?? email}</span>
-            <ChevronDown aria-hidden="true" className="hidden h-3.5 w-3.5 shrink-0 text-muted-foreground md:block" />
-          </span>
-        }>
+            <span className="flex items-center gap-2 rounded-control py-1 pl-1 pr-1.5">
+              <Avatar className="h-8 w-8 ring-2 ring-accent-soft">
+                <AvatarFallback className="bg-accent text-xs font-bold text-accent-foreground">
+                  {initials}
+                </AvatarFallback>
+              </Avatar>
+              <span className="hidden max-w-[140px] truncate text-sm font-semibold md:inline">
+                {name ?? email}
+              </span>
+              <ChevronDown
+                aria-hidden="true"
+                className="hidden h-3.5 w-3.5 shrink-0 text-muted-foreground md:block"
+              />
+            </span>
+          }
+        >
           {(close) => (
             <>
               <div className="px-3 pb-1 pt-2">
@@ -143,7 +164,7 @@ export function Topbar({
                 </p>
               </div>
               <div className="mx-2 my-1 h-px bg-border" />
-              <p className="px-3 pb-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+              <p className="px-3 pb-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                 Workspace
               </p>
               {items.map(({ label, href, icon: Icon }) => (
@@ -154,7 +175,10 @@ export function Topbar({
                   onClick={close}
                   className="flex min-h-11 w-full items-center rounded-md px-3 text-sm text-text transition-colors duration-150 hover:bg-muted"
                 >
-                  <Icon aria-hidden="true" className="mr-2 h-4 w-4 text-muted-foreground" />
+                  <Icon
+                    aria-hidden="true"
+                    className="mr-2 h-4 w-4 text-muted-foreground"
+                  />
                   {label}
                 </Link>
               ))}
@@ -162,6 +186,7 @@ export function Topbar({
               <AppearanceMenuItems close={close} />
               <div className="mx-2 my-1 h-px bg-border" />
               <LogoutButton
+                role="menuitem"
                 iconOnly={false}
                 className="w-full justify-start rounded-md px-3"
               />

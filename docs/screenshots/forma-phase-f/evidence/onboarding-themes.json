@@ -1,0 +1,29 @@
+{
+  "name": "onboarding-all-persisted-theme-states",
+  "ok": true,
+  "realBrowser": true,
+  "proof": [
+    {
+      "choice": "dark",
+      "stored": "dark",
+      "dark": true,
+      "authenticatedFormEnabled": true
+    },
+    {
+      "choice": "light",
+      "stored": "light",
+      "dark": false,
+      "authenticatedFormEnabled": true
+    },
+    {
+      "choice": "system",
+      "stored": "system",
+      "dark": false,
+      "authenticatedFormEnabled": true
+    }
+  ],
+  "systemFollowsOS": true,
+  "systemSurvivesReload": true,
+  "browserErrors": [],
+  "noWorkspaceCreated": true
+}

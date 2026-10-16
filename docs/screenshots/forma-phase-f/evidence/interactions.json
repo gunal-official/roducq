@@ -1,0 +1,2513 @@
+[
+  {
+    "name": "marketing-menu-320-light",
+    "ok": true,
+    "details": {
+      "focusSequence": [
+        "Log in",
+        "Close menu",
+        "About",
+        "Close menu",
+        "About",
+        "Pricing",
+        "About",
+        "Pricing",
+        "Compare",
+        "Pricing",
+        "Compare",
+        "Use light theme",
+        "Compare",
+        "Use light theme",
+        "Use dark theme",
+        "Use light theme",
+        "Use dark theme",
+        "Use system theme",
+        "Use dark theme",
+        "Use system theme",
+        "Create your workspace",
+        "Use system theme",
+        "Create your workspace",
+        "Log in",
+        "Create your workspace",
+        "Log in",
+        "Close menu",
+        "Log in",
+        "Close menu",
+        "About",
+        "Close menu",
+        "About",
+        "Pricing",
+        "About",
+        "Pricing",
+        "Compare"
+      ],
+      "escapeRestoresFocus": true,
+      "destination": "http://127.0.0.1:35363/vs",
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "aria-hidden-focus",
+            "nodes": [
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"]:nth-child(1)"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  ".marketing"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"]:nth-child(11)"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              }
+            ]
+          },
+          {
+            "id": "color-contrast",
+            "nodes": [
+              {
+                "target": [
+                  ".sm\\:text-lg"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+              },
+              {
+                "target": [
+                  ".h-7"
+                ],
+                "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+              },
+              {
+                "target": [
+                  ".sm\\:text-5xl.text-3xl"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": []
+  },
+  {
+    "name": "marketing-menu-375-light",
+    "ok": true,
+    "details": {
+      "focusSequence": [
+        "Log in",
+        "Close menu",
+        "About",
+        "Close menu",
+        "About",
+        "Pricing",
+        "About",
+        "Pricing",
+        "Compare",
+        "Pricing",
+        "Compare",
+        "Use light theme",
+        "Compare",
+        "Use light theme",
+        "Use dark theme",
+        "Use light theme",
+        "Use dark theme",
+        "Use system theme",
+        "Use dark theme",
+        "Use system theme",
+        "Create your workspace",
+        "Use system theme",
+        "Create your workspace",
+        "Log in",
+        "Create your workspace",
+        "Log in",
+        "Close menu",
+        "Log in",
+        "Close menu",
+        "About",
+        "Close menu",
+        "About",
+        "Pricing",
+        "About",
+        "Pricing",
+        "Compare"
+      ],
+      "escapeRestoresFocus": true,
+      "destination": "http://127.0.0.1:35363/vs",
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "aria-hidden-focus",
+            "nodes": [
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"]:nth-child(1)"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  ".marketing"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"]:nth-child(11)"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              }
+            ]
+          },
+          {
+            "id": "color-contrast",
+            "nodes": [
+              {
+                "target": [
+                  ".sm\\:text-lg"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+              },
+              {
+                "target": [
+                  ".h-7"
+                ],
+                "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+              },
+              {
+                "target": [
+                  ".sm\\:text-5xl.text-3xl"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": []
+  },
+  {
+    "name": "marketing-menu-768-light",
+    "ok": true,
+    "details": {
+      "focusSequence": [
+        "Log in",
+        "Close menu",
+        "About",
+        "Close menu",
+        "About",
+        "Pricing",
+        "About",
+        "Pricing",
+        "Compare",
+        "Pricing",
+        "Compare",
+        "Use light theme",
+        "Compare",
+        "Use light theme",
+        "Use dark theme",
+        "Use light theme",
+        "Use dark theme",
+        "Use system theme",
+        "Use dark theme",
+        "Use system theme",
+        "Create your workspace",
+        "Use system theme",
+        "Create your workspace",
+        "Log in",
+        "Create your workspace",
+        "Log in",
+        "Close menu",
+        "Log in",
+        "Close menu",
+        "About",
+        "Close menu",
+        "About",
+        "Pricing",
+        "About",
+        "Pricing",
+        "Compare"
+      ],
+      "escapeRestoresFocus": true,
+      "destination": "http://127.0.0.1:35363/vs",
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "aria-hidden-focus",
+            "nodes": [
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"]:nth-child(1)"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  ".marketing"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"]:nth-child(11)"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              }
+            ]
+          },
+          {
+            "id": "color-contrast",
+            "nodes": [
+              {
+                "target": [
+                  ".h-7"
+                ],
+                "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": []
+  },
+  {
+    "name": "workspace-drawer-320-light",
+    "ok": true,
+    "details": {
+      "focusSequence": [
+        "Log out",
+        "Close menu",
+        "Pipeline",
+        "Close menu",
+        "Pipeline",
+        "Intake",
+        "Pipeline",
+        "Intake",
+        "Inbox",
+        "Intake",
+        "Inbox",
+        "Briefs",
+        "Inbox",
+        "Briefs",
+        "Proposals",
+        "Briefs",
+        "Proposals",
+        "Plans",
+        "Proposals",
+        "Plans",
+        "Updates",
+        "Plans",
+        "Updates",
+        "Invoices",
+        "Updates",
+        "Invoices",
+        "Time",
+        "Invoices",
+        "Time",
+        "Contracts",
+        "Time",
+        "Contracts",
+        "Reports",
+        "Contracts",
+        "Reports",
+        "Settings",
+        "Reports",
+        "Settings",
+        "Light theme",
+        "Settings",
+        "Light theme",
+        "Dark theme",
+        "Light theme",
+        "Dark theme",
+        "System theme",
+        "Dark theme",
+        "System theme",
+        "Log out"
+      ],
+      "bothTriggersRestoreFocus": true,
+      "closesAtTabletBreakpoint": true,
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "aria-hidden-focus",
+            "nodes": [
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(1)"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  ".app-shell"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(13)"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": []
+  },
+  {
+    "name": "workspace-drawer-375-light",
+    "ok": true,
+    "details": {
+      "focusSequence": [
+        "Log out",
+        "Close menu",
+        "Pipeline",
+        "Close menu",
+        "Pipeline",
+        "Intake",
+        "Pipeline",
+        "Intake",
+        "Inbox",
+        "Intake",
+        "Inbox",
+        "Briefs",
+        "Inbox",
+        "Briefs",
+        "Proposals",
+        "Briefs",
+        "Proposals",
+        "Plans",
+        "Proposals",
+        "Plans",
+        "Updates",
+        "Plans",
+        "Updates",
+        "Invoices",
+        "Updates",
+        "Invoices",
+        "Time",
+        "Invoices",
+        "Time",
+        "Contracts",
+        "Time",
+        "Contracts",
+        "Reports",
+        "Contracts",
+        "Reports",
+        "Settings",
+        "Reports",
+        "Settings",
+        "Light theme",
+        "Settings",
+        "Light theme",
+        "Dark theme",
+        "Light theme",
+        "Dark theme",
+        "System theme",
+        "Dark theme",
+        "System theme",
+        "Log out"
+      ],
+      "bothTriggersRestoreFocus": true,
+      "closesAtTabletBreakpoint": true,
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "aria-hidden-focus",
+            "nodes": [
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(1)"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  ".app-shell"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(13)"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": []
+  },
+  {
+    "name": "template-dialog-320-light",
+    "ok": true,
+    "details": {
+      "focusSequence": [
+        "Close",
+        "Title",
+        "Body",
+        "Title",
+        "Body",
+        "Cancel",
+        "Body",
+        "Cancel",
+        "Close",
+        "Cancel",
+        "Close",
+        "Title",
+        "Close",
+        "Title",
+        "Body",
+        "Title",
+        "Body",
+        "Cancel"
+      ],
+      "closeTarget": "44×44",
+      "escapeRestoresFocus": true,
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "aria-hidden-focus",
+            "nodes": [
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(1)"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  ".app-shell"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(22)"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": []
+  },
+  {
+    "name": "template-dialog-768-light",
+    "ok": true,
+    "details": {
+      "focusSequence": [
+        "Close",
+        "Title",
+        "Body",
+        "Title",
+        "Body",
+        "Cancel",
+        "Body",
+        "Cancel",
+        "Close",
+        "Cancel",
+        "Close",
+        "Title",
+        "Close",
+        "Title",
+        "Body",
+        "Title",
+        "Body",
+        "Cancel"
+      ],
+      "closeTarget": "44×44",
+      "escapeRestoresFocus": true,
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "aria-hidden-focus",
+            "nodes": [
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(1)"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  ".app-shell"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(22)"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": []
+  },
+  {
+    "name": "account-keyboard-light",
+    "ok": true,
+    "details": {
+      "arrowsHomeEnd": true,
+      "escapeRestoresFocus": true,
+      "tabExits": true,
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "aria-valid-attr-value",
+            "nodes": [
+              {
+                "target": [
+                  ".focus-visible\\:bg-muted"
+                ],
+                "summary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"_R_2p6btb_\""
+              }
+            ]
+          },
+          {
+            "id": "color-contrast",
+            "nodes": [
+              {
+                "target": [
+                  ".text-\\[17px\\]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  ".text-\\[17px\\] > .text-accent"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              }
+            ]
+          },
+          {
+            "id": "scrollable-region-focusable",
+            "nodes": [
+              {
+                "target": [
+                  "#_R_2p6btb_"
+                ],
+                "summary": "Fix any of the following:\n  Check that elements with a negative tabindex can receive keyboard focus so the region can be scrolled"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": []
+  },
+  {
+    "name": "marketing-menu-320-dark",
+    "ok": true,
+    "details": {
+      "focusSequence": [
+        "Log in",
+        "Close menu",
+        "About",
+        "Close menu",
+        "About",
+        "Pricing",
+        "About",
+        "Pricing",
+        "Compare",
+        "Pricing",
+        "Compare",
+        "Use light theme",
+        "Compare",
+        "Use light theme",
+        "Use dark theme",
+        "Use light theme",
+        "Use dark theme",
+        "Use system theme",
+        "Use dark theme",
+        "Use system theme",
+        "Create your workspace",
+        "Use system theme",
+        "Create your workspace",
+        "Log in",
+        "Create your workspace",
+        "Log in",
+        "Close menu",
+        "Log in",
+        "Close menu",
+        "About",
+        "Close menu",
+        "About",
+        "Pricing",
+        "About",
+        "Pricing",
+        "Compare"
+      ],
+      "escapeRestoresFocus": true,
+      "destination": "http://127.0.0.1:35363/vs",
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "aria-hidden-focus",
+            "nodes": [
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"]:nth-child(1)"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  ".marketing"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"]:nth-child(11)"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              }
+            ]
+          },
+          {
+            "id": "color-contrast",
+            "nodes": [
+              {
+                "target": [
+                  ".sm\\:text-lg"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+              },
+              {
+                "target": [
+                  ".h-7"
+                ],
+                "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+              },
+              {
+                "target": [
+                  ".sm\\:text-5xl.text-3xl"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": []
+  },
+  {
+    "name": "marketing-menu-375-dark",
+    "ok": true,
+    "details": {
+      "focusSequence": [
+        "Log in",
+        "Close menu",
+        "About",
+        "Close menu",
+        "About",
+        "Pricing",
+        "About",
+        "Pricing",
+        "Compare",
+        "Pricing",
+        "Compare",
+        "Use light theme",
+        "Compare",
+        "Use light theme",
+        "Use dark theme",
+        "Use light theme",
+        "Use dark theme",
+        "Use system theme",
+        "Use dark theme",
+        "Use system theme",
+        "Create your workspace",
+        "Use system theme",
+        "Create your workspace",
+        "Log in",
+        "Create your workspace",
+        "Log in",
+        "Close menu",
+        "Log in",
+        "Close menu",
+        "About",
+        "Close menu",
+        "About",
+        "Pricing",
+        "About",
+        "Pricing",
+        "Compare"
+      ],
+      "escapeRestoresFocus": true,
+      "destination": "http://127.0.0.1:35363/vs",
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "aria-hidden-focus",
+            "nodes": [
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"]:nth-child(1)"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  ".marketing"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"]:nth-child(11)"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              }
+            ]
+          },
+          {
+            "id": "color-contrast",
+            "nodes": [
+              {
+                "target": [
+                  ".sm\\:text-lg"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+              },
+              {
+                "target": [
+                  ".h-7"
+                ],
+                "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+              },
+              {
+                "target": [
+                  ".sm\\:text-5xl.text-3xl"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": []
+  },
+  {
+    "name": "marketing-menu-768-dark",
+    "ok": true,
+    "details": {
+      "focusSequence": [
+        "Log in",
+        "Close menu",
+        "About",
+        "Close menu",
+        "About",
+        "Pricing",
+        "About",
+        "Pricing",
+        "Compare",
+        "Pricing",
+        "Compare",
+        "Use light theme",
+        "Compare",
+        "Use light theme",
+        "Use dark theme",
+        "Use light theme",
+        "Use dark theme",
+        "Use system theme",
+        "Use dark theme",
+        "Use system theme",
+        "Create your workspace",
+        "Use system theme",
+        "Create your workspace",
+        "Log in",
+        "Create your workspace",
+        "Log in",
+        "Close menu",
+        "Log in",
+        "Close menu",
+        "About",
+        "Close menu",
+        "About",
+        "Pricing",
+        "About",
+        "Pricing",
+        "Compare"
+      ],
+      "escapeRestoresFocus": true,
+      "destination": "http://127.0.0.1:35363/vs",
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "aria-hidden-focus",
+            "nodes": [
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"]:nth-child(1)"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  ".marketing"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"]:nth-child(11)"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              }
+            ]
+          },
+          {
+            "id": "color-contrast",
+            "nodes": [
+              {
+                "target": [
+                  ".h-7"
+                ],
+                "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": []
+  },
+  {
+    "name": "workspace-drawer-320-dark",
+    "ok": true,
+    "details": {
+      "focusSequence": [
+        "Log out",
+        "Close menu",
+        "Pipeline",
+        "Close menu",
+        "Pipeline",
+        "Intake",
+        "Pipeline",
+        "Intake",
+        "Inbox",
+        "Intake",
+        "Inbox",
+        "Briefs",
+        "Inbox",
+        "Briefs",
+        "Proposals",
+        "Briefs",
+        "Proposals",
+        "Plans",
+        "Proposals",
+        "Plans",
+        "Updates",
+        "Plans",
+        "Updates",
+        "Invoices",
+        "Updates",
+        "Invoices",
+        "Time",
+        "Invoices",
+        "Time",
+        "Contracts",
+        "Time",
+        "Contracts",
+        "Reports",
+        "Contracts",
+        "Reports",
+        "Settings",
+        "Reports",
+        "Settings",
+        "Light theme",
+        "Settings",
+        "Light theme",
+        "Dark theme",
+        "Light theme",
+        "Dark theme",
+        "System theme",
+        "Dark theme",
+        "System theme",
+        "Log out"
+      ],
+      "bothTriggersRestoreFocus": true,
+      "closesAtTabletBreakpoint": true,
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "aria-hidden-focus",
+            "nodes": [
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(1)"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  ".app-shell"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(13)"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": []
+  },
+  {
+    "name": "workspace-drawer-375-dark",
+    "ok": true,
+    "details": {
+      "focusSequence": [
+        "Log out",
+        "Close menu",
+        "Pipeline",
+        "Close menu",
+        "Pipeline",
+        "Intake",
+        "Pipeline",
+        "Intake",
+        "Inbox",
+        "Intake",
+        "Inbox",
+        "Briefs",
+        "Inbox",
+        "Briefs",
+        "Proposals",
+        "Briefs",
+        "Proposals",
+        "Plans",
+        "Proposals",
+        "Plans",
+        "Updates",
+        "Plans",
+        "Updates",
+        "Invoices",
+        "Updates",
+        "Invoices",
+        "Time",
+        "Invoices",
+        "Time",
+        "Contracts",
+        "Time",
+        "Contracts",
+        "Reports",
+        "Contracts",
+        "Reports",
+        "Settings",
+        "Reports",
+        "Settings",
+        "Light theme",
+        "Settings",
+        "Light theme",
+        "Dark theme",
+        "Light theme",
+        "Dark theme",
+        "System theme",
+        "Dark theme",
+        "System theme",
+        "Log out"
+      ],
+      "bothTriggersRestoreFocus": true,
+      "closesAtTabletBreakpoint": true,
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "aria-hidden-focus",
+            "nodes": [
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(1)"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  ".app-shell"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(13)"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": []
+  },
+  {
+    "name": "template-dialog-320-dark",
+    "ok": true,
+    "details": {
+      "focusSequence": [
+        "Close",
+        "Title",
+        "Body",
+        "Title",
+        "Body",
+        "Cancel",
+        "Body",
+        "Cancel",
+        "Close",
+        "Cancel",
+        "Close",
+        "Title",
+        "Close",
+        "Title",
+        "Body",
+        "Title",
+        "Body",
+        "Cancel"
+      ],
+      "closeTarget": "44×44",
+      "escapeRestoresFocus": true,
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "aria-hidden-focus",
+            "nodes": [
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(1)"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  ".app-shell"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(22)"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": []
+  },
+  {
+    "name": "template-dialog-768-dark",
+    "ok": true,
+    "details": {
+      "focusSequence": [
+        "Close",
+        "Title",
+        "Body",
+        "Title",
+        "Body",
+        "Cancel",
+        "Body",
+        "Cancel",
+        "Close",
+        "Cancel",
+        "Close",
+        "Title",
+        "Close",
+        "Title",
+        "Body",
+        "Title",
+        "Body",
+        "Cancel"
+      ],
+      "closeTarget": "44×44",
+      "escapeRestoresFocus": true,
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "aria-hidden-focus",
+            "nodes": [
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(1)"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  ".app-shell"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(22)"
+                ],
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": []
+  },
+  {
+    "name": "account-keyboard-dark",
+    "ok": true,
+    "details": {
+      "arrowsHomeEnd": true,
+      "escapeRestoresFocus": true,
+      "tabExits": true,
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "aria-valid-attr-value",
+            "nodes": [
+              {
+                "target": [
+                  ".focus-visible\\:bg-muted"
+                ],
+                "summary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"_R_2p6btb_\""
+              }
+            ]
+          },
+          {
+            "id": "color-contrast",
+            "nodes": [
+              {
+                "target": [
+                  ".text-\\[17px\\]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  ".text-\\[17px\\] > .text-accent"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              }
+            ]
+          },
+          {
+            "id": "scrollable-region-focusable",
+            "nodes": [
+              {
+                "target": [
+                  "#_R_2p6btb_"
+                ],
+                "summary": "Fix any of the following:\n  Check that elements with a negative tabindex can receive keyboard focus so the region can be scrolled"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": []
+  },
+  {
+    "name": "onboarding-real-fixture-auth",
+    "ok": true,
+    "details": {
+      "browserGetUserSucceeded": true,
+      "createWorkspaceEnabled": true,
+      "noWorkspaceCreated": true
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": []
+  },
+  {
+    "name": "theme-persistence-all-application-routes",
+    "ok": true,
+    "details": {
+      "routeSelections": [
+        {
+          "page": "pipeline",
+          "theme": "dark",
+          "stored": "dark",
+          "dark": true
+        },
+        {
+          "page": "dashboard-direct",
+          "theme": "dark",
+          "stored": "dark",
+          "dark": true
+        },
+        {
+          "page": "intake",
+          "theme": "dark",
+          "stored": "dark",
+          "dark": true
+        },
+        {
+          "page": "intake-inbox",
+          "theme": "dark",
+          "stored": "dark",
+          "dark": true
+        },
+        {
+          "page": "briefs",
+          "theme": "dark",
+          "stored": "dark",
+          "dark": true
+        },
+        {
+          "page": "brief-detail",
+          "theme": "dark",
+          "stored": "dark",
+          "dark": true
+        },
+        {
+          "page": "proposals",
+          "theme": "dark",
+          "stored": "dark",
+          "dark": true
+        },
+        {
+          "page": "proposal-detail",
+          "theme": "dark",
+          "stored": "dark",
+          "dark": true
+        },
+        {
+          "page": "proposal-version",
+          "theme": "dark",
+          "stored": "dark",
+          "dark": true
+        },
+        {
+          "page": "plans",
+          "theme": "dark",
+          "stored": "dark",
+          "dark": true
+        },
+        {
+          "page": "plan-detail",
+          "theme": "dark",
+          "stored": "dark",
+          "dark": true
+        },
+        {
+          "page": "updates",
+          "theme": "dark",
+          "stored": "dark",
+          "dark": true
+        },
+        {
+          "page": "update-detail",
+          "theme": "dark",
+          "stored": "dark",
+          "dark": true
+        },
+        {
+          "page": "invoices",
+          "theme": "dark",
+          "stored": "dark",
+          "dark": true
+        },
+        {
+          "page": "invoice-detail",
+          "theme": "dark",
+          "stored": "dark",
+          "dark": true
+        },
+        {
+          "page": "contracts",
+          "theme": "dark",
+          "stored": "dark",
+          "dark": true
+        },
+        {
+          "page": "contract-detail",
+          "theme": "dark",
+          "stored": "dark",
+          "dark": true
+        },
+        {
+          "page": "time",
+          "theme": "dark",
+          "stored": "dark",
+          "dark": true
+        },
+        {
+          "page": "reports",
+          "theme": "dark",
+          "stored": "dark",
+          "dark": true
+        },
+        {
+          "page": "settings",
+          "theme": "dark",
+          "stored": "dark",
+          "dark": true
+        },
+        {
+          "page": "search",
+          "theme": "dark",
+          "stored": "dark",
+          "dark": true
+        },
+        {
+          "page": "brief-unavailable",
+          "theme": "dark",
+          "stored": "dark",
+          "dark": true
+        },
+        {
+          "page": "proposal-unavailable",
+          "theme": "dark",
+          "stored": "dark",
+          "dark": true
+        },
+        {
+          "page": "version-unavailable",
+          "theme": "dark",
+          "stored": "dark",
+          "dark": true
+        },
+        {
+          "page": "plan-unavailable",
+          "theme": "dark",
+          "stored": "dark",
+          "dark": true
+        },
+        {
+          "page": "update-unavailable",
+          "theme": "dark",
+          "stored": "dark",
+          "dark": true
+        },
+        {
+          "page": "invoice-unavailable",
+          "theme": "dark",
+          "stored": "dark",
+          "dark": true
+        },
+        {
+          "page": "contract-unavailable",
+          "theme": "dark",
+          "stored": "dark",
+          "dark": true
+        },
+        {
+          "page": "pipeline",
+          "theme": "light",
+          "stored": "light",
+          "dark": false
+        },
+        {
+          "page": "dashboard-direct",
+          "theme": "light",
+          "stored": "light",
+          "dark": false
+        },
+        {
+          "page": "intake",
+          "theme": "light",
+          "stored": "light",
+          "dark": false
+        },
+        {
+          "page": "intake-inbox",
+          "theme": "light",
+          "stored": "light",
+          "dark": false
+        },
+        {
+          "page": "briefs",
+          "theme": "light",
+          "stored": "light",
+          "dark": false
+        },
+        {
+          "page": "brief-detail",
+          "theme": "light",
+          "stored": "light",
+          "dark": false
+        },
+        {
+          "page": "proposals",
+          "theme": "light",
+          "stored": "light",
+          "dark": false
+        },
+        {
+          "page": "proposal-detail",
+          "theme": "light",
+          "stored": "light",
+          "dark": false
+        },
+        {
+          "page": "proposal-version",
+          "theme": "light",
+          "stored": "light",
+          "dark": false
+        },
+        {
+          "page": "plans",
+          "theme": "light",
+          "stored": "light",
+          "dark": false
+        },
+        {
+          "page": "plan-detail",
+          "theme": "light",
+          "stored": "light",
+          "dark": false
+        },
+        {
+          "page": "updates",
+          "theme": "light",
+          "stored": "light",
+          "dark": false
+        },
+        {
+          "page": "update-detail",
+          "theme": "light",
+          "stored": "light",
+          "dark": false
+        },
+        {
+          "page": "invoices",
+          "theme": "light",
+          "stored": "light",
+          "dark": false
+        },
+        {
+          "page": "invoice-detail",
+          "theme": "light",
+          "stored": "light",
+          "dark": false
+        },
+        {
+          "page": "contracts",
+          "theme": "light",
+          "stored": "light",
+          "dark": false
+        },
+        {
+          "page": "contract-detail",
+          "theme": "light",
+          "stored": "light",
+          "dark": false
+        },
+        {
+          "page": "time",
+          "theme": "light",
+          "stored": "light",
+          "dark": false
+        },
+        {
+          "page": "reports",
+          "theme": "light",
+          "stored": "light",
+          "dark": false
+        },
+        {
+          "page": "settings",
+          "theme": "light",
+          "stored": "light",
+          "dark": false
+        },
+        {
+          "page": "search",
+          "theme": "light",
+          "stored": "light",
+          "dark": false
+        },
+        {
+          "page": "brief-unavailable",
+          "theme": "light",
+          "stored": "light",
+          "dark": false
+        },
+        {
+          "page": "proposal-unavailable",
+          "theme": "light",
+          "stored": "light",
+          "dark": false
+        },
+        {
+          "page": "version-unavailable",
+          "theme": "light",
+          "stored": "light",
+          "dark": false
+        },
+        {
+          "page": "plan-unavailable",
+          "theme": "light",
+          "stored": "light",
+          "dark": false
+        },
+        {
+          "page": "update-unavailable",
+          "theme": "light",
+          "stored": "light",
+          "dark": false
+        },
+        {
+          "page": "invoice-unavailable",
+          "theme": "light",
+          "stored": "light",
+          "dark": false
+        },
+        {
+          "page": "contract-unavailable",
+          "theme": "light",
+          "stored": "light",
+          "dark": false
+        },
+        {
+          "page": "pipeline",
+          "theme": "system",
+          "stored": "system",
+          "dark": false
+        },
+        {
+          "page": "dashboard-direct",
+          "theme": "system",
+          "stored": "system",
+          "dark": false
+        },
+        {
+          "page": "intake",
+          "theme": "system",
+          "stored": "system",
+          "dark": false
+        },
+        {
+          "page": "intake-inbox",
+          "theme": "system",
+          "stored": "system",
+          "dark": false
+        },
+        {
+          "page": "briefs",
+          "theme": "system",
+          "stored": "system",
+          "dark": false
+        },
+        {
+          "page": "brief-detail",
+          "theme": "system",
+          "stored": "system",
+          "dark": false
+        },
+        {
+          "page": "proposals",
+          "theme": "system",
+          "stored": "system",
+          "dark": false
+        },
+        {
+          "page": "proposal-detail",
+          "theme": "system",
+          "stored": "system",
+          "dark": false
+        },
+        {
+          "page": "proposal-version",
+          "theme": "system",
+          "stored": "system",
+          "dark": false
+        },
+        {
+          "page": "plans",
+          "theme": "system",
+          "stored": "system",
+          "dark": false
+        },
+        {
+          "page": "plan-detail",
+          "theme": "system",
+          "stored": "system",
+          "dark": false
+        },
+        {
+          "page": "updates",
+          "theme": "system",
+          "stored": "system",
+          "dark": false
+        },
+        {
+          "page": "update-detail",
+          "theme": "system",
+          "stored": "system",
+          "dark": false
+        },
+        {
+          "page": "invoices",
+          "theme": "system",
+          "stored": "system",
+          "dark": false
+        },
+        {
+          "page": "invoice-detail",
+          "theme": "system",
+          "stored": "system",
+          "dark": false
+        },
+        {
+          "page": "contracts",
+          "theme": "system",
+          "stored": "system",
+          "dark": false
+        },
+        {
+          "page": "contract-detail",
+          "theme": "system",
+          "stored": "system",
+          "dark": false
+        },
+        {
+          "page": "time",
+          "theme": "system",
+          "stored": "system",
+          "dark": false
+        },
+        {
+          "page": "reports",
+          "theme": "system",
+          "stored": "system",
+          "dark": false
+        },
+        {
+          "page": "settings",
+          "theme": "system",
+          "stored": "system",
+          "dark": false
+        },
+        {
+          "page": "search",
+          "theme": "system",
+          "stored": "system",
+          "dark": false
+        },
+        {
+          "page": "brief-unavailable",
+          "theme": "system",
+          "stored": "system",
+          "dark": false
+        },
+        {
+          "page": "proposal-unavailable",
+          "theme": "system",
+          "stored": "system",
+          "dark": false
+        },
+        {
+          "page": "version-unavailable",
+          "theme": "system",
+          "stored": "system",
+          "dark": false
+        },
+        {
+          "page": "plan-unavailable",
+          "theme": "system",
+          "stored": "system",
+          "dark": false
+        },
+        {
+          "page": "update-unavailable",
+          "theme": "system",
+          "stored": "system",
+          "dark": false
+        },
+        {
+          "page": "invoice-unavailable",
+          "theme": "system",
+          "stored": "system",
+          "dark": false
+        },
+        {
+          "page": "contract-unavailable",
+          "theme": "system",
+          "stored": "system",
+          "dark": false
+        }
+      ],
+      "systemRespondsToOS": true,
+      "persistsAfterReload": true
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": []
+  },
+  {
+    "name": "report-money-rails-light",
+    "ok": true,
+    "details": {
+      "widths": [
+        0,
+        276,
+        0
+      ],
+      "visibleLegend": "Collected · $0.00Outstanding · $1,428.00Draft · $0.00",
+      "zeroBucketsAreEmpty": true
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": []
+  },
+  {
+    "name": "reduced-motion-all-routes-light",
+    "ok": true,
+    "details": {
+      "routes": [
+        {
+          "page": "marketing-home",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 44
+        },
+        {
+          "page": "pipeline",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 52
+        },
+        {
+          "page": "dashboard-direct",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 52
+        },
+        {
+          "page": "marketing-about",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 7
+        },
+        {
+          "page": "marketing-pricing",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 18
+        },
+        {
+          "page": "marketing-vs-notion",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 3
+        },
+        {
+          "page": "marketing-vs",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 12
+        },
+        {
+          "page": "marketing-vs-bonsai",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 3
+        },
+        {
+          "page": "marketing-vs-honeybook",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 3
+        },
+        {
+          "page": "marketing-vs-dubsado",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 3
+        },
+        {
+          "page": "marketing-vs-17hats",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 3
+        },
+        {
+          "page": "marketing-vs-freshbooks",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 3
+        },
+        {
+          "page": "marketing-vs-clickup",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 3
+        },
+        {
+          "page": "marketing-vs-basecamp",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 3
+        },
+        {
+          "page": "marketing-vs-pandadoc",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 3
+        },
+        {
+          "page": "login",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 7
+        },
+        {
+          "page": "signup",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 9
+        },
+        {
+          "page": "invite-token",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 1
+        },
+        {
+          "page": "share-token",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 1
+        },
+        {
+          "page": "invoice-token",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 2
+        },
+        {
+          "page": "public-invoice",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 2
+        },
+        {
+          "page": "public-update",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 0
+        },
+        {
+          "page": "public-invite",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 1
+        },
+        {
+          "page": "onboarding",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 4
+        },
+        {
+          "page": "intake",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 27
+        },
+        {
+          "page": "intake-inbox",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 36
+        },
+        {
+          "page": "briefs",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 31
+        },
+        {
+          "page": "brief-detail",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 35
+        },
+        {
+          "page": "proposals",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 30
+        },
+        {
+          "page": "proposal-detail",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 45
+        },
+        {
+          "page": "proposal-version",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 29
+        },
+        {
+          "page": "plans",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 30
+        },
+        {
+          "page": "plan-detail",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 41
+        },
+        {
+          "page": "updates",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 29
+        },
+        {
+          "page": "update-detail",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 43
+        },
+        {
+          "page": "invoices",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 30
+        },
+        {
+          "page": "invoice-detail",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 46
+        },
+        {
+          "page": "contracts",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 31
+        },
+        {
+          "page": "contract-detail",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 49
+        },
+        {
+          "page": "time",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 35
+        },
+        {
+          "page": "reports",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 29
+        },
+        {
+          "page": "settings",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 66
+        },
+        {
+          "page": "search",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 31
+        },
+        {
+          "page": "not-found",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 2
+        },
+        {
+          "page": "brief-unavailable",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 24
+        },
+        {
+          "page": "proposal-unavailable",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 24
+        },
+        {
+          "page": "version-unavailable",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 24
+        },
+        {
+          "page": "plan-unavailable",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 24
+        },
+        {
+          "page": "update-unavailable",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 24
+        },
+        {
+          "page": "invoice-unavailable",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 24
+        },
+        {
+          "page": "contract-unavailable",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 24
+        }
+      ]
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [
+      {
+        "page": "not-found",
+        "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      }
+    ]
+  },
+  {
+    "name": "public-document-print-light",
+    "ok": true,
+    "details": [
+      {
+        "page": "public-invoice",
+        "background": "#fff",
+        "ink": "#261d2d",
+        "title": "Harbor Lane — phase 1",
+        "bodyFits": true,
+        "browserPdfBytes": 95499
+      },
+      {
+        "page": "public-update",
+        "background": "#fff",
+        "ink": "#261d2d",
+        "title": "Weekly update — week 3",
+        "bodyFits": true,
+        "browserPdfBytes": 93070
+      }
+    ],
+    "browserErrors": [],
+    "expectedHttpErrors": []
+  },
+  {
+    "name": "report-money-rails-dark",
+    "ok": true,
+    "details": {
+      "widths": [
+        0,
+        276,
+        0
+      ],
+      "visibleLegend": "Collected · $0.00Outstanding · $1,428.00Draft · $0.00",
+      "zeroBucketsAreEmpty": true
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": []
+  },
+  {
+    "name": "reduced-motion-all-routes-dark",
+    "ok": true,
+    "details": {
+      "routes": [
+        {
+          "page": "marketing-home",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 44
+        },
+        {
+          "page": "pipeline",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 52
+        },
+        {
+          "page": "dashboard-direct",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 52
+        },
+        {
+          "page": "marketing-about",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 7
+        },
+        {
+          "page": "marketing-pricing",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 18
+        },
+        {
+          "page": "marketing-vs-notion",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 3
+        },
+        {
+          "page": "marketing-vs",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 12
+        },
+        {
+          "page": "marketing-vs-bonsai",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 3
+        },
+        {
+          "page": "marketing-vs-honeybook",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 3
+        },
+        {
+          "page": "marketing-vs-dubsado",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 3
+        },
+        {
+          "page": "marketing-vs-17hats",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 3
+        },
+        {
+          "page": "marketing-vs-freshbooks",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 3
+        },
+        {
+          "page": "marketing-vs-clickup",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 3
+        },
+        {
+          "page": "marketing-vs-basecamp",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 3
+        },
+        {
+          "page": "marketing-vs-pandadoc",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 3
+        },
+        {
+          "page": "login",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 7
+        },
+        {
+          "page": "signup",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 9
+        },
+        {
+          "page": "invite-token",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 1
+        },
+        {
+          "page": "share-token",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 1
+        },
+        {
+          "page": "invoice-token",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 2
+        },
+        {
+          "page": "public-invoice",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 2
+        },
+        {
+          "page": "public-update",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 0
+        },
+        {
+          "page": "public-invite",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 1
+        },
+        {
+          "page": "onboarding",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 4
+        },
+        {
+          "page": "intake",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 27
+        },
+        {
+          "page": "intake-inbox",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 36
+        },
+        {
+          "page": "briefs",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 31
+        },
+        {
+          "page": "brief-detail",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 35
+        },
+        {
+          "page": "proposals",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 30
+        },
+        {
+          "page": "proposal-detail",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 45
+        },
+        {
+          "page": "proposal-version",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 29
+        },
+        {
+          "page": "plans",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 30
+        },
+        {
+          "page": "plan-detail",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 41
+        },
+        {
+          "page": "updates",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 29
+        },
+        {
+          "page": "update-detail",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 43
+        },
+        {
+          "page": "invoices",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 30
+        },
+        {
+          "page": "invoice-detail",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 46
+        },
+        {
+          "page": "contracts",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 31
+        },
+        {
+          "page": "contract-detail",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 49
+        },
+        {
+          "page": "time",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 35
+        },
+        {
+          "page": "reports",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 29
+        },
+        {
+          "page": "settings",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 66
+        },
+        {
+          "page": "search",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 31
+        },
+        {
+          "page": "not-found",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 2
+        },
+        {
+          "page": "brief-unavailable",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 24
+        },
+        {
+          "page": "proposal-unavailable",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 24
+        },
+        {
+          "page": "version-unavailable",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 24
+        },
+        {
+          "page": "plan-unavailable",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 24
+        },
+        {
+          "page": "update-unavailable",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 24
+        },
+        {
+          "page": "invoice-unavailable",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 24
+        },
+        {
+          "page": "contract-unavailable",
+          "animations": 0,
+          "h1Visible": true,
+          "svgCount": 24
+        }
+      ]
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [
+      {
+        "page": "not-found",
+        "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      }
+    ]
+  },
+  {
+    "name": "public-document-print-dark",
+    "ok": true,
+    "details": [
+      {
+        "page": "public-invoice",
+        "background": "#fff",
+        "ink": "#261d2d",
+        "title": "Harbor Lane — phase 1",
+        "bodyFits": true,
+        "browserPdfBytes": 95521
+      },
+      {
+        "page": "public-update",
+        "background": "#fff",
+        "ink": "#261d2d",
+        "title": "Weekly update — week 3",
+        "bodyFits": true,
+        "browserPdfBytes": 93091
+      }
+    ],
+    "browserErrors": [],
+    "expectedHttpErrors": []
+  }
+]

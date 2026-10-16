@@ -86,7 +86,7 @@ export default async function AppLayout({
         />
       </div>
       <main
-        id="main"
+        id="main" tabIndex={-1}
         className="app-main overflow-y-auto bg-bg px-4 pb-12 pt-6 sm:px-8"
       >
         {children}

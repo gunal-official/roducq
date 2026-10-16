@@ -414,7 +414,7 @@ export default async function DashboardPage() {
                       <span className="icon-chip icon-chip-muted h-7 w-7 shrink-0">
                         <stage.icon className="h-4 w-4" aria-hidden="true" />
                       </span>
-                      <span className="min-w-0 flex-1 truncate text-xs font-medium uppercase tracking-wider text-secondary-text tab:text-[11px]">
+                      <span className="min-w-0 flex-1 truncate text-xs font-medium uppercase tracking-wider text-secondary-text tab:text-xs">
                         {stage.label}
                       </span>
                       <span className="font-display text-lg font-bold leading-none tab:text-2xl">
@@ -528,7 +528,7 @@ export default async function DashboardPage() {
                     {clock.weekDays.map((d) => (
                       <span
                         key={d.iso}
-                        className="flex-1 truncate text-center text-[11px] text-muted-foreground"
+                        className="flex-1 truncate text-center text-xs text-muted-foreground"
                       >
                         {d.label}
                       </span>

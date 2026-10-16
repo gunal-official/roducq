@@ -25,7 +25,7 @@ export default async function InvitePage({
   params: Promise<{ token: string }>;
 }) {
   const { token } = await params;
-    const configured = isSupabaseConfigured();
+  const configured = isSupabaseConfigured();
   const preview =
     configured && isUuid(token) ? await getTeamInvitePreview(token) : null;
 
@@ -41,7 +41,7 @@ export default async function InvitePage({
   }
 
   return (
-    <div className="flex min-h-dvh items-center justify-center bg-bg px-4 py-12">
+    <main className="flex min-h-dvh items-center justify-center bg-bg px-4 py-12">
       {!configured ? (
         <AuthCard title="Team invite">
           <ConfigNotice />
@@ -72,6 +72,6 @@ export default async function InvitePage({
           />
         </AuthCard>
       )}
-    </div>
+    </main>
   );
 }

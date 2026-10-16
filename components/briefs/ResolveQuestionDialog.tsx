@@ -109,7 +109,7 @@ export function ResolveQuestionDialog({
             />
           </div>
 
-          {error && <p className="text-sm text-error">{error}</p>}
+          {error && <p role="alert" className="text-sm text-error">{error}</p>}
 
           <DialogFooter>
             <Button

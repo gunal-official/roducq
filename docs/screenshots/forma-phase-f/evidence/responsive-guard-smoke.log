@@ -1,0 +1,128 @@
+11:44:46 ✓  375 marketing-home     overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=44px (Open menu)
+11:44:48 ✓  375 pipeline           overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Open menu) minW=44px (Open menu)
+11:44:49 ✓  375 dashboard-direct   overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Open menu) minW=44px (Open menu)
+11:44:50 ✓  375 marketing-about    overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=44px (Open menu)
+11:44:51 ✓  375 marketing-pricing  overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=44px (Open menu)
+11:44:52 ✓  375 marketing-vs-notion overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=44px (Open menu)
+11:44:54 ✓  375 marketing-vs       overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=44px (Open menu)
+11:44:55 ✓  375 marketing-vs-bonsai overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=44px (Open menu)
+11:44:56 ✓  375 marketing-vs-honeybook overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=44px (Open menu)
+11:44:57 ✓  375 marketing-vs-dubsado overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=44px (Open menu)
+11:44:58 ✓  375 marketing-vs-17hats overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=44px (Open menu)
+11:44:59 ✓  375 marketing-vs-freshbooks overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=44px (Open menu)
+11:45:00 ✓  375 marketing-vs-clickup overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=44px (Open menu)
+11:45:01 ✓  375 marketing-vs-basecamp overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=44px (Open menu)
+11:45:02 ✓  375 marketing-vs-pandadoc overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=44px (Open menu)
+11:45:03 ✓  375 login              overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=48px (Show password)
+11:45:04 ✓  375 signup             overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=48px (Show password)
+11:45:04 ✓  375 invite-token       overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=97px (Back to roducq)
+11:45:05 ✓  375 share-token        overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=n/a minW=n/a
+11:45:06 ✓  375 invoice-token      overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Print) minW=94px (Print)
+11:45:07 ✓  375 public-invoice     overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Download PDF) minW=94px (Print)
+11:45:07 ✓  375 public-update      overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=n/a minW=n/a
+11:45:08 ✓  375 public-invite      overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=109.81px (RoduCQ home)
+11:45:09 ✓  375 onboarding         overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=109.81px (RoduCQ home)
+11:45:10 ✓  375 intake             overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Open menu) minW=44px (Open menu)
+11:45:11 ✓  375 intake-inbox       overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Open menu) minW=44px (Open menu)
+11:45:12 ✓  375 briefs             overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Open menu) minW=44px (Open menu)
+11:45:14 ✓  375 brief-detail       overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Open menu) minW=44px (Open menu)
+11:45:15 ✓  375 proposals          overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Open menu) minW=44px (Open menu)
+11:45:17 ✓  375 proposal-detail    overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Open menu) minW=44px (Open menu)
+11:45:18 ✓  375 proposal-version   overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Open menu) minW=44px (Open menu)
+11:45:19 ✓  375 plans              overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Open menu) minW=44px (Open menu)
+11:45:20 ✓  375 plan-detail        overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Open menu) minW=44px (Open menu)
+11:45:21 ✓  375 updates            overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Open menu) minW=44px (Open menu)
+11:45:23 ✓  375 update-detail      overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Open menu) minW=44px (Open menu)
+11:45:24 ✓  375 invoices           overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Open menu) minW=44px (Open menu)
+11:45:26 ✓  375 invoice-detail     overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Open menu) minW=44px (Open menu)
+11:45:27 ✓  375 contracts          overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Open menu) minW=44px (Open menu)
+11:45:29 ✓  375 contract-detail    overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Open menu) minW=44px (Open menu)
+11:45:30 ✓  375 time               overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Open menu) minW=44px (Open menu)
+11:45:32 ✓  375 reports            overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Open menu) minW=44px (Open menu)
+11:45:33 ✓  375 settings           overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Open menu) minW=44px (Open menu)
+11:45:35 ✓  375 search             overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Open menu) minW=44px (Open menu)
+11:45:35 ✓  375 not-found          overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=109.44px (RoduCQ home)
+11:45:36 ✓  375 brief-unavailable  overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Open menu) minW=44px (Open menu)
+11:45:37 ✓  375 proposal-unavailable overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Open menu) minW=44px (Open menu)
+11:45:38 ✓  375 version-unavailable overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Open menu) minW=44px (Open menu)
+11:45:39 ✓  375 plan-unavailable   overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Open menu) minW=44px (Open menu)
+11:45:40 ✓  375 update-unavailable overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Open menu) minW=44px (Open menu)
+11:45:40 ✓  375 invoice-unavailable overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Open menu) minW=44px (Open menu)
+11:45:41 ✓  375 contract-unavailable overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Open menu) minW=44px (Open menu)
+11:45:42 ✓ 1440 marketing-home     overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=44px (About)
+11:45:44 ✓ 1440 pipeline           overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Search...) minW=44px (Inbox)
+11:45:45 ✓ 1440 dashboard-direct   overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Search...) minW=44px (Inbox)
+11:45:46 ✓ 1440 marketing-about    overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=44px (About)
+11:45:47 ✓ 1440 marketing-pricing  overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=44px (About)
+11:45:48 ✓ 1440 marketing-vs-notion overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=44px (About)
+11:45:49 ✓ 1440 marketing-vs       overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=44px (About)
+11:45:50 ✓ 1440 marketing-vs-bonsai overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=44px (About)
+11:45:51 ✓ 1440 marketing-vs-honeybook overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=44px (About)
+11:45:52 ✓ 1440 marketing-vs-dubsado overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=44px (About)
+11:45:52 ✓ 1440 marketing-vs-17hats overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=44px (About)
+11:45:53 ✓ 1440 marketing-vs-freshbooks overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=44px (About)
+11:45:54 ✓ 1440 marketing-vs-clickup overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=44px (About)
+11:45:55 ✓ 1440 marketing-vs-basecamp overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=44px (About)
+11:45:56 ✓ 1440 marketing-vs-pandadoc overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=44px (About)
+11:45:57 ✓ 1440 login              overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=48px (Show password)
+11:45:58 ✓ 1440 signup             overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=48px (Show password)
+11:45:59 ✓ 1440 invite-token       overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=97px (Back to roducq)
+11:46:00 ✓ 1440 share-token        overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=n/a minW=n/a
+11:46:01 ✓ 1440 invoice-token      overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Print) minW=94px (Print)
+11:46:01 ✓ 1440 public-invoice     overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Download PDF) minW=94px (Print)
+11:46:02 ✓ 1440 public-update      overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=n/a minW=n/a
+11:46:03 ✓ 1440 public-invite      overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=109.81px (RoduCQ home)
+11:46:04 ✓ 1440 onboarding         overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=109.81px (RoduCQ home)
+11:46:05 ✓ 1440 intake             overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Search...) minW=44px (Inbox)
+11:46:07 ✓ 1440 intake-inbox       overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Search...) minW=44px (Inbox)
+11:46:08 ✓ 1440 briefs             overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Search...) minW=44px (Inbox)
+11:46:09 ✓ 1440 brief-detail       overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Search...) minW=44px (Inbox)
+11:46:11 ✓ 1440 proposals          overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Search...) minW=44px (Inbox)
+11:46:12 ✓ 1440 proposal-detail    overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Search...) minW=44px (Inbox)
+11:46:14 ✓ 1440 proposal-version   overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Search...) minW=44px (Inbox)
+11:46:15 ✓ 1440 plans              overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Search...) minW=44px (Inbox)
+11:46:16 ✓ 1440 plan-detail        overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Search...) minW=44px (Inbox)
+11:46:17 ✓ 1440 updates            overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Search...) minW=44px (Inbox)
+11:46:18 ✓ 1440 update-detail      overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Search...) minW=44px (Inbox)
+11:46:19 ✓ 1440 invoices           overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Search...) minW=44px (Inbox)
+11:46:21 ✓ 1440 invoice-detail     overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Search...) minW=44px (Inbox)
+11:46:22 ✓ 1440 contracts          overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Search...) minW=44px (Inbox)
+11:46:24 ✓ 1440 contract-detail    overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Search...) minW=44px (Inbox)
+11:46:26 ✓ 1440 time               overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Search...) minW=44px (Inbox)
+11:46:27 ✓ 1440 reports            overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Search...) minW=44px (Inbox)
+11:46:29 ✓ 1440 settings           overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Search...) minW=44px (Inbox)
+11:46:30 ✓ 1440 search             overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Search...) minW=44px (Inbox)
+11:46:31 ✓ 1440 not-found          overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (RoduCQ home) minW=109.44px (RoduCQ home)
+11:46:32 ✓ 1440 brief-unavailable  overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Search...) minW=44px (Inbox)
+11:46:33 ✓ 1440 proposal-unavailable overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Search...) minW=44px (Inbox)
+11:46:34 ✓ 1440 version-unavailable overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Search...) minW=44px (Inbox)
+11:46:35 ✓ 1440 plan-unavailable   overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Search...) minW=44px (Inbox)
+11:46:36 ✓ 1440 update-unavailable overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Search...) minW=44px (Inbox)
+11:46:37 ✓ 1440 invoice-unavailable overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Search...) minW=44px (Inbox)
+11:46:38 ✓ 1440 contract-unavailable overflowX=0 off=0 cut=0 tap<44=0 shortestControl=minH=44px (Search...) minW=44px (Inbox)
+11:48:42 ✓    marketing-menu-320-light
+11:48:42 ✓    marketing-menu-375-light
+11:48:42 ✓    marketing-menu-768-light
+11:48:42 ✓    workspace-drawer-320-light
+11:48:42 ✓    workspace-drawer-375-light
+11:48:42 ✓    template-dialog-320-light
+11:48:42 ✓    template-dialog-768-light
+11:48:42 ✓    account-keyboard-light
+11:48:42 ✓    marketing-menu-320-dark
+11:48:42 ✓    marketing-menu-375-dark
+11:48:42 ✓    marketing-menu-768-dark
+11:48:42 ✓    workspace-drawer-320-dark
+11:48:42 ✓    workspace-drawer-375-dark
+11:48:42 ✓    template-dialog-320-dark
+11:48:42 ✓    template-dialog-768-dark
+11:48:42 ✓    account-keyboard-dark
+11:48:42 ✓    onboarding-real-fixture-auth
+11:48:42 ✓    theme-persistence-all-application-routes
+11:48:42 ✓    report-money-rails-light
+11:48:42 ✓    reduced-motion-all-routes-light
+11:48:42 ✓    public-document-print-light
+11:48:42 ✓    report-money-rails-dark
+11:48:42 ✓    reduced-motion-all-routes-dark
+11:48:42 ✓    public-document-print-dark
+11:48:42
+responsive audit passed ✔  (evidence: /home/user/phase-f-evidence/final/guard-smoke)

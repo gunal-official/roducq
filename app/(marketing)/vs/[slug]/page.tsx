@@ -5,12 +5,7 @@ import { notFound } from "next/navigation";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { VS_LIMITATION_NOTE, VS_PAGES } from "./vs-pages";
 
 interface VsPageProps {
@@ -53,7 +48,7 @@ export default async function VsPage({ params }: VsPageProps) {
         <span className="icon-chip icon-chip-accent h-10 w-10 shrink-0">
           <Scale className="h-5 w-5" aria-hidden="true" />
         </span>
-        <h1 className="font-display text-3xl font-bold tracking-tight">
+        <h1 className="min-w-0 break-words font-display text-3xl font-bold tracking-tight">
           {entry.heading}
         </h1>
       </div>
@@ -61,29 +56,26 @@ export default async function VsPage({ params }: VsPageProps) {
         {entry.intro}
       </p>
 
-      <Card className="mt-10 overflow-hidden">
-        <CardHeader className="border-b border-border bg-muted/60 px-5 py-3.5">
-          <div className="grid grid-cols-3 gap-4 text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
-            <span></span>
-            <span className="font-display text-sm font-bold normal-case tracking-tight text-text">
-              rodu<span className="text-accent">cq</span>
-            </span>
-            <CardTitle className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
-              {entry.competitor}
-            </CardTitle>
-          </div>
-        </CardHeader>
-        <CardContent className="divide-y divide-border p-0">
-          {entry.rows.map((row) => (
-            <div key={row.feature} className="grid grid-cols-3 gap-4 px-5 py-4">
-              <p className="text-sm font-medium">{row.feature}</p>
-              <p className="text-sm leading-relaxed text-text">{row.roducq}</p>
-              <p className="text-sm leading-relaxed text-muted-foreground">
-                {row.competitor}
-              </p>
-            </div>
-          ))}
-        </CardContent>
+      <Card className="mt-10">
+        <table className="comparison-table">
+          <caption className="sr-only">{entry.heading}: a feature-by-feature workflow comparison.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Workflow</th>
+              <th scope="col">RoduCQ</th>
+              <th scope="col">{entry.competitor}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {entry.rows.map((row) => (
+              <tr key={row.feature}>
+                <th scope="row">{row.feature}</th>
+                <td><span className="comparison-cell-label" aria-hidden="true">RoduCQ</span><p>{row.roducq}</p></td>
+                <td><span className="comparison-cell-label" aria-hidden="true">{entry.competitor}</span><p>{row.competitor}</p></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </Card>
 
       <p className="mt-8 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
@@ -95,7 +87,7 @@ export default async function VsPage({ params }: VsPageProps) {
         {VS_LIMITATION_NOTE}
       </p>
 
-      <div className="mt-8 flex items-center gap-3">
+      <div className="mt-8 flex flex-wrap items-center gap-3">
         <Button asChild>
           <Link href="/signup" className="inline-flex min-h-11 min-w-11 items-center">Try roducq</Link>
         </Button>

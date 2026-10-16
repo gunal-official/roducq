@@ -1,0 +1,531 @@
+[
+  {
+    "url": "/",
+    "auth": false,
+    "scheme": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "nodes": 1
+      },
+      {
+        "id": "color-contrast",
+        "nodes": 3
+      }
+    ]
+  },
+  {
+    "url": "/about",
+    "auth": false,
+    "scheme": "light",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "url": "/pricing",
+    "auth": false,
+    "scheme": "light",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "url": "/vs/dubsado",
+    "auth": false,
+    "scheme": "light",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "url": "/login",
+    "auth": false,
+    "scheme": "light",
+    "violations": [
+      {
+        "id": "landmark-one-main",
+        "impact": "moderate",
+        "description": "Ensure the document has a main landmark",
+        "nodes": [
+          {
+            "html": "<html lang=\"en\" class=\"light\" style=\"color-scheme: light;\">",
+            "target": [
+              "html"
+            ],
+            "summary": "Fix all of the following:\n  Document does not have a main landmark"
+          }
+        ]
+      },
+      {
+        "id": "region",
+        "impact": "moderate",
+        "description": "Ensure all page content is contained by landmarks",
+        "nodes": [
+          {
+            "html": "<a aria-label=\"RoduCQ home\" class=\"mb-8 inline-flex min-h-11 min-w-11 items-center gap-2.5\" href=\"/\">",
+            "target": [
+              ".mb-8"
+            ],
+            "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          },
+          {
+            "html": "<h1 class=\"font-display text-2xl font-extrabold tracking-[-0.02em] text-text\">Log in</h1>",
+            "target": [
+              "h1"
+            ],
+            "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          },
+          {
+            "html": "<p class=\"mt-1.5 text-sm text-muted-foreground\">Welcome back to your workspace.</p>",
+            "target": [
+              ".mt-1\\.5"
+            ],
+            "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          },
+          {
+            "html": "<span class=\"text-xs font-medium text-muted-foreground\">or continue with email</span>",
+            "target": [
+              ".font-medium"
+            ],
+            "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          },
+          {
+            "html": "<label for=\"email\" class=\"block text-sm font-semibold text-text\">Email</label>",
+            "target": [
+              "label[for=\"email\"]"
+            ],
+            "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          },
+          {
+            "html": "<input class=\"flex w-full rounded-...\" id=\"email\" required=\"\" autocomplete=\"email\" placeholder=\"you@studio.com\" type=\"email\" value=\"\">",
+            "target": [
+              "#email"
+            ],
+            "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          },
+          {
+            "html": "<label for=\"password\" class=\"block text-sm font-semibold text-text\">Password</label>",
+            "target": [
+              "label[for=\"password\"]"
+            ],
+            "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          },
+          {
+            "html": "<input class=\"flex w-full rounded-...\" id=\"password\" required=\"\" autocomplete=\"current-password\" placeholder=\"••••••••\" type=\"password\" value=\"\">",
+            "target": [
+              "#password"
+            ],
+            "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          },
+          {
+            "html": "<p class=\"mt-5 text-center text-sm text-muted-foreground\">Don’t have an account? <a class=\"inline-flex min-h-11 min-w-11 items-center justify-center px-2 font-semibold text-accent hover:underline\" href=\"/signup\">Sign up</a></p>",
+            "target": [
+              ".mt-5"
+            ],
+            "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        ]
+      }
+    ],
+    "incomplete": []
+  },
+  {
+    "url": "/",
+    "auth": true,
+    "scheme": "light",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+        "nodes": [
+          {
+            "html": "<p>From the first client message to the next update. Move work forward, one considered step at a time.</p>",
+            "target": [
+              ".pipeline-showcase-copy > p:nth-child(3)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.25 (foreground color: #687083, background color: #efebff, font size: 10.2pt (13.6px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "html": "<p>Review, refine, and move forward — you guide every stage.</p>",
+            "target": [
+              ".pipeline-showcase-art > p"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.25 (foreground color: #687083, background color: #efebff, font size: 8.4pt (11.2px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 10
+      }
+    ]
+  },
+  {
+    "url": "/intake",
+    "auth": true,
+    "scheme": "light",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "url": "/settings",
+    "auth": true,
+    "scheme": "light",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+        "nodes": [
+          {
+            "html": "<p>Manage your team, shape your documents, and connect the tools you use.</p>",
+            "target": [
+              ".settings-intro > p:nth-child(3)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.25 (foreground color: #687083, background color: #efebff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "html": "<p class=\"mt-0.5 text-sm text-muted-foreground\">The workspace name appears in the sidebar and across the app.</p>",
+            "target": [
+              "#workspace > .py-3\\.5.border-b.justify-between > .items-start.gap-2\\.5.min-w-0 > .min-w-0 > .mt-0\\.5"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.91 (foreground color: #9196a4, background color: #fefdfe, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "html": "<p class=\"mt-0.5 text-sm text-muted-foreground\">Add a small PNG or JPEG to the letterhead on your PDF exports. Maximum file size: 256 KB.</p>",
+            "target": [
+              "#branding > .py-3\\.5.border-b.justify-between > .items-start.gap-2\\.5.min-w-0 > .min-w-0 > .mt-0\\.5"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.91 (foreground color: #9196a4, background color: #fefdfe, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      }
+    ],
+    "incomplete": []
+  },
+  {
+    "url": "/briefs/00000000-0000-0000-0000-000000000111",
+    "auth": true,
+    "scheme": "light",
+    "violations": [
+      {
+        "id": "button-name",
+        "impact": "critical",
+        "description": "Ensure buttons have discernible text",
+        "nodes": [
+          {
+            "html": "<button type=\"button\" role=\"combobox\" aria-expanded=\"false\" aria-autocomplete=\"none\" dir=\"ltr\" data-state=\"closed\" class=\"flex items-center ju...\">",
+            "target": [
+              ".w-\\[150px\\]"
+            ],
+            "summary": "Fix any of the following:\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+          }
+        ]
+      }
+    ],
+    "incomplete": []
+  },
+  {
+    "url": "/invoice/00000000-0000-0000-0000-000000000070",
+    "auth": false,
+    "scheme": "light",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "url": "/share/00000000-0000-0000-0000-000000000051",
+    "auth": false,
+    "scheme": "light",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "url": "/invite/00000000-0000-0000-0000-000000000060",
+    "auth": false,
+    "scheme": "light",
+    "violations": [
+      {
+        "id": "landmark-one-main",
+        "impact": "moderate",
+        "description": "Ensure the document has a main landmark",
+        "nodes": [
+          {
+            "html": "<html lang=\"en\" class=\"light\" style=\"color-scheme: light;\">",
+            "target": [
+              "html"
+            ],
+            "summary": "Fix all of the following:\n  Document does not have a main landmark"
+          }
+        ]
+      },
+      {
+        "id": "region",
+        "impact": "moderate",
+        "description": "Ensure all page content is contained by landmarks",
+        "nodes": [
+          {
+            "html": "<a aria-label=\"RoduCQ home\" class=\"mb-8 inline-flex min-h-11 min-w-11 items-center gap-2.5\" href=\"/\">",
+            "target": [
+              ".mb-8"
+            ],
+            "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          },
+          {
+            "html": "<div class=\"relative rounded-surface border border-border bg-card p-6 shadow-card animate-forma-rise sm:p-8\">",
+            "target": [
+              ".rounded-surface"
+            ],
+            "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 1
+      }
+    ]
+  },
+  {
+    "url": "/",
+    "auth": false,
+    "scheme": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "nodes": 1
+      },
+      {
+        "id": "color-contrast",
+        "nodes": 3
+      }
+    ]
+  },
+  {
+    "url": "/about",
+    "auth": false,
+    "scheme": "dark",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "url": "/pricing",
+    "auth": false,
+    "scheme": "dark",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "url": "/vs/dubsado",
+    "auth": false,
+    "scheme": "dark",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "url": "/login",
+    "auth": false,
+    "scheme": "dark",
+    "violations": [
+      {
+        "id": "landmark-one-main",
+        "impact": "moderate",
+        "description": "Ensure the document has a main landmark",
+        "nodes": [
+          {
+            "html": "<html lang=\"en\" class=\"dark\" style=\"color-scheme: dark;\">",
+            "target": [
+              "html"
+            ],
+            "summary": "Fix all of the following:\n  Document does not have a main landmark"
+          }
+        ]
+      },
+      {
+        "id": "region",
+        "impact": "moderate",
+        "description": "Ensure all page content is contained by landmarks",
+        "nodes": [
+          {
+            "html": "<a aria-label=\"RoduCQ home\" class=\"mb-8 inline-flex min-h-11 min-w-11 items-center gap-2.5\" href=\"/\">",
+            "target": [
+              ".mb-8"
+            ],
+            "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          },
+          {
+            "html": "<h1 class=\"font-display text-2xl font-extrabold tracking-[-0.02em] text-text\">Log in</h1>",
+            "target": [
+              "h1"
+            ],
+            "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          },
+          {
+            "html": "<p class=\"mt-1.5 text-sm text-muted-foreground\">Welcome back to your workspace.</p>",
+            "target": [
+              ".mt-1\\.5"
+            ],
+            "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          },
+          {
+            "html": "<span class=\"text-xs font-medium text-muted-foreground\">or continue with email</span>",
+            "target": [
+              ".font-medium"
+            ],
+            "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          },
+          {
+            "html": "<label for=\"email\" class=\"block text-sm font-semibold text-text\">Email</label>",
+            "target": [
+              "label[for=\"email\"]"
+            ],
+            "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          },
+          {
+            "html": "<input class=\"flex w-full rounded-...\" id=\"email\" required=\"\" autocomplete=\"email\" placeholder=\"you@studio.com\" type=\"email\" value=\"\">",
+            "target": [
+              "#email"
+            ],
+            "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          },
+          {
+            "html": "<label for=\"password\" class=\"block text-sm font-semibold text-text\">Password</label>",
+            "target": [
+              "label[for=\"password\"]"
+            ],
+            "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          },
+          {
+            "html": "<input class=\"flex w-full rounded-...\" id=\"password\" required=\"\" autocomplete=\"current-password\" placeholder=\"••••••••\" type=\"password\" value=\"\">",
+            "target": [
+              "#password"
+            ],
+            "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          },
+          {
+            "html": "<p class=\"mt-5 text-center text-sm text-muted-foreground\">Don’t have an account? <a class=\"inline-flex min-h-11 min-w-11 items-center justify-center px-2 font-semibold text-accent hover:underline\" href=\"/signup\">Sign up</a></p>",
+            "target": [
+              ".mt-5"
+            ],
+            "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        ]
+      }
+    ],
+    "incomplete": []
+  },
+  {
+    "url": "/",
+    "auth": true,
+    "scheme": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 10
+      }
+    ]
+  },
+  {
+    "url": "/intake",
+    "auth": true,
+    "scheme": "dark",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "url": "/settings",
+    "auth": true,
+    "scheme": "dark",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "url": "/briefs/00000000-0000-0000-0000-000000000111",
+    "auth": true,
+    "scheme": "dark",
+    "violations": [
+      {
+        "id": "button-name",
+        "impact": "critical",
+        "description": "Ensure buttons have discernible text",
+        "nodes": [
+          {
+            "html": "<button type=\"button\" role=\"combobox\" aria-expanded=\"false\" aria-autocomplete=\"none\" dir=\"ltr\" data-state=\"closed\" class=\"flex items-center ju...\">",
+            "target": [
+              ".w-\\[150px\\]"
+            ],
+            "summary": "Fix any of the following:\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+          }
+        ]
+      }
+    ],
+    "incomplete": []
+  },
+  {
+    "url": "/invoice/00000000-0000-0000-0000-000000000070",
+    "auth": false,
+    "scheme": "dark",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "url": "/share/00000000-0000-0000-0000-000000000051",
+    "auth": false,
+    "scheme": "dark",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "url": "/invite/00000000-0000-0000-0000-000000000060",
+    "auth": false,
+    "scheme": "dark",
+    "violations": [
+      {
+        "id": "landmark-one-main",
+        "impact": "moderate",
+        "description": "Ensure the document has a main landmark",
+        "nodes": [
+          {
+            "html": "<html lang=\"en\" class=\"dark\" style=\"color-scheme: dark;\">",
+            "target": [
+              "html"
+            ],
+            "summary": "Fix all of the following:\n  Document does not have a main landmark"
+          }
+        ]
+      },
+      {
+        "id": "region",
+        "impact": "moderate",
+        "description": "Ensure all page content is contained by landmarks",
+        "nodes": [
+          {
+            "html": "<a aria-label=\"RoduCQ home\" class=\"mb-8 inline-flex min-h-11 min-w-11 items-center gap-2.5\" href=\"/\">",
+            "target": [
+              ".mb-8"
+            ],
+            "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          },
+          {
+            "html": "<div class=\"relative rounded-surface border border-border bg-card p-6 shadow-card animate-forma-rise sm:p-8\">",
+            "target": [
+              ".rounded-surface"
+            ],
+            "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 1
+      }
+    ]
+  }
+]

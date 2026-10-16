@@ -25,7 +25,7 @@ export function AppearanceMenuItems({ close }: { close: () => void }) {
 
   return (
     <div role="group" aria-label="Appearance" className="py-1">
-      <p className="px-3 pb-1 pt-2 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+      <p className="px-3 pb-1 pt-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
         Appearance
       </p>
       {APPEARANCE_OPTIONS.map(({ value, label, icon: Icon }) => {

@@ -99,7 +99,7 @@ export function WorkspaceDangerCard({
           </Button>
         </div>
       )}
-      {error && <p className="mt-2 text-sm text-error">{error}</p>}
+      {error && <p role="alert" className="mt-2 text-sm text-error">{error}</p>}
     </SectionCard>
   );
 }

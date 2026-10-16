@@ -63,7 +63,7 @@ import { EmptyState, SectionCard } from "@/components/ui/page";
 
 function FieldLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+    <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
       {children}
     </p>
   );
@@ -87,6 +87,7 @@ function MetaRow({
 function NotFoundState() {
   return (
     <EmptyState
+      headingAs="h1"
       icon={ListChecks}
       title="Plan not found"
       description="This plan doesn’t exist — or it belongs to a workspace you’re not a member of."
@@ -232,7 +233,7 @@ export default async function PlanDetailPage({
             <section aria-labelledby="plan-budget" className="space-y-2">
               <h2
                 id="plan-budget"
-                className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground"
+                className="text-xs font-semibold uppercase tracking-wider text-muted-foreground"
               >
                 Budget & timeline
               </h2>
@@ -250,7 +251,7 @@ export default async function PlanDetailPage({
             <section aria-labelledby="plan-tasks" className="space-y-3">
               <h2
                 id="plan-tasks"
-                className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground"
+                className="text-xs font-semibold uppercase tracking-wider text-muted-foreground"
               >
                 Tasks
               </h2>

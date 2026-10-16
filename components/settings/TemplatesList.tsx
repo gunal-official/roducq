@@ -89,7 +89,7 @@ function TemplateRow({
               <span className="italic">(empty body)</span>
             )}
           </p>
-          {error && <p className="mt-1 text-xs text-error">{error}</p>}
+          {error && <p role="alert" className="mt-1 text-xs text-error">{error}</p>}
         </div>
 
         {isOwner && !confirming && (

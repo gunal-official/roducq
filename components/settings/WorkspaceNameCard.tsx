@@ -99,7 +99,7 @@ export function WorkspaceNameCard({
               )}
             </Button>
           </div>
-          {error && <p className="text-xs text-error">{error}</p>}
+          {error && <p role="alert" className="text-xs text-error">{error}</p>}
           {savedLabel && (
             <p className="text-xs text-muted-foreground">{savedLabel}</p>
           )}

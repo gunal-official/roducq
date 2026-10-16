@@ -1,6 +1,6 @@
 "use client";
 
-/* eslint-disable react-hooks/set-state-in-effect -- The list diff + 220ms
+/* eslint-disable react-hooks/set-state-in-effect -- The list diff + 250ms
    drop-timer choreography IS the feature: leaving entries must be appended
    to state when the incoming items change and removed by a timer. The
    effect keys on the id join (never the items array identity) and the
@@ -27,7 +27,7 @@ export interface MotionEntry<T> {
 
 const STORE = new Map<string, MotionEntry<unknown>[]>();
 
-export function useMotionItems<T extends { id: string }>(items: T[], ms = 220, storeKey?: string): MotionEntry<T>[] {
+export function useMotionItems<T extends { id: string }>(items: T[], ms = 250, storeKey?: string): MotionEntry<T>[] {
   const idKey = items.map((i) => i.id).join("|");
   const [display, setDisplay] = useState<MotionEntry<T>[]>(() => {
     const prev = storeKey ? (STORE.get(storeKey) as MotionEntry<T>[] | undefined) : undefined;

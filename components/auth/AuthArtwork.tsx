@@ -96,7 +96,7 @@ export function AuthArtwork({ className }: { className?: string }) {
         </g>
       </g>
 
-      <g className="forma-drift-node" style={{ animationDelay: "1.4s" }}>
+      <g className="forma-drift-node" style={{ animationDelay: "90ms" }}>
         <g transform="translate(150 292) rotate(6)">
           <rect
             width="60"
@@ -113,7 +113,7 @@ export function AuthArtwork({ className }: { className?: string }) {
         </g>
       </g>
 
-      <g className="forma-drift-node" style={{ animationDelay: "2.8s" }}>
+      <g className="forma-drift-node" style={{ animationDelay: "180ms" }}>
         <g transform="translate(242 210) rotate(-5)">
           <rect
             width="60"
@@ -130,7 +130,7 @@ export function AuthArtwork({ className }: { className?: string }) {
         </g>
       </g>
 
-      <g className="forma-drift-node" style={{ animationDelay: "4.2s" }}>
+      <g className="forma-drift-node" style={{ animationDelay: "270ms" }}>
         <g transform="translate(392 100) rotate(8)">
           <rect
             width="60"

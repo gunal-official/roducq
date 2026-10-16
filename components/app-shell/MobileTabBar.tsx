@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { LayoutGrid } from "lucide-react";
 import { isNavActive, mobileTabItems } from "./nav-items";
 import { MobileNav } from "./MobileNav";
@@ -37,6 +37,7 @@ export function MobileTabBar({
   email: string;
 }) {
   const pathname = usePathname();
+  const moreTriggerRef = useRef<HTMLButtonElement>(null);
   // Derived open state (no setState-in-effect): the drawer is open only
   // while the route has not changed since "More" was tapped, so navigating
   // from inside the drawer always dismisses it.
@@ -58,7 +59,7 @@ export function MobileTabBar({
 
   const tabClass = (active: boolean) =>
     [
-      "relative flex min-h-14 w-full flex-col items-center justify-center gap-1 rounded-control px-1 pt-1.5 text-[11px] leading-tight transition-colors duration-150",
+      "relative flex min-h-14 w-full flex-col items-center justify-center gap-1 rounded-control px-1 pt-1.5 text-xs leading-tight transition-colors duration-150",
       active
         ? "font-semibold text-accent"
         : "text-muted-foreground hover:text-text",
@@ -100,6 +101,7 @@ export function MobileTabBar({
               <button
                 type="button"
                 aria-label="More navigation"
+                ref={moreTriggerRef}
                 aria-expanded={moreOpen}
                 onClick={() => setOpenedOn(pathname)}
                 className={tabClass(moreOpen)}
@@ -120,6 +122,7 @@ export function MobileTabBar({
         </div>
       </nav>
       <MobileNav
+        returnFocusRef={moreTriggerRef}
         open={moreOpen}
         onClose={close}
         workspaces={workspaces}

@@ -58,7 +58,7 @@ export function PageHeader({
         </span>
         <div className="min-w-0">
           {eyebrow && (
-            <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
               {eyebrow}
             </p>
           )}
@@ -184,6 +184,7 @@ export function EmptyState({
   action,
   tone = "accent",
   className,
+  headingAs = "p",
 }: {
   icon: LucideIcon;
   title: React.ReactNode;
@@ -191,7 +192,9 @@ export function EmptyState({
   action?: React.ReactNode;
   tone?: SectionTone;
   className?: string;
+  headingAs?: "p" | "h1" | "h2";
 }) {
+  const Heading = headingAs;
   return (
     <div
       className={cn(
@@ -203,9 +206,9 @@ export function EmptyState({
         <Icon className="h-5 w-5" aria-hidden="true" />
       </span>
       <div>
-        <p className="font-display text-base font-semibold tracking-tight">
+        <Heading className="font-display text-base font-semibold tracking-tight">
           {title}
-        </p>
+        </Heading>
         {description && (
           <p className="mx-auto mt-1 max-w-sm text-sm text-muted-foreground">
             {description}

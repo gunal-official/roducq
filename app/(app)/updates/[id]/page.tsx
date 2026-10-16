@@ -85,6 +85,7 @@ function MetaRow({
 function NotFoundState() {
   return (
     <EmptyState
+      headingAs="h1"
       icon={Megaphone}
       title="Update not found"
       description="This update doesn’t exist — or it belongs to a workspace you’re not a member of."
