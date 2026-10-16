@@ -57,6 +57,8 @@ import { ProposalVersionHistory } from "@/components/proposals/ProposalVersionHi
 import { DownloadPdfButton } from "@/components/ui/DownloadPdfButton";
 import { ProposalStatusSelect } from "@/components/proposals/ProposalStatusSelect";
 import { Badge } from "@/components/ui/badge";
+import { ProposalDocumentArt } from "@/components/workflow/ClientWorkArt";
+import { WorkProgress } from "@/components/workflow/WorkCard";
 import { Button } from "@/components/ui/button";
 import {
   ActivityTimeline,
@@ -65,7 +67,7 @@ import {
   StatTile,
   type TimelineEvent,
 } from "@/components/ui/doc-detail";
-import { SectionCard } from "@/components/ui/page";
+import { EmptyState, SectionCard } from "@/components/ui/page";
 
 function MetaRow({
   label,
@@ -103,21 +105,18 @@ function RailCard({
 
 function NotFoundState() {
   return (
-    <div className="flex h-full flex-col items-center justify-center gap-4 text-center">
-      <Badge variant="secondary">Not found</Badge>
-      <div>
-        <h1 className="font-display text-2xl font-bold tracking-tight">
-          Proposal not found
-        </h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          This proposal doesn’t exist — or it belongs to a workspace you’re
-          not a member of.
-        </p>
-      </div>
-      <Button asChild variant="secondary">
-        <Link href="/proposals" className="inline-flex min-h-11 min-w-11 items-center">Back to proposals</Link>
-      </Button>
-    </div>
+    <EmptyState
+      icon={FileText}
+      title="Proposal not found"
+      description="This proposal doesn’t exist — or it belongs to a workspace you’re not a member of."
+      action={
+        <Button asChild variant="secondary">
+          <Link href="/proposals" className="inline-flex min-h-11 min-w-11 items-center">
+            Back to proposals
+          </Link>
+        </Button>
+      }
+    />
   );
 }
 
@@ -180,11 +179,8 @@ export default async function ProposalDetailPage({
   ];
 
   return (
-    <div className="mx-auto max-w-6xl">
-      <Link
-        href="/proposals"
-        className="mb-3 inline-flex min-h-11 min-w-11 items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-text"
-      >
+    <div className="forma-core forma-proposals mx-auto max-w-6xl">
+      <Link href="/proposals" className="work-back">
         <ArrowLeft className="h-4 w-4" aria-hidden="true" />
         Proposals
       </Link>
@@ -196,6 +192,27 @@ export default async function ProposalDetailPage({
         subtitle={proposal.client_name ?? undefined}
         actions={<DownloadPdfButton href={`/api/pdf/proposal/${proposal.id}`} />}
       />
+
+      {/* The document band: the drawing + the proposal's real numbers. */}
+      <div className="work-doc-band">
+        <div className="work-doc-band-art">
+          <ProposalDocumentArt />
+        </div>
+        <div className="work-doc-band-copy">
+          <p className="forma-kicker">From brief to proposal</p>
+          <p className="work-doc-band-note">
+            {proposal.brief
+              ? `Written from “${proposal.brief.title}”, priced and reviewed before it goes out.`
+              : "Priced and reviewed before it goes out."}
+          </p>
+          <div className="work-doc-band-chips">
+            <Badge variant="secondary">
+              {doneCount}/{proposal.deliverables.length} scope items done
+            </Badge>
+            <Badge variant="secondary">{versions.length} saved versions</Badge>
+          </div>
+        </div>
+      </div>
 
       {/* Stat tiles */}
       <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -252,10 +269,17 @@ export default async function ProposalDetailPage({
             ) : undefined
           }
         >
-          <ProposalContent
-            budget_timeline={proposal.budget_timeline}
-            deliverables={proposal.deliverables}
-          />
+          <div className="space-y-6">
+            <WorkProgress
+              label="Agreed scope"
+              done={doneCount}
+              total={proposal.deliverables.length}
+            />
+            <ProposalContent
+              budget_timeline={proposal.budget_timeline}
+              deliverables={proposal.deliverables}
+            />
+          </div>
         </PaperCard>
 
         {/* ── Right: action + metadata rail ── */}

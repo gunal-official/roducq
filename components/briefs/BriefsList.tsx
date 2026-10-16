@@ -5,23 +5,26 @@
  * server page already fetched (list sizes are small; filtering client-side
  * keeps this one round-trip with zero loading states).
  *
- * Phase 4A: the status filter is the shared FilterChips row (wraps, 44px
- * targets) instead of the underline Tabs strip, which could not fit a 320px
- * screen. Empty states use the shared EmptyState.
+ * Phase D: the page now opens with a lavender showcase band (the real
+ * intake → brief drawing and real counts), the filter plane sits on its own
+ * tinted toolbar, and each brief is a Forma work card. The 4A contracts
+ * survive verbatim: the shared FilterChips row (wraps, 44px targets), the
+ * search field beside it from 600px, and the two EmptyStates.
  */
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { Eye, FileText, HelpCircle, Plus, Search } from "lucide-react";
+import { ClipboardList, Eye, FileText, HelpCircle, Plus, Search } from "lucide-react";
 
 import { StatusBadge } from "@/components/briefs/StatusBadge";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { FilterChips } from "@/components/ui/filter-chips";
 import { Input } from "@/components/ui/input";
 import { EmptyState } from "@/components/ui/page";
 import { ListStats, StackedBar, StatTile } from "@/components/ui/doc-detail";
+import { BriefSourceArt } from "@/components/workflow/ClientWorkArt";
+import { WorkBand, WorkCard } from "@/components/workflow/WorkCard";
 import { timeAgo } from "@/lib/utils";
 import type { BriefStatus, BriefSummary } from "@/lib/types/brief";
 
@@ -33,44 +36,6 @@ const FILTER_OPTIONS: { value: StatusFilter; label: string }[] = [
   { value: "in_review", label: "In review" },
   { value: "approved", label: "Approved" },
 ];
-
-function BriefCard({ brief }: { brief: BriefSummary }) {
-  return (
-    <Card className="transition-shadow hover:shadow-md">
-      <CardHeader className="space-y-1 border-b border-border px-5 py-3.5">
-        <div className="flex items-start justify-between gap-3">
-          <div className="min-w-0">
-            <Link
-              href={`/briefs/${brief.id}`}
-              className="inline-flex min-h-11 min-w-11 items-center break-words font-display text-base font-semibold leading-snug underline-offset-2 hover:underline"
-            >
-              {brief.title}
-            </Link>
-            {brief.client_name && (
-              <p className="truncate text-sm text-muted-foreground">
-                {brief.client_name}
-              </p>
-            )}
-          </div>
-          <StatusBadge status={brief.status} className="shrink-0" />
-        </div>
-      </CardHeader>
-      <CardContent className="flex flex-wrap items-center justify-between gap-3 p-5">
-        {brief.openQuestionCount > 0 ? (
-          <Badge className="border-accent bg-accent-soft text-accent">
-            {brief.openQuestionCount} open question
-            {brief.openQuestionCount === 1 ? "" : "s"}
-          </Badge>
-        ) : (
-          <span />
-        )}
-        <span className="text-xs text-muted-foreground">
-          Updated {timeAgo(brief.updated_at)}
-        </span>
-      </CardContent>
-    </Card>
-  );
-}
 
 export function BriefsList({ briefs }: { briefs: BriefSummary[] }) {
   const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
@@ -100,16 +65,29 @@ export function BriefsList({ briefs }: { briefs: BriefSummary[] }) {
   }, [briefs, statusFilter, query]);
 
   const openQuestions = briefs.reduce((n, b) => n + (b.openQuestionCount ?? 0), 0);
+  const approved = statusCounts.approved;
 
   return (
     <div>
+      <WorkBand
+        kicker="Briefs"
+        title="Requests that became documents"
+        description="Every brief starts as a raw client message on Intake and is structured into a document you review, clarify and approve. Answers and status changes are recorded on the brief itself."
+        art={<BriefSourceArt />}
+        stats={[
+          { value: briefs.length, label: "briefs" },
+          { value: statusCounts.in_review, label: "in review" },
+          { value: openQuestions, label: "open questions" },
+        ]}
+      />
+
       <ListStats
         bar={
           <StackedBar
             segments={[
               { label: "Draft", weight: statusCounts.draft, className: "bg-muted-foreground/50" },
               { label: "In review", weight: statusCounts.in_review, className: "bg-accent" },
-              { label: "Approved", weight: statusCounts.approved, className: "bg-success" },
+              { label: "Approved", weight: approved, className: "bg-success" },
             ]}
           />
         }
@@ -133,7 +111,7 @@ export function BriefsList({ briefs }: { briefs: BriefSummary[] }) {
         />
       </ListStats>
 
-      <div className="mb-5 flex flex-col gap-3 tab:flex-row tab:items-center tab:justify-between">
+      <div className="work-toolbar flex flex-col gap-3 tab:flex-row tab:items-center tab:justify-between">
         <FilterChips
           label="Filter briefs by status"
           value={statusFilter}
@@ -190,9 +168,29 @@ export function BriefsList({ briefs }: { briefs: BriefSummary[] }) {
           />
         )
       ) : (
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        <div className="work-grid grid gap-4 sm:grid-cols-2 desk:grid-cols-3">
           {visible.map((brief) => (
-            <BriefCard key={brief.id} brief={brief} />
+            <WorkCard
+              key={brief.id}
+              href={`/briefs/${brief.id}`}
+              title={brief.title}
+              client={brief.client_name}
+              icon={ClipboardList}
+              badge={<StatusBadge status={brief.status} />}
+              meta={
+                <>
+                  {brief.openQuestionCount > 0 ? (
+                    <Badge className="border-accent bg-accent-soft text-accent">
+                      {brief.openQuestionCount} open question
+                      {brief.openQuestionCount === 1 ? "" : "s"}
+                    </Badge>
+                  ) : (
+                    <span className="work-card-quiet">No open questions</span>
+                  )}
+                  <span className="work-card-time">Updated {timeAgo(brief.updated_at)}</span>
+                </>
+              }
+            />
           ))}
         </div>
       )}

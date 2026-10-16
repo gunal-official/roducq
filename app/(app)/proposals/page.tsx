@@ -37,7 +37,7 @@ export default async function ProposalsPage() {
   const proposals = context ? await getProposals(context.id) : [];
 
   return (
-    <div className="mx-auto max-w-6xl">
+    <div className="forma-core forma-proposals mx-auto max-w-6xl">
       <PageHeader
         icon={FileText}
         eyebrow={context?.name}

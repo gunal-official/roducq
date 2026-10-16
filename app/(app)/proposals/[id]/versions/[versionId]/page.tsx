@@ -30,7 +30,7 @@ import { RestoreVersionButton } from "@/components/proposals/RestoreVersionButto
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { DocHeader, PaperCard } from "@/components/ui/doc-detail";
-import { SectionCard } from "@/components/ui/page";
+import { EmptyState, SectionCard } from "@/components/ui/page";
 import {
   getProposalById,
   getProposalVersionById,
@@ -56,26 +56,21 @@ function MetaRow({
 
 function NotFoundState({ proposalId }: { proposalId: string }) {
   return (
-    <div className="flex h-full flex-col items-center justify-center gap-4 text-center">
-      <Badge variant="secondary">Not found</Badge>
-      <div>
-        <h1 className="font-display text-2xl font-bold tracking-tight">
-          Version not found
-        </h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          This version doesn’t exist, belongs to a different proposal — or
-          to a workspace you’re not a member of.
-        </p>
-      </div>
-      <Button asChild variant="secondary">
-        <Link
-          href={isUuid(proposalId) ? `/proposals/${proposalId}` : "/proposals"}
-          className="inline-flex min-h-11 min-w-11 items-center"
-        >
-          Back
-        </Link>
-      </Button>
-    </div>
+    <EmptyState
+      icon={FileText}
+      title="Version not found"
+      description="This version doesn’t exist, belongs to a different proposal — or to a workspace you’re not a member of."
+      action={
+        <Button asChild variant="secondary">
+          <Link
+            href={isUuid(proposalId) ? `/proposals/${proposalId}` : "/proposals"}
+            className="inline-flex min-h-11 min-w-11 items-center"
+          >
+            Back
+          </Link>
+        </Button>
+      }
+    />
   );
 }
 
@@ -108,11 +103,8 @@ export default async function ProposalVersionPage({
   const isCurrent = versionMatchesCurrent(version, proposal);
 
   return (
-    <div className="mx-auto max-w-6xl">
-      <Link
-        href={`/proposals/${proposal.id}`}
-        className="mb-3 inline-flex min-h-11 min-w-11 items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-text"
-      >
+    <div className="forma-core forma-proposals mx-auto max-w-6xl">
+      <Link href={`/proposals/${proposal.id}`} className="work-back">
         <ArrowLeft className="h-4 w-4" aria-hidden="true" />
         Back to proposal
       </Link>
@@ -130,7 +122,7 @@ export default async function ProposalVersionPage({
       />
 
       {/* Read-only banner */}
-      <div className="mb-6 flex items-start gap-3 rounded-surface border border-border bg-muted/40 px-4 py-3">
+      <div className="work-notice mb-6 flex items-start gap-3">
         <span className="icon-chip icon-chip-muted h-8 w-8 shrink-0">
           <Lock className="h-4 w-4" aria-hidden="true" />
         </span>

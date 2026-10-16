@@ -1,12 +1,17 @@
 /**
  * /briefs/:id — brief detail view with question resolution and status changes.
  *
- * PHASE 4A LAYOUT CONTRACT
- *   phone / tablet  one column: the brief document first, then the side panels
+ * PHASE D LAYOUT CONTRACT
+ *   phone / tablet  one column: the brief document first (sheet, objective,
+ *                   deliverables rail, budget) with its connector band, then
+ *                   the clarifying questions, then the side panels
  *                   (details & actions, sources, history).
  *   desktop (1024+) the brief reads on the left (2fr) with its side panels on
  *                   the right (1fr), so the status control and "Generate
  *                   proposal" sit in the same place on every brief.
+ *   The document is a Forma sheet: a lavender band carries the original
+ *   request → brief drawing (decorative) beside the real source count, and
+ *   the body keeps the field vocabulary the intake generator produces.
  *   Open questions carry the accent tint (they need an answer); resolved
  *   ones are quiet.
  *
@@ -28,12 +33,11 @@
 import Link from "next/link";
 import {
   ArrowLeft,
-  Check,
+  BookOpen,
   ClipboardList,
   FileText,
   HelpCircle,
   History,
-  BookOpen,
 } from "lucide-react";
 
 import { createClient } from "@/lib/supabase/server";
@@ -45,17 +49,31 @@ import { ResolveQuestionDialog } from "@/components/briefs/ResolveQuestionDialog
 import { StatusBadge } from "@/components/briefs/StatusBadge";
 import { StatusSelect } from "@/components/briefs/StatusSelect";
 import { AddSourceForm } from "@/components/intake/AddSourceForm";
+import { BriefSourceArt } from "@/components/workflow/ClientWorkArt";
+import { WorkProgress } from "@/components/workflow/WorkCard";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { DocHeader } from "@/components/ui/doc-detail";
+import { DocHeader, PaperCard } from "@/components/ui/doc-detail";
 import { EmptyState, HistoryItem, HistoryList, SectionCard } from "@/components/ui/page";
 import type { BriefQuestion } from "@/lib/types/brief";
 
-function FieldLabel({ children }: { children: React.ReactNode }) {
+function FieldLabel({
+  children,
+  as: Tag = "p",
+  id,
+}: {
+  children: React.ReactNode;
+  /** Document-level labels are real headings so the outline stays logical. */
+  as?: "p" | "h2";
+  id?: string;
+}) {
   return (
-    <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+    <Tag
+      id={id}
+      className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground"
+    >
       {children}
-    </p>
+    </Tag>
   );
 }
 
@@ -127,11 +145,8 @@ export default async function BriefDetailPage({
   const doneCount = brief.deliverables.filter((d) => d.checked).length;
 
   return (
-    <div className="mx-auto max-w-6xl">
-      <Link
-        href="/briefs"
-        className="mb-3 inline-flex min-h-11 min-w-11 items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-text"
-      >
+    <div className="forma-core forma-briefs mx-auto max-w-6xl">
+      <Link href="/briefs" className="work-back">
         <ArrowLeft className="h-4 w-4" aria-hidden="true" />
         Briefs
       </Link>
@@ -143,18 +158,46 @@ export default async function BriefDetailPage({
         subtitle={brief.client_name ?? undefined}
       />
 
+      {/* The connector band: the original request(s) → this brief. Decorative
+          drawing, real counts beside it. */}
+      <div className="work-doc-band">
+        <div className="work-doc-band-art">
+          <BriefSourceArt />
+        </div>
+        <div className="work-doc-band-copy">
+          <p className="forma-kicker">From request to document</p>
+          <p className="work-doc-band-note">
+            {brief.sources.length === 0
+              ? "No source attached yet — add the original message below."
+              : `Structured from ${brief.sources.length} source${
+                  brief.sources.length === 1 ? "" : "s"
+                }, then reviewed by you.`}
+          </p>
+          <div className="work-doc-band-chips">
+            <Badge variant="secondary">
+              {openQuestions.length} open question
+              {openQuestions.length === 1 ? "" : "s"}
+            </Badge>
+            <Badge variant="secondary">
+              {doneCount}/{brief.deliverables.length} deliverables done
+            </Badge>
+          </div>
+        </div>
+      </div>
+
       <div className="grid items-start gap-6 desk:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
         {/* ── Left: the brief document + clarifying questions ── */}
         <div className="min-w-0 space-y-6">
-          <SectionCard
-            id="brief-details"
-            icon={FileText}
-            title="Brief details"
-            description="Structured output from the intake source."
+          <PaperCard
+            letterLabel="Client brief"
+            letterhead={brief.client_name ?? "Client brief"}
+            meta={formatDate(brief.created_at)}
           >
-            <div className="space-y-6">
-              <div className="space-y-1.5">
-                <FieldLabel>Objective</FieldLabel>
+            <div className="space-y-8">
+              <section aria-labelledby="brief-objective" className="space-y-2">
+                <FieldLabel as="h2" id="brief-objective">
+                  Objective
+                </FieldLabel>
                 {brief.objective ? (
                   <p className="max-w-prose break-words text-[15px] leading-relaxed">
                     {brief.objective}
@@ -164,35 +207,38 @@ export default async function BriefDetailPage({
                     No objective captured.
                   </p>
                 )}
-              </div>
+              </section>
 
-              <div className="space-y-2">
-                <div className="flex items-center justify-between gap-3">
-                  <FieldLabel>Deliverables</FieldLabel>
-                  <span className="text-xs text-muted-foreground">
-                    {doneCount} of {brief.deliverables.length} done
-                  </span>
-                </div>
-                <ul className="space-y-1 rounded-control border border-border bg-muted/40 p-2">
+              <section aria-labelledby="brief-deliverables" className="space-y-3">
+                <FieldLabel as="h2" id="brief-deliverables">
+                  Deliverables
+                </FieldLabel>
+                <WorkProgress
+                  label="Deliverables"
+                  done={doneCount}
+                  total={brief.deliverables.length}
+                />
+                <ul className="doc-list">
                   {brief.deliverables.length === 0 ? (
-                    <li className="px-1.5 py-1 text-sm text-muted-foreground">
-                      No deliverables captured.
-                    </li>
+                    <li className="doc-list-empty">No deliverables captured.</li>
                   ) : (
                     brief.deliverables.map((d) => (
-                      <li
-                        key={d.id}
-                        className="flex items-start gap-2.5 rounded-control px-1.5 py-1.5"
-                      >
+                      <li key={d.id} className="doc-list-row">
                         <span
-                          className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-sm border ${
-                            d.checked
-                              ? "border-success bg-success text-success-foreground"
-                              : "border-border bg-card"
-                          }`}
+                          className={`doc-tick ${d.checked ? "doc-tick-done" : ""}`}
+                          aria-hidden="true"
                         >
                           {d.checked && (
-                            <Check className="h-3 w-3" strokeWidth={3.5} aria-hidden="true" />
+                            <svg viewBox="0 0 12 12" className="h-3 w-3">
+                              <path
+                                d="M2.5 6.4l2.3 2.4L9.6 3.6"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2.4"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              />
+                            </svg>
                           )}
                         </span>
                         <span
@@ -208,10 +254,12 @@ export default async function BriefDetailPage({
                     ))
                   )}
                 </ul>
-              </div>
+              </section>
 
-              <div className="space-y-1.5">
-                <FieldLabel>Budget & timeline</FieldLabel>
+              <section aria-labelledby="brief-budget" className="space-y-2">
+                <FieldLabel as="h2" id="brief-budget">
+                  Budget & timeline
+                </FieldLabel>
                 {brief.budget_timeline ? (
                   <p className="max-w-prose whitespace-pre-line break-words text-[15px] leading-relaxed">
                     {brief.budget_timeline}
@@ -221,9 +269,9 @@ export default async function BriefDetailPage({
                     No budget or dates captured.
                   </p>
                 )}
-              </div>
+              </section>
             </div>
-          </SectionCard>
+          </PaperCard>
 
           <SectionCard
             id="brief-questions"
@@ -254,7 +302,7 @@ export default async function BriefDetailPage({
                     {openQuestions.map((q: BriefQuestion) => (
                       <li
                         key={q.id}
-                        className="rounded-control border border-accent bg-accent-soft p-3.5"
+                        className="work-question border-accent bg-accent-soft"
                       >
                         <div className="flex flex-col gap-3 tab:flex-row tab:items-start tab:justify-between">
                           <div className="min-w-0">
@@ -296,10 +344,7 @@ export default async function BriefDetailPage({
                 ) : (
                   <ul className="mt-3 space-y-3">
                     {resolvedQuestions.map((q) => (
-                      <li
-                        key={q.id}
-                        className="rounded-control border border-border bg-muted/40 p-3.5"
-                      >
+                      <li key={q.id} className="work-question">
                         <p className="break-words text-sm font-medium leading-snug">
                           {q.question_text}
                         </p>
@@ -373,7 +418,7 @@ export default async function BriefDetailPage({
                       {formatDate(s.created_at)}
                     </span>
                   </div>
-                  <div className="max-h-56 overflow-y-auto rounded-control border border-border bg-muted/40 p-3">
+                  <div className="work-source-quote">
                     <pre className="whitespace-pre-wrap break-words font-sans text-xs leading-relaxed text-text">
                       {s.raw_content}
                     </pre>

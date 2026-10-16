@@ -6,7 +6,10 @@
  * originate from briefs, so the empty state points to /briefs rather than
  * offering an inline create.
  *
- * Phase 4A: shared FilterChips (wraps, 44px targets) and EmptyState.
+ * Phase D: a lavender showcase band with the real document drawing and real
+ * counts, a tinted filter plane, and one Forma work card per proposal with a
+ * real scope-completion rail. The 4A contracts are unchanged: shared
+ * FilterChips (wraps, 44px targets) and the shared EmptyState.
  */
 
 import Link from "next/link";
@@ -14,13 +17,13 @@ import { useMemo, useState } from "react";
 import { FileText, Search, Hourglass, CheckCircle2, ListChecks } from "lucide-react";
 
 import { ProposalStatusBadge } from "@/components/proposals/ProposalStatusBadge";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { FilterChips } from "@/components/ui/filter-chips";
 import { Input } from "@/components/ui/input";
 import { EmptyState } from "@/components/ui/page";
 import { ListStats, StatTile } from "@/components/ui/doc-detail";
+import { ProposalDocumentArt } from "@/components/workflow/ClientWorkArt";
+import { WorkBand, WorkCard } from "@/components/workflow/WorkCard";
 import { timeAgo } from "@/lib/utils";
 import type { ProposalStatus, ProposalSummary } from "@/lib/types/proposal";
 
@@ -33,47 +36,6 @@ const FILTER_OPTIONS: { value: StatusFilter; label: string }[] = [
   { value: "accepted", label: "Accepted" },
   { value: "declined", label: "Declined" },
 ];
-
-function ProposalCard({ proposal }: { proposal: ProposalSummary }) {
-  return (
-    <Card className="transition-shadow hover:shadow-md">
-      <CardHeader className="space-y-1 border-b border-border px-5 py-3.5">
-        <div className="flex items-start justify-between gap-3">
-          <div className="min-w-0">
-            <Link
-              href={`/proposals/${proposal.id}`}
-              className="inline-flex min-h-11 min-w-11 items-center break-words font-display text-base font-semibold leading-snug underline-offset-2 hover:underline"
-            >
-              {proposal.title}
-            </Link>
-            {proposal.client_name && (
-              <p className="truncate text-sm text-muted-foreground">
-                {proposal.client_name}
-              </p>
-            )}
-          </div>
-          <ProposalStatusBadge
-            status={proposal.status}
-            className="shrink-0"
-          />
-        </div>
-      </CardHeader>
-      <CardContent className="flex flex-wrap items-center justify-between gap-3 p-5">
-        {proposal.deliverablesTotal > 0 ? (
-          <Badge variant="secondary">
-            {proposal.deliverablesDone}/{proposal.deliverablesTotal}{" "}
-            deliverable{proposal.deliverablesTotal === 1 ? "" : "s"} done
-          </Badge>
-        ) : (
-          <span />
-        )}
-        <span className="text-xs text-muted-foreground">
-          Updated {timeAgo(proposal.updated_at)}
-        </span>
-      </CardContent>
-    </Card>
-  );
-}
 
 export function ProposalsList({ proposals }: { proposals: ProposalSummary[] }) {
   const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
@@ -111,6 +73,18 @@ export function ProposalsList({ proposals }: { proposals: ProposalSummary[] }) {
 
   return (
     <div>
+      <WorkBand
+        kicker="Proposals"
+        title="Quotes that read like documents"
+        description="Each proposal is generated from a brief, then reviewed, priced and sent. Every status change files the displaced version, so nothing you wrote is ever lost."
+        art={<ProposalDocumentArt />}
+        stats={[
+          { value: proposals.length, label: "proposals" },
+          { value: inPlay, label: "in play" },
+          { value: accepted, label: "accepted" },
+        ]}
+      />
+
       <ListStats cols={4}>
         <StatTile icon={FileText} label="Total proposals" value={proposals.length} hint="All time" />
         <StatTile
@@ -138,7 +112,7 @@ export function ProposalsList({ proposals }: { proposals: ProposalSummary[] }) {
         />
       </ListStats>
 
-      <div className="mb-5 flex flex-col gap-3 tab:flex-row tab:items-center tab:justify-between">
+      <div className="work-toolbar flex flex-col gap-3 tab:flex-row tab:items-center tab:justify-between">
         <FilterChips
           label="Filter proposals by status"
           value={statusFilter}
@@ -194,9 +168,26 @@ export function ProposalsList({ proposals }: { proposals: ProposalSummary[] }) {
           />
         )
       ) : (
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        <div className="work-grid grid gap-4 sm:grid-cols-2 desk:grid-cols-3">
           {visible.map((proposal) => (
-            <ProposalCard key={proposal.id} proposal={proposal} />
+            <WorkCard
+              key={proposal.id}
+              href={`/proposals/${proposal.id}`}
+              title={proposal.title}
+              client={proposal.client_name}
+              icon={FileText}
+              badge={<ProposalStatusBadge status={proposal.status} />}
+              progress={
+                proposal.deliverablesTotal > 0
+                  ? {
+                      label: "Scope of work",
+                      done: proposal.deliverablesDone,
+                      total: proposal.deliverablesTotal,
+                    }
+                  : null
+              }
+              meta={<span className="work-card-time">Updated {timeAgo(proposal.updated_at)}</span>}
+            />
           ))}
         </div>
       )}

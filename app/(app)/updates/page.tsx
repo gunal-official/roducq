@@ -16,7 +16,9 @@
  *      revalidate /updates).
  */
 
+import { Megaphone } from "lucide-react";
 import { UpdatesList } from "@/components/updates/UpdatesList";
+import { PageHeader } from "@/components/ui/page";
 import { getUpdates } from "@/lib/data/updates";
 import { getWorkspaceContext } from "@/lib/data/workspace-context";
 
@@ -26,15 +28,13 @@ export default async function UpdatesPage() {
   const updates = context ? await getUpdates(context.id) : [];
 
   return (
-    <div className="mx-auto max-w-6xl">
-      <div className="mb-6">
-        <h1 className="font-display text-2xl font-bold tracking-tight">
-          Updates
-        </h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Composed from plans — open a plan to write one.
-        </p>
-      </div>
+    <div className="forma-core forma-updates mx-auto max-w-6xl">
+      <PageHeader
+        icon={Megaphone}
+        eyebrow={context?.name}
+        title="Updates"
+        subtitle="Composed from plans — open a plan to write one."
+      />
 
       <UpdatesList updates={updates} />
     </div>
