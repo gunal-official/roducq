@@ -29,3 +29,7 @@ tmp/
 
 # Arena slice exports (generated per slice; reported as md5+bytes in chat)
 /arena-patches/
+
+# Razorpay Test Mode plan specs (operator-local; ids must never be committed)
+razorpay-plans.local.json
+scripts/razorpay-plans.local.json

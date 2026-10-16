@@ -12,6 +12,10 @@
  *    verification AND (b) a server-side fetch of the Razorpay subscription
  *    confirming plan + workspace + an entitlement-granting status, or a
  *    verified Razorpay webhook. Checkout.js success alone grants nothing.
+ *  - TEST MODE ONLY: getRazorpayServerConfig refuses Live Mode outright
+ *    (ALLOWED_RAZORPAY_MODES). Production payments cannot be turned on by
+ *    environment configuration — see the PRODUCTION SAFETY GATE below and
+ *    docs/RAZORPAY_TEST_MODE_SETUP.md.
  */
 import { createHmac, timingSafeEqual } from "node:crypto";
 
@@ -65,12 +69,97 @@ export function razorpayKeyMode(keyId: string | undefined): "test" | "live" | nu
   if (keyId.startsWith("rzp_live_")) return "live";
   return null;
 }
-export function getRazorpayServerConfig(): { ok: true; keyId: string; keySecret: string; mode: "test" | "live" } | { ok: false; error: string } {
+
+// ── Test-mode gate — PRODUCTION PAYMENTS ARE DISABLED ─────────────────
+/**
+ * PRODUCTION SAFETY GATE.
+ *
+ * ALLOWED_RAZORPAY_MODES is the ONLY list of payment modes this build will
+ * ever authorise, and 'live' is deliberately absent. There is no env var,
+ * flag or code path that adds to it: enabling Live Mode is a CODE CHANGE in
+ * a separate, reviewed milestone — never a deployment setting. This is why a
+ * Vercel production deploy cannot silently turn on real charges, even if
+ * someone sets rzp_live_ credentials there.
+ *
+ * Every credential read (subscription creation, checkout verify, webhook
+ * fetch, cancellation) goes through getRazorpayServerConfig, so this single
+ * list gates the whole billing surface. Fail-closed: unset RAZORPAY_MODE
+ * means test, and any disagreement between the declared mode and the key
+ * prefix is refused rather than guessed.
+ */
+export type RazorpayMode = "test" | "live";
+export const RAZORPAY_MODE_ENV = "RAZORPAY_MODE";
+export const RAZORPAY_PUBLIC_KEY_ENV = "NEXT_PUBLIC_RAZORPAY_KEY_ID";
+export const ALLOWED_RAZORPAY_MODES: readonly RazorpayMode[] = ["test"];
+/** Unset RAZORPAY_MODE means Test Mode — never Live. */
+export const DEFAULT_RAZORPAY_MODE: RazorpayMode = "test";
+export const LIVE_PAYMENTS_DISABLED_MESSAGE =
+  "Razorpay Live Mode is disabled in this build — production payments are not enabled. Set RAZORPAY_MODE=test and use rzp_test_ credentials.";
+
+export function isRazorpayModeAllowed(mode: RazorpayMode): boolean {
+  return ALLOWED_RAZORPAY_MODES.includes(mode);
+}
+
+/** RAZORPAY_MODE parsing. Unset/blank → test. Only 'test'/'live' are words;
+ * anything else is a configuration error, not a silent fallback. */
+export function parseRazorpayModeEnv(raw: string | undefined): { ok: true; mode: RazorpayMode } | { ok: false; error: string } {
+  const value = raw?.trim();
+  if (!value) return { ok: true, mode: DEFAULT_RAZORPAY_MODE };
+  const mode = value.toLowerCase();
+  if (mode === "test" || mode === "live") return { ok: true, mode };
+  return { ok: false, error: `RAZORPAY_MODE must be "test" (got "${value}"). Live payments are disabled in this build.` };
+}
+
+export function getRazorpayMode(): { ok: true; mode: RazorpayMode } | { ok: false; error: string } {
+  return parseRazorpayModeEnv(process.env[RAZORPAY_MODE_ENV]);
+}
+
+export function getRazorpayServerConfig(): { ok: true; keyId: string; keySecret: string; mode: RazorpayMode } | { ok: false; error: string } {
   const keyId = process.env.RAZORPAY_KEY_ID; const keySecret = process.env.RAZORPAY_KEY_SECRET;
   if (!keyId || !keySecret) return { ok: false, error: "Billing is not configured yet — set RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET." };
+  const declared = getRazorpayMode();
+  if (!declared.ok) return { ok: false, error: declared.error };
   const mode = razorpayKeyMode(keyId);
   if (!mode) return { ok: false, error: "RAZORPAY_KEY_ID must start with rzp_test_ or rzp_live_." };
+  // Declared mode and key prefix must AGREE — a mismatch means two different
+  // Razorpay accounts/environments are half-configured, and guessing which one
+  // to bill against is never acceptable.
+  if (mode !== declared.mode) {
+    return { ok: false, error: `RAZORPAY_MODE=${declared.mode} but RAZORPAY_KEY_ID is a ${mode}-mode key. Set both to the same mode (${declared.mode}) and use matching ${declared.mode}-mode credentials.` };
+  }
+  if (!isRazorpayModeAllowed(mode)) return { ok: false, error: LIVE_PAYMENTS_DISABLED_MESSAGE };
   return { ok: true, keyId, keySecret, mode };
+}
+
+/**
+ * The key the browser is allowed to see (Checkout.js). The server key id is
+ * the source of truth; NEXT_PUBLIC_RAZORPAY_KEY_ID exists only so operators
+ * can see which key the client uses. A disagreement is refused BEFORE any
+ * Razorpay subscription is created, so a half-migrated deployment can never
+ * open checkout against the wrong account (and leave an orphaned, possibly
+ * paid, subscription behind).
+ */
+export function getRazorpayClientConfig(): { ok: true; keyId: string; mode: RazorpayMode } | { ok: false; error: string } {
+  const server = getRazorpayServerConfig();
+  if (!server.ok) return server;
+  const publicKeyId = process.env[RAZORPAY_PUBLIC_KEY_ENV]?.trim();
+  if (publicKeyId && publicKeyId !== server.keyId) {
+    return { ok: false, error: `${RAZORPAY_PUBLIC_KEY_ENV} does not match RAZORPAY_KEY_ID — checkout would open against a different Razorpay account. Make them identical, or leave ${RAZORPAY_PUBLIC_KEY_ENV} unset.` };
+  }
+  return { ok: true, keyId: server.keyId, mode: server.mode };
+}
+
+/**
+ * True only when billing is fully configured AND provably in Test Mode.
+ * Drives the "Razorpay Test Mode" indicator, so the badge never appears
+ * unless the whole test path (keys, plans, public key) is coherent — and can
+ * never appear for Live Mode, which getRazorpayServerConfig refuses outright.
+ */
+export function isRazorpayTestModeActive(): boolean {
+  const server = getRazorpayServerConfig();
+  if (!server.ok || server.mode !== "test") return false;
+  if (!getRazorpayPlansConfig().ok) return false;
+  return getRazorpayClientConfig().ok;
 }
 
 // ── Signatures (constant-time) ────────────────────────────────────────
