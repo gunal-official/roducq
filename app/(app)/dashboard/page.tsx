@@ -26,6 +26,7 @@
  */
 
 import Link from "next/link";
+import { WorkflowArt } from "@/components/workflow/WorkflowArt";
 import {
   ArrowDown,
   ArrowRight,
@@ -272,7 +273,7 @@ export default async function DashboardPage() {
     0;
 
   return (
-    <div className="mx-auto max-w-6xl">
+    <div className="forma-core forma-pipeline mx-auto max-w-6xl">
       <PageHeader
         icon={LayoutDashboard}
         eyebrow={context?.name}
@@ -301,6 +302,18 @@ export default async function DashboardPage() {
           </>
         }
       />
+
+      <section className="pipeline-showcase" aria-labelledby="workflow-heading">
+        <div className="pipeline-showcase-copy">
+          <p className="forma-kicker">Your workspace, connected</p>
+          <h2 id="workflow-heading">A little structure.<br />A lot more momentum.</h2>
+          <p>From the first client message to the next update. Move work forward, one considered step at a time.</p>
+        </div>
+        <div className="pipeline-showcase-art">
+          <WorkflowArt />
+          <p>Review, refine, and move forward — you guide every stage.</p>
+        </div>
+      </section>
 
       {/* Stat row: 2-up on phones, 3-up at 600, 4-up on desktop. */}
       <ListStats

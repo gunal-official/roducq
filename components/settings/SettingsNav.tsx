@@ -31,7 +31,7 @@ export function SettingsNav({
   return (
     <nav
       aria-label={label}
-      className="hidden desk:sticky desk:top-6 desk:block desk:self-start"
+      className="forma-settings-nav hidden desk:sticky desk:top-6 desk:block desk:self-start"
     >
       <p className="px-3 pb-2 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
         On this page

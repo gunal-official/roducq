@@ -16,6 +16,7 @@ import {
 import { BriefForm, type BriefDraftFields } from "@/components/intake/BriefForm";
 import { SourcePanel } from "@/components/intake/SourcePanel";
 import { Button } from "@/components/ui/button";
+import { IntakeGuide } from "@/components/workflow/WorkflowArt";
 import { PageHeader } from "@/components/ui/page";
 import { PenLine, RotateCcw } from "lucide-react";
 import type { BriefQuestion, BriefSource } from "@/lib/types/brief";
@@ -133,7 +134,7 @@ export function IntakeClient({ aiConfigured }: { aiConfigured: boolean }) {
   const draftFirst = phase !== "input";
 
   return (
-    <div className="mx-auto max-w-6xl">
+    <div className="forma-core forma-intake mx-auto max-w-6xl">
       <PageHeader
         icon={PenLine}
         eyebrow="Workspace"
@@ -184,8 +185,8 @@ export function IntakeClient({ aiConfigured }: { aiConfigured: boolean }) {
             draftFirst ? "order-1 min-w-0 desk:order-2" : "order-2 min-w-0 desk:order-2"
           }
         >
-          <BriefForm
-            mode={phase === "input" ? "empty" : generating ? "loading" : "form"}
+          {phase === "input" ? <IntakeGuide /> : <BriefForm
+            mode={generating ? "loading" : "form"}
             draft={draft ?? { title: "", clientName: "", objective: "", budgetTimeline: "", deliverables: [] }}
             onChange={(patch) => setDraft((d) => (d ? { ...d, ...patch } : d))}
             questions={questions}
@@ -195,7 +196,7 @@ export function IntakeClient({ aiConfigured }: { aiConfigured: boolean }) {
             saveError={saveError}
             onSave={handleSave}
             briefId={briefId}
-          />
+          />}
         </div>
       </div>
     </div>

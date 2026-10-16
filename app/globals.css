@@ -662,3 +662,107 @@
   --accent-soft: color-mix(in srgb, var(--forma-purple) 12%, var(--card));
   --ring: var(--forma-purple);
 }
+
+/* Phase C: route-scoped product planes. Existing shared APIs and all
+   out-of-scope document/marketing pages retain their original geometry. */
+.forma-core {
+  --forma-background: #F9F7FC;
+  --forma-surface-raised: #F2EEF8;
+  --forma-lavender: #EFEBFF;
+  --forma-purple: #5B3FE0;
+  --forma-purple-hover: #5332D6;
+  --forma-text: #1B1426;
+  --forma-secondary-text: #687083;
+  --bg: var(--forma-background);
+  --surface-raised: var(--forma-surface-raised);
+  --muted: var(--forma-surface-raised);
+  --lavender: var(--forma-lavender);
+  --accent: var(--forma-purple);
+  --accent-hover: var(--forma-purple-hover);
+  --text: var(--forma-text);
+  --secondary-text: var(--forma-secondary-text);
+  --accent-soft: color-mix(in srgb, var(--accent) 12%, var(--card));
+  --core-radius: 24px;
+  padding-bottom: 1rem;
+}
+.dark .forma-core {
+  --forma-background: #17121e;
+  --forma-surface-raised: #2b2236;
+  --forma-lavender: #312447;
+  --forma-purple: #b9a0ff;
+  --forma-purple-hover: #cbb8ff;
+  --forma-text: #f3eef9;
+  --forma-secondary-text: #b7adca;
+}
+.forma-core .forma-page-header { margin-bottom: 2rem; padding-top: .5rem; }
+.forma-core .forma-page-header h1 { font-size: clamp(2rem, 3.2vw, 2.8rem); letter-spacing: -.055em; line-height: 1.15; }
+.forma-core .forma-page-header > div:first-child > .icon-chip { display: none; }
+.forma-core .forma-page-header h1 + *, .forma-core .forma-page-header p { line-height: 1.7; }
+.forma-core .forma-section {
+  border-radius: var(--core-radius); overflow: clip;
+  border-color: color-mix(in srgb, var(--border) 75%, var(--surface));
+  box-shadow: 0 7px 28px -22px var(--plum);
+  transition: box-shadow var(--duration-normal, 200ms), transform var(--duration-normal, 200ms);
+}
+.forma-core .forma-section > div:first-child { padding: 1.35rem; border-bottom-color: color-mix(in srgb, var(--border) 65%, transparent); }
+.forma-core .forma-section h2 { letter-spacing: -.035em; }
+.forma-core .forma-section > div:last-child { border-radius: 0 0 var(--core-radius) var(--core-radius); }
+.forma-core .forma-empty { border-radius: var(--core-radius); background: var(--surface); padding-block: 3.5rem; }
+.forma-core :is(input,textarea,select) { border-radius: 12px; }
+.forma-core textarea { padding: 1rem; background: var(--bg); }
+.forma-core :is(button,a,input,textarea,select):focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.forma-kicker { color: var(--accent); font-size: .68rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.pipeline-showcase { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 1rem; border: 1px solid var(--border); border-radius: var(--core-radius); background: var(--lavender); padding: 2rem; margin-bottom: 1.5rem; align-items: center; }
+.pipeline-showcase h2, .intake-guide h2, .settings-intro h2 { font-size: clamp(1.5rem, 2.2vw, 2rem); line-height: 1.2; letter-spacing: -.045em; font-weight: 600; margin-top: .7rem; }
+.pipeline-showcase-copy > p:last-child { color: var(--secondary-text); font-size: .85rem; line-height: 1.8; margin-top: .8rem; max-width: 37ch; }
+.pipeline-showcase-art { min-width: 0; }
+.pipeline-showcase-art > p { text-align: center; font-size: .7rem; color: var(--secondary-text); }
+.workflow-art { width: 100%; height: auto; color: var(--accent); overflow: visible; }
+.workflow-node { fill: var(--surface); stroke: var(--border); }
+.workflow-number { fill: var(--accent); font-size: 13px; font-weight: 700; }
+.workflow-label { fill: var(--text); font-size: 13px; font-weight: 600; }
+.workflow-pulse { opacity: 0; }
+.intake-guide { border-radius: var(--core-radius); background: var(--lavender); border: 1px solid var(--border); padding: 2rem; }
+.intake-guide svg { width: 100%; max-height: 180px; color: var(--accent); margin: 1.5rem auto; }
+.guide-paper rect { fill: var(--surface); stroke: var(--border); }
+.guide-paper path { fill: none; stroke: var(--accent); stroke-width: 3; stroke-linecap: round; }
+.guide-steps { display: grid; gap: 1.25rem; }
+.guide-steps li { display: flex; gap: 1rem; align-items: start; }
+.guide-steps li > span { color: var(--accent); background: var(--surface); padding: .5rem; border-radius: 10px; font-size: .75rem; font-weight: 700; }
+.guide-steps h3 { font-size: .875rem; font-weight: 700; }
+.guide-steps p { font-size: .8rem; color: var(--secondary-text); line-height: 1.7; margin-top: .2rem; }
+.inbox-list-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem; }
+.inbox-list-heading h2 { font-weight: 700; letter-spacing: -.03em; }
+.inbox-list-heading p { font-size: .75rem; color: var(--secondary-text); }
+.forma-core .forma-filters { padding: .7rem; border-radius: 18px; background: var(--lavender); margin-bottom: 1.5rem; }
+.forma-core .forma-filters button { border-radius: 12px; background: transparent; border-color: transparent; transition: background var(--duration-normal, 200ms), color var(--duration-normal, 200ms), box-shadow var(--duration-normal, 200ms); }
+.forma-core .forma-filters button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); box-shadow: var(--shell-shadow-lift); }
+.forma-core .forma-filters button[aria-pressed="true"] span { color: inherit; }
+.forma-inbox [data-proof="inbox-threads"] { min-width: 0; }
+.settings-intro { border-radius: var(--core-radius); background: var(--lavender); padding: 1.75rem 2rem; margin-bottom: 2rem; }
+.settings-intro > p:last-child { margin-top: .75rem; font-size: .875rem; color: var(--secondary-text); }
+.forma-settings-nav { padding: 1rem .5rem; border: 1px solid var(--border); border-radius: var(--core-radius); background: var(--surface); }
+.forma-settings-nav a:hover { background: var(--lavender); }
+.forma-settings .forma-section:target { outline: 2px solid var(--accent); outline-offset: 3px; scroll-margin-top: 2rem; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .forma-core .forma-section:hover { transform: translateY(-2px); box-shadow: var(--shell-shadow); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .forma-core .forma-section, .intake-guide { animation: forma-rise var(--duration-slow, 400ms) ease-out; }
+  .workflow-connector { animation: core-connect 1.8s ease-out; }
+  .workflow-pulse { animation: core-travel 7s ease-in-out infinite; }
+  .forma-core [role="img"] .bg-accent { transition: height var(--duration-slow, 400ms); }
+}
+@keyframes core-connect { from { stroke-dasharray: 1; stroke-dashoffset: 1; } to { stroke-dasharray: 1; stroke-dashoffset: 0; } }
+@keyframes core-travel { 0%, 100% { opacity: 0; transform: translateX(0); } 10% { opacity: .65; } 85% { opacity: .65; transform: translateX(576px); } 95% { opacity: 0; transform: translateX(576px); } }
+@media (max-width: 767px) {
+  .pipeline-showcase { grid-template-columns: minmax(0,1fr); padding: 1.25rem; gap: .5rem; }
+  .pipeline-showcase-copy > p:last-child { max-width: none; }
+  .pipeline-showcase-art { max-width: 100%; }
+  .intake-guide { padding: 1.5rem; }
+  .settings-intro { padding: 1.25rem; }
+  .forma-core .forma-page-header { margin-bottom: 1.5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .forma-core *, .forma-core *::before, .forma-core *::after { animation: none !important; transition: none !important; }
+}

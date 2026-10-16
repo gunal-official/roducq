@@ -40,7 +40,7 @@ export function FilterChips<T extends string>({
     <div
       role="group"
       aria-label={label}
-      className={cn("flex flex-wrap items-center gap-1.5", className)}
+      className={cn("forma-filters flex flex-wrap items-center gap-1.5", className)}
     >
       {options.map((option) => {
         const selected = option.value === value;

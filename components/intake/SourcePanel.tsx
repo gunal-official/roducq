@@ -125,7 +125,9 @@ export function SourcePanel({
       }
       proof="intake-source-input"
     >
+      <label htmlFor="intake-context" className="mb-2 block text-sm font-semibold">Client context</label>
       <Textarea
+        id="intake-context"
         value={rawText}
         onChange={(e) => onChange(e.target.value)}
         disabled={generating}
@@ -134,7 +136,7 @@ export function SourcePanel({
         }
         className="min-h-[220px] resize-y bg-muted/40 leading-relaxed tab:min-h-[340px]"
       />
-      {error ? <p className="mt-3 text-sm text-error">{error}</p> : null}
+      {error ? <p role="alert" className="mt-3 text-sm text-error">{error}</p> : null}
       <SourceFilePicker
         rawText={rawText}
         onChange={onChange}

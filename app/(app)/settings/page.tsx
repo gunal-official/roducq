@@ -203,7 +203,7 @@ export default async function SettingsPage() {
   ];
 
   return (
-    <div className="mx-auto max-w-6xl">
+    <div className="forma-core forma-settings mx-auto max-w-6xl">
       {/* One-time toast when returning from Stripe Checkout (?checkout=) */}
       <CheckoutNotice />
       {/* One-time toast when returning from a mailbox OAuth connect (?email=) */}
@@ -217,6 +217,8 @@ export default async function SettingsPage() {
         title="Settings"
         subtitle="Workspace configuration — name, team, reusable text snippets, integrations, and your plan."
       />
+
+      <div className="settings-intro"><p className="forma-kicker">Make space for your best work</p><h2>A workspace that works your way.</h2><p>Manage your team, shape your documents, and connect the tools you use.</p></div>
 
       {/* Desktop (1024+): section rail + content. Below that: one column. */}
       <div className="grid items-start gap-6 desk:grid-cols-[13.75rem_minmax(0,1fr)]">

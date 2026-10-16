@@ -53,7 +53,7 @@ export default async function IntakeInboxPage() {
   const stagedCount = staging.length + imports.length;
 
   return (
-    <div className="mx-auto max-w-6xl">
+    <div className="forma-core forma-inbox mx-auto max-w-6xl">
       <PageHeader
         icon={InboxIcon}
         eyebrow={context?.name}
@@ -84,7 +84,7 @@ export default async function IntakeInboxPage() {
         }
       />
 
-      <div className="grid items-start gap-6 desk:grid-cols-[minmax(0,1fr)_20rem]">
+      <div className={`grid items-start gap-6 ${stagedCount > 0 ? "desk:grid-cols-[minmax(0,1fr)_20rem]" : ""}`}>
         {/* Threads — the reading column. */}
         <div className="min-w-0" data-proof="inbox-threads">
           {threads === null ? (

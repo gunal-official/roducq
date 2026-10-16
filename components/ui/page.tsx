@@ -48,7 +48,7 @@ export function PageHeader({
   return (
     <header
       className={cn(
-        "mb-6 flex flex-col gap-4 tab:flex-row tab:items-start tab:justify-between",
+        "forma-page-header mb-6 flex flex-col gap-4 tab:flex-row tab:items-start tab:justify-between",
         className
       )}
     >
@@ -134,7 +134,7 @@ export function SectionCard({
       data-proof={proof}
       aria-labelledby={labeledBy ?? (id ? `${id}-heading` : undefined)}
       className={cn(
-        "scroll-mt-6 rounded-surface border border-border bg-card shadow-card",
+        "forma-section scroll-mt-6 rounded-surface border border-border bg-card shadow-card",
         className
       )}
     >
@@ -195,7 +195,7 @@ export function EmptyState({
   return (
     <div
       className={cn(
-        "flex flex-col items-center gap-3 rounded-surface border border-dashed border-border bg-card/60 px-6 py-14 text-center",
+        "forma-empty flex flex-col items-center gap-3 rounded-surface border border-dashed border-border bg-card/60 px-6 py-14 text-center",
         className
       )}
     >
