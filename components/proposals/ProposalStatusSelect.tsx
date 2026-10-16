@@ -58,7 +58,7 @@ export function ProposalStatusSelect({
     <div className="space-y-1.5">
       <div className="flex items-center gap-2">
         <Select value={value} onValueChange={handleChange} disabled={pending}>
-          <SelectTrigger className="h-11 w-[150px]">
+          <SelectTrigger aria-label="Proposal status" className="h-11 w-[150px]">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -73,7 +73,7 @@ export function ProposalStatusSelect({
           <Loader2 className="h-4 w-4 animate-spin text-muted-foreground"  aria-hidden="true" />
         )}
       </div>
-      {error && <p className="text-xs text-error">{error}</p>}
+      {error && <p role="alert" className="text-sm text-error">{error}</p>}
     </div>
   );
 }

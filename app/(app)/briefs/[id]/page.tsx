@@ -70,7 +70,7 @@ function FieldLabel({
   return (
     <Tag
       id={id}
-      className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground"
+      className="text-xs font-semibold uppercase tracking-wider text-muted-foreground"
     >
       {children}
     </Tag>
@@ -95,6 +95,7 @@ function MetaRow({
 function NotFoundState() {
   return (
     <EmptyState
+      headingAs="h1"
       icon={ClipboardList}
       title="Brief not found"
       description="This brief doesn’t exist — or it belongs to a workspace you’re not a member of."

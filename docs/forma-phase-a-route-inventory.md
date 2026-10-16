@@ -121,19 +121,26 @@ Phase A is the design foundation, not the finished application redesign.
       plus Search; preserve existing calculations, permissions, exports and
       print output. Implemented, measured in real Chromium at 320–1440 in both
       themes, with reduced-motion artwork proof. See `forma-phase-e-closeout.md`.
-- [ ] **Phase F — Workspace and finishing pass:** cross-cutting forms,
+- [x] **Phase F — Workspace and finishing pass:** cross-cutting forms,
       dialogs, tables, cards and menus; animated SVGs and motion; accessibility,
       and complete light/dark/responsive review at 375px, 768px and 1440px
       (Search itself was pulled into Phase E — see its closeout §2).
-- [ ] Audit every authenticated route in the table above in both themes; no
+      Implemented and audited across the complete actual route inventory;
+      final gates, seven-width both-theme/scroll-through evidence and human
+      release limits are in `forma-phase-f-closeout.md`. Current implementation
+      rules: `forma-design-system.md`. Reference visual comparison was blocked;
+      no visual parity or full WCAG certification is claimed.
+- [x] Audit every authenticated route in the table above in both themes; no
       route should be called Forma-redesigned solely because it inherits the
       Phase A tokens.
 
 ## Verification and screenshot evidence
 
 Phase A's numbers are kept below as the historical record of that phase; the
-current gates are in the per-phase closeouts (Phase D: 758 tests, real-Chromium
-audit, screenshots in `docs/screenshots/forma-phase-d/`).
+current gates are in `forma-phase-f-closeout.md` (831 tests, real Chromium,
+zero findings across 714 populated records plus scroll-through/empty probes;
+screenshots in `docs/screenshots/forma-phase-f/`). Human release checks remain
+explicitly separate from the passing automated audit.
 
 - `npm test` — passed (711 tests at the time of Phase A).
 - `npm run lint` — passed.

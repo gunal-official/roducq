@@ -50,43 +50,53 @@ export default function GlobalError({
           padding: "0 16px",
         }}
       >
-        <h2
+        <main
           style={{
-            fontFamily: FONT_STACKS.display,
-            fontSize: 22,
-            fontWeight: 600,
-            margin: 0,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          Something went wrong
-        </h2>
-        <p
-          style={{
-            fontSize: 14,
-            color: TOKENS.secondaryText,
-            marginTop: 8,
-            maxWidth: 320,
-          }}
-        >
-          {error.message || "An unexpected error occurred. Please try again."}
-        </p>
-        <button
-          onClick={reset}
-          style={{
-            marginTop: 20,
-            fontFamily: "inherit",
-            fontSize: 14,
-            fontWeight: 600,
-            padding: "8px 16px",
-            borderRadius: RADIUS_CONTROL,
-            border: `1px solid ${TOKENS.purple}`,
-            background: TOKENS.purple,
-            color: "#ffffff",
-            cursor: "pointer",
-          }}
-        >
-          Try again
-        </button>
+          <h1
+            style={{
+              fontFamily: FONT_STACKS.display,
+              fontSize: 22,
+              fontWeight: 600,
+              margin: 0,
+            }}
+          >
+            Something went wrong
+          </h1>
+          <p
+            style={{
+              fontSize: 14,
+              color: TOKENS.secondaryText,
+              marginTop: 8,
+              maxWidth: 320,
+            }}
+          >
+            {error.message || "An unexpected error occurred. Please try again."}
+          </p>
+          <button
+            onClick={reset}
+            style={{
+              marginTop: 20,
+              fontFamily: "inherit",
+              fontSize: 14,
+              fontWeight: 600,
+              minHeight: 44,
+              minWidth: 44,
+              padding: "8px 16px",
+              borderRadius: RADIUS_CONTROL,
+              border: `1px solid ${TOKENS.purple}`,
+              background: TOKENS.purple,
+              color: "#ffffff",
+              cursor: "pointer",
+            }}
+          >
+            Try again
+          </button>
+        </main>
       </body>
     </html>
   );

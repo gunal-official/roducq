@@ -939,6 +939,15 @@ shrink, invoice line-items stacking below md, TeamCard select sizing.
   `lib/design-tokens.ts`; legacy `--bg`, `--accent`, `--card`, and deprecated
   Ember aliases remain source-compatible. Light and dark have distinct
   palettes, with account-menu controls for light / dark / system.
+- **Forma complete-product finish (Phase F):** the active rules are in
+  [`docs/forma-design-system.md`](docs/forma-design-system.md); the actual
+  route checklist, before/after QA, test results and honest manual/reference
+  limits are in [`docs/forma-phase-f-closeout.md`](docs/forma-phase-f-closeout.md).
+  Evidence lives under `docs/screenshots/forma-phase-f/`. Marketing now uses a
+  modal menu below 1024px; the app drawer, menus, documents, settings/team rows,
+  comparison tables and error surfaces share the final responsive vocabulary.
+  Motion uses 150/250/450ms tokens and a visible static/reduced-motion baseline;
+  report bars draw exact real shares, never an invented minimum for zero money.
 - **Typography:** self-hosted Manrope is the app-wide body and display face;
   Fira Code remains the monospace face. The older Playfair Display and Source
   Sans 3 assets/licenses are retained, but are no longer loaded by the root
@@ -1170,7 +1179,9 @@ two parked items with triggers: PDF pixel-parity + the eslint-10 bump).
 > shell and page work. Forma Phase A now supersedes that active palette and
 > typography while preserving the prior responsive layouts and compatibility
 > aliases. See `docs/forma-phase-a-route-inventory.md` for current scope and
-> the remaining full-application redesign checklist.
+> the historical redesign checklist; the current full-product rules and
+> verification ledger are in `docs/forma-design-system.md` and
+> `docs/forma-phase-f-closeout.md`.
 
 The retained Phase 1 implementation history established design-token parity
 for PDF/email output, semantic radii, shared icon chips, and a responsive
@@ -1206,6 +1217,23 @@ land on it, guests keep the marketing home on the same URL
   (`proof/<width>/<slug>-<name>.png`) — the (app) shell scrolls inside
   `<main>`, so `fullPage` screenshots can never see below the fold.
 - `DARK=1` captures the dark theme (`colorScheme: dark`).
+- `PHASE_F=1` adds actual App Router inventory coverage, axe at 375/1440,
+  headings/landmarks/font/size/expected-content/redirect/browser-error checks,
+  and **scroll-through measurements** with the unchanged original geometry
+  function. The internal `<main>` and rail matter as much as the body viewport.
+- `PHASE_F_INTERACTIONS=1` adds real-browser modal/menu keyboard, theme
+  persistence/system, all-route reduced-motion, exact financial chart and
+  public document print checks. It retains axe `incomplete` rules for manual
+  review, not as automatic passes.
+- `PHASE_F_SHOTS_DIR=docs/screenshots/forma-phase-f` writes 375/768/1440
+  light/dark viewport PNGs. Supplemental `*-full.jpg` files explicitly flatten
+  internal app scrolling **after** measurement/viewport capture; see the
+  evidence README before interpreting them.
+- On restricted Linux runners, `CHROMIUM_EXECUTABLE_PATH` can point at an
+  externally provisioned real Chromium (with its library path). This is not
+  a runtime dependency; the standard installer remains preferred. The local
+  fixture network grants only loopback app/stub access and does not alter the
+  shipped CSP or hold browser authentication permanently pending.
 - `FRESH_SHOTS=1` **clears the evidence dir first** — give parallel or
   successive runs their own `SHOTS_DIR` or earlier captures are lost.
 

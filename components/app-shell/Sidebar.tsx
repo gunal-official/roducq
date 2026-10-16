@@ -168,7 +168,7 @@ export function Sidebar({
                 onClick={() => toggleSection(group.label)}
                 aria-expanded={!isCollapsed}
                 aria-controls={navId}
-                className="mb-0.5 hidden min-h-11 w-full items-center gap-2 rounded-control px-2 text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground/80 transition-colors duration-150 hover:bg-muted/70 hover:text-text desk:flex"
+                className="mb-0.5 hidden min-h-11 w-full items-center gap-2 rounded-control px-2 text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground/80 transition-colors duration-150 hover:bg-muted/70 hover:text-text desk:flex"
               >
                 <span className="shrink-0">{group.label}</span>
                 <span aria-hidden="true" className="h-px flex-1 bg-border" />

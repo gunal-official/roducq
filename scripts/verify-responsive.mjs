@@ -27,6 +27,7 @@ import net from "node:net";
 import { dirname, join, resolve } from "node:path";
 import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
+import { assertRouteCoverage, inspectPage, inspectScrollGeometry, installPerformanceObserver, installFixtureNetwork, capturePage, verifyPhaseFInteractions } from "./responsive/phase-f.mjs";
 
 const require = createRequire(import.meta.url);
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -101,11 +102,15 @@ const U = {
   contract: "00000000-0000-0000-0000-000000000116",
   version: "00000000-0000-0000-0000-000000000118",
   versionOld: "00000000-0000-0000-0000-000000000119",
+  publicInvoice: "00000000-0000-0000-0000-000000000170",
+  publicShare: "00000000-0000-0000-0000-000000000171",
+  publicInvite: "00000000-0000-0000-0000-000000000172",
 };
 
 const PAGES = [
   { slug: "marketing-home", url: "/", auth: false },
   { slug: "pipeline", url: "/", auth: true },
+  { slug: "dashboard-direct", url: "/dashboard", auth: true },
   { slug: "marketing-about", url: "/about", auth: false },
   { slug: "marketing-pricing", url: "/pricing", auth: false },
   { slug: "marketing-vs-notion", url: "/vs/notion", auth: false },
@@ -123,6 +128,11 @@ const PAGES = [
   { slug: "invite-token", url: "/invite/tok-inv-1", auth: false },
   { slug: "share-token", url: "/share/tok-share-1", auth: false },
   { slug: "invoice-token", url: "/invoice/tok-bill-1", auth: false },
+  // Keep the unavailable-link probes above AND render real public fixtures.
+  // Earlier non-UUID URLs short-circuited before their document RPCs.
+  { slug: "public-invoice", url: `/invoice/${U.publicInvoice}`, auth: false, expected: "Harbor Lane — phase 1" },
+  { slug: "public-update", url: `/share/${U.publicShare}`, auth: false, expected: "Weekly update — week 3" },
+  { slug: "public-invite", url: `/invite/${U.publicInvite}`, auth: false, expected: "Join Atelier North" },
   { slug: "onboarding", url: "/onboarding", auth: true },
   { slug: "intake", url: "/intake", auth: true },
   { slug: "intake-inbox", url: "/intake/inbox", auth: true },
@@ -143,6 +153,14 @@ const PAGES = [
   { slug: "reports", url: "/reports", auth: true },
   { slug: "settings", url: "/settings", auth: true },
   { slug: "search", url: "/search?q=Harbor", auth: true },
+  { slug: "not-found", url: "/a-page-that-does-not-exist", auth: false, status: 404, expected: "This page isn’t here" },
+  { slug: "brief-unavailable", url: "/briefs/not-a-uuid", auth: true, expected: "Brief not found" },
+  { slug: "proposal-unavailable", url: "/proposals/not-a-uuid", auth: true, expected: "Proposal not found" },
+  { slug: "version-unavailable", url: `/proposals/${U.proposal}/versions/not-a-uuid`, auth: true, expected: "Version not found" },
+  { slug: "plan-unavailable", url: "/plans/not-a-uuid", auth: true, expected: "Plan not found" },
+  { slug: "update-unavailable", url: "/updates/not-a-uuid", auth: true, expected: "Update not found" },
+  { slug: "invoice-unavailable", url: "/invoices/not-a-uuid", auth: true, expected: "Invoice not found" },
+  { slug: "contract-unavailable", url: "/contracts/not-a-uuid", auth: true, expected: "Contract not found" },
 ];
 const COMPLEX = new Set(["invoice-detail", "time", "reports", "settings", "search"]);
 
@@ -193,7 +211,7 @@ const INV_ITEMS = [
   { id: "i3", description: "Brand guidelines document", quantity: 1, unit_amount_cents: 38000 },
 ];
 const INVOICE = { id: U.invoice, workspace_id: WS.id, invoice_number: 7, title: "Harbor Lane — phase 1", client_name: "Harbor Lane Studio", status: "sent", items: INV_ITEMS, tax_percent: 20, notes: "Net 14 — please pay within 14 days of the due date. Bank transfer preferred.", due_date: dayOffset(20), sent_at: NOW, paid_at: null, created_at: NOW, updated_at: NOW };
-const INVOICE_LINK = { id: "il-1", workspace_id: WS.id, invoice_id: U.invoice, token: "tok-bill-1", created_at: NOW, revoked_at: null };
+const INVOICE_LINK = { id: "il-1", workspace_id: WS.id, invoice_id: U.invoice, token: U.publicInvoice, created_at: NOW, revoked_at: null };
 const CONTRACT = { id: U.contract, workspace_id: WS.id, brief_id: U.brief, client_name: "Harbor Lane Studio", title: "Harbor Lane — engagement letter", status: "sent", terms: "Scope: brand identity refresh as per the attached proposal. Fee: £12,000 excl. VAT, invoiced 50% up front and 50% on delivery. Payment: net 14. Cancellation: 30 days notice in writing. Exclusivity: 90 days post-delivery within the hospitality sector.", expires_on: dayOffset(42), signed_by: "Dana Whitfield (Brightloop)", sent_at: NOW, signed_at: null, created_at: NOW, updated_at: NOW };
 let TE_SEQ = 0;
 const TIME_ENTRIES = [
@@ -218,10 +236,10 @@ const INTEGRATION_IMPORTS = [
   { id: "imp-1", workspace_id: WS.id, provider: "slack", title: "Kickoff thread", author: "Dana Whitfield", snippet: "Can you take the packaging refresh on as well?", occurred_at: "2026-09-25T09:00:00Z", attached_brief_id: null },
   { id: "imp-2", workspace_id: WS.id, provider: "notion", title: "Brand audit — Q3", author: "Notion", snippet: "Audit notes and the competitor set for the rebrand.", occurred_at: "2026-09-24T11:00:00Z", attached_brief_id: null },
 ];
-const INVITES = [{ id: "inv-1", email: "new-teammate@studio.com", token: "tok-inv-1", expires_at: "2026-10-02T10:00:00Z", created_at: NOW }];
+const INVITES = [{ id: "inv-1", email: "new-teammate@studio.com", token: U.publicInvite, expires_at: `${dayOffset(7)}T10:00:00Z`, created_at: NOW }];
 const SHARED_DOC = { title: UPDATE_ROW.title, client_name: UPDATE_ROW.client_name, status: "draft", body: UPDATE_ROW.body, updated_at: NOW };
 const SHARED_INVOICE = { invoice_number: 7, title: INVOICE.title, client_name: INVOICE.client_name, status: INVOICE.status, items: INV_ITEMS, tax_percent: 20, notes: INVOICE.notes, due_date: INVOICE.due_date, sent_at: NOW, paid_at: null, workspace_name: WS.name };
-const INVITE_PREVIEW = { workspace_name: WS.name, email: "new-teammate@studio.com", expires_at: "2026-10-02T10:00:00Z" };
+const INVITE_PREVIEW = { workspace_name: WS.name, email: "new-teammate@studio.com", expires_at: `${dayOffset(7)}T10:00:00Z` };
 
 function b64url(o) { return Buffer.from(JSON.stringify(o)).toString("base64url"); }
 function jwt(sub) { return [b64url({ alg: "HS256", typ: "JWT" }), b64url({ sub, aud: "authenticated", exp: 2000000000, iat: 1750000000 }), "stub"].join("."); }
@@ -237,6 +255,12 @@ function subFrom(req) {
 function startStub() {
   return new Promise((resolveServer, reject) => {
     const server = http.createServer(async (req, res) => {
+      // Browser-side auth (onboarding) uses the same real stub as SSR.
+      // This is an in-process fixture, never a production CORS policy.
+      res.setHeader("Access-Control-Allow-Origin", BASE || "null");
+      res.setHeader("Access-Control-Allow-Headers", "authorization, apikey, content-type, x-client-info, x-supabase-api-version");
+      res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, OPTIONS");
+      if (req.method === "OPTIONS") { res.writeHead(204); return res.end(); }
       const url = new URL(req.url, `http://127.0.0.1:${STUB_PORT}`);
       const p = url.pathname;
       const sub = subFrom(req);
@@ -607,7 +631,9 @@ async function main() {
   });
 
   const results = [];
+  const phaseFResults = [];
   let failures = 0;
+  if (process.env.PHASE_F === "1") assertRouteCoverage(ROOT, PAGES);
   const logStream = createWriteStream(join(SHOTS, "run.log"), { flags: "w" });
   const say = (line) => { const t = new Date().toISOString().slice(11, 19); console.log(t + " " + line); try { logStream.write(t + " " + line + "\n"); } catch {} };
   const authCookie = {
@@ -634,6 +660,13 @@ async function main() {
       if (pg.auth) await ctx.addCookies([pg.slug === "onboarding" ? authCookieNew : authCookie]);
       const page = await ctx.newPage();
       const pageErrors = [];
+      await installFixtureNetwork(page, BASE, `http://127.0.0.1:${STUB_PORT}`);
+      if (process.env.PHASE_F === "1") {
+        await installPerformanceObserver(page);
+        page.on("console", (message) => {
+          if (message.type() === "error" && /hydrat|Minified React error|did not match/i.test(message.text())) pageErrors.push(message.text());
+        });
+      }
       page.on("pageerror", (e) => pageErrors.push(String(e).slice(0, 120)));
       try {
         await page.goto(BASE + pg.url, { waitUntil: "load", timeout: 15000 });
@@ -663,6 +696,14 @@ async function main() {
         .catch(() => {});
       let m = null;
       try { m = await page.evaluate(METRICS_FN); } catch (e) { pageErrors.push("eval:" + String(e).slice(0, 80)); }
+      if (process.env.PHASE_F === "1") {
+        const f = await inspectPage(page, pg, w, process.env.DARK ? "dark" : "light");
+        f.scrollGeometry = await inspectScrollGeometry(page, METRICS_FN);
+        if (f.scrollGeometry.findings.length) f.failures.push(`scroll geometry: ${JSON.stringify(f.scrollGeometry.findings.slice(0, 3))}`);
+        phaseFResults.push(f);
+        if (f.failures.length) failures++;
+        if (f.failures.length) say(`✗    phase-f ${pg.slug}-${w}: ${f.failures.join("; ")}`);
+      }
       const shot = (dir, name) => page.screenshot({ path: join(SHOTS, dir, String(w), `${name}.png`), fullPage: COMPLEX.has(pg.slug) && (w === 320 || w === 768) }).catch(() => {});
       mkdirSync(join(SHOTS, "pages", String(w)), { recursive: true }); await shot("pages", pg.slug);
       if (COMPLEX.has(pg.slug)) { mkdirSync(join(SHOTS, "complex", String(w)), { recursive: true }); await shot("complex", pg.slug); }
@@ -691,6 +732,9 @@ async function main() {
         }
       }
 
+      if (process.env.PHASE_F === "1" && process.env.PHASE_F_SHOTS_DIR && [375, 768, 1440].includes(w)) {
+        await capturePage(page, pg, w, process.env.DARK ? "dark" : "light", process.env.PHASE_F_SHOTS_DIR);
+      }
       const bad = !m || (m.overflowX > 0 || m.offenders.length > 0 || m.cutoffs.length > 0 || m.fixed.some((f) => f.escapes));
       const tapGate = !!m && m.small.length > 0;
       if (bad || tapGate || pageErrors.length) failures += 1;
@@ -702,6 +746,7 @@ async function main() {
       const fmt = (o, k) => (o && typeof o[k] === "number" && Number.isFinite(o[k]) ? `${o[k]}px (${o.label || o.tag})` : "n/a");
       const shortest = `minH=${fmt(m?.minH, "h")} minW=${fmt(m?.minW, "w")}`;
       say(`${flag} ${String(w).padStart(4)} ${pg.slug.padEnd(18)} overflowX=${m?.overflowX ?? "?"} off=${m?.offenders.length ?? "?"} cut=${m?.cutoffs.length ?? "?"} tap<44=${m?.small.length ?? "?"} shortestControl=${shortest}${pageErrors.length ? ` ERR:${pageErrors[0]}` : ""}`);
+      await page.close();
     }
     await ctx.close();
   }
@@ -799,10 +844,10 @@ async function main() {
       await page.addStyleTag({ content: ".animate-route-in { animation-duration: 800ms !important; }" });
       await page.goto(`${BASE}/briefs`, { waitUntil: "load", timeout: 20000 });
       await page.waitForTimeout(400);
-      await page.click('nav a[href="/proposals"]', { timeout: 8000 }).catch(async () => {
+      await page.locator('nav a[href="/proposals"]:visible').first().click({ timeout: 8000 }).catch(async () => {
         await page.click('button[aria-label="Open menu"]');
         await page.waitForTimeout(250);
-        await page.click('nav[aria-label="Primary"] a[href="/proposals"]', { timeout: 8000 });
+        await page.getByRole("dialog", { name: "Workspace navigation" }).locator('a[href="/proposals"]').click({ timeout: 8000 });
       });
       await page.waitForTimeout(150);
       await page.screenshot({ path: join(dir, "route-in-00.png") });
@@ -1022,7 +1067,7 @@ async function main() {
           const links = await page.$$eval('nav[aria-label="Primary"] a', (as) => as.map((a) => a.getAttribute("href")));
           ok = m.overflowX === 0 && m.small.length === 0 && links.length >= 9 && !x.fixed.some((f) => f.escapes);
           await record("drawer-open", ok, m);
-          await page.click('nav[aria-label="Primary"] a[href="/proposals"]', { timeout: 8000 });
+          await page.getByRole("dialog", { name: "Workspace navigation" }).locator('a[href="/proposals"]').click({ timeout: 8000 });
           await page.waitForLoadState("load");
           await page.waitForTimeout(250);
           const landed = new URL(page.url()).pathname.startsWith("/proposals");
@@ -1543,6 +1588,7 @@ async function main() {
     mkdirSync(DIR, { recursive: true });
     const FORMA_SHOTS = [
       { slug: "pipeline", url: "/", auth: true },
+  { slug: "dashboard-direct", url: "/dashboard", auth: true },
       { slug: "login", url: "/login", auth: false },
       { slug: "signup", url: "/signup", auth: false },
       { slug: "onboarding", url: "/onboarding", auth: true, fresh: true },
@@ -1607,31 +1653,16 @@ async function main() {
         }
         await ctx.close();
 
-        // /onboarding gets its own context: the screen verifies the session
-        // in the browser and bounces to /login when it cannot, and in this
-        // sandbox the app's CSP (connect-src 'self' https://*.supabase.co)
-        // blocks the call to the local Supabase stub — so the bounce always
-        // fires and the screen can never be photographed. Holding that one
-        // request open keeps the page on /onboarding so the layout can be
-        // captured. The app itself is untouched.
+        // A fresh session with real browser getUser against the local stub.
+        // No permanently pending fetch: this evidence includes a usable form.
         const onbCtx = await browser.newContext({
           viewport: { width: w, height: h },
           deviceScaleFactor: scale,
           colorScheme: scheme,
         });
-        await onbCtx.addInitScript(() => {
-          const orig = window.fetch;
-          window.fetch = (input, init) => {
-            const url =
-              typeof input === "string" ? input : (input && input.url) || "";
-            if (url.indexOf("/auth/v1/user") !== -1) {
-              return new Promise(() => {});
-            }
-            return orig(input, init);
-          };
-        });
         await onbCtx.addCookies([authCookieNew]);
         const onbPage = await onbCtx.newPage();
+        await installFixtureNetwork(onbPage, BASE, `http://127.0.0.1:${STUB_PORT}`);
         try {
           await onbPage.goto(`${BASE}/onboarding`, { waitUntil: "load", timeout: 25000 });
           await onbPage.waitForTimeout(900);
@@ -1671,23 +1702,12 @@ async function main() {
           colorScheme: scheme,
         });
         if (shot.fresh) {
-          // /onboarding verifies the session in the browser and bounces to
-          // /login when it cannot; in this sandbox the app's CSP blocks the
-          // call to the local Supabase stub, so the bounce always fires.
-          // Holding that one request open keeps the screen photographable.
-          await ctx.addInitScript(() => {
-            const orig = window.fetch;
-            window.fetch = (input, init) => {
-              const url = typeof input === "string" ? input : (input && input.url) || "";
-              if (url.indexOf("/auth/v1/user") !== -1) return new Promise(() => {});
-              return orig(input, init);
-            };
-          });
           await ctx.addCookies([authCookieNew]);
         } else if (shot.auth) {
           await ctx.addCookies([authCookie]);
         }
         const page = await ctx.newPage();
+        await installFixtureNetwork(page, BASE, `http://127.0.0.1:${STUB_PORT}`);
         try {
           await page.goto(`${BASE}${shot.url}`, { waitUntil: "load", timeout: 25000 });
           await page.waitForTimeout(900);
@@ -1746,6 +1766,15 @@ async function main() {
     }
   }
 
+  if (process.env.PHASE_F === "1") {
+    if (process.env.PHASE_F_INTERACTIONS === "1") {
+      const checks = await verifyPhaseFInteractions({ browser, base: BASE, authCookie, authCookieNew, pages: PAGES, metrics: METRICS_FN, stubOrigin: `http://127.0.0.1:${STUB_PORT}`, shots: process.env.PHASE_F_SHOTS_DIR || SHOTS });
+      failures += checks.filter((check) => !check.ok).length;
+      writeFileSync(join(SHOTS, "phase-f-interactions.json"), JSON.stringify(checks, null, 2));
+      for (const check of checks) say(`${check.ok ? "✓" : "✗"}    ${check.name}${check.error ? `: ${check.error}` : ""}`);
+    }
+    writeFileSync(join(SHOTS, "phase-f-quality.json"), JSON.stringify(phaseFResults, null, 2));
+  }
   writeFileSync(join(SHOTS, `summary${SUM_SUFFIX}.json`), JSON.stringify({ mode: MODE, results }, null, 2));
   // Full per-page metrics (overflow, cut-offs, escaping fixed chrome, the
   // sub-44 target list and the 43–43.99px near-miss list) as their own

@@ -1,0 +1,83 @@
+
+> roducq@0.1.0 build
+> next build
+
+▲ Next.js 16.3.6 (Turbopack)
+✓ Running next.config.mjs took 264ms
+- Experiments (use with caution):
+  · clientTraceMetadata
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 5.7s
+  Running next.config.js provided runAfterProductionCompile ...
+✓ Completed runAfterProductionCompile in 134ms
+  Running TypeScript ...
+  Finished TypeScript in 11.9s ...
+  Collecting page data using 1 worker ...
+  Generating static pages using 1 worker (0/33) ...
+  Generating static pages using 1 worker (8/33)
+  Generating static pages using 1 worker (16/33)
+  Generating static pages using 1 worker (24/33)
+✓ Generating static pages using 1 worker (33/33) in 658ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about
+├ ƒ /api/cron/email
+├ ƒ /api/cron/webhooks
+├ ƒ /api/email/callback
+├ ƒ /api/email/connect
+├ ƒ /api/intake/extract
+├ ƒ /api/notion/callback
+├ ƒ /api/notion/connect
+├ ƒ /api/pdf/[kind]/[id]
+├ ƒ /api/pdf/reports
+├ ƒ /api/pdf/shared/invoice/[token]
+├ ƒ /api/pdf/time
+├ ƒ /api/slack/callback
+├ ƒ /api/slack/connect
+├ ƒ /api/stripe/webhook
+├ ƒ /auth/callback
+├ ƒ /briefs
+├ ƒ /briefs/[id]
+├ ƒ /contracts
+├ ƒ /contracts/[id]
+├ ƒ /dashboard
+├ ○ /icon.svg
+├ ƒ /intake
+├ ƒ /intake/inbox
+├ ƒ /invite/[token]
+├ ƒ /invoice/[token]
+├ ƒ /invoices
+├ ƒ /invoices/[id]
+├ ○ /login
+├ ○ /onboarding
+├ ƒ /plans
+├ ƒ /plans/[id]
+├ ○ /pricing
+├ ƒ /proposals
+├ ƒ /proposals/[id]
+├ ƒ /proposals/[id]/versions/[versionId]
+├ ƒ /reports
+├ ƒ /search
+├ ƒ /settings
+├ ƒ /share/[token]
+├ ○ /signup
+├ ƒ /time
+├ ƒ /updates
+├ ƒ /updates/[id]
+├ ○ /vs
+└   /vs/[slug]
+  ├ ● /vs/notion
+  ├ ● /vs/bonsai
+  ├ ● /vs/honeybook
+  └ ● [+6 more paths]
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand

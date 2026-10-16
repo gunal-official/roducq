@@ -22,6 +22,7 @@ import {
 
 import { SectionCard } from "@/components/ui/page";
 import { ReportSplitArt } from "@/components/workflow/FinancialArt";
+import { proportionalWidth } from "@/components/workflow/chart-geometry";
 import { WorkBand } from "@/components/workflow/WorkCard";
 import { formatDuration, formatMoney } from "@/lib/utils";
 import type { Report } from "@/lib/reports";
@@ -115,7 +116,7 @@ function TimeSection({ report }: { report: Report }) {
 
         {time.by_brief.length > 0 && (
           <div className="border-t border-border pt-4">
-            <h3 className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+            <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
               This month, by brief
             </h3>
             {/* Every bar carries its label and value as text; the rail is
@@ -137,9 +138,7 @@ function TimeSection({ report }: { report: Report }) {
                       className="report-chart-fill"
                       style={{
                         width: `${
-                          maxMinutes > 0
-                            ? Math.max(2, Math.round((bar.minutes / maxMinutes) * 100))
-                            : 0
+                          proportionalWidth(bar.minutes, maxMinutes)
                         }%`,
                       }}
                     />

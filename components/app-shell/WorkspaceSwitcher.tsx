@@ -116,7 +116,7 @@ export function WorkspaceSwitcher({
             <span className="block truncate text-sm font-semibold leading-tight text-text">
               {activeName}
             </span>
-            <span className="block truncate text-[11px] leading-tight text-muted-foreground">
+            <span className="block truncate text-xs leading-tight text-muted-foreground">
               Your workspace
             </span>
           </span>
@@ -210,7 +210,7 @@ export function WorkspaceSwitcher({
               </span>
               <span className="min-w-0 flex-1">
                 <SelectValue className="block truncate text-sm font-semibold leading-tight text-text" />
-                <span className="block truncate text-[11px] leading-tight text-muted-foreground">
+                <span className="block truncate text-xs leading-tight text-muted-foreground">
                   Switch workspace
                 </span>
               </span>

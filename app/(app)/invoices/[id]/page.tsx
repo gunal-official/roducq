@@ -103,6 +103,7 @@ function MetaRow({
 function NotFoundState() {
   return (
     <EmptyState
+      headingAs="h1"
       icon={Receipt}
       title="Invoice not found"
       description="This invoice doesn’t exist — or it belongs to a workspace you’re not a member of."
@@ -322,7 +323,7 @@ export default async function InvoiceDetailPage({
               meta={invoiceNumberLabel(invoice.invoice_number)}
               footer={
                 <div className="space-y-1.5">
-                  <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                     Notes
                   </p>
                   <p className="whitespace-pre-wrap text-sm leading-relaxed">
@@ -333,7 +334,7 @@ export default async function InvoiceDetailPage({
             >
               <div className="flex flex-wrap items-start justify-between gap-4">
                 <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                     Billed to
                   </p>
                   <p className="mt-1 font-display text-lg font-bold">

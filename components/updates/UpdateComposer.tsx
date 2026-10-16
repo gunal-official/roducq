@@ -33,7 +33,7 @@ import type { Template } from "@/lib/types/template";
 
 function FieldLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+    <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
       {children}
     </p>
   );
@@ -121,7 +121,7 @@ export function UpdateComposer({
               </SelectContent>
             </Select>
           ) : (
-            <span className="text-[11px] text-muted-foreground">
+            <span className="text-xs text-muted-foreground">
               No templates yet —{" "}
               <Link
                 href="/settings"

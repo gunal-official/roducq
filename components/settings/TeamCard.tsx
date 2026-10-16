@@ -142,14 +142,14 @@ function MemberRow({
       aria-hidden={leaving || undefined}
       className={`py-3 first:pt-0 last:pb-0${rowClass ? ` ${rowClass}` : ""}`}
     >
-      <div className="flex items-center gap-3">
+      <div className="flex flex-wrap items-center gap-3">
         <Avatar className="h-8 w-8 shrink-0">
           <AvatarFallback className="bg-accent text-xs font-semibold text-accent-foreground">
             {initials}
           </AvatarFallback>
         </Avatar>
-        <div className="min-w-0 flex-1">
-          <p className="truncate text-sm font-medium leading-snug">
+        <div className="min-w-0 flex-[1_1_8rem]">
+          <p className="break-words text-sm font-medium leading-snug">
             {member.full_name ?? "Unnamed user"}
           </p>
           <p className="text-xs text-muted-foreground">
@@ -160,143 +160,176 @@ function MemberRow({
           {roleLabel}
         </Badge>
 
-        {roleOptions.length > 0 && !confirmingRole && !confirming && (
-          <select
-            className="min-h-11 shrink-0 rounded-md border border-border bg-card px-2 py-1 text-xs text-muted-foreground"
-            value=""
-            onChange={(e) => {
-              const value = e.target.value;
-              if (value === "owner" || value === "member" || value === "viewer") {
-                setPendingRole(value);
-                setConfirmingRole(true);
-              }
-            }}
-            aria-label={`Change role for ${member.full_name ?? "member"}`}
-          >
-            <option value="">Change role…</option>
-            {roleOptions.map((r) => (
-              <option key={r} value={r}>
-                {r === "viewer" ? "Viewer" : r === "owner" ? "Owner" : "Member"}
-              </option>
-            ))}
-          </select>
-        )}
+        {(roleOptions.length > 0 || removable || leavable) && (
+          <div className="flex w-full flex-wrap items-center gap-2 sm:w-auto">
+            {roleOptions.length > 0 && !confirmingRole && !confirming && (
+              <select
+                className="min-h-11 shrink-0 rounded-md border border-border bg-card px-2 py-1 text-xs text-muted-foreground"
+                value=""
+                onChange={(e) => {
+                  const value = e.target.value;
+                  if (
+                    value === "owner" ||
+                    value === "member" ||
+                    value === "viewer"
+                  ) {
+                    setPendingRole(value);
+                    setConfirmingRole(true);
+                  }
+                }}
+                aria-label={`Change role for ${member.full_name ?? "member"}`}
+              >
+                <option value="">Change role…</option>
+                {roleOptions.map((r) => (
+                  <option key={r} value={r}>
+                    {r === "viewer"
+                      ? "Viewer"
+                      : r === "owner"
+                        ? "Owner"
+                        : "Member"}
+                  </option>
+                ))}
+              </select>
+            )}
 
-        {removable && !confirming && !confirmingRole && (
-          <Button
-            type="button"
-            variant="ghost"
-            size="sm"
-            className="shrink-0 text-muted-foreground hover:text-error"
-            onClick={() => setConfirming(true)}
-            aria-label={`Remove ${member.full_name ?? "member"}`}
-          >
-            <Trash2 className="h-4 w-4"  aria-hidden="true" />
-          </Button>
-        )}
+            {removable && !confirming && !confirmingRole && (
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                className="shrink-0 text-muted-foreground hover:text-error"
+                onClick={() => setConfirming(true)}
+                aria-label={`Remove ${member.full_name ?? "member"}`}
+              >
+                <Trash2 className="h-4 w-4" aria-hidden="true" />
+              </Button>
+            )}
 
-        {pendingRole && confirmingRole && (
-          <div className="flex shrink-0 items-center gap-1.5">
-            <span className="text-xs text-muted-foreground">
-              Make {pendingRole === "viewer" ? "viewer" : pendingRole}?
-            </span>
-            <Button
-              type="button"
-              variant="ghost"
-              size="sm"
-              onClick={() => {
-                setConfirmingRole(false);
-                setPendingRole(null);
-              }}
-              disabled={rolePending}
-            >
-              Cancel
-            </Button>
-            <Button
-              type="button"
-              variant={pendingRole === "owner" ? "default" : "destructive"}
-              size="sm"
-              onClick={handleRoleChange}
-              disabled={rolePending}
-            >
-              {rolePending && (
-                <Loader2 className="mr-1.5 h-4 w-4 animate-spin"  aria-hidden="true" />
-              )}
-              Make {pendingRole === "viewer" ? "viewer" : pendingRole}
-            </Button>
-          </div>
-        )}
+            {pendingRole && confirmingRole && (
+              <div className="flex min-w-0 max-w-full flex-wrap items-center gap-1.5">
+                <span className="text-xs text-muted-foreground">
+                  Make {pendingRole === "viewer" ? "viewer" : pendingRole}?
+                </span>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    setConfirmingRole(false);
+                    setPendingRole(null);
+                  }}
+                  disabled={rolePending}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  type="button"
+                  variant={pendingRole === "owner" ? "default" : "destructive"}
+                  size="sm"
+                  onClick={handleRoleChange}
+                  disabled={rolePending}
+                >
+                  {rolePending && (
+                    <Loader2
+                      className="mr-1.5 h-4 w-4 animate-spin"
+                      aria-hidden="true"
+                    />
+                  )}
+                  Make {pendingRole === "viewer" ? "viewer" : pendingRole}
+                </Button>
+              </div>
+            )}
 
-        {removable && confirming && (
-          <div className="flex shrink-0 items-center gap-1.5">
-            <span className="text-xs text-muted-foreground">Remove?</span>
-            <Button
-              type="button"
-              variant="ghost"
-              size="sm"
-              onClick={() => setConfirming(false)}
-              disabled={pending}
-            >
-              Cancel
-            </Button>
-            <Button
-              type="button"
-              variant="destructive"
-              size="sm"
-              onClick={handleRemove}
-              disabled={pending}
-            >
-              {pending && (
-                <Loader2 className="mr-1.5 h-4 w-4 animate-spin"  aria-hidden="true" />
-              )}
-              Remove
-            </Button>
-          </div>
-        )}
+            {removable && confirming && (
+              <div className="flex min-w-0 max-w-full flex-wrap items-center gap-1.5">
+                <span className="text-xs text-muted-foreground">Remove?</span>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setConfirming(false)}
+                  disabled={pending}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  type="button"
+                  variant="destructive"
+                  size="sm"
+                  onClick={handleRemove}
+                  disabled={pending}
+                >
+                  {pending && (
+                    <Loader2
+                      className="mr-1.5 h-4 w-4 animate-spin"
+                      aria-hidden="true"
+                    />
+                  )}
+                  Remove
+                </Button>
+              </div>
+            )}
 
-        {leavable && !confirmingLeave && (
-          <Button
-            type="button"
-            variant="ghost"
-            size="sm"
-            className="shrink-0 text-muted-foreground hover:text-foreground"
-            onClick={() => setConfirmingLeave(true)}
-            aria-label="Leave workspace"
-          >
-            <LogOut className="h-4 w-4"  aria-hidden="true" />
-          </Button>
-        )}
+            {leavable && !confirmingLeave && (
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                className="shrink-0 text-muted-foreground hover:text-foreground"
+                onClick={() => setConfirmingLeave(true)}
+                aria-label="Leave workspace"
+              >
+                <LogOut className="h-4 w-4" aria-hidden="true" />
+              </Button>
+            )}
 
-        {leavable && confirmingLeave && (
-          <div className="flex shrink-0 items-center gap-1.5">
-            <span className="text-xs text-muted-foreground">Leave?</span>
-            <Button
-              type="button"
-              variant="ghost"
-              size="sm"
-              onClick={() => setConfirmingLeave(false)}
-              disabled={leavePending}
-            >
-              Cancel
-            </Button>
-            <Button
-              type="button"
-              variant="destructive"
-              size="sm"
-              onClick={handleLeave}
-              disabled={leavePending}
-            >
-              {leavePending && (
-                <Loader2 className="mr-1.5 h-4 w-4 animate-spin"  aria-hidden="true" />
-              )}
-              Leave workspace
-            </Button>
+            {leavable && confirmingLeave && (
+              <div className="flex min-w-0 max-w-full flex-wrap items-center gap-1.5">
+                <span className="text-xs text-muted-foreground">Leave?</span>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setConfirmingLeave(false)}
+                  disabled={leavePending}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  type="button"
+                  variant="destructive"
+                  size="sm"
+                  onClick={handleLeave}
+                  disabled={leavePending}
+                >
+                  {leavePending && (
+                    <Loader2
+                      className="mr-1.5 h-4 w-4 animate-spin"
+                      aria-hidden="true"
+                    />
+                  )}
+                  Leave workspace
+                </Button>
+              </div>
+            )}
           </div>
         )}
       </div>
-      {error && <p className="mt-1 text-xs text-error">{error}</p>}
-      {roleError && <p className="mt-1 text-xs text-error">{roleError}</p>}
-      {leaveError && <p className="mt-1 text-xs text-error">{leaveError}</p>}
+      {error && (
+        <p role="alert" className="mt-1 text-xs text-error">
+          {error}
+        </p>
+      )}
+      {roleError && (
+        <p role="alert" className="mt-1 text-xs text-error">
+          {roleError}
+        </p>
+      )}
+      {leaveError && (
+        <p role="alert" className="mt-1 text-xs text-error">
+          {leaveError}
+        </p>
+      )}
     </li>
   );
 }
@@ -344,9 +377,9 @@ function InviteRow({
 
   return (
     <li className="py-3 first:pt-0 last:pb-0">
-      <div className="flex items-center justify-between gap-3">
-        <div className="min-w-0">
-          <p className="truncate text-sm font-medium leading-snug">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="min-w-0 flex-[1_1_8rem]">
+          <p className="break-words text-sm font-medium leading-snug">
             {invite.email}
           </p>
           <p className="text-xs text-muted-foreground">
@@ -365,9 +398,9 @@ function InviteRow({
               aria-label={`Copy invite link for ${invite.email}`}
             >
               {copied ? (
-                <Check className="h-4 w-4"  aria-hidden="true" />
+                <Check className="h-4 w-4" aria-hidden="true" />
               ) : (
-                <Copy className="h-4 w-4"  aria-hidden="true" />
+                <Copy className="h-4 w-4" aria-hidden="true" />
               )}
             </Button>
             <Button
@@ -378,13 +411,13 @@ function InviteRow({
               onClick={() => setConfirming(true)}
               aria-label={`Revoke invite for ${invite.email}`}
             >
-              <Ban className="h-4 w-4"  aria-hidden="true" />
+              <Ban className="h-4 w-4" aria-hidden="true" />
             </Button>
           </div>
         )}
 
         {confirming && (
-          <div className="flex shrink-0 items-center gap-1.5">
+          <div className="flex min-w-0 max-w-full flex-wrap items-center gap-1.5">
             <span className="text-xs text-muted-foreground">Revoke?</span>
             <Button
               type="button"
@@ -403,7 +436,10 @@ function InviteRow({
               disabled={pending}
             >
               {pending && (
-                <Loader2 className="mr-1.5 h-4 w-4 animate-spin"  aria-hidden="true" />
+                <Loader2
+                  className="mr-1.5 h-4 w-4 animate-spin"
+                  aria-hidden="true"
+                />
               )}
               Revoke
             </Button>
@@ -413,7 +449,11 @@ function InviteRow({
       {origin && (
         <p className="mt-1 truncate text-xs text-muted-foreground">{url}</p>
       )}
-      {error && <p className="mt-1 text-xs text-error">{error}</p>}
+      {error && (
+        <p role="alert" className="mt-1 text-xs text-error">
+          {error}
+        </p>
+      )}
     </li>
   );
 }
@@ -442,8 +482,6 @@ export function TeamCard({
   const router = useRouter();
   const [warning, setWarning] = useState<string | null>(null);
 
-
-
   // The last owner can never be removed (a workspace must keep one
   // owner); every other member's row is removable for owners.
   const ownerCount = members.filter((m) => m.role === "owner").length;
@@ -456,12 +494,12 @@ export function TeamCard({
   // owner / member / viewer — except their own row (self-guard) and the
   // workspace's last owner (every option would demote them).
   const roleOptionsFor = (
-    member: TeamMember
+    member: TeamMember,
   ): Array<"owner" | "member" | "viewer"> => {
     if (!isOwner || member.user_id === currentUserId) return [];
     if (member.role === "owner" && ownerCount === 1) return [];
     return (["owner", "member", "viewer"] as const).filter(
-      (r) => r !== member.role
+      (r) => r !== member.role,
     );
   };
 
@@ -470,7 +508,7 @@ export function TeamCard({
     member.user_id === currentUserId &&
     !(member.role === "owner" && ownerCount === 1);
 
-  const memberRows = useMotionItems(members.map((member) => ({ id: member.user_id, member })), 220, "settings-roster");
+  const memberRows = useMotionItems(members.map((member) => ({ id: member.user_id, member })), 250, "settings-roster");
 
   async function handleCreate(e: React.FormEvent) {
     e.preventDefault();
@@ -528,11 +566,13 @@ export function TeamCard({
         <div className="mt-5 border-t border-border pt-5">
           <p className="text-sm font-medium">Invite a teammate</p>
           <p className="mt-0.5 text-xs text-muted-foreground">
-            They’ll join as a member. The link is emailed to them when
-            SMTP is configured — otherwise copy it below and send it
-            yourself.
+            They’ll join as a member. The link is emailed to them when SMTP is
+            configured — otherwise copy it below and send it yourself.
           </p>
-          <form onSubmit={handleCreate} className="mt-3 flex gap-2">
+          <form
+            onSubmit={handleCreate}
+            className="mt-3 flex flex-col gap-2 sm:flex-row"
+          >
             <Input
               type="email"
               required
@@ -543,14 +583,21 @@ export function TeamCard({
             />
             <Button type="submit" disabled={pending} className="shrink-0">
               {pending ? (
-                <Loader2 className="mr-1.5 h-4 w-4 animate-spin"  aria-hidden="true" />
+                <Loader2
+                  className="mr-1.5 h-4 w-4 animate-spin"
+                  aria-hidden="true"
+                />
               ) : (
-                <UserPlus className="mr-1.5 h-4 w-4"  aria-hidden="true" />
+                <UserPlus className="mr-1.5 h-4 w-4" aria-hidden="true" />
               )}
               Create invite
             </Button>
           </form>
-          {error && <p className="mt-2 text-sm text-error">{error}</p>}
+          {error && (
+            <p role="alert" className="mt-2 text-sm text-error">
+              {error}
+            </p>
+          )}
           {warning && (
             <p className="mt-2 text-sm text-muted-foreground">{warning}</p>
           )}
@@ -562,11 +609,7 @@ export function TeamCard({
               </p>
               <ul className="mt-2 divide-y divide-border rounded-md border border-border px-3">
                 {pendingInvites.map((invite) => (
-                  <InviteRow
-                    key={invite.id}
-                    invite={invite}
-                    origin={origin}
-                  />
+                  <InviteRow key={invite.id} invite={invite} origin={origin} />
                 ))}
               </ul>
             </div>

@@ -25,7 +25,7 @@ export default function MarketingLayout({
         Skip to content
       </a>
       <SiteHeader />
-      <main id="main" className="flex-1">{children}</main>
+      <main id="main" tabIndex={-1} className="flex-1">{children}</main>
       <SiteFooter />
     </div>
   );

@@ -1,0 +1,17 @@
+[
+  {
+    "width": 375,
+    "status": "blocked",
+    "error": "page.goto: net::ERR_CONNECTION_CLOSED at https://forma-visuvate.framer.website/\nCall log:\n  - navigating to \"https://forma-visuvate.framer.website/\", waiting until \"networkidle\"\n"
+  },
+  {
+    "width": 768,
+    "status": "blocked",
+    "error": "page.goto: net::ERR_CONNECTION_CLOSED at https://forma-visuvate.framer.website/\nCall log:\n  - navigating to \"https://forma-visuvate.framer.website/\", waiting until \"networkidle\"\n"
+  },
+  {
+    "width": 1440,
+    "status": "blocked",
+    "error": "page.goto: net::ERR_CONNECTION_CLOSED at https://forma-visuvate.framer.website/\nCall log:\n  - navigating to \"https://forma-visuvate.framer.website/\", waiting until \"networkidle\"\n"
+  }
+]

@@ -7,7 +7,7 @@
  * server props refresh the list.
  */
 
-import { useEffect, useState } from "react";
+import { useId, useState } from "react";
 import { Loader2 } from "lucide-react";
 
 import { createTemplate, updateTemplate } from "@/app/(app)/settings/actions";
@@ -24,13 +24,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import type { Template } from "@/lib/types/template";
 
-function FieldLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
-      {children}
-    </p>
-  );
-}
 
 export function TemplateDialog({
   open,
@@ -42,6 +35,7 @@ export function TemplateDialog({
   /** null/undefined → create mode; a Template → edit mode. */
   template?: Template | null;
 }) {
+  const fieldId = useId();
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [pending, setPending] = useState(false);
@@ -92,8 +86,9 @@ export function TemplateDialog({
         </DialogHeader>
         <div className="space-y-4">
           <div className="space-y-1.5">
-            <FieldLabel>Title</FieldLabel>
+            <label htmlFor={`${fieldId}-title`} className="text-sm font-semibold">Title</label>
             <Input
+              id={`${fieldId}-title`}
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="e.g. Weekly update sign-off"
@@ -101,8 +96,9 @@ export function TemplateDialog({
             />
           </div>
           <div className="space-y-1.5">
-            <FieldLabel>Body</FieldLabel>
+            <label htmlFor={`${fieldId}-body`} className="text-sm font-semibold">Body</label>
             <Textarea
+              id={`${fieldId}-body`}
               value={body}
               onChange={(e) => setBody(e.target.value)}
               placeholder="The text you want to reuse…"
@@ -110,7 +106,7 @@ export function TemplateDialog({
               className="min-h-[180px] text-sm leading-relaxed"
             />
           </div>
-          {error && <p className="text-xs text-error">{error}</p>}
+          {error && <p role="alert" className="text-xs text-error">{error}</p>}
         </div>
         <DialogFooter>
           <Button

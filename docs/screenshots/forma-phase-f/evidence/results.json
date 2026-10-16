@@ -1,0 +1,229 @@
+{
+  "date": "2026-10-16",
+  "base": "8d1e2e99017fc048144e12f35bc5532542b6e6ed",
+  "branch": "arena/a3dd6a33-roducq",
+  "chromium": "153.0.8010.0",
+  "baseline": {
+    "records": 273,
+    "failingRecords": 91,
+    "scheme": "light"
+  },
+  "sweeps": {
+    "light": {
+      "exitCode": 0,
+      "fixtures": 51,
+      "widths": [
+        320,
+        375,
+        414,
+        600,
+        768,
+        1024,
+        1440
+      ],
+      "records": 357,
+      "geometryFailures": 0,
+      "qualityFailures": 0,
+      "scrollPositions": 1135,
+      "scrollFindings": 0,
+      "axeScans": 102,
+      "axeViolations": 0,
+      "incompleteNodes": {
+        "color-contrast": 104
+      },
+      "browserErrors": 0,
+      "maxObservedCLS": 0.01778411865234375,
+      "scriptResourceCountRange": [
+        10,
+        19
+      ],
+      "encodedScriptBytesRange": [
+        156951,
+        297222
+      ]
+    },
+    "dark": {
+      "exitCode": 0,
+      "fixtures": 51,
+      "widths": [
+        320,
+        375,
+        414,
+        600,
+        768,
+        1024,
+        1440
+      ],
+      "records": 357,
+      "geometryFailures": 0,
+      "qualityFailures": 0,
+      "scrollPositions": 1135,
+      "scrollFindings": 0,
+      "axeScans": 102,
+      "axeViolations": 0,
+      "incompleteNodes": {
+        "color-contrast": 104
+      },
+      "browserErrors": 0,
+      "maxObservedCLS": 0.01778411865234375,
+      "scriptResourceCountRange": [
+        10,
+        19
+      ],
+      "encodedScriptBytesRange": [
+        156951,
+        297227
+      ]
+    },
+    "empty": {
+      "exitCode": 0,
+      "fixtures": 51,
+      "widths": [
+        320,
+        375,
+        768,
+        1440
+      ],
+      "records": 204,
+      "geometryFailures": 0,
+      "qualityFailures": 0,
+      "scrollPositions": 630,
+      "scrollFindings": 0,
+      "axeScans": 102,
+      "axeViolations": 0,
+      "incompleteNodes": {
+        "color-contrast": 104
+      },
+      "browserErrors": 0,
+      "maxObservedCLS": 0.014556812119138689,
+      "scriptResourceCountRange": [
+        10,
+        19
+      ],
+      "encodedScriptBytesRange": [
+        156951,
+        297216
+      ]
+    }
+  },
+  "interactions": {
+    "groups": 24,
+    "failures": 0,
+    "modalAxeScans": 16,
+    "onboardingThemeSupplementPassed": true
+  },
+  "tests": {
+    "tests": 831,
+    "suites": 214,
+    "failed": 0,
+    "skipped": 0
+  },
+  "gates": {
+    "test": 0,
+    "lint": 0,
+    "tsc": 0,
+    "build": 0,
+    "db": 0,
+    "pdf": 0,
+    "responsiveLight": 0,
+    "responsiveDark": 0,
+    "responsiveEmpty": 0
+  },
+  "pdf": {
+    "documents": 14,
+    "pages": 20,
+    "overflow": 0,
+    "structure": 0,
+    "content": 0
+  },
+  "originalMetrics": {
+    "unchanged": true,
+    "bytes": 3859,
+    "sha256": "fa4dcdfa9960184f5c651b47ae6125c7294bdf8063b9c50c1d857c1c4e18714c"
+  },
+  "limitations": [
+    "Reference Chromium visual access blocked at 375/768/1440: no visual parity claim",
+    "Axe incomplete contrast nodes remain a manual-review ledger, not automatic passes",
+    "No human screen reader, real-device/virtual-keyboard/forced-colors, live integrations or production-Vercel visual validation",
+    "CLS/resource observations are local/warm, not Lighthouse or field Core Web Vitals",
+    "Source/contract review (not induced production crashes) for loading/recoverable/fatal error boundaries",
+    "13 pre-existing npm vulnerabilities: 10 high, 3 moderate"
+  ],
+  "bundles": {
+    "baseline": {
+      "source": "baseline npm run build before edits (unconfigured environment)",
+      "jsFiles": 49,
+      "jsBytes": 1507148,
+      "fontFiles": [
+        {
+          "file": ".next/static/media/fira_code_latin_wght_normal-s.p.060qjcmg_41f4.woff2",
+          "size": 36276
+        },
+        {
+          "file": ".next/static/media/manrope_latin_wght_normal-s.p.1p_a2k8qd5zhp.woff2",
+          "size": 24836
+        }
+      ]
+    },
+    "after": {
+      "source": "final npm run build, same unconfigured environment as baseline",
+      "jsFiles": 52,
+      "jsBytes": 1537074,
+      "fontFiles": [
+        {
+          "file": ".next/static/media/fira_code_latin_wght_normal-s.p.060qjcmg_41f4.woff2",
+          "size": 36276
+        },
+        {
+          "file": ".next/static/media/manrope_latin_wght_normal-s.p.1p_a2k8qd5zhp.woff2",
+          "size": 24836
+        }
+      ]
+    },
+    "deltaJSBytes": 29926,
+    "deltaPercent": 1.99,
+    "note": "All emitted static JS, uncompressed, not per-route initial load or gzip; fixture production resource observations are separate."
+  },
+  "screenshots": {
+    "unalteredViewportPNGs": 306,
+    "supplementalFullJPGs": 204,
+    "allSixThemeViewportCombinations": 51
+  },
+  "guardSmoke": {
+    "exitCode": 0,
+    "widths": [
+      375,
+      1440
+    ],
+    "records": 102,
+    "scrollPositions": 309,
+    "findings": 0,
+    "interactionGroups": 24,
+    "integratedOnboardingPreferences": {
+      "proof": [
+        {
+          "choice": "dark",
+          "stored": "dark",
+          "dark": true,
+          "authenticatedFormEnabled": true
+        },
+        {
+          "choice": "light",
+          "stored": "light",
+          "dark": false,
+          "authenticatedFormEnabled": true
+        },
+        {
+          "choice": "system",
+          "stored": "system",
+          "dark": false,
+          "authenticatedFormEnabled": true
+        }
+      ],
+      "systemFollowsOS": true,
+      "systemSurvivesReload": true
+    },
+    "maxObservedCLS": 0.0013117769552683468,
+    "note": "Additional real-browser rerun after QA-only redirect guard and onboarding probe integration; no product code changed after the complete sweeps. Not included in the main 714-record result."
+  }
+}

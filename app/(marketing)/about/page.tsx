@@ -2,12 +2,13 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight, MessageSquare, PenLine, Share2, Workflow } from "lucide-react";
 
+import { BriefSourceArt } from "@/components/workflow/ClientWorkArt";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 
 export const metadata: Metadata = {
@@ -38,22 +39,6 @@ const BUILT_TODAY = [
     copy: "Public, revocable share links for updates, plus reusable templates for the messages you send most.",
   },
 ];
-
-function AnimatedOrbit() {
-  return (
-    <svg
-      viewBox="0 0 200 200"
-      className="h-40 w-40 text-accent motion-safe:animate-[spin_12s_linear_infinite]"
-      aria-hidden="true"
-      fill="none"
-    >
-      <circle cx="100" cy="100" r="78" stroke="currentColor" strokeWidth="1.5" strokeDasharray="6 8" opacity="0.4" />
-      <circle cx="100" cy="100" r="52" stroke="currentColor" strokeWidth="1.5" opacity="0.6" />
-      <circle cx="100" cy="100" r="8" fill="currentColor" />
-      <circle cx="178" cy="100" r="6" fill="currentColor" className="motion-safe:animate-pulse" />
-    </svg>
-  );
-}
 
 export default function AboutPage() {
   return (
@@ -92,7 +77,7 @@ export default function AboutPage() {
           </div>
         </div>
         <div className="flex items-center justify-center">
-          <AnimatedOrbit />
+          <div className="marketing-art"><BriefSourceArt /></div>
         </div>
       </section>
 
@@ -108,11 +93,11 @@ export default function AboutPage() {
                   <span className="icon-chip icon-chip-accent h-8 w-8">
                     <Icon className="h-4 w-4" aria-hidden="true" />
                   </span>
-                  <CardTitle className="text-sm">{title}</CardTitle>
+                  <h3 className="font-display text-base font-bold tracking-tight">{title}</h3>
                 </div>
               </CardHeader>
               <CardContent className="p-4 pt-0">
-                <p className="text-xs leading-relaxed text-muted-foreground">
+                <p className="text-sm leading-relaxed text-muted-foreground">
                   {copy}
                 </p>
               </CardContent>

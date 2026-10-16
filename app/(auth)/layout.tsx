@@ -63,9 +63,9 @@ export default function AuthLayout({
       </aside>
 
       {/* Form column */}
-      <div className="flex min-h-dvh items-center justify-center px-4 py-12 sm:px-8">
+      <main id="main" tabIndex={-1} className="flex min-h-dvh items-center justify-center px-4 py-12 sm:px-8">
         {children}
-      </div>
+      </main>
     </div>
   );
 }

@@ -1,0 +1,35 @@
+{
+  "baseline": {
+    "source": "baseline npm run build before edits (unconfigured environment)",
+    "jsFiles": 49,
+    "jsBytes": 1507148,
+    "fontFiles": [
+      {
+        "file": ".next/static/media/fira_code_latin_wght_normal-s.p.060qjcmg_41f4.woff2",
+        "size": 36276
+      },
+      {
+        "file": ".next/static/media/manrope_latin_wght_normal-s.p.1p_a2k8qd5zhp.woff2",
+        "size": 24836
+      }
+    ]
+  },
+  "after": {
+    "source": "final npm run build, same unconfigured environment as baseline",
+    "jsFiles": 52,
+    "jsBytes": 1537074,
+    "fontFiles": [
+      {
+        "file": ".next/static/media/fira_code_latin_wght_normal-s.p.060qjcmg_41f4.woff2",
+        "size": 36276
+      },
+      {
+        "file": ".next/static/media/manrope_latin_wght_normal-s.p.1p_a2k8qd5zhp.woff2",
+        "size": 24836
+      }
+    ]
+  },
+  "deltaJSBytes": 29926,
+  "deltaPercent": 1.99,
+  "note": "All emitted static JS, uncompressed, not per-route initial load or gzip; fixture production resource observations are separate."
+}

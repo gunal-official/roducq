@@ -72,7 +72,7 @@ import type { ContractStatus } from "@/lib/types/contract";
 
 function FieldLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+    <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
       {children}
     </p>
   );
@@ -133,6 +133,7 @@ function SigningFlow({ status }: { status: ContractStatus }) {
 function NotFoundState() {
   return (
     <EmptyState
+      headingAs="h1"
       icon={FileSignature}
       title="Contract not found"
       description="This contract doesn’t exist — or it belongs to a workspace you’re not a member of."

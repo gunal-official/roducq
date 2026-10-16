@@ -26,6 +26,7 @@ export default function AppError({
 
   return (
     <EmptyState
+      headingAs="h1"
       icon={AlertTriangle}
       title="Something went wrong"
       description={

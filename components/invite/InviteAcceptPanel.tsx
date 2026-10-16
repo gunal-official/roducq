@@ -64,7 +64,7 @@ export function InviteAcceptPanel({
         )}
         {pending ? "Joining…" : "Join workspace"}
       </Button>
-      {error && <p className="text-sm text-error">{error}</p>}
+      {error && <p role="alert" className="text-sm text-error">{error}</p>}
       {userEmail && (
         <p className="text-xs text-muted-foreground">
           You’re logged in as {userEmail}.

@@ -155,7 +155,7 @@ export default async function SearchPage({
       {/* The hero band: the refine form is the same plain GET form as the
           topbar, seeded with the current query. Works without JavaScript. */}
       <section className="search-hero" aria-label="Search your workspace">
-        <form action="/search" role="search" className="search-hero-form">
+        <form action="/search" role="search" aria-label="Search workspace" className="search-hero-form">
           <label htmlFor="search-refine" className="forma-kicker">
             Search your workspace
           </label>

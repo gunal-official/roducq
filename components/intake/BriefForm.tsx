@@ -46,7 +46,7 @@ function FieldLabel({
   return (
     <label
       htmlFor={htmlFor}
-      className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground"
+      className="text-xs font-medium uppercase tracking-wider text-muted-foreground"
     >
       {children}
     </label>

@@ -97,7 +97,7 @@ function InvalidState() {
 
 function FieldLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+    <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
       {children}
     </p>
   );
@@ -218,7 +218,7 @@ export default async function PublicInvoicePage({
             rows below (no clipped cells at any width). Rows never split
             across a printed page (break-inside-avoid). */}
         <div className="mt-8">
-          <div className="hidden items-baseline gap-x-4 border-b border-border pb-2 text-[11px] font-medium uppercase tracking-wider text-muted-foreground sm:flex print:flex">
+          <div className="hidden items-baseline gap-x-4 border-b border-border pb-2 text-xs font-medium uppercase tracking-wider text-muted-foreground sm:flex print:flex">
             <p className="min-w-0 flex-1">Description</p>
             <p className="w-12 shrink-0 text-right">Qty</p>
             <p className="w-20 shrink-0 text-right">Unit</p>
@@ -267,7 +267,7 @@ export default async function PublicInvoicePage({
               <dd>{formatMoney(totals.tax_cents)}</dd>
             </div>
             <div className="flex items-baseline justify-between gap-6 border-t border-border pt-2">
-              <dt className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+              <dt className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
                 {isPaid ? "Total paid" : "Amount due"}
               </dt>
               <dd className="font-display text-xl font-bold">
