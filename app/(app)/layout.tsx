@@ -80,6 +80,9 @@ export default async function AppLayout({
           workspaces={context.workspaces}
           activeWorkspaceId={context.id}
           canSeeMoney={context.canSeeMoney}
+          initials={initials}
+          name={fullName}
+          email={user.email ?? ""}
         />
       </div>
       <main
@@ -95,6 +98,9 @@ export default async function AppLayout({
         workspaces={context.workspaces}
         activeWorkspaceId={context.id}
         canSeeMoney={context.canSeeMoney}
+        initials={initials}
+        name={fullName}
+        email={user.email ?? ""}
       />
       {context.canSeeMoney && (
         <TimeTimer briefs={briefs.map((b) => ({ id: b.id, title: b.title }))} />

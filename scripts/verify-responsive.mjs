@@ -1272,6 +1272,276 @@ async function main() {
     }
   }
 
+  // ── Forma Phase B shots (FORMA_SHOTS=1): the application shell and the
+  // authentication screens, captured in both themes at the three bands
+  // that matter — 375 (phone), 768 (tablet rail) and 1440 (desktop).
+  // Evidence only (no assertions); the audit above is what gates.
+  if (process.env.FORMA_DEBUG === "1") {
+    // (a) The brand mark: is the plate actually painted, and is the
+    //     glyph drawn?
+    const markCtx = await browser.newContext({ viewport: { width: 375, height: 812 }, colorScheme: "light" });
+    const markPage = await markCtx.newPage();
+    await markPage.goto(`${BASE}/login`, { waitUntil: "load", timeout: 25000 });
+    await markPage.waitForTimeout(1200);
+    const markInfo = await markPage.evaluate(() => {
+      const out = [];
+      document.querySelectorAll('svg[viewBox="0 0 32 32"]').forEach((svg) => {
+        const r = svg.getBoundingClientRect();
+        const rect = svg.querySelector("rect");
+        const path = svg.querySelector("path");
+        const cs = path ? getComputedStyle(path) : null;
+        out.push({
+          box: `${Math.round(r.width)}x${Math.round(r.height)}@${Math.round(r.x)},${Math.round(r.y)}`,
+          visible: r.width > 0 && r.height > 0,
+          fill: rect ? getComputedStyle(rect).fill : null,
+          opacity: cs ? cs.opacity : null,
+          dashoffset: cs ? cs.strokeDashoffset : null,
+          anim: cs ? cs.animationName : null,
+        });
+      });
+      return out;
+    });
+    console.log("FORMA_MARK", JSON.stringify(markInfo, null, 2));
+    const mark = await markPage.$('svg[viewBox="0 0 32 32"]');
+    if (mark) await mark.screenshot({ path: join(SHOTS, "mark-zoom.png") }).catch(() => {});
+    await markCtx.close();
+
+    // (b) The desktop rail: does the last row fit without clipping?
+    const railCtx = await browser.newContext({ viewport: { width: 1440, height: 980 }, colorScheme: "light" });
+    const railPage = await railCtx.newPage();
+    await railCtx.addCookies([authCookie]);
+    await railPage.goto(`${BASE}/settings`, { waitUntil: "load", timeout: 25000 });
+    await railPage.waitForTimeout(1500);
+    const railInfo = await railPage.evaluate(() => {
+      const nav = document.querySelector(".app-rail-nav");
+      const sidebar = document.querySelector(".app-sidebar");
+      const rows = [...document.querySelectorAll('.app-rail-nav a[aria-label]')].map((a) => {
+        const r = a.getBoundingClientRect();
+        return { label: a.getAttribute("aria-label"), top: Math.round(r.top), bottom: Math.round(r.bottom) };
+      });
+      return {
+        url: location.pathname,
+        viewportH: innerHeight,
+        navScrollH: nav ? nav.scrollHeight : null,
+        navClientH: nav ? nav.clientHeight : null,
+        navOverflow: nav ? nav.scrollHeight - nav.clientHeight : null,
+        sidebarH: sidebar ? Math.round(sidebar.getBoundingClientRect().height) : null,
+        lastRow: rows[rows.length - 1] ?? null,
+        rowsBelowFold: rows.filter((r) => r.bottom > innerHeight).map((r) => r.label),
+      };
+    });
+    console.log("FORMA_RAIL", JSON.stringify(railInfo, null, 2));
+    await railPage.screenshot({ path: join(SHOTS, "rail-1440.png") }).catch(() => {});
+    await railCtx.close();
+  }
+  if (process.env.FORMA_SHOTS === "1") {
+    const DIR = process.env.FORMA_SHOTS_DIR || join(SHOTS, "forma");
+    mkdirSync(DIR, { recursive: true });
+    const FORMA_SHOTS = [
+      { slug: "pipeline", url: "/", auth: true },
+      { slug: "login", url: "/login", auth: false },
+      { slug: "signup", url: "/signup", auth: false },
+      { slug: "onboarding", url: "/onboarding", auth: true, fresh: true },
+    ];
+    const SHOT_WIDTHS = [
+      { w: 375, h: 812, scale: 2 },
+      { w: 768, h: 1024, scale: 2 },
+      { w: 1440, h: 980, scale: 1 },
+    ];
+    for (const scheme of ["light", "dark"]) {
+      for (const { w, h, scale } of SHOT_WIDTHS) {
+        const ctx = await browser.newContext({
+          viewport: { width: w, height: h },
+          deviceScaleFactor: scale,
+          colorScheme: scheme,
+        });
+        await ctx.addCookies([authCookie]);
+        const page = await ctx.newPage();
+        for (const shot of FORMA_SHOTS) {
+          if (shot.slug === "onboarding") continue; // its own context, below
+          try {
+            await ctx.clearCookies();
+            if (shot.auth) {
+              await ctx.addCookies([shot.fresh ? authCookieNew : authCookie]);
+            }
+            await page.goto(`${BASE}${shot.url}`, { waitUntil: "load", timeout: 25000 });
+            await page.waitForTimeout(800);
+            await page.screenshot({ path: join(DIR, `${shot.slug}-${w}-${scheme}.png`) }).catch(() => {});
+            say(`     forma-shot ${shot.slug}-${w}-${scheme}`);
+          } catch (e) {
+            say(`✗    forma-shot ${shot.slug}-${w}-${scheme} failed: ${String(e).slice(0, 90)}`);
+          }
+        }
+        // The phone drawer and the desktop account menu, in both themes.
+        if (w === 375) {
+          try {
+            await ctx.clearCookies();
+            await ctx.addCookies([authCookie]);
+            await page.goto(`${BASE}/`, { waitUntil: "load", timeout: 25000 });
+            await page.waitForTimeout(600);
+            await page.click('button[aria-label="More navigation"]', { timeout: 8000 });
+            await page.waitForTimeout(500);
+            await page.screenshot({ path: join(DIR, `drawer-${w}-${scheme}.png`) }).catch(() => {});
+            say(`     forma-shot drawer-${w}-${scheme}`);
+          } catch (e) {
+            say(`✗    forma-shot drawer-${w}-${scheme} failed: ${String(e).slice(0, 90)}`);
+          }
+        }
+        if (w === 1440) {
+          try {
+            await ctx.clearCookies();
+            await ctx.addCookies([authCookie]);
+            await page.goto(`${BASE}/`, { waitUntil: "load", timeout: 25000 });
+            await page.waitForTimeout(600);
+            await page.click('button[aria-label="Account menu"]', { timeout: 8000 });
+            await page.waitForTimeout(400);
+            await page.screenshot({ path: join(DIR, `account-menu-${w}-${scheme}.png`) }).catch(() => {});
+            say(`     forma-shot account-menu-${w}-${scheme}`);
+          } catch (e) {
+            say(`✗    forma-shot account-menu-${w}-${scheme} failed: ${String(e).slice(0, 90)}`);
+          }
+        }
+        await ctx.close();
+
+        // /onboarding gets its own context: the screen verifies the session
+        // in the browser and bounces to /login when it cannot, and in this
+        // sandbox the app's CSP (connect-src 'self' https://*.supabase.co)
+        // blocks the call to the local Supabase stub — so the bounce always
+        // fires and the screen can never be photographed. Holding that one
+        // request open keeps the page on /onboarding so the layout can be
+        // captured. The app itself is untouched.
+        const onbCtx = await browser.newContext({
+          viewport: { width: w, height: h },
+          deviceScaleFactor: scale,
+          colorScheme: scheme,
+        });
+        await onbCtx.addInitScript(() => {
+          const orig = window.fetch;
+          window.fetch = (input, init) => {
+            const url =
+              typeof input === "string" ? input : (input && input.url) || "";
+            if (url.indexOf("/auth/v1/user") !== -1) {
+              return new Promise(() => {});
+            }
+            return orig(input, init);
+          };
+        });
+        await onbCtx.addCookies([authCookieNew]);
+        const onbPage = await onbCtx.newPage();
+        try {
+          await onbPage.goto(`${BASE}/onboarding`, { waitUntil: "load", timeout: 25000 });
+          await onbPage.waitForTimeout(900);
+          await onbPage.screenshot({ path: join(DIR, `onboarding-${w}-${scheme}.png`) }).catch(() => {});
+          say(`     forma-shot onboarding-${w}-${scheme}`);
+        } catch (e) {
+          say(`✗    forma-shot onboarding-${w}-${scheme} failed: ${String(e).slice(0, 90)}`);
+        }
+        await onbCtx.close();
+      }
+    }
+  }
+
+  if (process.env.SHELL_DOCS === "1") {
+    // The repository's own evidence set (docs/screenshots/*). The shell
+    // changed completely in Phase B, so these are re-shot at the exact
+    // dimensions the folder already uses: phone 375x740 @2x, tablet
+    // 768x1024 @2x, desktop 1440x900 @2x.
+    const DOCS_DIR = resolve(ROOT, "docs/screenshots");
+    mkdirSync(DOCS_DIR, { recursive: true });
+    const DOC_SHOTS = [
+      { file: "shell-mobile", url: "/", w: 375, h: 740, scale: 2, auth: true },
+      { file: "shell-tablet", url: "/", w: 768, h: 1024, scale: 2, auth: true },
+      { file: "shell-desktop", url: "/", w: 1440, h: 900, scale: 2, auth: true },
+      { file: "auth-login-mobile", url: "/login", w: 375, h: 740, scale: 2, auth: false },
+      { file: "auth-login-desktop", url: "/login", w: 1440, h: 900, scale: 2, auth: false },
+      { file: "auth-signup-mobile", url: "/signup", w: 375, h: 740, scale: 2, auth: false },
+      { file: "auth-signup-desktop", url: "/signup", w: 1440, h: 900, scale: 2, auth: false },
+      { file: "auth-onboarding-mobile", url: "/onboarding", w: 375, h: 740, scale: 2, auth: true, fresh: true },
+      { file: "auth-onboarding-desktop", url: "/onboarding", w: 1440, h: 900, scale: 2, auth: true, fresh: true },
+    ];
+    for (const scheme of ["light", "dark"]) {
+      for (const shot of DOC_SHOTS) {
+        const ctx = await browser.newContext({
+          viewport: { width: shot.w, height: shot.h },
+          deviceScaleFactor: shot.scale,
+          colorScheme: scheme,
+        });
+        if (shot.fresh) {
+          // /onboarding verifies the session in the browser and bounces to
+          // /login when it cannot; in this sandbox the app's CSP blocks the
+          // call to the local Supabase stub, so the bounce always fires.
+          // Holding that one request open keeps the screen photographable.
+          await ctx.addInitScript(() => {
+            const orig = window.fetch;
+            window.fetch = (input, init) => {
+              const url = typeof input === "string" ? input : (input && input.url) || "";
+              if (url.indexOf("/auth/v1/user") !== -1) return new Promise(() => {});
+              return orig(input, init);
+            };
+          });
+          await ctx.addCookies([authCookieNew]);
+        } else if (shot.auth) {
+          await ctx.addCookies([authCookie]);
+        }
+        const page = await ctx.newPage();
+        try {
+          await page.goto(`${BASE}${shot.url}`, { waitUntil: "load", timeout: 25000 });
+          await page.waitForTimeout(900);
+          await page
+            .screenshot({ path: join(DOCS_DIR, `${shot.file}-${scheme}.png`) })
+            .catch(() => {});
+          say(`     doc-shot ${shot.file}-${scheme}`);
+        } catch (e) {
+          say(`✗    doc-shot ${shot.file}-${scheme} failed: ${String(e).slice(0, 90)}`);
+        }
+        await ctx.close();
+      }
+    }
+    // The phone drawer, light only (the folder's existing convention).
+    {
+      const ctx = await browser.newContext({
+        viewport: { width: 375, height: 740 },
+        deviceScaleFactor: 2,
+        colorScheme: "light",
+      });
+      await ctx.addCookies([authCookie]);
+      const page = await ctx.newPage();
+      try {
+        await page.goto(`${BASE}/`, { waitUntil: "load", timeout: 25000 });
+        await page.waitForTimeout(700);
+        await page.click('button[aria-label="More navigation"]', { timeout: 8000 });
+        await page.waitForTimeout(600);
+        await page.screenshot({ path: join(DOCS_DIR, "shell-mobile-drawer.png") }).catch(() => {});
+        say("     doc-shot shell-mobile-drawer");
+      } catch (e) {
+        say(`✗    doc-shot shell-mobile-drawer failed: ${String(e).slice(0, 90)}`);
+      }
+      await ctx.close();
+    }
+    // The desktop rail with a section collapsed (the Phase B equivalent of
+    // the old "collapsed sidebar" shot).
+    {
+      const ctx = await browser.newContext({
+        viewport: { width: 1440, height: 900 },
+        deviceScaleFactor: 2,
+        colorScheme: "light",
+      });
+      await ctx.addCookies([authCookie]);
+      const page = await ctx.newPage();
+      try {
+        await page.goto(`${BASE}/`, { waitUntil: "load", timeout: 25000 });
+        await page.waitForTimeout(700);
+        await page.click('button[aria-controls="sidebar-group-money"]', { timeout: 8000 }).catch(() => {});
+        await page.waitForTimeout(500);
+        await page.screenshot({ path: join(DOCS_DIR, "shell-desktop-collapsed.png") }).catch(() => {});
+        say("     doc-shot shell-desktop-collapsed");
+      } catch (e) {
+        say(`✗    doc-shot shell-desktop-collapsed failed: ${String(e).slice(0, 90)}`);
+      }
+      await ctx.close();
+    }
+  }
+
   writeFileSync(join(SHOTS, `summary${SUM_SUFFIX}.json`), JSON.stringify({ mode: MODE, results }, null, 2));
   await browser.close();
   freePort(APP_PORT);

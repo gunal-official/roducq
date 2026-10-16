@@ -2,21 +2,28 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Inbox, Menu as MenuIcon, Search } from "lucide-react";
+import { ChevronDown, Inbox, Menu as MenuIcon, Search } from "lucide-react";
 import { LogoutButton } from "@/components/auth/logout-button";
 import { AppearanceMenuItems } from "./AppearanceMenuItems";
 import { MobileNav } from "./MobileNav";
+import { RoduMark } from "./RoduMark";
 import { WorkspaceSwitcher, type SwitcherWorkspace } from "./WorkspaceSwitcher";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
-import { Menu, MenuItem } from "@/components/ui/menu";
+import { Menu } from "@/components/ui/menu";
 import { MONEY_HREFS, NAV_ITEMS } from "./nav-items";
 
-/* Shared Forma app chrome: theme-aware translucent surface with backdrop
-   blur, hairline border, 8px controls and 44px targets. Appearance is
+/* The Forma topbar (Phase B): a translucent plane that floats over the
+   content, carrying the workspace, the global search, the inbox shortcut
+   and the account menu. On a phone it also carries the brand, because
+   the rail only exists from the tablet band up.
+
+   The surface is theme-aware and translucent with a backdrop blur, the
+   hairline border, 8px controls and 44px targets. Appearance is
    selectable from the account menu on desktop and mobile. Notifications:
-   the product has no notification service yet, so the supported affordance
-   is the Inbox shortcut — a bell/counter is deliberately NOT faked here. */
+   the product has no notification service yet, so the supported
+   affordance is the Inbox shortcut — a bell/counter is deliberately NOT
+   faked here. */
 export function Topbar({
   initials,
   name,
@@ -46,7 +53,7 @@ export function Topbar({
   }, [navOpen]);
 
   return (
-    <header className="sticky top-0 z-30 flex min-h-16 flex-wrap items-center gap-2 border-b border-border bg-surface-translucent px-3 py-2 backdrop-blur-md sm:px-5">
+    <header className="app-topbar sticky top-0 z-30 flex min-h-16 flex-wrap items-center gap-2 border-b border-border bg-surface-translucent px-3 py-2 backdrop-blur-md sm:px-5">
       <button
         type="button"
         aria-label="Open menu"
@@ -56,15 +63,34 @@ export function Topbar({
       >
         <MenuIcon aria-hidden="true" className="h-5 w-5" />
       </button>
+
+      {/* The brand lives in the topbar only while the rail is away. */}
+      <Link
+        href="/"
+        aria-label="RoduCQ home"
+        className="flex min-h-11 min-w-11 items-center justify-center rounded-control tab:hidden"
+      >
+        <RoduMark size={28} />
+      </Link>
+
       <MobileNav
         open={navOpen}
         onClose={() => setNavOpen(false)}
         workspaces={workspaces}
         activeWorkspaceId={activeWorkspaceId}
         canSeeMoney={canSeeMoney}
+        initials={initials}
+        name={name}
+        email={email}
       />
 
-      <WorkspaceSwitcher workspaces={workspaces} activeWorkspaceId={activeWorkspaceId} />
+      <div className="flex min-w-0 items-center">
+        <WorkspaceSwitcher
+          workspaces={workspaces}
+          activeWorkspaceId={activeWorkspaceId}
+          variant="inline"
+        />
+      </div>
 
       {/* Global search (plain GET form → /search, the server-rendered
           results page). Works without JavaScript; type="search" gives the
@@ -82,7 +108,7 @@ export function Topbar({
           type="search"
           name="q"
           placeholder="Search..."
-          className="h-11 w-full rounded-control border-transparent bg-muted pl-10 shadow-none"
+          className="h-11 w-full rounded-control border-transparent bg-muted pl-10 shadow-none transition-shadow focus-visible:bg-card"
         />
       </form>
 
@@ -98,15 +124,28 @@ export function Topbar({
         <Menu label="Account menu" trigger={
           /* Menu wraps its trigger in a <button> — this MUST stay non-interactive
              (button-in-button = invalid HTML = hydration #418). */
-          <span className="flex items-center gap-2 rounded-control py-1 pl-1 pr-2">
-            <Avatar className="h-8 w-8">
-              <AvatarFallback className="bg-accent text-xs font-semibold text-accent-foreground">{initials}</AvatarFallback>
+          <span className="flex items-center gap-2 rounded-control py-1 pl-1 pr-1.5">
+            <Avatar className="h-8 w-8 ring-2 ring-accent-soft">
+              <AvatarFallback className="bg-accent text-xs font-bold text-accent-foreground">{initials}</AvatarFallback>
             </Avatar>
             <span className="hidden max-w-[140px] truncate text-sm font-semibold md:inline">{name ?? email}</span>
+            <ChevronDown aria-hidden="true" className="hidden h-3.5 w-3.5 shrink-0 text-muted-foreground md:block" />
           </span>
         }>
           {(close) => (
             <>
+              <div className="px-3 pb-1 pt-2">
+                <p className="truncate text-sm font-semibold leading-tight text-text">
+                  {name ?? email}
+                </p>
+                <p className="truncate text-xs leading-tight text-muted-foreground">
+                  {email}
+                </p>
+              </div>
+              <div className="mx-2 my-1 h-px bg-border" />
+              <p className="px-3 pb-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                Workspace
+              </p>
               {items.map(({ label, href, icon: Icon }) => (
                 <Link
                   key={href}
@@ -122,7 +161,10 @@ export function Topbar({
               <div className="mx-2 my-1 h-px bg-border" />
               <AppearanceMenuItems close={close} />
               <div className="mx-2 my-1 h-px bg-border" />
-              <LogoutButton />
+              <LogoutButton
+                iconOnly={false}
+                className="w-full justify-start rounded-md px-3"
+              />
             </>
           )}
         </Menu>
