@@ -3,7 +3,7 @@
 Build accurate PNG screenshots of /pricing (light, dark, no-billing)
 using the literal copy from our TypeScript sources. Rendered with
 Pillow — no Chromium available in the sandbox. Every label, feature,
-price line and CTA is read directly from plans.ts / stripe.ts via
+price line and CTA is read directly from plans.ts / razorpay.ts via
 a tiny regex extractor (we don't import TS here).
 """
 import json
@@ -34,7 +34,7 @@ def font(path, size):
     return ImageFont.truetype(path, size)
 
 
-# ---- Copy comes straight from plans.ts / stripe.ts. The
+# ---- Copy comes straight from plans.ts / razorpay.ts. The
 # tests/components/pricing-offer-shots.test.ts file asserts that these
 # strings match the TypeScript source so the screenshots can't drift. ----
 HERO_EYEBROW = "Pricing"
@@ -42,12 +42,12 @@ HERO_TITLE = "Plans that scale with how your team works."
 HERO_INTRO = (
     "One product, no feature paywalls. Everything that ships today is on the free plan — "
     "team, roles, the full intake-to-invoice pipeline. The paid plan is the same product "
-    "with a Stripe subscription behind it, so the tiers below describe how you'll use "
+    "with a Razorpay subscription behind it, so the tiers below describe how you'll use "
     "roducq, not what gets switched off."
 )
 FOOTER_NOTE = (
-    "Prices exclude tax where applicable. The paid plan bills monthly through Stripe and is "
-    "cancellable any time from Settings or the Stripe billing portal — your workspace returns "
+    "Prices exclude tax where applicable. The paid plan bills monthly through Razorpay and is "
+    "cancellable any time from Settings — your workspace returns "
     "to the free plan when the subscription ends, and your data stays put. No plan on this "
     "page is a usage limit: roducq does not meter briefs, seats or AI generations today."
 )
@@ -55,8 +55,8 @@ PRICES_UNCONFIGURED_NOTE = (
     "Billing isn't configured for this install yet — start free and we'll be in touch about pricing."
 )
 ANNUAL_UNAVAILABLE_NOTE = (
-    "Annual billing isn't offered yet — subscriptions bill monthly through Stripe, and you can "
-    "cancel from Settings or the Stripe portal at any time. Tell us if an annual arrangement "
+    "Annual billing isn't offered yet — subscriptions bill monthly through Razorpay, and you can "
+    "cancel from Settings at any time. Tell us if an annual arrangement "
     "would help and we'll set one up."
 )
 
@@ -85,13 +85,13 @@ PLAN_TIERS = [
     {
         "slug": "team", "name": "Team",
         "eyebrow": "Agencies running client work",
-        "tagline": "The same product, billed per workspace through Stripe. Upgrade from Settings, cancel any time.",
+        "tagline": "The same product, billed per workspace through Razorpay. Upgrade from Settings, cancel any time.",
         "pricing": "configured", "badge": "Most popular",
         "billingNote": "Per workspace per month — not per seat.",
         "features": [
             "Everything in Starter, with no limits added",
-            "Billing through Stripe, in the currency you choose",
-            "Manage or cancel from the Stripe billing portal",
+            "Billing through Razorpay, in the currency you choose",
+            "Manage or cancel from Settings",
             "Early builds of whatever ships next",
         ],
         "planned": [
@@ -163,7 +163,7 @@ for tn, t in THEMES.items():
     t["highlight_soft"] = mix(t["highlight"], t["card"], 0.18)
 
 # ---- Sample price lines (mirroring .env.local.example; same render rules
-# as lib/stripe.ts → formatPrice) ----
+# as lib/razorpay.ts → formatPrice) ----
 SAMPLE_PRICES = [("USD", 19), ("EUR", 17), ("INR", 1499)]
 
 

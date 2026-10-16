@@ -2337,7 +2337,7 @@ await db.query("reset role");
     .catch(() => ({ ok: false }));
   check("RLS: users cannot write billing state (service role only)", userWrite.ok === false);
   await db.query("reset role");
-  // service-role stand-in (superuser — the Stripe webhook route's client)
+  // service-role stand-in (superuser — the Razorpay webhook route's client)
   await db.query(
     "insert into public.billing_subscriptions (workspace_id, stripe_customer_id, stripe_subscription_id, currency, amount, status) values ($1, 'cus_test', 'sub_test', 'USD', 19, 'active')",
     [SEED_WS]
@@ -2374,6 +2374,20 @@ await db.query("reset role");
     proRow.rows[0]?.currency === "USD" && proRow.rows[0]?.a === "19"
   );
   await db.query("reset role");
+  // Razorpay columns (additive; legacy Stripe row above stays readable)
+  const rzpCols = await db.query(
+    "select count(*)::int as n from information_schema.columns where table_schema = 'public' and table_name = 'billing_subscriptions' and column_name in ('razorpay_customer_id', 'razorpay_subscription_id', 'provider', 'last_billing_event_at')"
+  );
+  check("billing: Razorpay columns exist", rzpCols.rows[0]?.n === 4);
+  await db.query(
+    "update public.billing_subscriptions set provider = 'razorpay', razorpay_subscription_id = 'sub_test_rzp', status = 'halted' where workspace_id = $1",
+    [SEED_WS]
+  );
+  const rzpRow = await db.query("select provider, razorpay_subscription_id, status from public.billing_subscriptions where workspace_id = $1", [SEED_WS]);
+  check("billing: Razorpay halted status is representable", rzpRow.rows[0]?.status === "halted" && rzpRow.rows[0]?.provider === "razorpay");
+  const evt = await db.query("insert into public.billing_webhook_events (event_key, event_type) values ('verifydb-key', 'subscription.activated') on conflict do nothing returning event_key");
+  const evtDup = await db.query("insert into public.billing_webhook_events (event_key, event_type) values ('verifydb-key', 'subscription.activated') on conflict do nothing returning event_key");
+  check("billing: webhook event ledger dedupes", evt.rows.length === 1 && evtDup.rows.length === 0);
 }
 
 // ── mailbox (future-list item: Gmail/Outlook) ──

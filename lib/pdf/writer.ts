@@ -2,7 +2,7 @@
  * A minimal, dependency-free PDF 1.7 writer (PDF export, 2026-09-27).
  *
  * WHY IN-HOUSE: the repo's standing rule is no new runtime dependencies for
- * things it can own honestly (lib/stripe.ts talks to Stripe over fetch,
+ * things it can own honestly (lib/razorpay.ts talks to Razorpay over fetch,
  * lib/email/* does OAuth with node:crypto). A PDF that only needs the
  * base-14 fonts is a text format with a byte-offset table at the end —
  * ~200 lines — and owning it keeps the output deterministic and testable

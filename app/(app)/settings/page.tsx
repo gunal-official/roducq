@@ -54,7 +54,7 @@ import { getIntegrationConnections } from "@/lib/data/integrations";
 import { getMailboxAccounts } from "@/lib/data/mailbox";
 import { hasTokenKey } from "@/lib/email/crypto";
 import { hasIntegrationKey } from "@/lib/integrations/crypto";
-import { getPricesConfig } from "@/lib/stripe";
+import { getPricesConfig } from "@/lib/razorpay";
 import { EventsCard } from "@/components/settings/EventsCard";
 import { PlanCard } from "@/components/settings/PlanCard";
 import { WebhooksCard } from "@/components/settings/WebhooksCard";
@@ -182,7 +182,7 @@ export default async function SettingsPage() {
   const pricesConfig = getPricesConfig();
   const prices = pricesConfig.ok ? pricesConfig.prices : [];
   const billingConfigured =
-    Boolean(process.env.STRIPE_SECRET_KEY) && pricesConfig.ok;
+    Boolean(process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_SECRET) && pricesConfig.ok;
   const isOwner = workspace?.role === "owner";
 
   // The section nav lists only the cards this page actually renders — a
@@ -204,7 +204,7 @@ export default async function SettingsPage() {
 
   return (
     <div className="forma-core forma-settings mx-auto max-w-6xl">
-      {/* One-time toast when returning from Stripe Checkout (?checkout=) */}
+      {/* One-time toast when returning from Razorpay Checkout (?checkout=) */}
       <CheckoutNotice />
       {/* One-time toast when returning from a mailbox OAuth connect (?email=) */}
       <EmailNotice />

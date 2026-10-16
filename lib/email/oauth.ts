@@ -9,7 +9,7 @@
  *
  * Every network function takes an optional `fetchImpl` so the exact
  * request shape is unit-testable (tests/lib/email-oauth.test.ts) — the
- * same shape as lib/stripe.
+ * same shape as lib/razorpay.
  *
  * TEST/dev credentials only in this repo; production client IDs/secrets
  * are never referenced.

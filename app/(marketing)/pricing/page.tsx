@@ -12,12 +12,12 @@ import {
   type BillingInterval,
   type IntervalView,
 } from "./plans";
-import { formatPrice, getPricingOffer, getPricesConfig } from "@/lib/stripe";
+import { formatPrice, getPricingOffer, getPricesConfig } from "@/lib/razorpay";
 
 export const metadata: Metadata = {
   title: "Pricing — roducq",
   description:
-    "roducq pricing: three ways to use the same product. The whole pipeline is free — team, templates and webhooks included. The paid plan is a Stripe subscription per workspace in your currency, never per seat. No brief, seat or AI limits.",
+    "roducq pricing: three ways to use the same product. The whole pipeline is free — team, templates and webhooks included. The paid plan is a Razorpay subscription per workspace in your currency, never per seat. No brief, seat or AI limits.",
 };
 
 /**
@@ -25,13 +25,13 @@ export const metadata: Metadata = {
  *
  * Server component by design: this is the only place that reads billing
  * config, and it passes pre-rendered price lines down to the client
- * toggle. The Monthly tab carries the operator's real STRIPE_PRICES; the
+ * toggle. The Monthly tab carries the operator's real RAZORPAY_PLANS; the
  * Annual tab carries what exists for annual billing today, which is
  * nothing — so it renders the honest "not offered yet" note and no
  * discount chip instead of a saving nobody can be charged.
  *
- * When Stripe billing is configured, an optional launch-offer callout
- * can appear above the tiers (see lib/stripe.ts → getPricingOffer). It
+ * When Razorpay billing is configured, an optional launch-offer callout
+ * can appear above the tiers (see lib/razorpay.ts → getPricingOffer). It
  * is hidden when billing is off, or when PRICING_OFFER_TEXT="".
  *
  * Tier copy lives in ./plans.ts; the card/toggle markup in

@@ -4,7 +4,7 @@
  * PDF writer measures text with (PDF export, 2026-09-27).
  *
  * WHY A GENERATOR AND NOT A DEPENDENCY: the PDF writer ships zero runtime
- * dependencies (house pattern — see lib/stripe.ts / lib/email/*). Base-14
+ * dependencies (house pattern — see lib/razorpay.ts / lib/email/*). Base-14
  * fonts are NOT embedded in the file (every reader has them), but the app
  * still has to KNOW their glyph widths to wrap lines and right-align money.
  * Those widths are Adobe's published AFM metrics — data, not code — so they
