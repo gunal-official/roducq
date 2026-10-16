@@ -138,7 +138,7 @@ describe("/ hero (A)", () => {
   });
 
   it("the H1 is the display face and the CTA row is 44px", () => {
-    assert.match(PAGE, /font-display[^"]*"/, "hero heading uses Playfair Display");
+    assert.match(PAGE, /font-display[^"]*"/, "hero heading uses the shared Manrope display face");
     assert.match(PAGE, /size="lg"/, "hero CTAs use the 48px button size");
   });
 });
@@ -408,11 +408,11 @@ describe("/ home design tokens", () => {
     assert.doesNotMatch(CONTENT, /rounded-\[/);
   });
 
-  it("headings use Playfair Display inside a Source Sans 3 body", () => {
+  it("headings and body copy use the shared Manrope face", () => {
     assert.match(PAGE, /font-display/);
     const config = read("tailwind.config.ts");
-    assert.match(config, /display:\s*\[\s*"var\(--font-playfair\)"/);
-    assert.match(config, /var\(--font-source-sans\)/);
+    assert.match(config, /display:\s*\[\s*"var\(--font-manrope\)"/);
+    assert.match(config, /sans:\s*\[\s*"var\(--font-manrope\)"/);
   });
 
   it("inline text links clear the 44px tap target", () => {

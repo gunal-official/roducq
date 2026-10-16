@@ -40,17 +40,14 @@ import { decodeLogoDataUrl } from "./images.ts";
 
 const rgb = hexToRgb;
 
-/**
- * The house palette — derived from lib/design-tokens.ts, i.e. the same
- * numbers app/globals.css declares as CSS variables, converted to the 0–1
- * RGB the writer wants.
- *
- * The map is derived from the canonical Ember Studio values in
- * `lib/design-tokens.ts`; no private PDF palette is maintained here.
- */
+  /**
+   * The Forma palette — derived from lib/design-tokens.ts, i.e. the same
+   * numbers app/globals.css declares as CSS variables, converted to the 0–1
+   * RGB the writer wants. No private PDF palette is maintained here.
+   */
 export const COLORS = {
   // ── Tokens, read straight through ────────────────────────────────────────
-  accent: rgb(TOKENS.terracotta),
+  accent: rgb(TOKENS.purple),
   ink: rgb(TOKENS.text),
   hairline: rgb(TOKENS.border),
   zebra: rgb(TOKENS.surface),
@@ -65,7 +62,7 @@ export const COLORS = {
   border: rgb(TOKENS.border),
 
   /** Soft tints, by the same 12%-over-surface formula CSS uses. */
-  accentSoft: rgb(soft(TOKENS.terracotta)),
+  accentSoft: rgb(soft(TOKENS.purple)),
 
   infoSoft: rgb(soft(TOKENS.info)),
   errorSoft: rgb(soft(TOKENS.error)),

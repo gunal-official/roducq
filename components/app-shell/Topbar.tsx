@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Inbox, Menu as MenuIcon, Search } from "lucide-react";
 import { LogoutButton } from "@/components/auth/logout-button";
+import { AppearanceMenuItems } from "./AppearanceMenuItems";
 import { MobileNav } from "./MobileNav";
 import { WorkspaceSwitcher, type SwitcherWorkspace } from "./WorkspaceSwitcher";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -11,12 +12,11 @@ import { Input } from "@/components/ui/input";
 import { Menu, MenuItem } from "@/components/ui/menu";
 import { MONEY_HREFS, NAV_ITEMS } from "./nav-items";
 
-/* Phase 2 topbar (Ember Studio shell): translucent warm surface with
-   backdrop blur over the page, hairline bottom border, 8px-radius search
-   and control buttons, circular avatar chip. 44px tap targets everywhere.
-   Notifications: the product has no notification service yet, so the
-   supported affordance is the Inbox shortcut (email/file intake alerts) —
-   a bell/counter is deliberately NOT faked here. */
+/* Shared Forma app chrome: theme-aware translucent surface with backdrop
+   blur, hairline border, 8px controls and 44px targets. Appearance is
+   selectable from the account menu on desktop and mobile. Notifications:
+   the product has no notification service yet, so the supported affordance
+   is the Inbox shortcut — a bell/counter is deliberately NOT faked here. */
 export function Topbar({
   initials,
   name,
@@ -119,6 +119,8 @@ export function Topbar({
                   {label}
                 </Link>
               ))}
+              <div className="mx-2 my-1 h-px bg-border" />
+              <AppearanceMenuItems close={close} />
               <div className="mx-2 my-1 h-px bg-border" />
               <LogoutButton />
             </>

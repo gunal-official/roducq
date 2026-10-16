@@ -13,7 +13,26 @@ const config = {
       // desktop ≥1024). Named screens so shell code reads `tab:` / `desk:`.
       screens: { tab: "600px", desk: "1024px" },
       colors: {
-        // Ember Studio primitives (and the retained legacy aliases below).
+        // Explicit Forma palette for new work, alongside semantic aliases
+        // retained for every existing app component and shadcn-style API.
+        forma: {
+          purple: {
+            DEFAULT: "var(--forma-purple)",
+            hover: "var(--forma-purple-hover)",
+            soft: "var(--accent-soft)",
+            foreground: "var(--on-accent)",
+          },
+          lavender: "var(--forma-lavender)",
+          plum: {
+            DEFAULT: "var(--forma-plum)",
+            foreground: "var(--dark-foreground)",
+          },
+          background: "var(--forma-background)",
+          surface: {
+            DEFAULT: "var(--forma-surface)",
+            raised: "var(--forma-surface-raised)",
+          },
+        },
         bg: "var(--bg)",
         text: "var(--text)",
         "secondary-text": "var(--secondary-text)",
@@ -99,20 +118,15 @@ const config = {
         sm: "4px",
       },
       boxShadow: {
-        // Warm, low-contrast elevation that remains subtle in both themes.
-        card: "0 1px 2px rgb(28 25 23 / 0.04), 0 12px 32px -16px rgb(28 25 23 / 0.10)",
-        pop: "0 8px 30px -6px rgb(28 25 23 / 0.14)",
-        rail: "0 1px 2px rgb(28 25 23 / 0.05)",
+        // Plum-tinted, low-contrast elevation that stays subtle in both themes.
+        card: "0 1px 2px rgb(43 27 54 / 0.04), 0 12px 32px -16px rgb(43 27 54 / 0.10)",
+        pop: "0 8px 30px -6px rgb(43 27 54 / 0.14)",
+        rail: "0 1px 2px rgb(43 27 54 / 0.05)",
       },
       fontFamily: {
-        display: ["var(--font-playfair)", '"Playfair Display"', "Georgia", "serif"],
-        sans: [
-          "var(--font-source-sans)",
-          '"Source Sans 3"',
-          "ui-sans-serif",
-          "system-ui",
-          "sans-serif",
-        ],
+        // Headings and body copy both use Manrope across the product.
+        display: ["var(--font-manrope)", '"Manrope"', "ui-sans-serif", "system-ui", "sans-serif"],
+        sans: ["var(--font-manrope)", '"Manrope"', "ui-sans-serif", "system-ui", "sans-serif"],
         mono: [
           "var(--font-fira-code)",
           '"Fira Code"',
@@ -120,13 +134,7 @@ const config = {
           "SFMono-Regular",
           "monospace",
         ],
-        manrope: [
-          "var(--font-manrope)",
-          "\"Manrope\"",
-          "ui-sans-serif",
-          "system-ui",
-          "sans-serif",
-        ],
+        manrope: ["var(--font-manrope)", '"Manrope"', "ui-sans-serif", "system-ui", "sans-serif"],
       },
     },
   },

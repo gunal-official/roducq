@@ -7,7 +7,7 @@
  * inline styles only. Reports to Sentry when SENTRY_DSN is configured
  * (lazy import: with it unset, the SDK chunk is never loaded).
  *
- * Styling comes from lib/design-tokens.ts (Ember Studio design system) rather
+ * Styling comes from lib/design-tokens.ts (Forma design system) rather
  * than hardcoded hex, so this page can't drift from the rest of the app.
  * Light tokens only: the theme class isn't available once the root
  * layout has been replaced.
@@ -79,8 +79,8 @@ export default function GlobalError({
             fontWeight: 600,
             padding: "8px 16px",
             borderRadius: RADIUS_CONTROL,
-            border: `1px solid ${TOKENS.terracotta}`,
-            background: TOKENS.terracotta,
+            border: `1px solid ${TOKENS.purple}`,
+            background: TOKENS.purple,
             color: "#ffffff",
             cursor: "pointer",
           }}

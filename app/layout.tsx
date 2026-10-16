@@ -6,22 +6,14 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 
-// Ember Studio typography is fully self-hosted so the app renders offline
-// and visitors never need a request to a public font CDN.
-const playfair = localFont({
-  src: "./fonts/playfair-display-latin-wght-normal.woff2",
-  variable: "--font-playfair",
-  weight: "400 900",
+// Forma typography is self-hosted, so the authenticated app and marketing
+// pages share Manrope without a request to a public font CDN.
+const manrope = localFont({
+  src: "./fonts/manrope-latin-wght-normal.woff2",
+  variable: "--font-manrope",
+  weight: "200 800",
   display: "swap",
-  fallback: ["Georgia", "Times New Roman", "serif"],
-});
-
-const sourceSans = localFont({
-  src: "./fonts/source-sans-3-latin-wght-normal.woff2",
-  variable: "--font-source-sans",
-  weight: "200 900",
-  display: "swap",
-  fallback: ["system-ui", "-apple-system", "Segoe UI", "sans-serif"],
+  fallback: ["ui-sans-serif", "system-ui", "sans-serif"],
 });
 
 const firaCode = localFont({
@@ -30,14 +22,6 @@ const firaCode = localFont({
   weight: "300 700",
   display: "swap",
   fallback: ["ui-monospace", "SFMono-Regular", "monospace"],
-});
-
-const manrope = localFont({
-  src: "./fonts/manrope-latin-wght-normal.woff2",
-  variable: "--font-manrope",
-  weight: "200 800",
-  display: "swap",
-  fallback: ["ui-sans-serif", "system-ui", "sans-serif"],
 });
 
 export const metadata: Metadata = {
@@ -62,10 +46,8 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          playfair.variable,
-          sourceSans.variable,
-          firaCode.variable,
           manrope.variable,
+          firaCode.variable,
           "min-h-screen bg-background font-sans text-foreground antialiased"
         )}
       >

@@ -1,11 +1,11 @@
 /**
- * Ember Studio design tokens shared by the browser, PDF exports, invite
- * emails, and the root error boundary.
+ * Forma design tokens shared by the browser, PDF exports, invite emails,
+ * and the root error boundary.
  *
- * The CSS layer exposes the same canonical palette as `--ember-*` custom
- * properties and keeps the former `--bg`, `--accent`, `--card`, and related
- * aliases alive while existing screens migrate. `tests/lib/design-tokens.test.ts`
- * checks the CSS/TypeScript mirror so those surfaces cannot drift apart.
+ * `app/globals.css` declares the same canonical light palette as `--forma-*`
+ * custom properties. The old Ember names and the `--bg` / `--accent` /
+ * `--card` aliases remain available so existing app and integration code can
+ * migrate incrementally without a breaking token rename.
  */
 
 /** `#rrggbb`, lowercase — exactly as authored in app/globals.css. */
@@ -13,53 +13,69 @@ export type Hex = `#${string}`;
 
 /** Canonical light-theme tokens consumed outside CSS (not legacy aliases). */
 const CORE_TOKENS = {
-  background: "#fafaf9",
-  surface: "#f5f5f4",
-  surfaceRaised: "#e7e5e4",
-  terracotta: "#c2410c",
-  terracottaHover: "#9a3412",
-  amber: "#f59e0b",
-  text: "#1c1917",
-  secondaryText: "#57534e",
-  neutral: "#78716c",
-  border: "#d6d3d1",
-  error: "#e5484d",
-  success: "#1f9d68",
-  successSoft: "#e3f5ec",
-  info: "#2f6fed",
+  background: "#faf8fc",
+  surface: "#ffffff",
+  surfaceRaised: "#f2ecf7",
+  purple: "#7c3aed",
+  purpleHover: "#6d28d9",
+  lavender: "#ede5f8",
+  plum: "#2c1b36",
+  amber: "#9a5b0a",
+  text: "#261d2d",
+  secondaryText: "#665c70",
+  neutral: "#74677f",
+  border: "#e4ddea",
+  error: "#c93d52",
+  success: "#18794e",
+  successSoft: "#e8f4ec",
+  info: "#245fce",
 } as const satisfies Record<string, Hex>;
 
-export type TokenName = keyof typeof CORE_TOKENS;
+/**
+ * Public token key type. The two pre-Forma names remain accepted for
+ * integrations compiled against the earlier token contract.
+ */
+export type TokenName = keyof typeof CORE_TOKENS | "terracotta" | "terracottaHover";
 
 /**
- * Public token object. The legacy keys are deliberate aliases: retaining
- * them lets PDF/email consumers and older UI code migrate incrementally.
+ * Public token object. Legacy names deliberately alias Forma values: PDF/email
+ * consumers and older UI integrations can migrate without a breaking change.
  */
 export const TOKENS = {
   ...CORE_TOKENS,
   bg: CORE_TOKENS.background,
-  accent: CORE_TOKENS.terracotta,
+  accent: CORE_TOKENS.purple,
   muted: CORE_TOKENS.surfaceRaised,
   card: CORE_TOKENS.surface,
-  dark: CORE_TOKENS.text,
+  dark: CORE_TOKENS.plum,
+  /** @deprecated Use `purple`. Retained for pre-Forma integrations. */
+  terracotta: CORE_TOKENS.purple,
+  /** @deprecated Use `purpleHover`. Retained for pre-Forma integrations. */
+  terracottaHover: CORE_TOKENS.purpleHover,
 } as const;
 
-/** Canonical token name → CSS custom property in `:root`. */
+/** Forma token key → CSS custom property; deprecated keys map to Forma values. */
 export const TOKEN_CSS_VAR: Record<TokenName, string> = {
-  background: "--ember-background",
-  surface: "--ember-surface",
-  surfaceRaised: "--ember-surface-raised",
-  terracotta: "--ember-terracotta",
-  terracottaHover: "--ember-terracotta-hover",
-  amber: "--ember-amber",
-  text: "--ember-text",
-  secondaryText: "--ember-secondary-text",
-  neutral: "--ember-neutral",
-  border: "--ember-border",
-  error: "--error",
-  success: "--success",
-  successSoft: "--success-soft",
-  info: "--info",
+  background: "--forma-background",
+  surface: "--forma-surface",
+  surfaceRaised: "--forma-surface-raised",
+  purple: "--forma-purple",
+  purpleHover: "--forma-purple-hover",
+  lavender: "--forma-lavender",
+  plum: "--forma-plum",
+  amber: "--forma-amber",
+  text: "--forma-text",
+  secondaryText: "--forma-secondary-text",
+  neutral: "--forma-neutral",
+  border: "--forma-border",
+  error: "--forma-error",
+  success: "--forma-success",
+  successSoft: "--forma-success-soft",
+  info: "--forma-info",
+  /** @deprecated Use `purple`; retained as a CSS-variable lookup alias. */
+  terracotta: "--forma-purple",
+  /** @deprecated Use `purpleHover`; retained as a CSS-variable lookup alias. */
+  terracottaHover: "--forma-purple-hover",
 };
 
 /** Control corners are 8px; cards, dialogs, and popovers are 12px. */
@@ -71,15 +87,14 @@ export const RADIUS_PILL = "9999px";
 export const RADIUS = RADIUS_CONTROL;
 
 /**
- * Font stacks for surfaces outside the Tailwind/next-font pipeline. Family
- * names are single-quoted so the stacks can be embedded in a double-quoted
- * inline HTML `style="…"` attribute (email).
+ * Font stacks for surfaces outside the Tailwind/next-font pipeline.
+ * Family names are single-quoted so the stacks can be embedded in a
+ * double-quoted inline HTML `style="…"` attribute (email).
  */
 export const FONT_STACKS = {
-  /** Self-hosted Playfair Display, with common serif fallbacks. */
-  display: "'Playfair Display', Georgia, 'Times New Roman', Times, serif",
-  /** Self-hosted Source Sans 3, with system UI fallbacks. */
-  body: "'Source Sans 3', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif",
+  /** Forma's self-hosted Manrope family for headings and body copy. */
+  display: "'Manrope', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif",
+  body: "'Manrope', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif",
   /** Self-hosted Fira Code, with common monospace fallbacks. */
   mono: "'Fira Code', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
 } as const;
@@ -102,7 +117,7 @@ function channelHex(value: number): string {
     .padStart(2, "0");
 }
 
-/** `#c2410c` → `{ r: 0.757…, g: 0.255…, b: 0.047… }`. */
+/** `#7c3aed` → `{ r: 0.486…, g: 0.227…, b: 0.929… }`. */
 export function hexToRgb(hex: string): RgbTriplet {
   const match = /^#([0-9a-f]{6})$/i.exec(hex.trim());
   if (!match) throw new Error(`Not a 6-digit hex colour: ${hex}`);

@@ -3,7 +3,7 @@
  * (Pipeline, Intake, Inbox, Settings) compose from.
  *
  * Sits beside `doc-detail.tsx` (the Step-34 *document* vocabulary) and
- * reuses the same Ember Studio primitives: 8px controls, 12px surfaces,
+ * reuses the same Forma primitives: 8px controls, 12px surfaces,
  * 16/20px lucide icons at stroke 1.5, `icon-chip` tiles, and the four
  * token tones.
  *

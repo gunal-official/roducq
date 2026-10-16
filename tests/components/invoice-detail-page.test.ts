@@ -30,7 +30,7 @@ describe("InvoiceStatusBadge — Draft/Sent/Paid/Void redesign", () => {
     }
   });
 
-  it("Sent uses the new info blue tokens, not accent orange", () => {
+  it("Sent uses the info-blue tokens, distinct from the Forma purple accent", () => {
     assert.ok(
       src.includes("border-info bg-info-soft text-info"),
       "sent status should use --info/--info-soft"
@@ -69,9 +69,10 @@ describe("--info / --info-soft design tokens", () => {
   it("are defined for both light (:root) and dark (.dark)", () => {
     const rootBlock = css.slice(css.indexOf(":root"), css.indexOf(".dark"));
     const darkBlock = css.slice(css.indexOf(".dark"));
-    assert.match(rootBlock, /--info:\s*#[0-9a-fA-F]{3,6}/);
+    assert.match(rootBlock, /--forma-info:\s*#[0-9a-fA-F]{3,6}/);
+    assert.match(rootBlock, /--info:\s*var\(--forma-info\)/);
     assert.match(rootBlock, /--info-soft:\s*color-mix/);
-    assert.match(darkBlock, /--info:\s*#[0-9a-fA-F]{3,6}/);
+    assert.match(darkBlock, /--forma-info:\s*#[0-9a-fA-F]{3,6}/);
     assert.match(darkBlock, /--info-soft:\s*color-mix/);
   });
 

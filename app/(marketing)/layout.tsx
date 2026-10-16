@@ -7,9 +7,9 @@ import { SiteHeader } from "@/components/marketing/SiteHeader";
  * marketing surface is identical for everyone; Log in / Sign up remain
  * the funnel into the appside.
  *
- * The `marketing` class scopes the lavender/purple brand palette and the
- * Manrope sans onto this surface only, leaving the authenticated app on
- * the Ember Studio terracotta + Source Sans stack.
+ * Marketing and authenticated routes share the Forma palette and
+ * self-hosted Manrope stack; the marketing class keeps the brand accent
+ * explicit at this boundary for compatibility with the existing site styles.
  */
 export default function MarketingLayout({
   children,
