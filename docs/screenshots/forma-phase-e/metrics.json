@@ -1,0 +1,8409 @@
+[
+  {
+    "page": "marketing-home",
+    "width": 320,
+    "overflowX": 30,
+    "offenders": [
+      {
+        "tag": "DIV",
+        "cls": "ml-auto flex items-center gap-2",
+        "left": 94,
+        "right": 350,
+        "text": "lightdarksystemLog inSign up"
+      },
+      {
+        "tag": "BUTTON",
+        "cls": "inline-flex min-h-11 min-w-11 items-center justify-center rounded-cont",
+        "left": 306,
+        "right": 350,
+        "text": ""
+      },
+      {
+        "tag": "svg",
+        "cls": "",
+        "left": 318,
+        "right": 338,
+        "text": ""
+      }
+    ],
+    "cutoffs": [
+      {
+        "tag": "SECTION",
+        "cls": "relative isolate overflow-hidden bg-muted/35",
+        "text": "Client-work writing studioMessy clie",
+        "sw": 480,
+        "cw": 320
+      },
+      {
+        "tag": "DIV",
+        "cls": "relative overflow-hidden rounded-surface bg-dark px-6 py-14 ",
+        "text": "A clearer next stepReady when your n",
+        "sw": 344,
+        "cw": 280
+      }
+    ],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "pipeline",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-about",
+    "width": 320,
+    "overflowX": 30,
+    "offenders": [
+      {
+        "tag": "DIV",
+        "cls": "ml-auto flex items-center gap-2",
+        "left": 94,
+        "right": 350,
+        "text": "lightdarksystemLog inSign up"
+      },
+      {
+        "tag": "BUTTON",
+        "cls": "inline-flex min-h-11 min-w-11 items-center justify-center rounded-cont",
+        "left": 306,
+        "right": 350,
+        "text": ""
+      },
+      {
+        "tag": "svg",
+        "cls": "",
+        "left": 318,
+        "right": 338,
+        "text": ""
+      }
+    ],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-pricing",
+    "width": 320,
+    "overflowX": 30,
+    "offenders": [
+      {
+        "tag": "DIV",
+        "cls": "ml-auto flex items-center gap-2",
+        "left": 94,
+        "right": 350,
+        "text": "lightdarksystemLog inSign up"
+      },
+      {
+        "tag": "BUTTON",
+        "cls": "inline-flex min-h-11 min-w-11 items-center justify-center rounded-cont",
+        "left": 306,
+        "right": 350,
+        "text": ""
+      },
+      {
+        "tag": "svg",
+        "cls": "",
+        "left": 318,
+        "right": 338,
+        "text": ""
+      }
+    ],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-notion",
+    "width": 320,
+    "overflowX": 30,
+    "offenders": [
+      {
+        "tag": "DIV",
+        "cls": "ml-auto flex items-center gap-2",
+        "left": 94,
+        "right": 350,
+        "text": "lightdarksystemLog inSign up"
+      },
+      {
+        "tag": "BUTTON",
+        "cls": "inline-flex min-h-11 min-w-11 items-center justify-center rounded-cont",
+        "left": 306,
+        "right": 350,
+        "text": ""
+      },
+      {
+        "tag": "svg",
+        "cls": "",
+        "left": 318,
+        "right": 338,
+        "text": ""
+      }
+    ],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs",
+    "width": 320,
+    "overflowX": 30,
+    "offenders": [
+      {
+        "tag": "DIV",
+        "cls": "ml-auto flex items-center gap-2",
+        "left": 94,
+        "right": 350,
+        "text": "lightdarksystemLog inSign up"
+      },
+      {
+        "tag": "BUTTON",
+        "cls": "inline-flex min-h-11 min-w-11 items-center justify-center rounded-cont",
+        "left": 306,
+        "right": 350,
+        "text": ""
+      },
+      {
+        "tag": "svg",
+        "cls": "",
+        "left": 318,
+        "right": 338,
+        "text": ""
+      }
+    ],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-bonsai",
+    "width": 320,
+    "overflowX": 30,
+    "offenders": [
+      {
+        "tag": "DIV",
+        "cls": "ml-auto flex items-center gap-2",
+        "left": 94,
+        "right": 350,
+        "text": "lightdarksystemLog inSign up"
+      },
+      {
+        "tag": "BUTTON",
+        "cls": "inline-flex min-h-11 min-w-11 items-center justify-center rounded-cont",
+        "left": 306,
+        "right": 350,
+        "text": ""
+      },
+      {
+        "tag": "svg",
+        "cls": "",
+        "left": 318,
+        "right": 338,
+        "text": ""
+      }
+    ],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-honeybook",
+    "width": 320,
+    "overflowX": 30,
+    "offenders": [
+      {
+        "tag": "DIV",
+        "cls": "ml-auto flex items-center gap-2",
+        "left": 94,
+        "right": 350,
+        "text": "lightdarksystemLog inSign up"
+      },
+      {
+        "tag": "BUTTON",
+        "cls": "inline-flex min-h-11 min-w-11 items-center justify-center rounded-cont",
+        "left": 306,
+        "right": 350,
+        "text": ""
+      },
+      {
+        "tag": "svg",
+        "cls": "",
+        "left": 318,
+        "right": 338,
+        "text": ""
+      }
+    ],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-dubsado",
+    "width": 320,
+    "overflowX": 30,
+    "offenders": [
+      {
+        "tag": "DIV",
+        "cls": "ml-auto flex items-center gap-2",
+        "left": 94,
+        "right": 350,
+        "text": "lightdarksystemLog inSign up"
+      },
+      {
+        "tag": "BUTTON",
+        "cls": "inline-flex min-h-11 min-w-11 items-center justify-center rounded-cont",
+        "left": 306,
+        "right": 350,
+        "text": ""
+      },
+      {
+        "tag": "svg",
+        "cls": "",
+        "left": 318,
+        "right": 338,
+        "text": ""
+      }
+    ],
+    "cutoffs": [
+      {
+        "tag": "DIV",
+        "cls": "rounded-surface border border-border bg-card text-card-foreg",
+        "text": "roducqDubsadoClient intakePaste raw ",
+        "sw": 284,
+        "cw": 278
+      }
+    ],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-17hats",
+    "width": 320,
+    "overflowX": 30,
+    "offenders": [
+      {
+        "tag": "DIV",
+        "cls": "ml-auto flex items-center gap-2",
+        "left": 94,
+        "right": 350,
+        "text": "lightdarksystemLog inSign up"
+      },
+      {
+        "tag": "BUTTON",
+        "cls": "inline-flex min-h-11 min-w-11 items-center justify-center rounded-cont",
+        "left": 306,
+        "right": 350,
+        "text": ""
+      },
+      {
+        "tag": "svg",
+        "cls": "",
+        "left": 318,
+        "right": 338,
+        "text": ""
+      }
+    ],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-freshbooks",
+    "width": 320,
+    "overflowX": 30,
+    "offenders": [
+      {
+        "tag": "DIV",
+        "cls": "ml-auto flex items-center gap-2",
+        "left": 94,
+        "right": 350,
+        "text": "lightdarksystemLog inSign up"
+      },
+      {
+        "tag": "BUTTON",
+        "cls": "inline-flex min-h-11 min-w-11 items-center justify-center rounded-cont",
+        "left": 306,
+        "right": 350,
+        "text": ""
+      },
+      {
+        "tag": "svg",
+        "cls": "",
+        "left": 318,
+        "right": 338,
+        "text": ""
+      }
+    ],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-clickup",
+    "width": 320,
+    "overflowX": 30,
+    "offenders": [
+      {
+        "tag": "DIV",
+        "cls": "ml-auto flex items-center gap-2",
+        "left": 94,
+        "right": 350,
+        "text": "lightdarksystemLog inSign up"
+      },
+      {
+        "tag": "BUTTON",
+        "cls": "inline-flex min-h-11 min-w-11 items-center justify-center rounded-cont",
+        "left": 306,
+        "right": 350,
+        "text": ""
+      },
+      {
+        "tag": "svg",
+        "cls": "",
+        "left": 318,
+        "right": 338,
+        "text": ""
+      }
+    ],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-basecamp",
+    "width": 320,
+    "overflowX": 30,
+    "offenders": [
+      {
+        "tag": "DIV",
+        "cls": "ml-auto flex items-center gap-2",
+        "left": 94,
+        "right": 350,
+        "text": "lightdarksystemLog inSign up"
+      },
+      {
+        "tag": "BUTTON",
+        "cls": "inline-flex min-h-11 min-w-11 items-center justify-center rounded-cont",
+        "left": 306,
+        "right": 350,
+        "text": ""
+      },
+      {
+        "tag": "svg",
+        "cls": "",
+        "left": 318,
+        "right": 338,
+        "text": ""
+      }
+    ],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-pandadoc",
+    "width": 320,
+    "overflowX": 30,
+    "offenders": [
+      {
+        "tag": "DIV",
+        "cls": "ml-auto flex items-center gap-2",
+        "left": 94,
+        "right": 350,
+        "text": "lightdarksystemLog inSign up"
+      },
+      {
+        "tag": "BUTTON",
+        "cls": "inline-flex min-h-11 min-w-11 items-center justify-center rounded-cont",
+        "left": 306,
+        "right": 350,
+        "text": ""
+      },
+      {
+        "tag": "svg",
+        "cls": "",
+        "left": 318,
+        "right": 338,
+        "text": ""
+      }
+    ],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "login",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 110,
+      "label": "RoduCQ home"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 48,
+      "h": 48,
+      "label": "Show password"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "signup",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 110,
+      "label": "RoduCQ home"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 48,
+      "h": 48,
+      "label": "Show password"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "invite-token",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 110,
+      "label": "RoduCQ home"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 97,
+      "h": 44,
+      "label": "Back to roducq"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "share-token",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": null,
+      "h": null,
+      "w": 0,
+      "label": ""
+    },
+    "minW": {
+      "tag": null,
+      "h": 0,
+      "w": null,
+      "label": ""
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "invoice-token",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 94,
+      "label": "Print"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 94,
+      "h": 44,
+      "label": "Print"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "onboarding",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": null,
+      "h": null,
+      "w": 0,
+      "label": ""
+    },
+    "minW": {
+      "tag": null,
+      "h": 0,
+      "w": null,
+      "label": ""
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "intake",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "intake-inbox",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "briefs",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "brief-detail",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposals",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposal-detail",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposal-version",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "plans",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "plan-detail",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "updates",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "update-detail",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "invoices",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "invoice-detail",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "contracts",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "contract-detail",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "time",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "reports",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "settings",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "search",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-home",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [
+      {
+        "tag": "SECTION",
+        "cls": "relative isolate overflow-hidden bg-muted/35",
+        "text": "Client-work writing studioMessy clie",
+        "sw": 535,
+        "cw": 375
+      },
+      {
+        "tag": "DIV",
+        "cls": "relative overflow-hidden rounded-surface bg-dark px-6 py-14 ",
+        "text": "A clearer next stepReady when your n",
+        "sw": 399,
+        "cw": 335
+      }
+    ],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "pipeline",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-about",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-pricing",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-notion",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-bonsai",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-honeybook",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-dubsado",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-17hats",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-freshbooks",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-clickup",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-basecamp",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-pandadoc",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "login",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 110,
+      "label": "RoduCQ home"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 48,
+      "h": 48,
+      "label": "Show password"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "signup",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 110,
+      "label": "RoduCQ home"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 48,
+      "h": 48,
+      "label": "Show password"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "invite-token",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 110,
+      "label": "RoduCQ home"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 97,
+      "h": 44,
+      "label": "Back to roducq"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "share-token",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": null,
+      "h": null,
+      "w": 0,
+      "label": ""
+    },
+    "minW": {
+      "tag": null,
+      "h": 0,
+      "w": null,
+      "label": ""
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "invoice-token",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 94,
+      "label": "Print"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 94,
+      "h": 44,
+      "label": "Print"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "onboarding",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": null,
+      "h": null,
+      "w": 0,
+      "label": ""
+    },
+    "minW": {
+      "tag": null,
+      "h": 0,
+      "w": null,
+      "label": ""
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "intake",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "intake-inbox",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "briefs",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "brief-detail",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposals",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposal-detail",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposal-version",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "plans",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "plan-detail",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "updates",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "update-detail",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "invoices",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "invoice-detail",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "contracts",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "contract-detail",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "time",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "reports",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "settings",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "search",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-home",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [
+      {
+        "tag": "SECTION",
+        "cls": "relative isolate overflow-hidden bg-muted/35",
+        "text": "Client-work writing studioMessy clie",
+        "sw": 574,
+        "cw": 414
+      },
+      {
+        "tag": "DIV",
+        "cls": "relative overflow-hidden rounded-surface bg-dark px-6 py-14 ",
+        "text": "A clearer next stepReady when your n",
+        "sw": 438,
+        "cw": 374
+      }
+    ],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "pipeline",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-about",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-pricing",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-notion",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-bonsai",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-honeybook",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-dubsado",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-17hats",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-freshbooks",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-clickup",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-basecamp",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-pandadoc",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "login",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 110,
+      "label": "RoduCQ home"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 48,
+      "h": 48,
+      "label": "Show password"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "signup",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 110,
+      "label": "RoduCQ home"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 48,
+      "h": 48,
+      "label": "Show password"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "invite-token",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 110,
+      "label": "RoduCQ home"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 97,
+      "h": 44,
+      "label": "Back to roducq"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "share-token",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": null,
+      "h": null,
+      "w": 0,
+      "label": ""
+    },
+    "minW": {
+      "tag": null,
+      "h": 0,
+      "w": null,
+      "label": ""
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "invoice-token",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 94,
+      "label": "Print"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 94,
+      "h": 44,
+      "label": "Print"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "onboarding",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": null,
+      "h": null,
+      "w": 0,
+      "label": ""
+    },
+    "minW": {
+      "tag": null,
+      "h": 0,
+      "w": null,
+      "label": ""
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "intake",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "intake-inbox",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "briefs",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "brief-detail",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposals",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposal-detail",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposal-version",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "plans",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "plan-detail",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "updates",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "update-detail",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "invoices",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "invoice-detail",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "contracts",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "contract-detail",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "time",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "reports",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "settings",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "search",
+    "width": 414,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-home",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [
+      {
+        "tag": "SECTION",
+        "cls": "relative isolate overflow-hidden bg-muted/35",
+        "text": "Client-work writing studioMessy clie",
+        "sw": 760,
+        "cw": 600
+      },
+      {
+        "tag": "DIV",
+        "cls": "relative overflow-hidden rounded-surface bg-dark px-6 py-14 ",
+        "text": "A clearer next stepReady when your n",
+        "sw": 624,
+        "cw": 560
+      }
+    ],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "pipeline",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 512,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-about",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-pricing",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-notion",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-bonsai",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-honeybook",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-dubsado",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-17hats",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-freshbooks",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-clickup",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-basecamp",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-pandadoc",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "login",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 110,
+      "label": "RoduCQ home"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 48,
+      "h": 48,
+      "label": "Show password"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "signup",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 110,
+      "label": "RoduCQ home"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 48,
+      "h": 48,
+      "label": "Show password"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "invite-token",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 110,
+      "label": "RoduCQ home"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 97,
+      "h": 44,
+      "label": "Back to roducq"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "share-token",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": null,
+      "h": null,
+      "w": 0,
+      "label": ""
+    },
+    "minW": {
+      "tag": null,
+      "h": 0,
+      "w": null,
+      "label": ""
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "invoice-token",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 94,
+      "label": "Print"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 94,
+      "h": 44,
+      "label": "Print"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "onboarding",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": null,
+      "h": null,
+      "w": 0,
+      "label": ""
+    },
+    "minW": {
+      "tag": null,
+      "h": 0,
+      "w": null,
+      "label": ""
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "intake",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 512,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "intake-inbox",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 512,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "briefs",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 512,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "brief-detail",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 512,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposals",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 512,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposal-detail",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 512,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposal-version",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 512,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "plans",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 512,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "plan-detail",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 512,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "updates",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 512,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "update-detail",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 512,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "invoices",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 512,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "invoice-detail",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 512,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "contracts",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 512,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "contract-detail",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 512,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "time",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 512,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "reports",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 512,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "settings",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 512,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "search",
+    "width": 600,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 512,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-home",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [
+      {
+        "tag": "SECTION",
+        "cls": "relative isolate overflow-hidden bg-muted/35",
+        "text": "Client-work writing studioMessy clie",
+        "sw": 928,
+        "cw": 768
+      },
+      {
+        "tag": "DIV",
+        "cls": "relative overflow-hidden rounded-surface bg-dark px-6 py-14 ",
+        "text": "A clearer next stepReady when your n",
+        "sw": 768,
+        "cw": 704
+      }
+    ],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "pipeline",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-about",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-pricing",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-notion",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-bonsai",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-honeybook",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-dubsado",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-17hats",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-freshbooks",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-clickup",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-basecamp",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-pandadoc",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "login",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 110,
+      "label": "RoduCQ home"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 48,
+      "h": 48,
+      "label": "Show password"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "signup",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 110,
+      "label": "RoduCQ home"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 48,
+      "h": 48,
+      "label": "Show password"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "invite-token",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 110,
+      "label": "RoduCQ home"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 97,
+      "h": 44,
+      "label": "Back to roducq"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "share-token",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": null,
+      "h": null,
+      "w": 0,
+      "label": ""
+    },
+    "minW": {
+      "tag": null,
+      "h": 0,
+      "w": null,
+      "label": ""
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "invoice-token",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 94,
+      "label": "Print"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 94,
+      "h": 44,
+      "label": "Print"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "onboarding",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": null,
+      "h": null,
+      "w": 0,
+      "label": ""
+    },
+    "minW": {
+      "tag": null,
+      "h": 0,
+      "w": null,
+      "label": ""
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "intake",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "intake-inbox",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "briefs",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "brief-detail",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposals",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposal-detail",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposal-version",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "plans",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "plan-detail",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "updates",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "update-detail",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "invoices",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "invoice-detail",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "contracts",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "contract-detail",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "time",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "reports",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "settings",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "search",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-home",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [
+      {
+        "tag": "SECTION",
+        "cls": "relative isolate overflow-hidden bg-muted/35",
+        "text": "Client-work writing studioMessy clie",
+        "sw": 1184,
+        "cw": 1024
+      },
+      {
+        "tag": "DIV",
+        "cls": "relative overflow-hidden rounded-surface bg-dark px-6 py-14 ",
+        "text": "A clearer next stepReady when your n",
+        "sw": 1008,
+        "cw": 944
+      }
+    ],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "pipeline",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-about",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-pricing",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-notion",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-bonsai",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-honeybook",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-dubsado",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-17hats",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-freshbooks",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-clickup",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-basecamp",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-pandadoc",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "login",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 432,
+      "label": "RoduCQ home"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 48,
+      "h": 48,
+      "label": "Show password"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "signup",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 432,
+      "label": "RoduCQ home"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 48,
+      "h": 48,
+      "label": "Show password"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "invite-token",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 110,
+      "label": "RoduCQ home"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 97,
+      "h": 44,
+      "label": "Back to roducq"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "share-token",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": null,
+      "h": null,
+      "w": 0,
+      "label": ""
+    },
+    "minW": {
+      "tag": null,
+      "h": 0,
+      "w": null,
+      "label": ""
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "invoice-token",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 94,
+      "label": "Print"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 94,
+      "h": 44,
+      "label": "Print"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "onboarding",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": null,
+      "h": null,
+      "w": 0,
+      "label": ""
+    },
+    "minW": {
+      "tag": null,
+      "h": 0,
+      "w": null,
+      "label": ""
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "intake",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "intake-inbox",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "briefs",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "brief-detail",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposals",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposal-detail",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposal-version",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "plans",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "plan-detail",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "updates",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "update-detail",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "invoices",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "invoice-detail",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "contracts",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "contract-detail",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "time",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "reports",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "settings",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "search",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-home",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [
+      {
+        "tag": "SECTION",
+        "cls": "relative isolate overflow-hidden bg-muted/35",
+        "text": "Client-work writing studioMessy clie",
+        "sw": 1600,
+        "cw": 1440
+      },
+      {
+        "tag": "DIV",
+        "cls": "relative overflow-hidden rounded-surface bg-dark px-6 py-14 ",
+        "text": "A clearer next stepReady when your n",
+        "sw": 1264,
+        "cw": 1200
+      }
+    ],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "pipeline",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-about",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-pricing",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-notion",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-bonsai",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-honeybook",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-dubsado",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-17hats",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-freshbooks",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-clickup",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-basecamp",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "marketing-vs-pandadoc",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [
+      {
+        "tag": "A",
+        "w": 39,
+        "h": 44,
+        "label": "About"
+      },
+      {
+        "tag": "A",
+        "w": 43,
+        "h": 44,
+        "label": "Pricing"
+      },
+      {
+        "tag": "A",
+        "w": 37,
+        "h": 44,
+        "label": "Log in"
+      }
+    ],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 58,
+      "label": "roducq"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 37,
+      "h": 44,
+      "label": "Log in"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "login",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 636,
+      "label": "RoduCQ home"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 48,
+      "h": 48,
+      "label": "Show password"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "signup",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 636,
+      "label": "RoduCQ home"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 48,
+      "h": 48,
+      "label": "Show password"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "invite-token",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "A",
+      "h": 44,
+      "w": 110,
+      "label": "RoduCQ home"
+    },
+    "minW": {
+      "tag": "A",
+      "w": 97,
+      "h": 44,
+      "label": "Back to roducq"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "share-token",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": null,
+      "h": null,
+      "w": 0,
+      "label": ""
+    },
+    "minW": {
+      "tag": null,
+      "h": 0,
+      "w": null,
+      "label": ""
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "invoice-token",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 94,
+      "label": "Print"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 94,
+      "h": 44,
+      "label": "Print"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "onboarding",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": null,
+      "h": null,
+      "w": 0,
+      "label": ""
+    },
+    "minW": {
+      "tag": null,
+      "h": 0,
+      "w": null,
+      "label": ""
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "intake",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "intake-inbox",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "briefs",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "brief-detail",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposals",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposal-detail",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposal-version",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "plans",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "plan-detail",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "updates",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "update-detail",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "invoices",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "invoice-detail",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "contracts",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "contract-detail",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "time",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "reports",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "settings",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "search",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  }
+]

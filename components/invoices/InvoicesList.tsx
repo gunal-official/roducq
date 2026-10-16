@@ -4,11 +4,20 @@
 const TODAY_I = new Date().toISOString().slice(0, 10);
 
 /**
- * Client side of /invoices — status filter tabs + search over the list
+ * Client side of /invoices — status filter chips + search over the list
  * the server page fetched, plus create-on-list (the settings/templates
- * precedent for creation living on the list page). Mirrors
- * components/updates/UpdatesList.tsx for the filter/search/card shape;
- * invoices have a number and a total, so the card leads with both.
+ * precedent for creation living on the list page).
+ *
+ * PHASE E LAYOUT CONTRACT (the Phase D list contract, applied to money):
+ *   every width   lavender showcase band (honest orientation copy, the real
+ *                 counts, the invoice-flow drawing), stat tiles carrying the
+ *                 real money totals, then the tinted toolbar: FilterChips +
+ *                 search (stacked under 600px, one row from tab).
+ *   tablet+       cards in two columns, three from the desk band.
+ *   Cards are Forma work cards: lavender icon plate, 44px title link,
+ *   status badge, and a FIGURE row — the document's number beside its
+ *   computed total — with due-date/overdue copy in the footer. Overdue is
+ *   stated in words, never left to a colour.
  *
  * The create form's client_name input is backed by a <datalist> of
  * client names seen on this workspace's briefs — a suggestion, never a
@@ -16,7 +25,6 @@ const TODAY_I = new Date().toISOString().slice(0, 10);
  * table yet).
  */
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import { Loader2, Plus, Search, X, Receipt, Wallet, CircleDollarSign, Clock } from "lucide-react";
@@ -24,108 +32,24 @@ import { Loader2, Plus, Search, X, Receipt, Wallet, CircleDollarSign, Clock } fr
 import { createInvoice } from "@/app/(app)/invoices/actions";
 import { InvoiceStatusBadge } from "@/components/invoices/InvoiceStatusBadge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { CardFigure, WorkBand, WorkCard } from "@/components/workflow/WorkCard";
+import { InvoiceFlowArt } from "@/components/workflow/FinancialArt";
+import { FilterChips } from "@/components/ui/filter-chips";
 import { Input } from "@/components/ui/input";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { SectionCard, EmptyState } from "@/components/ui/page";
 import { formatDate, formatMoney, invoiceNumberLabel, timeAgo } from "@/lib/utils";
 import { ListStats, StatTile, StackedBar } from "@/components/ui/doc-detail";
 import type { InvoiceStatus, InvoiceSummary } from "@/lib/types/invoice";
 
 type StatusFilter = "all" | InvoiceStatus;
 
-const FILTER_TABS: { value: StatusFilter; label: string }[] = [
+const FILTER_OPTIONS: { value: StatusFilter; label: string }[] = [
   { value: "all", label: "All" },
   { value: "draft", label: "Draft" },
   { value: "sent", label: "Sent" },
   { value: "paid", label: "Paid" },
   { value: "void", label: "Void" },
 ];
-
-function EmptyState({
-  hasInvoices,
-  onClearFilters,
-  onNewInvoice,
-}: {
-  hasInvoices: boolean;
-  onClearFilters: () => void;
-  onNewInvoice: () => void;
-}) {
-  return (
-    <div className="flex flex-col items-center justify-center gap-4 rounded-lg border border-dashed border-border py-16 text-center">
-      <span className="icon-chip icon-chip-accent" aria-hidden="true">
-        <Receipt className="h-5 w-5" />
-      </span>
-      {hasInvoices ? (
-        <>
-          <div>
-            <h2 className="font-display text-lg font-semibold tracking-tight">
-              No matching invoices
-            </h2>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Try a different search or status filter.
-            </p>
-          </div>
-          <Button variant="secondary" onClick={onClearFilters}>
-            Clear filters
-          </Button>
-        </>
-      ) : (
-        <>
-          <div>
-            <h2 className="font-display text-lg font-semibold tracking-tight">
-              No invoices yet
-            </h2>
-            <p className="mt-1 max-w-sm text-sm text-muted-foreground">
-              Create your first invoice — it will be numbered INV-0001
-              for this workspace, and you can add line items right after.
-            </p>
-          </div>
-          <Button onClick={onNewInvoice}>
-            <Plus className="mr-2 h-4 w-4"  aria-hidden="true" />
-            New invoice
-          </Button>
-        </>
-      )}
-    </div>
-  );
-}
-
-function InvoiceCard({ invoice }: { invoice: InvoiceSummary }) {
-  return (
-    <Card className="transition-shadow hover:shadow-md">
-      <CardHeader className="space-y-1 border-b border-border px-5 py-3.5">
-        <div className="flex items-start justify-between gap-3">
-          <div className="min-w-0">
-            <Link
-              href={`/invoices/${invoice.id}`}
-              className="inline-flex min-h-11 min-w-11 items-center font-display text-base font-semibold leading-snug underline-offset-2 hover:underline"
-            >
-              {invoice.title}
-            </Link>
-            <p className="mt-0.5 truncate text-sm text-muted-foreground">
-              {invoice.client_name}
-            </p>
-          </div>
-          <InvoiceStatusBadge status={invoice.status} className="shrink-0" />
-        </div>
-      </CardHeader>
-      <CardContent className="space-y-2.5 p-5">
-        <div className="flex items-baseline justify-between gap-3 text-sm">
-          <span className="font-mono text-xs text-muted-foreground">
-            {invoiceNumberLabel(invoice.invoice_number)}
-          </span>
-          <span className="font-display text-lg font-bold tracking-tight">
-            {formatMoney(invoice.total_cents)}
-          </span>
-        </div>
-        <p className="text-xs text-muted-foreground">
-          Due {formatDate(invoice.due_date)} · Updated{" "}
-          {timeAgo(invoice.updated_at)}
-        </p>
-      </CardContent>
-    </Card>
-  );
-}
 
 export function InvoicesList({
   invoices,
@@ -199,6 +123,18 @@ export function InvoicesList({
 
   return (
     <div>
+      <WorkBand
+        kicker="Invoices"
+        title="Money your workspace has billed"
+        description="Every invoice is numbered per workspace — INV-0001 is your first. Draft one here, add the line items on the document itself, and share it with the client through a revocable public link. Statuses are stamps you set; RoduCQ never marks one paid for you."
+        art={<InvoiceFlowArt />}
+        stats={[
+          { value: invoices.length, label: "invoices" },
+          { value: formatMoney(outstandingCents), label: "outstanding" },
+          { value: overdueCount, label: "overdue" },
+        ]}
+      />
+
       <ListStats
         cols={3}
         bar={
@@ -234,26 +170,22 @@ export function InvoicesList({
           delay={80}
         />
       </ListStats>
-      <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
-        <Tabs
+
+      <div className="work-toolbar flex flex-col gap-3 tab:flex-row tab:items-center tab:justify-between">
+        <FilterChips
+          label="Filter invoices by status"
           value={statusFilter}
-          onValueChange={(value) => setStatusFilter(value as StatusFilter)}
-        >
-          <TabsList>
-            {FILTER_TABS.map((tab) => (
-              <TabsTrigger key={tab.value} value={tab.value}>
-                {tab.label}
-                <span className="ml-1.5 text-xs text-muted-foreground">
-                  {statusCounts[tab.value]}
-                </span>
-              </TabsTrigger>
-            ))}
-          </TabsList>
-        </Tabs>
-        <div className="flex flex-wrap items-center gap-3">
-          <div className="relative w-full sm:w-64">
-            <Search className="absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"  aria-hidden="true" />
+          onChange={(value) => setStatusFilter(value)}
+          options={FILTER_OPTIONS.map((option) => ({
+            ...option,
+            count: statusCounts[option.value],
+          }))}
+        />
+        <div className="flex flex-wrap items-center gap-2">
+          <div className="relative w-full tab:w-64">
+            <Search className="absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
             <Input
+              type="search"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search title, client, or #…"
@@ -263,7 +195,7 @@ export function InvoicesList({
           </div>
           {!creating && (
             <Button onClick={() => setCreating(true)}>
-              <Plus className="mr-2 h-4 w-4"  aria-hidden="true" />
+              <Plus className="mr-2 h-4 w-4" aria-hidden="true" />
               New invoice
             </Button>
           )}
@@ -271,24 +203,40 @@ export function InvoicesList({
       </div>
 
       {creating && (
-        <Card className="mb-5">
-          <CardHeader className="space-y-1 border-b border-border px-5 py-3.5">
-            <h2 className="font-display text-base font-semibold tracking-tight">
-              New invoice
-            </h2>
-            <p className="text-xs text-muted-foreground">
-              Starts as a draft — add line items after saving. The client
-              name is free text; suggestions come from this workspace’s
-              briefs.
-            </p>
-          </CardHeader>
-          <CardContent className="space-y-4 p-5">
+        <SectionCard
+          icon={Plus}
+          title="New invoice"
+          description="Starts as a draft — add line items after saving. The client name is free text; suggestions come from this workspace’s briefs."
+          tone="accent"
+          className="mb-6"
+          actions={
+            <Button
+              type="button"
+              variant="ghost"
+              onClick={() => {
+                setCreating(false);
+                setNewClient("");
+                setNewTitle("");
+                setNewDue("");
+                setCreateError(null);
+              }}
+              disabled={creatingPending}
+            >
+              <X className="mr-2 h-4 w-4" aria-hidden="true" />
+              Cancel
+            </Button>
+          }
+        >
+          <form
+            className="composer"
+            onSubmit={(e) => {
+              e.preventDefault();
+              void handleCreate();
+            }}
+          >
             <div className="grid gap-4 sm:grid-cols-2">
-              <div className="space-y-1.5">
-                <label
-                  htmlFor="new-invoice-client"
-                  className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground"
-                >
+              <div className="composer-field">
+                <label htmlFor="new-invoice-client" className="composer-hint">
                   Client
                 </label>
                 <Input
@@ -304,11 +252,8 @@ export function InvoicesList({
                   ))}
                 </datalist>
               </div>
-              <div className="space-y-1.5">
-                <label
-                  htmlFor="new-invoice-title"
-                  className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground"
-                >
+              <div className="composer-field">
+                <label htmlFor="new-invoice-title" className="composer-hint">
                   Title
                 </label>
                 <Input
@@ -319,11 +264,8 @@ export function InvoicesList({
                 />
               </div>
             </div>
-            <div className="space-y-1.5">
-              <label
-                htmlFor="new-invoice-due"
-                className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground"
-              >
+            <div className="composer-field">
+              <label htmlFor="new-invoice-due" className="composer-hint">
                 Due date (optional)
               </label>
               <Input
@@ -335,54 +277,96 @@ export function InvoicesList({
               />
             </div>
             {createError && (
-              <p className="text-xs text-error">{createError}</p>
+              <p className="composer-error" role="alert">
+                {createError}
+              </p>
             )}
-            <div className="flex items-center gap-2">
-              <Button
-                type="button"
-                onClick={handleCreate}
-                disabled={creatingPending}
-              >
+            <div className="composer-actions">
+              <p className="composer-hint">
+                Saving creates the next numbered draft and opens it for line items.
+              </p>
+              <Button type="submit" disabled={creatingPending}>
                 {creatingPending ? (
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin"  aria-hidden="true" />
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" aria-hidden="true" />
                 ) : (
-                  <Plus className="mr-2 h-4 w-4"  aria-hidden="true" />
+                  <Plus className="mr-2 h-4 w-4" aria-hidden="true" />
                 )}
                 Create draft
               </Button>
-              <Button
-                type="button"
-                variant="ghost"
-                onClick={() => {
-                  setCreating(false);
-                  setNewClient("");
-                  setNewTitle("");
-                  setNewDue("");
-                  setCreateError(null);
-                }}
-              >
-                <X className="mr-2 h-4 w-4"  aria-hidden="true" />
-                Cancel
-              </Button>
             </div>
-          </CardContent>
-        </Card>
+          </form>
+        </SectionCard>
       )}
 
       {visible.length === 0 ? (
-        <EmptyState
-          hasInvoices={invoices.length > 0}
-          onClearFilters={() => {
-            setStatusFilter("all");
-            setQuery("");
-          }}
-          onNewInvoice={() => setCreating(true)}
-        />
+        invoices.length > 0 ? (
+          <EmptyState
+            icon={Receipt}
+            title="No matching invoices"
+            description="Try a different search or status filter."
+            action={
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  setStatusFilter("all");
+                  setQuery("");
+                }}
+              >
+                Clear filters
+              </Button>
+            }
+          />
+        ) : (
+          <EmptyState
+            icon={Receipt}
+            title="No invoices yet"
+            description="Create your first invoice — it will be numbered INV-0001 for this workspace, and you can add line items right after."
+            action={
+              <Button onClick={() => setCreating(true)}>
+                <Plus className="mr-2 h-4 w-4" aria-hidden="true" />
+                New invoice
+              </Button>
+            }
+          />
+        )
       ) : (
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-          {visible.map((invoice) => (
-            <InvoiceCard key={invoice.id} invoice={invoice} />
-          ))}
+        <div className="work-grid grid gap-4 sm:grid-cols-2 desk:grid-cols-3">
+          {visible.map((invoice) => {
+            const overdue =
+              invoice.status === "sent" &&
+              !!invoice.due_date &&
+              invoice.due_date < TODAY_I;
+            return (
+              <WorkCard
+                key={invoice.id}
+                href={`/invoices/${invoice.id}`}
+                title={invoice.title}
+                client={invoice.client_name}
+                icon={Receipt}
+                badge={<InvoiceStatusBadge status={invoice.status} />}
+                figure={
+                  <CardFigure
+                    label={invoiceNumberLabel(invoice.invoice_number)}
+                    amount={formatMoney(invoice.total_cents)}
+                  />
+                }
+                meta={
+                  <>
+                    <span className="work-card-time">
+                      {invoice.due_date
+                        ? overdue
+                          ? `Overdue — was due ${formatDate(invoice.due_date)}`
+                          : `Due ${formatDate(invoice.due_date)}`
+                        : "Due on receipt"}
+                    </span>
+                    <span className="work-card-quiet">
+                      Updated {timeAgo(invoice.updated_at)}
+                    </span>
+                  </>
+                }
+              />
+            );
+          })}
         </div>
       )}
     </div>

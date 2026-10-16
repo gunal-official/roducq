@@ -3,6 +3,13 @@
  * GET form (topbar or the refine box here) → server-rendered grouped
  * results across the operational entities, newest first, six per group.
  *
+ * PHASE E: the page is a Forma financial plane (forma-search) — the
+ * refine form lives in a lavender hero band beside the search drawing
+ * (the same plain GET form, no JavaScript required), results render as
+ * group cards with lavender hit rows, and the prompt/empty states use
+ * the shared EmptyState vocabulary. The query, ranking, permission
+ * gates and highlight logic are untouched.
+ *
  * HOW TO TEST (locally — Supabase configured per README.md, seed loaded):
  *   1. Type a client fragment ("Bright") in the topbar search and press
  *      Enter → this page lists that client's briefs, proposals, plans,
@@ -32,8 +39,9 @@ import type { LucideIcon } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { EmptyState, SectionCard } from "@/components/ui/page";
+import { SearchArt } from "@/components/workflow/FinancialArt";
 import { searchWorkspace } from "@/lib/data/search";
 import { getWorkspaceContext } from "@/lib/data/workspace-context";
 import {
@@ -83,47 +91,24 @@ function Highlighted({ text, q }: { text: string | null; q: string }) {
 function HitLink({ hit, href, q }: { hit: SearchHit; href: string; q: string }) {
   return (
     <li>
-      <Link
-        href={href}
-        className="flex min-h-11 items-start gap-3 rounded-control px-3 py-2 transition-colors duration-150 hover:bg-muted"
-      >
+      <Link href={href} className="search-hit min-h-11">
         <div className="min-w-0 flex-1">
-          <p className="truncate text-sm font-medium">
+          <p className="search-hit-title">
             <Highlighted text={hit.title} q={q} />
           </p>
-          <p className="mt-0.5 truncate text-xs text-muted-foreground">
+          <p className="search-hit-meta">
             <Highlighted text={hit.clientName} q={q} />
             {hit.clientName ? " · " : ""}
             {statusLabel(hit.status)} · {timeAgo(hit.updatedAt)}
           </p>
         </div>
-        {hit.code && <Badge variant="secondary">{hit.code}</Badge>}
+        {hit.code && (
+          <Badge variant="secondary" className="search-hit-code">
+            {hit.code}
+          </Badge>
+        )}
       </Link>
     </li>
-  );
-}
-
-/** The centered empty/prompt card (icon-chip pattern, Step 33). */
-function MessageCard({
-  title,
-  hint,
-  children,
-}: {
-  title: string;
-  hint?: string;
-  children?: React.ReactNode;
-}) {
-  return (
-    <Card>
-      <CardContent className="flex flex-col items-center gap-3 p-10 text-center">
-        <span className="icon-chip icon-chip-muted h-10 w-10">
-          <Search className="h-5 w-5" aria-hidden="true" />
-        </span>
-        <p className="font-medium">{title}</p>
-        {hint && <p className="text-sm text-muted-foreground">{hint}</p>}
-        {children}
-      </CardContent>
-    </Card>
   );
 }
 
@@ -164,103 +149,114 @@ export default async function SearchPage({
     : "Across your workspace.";
 
   return (
-    <div className="mx-auto max-w-6xl">
-      <div className="mb-6">
-        <h1 className="font-display text-2xl font-bold tracking-tight">
-          Search
-        </h1>
-        <p className="mt-1 text-sm text-muted-foreground">{scope}</p>
-      </div>
+    <div className="forma-core forma-search mx-auto max-w-6xl">
+      <h1 className="sr-only">Search</h1>
 
-      {/* Refine box — the same plain GET form as the topbar, seeded with
-          the current query. Works without JavaScript. */}
-      <form action="/search" role="search" className="mb-6 flex gap-2">
-        <div className="relative flex-1">
-          <Search
-            aria-hidden="true"
-            className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
-          />
-          <label htmlFor="search-refine" className="sr-only">
+      {/* The hero band: the refine form is the same plain GET form as the
+          topbar, seeded with the current query. Works without JavaScript. */}
+      <section className="search-hero" aria-label="Search your workspace">
+        <form action="/search" role="search" className="search-hero-form">
+          <label htmlFor="search-refine" className="forma-kicker">
             Search your workspace
           </label>
-          <Input
-            id="search-refine"
-            type="search"
-            name="q"
-            defaultValue={q ?? ""}
-            placeholder="Search title or client…"
-            autoFocus={!q}
-            className="h-11 w-full rounded-control border-transparent bg-muted pl-10 shadow-none"
-          />
+          <div className="relative">
+            <Search
+              aria-hidden="true"
+              className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
+            />
+            <Input
+              id="search-refine"
+              type="search"
+              name="q"
+              defaultValue={q ?? ""}
+              placeholder="Search title or client…"
+              autoFocus={!q}
+              className="search-hero-input pl-10"
+            />
+          </div>
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <p className="search-hero-meta">
+              Covers titles and client names · two characters minimum ·
+              newest first, six per group.
+            </p>
+            <Button type="submit" className="h-11 rounded-control px-5">
+              Search
+            </Button>
+          </div>
+        </form>
+        <div className="search-hero-art">
+          <SearchArt />
         </div>
-        <Button type="submit" className="h-11 rounded-control px-5">
-          Search
-        </Button>
-      </form>
+      </section>
 
       {!q || !context ? (
         // No usable query: a prompt, not an error — two characters is the
         // floor (SEARCH_MIN_CHARS).
-        <MessageCard
+        <EmptyState
+          icon={Search}
           title="Search your workspace"
-          hint="Type at least two characters — a project title or a client name — then press Enter."
+          description={scope}
+          tone="muted"
         />
       ) : total === 0 ? (
-        <MessageCard
+        <EmptyState
+          icon={Search}
           title={`No results for “${q}”`}
-          hint="Check the spelling, or try a client name — search covers titles and client names only."
-        >
-          <div className="mt-2 flex flex-wrap justify-center gap-2">
-            {searchableGroups(context.canSeeMoney).map((group) => (
-              <Button key={group.key} asChild variant="secondary" size="sm">
-                <Link href={group.listHref}>{group.label}</Link>
-              </Button>
-            ))}
-          </div>
-        </MessageCard>
+          description="Check the spelling, or try a client name — search covers titles and client names only."
+          tone="muted"
+          action={
+            <div className="mt-2 flex flex-wrap justify-center gap-2">
+              {searchableGroups(context.canSeeMoney).map((group) => (
+                <Button key={group.key} asChild variant="secondary" size="sm">
+                  <Link href={group.listHref}>{group.label}</Link>
+                </Button>
+              ))}
+            </div>
+          }
+        />
       ) : (
         <>
           <p className="mb-4 text-sm text-muted-foreground" role="status">
-            {total} result{total === 1 ? "" : "s"} for “{q}”
+            {total} result{total === 1 ? "" : "s"} for “{q}” — {scope}
           </p>
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid items-start gap-4 sm:grid-cols-2">
             {groups.map((group) => {
               const hits = results?.[group.key] ?? [];
               const Icon = GROUP_ICONS[group.key];
               return (
-                <Card key={group.key} className="animate-rise-in">
-                  <CardHeader className="flex-row items-center gap-2.5 space-y-0 border-b border-border px-5 py-3.5">
-                    <span className="icon-chip icon-chip-muted h-8 w-8">
-                      <Icon className="h-4 w-4" aria-hidden="true" />
-                    </span>
-                    <CardTitle className="text-base">{group.label}</CardTitle>
-                    <Badge variant="secondary" className="ml-auto">
+                <SectionCard
+                  key={group.key}
+                  icon={Icon}
+                  title={group.label}
+                  tone="accent"
+                  actions={
+                    <Badge variant="secondary">
                       {hits.length === SEARCH_GROUP_LIMIT
                         ? `${SEARCH_GROUP_LIMIT}+`
                         : hits.length}
                     </Badge>
-                  </CardHeader>
-                  <CardContent className="p-2">
-                    <ul className="space-y-0.5">
-                      {hits.map((hit) => (
-                        <HitLink
-                          key={hit.id}
-                          hit={hit}
-                          href={group.detailHref(hit.id)}
-                          q={q}
-                        />
-                      ))}
-                    </ul>
-                    <div className="mt-1 border-t border-border">
-                      <Link
-                        href={group.listHref}
-                        className="flex min-h-11 items-center rounded-control px-3 text-xs font-medium text-muted-foreground transition-colors duration-150 hover:bg-muted hover:text-text"
-                      >
-                        View all {group.label.toLowerCase()} →
-                      </Link>
-                    </div>
-                  </CardContent>
-                </Card>
+                  }
+                  bodyClassName="p-2"
+                >
+                  <ul className="space-y-0.5">
+                    {hits.map((hit) => (
+                      <HitLink
+                        key={hit.id}
+                        hit={hit}
+                        href={group.detailHref(hit.id)}
+                        q={q}
+                      />
+                    ))}
+                  </ul>
+                  <div className="mt-1 border-t border-border">
+                    <Link
+                      href={group.listHref}
+                      className="search-more min-h-11"
+                    >
+                      View all {group.label.toLowerCase()} →
+                    </Link>
+                  </div>
+                </SectionCard>
               );
             })}
           </div>

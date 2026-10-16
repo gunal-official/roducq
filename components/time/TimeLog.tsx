@@ -6,6 +6,16 @@
  * (computed here — nothing stored), the brief filter, and the
  * create/edit form. Delete is two-step (click → confirm) — the only
  * destructive control in the product.
+ *
+ * PHASE E LAYOUT CONTRACT (the Forma time workspace):
+ *   every width   lavender band (elapsed-time drawing, the real today/
+ *                 month totals, the real entry count), then the tinted
+ *                 toolbar (brief filter + Log time), then the day groups:
+ *                 one muted panel per day, white entry rows inside it.
+ *   tablet+       the entry form's fields sit on one row; entry rows put
+ *                 the duration and actions on the right.
+ * All state, actions and calculations are exactly what they were — only
+ * the presentation changed.
  */
 
 import { useMemo, useState } from "react";
@@ -20,6 +30,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { EmptyState, SectionCard } from "@/components/ui/page";
+import { WorkBand } from "@/components/workflow/WorkCard";
+import { TimeElapsedArt } from "@/components/workflow/FinancialArt";
+import { Clock, Pencil, Trash2, Timer } from "lucide-react";
 import { cn, formatDuration, localToday } from "@/lib/utils";
 import type { BriefOption, TimeEntry } from "@/lib/types/time";
 
@@ -110,7 +124,8 @@ export function TimeLog({
     return entries
       .filter((e) => e.worked_on.startsWith(prefix))
       .reduce((sum, e) => sum + e.duration_minutes, 0);
-  }, [entries]);
+    }, [entries]
+  );
 
   function openCreate() {
     setEditingId(null);
@@ -184,23 +199,20 @@ export function TimeLog({
 
   return (
     <div>
-      <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center gap-4 text-sm">
-          <span className="text-muted-foreground">
-            Today{" "}
-            <span className="font-semibold text-text">
-              {formatDuration(todayTotal)}
-            </span>
-          </span>
-          <span className="text-muted-foreground">
-            This month{" "}
-            <span className="font-semibold text-text">
-              {formatDuration(monthTotal)}
-            </span>
-          </span>
-        </div>
+      <WorkBand
+        kicker="Time"
+        title="Hours, grouped by the day they happened"
+        description="Entries are logged against the day the work was done — never the day they were typed. Start the floating timer from any page, or log an entry by hand here; both write the same rows."
+        art={<TimeElapsedArt />}
+        stats={[
+          { value: formatDuration(todayTotal), label: "today" },
+          { value: formatDuration(monthTotal), label: "this month" },
+          { value: entries.length, label: "entries" },
+        ]}
+      />
 
-        <div className="flex items-center gap-2">
+      <div className="work-toolbar flex flex-col gap-3 tab:flex-row tab:items-center tab:justify-between">
+        <div className="flex flex-wrap items-center gap-3">
           <Select
             value={briefFilter}
             onValueChange={(value) => {
@@ -220,143 +232,198 @@ export function TimeLog({
               ))}
             </SelectContent>
           </Select>
-          {!formOpen && (
-            <Button size="sm" onClick={openCreate}>
-              Log time
-            </Button>
-          )}
+          <span className="text-xs text-muted-foreground">
+            {groups.length === 1
+              ? "1 day shown"
+              : `${groups.length} days shown`}
+          </span>
         </div>
+        {!formOpen && (
+          <Button onClick={openCreate}>
+            <Clock className="mr-2 h-4 w-4" aria-hidden="true" />
+            Log time
+          </Button>
+        )}
       </div>
 
       {deleteError && (
-        <p className="mb-3 rounded-md border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive">
+        <p className="composer-error mb-3" role="alert">
           {deleteError}
         </p>
       )}
 
       {formOpen && (
-        <form
-          className="mb-6 rounded-md border border-border bg-card p-4"
-          onSubmit={(e) => {
-            e.preventDefault();
-            void handleSave();
-          }}
+        <SectionCard
+          icon={Timer}
+          title={editingId ? "Edit entry" : "Log time"}
+          description={
+            editingId
+              ? "Every field is editable — the entry moves to the day you pick."
+              : "Backdate freely — the entry lands in the day the work happened."
+          }
+          tone="accent"
+          className="mb-6"
         >
-          <p className="mb-3 text-sm font-semibold">
-            {editingId ? "Edit entry" : "Log time"}
-          </p>
-          <div className="flex flex-wrap items-center gap-3">
-            <Input
-              value={form.description}
-              onChange={(e) =>
-                setForm((f) => ({ ...f, description: e.target.value }))
-              }
-              placeholder="What did you work on?"
-              aria-label="Description"
-              className="h-9 min-w-52 flex-1"
-              autoFocus
-            />
-            <Input
-              type="number"
-              min={1}
-              step={1}
-              value={form.minutes}
-              onChange={(e) =>
-                setForm((f) => ({ ...f, minutes: e.target.value }))
-              }
-              placeholder="Minutes"
-              aria-label="Minutes"
-              className="h-9 w-28"
-            />
-            <Input
-              type="date"
-              value={form.worked_on}
-              onChange={(e) =>
-                setForm((f) => ({ ...f, worked_on: e.target.value }))
-              }
-              aria-label="Worked on"
-              className="h-9 w-40"
-            />
-            <Select
-              value={form.brief_id || "general"}
-              onValueChange={(value) =>
-                setForm((f) => ({
-                  ...f,
-                  brief_id: value === "general" ? "" : value,
-                }))
-              }
-            >
-              <SelectTrigger className="w-48" aria-label="Brief">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="general">General (no brief)</SelectItem>
-                {briefs.map((brief) => (
-                  <SelectItem key={brief.id} value={brief.id}>
-                    {brief.title}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-          {formError && <p className="mt-2 text-sm text-destructive">{formError}</p>}
-          <div className="mt-3 flex items-center gap-2">
-            <Button type="submit" size="sm" disabled={saving}>
-              {saving ? "Saving…" : editingId ? "Save changes" : "Save"}
-            </Button>
-            <Button
-              type="button"
-              size="sm"
-              variant="ghost"
-              onClick={closeForm}
-              disabled={saving}
-            >
-              Cancel
-            </Button>
-          </div>
-        </form>
+          <form
+            className="composer"
+            onSubmit={(e) => {
+              e.preventDefault();
+              void handleSave();
+            }}
+          >
+            <div className="composer-field">
+              <label htmlFor="time-description" className="composer-hint">
+                What did you work on?
+              </label>
+              <Input
+                id="time-description"
+                value={form.description}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, description: e.target.value }))
+                }
+                autoFocus
+              />
+            </div>
+            <div className="grid gap-4 tab:grid-cols-3">
+              <div className="composer-field">
+                <label htmlFor="time-minutes" className="composer-hint">
+                  Minutes
+                </label>
+                <Input
+                  id="time-minutes"
+                  type="number"
+                  min={1}
+                  step={1}
+                  value={form.minutes}
+                  onChange={(e) =>
+                    setForm((f) => ({ ...f, minutes: e.target.value }))
+                  }
+                />
+              </div>
+              <div className="composer-field">
+                <label htmlFor="time-worked-on" className="composer-hint">
+                  Worked on
+                </label>
+                <Input
+                  id="time-worked-on"
+                  type="date"
+                  value={form.worked_on}
+                  onChange={(e) =>
+                    setForm((f) => ({ ...f, worked_on: e.target.value }))
+                  }
+                />
+              </div>
+              <div className="composer-field">
+                <label htmlFor="time-brief" className="composer-hint">
+                  Brief (optional)
+                </label>
+                <Select
+                  value={form.brief_id || "general"}
+                  onValueChange={(value) =>
+                    setForm((f) => ({
+                      ...f,
+                      brief_id: value === "general" ? "" : value,
+                    }))
+                  }
+                >
+                  <SelectTrigger id="time-brief">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="general">General (no brief)</SelectItem>
+                    {briefs.map((brief) => (
+                      <SelectItem key={brief.id} value={brief.id}>
+                        {brief.title}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+            {formError && (
+              <p className="composer-error" role="alert">
+                {formError}
+              </p>
+            )}
+            <div className="composer-actions">
+              <p className="composer-hint">
+                Durations are whole minutes; the day totals above update when
+                you save.
+              </p>
+              <div className="flex flex-wrap items-center gap-2">
+                <Button type="submit" disabled={saving}>
+                  {saving ? "Saving…" : editingId ? "Save changes" : "Save"}
+                </Button>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  onClick={closeForm}
+                  disabled={saving}
+                >
+                  Cancel
+                </Button>
+              </div>
+            </div>
+          </form>
+        </SectionCard>
       )}
 
       {groups.length === 0 ? (
-        <p className="rounded-md border border-dashed border-border px-4 py-8 text-center text-sm text-muted-foreground">
-          {entries.length === 0
-            ? "No time logged yet — start the timer (bottom right) or click “Log time”."
-            : "No entries for this brief yet."}
-        </p>
+        entries.length === 0 ? (
+          <EmptyState
+            icon={Timer}
+            title="No time logged yet"
+            description="Start the timer from the pill at the bottom right of any page, or log an entry by hand — both write the same rows."
+            action={
+              <Button onClick={openCreate}>
+                <Clock className="mr-2 h-4 w-4" aria-hidden="true" />
+                Log time
+              </Button>
+            }
+          />
+        ) : (
+          <EmptyState
+            icon={Timer}
+            title="No entries for this brief"
+            description="Switch the filter back to “All time” to see every entry."
+          />
+        )
       ) : (
         <div className="space-y-6">
           {groups.map((group) => (
-            <div key={group.date}>
-              <div className="mb-2 flex items-baseline justify-between">
-                <h2 className="text-sm font-semibold">{dayLabel(group.date)}</h2>
-                <span className="text-xs text-muted-foreground">
-                  {formatDuration(group.total)}
+            <section
+              key={group.date}
+              className="time-day"
+              aria-label={`${dayLabel(group.date)} — ${formatDuration(group.total)}`}
+            >
+              <div className="time-day-head">
+                <h2 className="time-day-title">{dayLabel(group.date)}</h2>
+                <span className="time-day-total">
+                  {formatDuration(group.total)} logged
                 </span>
               </div>
-              <ul className="divide-y divide-border rounded-md border border-border bg-card">
+              <ul className="time-list">
                 {group.items.map((entry) => (
-                  <li
-                    key={entry.id}
-                    className="flex animate-rise-in items-center gap-3 px-3 py-2.5 text-sm"
-                  >
-                    <div className="min-w-0 flex-1">
-                      <p className="truncate text-text">{entry.description}</p>
+                  <li key={entry.id} className="time-row animate-rise-in">
+                    <div className="time-row-body">
+                      <p className="time-row-desc">{entry.description}</p>
                       {briefTitle(entry.brief_id) && (
-                        <p className="mt-0.5 truncate text-xs text-muted-foreground">
+                        <p className="time-row-brief">
                           {briefTitle(entry.brief_id)}
                         </p>
                       )}
                     </div>
-                    <span className="shrink-0 font-medium tabular-nums">
+                    <span className="time-row-duration">
                       {formatDuration(entry.duration_minutes)}
                     </span>
-                    <div className="flex shrink-0 items-center gap-1">
+                    <div className="time-row-actions">
                       <Button
                         size="sm"
                         variant="ghost"
-                        className="min-h-11 min-w-11 px-2 text-muted-foreground"
+                        className="min-h-11 min-w-11 gap-1.5 px-2.5 text-muted-foreground"
                         onClick={() => openEdit(entry)}
                       >
+                        <Pencil className="h-4 w-4" aria-hidden="true" />
                         Edit
                       </Button>
                       <Button
@@ -367,7 +434,7 @@ export function TimeLog({
                             : "ghost"
                         }
                         className={cn(
-                          "min-h-11 min-w-11 px-2",
+                          "min-h-11 min-w-11 gap-1.5 px-2.5",
                           confirmDeleteId !== entry.id && "text-muted-foreground"
                         )}
                         disabled={deleting}
@@ -376,6 +443,7 @@ export function TimeLog({
                           void handleDelete(entry.id);
                         }}
                       >
+                        <Trash2 className="h-4 w-4" aria-hidden="true" />
                         {confirmDeleteId === entry.id
                           ? deleting
                             ? "…"
@@ -386,7 +454,7 @@ export function TimeLog({
                   </li>
                 ))}
               </ul>
-            </div>
+            </section>
           ))}
         </div>
       )}

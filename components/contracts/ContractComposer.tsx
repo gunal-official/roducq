@@ -60,13 +60,10 @@ export function ContractComposer({
   }
 
   return (
-    <div className="space-y-4">
+    <div className="composer">
       <div className="grid gap-4 sm:grid-cols-2">
-        <div className="space-y-1.5">
-          <label
-            htmlFor="contract-title"
-            className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground"
-          >
+        <div className="composer-field">
+          <label htmlFor="contract-title" className="composer-hint">
             Title
           </label>
           <Input
@@ -75,11 +72,8 @@ export function ContractComposer({
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
-        <div className="space-y-1.5">
-          <label
-            htmlFor="contract-client"
-            className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground"
-          >
+        <div className="composer-field">
+          <label htmlFor="contract-client" className="composer-hint">
             Client
           </label>
           <Input
@@ -97,8 +91,8 @@ export function ContractComposer({
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <div className="space-y-1.5">
-          <label className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+        <div className="composer-field">
+          <label htmlFor="contract-brief" className="composer-hint">
             Brief
           </label>
           <Select
@@ -107,7 +101,7 @@ export function ContractComposer({
               setBriefId(value === STANDALONE ? "" : value)
             }
           >
-            <SelectTrigger className="" aria-label="Brief">
+            <SelectTrigger id="contract-brief">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -122,11 +116,8 @@ export function ContractComposer({
             </SelectContent>
           </Select>
         </div>
-        <div className="space-y-1.5">
-          <label
-            htmlFor="contract-expires"
-            className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground"
-          >
+        <div className="composer-field">
+          <label htmlFor="contract-expires" className="composer-hint">
             Expiry (optional)
           </label>
           <Input
@@ -138,11 +129,8 @@ export function ContractComposer({
         </div>
       </div>
 
-      <div className="space-y-1.5">
-        <label
-          htmlFor="contract-terms"
-          className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground"
-        >
+      <div className="composer-field">
+        <label htmlFor="contract-terms" className="composer-hint">
           Terms
         </label>
         <Textarea
@@ -150,15 +138,16 @@ export function ContractComposer({
           value={terms}
           onChange={(e) => setTerms(e.target.value)}
           placeholder="Scope, fee and payment terms, cancellation window…"
-          className="min-h-48"
+          className="composer-body min-h-48"
         />
+        <p className="composer-hint">
+          Plain text, kept exactly as written — the letter and the PDF render
+          it verbatim.
+        </p>
       </div>
 
-      <div className="space-y-1.5">
-        <label
-          htmlFor="contract-signed-by"
-          className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground"
-        >
+      <div className="composer-field">
+        <label htmlFor="contract-signed-by" className="composer-hint">
           Signed by (client)
         </label>
         <Input
@@ -169,9 +158,17 @@ export function ContractComposer({
         />
       </div>
 
-      {error && <p className="text-sm text-error">{error}</p>}
+      {error && (
+        <p className="composer-error" role="alert">
+          {error}
+        </p>
+      )}
 
-      <div className="flex items-center gap-2">
+      <div className="composer-actions">
+        <p className="composer-hint">
+          Saving re-renders the letter above and the exported PDF from these
+          fields.
+        </p>
         <Button onClick={handleSave} disabled={saving}>
           {saving ? (
             <Loader2 className="mr-2 h-4 w-4 animate-spin"  aria-hidden="true" />
