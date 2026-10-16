@@ -366,3 +366,12 @@
     overflow: visible !important;
   }
 }
+
+/* ── Marketing surface: lavender/purple brand, scoped to .marketing ─────── */
+/* lavender purple marketing palette */
+.marketing {
+  --accent: #7c3aed;
+  --accent-hover: #6d28d9;
+  --accent-soft: color-mix(in srgb, #7c3aed 12%, var(--card));
+  --ring: #7c3aed;
+}

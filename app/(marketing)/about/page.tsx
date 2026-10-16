@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { MessageSquare, PenLine, Share2, Workflow } from "lucide-react";
 import type { Metadata } from "next";
+import { ArrowRight, MessageSquare, PenLine, Share2, Workflow } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -39,68 +39,97 @@ const BUILT_TODAY = [
   },
 ];
 
-/**
- * Step 13 — /about. Grounded in what's actually built: no founding myth,
- * just what the product does today and who it's for.
- */
+function AnimatedOrbit() {
+  return (
+    <svg
+      viewBox="0 0 200 200"
+      className="h-40 w-40 text-accent motion-safe:animate-[spin_12s_linear_infinite]"
+      aria-hidden="true"
+      fill="none"
+    >
+      <circle cx="100" cy="100" r="78" stroke="currentColor" strokeWidth="1.5" strokeDasharray="6 8" opacity="0.4" />
+      <circle cx="100" cy="100" r="52" stroke="currentColor" strokeWidth="1.5" opacity="0.6" />
+      <circle cx="100" cy="100" r="8" fill="currentColor" />
+      <circle cx="178" cy="100" r="6" fill="currentColor" className="motion-safe:animate-pulse" />
+    </svg>
+  );
+}
+
 export default function AboutPage() {
   return (
-    <div className="mx-auto max-w-3xl px-6 py-16">
-      <h1 className="font-display text-3xl font-bold tracking-tight">About</h1>
-      <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
-        roducq is a <strong className="font-medium text-text">client-work writing studio</strong>{": "}
-        a single workspace for the writing trail that runs through every
-        freelance or studio engagement — intake, briefs, proposals, plans,
-        and client updates.
-      </p>
-      <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
-        Client work starts as scattered communication: an email here, a call
-        note there, a &ldquo;quick question&rdquo; in chat. roducq takes
-        that raw material as-is and structures it — flagging gaps early,
-        keeping every source attached, and carrying the result forward stage
-        by stage instead of asking you to re-type it into five different
-        documents.
-      </p>
+    <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:px-10">
+      <section className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+            About roducq
+          </p>
+          <h1 className="mt-4 font-display text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl">
+            A writing studio for client work.
+          </h1>
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+            roducq is a <strong className="font-medium text-text">client-work writing studio</strong>
+            {": "}a single workspace for the writing trail that runs through every
+            freelance or studio engagement — intake, briefs, proposals, plans,
+            and client updates.
+          </p>
+          <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+            Client work starts as scattered communication: an email here, a call
+            note there, a &ldquo;quick question&rdquo; in chat. roducq takes
+            that raw material as-is and structures it — flagging gaps early,
+            keeping every source attached, and carrying the result forward stage
+            by stage instead of asking you to re-type it into five different
+            documents.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <Button asChild>
+              <Link href="/signup">
+                Try it <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+            </Button>
+            <Button asChild variant="outline">
+              <Link href="/pricing">See pricing</Link>
+            </Button>
+          </div>
+        </div>
+        <div className="flex items-center justify-center">
+          <AnimatedOrbit />
+        </div>
+      </section>
 
-      <h2 className="mt-10 font-display text-xl font-bold tracking-tight">
-        What&apos;s inside today
-      </h2>
-      <div className="mt-6 grid gap-4 sm:grid-cols-2">
-        {BUILT_TODAY.map(({ icon: Icon, title, copy }) => (
-          <Card key={title}>
-            <CardHeader className="space-y-1 p-4">
-              <div className="flex items-center gap-2.5">
-                <span className="icon-chip icon-chip-accent h-8 w-8">
-                  <Icon className="h-4 w-4" aria-hidden="true" />
-                </span>
-                <CardTitle className="text-sm">{title}</CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent className="p-4 pt-0">
-              <p className="text-xs leading-relaxed text-muted-foreground">
-                {copy}
-              </p>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+      <section className="mt-20">
+        <h2 className="font-display text-2xl font-bold tracking-tight sm:text-3xl">
+          What&apos;s inside today
+        </h2>
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          {BUILT_TODAY.map(({ icon: Icon, title, copy }) => (
+            <Card key={title} className="transition-transform hover:-translate-y-1">
+              <CardHeader className="space-y-1 p-4">
+                <div className="flex items-center gap-2.5">
+                  <span className="icon-chip icon-chip-accent h-8 w-8">
+                    <Icon className="h-4 w-4" aria-hidden="true" />
+                  </span>
+                  <CardTitle className="text-sm">{title}</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent className="p-4 pt-0">
+                <p className="text-xs leading-relaxed text-muted-foreground">
+                  {copy}
+                </p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
 
-      <p className="mt-10 text-sm leading-relaxed text-muted-foreground">
-        It&apos;s built for the people who live in this workflow — freelance
-        designers, developers, writers, and small studios — and it&apos;s in
-        early access, which means the people using it now shape what ships
-        next. Built on Next.js and Supabase, with every workspace&apos;s data
-        walled off behind row-level security.
-      </p>
-
-      <div className="mt-10 flex items-center gap-3">
-        <Button asChild>
-          <Link href="/signup">Try it</Link>
-        </Button>
-        <Button asChild variant="outline">
-          <Link href="/pricing">See pricing</Link>
-        </Button>
-      </div>
+      <section className="mt-20 rounded-surface border border-border bg-card p-6 sm:p-10">
+        <p className="text-sm leading-relaxed text-muted-foreground">
+          It&apos;s built for the people who live in this workflow — freelance
+          designers, developers, writers, and small studios — and it&apos;s in
+          early access, which means the people using it now shape what ships
+          next. Built on Next.js and Supabase, with every workspace&apos;s data
+          walled off behind row-level security.
+        </p>
+      </section>
     </div>
   );
 }

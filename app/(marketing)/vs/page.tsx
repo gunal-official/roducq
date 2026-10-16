@@ -12,35 +12,41 @@ export const metadata: Metadata = {
     "How roducq compares with Notion, Bonsai, HoneyBook, Dubsado, 17hats, FreshBooks, ClickUp, Basecamp and PandaDoc for client work.",
 };
 
-/**
- * /vs comparisons hub (marketing). Lists every entry in VS_PAGES as a card
- * linking to /vs/<slug>, which links back here. Static — the content map is
- * plain copy, so nothing is fetched at request time.
- */
 export default function VsHubPage() {
   return (
-    <div className="mx-auto max-w-3xl px-6 py-16">
-      <Badge variant="secondary">Comparisons</Badge>
-      <div className="mt-4 flex items-center gap-3">
-        <span className="icon-chip icon-chip-accent h-10 w-10 shrink-0">
-          <Scale className="h-5 w-5" aria-hidden="true" />
-        </span>
-        <h1 className="font-display text-3xl font-bold tracking-tight">
-          How roducq compares
-        </h1>
+    <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:px-10">
+      <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+        <div>
+          <Badge variant="secondary">Comparisons</Badge>
+          <div className="mt-4 flex items-center gap-3">
+            <span className="icon-chip icon-chip-accent h-10 w-10 shrink-0">
+              <Scale className="h-5 w-5" aria-hidden="true" />
+            </span>
+            <h1 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
+              How roducq compares
+            </h1>
+          </div>
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+            roducq is a narrow tool: it turns raw client messages into briefs,
+            proposals, plans and updates. The tools below cover different parts of a
+            practice. Pick the one closest to your work.
+          </p>
+        </div>
+        <div className="hidden items-center justify-center lg:flex">
+          <svg viewBox="0 0 200 200" className="h-44 w-44 text-accent motion-safe:animate-[spin_18s_linear_infinite]" aria-hidden="true" fill="none">
+            <circle cx="100" cy="100" r="88" stroke="currentColor" strokeWidth="1" strokeDasharray="4 6" opacity="0.3" />
+            <circle cx="100" cy="100" r="60" stroke="currentColor" strokeWidth="1.5" opacity="0.5" />
+            <circle cx="100" cy="100" r="10" fill="currentColor" />
+          </svg>
+        </div>
       </div>
-      <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
-        roducq is a narrow tool: it turns raw client messages into briefs,
-        proposals, plans and updates. The tools below cover different parts of a
-        practice. Pick the one closest to your work.
-      </p>
 
-      <p className="mt-6 rounded-md border border-border bg-muted/40 px-4 py-3 text-xs leading-relaxed text-muted-foreground">
+      <p className="mt-8 rounded-md border border-border bg-muted/40 px-4 py-3 text-xs leading-relaxed text-muted-foreground">
         <span className="font-medium text-text">Limits of these comparisons. </span>
         {VS_LIMITATION_NOTE}
       </p>
 
-      <ul className="mt-10 grid gap-3 sm:grid-cols-2">
+      <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {VS_PAGE_LIST.map((entry) => (
           <li key={entry.slug}>
             <Link

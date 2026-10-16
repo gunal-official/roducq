@@ -34,18 +34,13 @@ export async function generateMetadata({ params }: VsPageProps): Promise<Metadat
   };
 }
 
-/**
- * Step 13 — /vs/* competitor comparison pages. Content lives in
- * ./vs-pages.ts; comparisons stay factual and purpose-built-flavored, never
- * disparaging. Unknown slugs → notFound().
- */
 export default async function VsPage({ params }: VsPageProps) {
   const { slug } = await params;
   const entry = VS_PAGES[slug];
   if (!entry) notFound();
 
   return (
-    <div className="mx-auto max-w-3xl px-6 py-16">
+    <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:px-10">
       <Link
         href="/vs"
         className="inline-flex min-h-11 items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-text"
@@ -62,7 +57,7 @@ export default async function VsPage({ params }: VsPageProps) {
           {entry.heading}
         </h1>
       </div>
-      <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
+      <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
         {entry.intro}
       </p>
 
@@ -91,7 +86,7 @@ export default async function VsPage({ params }: VsPageProps) {
         </CardContent>
       </Card>
 
-      <p className="mt-8 text-sm leading-relaxed text-muted-foreground sm:text-base">
+      <p className="mt-8 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
         {entry.takeaway}
       </p>
 
