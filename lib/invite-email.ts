@@ -38,7 +38,7 @@ import { FONT_STACKS, RADIUS_CONTROL, TOKENS } from "./design-tokens.ts";
  * light palette and type stacks shared with the app and PDF exports. */
 const EMAIL = {
   ink: TOKENS.text,
-  accent: TOKENS.terracotta,
+  accent: TOKENS.purple,
   onAccent: "#ffffff",
   secondary: TOKENS.secondaryText,
   footer: TOKENS.neutral,

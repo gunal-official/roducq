@@ -7,12 +7,12 @@ import { ChevronDown } from "lucide-react";
 import { isNavActive, visibleGroups } from "./nav-items";
 import { WorkspaceSwitcher, type SwitcherWorkspace } from "./WorkspaceSwitcher";
 
-/* Phase 2 sidebar (Ember Studio shell): warm surface with a subtle right
+/* Shared Forma sidebar: theme-aware surface with a subtle right
    border. Bands: 64px icon rail (tab–desk) so tablet content is never
    squeezed, 256px labeled nav (desk+). Desktop sections are collapsible
    disclosures (aria-expanded/aria-controls) persisted in localStorage and
-   shared across tabs via the external store below. Active row = soft ember
-   pill + accent icon + 3px terracotta indicator sliver. Only the most
+   shared across tabs via the external store below. Active row = soft lavender
+   pill + accent icon + 3px purple/lilac indicator sliver. Only the most
    specific route lights up (isNavActive) — /intake/inbox no longer
    activates Intake and Inbox together. */
 

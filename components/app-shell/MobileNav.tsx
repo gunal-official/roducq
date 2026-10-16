@@ -8,7 +8,7 @@ import { WorkspaceSwitcher, type SwitcherWorkspace } from "./WorkspaceSwitcher";
 
 // Mobile (<tab) navigation: the topbar hamburger and the bottom tab bar's
 // "More" slot both open this drawer — slide-in panel with grouped icon-chip
-// rows (Ember Studio language). It carries every route the tab bar omits.
+// rows using shared Forma tokens. It carries every route the tab bar omits.
 // Nothing clips at 320px, every item is a 44px row, and the panel respects
 // top/bottom safe-area insets. Active highlighting is unique (isNavActive).
 export function MobileNav({

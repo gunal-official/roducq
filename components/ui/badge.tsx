@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
 
-/* Ember Studio badges use pill corners and token-tinted fills. */
+/* Forma badges use pill corners and theme-aware semantic token fills. */
 const badgeVariants = cva(
   "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
   {
@@ -12,6 +12,8 @@ const badgeVariants = cva(
         default: "border-transparent bg-accent text-accent-foreground",
         soft: "border-transparent bg-accent-soft text-accent",
         success: "border-transparent bg-success-soft text-success",
+        info: "border-transparent bg-info-soft text-info",
+        warning: "border-transparent bg-highlight-soft text-highlight",
         secondary: "border-transparent bg-muted text-text",
         destructive:
           "border-transparent bg-destructive text-destructive-foreground",

@@ -358,7 +358,7 @@ describe("buildProposalPdf", () => {
     // white inner fill, so the rect count is 2 (checked) + 4 (strip/rules…)
     // — the assertion that matters is that no check character was written.
     assert.ok(!flatText(buildProposalPdf(PROPOSAL).bytes).includes("\u2713"));
-    assert.match(stream, /0\.76 0\.25 0\.05 rg/); // Ember terracotta-filled marker (#c2410c)
+    assert.match(stream, /0\.49 0\.23 0\.93 rg/); // Forma purple-filled marker (#7c3aed)
   });
 
   test("empty proposals say what is missing", () => {

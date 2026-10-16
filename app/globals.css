@@ -3,92 +3,114 @@
 @tailwind utilities;
 
 @layer base {
-  /* Ember Studio canonical light palette. lib/design-tokens.ts mirrors the
-     literal values so browser, PDF and email surfaces share one palette. */
+  /* Forma's canonical brand palette. `lib/design-tokens.ts` mirrors these
+     light values for PDF/email/error surfaces; legacy Ember and shadcn-style
+     aliases below keep the existing application components source-compatible. */
   :root {
     color-scheme: light;
 
-    --ember-background: #fafaf9;
-    --ember-surface: #f5f5f4;
-    --ember-surface-raised: #e7e5e4;
-    --ember-terracotta: #c2410c;
-    --ember-terracotta-hover: #9a3412;
-    --ember-amber: #f59e0b;
-    --ember-text: #1c1917;
-    --ember-secondary-text: #57534e;
-    --ember-neutral: #78716c;
-    --ember-border: #d6d3d1;
+    --forma-background: #faf8fc;
+    --forma-surface: #ffffff;
+    --forma-surface-raised: #f2ecf7;
+    --forma-purple: #7c3aed;
+    --forma-purple-hover: #6d28d9;
+    --forma-lavender: #ede5f8;
+    --forma-plum: #2c1b36;
+    --forma-amber: #9a5b0a;
+    --forma-text: #261d2d;
+    --forma-secondary-text: #665c70;
+    --forma-neutral: #74677f;
+    --forma-border: #e4ddea;
+    --forma-error: #c93d52;
+    --forma-success: #18794e;
+    --forma-success-soft: #e8f4ec;
+    --forma-info: #245fce;
 
-    /* Semantic aliases used by the current UI and older integrations. */
-    --bg: var(--ember-background);
-    --text: var(--ember-text);
-    --accent: var(--ember-terracotta);
-    --accent-hover: var(--ember-terracotta-hover);
-    --amber: var(--ember-amber);
-    --surface: var(--ember-surface);
-    --surface-raised: var(--ember-surface-raised);
-    --secondary-text: var(--ember-secondary-text);
-    --neutral: var(--ember-neutral);
+    /* Semantic aliases used across the UI and existing shadcn-style APIs. */
+    --bg: var(--forma-background);
+    --text: var(--forma-text);
+    --accent: var(--forma-purple);
+    --accent-hover: var(--forma-purple-hover);
+    --amber: var(--forma-amber);
+    --surface: var(--forma-surface);
+    --surface-raised: var(--forma-surface-raised);
+    --secondary-text: var(--forma-secondary-text);
+    --neutral: var(--forma-neutral);
+    --lavender: var(--forma-lavender);
+    --plum: var(--forma-plum);
     --muted: var(--surface-raised);
     --card: var(--surface);
-    --border: var(--ember-border);
+    --border: var(--forma-border);
     --on-accent: #ffffff;
     --on-error: #ffffff;
     --on-success: #ffffff;
     --on-info: #ffffff;
-    --dark: #1c1917;
-    --dark-foreground: #fafaf9;
+    --dark: var(--forma-plum);
+    --dark-foreground: #faf7ff;
 
-    --error: #e5484d;
-    --success: #1f9d68;
-    --success-soft: #e3f5ec;
+    --error: var(--forma-error);
+    --success: var(--forma-success);
+    --success-soft: var(--forma-success-soft);
     /* Sent blue stays distinct from the brand accent and paid green. */
-    --info: #2f6fed;
+    --info: var(--forma-info);
     --accent-soft: color-mix(in srgb, var(--accent) 12%, var(--card));
     --info-soft: color-mix(in srgb, var(--info) 12%, var(--card));
     --amber-soft: color-mix(in srgb, var(--amber) 18%, var(--card));
+    --ring: var(--accent);
 
     --radius-control: 8px;
     --radius-surface: 12px;
     /* Legacy alias; new components should use a semantic radius. */
     --radius: var(--radius-control);
 
-    /* Phase 2 shell: translucent chrome (topbar, phone tab bar). Resolves
-       against whichever --ember-background the active theme provides. */
-    --bg-translucent: color-mix(in srgb, var(--ember-background) 82%, transparent);
+    /* Backdrop chrome resolves against the active theme's canvas. */
+    --bg-translucent: color-mix(in srgb, var(--forma-background) 82%, transparent);
+
+    /* Deprecated Ember CSS variables remain as aliases for older consumers. */
+    --ember-background: var(--forma-background);
+    --ember-surface: var(--forma-surface);
+    --ember-surface-raised: var(--forma-surface-raised);
+    --ember-terracotta: var(--forma-purple);
+    --ember-terracotta-hover: var(--forma-purple-hover);
+    --ember-amber: var(--forma-amber);
+    --ember-text: var(--forma-text);
+    --ember-secondary-text: var(--forma-secondary-text);
+    --ember-neutral: var(--forma-neutral);
+    --ember-border: var(--forma-border);
   }
 
-  /* Warm charcoal surfaces and softened ember accents are intentional—not
-     an inverted light theme. Every surface and text tone stays warm. */
+  /* Dark mode is a distinct plum/charcoal palette, not a light-theme invert.
+     Purple becomes a readable lilac; controls pair it with a dark foreground. */
   .dark {
     color-scheme: dark;
 
-    --ember-background: #1c1917;
-    --ember-surface: #292524;
-    --ember-surface-raised: #44403c;
-    --ember-terracotta: #fb923c;
-    --ember-terracotta-hover: #fdba74;
-    --ember-amber: #fbbf24;
-    --ember-text: #fafaf9;
-    --ember-secondary-text: #e7e5e4;
-    --ember-neutral: #a8a29e;
-    --ember-border: #57534e;
+    --forma-background: #17131e;
+    --forma-surface: #211b29;
+    --forma-surface-raised: #30283a;
+    --forma-purple: #bba4ff;
+    --forma-purple-hover: #ccb9ff;
+    --forma-lavender: #342840;
+    --forma-amber: #f1c36d;
+    --forma-text: #faf7ff;
+    --forma-secondary-text: #d2c9dc;
+    --forma-neutral: #aca2b6;
+    --forma-border: #483d54;
+    --forma-error: #ff8c9a;
+    --forma-success: #64dca5;
+    --forma-success-soft: #163a2b;
+    --forma-info: #8bb4ff;
 
-    --on-accent: #1c1917;
+    --on-accent: #21162d;
     --on-error: #450a0a;
     --on-success: #052e16;
     --on-info: #172554;
-    --dark-foreground: #fafaf9;
-    --error: #f87171;
-    --success: #4ade80;
-    --success-soft: #123f2b;
-    --info: #60a5fa;
+    --dark-foreground: #faf7ff;
     --accent-soft: color-mix(in srgb, var(--accent) 18%, var(--card));
     --info-soft: color-mix(in srgb, var(--info) 18%, var(--card));
     --amber-soft: color-mix(in srgb, var(--amber) 18%, var(--card));
+    --ring: var(--accent);
   }
 }
-
 @layer base {
   * {
     @apply border-border;
@@ -256,31 +278,30 @@
 
   :root,
   .dark {
-    /* Paper keeps a clean white page; all other tokens mirror the light
-       Ember Studio values so dark mode never prints light ink on dark paper. */
-    --ember-background: #ffffff;
-    --ember-surface: #f5f5f4;
-    --ember-surface-raised: #e7e5e4;
-    --ember-terracotta: #c2410c;
-    --ember-terracotta-hover: #9a3412;
-    --ember-amber: #f59e0b;
-    --ember-text: #1c1917;
-    --ember-secondary-text: #57534e;
-    --ember-neutral: #78716c;
-    --ember-border: #d6d3d1;
+    color-scheme: light;
+
+    /* Paper always uses Forma's light palette, even when the screen is dark. */
+    --forma-background: #ffffff;
+    --forma-surface: #ffffff;
+    --forma-surface-raised: #f2ecf7;
+    --forma-purple: #7c3aed;
+    --forma-purple-hover: #6d28d9;
+    --forma-lavender: #ede5f8;
+    --forma-plum: #2c1b36;
+    --forma-amber: #9a5b0a;
+    --forma-text: #261d2d;
+    --forma-secondary-text: #665c70;
+    --forma-neutral: #74677f;
+    --forma-border: #e4ddea;
+    --forma-error: #c93d52;
+    --forma-success: #18794e;
+    --forma-success-soft: #e8f4ec;
+    --forma-info: #245fce;
     --on-accent: #ffffff;
     --on-error: #ffffff;
     --on-success: #ffffff;
     --on-info: #ffffff;
-    --dark: #1c1917;
-    --dark-foreground: #fafaf9;
-    --error: #e5484d;
-    --success: #1f9d68;
-    --success-soft: #e3f5ec;
-    --info: #2f6fed;
-    --accent-soft: color-mix(in srgb, var(--accent) 12%, var(--card));
-    --info-soft: color-mix(in srgb, var(--info) 12%, var(--card));
-    --amber-soft: color-mix(in srgb, var(--amber) 18%, var(--card));
+    --dark-foreground: #faf7ff;
   }
 
   body {
@@ -367,11 +388,10 @@
   }
 }
 
-/* ── Marketing surface: lavender/purple brand, scoped to .marketing ─────── */
-/* lavender purple marketing palette */
+/* ── Marketing surface: shares Forma's brand tokens with the app ─────────── */
 .marketing {
-  --accent: #7c3aed;
-  --accent-hover: #6d28d9;
-  --accent-soft: color-mix(in srgb, #7c3aed 12%, var(--card));
-  --ring: #7c3aed;
+  --accent: var(--forma-purple);
+  --accent-hover: var(--forma-purple-hover);
+  --accent-soft: color-mix(in srgb, var(--forma-purple) 12%, var(--card));
+  --ring: var(--forma-purple);
 }

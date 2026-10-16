@@ -7,7 +7,7 @@ import type { BriefStatus } from "@/lib/types/brief";
  *
  * Phase 4A semantics (matches the invoice/contract badges):
  *   draft     = quiet muted fill — nothing has happened yet.
- *   in_review = soft terracotta outline — waiting on someone (the existing
+ *   in_review = soft purple outline — waiting on someone (the existing
  *               "in progress" tint; amber stays on its allowlisted surfaces).
  *   approved  = solid success green — the terminal, good-news state.
  */

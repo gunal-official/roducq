@@ -1,7 +1,7 @@
 /**
  * The pixel-parity contract between screen and print.
  *
- * The browser and PDF writer consume the same canonical Ember Studio
+ * The browser and PDF writer consume the same canonical Forma
  * palette, and these tests compare CSS variables, TypeScript tokens, and PDF
  * colors so a screen/print change cannot drift silently.
  *
@@ -91,9 +91,9 @@ describe("design tokens", () => {
   test("every literal-hex :root token is mirrored in lib/design-tokens.ts", () => {
     // The drift this file exists to prevent: a token added or re-tinted in
     // CSS that the TS side never learned about.
-    const mirrored = Object.values(TOKEN_CSS_VAR).sort();
+    const mirrored = [...new Set(Object.values(TOKEN_CSS_VAR))].sort();
     const managed = [...DECLARED.entries()]
-      .filter(([name]) => name.startsWith("--ember-") || ["--error", "--success", "--success-soft", "--info"].includes(name))
+      .filter(([name]) => name.startsWith("--forma-"))
       .filter(([, value]) => /^#[0-9a-f]{6}$/i.test(value))
       .map(([name]) => name)
       .sort();
@@ -125,8 +125,8 @@ describe("design tokens", () => {
   });
 
   test("print mode agrees with the light theme on every token but the page", () => {
-    // The one sanctioned difference is --bg: the screen sits on a warm ivory
-    // backdrop, paper is white. Anything else diverging means a token was
+    // The one sanctioned difference is the page background: screen uses a
+    // subtle lavender canvas, while paper is white. Anything else diverging means a token was
     // re-tinted in one mode and forgotten in the other.
     for (const [name, cssVar] of Object.entries(TOKEN_CSS_VAR)) {
       if (name === "background") continue;
@@ -140,11 +140,11 @@ describe("design tokens", () => {
 
   test("legacy background aliases resolve to the screen token; print uses paper white", () => {
     assert.equal(TOKENS.bg, TOKENS.background);
-    assert.equal(DECLARED.get("--bg"), "var(--ember-background)");
-    assert.equal(PRINT.get("--ember-background")?.toLowerCase(), "#ffffff");
+    assert.equal(DECLARED.get("--bg"), "var(--forma-background)");
+    assert.equal(PRINT.get("--forma-background")?.toLowerCase(), "#ffffff");
     // `background` means the screen canvas in the shared palette; print is
     // the only intentional exception because paper itself is white.
-    assert.notEqual(TOKENS.background, PRINT.get("--ember-background")?.toLowerCase());
+    assert.notEqual(TOKENS.background, PRINT.get("--forma-background")?.toLowerCase());
   });
 
   test("hexToRgb / rgbToHex round-trip without losing a step", () => {
@@ -168,8 +168,8 @@ describe("design tokens", () => {
   test("mix is the sRGB blend CSS color-mix() performs", () => {
     assert.equal(mix(TOKENS.text, TOKENS.card, 1), TOKENS.text);
     assert.equal(mix(TOKENS.text, TOKENS.card, 0), TOKENS.card);
-    // 50/50 between Ember ink and the light surface.
-    assert.equal(mix(TOKENS.text, TOKENS.card, 0.5), "#898786");
+    // 50/50 between Forma ink and the light surface.
+    assert.equal(mix(TOKENS.text, TOKENS.card, 0.5), "#938e96");
     // Out-of-range weights clamp instead of producing impossible channels.
     assert.equal(mix(TOKENS.text, TOKENS.card, 4), TOKENS.text);
     assert.equal(mix(TOKENS.text, TOKENS.card, -1), TOKENS.card);
@@ -187,10 +187,10 @@ describe("design tokens", () => {
 
 describe("PDF palette", () => {
   test("print colours are the tokens, not a second copy of them", () => {
-    // Assert the PDF writer continues to use the Ember text and border
+    // Assert the PDF writer continues to use the Forma text and border
     // tokens directly, rather than maintaining a parallel print palette.
     for (const [name, token] of [
-      ["accent", "terracotta"],
+      ["accent", "purple"],
       ["ink", "text"],
       ["hairline", "border"],
       ["zebra", "surface"],

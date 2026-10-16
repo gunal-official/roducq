@@ -2,8 +2,8 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-/* Card surfaces use the raised warm-neutral palette, a 12px radius, hairline
-   border, and soft elevation. CardTitle uses the Playfair Display face. */
+/* Forma cards use theme-aware surfaces, a 12px radius, a hairline border,
+   and plum-tinted elevation. `font-display` resolves to the shared Manrope face. */
 const Card = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>

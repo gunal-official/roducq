@@ -933,15 +933,16 @@ shrink, invoice line-items stacking below md, TeamCard select sizing.
   AWS-Lambda Linux x86-64 binaries only and could never run on any Mac —
   removed entirely (no Lambda/CI path used it; CI gates are tsc + build +
   verify:db).
-- **Ember Studio fonts (Phase 1):** Playfair Display, Source Sans 3, and Fira
-  Code are variable WOFF2 assets committed under `app/fonts/` with their OFL
-  licenses, loaded through `next/font/local` in `app/layout.tsx`. Builds do
-  not fetch Google Fonts or require external font access.
-- **Design tokens:** canonical CSS variables live in `app/globals.css` and
-  are mirrored by `lib/design-tokens.ts` for PDF/email surfaces. Tailwind
-  consumes the same semantic palette while the legacy `--bg`, `--accent`,
-  `--card`, and related aliases remain available during migration. Dark mode
-  uses a warm charcoal/stone palette via `next-themes`; default is `system`.
+- **Forma Phase A design foundation:** `docs/forma-phase-a-route-inventory.md`
+  records the authenticated route surface and the B–F redesign checklist.
+  The canonical purple/lavender/plum palette lives in `app/globals.css` and
+  `lib/design-tokens.ts`; legacy `--bg`, `--accent`, `--card`, and deprecated
+  Ember aliases remain source-compatible. Light and dark have distinct
+  palettes, with account-menu controls for light / dark / system.
+- **Typography:** self-hosted Manrope is the app-wide body and display face;
+  Fira Code remains the monospace face. The older Playfair Display and Source
+  Sans 3 assets/licenses are retained, but are no longer loaded by the root
+  layout. Builds do not fetch Google Fonts or require external font access.
 
 
 ---
@@ -1164,19 +1165,18 @@ two parked items with triggers: PDF pixel-parity + the eslint-10 bump).
 
 ### Design language (34(a) → ongoing)
 
-Phase 1 establishes the Ember Studio design system in `app/globals.css`
-(light + `.dark`) and `lib/design-tokens.ts`: the light palette uses
-terracotta `#c2410c`, hover `#9a3412`, amber `#f59e0b`, warm stone surfaces,
-and explicit text/border tokens; dark mode uses intentional warm charcoal
-and stone surfaces. Controls use 8px radii, cards/dialogs/popovers use 12px,
-and badges/avatars keep pill/circular shapes. Primary and active states use
-terracotta; amber is reserved for highlights and notifications; tabs use an
-underline indicator. Playfair Display, Source Sans 3, and Fira Code are
-self-hosted variable fonts. PDF, invite email and the root error boundary
-reuse the shared light tokens; `tests/lib/design-guide.test.ts` and
-`tests/lib/design-tokens.test.ts` guard palette, fonts, radii, and migration
-aliases. Shell: grouped nav (Workspace/Money/Account) with tinted icon chips.
-Empty states use the shared `icon-chip` pattern.
+> **Historical implementation note:** the earlier Step-34 Phase 1 shipped an
+> Ember palette and Playfair/Source Sans typography, followed by authenticated
+> shell and page work. Forma Phase A now supersedes that active palette and
+> typography while preserving the prior responsive layouts and compatibility
+> aliases. See `docs/forma-phase-a-route-inventory.md` for current scope and
+> the remaining full-application redesign checklist.
+
+The retained Phase 1 implementation history established design-token parity
+for PDF/email output, semantic radii, shared icon chips, and a responsive
+shell. Its implementation log remains useful for the work that preceded the
+Forma direction; its color and font descriptions above are historical, not
+current design guidance.
 
 ### Next 16 notes (34(a-fix2/4)) — read before adding pages
 
@@ -1271,7 +1271,7 @@ responsive audit passed ✔  (evidence: ~/responsive-evidence/step32-after)
    a "More" tab that opens the slide-in drawer with every remaining route),
    safe-area aware via `env(safe-area-inset-bottom)`; tablet 600–1023 = 64px
    icon rail (title tooltips); desktop ≥1024 = 256px sidebar with collapsible
-   sections and a 3px terracotta active indicator. Active highlighting is
+   sections and a 3px Forma purple/lilac active indicator. Active highlighting is
    unique per route (`isNavActive`) — `/intake/inbox` lights Inbox only.
    Topbar works at every width: translucent blurred chrome, full-width search
    row on mobile, touch-usable workspace switcher, account menu with every

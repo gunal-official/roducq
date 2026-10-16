@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 
 const THEMES = ["light", "dark", "system"] as const;
 
-/** Temporary verification control — lets you flip light / dark / system. */
+/** Explicit light / dark / system theme picker used by the marketing shell. */
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
   // Canonical hydration flag (no setState-in-effect): SSR says false, the
@@ -24,6 +24,8 @@ export function ThemeToggle() {
         <button
           key={t}
           type="button"
+          aria-label={`Use ${t} theme`}
+          aria-pressed={mounted && theme === t}
           onClick={() => setTheme(t)}
           className={cn(
             "min-h-11 min-w-14 rounded-control px-3 py-1.5 text-sm capitalize text-muted-foreground transition-colors hover:text-text",

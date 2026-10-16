@@ -53,7 +53,7 @@ describe("Navigation (Step 33)", () => {
     assert.ok(src.includes("aria-expanded={!isCollapsed}"));
     assert.ok(src.includes("aria-controls={navId}"));
     assert.ok(src.includes("roducq.sidebar.collapsed")); // collapse state persists
-    assert.ok(src.includes("before:w-[3px]")); // 3px terracotta sliver
+    assert.ok(src.includes("before:w-[3px]")); // 3px Forma accent sliver
     assert.ok(src.includes("before:bg-accent"));
     assert.ok(src.includes("isNavActive(pathname, href)")); // unique highlight
     // Collapsing a section never hides the rail icons (tablet keeps them).
@@ -101,7 +101,7 @@ describe("Navigation (Step 33)", () => {
     // Phase 2: translucent chrome with backdrop blur.
     assert.ok(src.includes("bg-surface-translucent"));
     assert.ok(src.includes("backdrop-blur-md"));
-    assert.ok(read("app/globals.css").includes("--bg-translucent: color-mix(in srgb, var(--ember-background) 82%, transparent)"));
+    assert.ok(read("app/globals.css").includes("--bg-translucent: color-mix(in srgb, var(--forma-background) 82%, transparent)"));
     assert.ok(read("tailwind.config.ts").includes("translucent: \"var(--bg-translucent)\""));
   });
 

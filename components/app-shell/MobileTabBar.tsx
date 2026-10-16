@@ -8,9 +8,9 @@ import { isNavActive, mobileTabItems } from "./nav-items";
 import { MobileNav } from "./MobileNav";
 import type { SwitcherWorkspace } from "./WorkspaceSwitcher";
 
-/* Phase 2 phone navigation (<tab): fixed bottom tab bar in the Ember Studio
-   language — translucent warm surface + backdrop blur, hairline top border,
-   terracotta 3px active indicator echoing the desktop sidebar sliver.
+/* Shared phone navigation (<tab): fixed bottom tab bar in the Forma
+   language — theme-aware translucent surface + backdrop blur, hairline top
+   border, purple/lilac 3px active indicator echoing the desktop sidebar sliver.
    Four primary destinations (registry order in nav-items.ts) + a "More"
    tab that opens the full MobileNav drawer for every remaining route, so
    nothing is unreachable on a phone. The bar respects the iOS home-indicator
