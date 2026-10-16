@@ -125,6 +125,8 @@ const PAGES = [
   { slug: "marketing-vs-pandadoc", url: "/vs/pandadoc", auth: false },
   { slug: "login", url: "/login", auth: false },
   { slug: "signup", url: "/signup", auth: false },
+  { slug: "forgot-password", url: "/forgot-password", auth: false, expected: "Forgot password?" },
+  { slug: "reset-password", url: "/reset-password", auth: false, expected: "Reset link problem" },
   { slug: "invite-token", url: "/invite/tok-inv-1", auth: false },
   { slug: "share-token", url: "/share/tok-share-1", auth: false },
   { slug: "invoice-token", url: "/invoice/tok-bill-1", auth: false },
