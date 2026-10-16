@@ -51,11 +51,18 @@ export function GoogleSignInButton({ next = "/" }: { next?: string }) {
 
   return (
     <div className="space-y-3">
-      {error && <p className="text-sm text-error">{error}</p>}
+      {error ? (
+        <p
+          role="alert"
+          className="rounded-control border border-border bg-muted px-3 py-2.5 text-sm text-error"
+        >
+          {error}
+        </p>
+      ) : null}
       <Button
         type="button"
         variant="outline"
-        className="w-full"
+        className="h-12 w-full"
         disabled={pending || !configured}
         onClick={handleClick}
         aria-label="Continue with Google"
@@ -79,7 +86,7 @@ export function OAuthDivider() {
   return (
     <div className="flex items-center gap-3">
       <div className="h-px flex-1 bg-border" aria-hidden />
-      <span className="text-xs text-muted-foreground">
+      <span className="text-xs font-medium text-muted-foreground">
         or continue with email
       </span>
       <div className="h-px flex-1 bg-border" aria-hidden />

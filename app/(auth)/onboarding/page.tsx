@@ -2,12 +2,13 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Building2 } from "lucide-react";
 
 import { createWorkspaceAction } from "@/app/(auth)/actions";
 import { AuthCard } from "@/components/auth/AuthCard";
+import { AuthField } from "@/components/auth/AuthField";
 import { ConfigNotice } from "@/components/auth/ConfigNotice";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { createClient } from "@/lib/supabase/client";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 
@@ -61,29 +62,31 @@ export default function OnboardingPage() {
       {!configured && <ConfigNotice />}
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="space-y-1.5">
-          <label
-            htmlFor="workspace-name"
-            className="text-sm font-medium text-text"
-          >
-            Workspace name
-          </label>
-          <Input
-            id="workspace-name"
-            type="text"
-            required
-            maxLength={80}
-            placeholder="Acme Studio"
-            value={workspaceName}
-            onChange={(e) => setWorkspaceName(e.target.value)}
-          />
-        </div>
+        <AuthField
+          id="workspace-name"
+          label="Workspace name"
+          icon={Building2}
+          type="text"
+          required
+          maxLength={80}
+          placeholder="Acme Studio"
+          value={workspaceName}
+          onChange={(e) => setWorkspaceName(e.target.value)}
+        />
 
-        {error && <p className="text-sm text-error">{error}</p>}
+        {error ? (
+          <p
+            role="alert"
+            className="rounded-control border border-border bg-muted px-3 py-2.5 text-sm text-error"
+          >
+            {error}
+          </p>
+        ) : null}
 
         <Button
           type="submit"
-          className="w-full"
+          size="lg"
+          className="h-12 w-full"
           disabled={pending || !userId || !configured}
         >
           {pending ? "Creating…" : "Create workspace"}

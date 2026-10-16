@@ -83,6 +83,18 @@ const config = {
           DEFAULT: "var(--dark)",
           foreground: "var(--dark-foreground)",
         },
+        // Phase B shell planes: the rail, the glass layer the floating
+        // bar and drawer use, and the brand glow behind the mark.
+        shell: {
+          rail: "var(--shell-rail)",
+          wash: "var(--shell-rail-wash)",
+          panel: "var(--shell-panel)",
+          hairline: "var(--shell-hairline)",
+          glass: "var(--shell-glass)",
+          "glass-strong": "var(--shell-glass-strong)",
+          glow: "var(--shell-glow)",
+          "glow-strong": "var(--shell-glow-strong)",
+        },
         // shadcn-style aliases retained for existing components.
         background: "var(--bg)",
         foreground: "var(--text)",
@@ -110,6 +122,10 @@ const config = {
         // existing `rounded-md/lg/xl` classes keep the intended 8/12px scale.
         control: "var(--radius-control)",
         surface: "var(--radius-surface)",
+        // The floating phone bar and the auth panel: a soft rectangle,
+        // deliberately wider than `surface` so the chrome reads as a
+        // separate plane from the content cards.
+        dock: "20px",
         "2xl": "var(--radius-surface)",
         xl: "var(--radius-surface)",
         lg: "var(--radius-surface)",
@@ -122,6 +138,9 @@ const config = {
         card: "0 1px 2px rgb(43 27 54 / 0.04), 0 12px 32px -16px rgb(43 27 54 / 0.10)",
         pop: "0 8px 30px -6px rgb(43 27 54 / 0.14)",
         rail: "0 1px 2px rgb(43 27 54 / 0.05)",
+        // Phase B: the floating bar, the drawer and the auth panel.
+        shell: "var(--shell-shadow)",
+        lift: "var(--shell-shadow-lift)",
       },
       fontFamily: {
         // Headings and body copy both use Manrope across the product.

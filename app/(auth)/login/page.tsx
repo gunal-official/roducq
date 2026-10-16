@@ -3,12 +3,13 @@
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
+import { Lock, Mail } from "lucide-react";
 
 import { AuthCard } from "@/components/auth/AuthCard";
+import { AuthField } from "@/components/auth/AuthField";
 import { ConfigNotice } from "@/components/auth/ConfigNotice";
 import { GoogleSignInButton, OAuthDivider } from "@/components/auth/GoogleSignInButton";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { createClient } from "@/lib/supabase/client";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 
@@ -80,7 +81,7 @@ function LoginForm() {
           Don’t have an account?{" "}
           <Link
             href={signupHref}
-            className="inline-flex min-h-11 min-w-11 items-center justify-center px-2 text-accent hover:underline"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center px-2 font-semibold text-accent hover:underline"
           >
             Sign up
           </Link>
@@ -97,41 +98,43 @@ function LoginForm() {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="space-y-1.5">
-          <label htmlFor="email" className="text-sm font-medium text-text">
-            Email
-          </label>
-          <Input
-            id="email"
-            type="email"
-            required
-            autoComplete="email"
-            placeholder="you@studio.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
+        <AuthField
+          id="email"
+          label="Email"
+          icon={Mail}
+          type="email"
+          required
+          autoComplete="email"
+          placeholder="you@studio.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-        <div className="space-y-1.5">
-          <label htmlFor="password" className="text-sm font-medium text-text">
-            Password
-          </label>
-          <Input
-            id="password"
-            type="password"
-            required
-            autoComplete="current-password"
-            placeholder="••••••••"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
+        <AuthField
+          id="password"
+          label="Password"
+          icon={Lock}
+          type="password"
+          required
+          autoComplete="current-password"
+          placeholder="••••••••"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-        {error && <p className="text-sm text-error">{error}</p>}
+        {error ? (
+          <p
+            role="alert"
+            className="rounded-control border border-border bg-muted px-3 py-2.5 text-sm text-error"
+          >
+            {error}
+          </p>
+        ) : null}
 
         <Button
           type="submit"
-          className="w-full"
+          size="lg"
+          className="h-12 w-full"
           disabled={pending || !configured}
         >
           {pending ? "Logging in…" : "Log in"}

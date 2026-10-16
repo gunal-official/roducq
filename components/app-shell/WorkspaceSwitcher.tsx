@@ -1,16 +1,26 @@
 "use client";
 
 /**
- * Sidebar workspace switcher (Step 16). Invisible for single-workspace
- * users (renders the same static label the sidebar always had); with 2+
- * memberships it becomes a Radix Select. Switching writes
- * profiles.active_workspace_id via the action, then refreshes so every
- * list re-reads scoped to the newly active workspace.
+ * The workspace switcher (Forma Phase B).
+ *
+ * One component, three surfaces:
+ *
+ *   panel   — the desktop rail: a raised card showing the workspace
+ *             monogram, its name and the affordance to switch.
+ *   compact — the tablet rail (64px): a single monogram tile that still
+ *             opens the same switch list.
+ *   inline  — the topbar: name plus chevron, shrinking gracefully.
+ *
+ * Switching writes profiles.active_workspace_id through the server
+ * action, then refreshes so every list re-reads scoped to the new
+ * workspace. A single-workspace account gets a static label instead of a
+ * control — there is nothing to switch to, and a dead dropdown would be
+ * a lie.
  */
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ChevronsUpDown, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 
 import { setActiveWorkspaceAction } from "@/app/(app)/actions";
 import {
@@ -27,30 +37,32 @@ export interface SwitcherWorkspace {
   name: string;
 }
 
+export type WorkspaceSwitcherVariant = "panel" | "compact" | "inline";
+
+/** First letter of a workspace name, used for the monogram tile. */
+function monogram(name: string): string {
+  const trimmed = name.trim();
+  if (!trimmed) return "?";
+  return trimmed.slice(0, 1).toUpperCase();
+}
+
 export function WorkspaceSwitcher({
   workspaces,
   activeWorkspaceId,
+  variant = "inline",
+  className,
 }: {
   workspaces: SwitcherWorkspace[];
   activeWorkspaceId: string;
+  variant?: WorkspaceSwitcherVariant;
+  className?: string;
 }) {
   const router = useRouter();
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const activeName =
-    workspaces.find((w) => w.id === activeWorkspaceId)?.name ??
-    workspaces[0]?.name ??
-    "";
-
-  // Single-workspace account: identical to the pre-Step-16 sidebar label.
-  if (workspaces.length <= 1) {
-    return (
-      <div className="flex items-center gap-2.5 rounded-md border border-transparent px-3 py-2 text-sm text-muted-foreground">
-        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-text opacity-40" />
-        <span className="truncate">{activeName}</span>
-      </div>
-    );
-  }
+  const active =
+    workspaces.find((w) => w.id === activeWorkspaceId) ?? workspaces[0];
+  const activeName = active?.name ?? "";
 
   async function handleChange(workspaceId: string) {
     if (workspaceId === activeWorkspaceId) return;
@@ -65,8 +77,163 @@ export function WorkspaceSwitcher({
     router.refresh(); // current page's lists re-read under the new scope
   }
 
+  // Single-workspace account: a static label, never a dead dropdown.
+  if (workspaces.length <= 1) {
+    if (variant === "compact") {
+      return (
+        <div
+          className={cn(
+            "flex h-11 w-11 items-center justify-center rounded-control",
+            className
+          )}
+          title={activeName}
+          aria-label={`Workspace: ${activeName}`}
+        >
+          <span
+            aria-hidden="true"
+            className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent-soft text-xs font-bold text-accent"
+          >
+            {monogram(activeName)}
+          </span>
+        </div>
+      );
+    }
+    if (variant === "panel") {
+      return (
+        <div
+          className={cn(
+            "flex items-center gap-2.5 rounded-surface border border-border bg-shell-panel px-2.5 py-2",
+            className
+          )}
+        >
+          <span
+            aria-hidden="true"
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-xs font-bold text-accent"
+          >
+            {monogram(activeName)}
+          </span>
+          <span className="min-w-0 flex-1">
+            <span className="block truncate text-sm font-semibold leading-tight text-text">
+              {activeName}
+            </span>
+            <span className="block truncate text-[11px] leading-tight text-muted-foreground">
+              Your workspace
+            </span>
+          </span>
+        </div>
+      );
+    }
+    return (
+      <div
+        className={cn(
+          "flex h-11 min-w-0 items-center gap-2 rounded-control px-2 text-sm text-muted-foreground",
+          className
+        )}
+      >
+        <span
+          aria-hidden="true"
+          className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-accent-soft text-[10px] font-bold text-accent"
+        >
+          {monogram(activeName)}
+        </span>
+        <span className="truncate font-semibold text-text">{activeName}</span>
+      </div>
+    );
+  }
+
+  if (variant === "compact") {
+    return (
+      <div className={cn("flex justify-center", className)}>
+        <Select
+          value={activeWorkspaceId}
+          onValueChange={handleChange}
+          disabled={pending}
+        >
+          <SelectTrigger
+            className={cn(
+              "h-11 w-11 justify-center border-transparent bg-transparent p-0 shadow-none",
+              "hover:bg-muted focus:ring-0"
+            )}
+            aria-label="Switch workspace"
+          >
+            <span
+              aria-hidden="true"
+              className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent-soft text-xs font-bold text-accent"
+            >
+              {pending ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                monogram(activeName)
+              )}
+            </span>
+            <span className="sr-only">
+              <SelectValue />
+            </span>
+          </SelectTrigger>
+          <SelectContent>
+            {workspaces.map((workspace) => (
+              <SelectItem key={workspace.id} value={workspace.id}>
+                <span className="truncate">{workspace.name}</span>
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+    );
+  }
+
+  if (variant === "panel") {
+    return (
+      <div className={cn("px-0.5", className)}>
+        <Select
+          value={activeWorkspaceId}
+          onValueChange={handleChange}
+          disabled={pending}
+        >
+          <SelectTrigger
+            className={cn(
+              "h-11 w-full justify-start gap-2.5 border-transparent bg-transparent p-0 pl-0 pr-1 text-left shadow-none",
+              "hover:bg-muted/70 focus:ring-0"
+            )}
+            aria-label="Switch workspace"
+          >
+            <span className="flex min-w-0 flex-1 items-center gap-2.5">
+              <span
+                aria-hidden="true"
+                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-xs font-bold text-accent"
+              >
+                {pending ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  monogram(activeName)
+                )}
+              </span>
+              <span className="min-w-0 flex-1">
+                <SelectValue className="block truncate text-sm font-semibold leading-tight text-text" />
+                <span className="block truncate text-[11px] leading-tight text-muted-foreground">
+                  Switch workspace
+                </span>
+              </span>
+            </span>
+          </SelectTrigger>
+          <SelectContent>
+            {workspaces.map((workspace) => (
+              <SelectItem key={workspace.id} value={workspace.id}>
+                <span className="truncate">{workspace.name}</span>
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        {error ? (
+          <p className="px-1 pt-1 text-xs text-error">{error}</p>
+        ) : null}
+      </div>
+    );
+  }
+
+  // inline — the topbar trigger.
   return (
-    <div className="px-1">
+    <div className={cn("min-w-0", className)}>
       <Select
         value={activeWorkspaceId}
         onValueChange={handleChange}
@@ -74,18 +241,23 @@ export function WorkspaceSwitcher({
       >
         <SelectTrigger
           className={cn(
-            "h-9 w-full border-transparent bg-transparent px-2 text-sm text-muted-foreground shadow-none",
-            "hover:bg-card hover:text-text focus:ring-0"
+            "h-11 min-w-11 w-auto max-w-[190px] gap-2 border-transparent bg-transparent px-2 text-sm shadow-none",
+            "hover:bg-muted/70 hover:text-text focus:ring-0"
           )}
           aria-label="Switch workspace"
         >
-          <span className="flex items-center gap-2 truncate">
+          <span className="flex min-w-0 items-center gap-2">
             {pending ? (
-              <Loader2 className="h-4 w-4 shrink-0 animate-spin"  aria-hidden="true" />
+              <Loader2 className="h-4 w-4 shrink-0 animate-spin" aria-hidden="true" />
             ) : (
-              <ChevronsUpDown className="h-4 w-4 shrink-0 opacity-60" />
+              <span
+                aria-hidden="true"
+                className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-accent-soft text-[10px] font-bold text-accent"
+              >
+                {monogram(activeName)}
+              </span>
             )}
-            <SelectValue />
+            <SelectValue className="min-w-0 truncate font-semibold text-text" />
           </span>
         </SelectTrigger>
         <SelectContent>
@@ -96,7 +268,7 @@ export function WorkspaceSwitcher({
           ))}
         </SelectContent>
       </Select>
-      {error && <p className="px-2 pt-1 text-xs text-error">{error}</p>}
+      {error ? <p className="px-2 pt-1 text-xs text-error">{error}</p> : null}
     </div>
   );
 }

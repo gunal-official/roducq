@@ -41,7 +41,7 @@ export function AppearanceMenuItems({ close }: { close: () => void }) {
               close();
             }}
             className={cn(
-              "flex min-h-11 w-full items-center gap-2 rounded-control px-3 text-left text-sm transition-colors",
+              "flex min-h-11 w-full items-center gap-2 rounded-control px-3 text-left text-sm transition-colors duration-150",
               selected
                 ? "bg-accent-soft font-semibold text-accent"
                 : "text-text hover:bg-muted"
@@ -49,7 +49,9 @@ export function AppearanceMenuItems({ close }: { close: () => void }) {
           >
             <Icon aria-hidden="true" className="h-4 w-4" />
             <span>{label}</span>
-            {selected && <Check aria-hidden="true" className="ml-auto h-4 w-4" />}
+            {selected ? (
+              <Check aria-hidden="true" className="ml-auto h-4 w-4" />
+            ) : null}
           </button>
         );
       })}

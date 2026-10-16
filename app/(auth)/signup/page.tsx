@@ -6,12 +6,14 @@ import { Suspense, useState } from "react";
 
 import { createWorkspaceAction } from "@/app/(auth)/actions";
 import { acceptTeamInviteAction } from "@/app/invite/actions";
+import { Building2, Lock, Mail, User } from "lucide-react";
+
 import { AuthCard } from "@/components/auth/AuthCard";
+import { AuthField } from "@/components/auth/AuthField";
 import { ConfigNotice } from "@/components/auth/ConfigNotice";
 import { GoogleSignInButton, OAuthDivider } from "@/components/auth/GoogleSignInButton";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { createClient } from "@/lib/supabase/client";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { isUuid } from "@/lib/utils";
@@ -131,7 +133,7 @@ function SignupForm() {
             href={
               inviteToken ? `/login?next=/invite/${inviteToken}` : "/login"
             }
-            className="inline-flex min-h-11 min-w-11 items-center justify-center px-2 text-accent hover:underline"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center px-2 font-semibold text-accent hover:underline"
           >
             Log in
           </Link>
@@ -151,27 +153,23 @@ function SignupForm() {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="space-y-1.5">
-          <label htmlFor="full-name" className="text-sm font-medium text-text">
-            Full name
-          </label>
-          <Input
-            id="full-name"
-            type="text"
-            required
-            autoComplete="name"
-            placeholder="Ada Lovelace"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-          />
-        </div>
+        <AuthField
+          id="full-name"
+          label="Full name"
+          icon={User}
+          type="text"
+          required
+          autoComplete="name"
+          placeholder="Ada Lovelace"
+          value={fullName}
+          onChange={(e) => setFullName(e.target.value)}
+        />
 
-        <div className="space-y-1.5">
-          <label htmlFor="email" className="text-sm font-medium text-text">
-            Email
-          </label>
-          <Input
+        <div>
+          <AuthField
             id="email"
+            label="Email"
+            icon={Mail}
             type="email"
             required
             autoComplete="email"
@@ -179,55 +177,54 @@ function SignupForm() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          {inviteToken && (
-            <p className="text-xs text-muted-foreground">
+          {inviteToken ? (
+            <p className="mt-1.5 text-xs text-muted-foreground">
               Use the address the invite was sent to — the accept step
               checks it.
             </p>
-          )}
+          ) : null}
         </div>
 
-        <div className="space-y-1.5">
-          <label htmlFor="password" className="text-sm font-medium text-text">
-            Password
-          </label>
-          <Input
-            id="password"
-            type="password"
-            required
-            minLength={6}
-            autoComplete="new-password"
-            placeholder="6+ characters"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
+        <AuthField
+          id="password"
+          label="Password"
+          icon={Lock}
+          type="password"
+          required
+          minLength={6}
+          autoComplete="new-password"
+          placeholder="6+ characters"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
         {!inviteToken && (
-          <div className="space-y-1.5">
-            <label
-              htmlFor="workspace-name"
-              className="text-sm font-medium text-text"
-            >
-              Workspace name
-            </label>
-            <Input
-              id="workspace-name"
-              type="text"
-              required
-              maxLength={80}
-              placeholder="Acme Studio"
-              value={workspaceName}
-              onChange={(e) => setWorkspaceName(e.target.value)}
-            />
-          </div>
+          <AuthField
+            id="workspace-name"
+            label="Workspace name"
+            icon={Building2}
+            type="text"
+            required
+            maxLength={80}
+            placeholder="Acme Studio"
+            value={workspaceName}
+            onChange={(e) => setWorkspaceName(e.target.value)}
+          />
         )}
 
-        {error && <p className="text-sm text-error">{error}</p>}
+        {error ? (
+          <p
+            role="alert"
+            className="rounded-control border border-border bg-muted px-3 py-2.5 text-sm text-error"
+          >
+            {error}
+          </p>
+        ) : null}
 
         <Button
           type="submit"
-          className="w-full"
+          size="lg"
+          className="h-12 w-full"
           disabled={pending || !configured}
         >
           {pending
