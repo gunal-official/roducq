@@ -106,10 +106,12 @@ page composition)
 
 Phase A is the design foundation, not the finished application redesign.
 
-- [ ] **Phase B — Application shell:** sidebar and topbar, workspace switcher,
+- [x] **Phase B — Application shell:** sidebar and topbar, workspace switcher,
       mobile tabs/drawer, account menu and responsive shell states.
 - [ ] **Phase C — Daily workflow:** Dashboard/Pipeline, Intake and Inbox,
-      including empty/loading/error states and their responsive compositions.
+      including Settings, empty/loading/error states and responsive compositions.
+      Phase C implementation is in place; browser/reference review and new
+      screenshots remain blocked. See `forma-phase-c-closeout.md`.
 - [ ] **Phase D — Delivery workflow:** Briefs and Proposals (including proposal
       versions), Plans and Updates (including share/print surfaces).
 - [ ] **Phase E — Financial workflow:** Invoices, Contracts, Time and Reports;

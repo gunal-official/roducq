@@ -95,6 +95,7 @@ export function InboxThreadList({ threads }: { threads: InboxThread[] }) {
 
   return (
     <div className="space-y-4">
+      <div className="inbox-list-heading"><h2>Client conversations</h2><p>{visible.length} of {threads.length} threads</p></div>
       <FilterChips
         label="Filter threads by source type"
         value={active}
