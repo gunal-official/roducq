@@ -121,6 +121,7 @@ export default async function SettingsPage() {
             .from("billing_subscriptions")
             .select("status, currency, amount")
             .eq("workspace_id", workspace.id)
+            .eq("provider", "razorpay")
             .maybeSingle()
             .then(({ data }) => data)
         : Promise.resolve(null),
