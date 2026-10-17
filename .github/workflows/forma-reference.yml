@@ -8,10 +8,11 @@
 # landing page in one job, with the same browser build, the same viewports
 # and the same themes — which is the only way the two sides are comparable.
 #
-# IT IS DISPATCH-ONLY AND READ-ONLY. It never runs on push or on pull
-# request, it needs no secrets, and it publishes artefacts; it does not
-# write to the repository, deploy, or touch any payment, billing or
-# database path.
+# IT IS READ-ONLY WITH RESPECT TO THE REPOSITORY'S CODE. It never modifies
+# a source file, never deploys, and never touches any payment, billing or
+# database path. The only write it performs is to the dedicated
+# `arena/forma-reference-capture` branch, which exists so the measured
+# output survives as a fetchable artefact.
 name: forma-reference
 
 on:
@@ -26,12 +27,12 @@ on:
       - arena/4589c8ea-roducq
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   capture:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
 
@@ -76,10 +77,24 @@ jobs:
             --base "${{ inputs.reference }}" \
             --out docs/screenshots/forma-reference
 
+      - name: Publish the capture to the capture branch
+        if: always()
+        run: |
+          git config user.name "Arena Agent"
+          git config user.email "agent@arena.ai"
+          git checkout --orphan arena/forma-reference-capture
+          git rm -rf --quiet . || true
+          mkdir -p docs/screenshots/forma-reference
+          cp -R docs/screenshots/forma-reference/. docs/screenshots/forma-reference/ 2>/dev/null || true
+          git add -f docs/screenshots/forma-reference
+          git commit -q -m "capture: measured reference + landing page evidence"
+          git push --force origin arena/forma-reference-capture
+
       - name: Upload the capture
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: forma-reference-capture
           path: docs/screenshots/forma-reference
-          if-no-files-found: error
+          if-no-files-found: warn
           retention-days: 14

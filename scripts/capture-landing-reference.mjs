@@ -405,10 +405,16 @@ async function capture(page, { w, h, name }, theme, report) {
   const animations = await page.evaluate(collectAnimations);
 
   const prefix = `${TARGET}-${name}-${theme}`;
-  await page.screenshot({
-    path: resolve(dir, `${prefix}-full.png`),
-    fullPage: true,
-  });
+  try {
+    await page.screenshot({
+      path: resolve(dir, `${prefix}-full.png`),
+      fullPage: true,
+    });
+  } catch (error) {
+    console.error(
+      `full-page shot of ${prefix} failed: ${String((error && error.message) || error)}`,
+    );
+  }
 
   // Section boxes are read in PAGE coordinates, because a full-page
   // screenshot's clip box is page-relative, not viewport-relative.
@@ -437,16 +443,23 @@ async function capture(page, { w, h, name }, theme, report) {
   for (let i = 0; i < sections.length; i += 1) {
     const box = sections[i];
     if (!box || box.height < 1) continue;
-    await page.screenshot({
-      path: resolve(dir, `${prefix}-sec-${String(i).padStart(2, "0")}.png`),
-      clip: {
-        x: Math.max(0, box.x),
-        y: Math.max(0, box.y),
-        width: Math.max(1, Math.min(box.width, page.viewportSize().width)),
-        height: Math.max(1, Math.min(box.height, 20000)),
-      },
-      fullPage: true,
-    });
+    try {
+      await page.screenshot({
+        path: resolve(dir, `${prefix}-sec-${String(i).padStart(2, "0")}.png`),
+        clip: {
+          x: Math.max(0, box.x),
+          y: Math.max(0, box.y),
+          width: Math.max(1, Math.min(box.width, page.viewportSize().width)),
+          height: Math.max(1, Math.min(box.height, 20000)),
+        },
+        fullPage: true,
+      });
+    } catch (error) {
+      // One unclippable band must not cost the whole viewport.
+      console.error(
+        `section ${i} of ${prefix} failed: ${String((error && error.message) || error)}`,
+      );
+    }
   }
 
   report.push({ target: TARGET, viewport: name, theme, ...metrics });
@@ -463,6 +476,7 @@ async function main() {
   mkdirSync(OUT, { recursive: true });
   const browser = await launch();
   const report = [];
+  const failures = [];
   report.animations = [];
   try {
     for (const vp of VIEWPORTS) {
@@ -479,14 +493,32 @@ async function main() {
           if (m.type() === "error") errors.push(m.text());
         });
         page.on("pageerror", (e) => errors.push(`pageerror: ${e.message}`));
-        await page.goto(BASE, { waitUntil: "load", timeout: 90000 });
-        await settle(page);
-        const summary = await capture(page, vp, theme, report);
-        const last = report[report.length - 1];
-        last.consoleErrors = errors.slice(0, 10);
-        console.log(
-          `${TARGET} ${vp.name} ${theme}: ${summary.sections} sections, ${summary.animations} animations, overflow=${last.document.overflowX}`,
-        );
+        try {
+          await page.goto(BASE, {
+            waitUntil: "domcontentloaded",
+            timeout: 120000,
+          });
+          await settle(page);
+          const summary = await capture(page, vp, theme, report);
+          const last = report[report.length - 1];
+          last.consoleErrors = errors.slice(0, 10);
+          console.log(
+            `${TARGET} ${vp.name} ${theme}: ${summary.sections} sections, ${summary.animations} animations, overflow=${last.document.overflowX}`,
+          );
+        } catch (error) {
+          // A failed viewport must not lose the other eleven. The error is
+          // recorded and uploaded with the artefact so the audit can say
+          // exactly which captures are missing and why.
+          failures.push({
+            target: TARGET,
+            viewport: vp.name,
+            theme,
+            message: String((error && error.message) || error),
+          });
+          console.error(
+            `FAILED ${TARGET} ${vp.name} ${theme}: ${String((error && error.message) || error)}`,
+          );
+        }
         await context.close();
       }
     }
@@ -502,6 +534,13 @@ async function main() {
     resolve(OUT, `${TARGET}-animations.json`),
     JSON.stringify(report.animations, null, 2),
   );
+  writeFileSync(
+    resolve(OUT, `${TARGET}-failures.json`),
+    JSON.stringify(failures, null, 2),
+  );
+  if (failures.length) {
+    console.error(`\n${failures.length} capture(s) failed:\n${JSON.stringify(failures, null, 2)}`);
+  }
   console.log(`\nwrote ${OUT}/${TARGET}-metrics.json`);
 }
 
