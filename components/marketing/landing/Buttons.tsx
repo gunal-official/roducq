@@ -22,7 +22,7 @@ import { clsx as cn } from "clsx";
  */
 
 const BASE =
-  "inline-flex min-h-11 shrink-0 select-none items-center justify-center gap-2 whitespace-nowrap rounded-lm-control font-lm-semibold text-lm-14 transition-[background-color,border-color,box-shadow,transform,color] duration-150 disabled:pointer-events-none disabled:opacity-50";
+  "inline-flex min-h-11 shrink-0 select-none items-center justify-center gap-2 whitespace-nowrap rounded-lm-button font-lm-regular text-lm-15 transition-[background-color,border-color,box-shadow,transform,color] duration-200 disabled:pointer-events-none disabled:opacity-50";
 
 const PRIMARY =
   "bg-lm-accent text-lm-on-accent shadow-lm-sm hover:bg-lm-accent-strong active:bg-lm-accent-strong";
@@ -35,7 +35,7 @@ const GHOST =
 
 /** 44px on phones, 48px from the tablet band up — the reference's hero size. */
 const SIZE = {
-  default: "h-11 px-5 md:h-12 md:px-6.5",
+  default: "h-11 px-5 md:h-13 md:px-6.5",
   sm: "h-11 px-4",
 } as const;
 
@@ -173,7 +173,7 @@ export function GhostLink({
       aria-label={ariaLabel}
       className={cn(
         GHOST,
-        "inline-flex min-h-11 items-center gap-2 font-lm-semibold text-lm-14",
+        "inline-flex min-h-11 items-center gap-2 font-lm-medium text-lm-15",
         className
       )}
     >

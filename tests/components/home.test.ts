@@ -647,7 +647,14 @@ describe("/ landing design tokens", () => {
   });
 
   it("publishes the reference's type scale, radii and shadows", () => {
-    for (const size of ["10", "12", "14", "16", "18", "22", "29", "54", "64"]) {
+    // The measured reference scale (docs/FORMA_FINAL_FIDELITY_AUDIT.md §4).
+    // The 29px and 64px steps this replaced were estimates; the reference's
+    // real display sizes are 43 / 48 / 72px for the hero headline and
+    // 32 / 34 / 54px for a section heading.
+    for (const size of [
+      "10", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22",
+      "23", "28", "32", "34", "36", "43", "46", "48", "54", "64", "72",
+    ]) {
       assert.match(TOKENS, new RegExp(`--lm-size-${size}:\\s*${size}px`), `missing ${size}px step`);
       assert.match(CONFIG, new RegExp(`"lm-${size}":\\s*\\["var\\(--lm-size-${size}\\)"`), `tailwind has no text-lm-${size}`);
     }
@@ -658,6 +665,8 @@ describe("/ landing design tokens", () => {
       ["--lm-radius-control", "5px"],
       ["--lm-radius-row", "8px"],
       ["--lm-radius-panel", "10px"],
+      // The reference's action buttons measure a 10px corner radius.
+      ["--lm-radius-button", "10px"],
       ["--lm-radius-card", "14px"],
       ["--lm-radius-frame", "16px"],
       ["--lm-radius-pill", "999px"],
@@ -756,7 +765,9 @@ describe("/ landing design tokens", () => {
   });
 
   it("one container for every band", () => {
-    assert.match(TOKENS, /--lm-container:\s*1200px/);
+    // 1320px of shell with a 40px desktop gutter gives the reference's
+    // measured 1240px content column at a 1440px viewport.
+    assert.match(TOKENS, /--lm-container:\s*1320px/);
     assert.match(TOKENS, /\.lm-shell \{/);
     for (const file of ["HeroSection", "FeaturesSection", "StepsSection", "IntegrationsSection", "TeamsSection", "PricingSection", "FaqAccordion", "FinalCta"]) {
       const source = read(`components/marketing/landing/${file}.tsx`);
@@ -1092,8 +1103,75 @@ describe("/ landing responsive + a11y", () => {
 
   it("scales the headline down for phones instead of clipping it", () => {
     const hero = read("components/marketing/landing/HeroSection.tsx");
-    assert.match(hero, /text-lm-29/, "mobile step (29px)");
-    assert.match(hero, /text-lm-64|lg:text-lm-64/, "desktop step (64px)");
+    // The reference's hero headline measures 43px below 1024, 48px at 1024
+    // and 72px on a wide desktop.
+    assert.match(hero, /text-lm-43/, "phone step (43px)");
+    assert.match(hero, /lg:text-lm-48/, "laptop step (48px)");
+    assert.match(hero, /xl:text-lm-72/, "desktop step (72px)");
+  });
+
+  it("sets the display headings at the reference's measured weights and sizes", () => {
+    // The reference's display type is Manrope at weight 400, not 700: the
+    // 54px section heading, the 72px hero headline and the 22px feature
+    // card title all measure font-weight 400 on the live site.
+    const heading = read("components/marketing/landing/SectionHeading.tsx");
+    assert.match(heading, /font-lm-regular/, "the section heading must be regular weight");
+    assert.match(heading, /text-lm-32 lg:text-lm-34 xl:text-lm-54/);
+    assert.match(heading, /variant === "faq"/, "the FAQ heading is a measured variant");
+    assert.match(heading, /font-lm-semibold text-lm-32 lg:text-lm-28 xl:text-lm-48/);
+
+    const features = read("components/marketing/landing/FeaturesSection.tsx");
+    assert.match(features, /font-lm-regular tracking-\[-0\.035em\] text-lm-21/);
+  });
+
+  it("runs the connector flow at the reference's measured timing", () => {
+    // `flowLinesDash` on the live reference: 1000ms, linear, infinite, and
+    // no per-path delay — the lines march in step.
+    assert.match(TOKENS, /lm-connector-flow 1000ms linear infinite/);
+    const steps = read("components/marketing/landing/StepsSection.tsx");
+    assert.doesNotMatch(steps, /--lm-connector-delay/, "connector paths must not be staggered");
+  });
+
+  it("raises section headings word by word at the measured cadence", () => {
+    const heading = read("components/marketing/landing/SectionHeading.tsx");
+    assert.match(heading, /WORD_STAGGER_MS = 50/);
+    assert.match(heading, /lm-word/);
+    assert.match(TOKENS, /--lm-motion-display:\s*900ms/);
+    assert.match(TOKENS, /--lm-ease-display:\s*cubic-bezier\(0\.16, 1, 0\.3, 1\)/);
+    // The words wait for their band's scroll trigger instead of spending the
+    // rise on page load, and are plain text without JavaScript.
+    assert.match(TOKENS, /\.lm-js \.lm-reveal\[data-visible="true"\] \.lm-word > span/);
+  });
+
+  it("brings the hero in on the reference's measured ladder", () => {
+    const hero = read("components/marketing/landing/HeroSection.tsx");
+    for (const [rung, ms] of [
+      ["announcement", 0],
+      ["headline", 80],
+      ["lead", 550],
+      ["actions", 650],
+      ["note", 720],
+      ["connects", 800],
+      ["dashboard", 850],
+    ] as const) {
+      assert.match(hero, new RegExp(`${rung}: ${ms},`), `${rung} rung is not ${ms}ms`);
+    }
+    assert.match(hero, /ladder\(HERO_LADDER\.dashboard, 1300\)/);
+    assert.match(TOKENS, /--lm-ease-body:\s*cubic-bezier\(0\.2, 0\.7, 0\.2, 1\)/);
+  });
+
+  it("switches every new entrance off under reduced motion", () => {
+    const reduced = TOKENS.slice(TOKENS.indexOf("@media (prefers-reduced-motion: reduce)"));
+    assert.match(reduced, /\.lm-word > span/);
+    assert.match(reduced, /\.lm-js \.lm-reveal\[data-visible="true"\] \.lm-word > span/);
+    assert.match(reduced, /\.lm-hero-in/);
+  });
+
+  it("draws the purple frames from the reference's sampled gradient", () => {
+    // Sampled from the live reference with scripts/sample-landing-pixels.mjs:
+    // #36278c at the top left, #9178e6 at the top right.
+    assert.match(TOKENS, /#36278c/, "the frame's dark end is missing");
+    assert.match(TOKENS, /#7355e9/, "the frame's light end is missing");
   });
 
   it("declares the reference's breakpoint bands", () => {

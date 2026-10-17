@@ -32,7 +32,7 @@ export function SiteFooter() {
             <div className="mt-4.5">
               <Link
                 href={FOOTER.cta.href}
-                className="inline-flex h-11 min-h-11 items-center justify-center gap-2 rounded-lm-control bg-lm-accent px-4 text-lm-14 font-lm-semibold text-lm-on-accent shadow-lm-sm transition-colors hover:bg-lm-accent-strong"
+                className="inline-flex h-11 min-h-11 items-center justify-center gap-2 rounded-lm-button bg-lm-accent px-4 text-lm-14 font-lm-regular text-lm-on-accent shadow-lm-sm transition-colors duration-200 hover:bg-lm-accent-strong"
               >
                 {FOOTER.cta.label}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -53,7 +53,7 @@ export function SiteFooter() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="inline-flex min-h-11 min-w-11 items-center text-lm-14 text-lm-muted-readable transition-colors hover:text-lm-ink-accent"
+                      className="inline-flex min-h-11 min-w-11 items-center text-lm-14 text-lm-muted-readable transition-colors duration-200 hover:text-lm-ink-accent"
                     >
                       {link.label}
                     </Link>

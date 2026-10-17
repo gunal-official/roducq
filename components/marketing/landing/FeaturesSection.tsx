@@ -49,10 +49,10 @@ export function FeaturesSection() {
                 <div>
                   <Visual />
                   <CardLabel className="mt-5">{block.label}</CardLabel>
-                  <h3 className="mt-2 font-lm-bold tracking-[-0.015em] text-lm-18 text-lm-ink">
+                  <h3 className="mt-2 font-lm-regular tracking-[-0.035em] text-lm-21 text-lm-ink lg:text-lm-18 xl:text-lm-22">
                     {block.title}
                   </h3>
-                  <p className="mt-2.5 text-lm-14 leading-relaxed text-lm-ink-soft">
+                  <p className="mt-2.5 text-lm-16 leading-relaxed text-lm-ink-soft">
                     {block.copy}
                   </p>
                 </div>

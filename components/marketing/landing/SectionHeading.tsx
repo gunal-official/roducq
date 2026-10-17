@@ -18,6 +18,13 @@ interface SectionHeadingProps {
   intro?: string;
   /** Centred for the reference's full-width bands, left for split bands. */
   align?: "center" | "start";
+  /**
+   * The reference sets two different heading treatments: a 54px/400
+   * section heading and a 48px/600 FAQ heading. Both are measured on the
+   * live site, so they are two real variants rather than one size guessed
+   * twice. See docs/FORMA_FINAL_FIDELITY_AUDIT.md §4.
+   */
+  variant?: "section" | "faq";
   /** h2 everywhere except the hero, which owns the page's h1. */
   as?: "h1" | "h2";
   /** Optional right-aligned slot when `align="start"`. */
@@ -31,6 +38,7 @@ export function SectionHeading({
   after,
   intro,
   align = "center",
+  variant = "section",
   as: Tag = "h2",
   aside,
   className,
@@ -44,16 +52,26 @@ export function SectionHeading({
         className
       )}
     >
-      <p className="text-lm-14 font-lm-semibold text-lm-ink-accent">
+      <p className="text-lm-14 font-lm-semibold leading-lm-label text-lm-ink-accent">
         {eyebrow}
       </p>
-      <Tag className="mt-3 font-lm-bold tracking-[-0.025em] text-lm-29 text-lm-ink md:text-lm-54">
-        {before} <span className="text-lm-ink-accent">{after}</span>
+      <Tag
+        className={cn(
+          "mt-3 tracking-[-0.03em] text-lm-ink",
+          variant === "faq"
+            ? "font-lm-semibold text-lm-32 lg:text-lm-28 xl:text-lm-48"
+            : "font-lm-regular text-lm-32 lg:text-lm-34 xl:text-lm-54",
+        )}
+      >
+        <Words text={before} startIndex={0} />{" "}
+        <span className="text-lm-ink-accent">
+          <Words text={after} startIndex={countWords(before)} />
+        </span>
       </Tag>
       {intro ? (
         <p
           className={cn(
-            "mt-4 max-w-[36rem] text-lm-16 text-lm-ink-soft md:text-lm-18",
+            "mt-4 max-w-lm-measure-intro text-lm-16 text-lm-ink-soft md:text-lm-18",
             centered && "mx-auto"
           )}
         >
@@ -73,6 +91,43 @@ export function SectionHeading({
   );
 }
 
+/** The reference's measured word cadence: each word starts 50ms after the last. */
+const WORD_STAGGER_MS = 50;
+
+function countWords(text: string): number {
+  return text.split(/\s+/).filter(Boolean).length;
+}
+
+/**
+ * One masked span per word, so the heading can rise word by word the way
+ * the reference's does (900ms on cubic-bezier(0.16, 1, 0.3, 1), 50ms
+ * apart — measured on the live site). The words stay real text separated
+ * by real spaces, so the heading still reads as one sentence to a screen
+ * reader and still wraps like ordinary text.
+ */
+function Words({ text, startIndex }: { text: string; startIndex: number }) {
+  const words = text.split(/\s+/).filter(Boolean);
+  return (
+    <>
+      {words.map((word, index) => (
+        <span key={`${word}-${index}`}>
+          {index > 0 ? " " : null}
+          <span
+            className="lm-word"
+            style={
+              {
+                "--lm-word-delay": `${(startIndex + index) * WORD_STAGGER_MS}ms`,
+              } as React.CSSProperties
+            }
+          >
+            <span>{word}</span>
+          </span>
+        </span>
+      ))}
+    </>
+  );
+}
+
 /**
  * The uppercase micro-label the reference puts above a card heading
  * ("AUTOMATIONS", "PROJECTS"). Kept separate from SectionHeading because it
@@ -88,7 +143,7 @@ export function CardLabel({
   return (
     <p
       className={cn(
-        "text-lm-12 font-lm-semibold uppercase tracking-[0.16em] text-lm-ink-accent",
+        "text-lm-11 font-lm-regular tracking-[0.06em] text-lm-muted-slate",
         className
       )}
     >

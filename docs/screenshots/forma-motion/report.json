@@ -28,7 +28,7 @@
       },
       "line": {
         "animation": "lm-line-rise",
-        "duration": "0.42s"
+        "duration": "0.9s"
       },
       "chart": {
         "animation": "lm-draw",
@@ -37,8 +37,10 @@
       },
       "connector": {
         "animation": "lm-connector-flow",
-        "duration": "0.62s",
-        "delay": "0s"
+        "duration": "1s",
+        "delay": "0s",
+        "iterations": "infinite",
+        "easing": "linear"
       },
       "header": {
         "animation": "lm-chrome-in",
@@ -56,7 +58,7 @@
         "transitionDuration": "0.26s, 0.26s",
         "blockSize": "175.25px"
       },
-      "buttonTransition": "0.15s",
+      "buttonTransition": "0.2s",
       "consoleErrors": []
     },
     {
@@ -86,7 +88,7 @@
       },
       "line": {
         "animation": "lm-line-rise",
-        "duration": "0.42s"
+        "duration": "0.9s"
       },
       "chart": {
         "animation": "lm-draw",
@@ -95,8 +97,10 @@
       },
       "connector": {
         "animation": "lm-connector-flow",
-        "duration": "0.62s",
-        "delay": "0s"
+        "duration": "1s",
+        "delay": "0s",
+        "iterations": "infinite",
+        "easing": "linear"
       },
       "header": {
         "animation": "lm-chrome-in",
@@ -114,7 +118,7 @@
         "transitionDuration": "0.26s, 0.26s",
         "blockSize": "175.25px"
       },
-      "buttonTransition": "0.15s",
+      "buttonTransition": "0.2s",
       "consoleErrors": []
     },
     {
@@ -144,7 +148,7 @@
       },
       "line": {
         "animation": "lm-line-rise",
-        "duration": "0.42s"
+        "duration": "0.9s"
       },
       "chart": {
         "animation": "lm-draw",
@@ -153,8 +157,10 @@
       },
       "connector": {
         "animation": "lm-connector-flow",
-        "duration": "0.62s",
-        "delay": "0s"
+        "duration": "1s",
+        "delay": "0s",
+        "iterations": "infinite",
+        "easing": "linear"
       },
       "header": {
         "animation": "lm-chrome-in",
@@ -172,7 +178,7 @@
         "transitionDuration": "0.26s, 0.26s",
         "blockSize": "152.5px"
       },
-      "buttonTransition": "0.15s",
+      "buttonTransition": "0.2s",
       "consoleErrors": []
     },
     {
@@ -202,7 +208,7 @@
       },
       "line": {
         "animation": "lm-line-rise",
-        "duration": "0.42s"
+        "duration": "0.9s"
       },
       "chart": {
         "animation": "lm-draw",
@@ -211,8 +217,10 @@
       },
       "connector": {
         "animation": "lm-connector-flow",
-        "duration": "0.62s",
-        "delay": "0s"
+        "duration": "1s",
+        "delay": "0s",
+        "iterations": "infinite",
+        "easing": "linear"
       },
       "header": {
         "animation": "lm-chrome-in",
@@ -230,7 +238,7 @@
         "transitionDuration": "0.26s, 0.26s",
         "blockSize": "152.5px"
       },
-      "buttonTransition": "0.15s",
+      "buttonTransition": "0.2s",
       "consoleErrors": []
     },
     {
@@ -260,7 +268,7 @@
       },
       "line": {
         "animation": "lm-line-rise",
-        "duration": "0.42s"
+        "duration": "0.9s"
       },
       "chart": {
         "animation": "lm-draw",
@@ -269,8 +277,10 @@
       },
       "connector": {
         "animation": "lm-connector-flow",
-        "duration": "0.62s",
-        "delay": "0s"
+        "duration": "1s",
+        "delay": "0s",
+        "iterations": "infinite",
+        "easing": "linear"
       },
       "header": {
         "animation": "lm-chrome-in",
@@ -286,9 +296,9 @@
       },
       "faq": {
         "transitionDuration": "0.26s, 0.26s",
-        "blockSize": "152.5px"
+        "blockSize": "129.75px"
       },
-      "buttonTransition": "0.15s",
+      "buttonTransition": "0.2s",
       "consoleErrors": []
     },
     {
@@ -318,7 +328,7 @@
       },
       "line": {
         "animation": "lm-line-rise",
-        "duration": "0.42s"
+        "duration": "0.9s"
       },
       "chart": {
         "animation": "lm-draw",
@@ -327,8 +337,10 @@
       },
       "connector": {
         "animation": "lm-connector-flow",
-        "duration": "0.62s",
-        "delay": "0s"
+        "duration": "1s",
+        "delay": "0s",
+        "iterations": "infinite",
+        "easing": "linear"
       },
       "header": {
         "animation": "lm-chrome-in",
@@ -344,9 +356,9 @@
       },
       "faq": {
         "transitionDuration": "0.26s, 0.26s",
-        "blockSize": "152.5px"
+        "blockSize": "129.75px"
       },
-      "buttonTransition": "0.15s",
+      "buttonTransition": "0.2s",
       "consoleErrors": []
     },
     {
@@ -376,7 +388,7 @@
       },
       "line": {
         "animation": "lm-line-rise",
-        "duration": "0.62s"
+        "duration": "0.9s"
       },
       "chart": {
         "animation": "lm-draw",
@@ -385,8 +397,10 @@
       },
       "connector": {
         "animation": "lm-connector-flow",
-        "duration": "0.62s",
-        "delay": "0s"
+        "duration": "1s",
+        "delay": "0s",
+        "iterations": "infinite",
+        "easing": "linear"
       },
       "header": {
         "animation": "lm-chrome-in",
@@ -404,7 +418,7 @@
         "transitionDuration": "0.26s, 0.26s",
         "blockSize": "84.25px"
       },
-      "buttonTransition": "0.15s",
+      "buttonTransition": "0.2s",
       "consoleErrors": []
     },
     {
@@ -434,7 +448,7 @@
       },
       "line": {
         "animation": "lm-line-rise",
-        "duration": "0.62s"
+        "duration": "0.9s"
       },
       "chart": {
         "animation": "lm-draw",
@@ -443,8 +457,10 @@
       },
       "connector": {
         "animation": "lm-connector-flow",
-        "duration": "0.62s",
-        "delay": "0s"
+        "duration": "1s",
+        "delay": "0s",
+        "iterations": "infinite",
+        "easing": "linear"
       },
       "header": {
         "animation": "lm-chrome-in",
@@ -462,7 +478,7 @@
         "transitionDuration": "0.26s, 0.26s",
         "blockSize": "84.25px"
       },
-      "buttonTransition": "0.15s",
+      "buttonTransition": "0.2s",
       "consoleErrors": []
     },
     {
@@ -492,7 +508,7 @@
       },
       "line": {
         "animation": "lm-line-rise",
-        "duration": "0.62s"
+        "duration": "0.9s"
       },
       "chart": {
         "animation": "lm-draw",
@@ -501,8 +517,10 @@
       },
       "connector": {
         "animation": "lm-connector-flow",
-        "duration": "0.62s",
-        "delay": "0s"
+        "duration": "1s",
+        "delay": "0s",
+        "iterations": "infinite",
+        "easing": "linear"
       },
       "header": {
         "animation": "lm-chrome-in",
@@ -520,7 +538,7 @@
         "transitionDuration": "0.26s, 0.26s",
         "blockSize": "107px"
       },
-      "buttonTransition": "0.15s",
+      "buttonTransition": "0.2s",
       "consoleErrors": []
     },
     {
@@ -550,7 +568,7 @@
       },
       "line": {
         "animation": "lm-line-rise",
-        "duration": "0.62s"
+        "duration": "0.9s"
       },
       "chart": {
         "animation": "lm-draw",
@@ -559,8 +577,10 @@
       },
       "connector": {
         "animation": "lm-connector-flow",
-        "duration": "0.62s",
-        "delay": "0s"
+        "duration": "1s",
+        "delay": "0s",
+        "iterations": "infinite",
+        "easing": "linear"
       },
       "header": {
         "animation": "lm-chrome-in",
@@ -578,7 +598,7 @@
         "transitionDuration": "0.26s, 0.26s",
         "blockSize": "107px"
       },
-      "buttonTransition": "0.15s",
+      "buttonTransition": "0.2s",
       "consoleErrors": []
     },
     {
@@ -608,7 +628,7 @@
       },
       "line": {
         "animation": "lm-line-rise",
-        "duration": "0.62s"
+        "duration": "0.9s"
       },
       "chart": {
         "animation": "lm-draw",
@@ -617,8 +637,10 @@
       },
       "connector": {
         "animation": "lm-connector-flow",
-        "duration": "0.62s",
-        "delay": "0s"
+        "duration": "1s",
+        "delay": "0s",
+        "iterations": "infinite",
+        "easing": "linear"
       },
       "header": {
         "animation": "lm-chrome-in",
@@ -636,7 +658,7 @@
         "transitionDuration": "0.26s, 0.26s",
         "blockSize": "84.25px"
       },
-      "buttonTransition": "0.15s",
+      "buttonTransition": "0.2s",
       "consoleErrors": []
     },
     {
@@ -649,7 +671,7 @@
         {
           "tag": "div",
           "cls": "lm-bloom-a lm-drift",
-          "rect": 418
+          "rect": 419
         },
         {
           "tag": "div",
@@ -666,7 +688,7 @@
       },
       "line": {
         "animation": "lm-line-rise",
-        "duration": "0.62s"
+        "duration": "0.9s"
       },
       "chart": {
         "animation": "lm-draw",
@@ -675,8 +697,10 @@
       },
       "connector": {
         "animation": "lm-connector-flow",
-        "duration": "0.62s",
-        "delay": "0s"
+        "duration": "1s",
+        "delay": "0s",
+        "iterations": "infinite",
+        "easing": "linear"
       },
       "header": {
         "animation": "lm-chrome-in",
@@ -694,7 +718,7 @@
         "transitionDuration": "0.26s, 0.26s",
         "blockSize": "84.25px"
       },
-      "buttonTransition": "0.15s",
+      "buttonTransition": "0.2s",
       "consoleErrors": []
     }
   ],
@@ -723,7 +747,7 @@
       },
       "line": {
         "animation": "lm-line-rise",
-        "duration": "0.62s"
+        "duration": "0.9s"
       },
       "chart": {
         "animation": "lm-draw",
@@ -732,8 +756,10 @@
       },
       "connector": {
         "animation": "lm-connector-flow",
-        "duration": "0.62s",
-        "delay": "0s"
+        "duration": "1s",
+        "delay": "0s",
+        "iterations": "infinite",
+        "easing": "linear"
       },
       "header": {
         "animation": "lm-chrome-in",
@@ -751,7 +777,7 @@
         "transitionDuration": "0.26s, 0.26s",
         "blockSize": "84.25px"
       },
-      "buttonTransition": "0.15s"
+      "buttonTransition": "0.2s"
     },
     "compact": {
       "theme": "light",
@@ -777,7 +803,7 @@
       },
       "line": {
         "animation": "lm-line-rise",
-        "duration": "0.42s"
+        "duration": "0.9s"
       },
       "chart": {
         "animation": "lm-draw",
@@ -786,8 +812,10 @@
       },
       "connector": {
         "animation": "lm-connector-flow",
-        "duration": "0.62s",
-        "delay": "0s"
+        "duration": "1s",
+        "delay": "0s",
+        "iterations": "infinite",
+        "easing": "linear"
       },
       "header": {
         "animation": "lm-chrome-in",
@@ -803,9 +831,9 @@
       },
       "faq": {
         "transitionDuration": "0.26s, 0.26s",
-        "blockSize": "152.5px"
+        "blockSize": "129.75px"
       },
-      "buttonTransition": "0.15s"
+      "buttonTransition": "0.2s"
     },
     "tablet": {
       "theme": "light",
@@ -831,7 +859,7 @@
       },
       "line": {
         "animation": "lm-line-rise",
-        "duration": "0.62s"
+        "duration": "0.9s"
       },
       "chart": {
         "animation": "lm-draw",
@@ -840,8 +868,10 @@
       },
       "connector": {
         "animation": "lm-connector-flow",
-        "duration": "0.62s",
-        "delay": "0s"
+        "duration": "1s",
+        "delay": "0s",
+        "iterations": "infinite",
+        "easing": "linear"
       },
       "header": {
         "animation": "lm-chrome-in",
@@ -859,7 +889,7 @@
         "transitionDuration": "0.26s, 0.26s",
         "blockSize": "84.25px"
       },
-      "buttonTransition": "0.15s"
+      "buttonTransition": "0.2s"
     }
   },
   "reduced": {
@@ -897,7 +927,9 @@
       "connector": {
         "animation": "none",
         "duration": "0s",
-        "delay": "0s"
+        "delay": "0s",
+        "iterations": "1",
+        "easing": "ease"
       },
       "header": {
         "animation": "none",
@@ -913,7 +945,7 @@
       },
       "faq": {
         "transitionDuration": "0s",
-        "blockSize": "152.5px"
+        "blockSize": "129.75px"
       },
       "buttonTransition": "0.001s"
     },
@@ -951,7 +983,9 @@
       "connector": {
         "animation": "none",
         "duration": "0s",
-        "delay": "0s"
+        "delay": "0s",
+        "iterations": "1",
+        "easing": "ease"
       },
       "header": {
         "animation": "none",
