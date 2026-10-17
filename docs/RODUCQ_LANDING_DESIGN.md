@@ -196,14 +196,19 @@ No fixed width on the landing surface exceeds 320px; `max-w-*` is unrestricted
 | Name | Trigger | Implementation |
 | --- | --- | --- |
 | Line rise | page load | `@keyframes lm-line-rise`, one masked slot per headline line, 90ms stagger |
-| Section reveal | scroll into view | `Reveal.tsx`, one `IntersectionObserver`, disconnects after firing |
+| Section reveal | scroll into view | `Reveal.tsx`, Motion.dev `useInView`, one observer, fires once |
 | Bloom drift | ambient | `@keyframes lm-drift`, transform/opacity only, 14s |
 | Hover | pointer | border/background/shadow transitions, 150–260ms |
 
 Constraints enforced by tests:
 
-- **No animation library.** `framer-motion`, `motion`, `gsap`, `react-spring`
-  and `animejs` are asserted absent from `package.json`.
+- **One motion runtime.** `motion@14.3.0` (Motion.dev) drives the scroll
+  reveals and the hero dashboard entrance. `framer-motion`, `gsap`,
+  `react-spring` and `animejs` are asserted absent from `package.json`; CSS
+  keyframes own only the pieces that must work without JavaScript (headline
+  mask, chrome entrance, SVG draw, FAQ disclosure). The recorded timings,
+  per-section values and evidence live in
+  [`docs/ANIMATION_NOTES.md`](./ANIMATION_NOTES.md).
 - **Transform and opacity only.** Landing keyframes may not animate `width`,
   `height`, `top`, `left`, `margin` or `padding`.
 - **`prefers-reduced-motion`** resolves every reveal to its end state, stops the

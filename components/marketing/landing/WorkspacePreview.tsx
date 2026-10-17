@@ -326,10 +326,13 @@ export function WorkspacePreview() {
                           stroke="var(--lm-border-soft)"
                         />
                         <path
+                          className="lm-chart-area"
                           d="M 14 102 C 52 96, 72 70, 108 74 C 144 78, 165 44, 205 50 C 245 56, 268 28, 308 34 C 348 40, 374 16, 406 20 L 406 126 L 14 126 Z"
                           fill="url(#lmDashboardLineFill)"
                         />
                         <path
+                          className="lm-chart-line"
+                          pathLength={1}
                           d="M 14 102 C 52 96, 72 70, 108 74 C 144 78, 165 44, 205 50 C 245 56, 268 28, 308 34 C 348 40, 374 16, 406 20"
                           fill="none"
                           stroke="var(--lm-accent)"
@@ -337,6 +340,8 @@ export function WorkspacePreview() {
                           strokeLinecap="round"
                         />
                         <circle
+                          className="lm-chart-point"
+                          style={{ "--lm-chart-delay": "300ms" } as React.CSSProperties}
                           cx="108"
                           cy="74"
                           r="3.5"
@@ -345,6 +350,8 @@ export function WorkspacePreview() {
                           strokeWidth="2"
                         />
                         <circle
+                          className="lm-chart-point"
+                          style={{ "--lm-chart-delay": "360ms" } as React.CSSProperties}
                           cx="205"
                           cy="50"
                           r="3.5"
@@ -353,6 +360,8 @@ export function WorkspacePreview() {
                           strokeWidth="2"
                         />
                         <circle
+                          className="lm-chart-point"
+                          style={{ "--lm-chart-delay": "420ms" } as React.CSSProperties}
                           cx="308"
                           cy="34"
                           r="3.5"
@@ -361,6 +370,8 @@ export function WorkspacePreview() {
                           strokeWidth="2"
                         />
                         <circle
+                          className="lm-chart-point"
+                          style={{ "--lm-chart-delay": "480ms" } as React.CSSProperties}
                           cx="406"
                           cy="20"
                           r="4.5"

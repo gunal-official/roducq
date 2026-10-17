@@ -16,6 +16,7 @@ import {
 } from "@/app/(marketing)/home/content";
 
 import { PrimaryLink, SecondaryLink } from "./Buttons";
+import { Reveal } from "./Reveal";
 import { WorkspacePreview } from "./WorkspacePreview";
 
 const CONNECTOR_ICONS: Record<string, LucideIcon> = {
@@ -123,9 +124,9 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="mt-12 md:mt-14">
+        <Reveal delay={180} className="mt-12 md:mt-14">
           <WorkspacePreview />
-        </div>
+        </Reveal>
       </div>
     </section>
   );

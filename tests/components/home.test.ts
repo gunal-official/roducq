@@ -919,13 +919,22 @@ describe("/ landing classes all compile", () => {
 /* ── Motion ─────────────────────────────────────────────────────────────── */
 
 describe("/ landing motion", () => {
-  it("reveals with CSS keyframes, not an animation library", () => {
+  it("reveals with Motion.dev on the recorded curve, not a spring preset", () => {
     assert.match(TOKENS, /@keyframes lm-line-rise/);
-    assert.match(TOKENS, /@keyframes lm-reveal/);
-    const manifest = read("package.json");
-    for (const lib of ["framer-motion", "gsap", "motion", "react-spring", "animejs"]) {
-      assert.doesNotMatch(manifest, new RegExp(`"${lib}"`), `${lib} is not a dependency this page needs`);
+    const manifest = JSON.parse(read("package.json"));
+    assert.equal(manifest.dependencies.motion, "14.3.0");
+    for (const lib of ["framer-motion", "gsap", "react-spring", "animejs"]) {
+      assert.equal(manifest.dependencies[lib], undefined, `${lib} is not a dependency this page needs`);
     }
+    const reveal = read("components/marketing/landing/Reveal.tsx");
+    assert.match(reveal, /from "motion\/react"/);
+    assert.match(reveal, /useInView/);
+    assert.match(reveal, /useReducedMotion/);
+    assert.match(reveal, /once: true/);
+    assert.match(reveal, /duration = reduce \? 0 : compact \? 0\.42 : 0\.62/);
+    assert.match(reveal, /\[0\.22, 1, 0\.36, 1\]/);
+    assert.doesNotMatch(reveal, /stiffness|damping/);
+    assert.match(read("components/marketing/motion/MotionProvider.tsx"), /reducedMotion="user"/);
   });
 
   it("never hides content from a reader without JavaScript", () => {
@@ -941,11 +950,19 @@ describe("/ landing motion", () => {
     assert.match(LAYOUT, /classList\.add\('lm-js'\)/);
   });
 
-  it("observes once and disconnects, and degrades without IntersectionObserver", () => {
+  it("observes once and shows the end state when IntersectionObserver is absent", () => {
     const reveal = read("components/marketing/landing/Reveal.tsx");
-    assert.match(reveal, /IntersectionObserver/);
-    assert.match(reveal, /observer\.disconnect\(\)/);
-    assert.match(reveal, /typeof IntersectionObserver === "undefined"/);
+    assert.match(reveal, /once: true/);
+    assert.match(reveal, /typeof IntersectionObserver !== "undefined"/);
+    assert.match(reveal, /observerSupported/);
+    assert.match(reveal, /margin: "0px 0px -8% 0px"/);
+    assert.match(reveal, /amount: 0\.08/);
+    assert.match(
+      reveal,
+      /const show = inView \|\| Boolean\(reduce\) \|\| !observerSupported/,
+      "reduced motion and the no-observer fallback must both resolve to visible",
+    );
+    assert.match(reveal, /data-visible=\{mounted && show \? "true" : "false"\}/);
   });
 
   it("resolves to the end state under prefers-reduced-motion", () => {
@@ -953,6 +970,9 @@ describe("/ landing motion", () => {
     assert.match(reduced, /\.lm-reveal/, "reveals must be disabled");
     assert.match(reduced, /\.lm-line > span/, "the hero mask must be disabled");
     assert.match(reduced, /\.lm-drift/, "the decorative loop must stop");
+    assert.match(reduced, /\.lm-chart-line/, "the chart draw must be disabled");
+    assert.match(reduced, /\.lm-connector/, "connector draws must be disabled");
+    assert.match(reduced, /details-content/, "the FAQ disclosure must not animate");
   });
 
   it("animates only transform and opacity", () => {

@@ -1,4 +1,4 @@
-import { ArrowUpRight, Plus, X } from "lucide-react";
+import { ArrowUpRight, Plus } from "lucide-react";
 
 import { FAQ, FAQ_SECTION } from "@/app/(marketing)/home/content";
 
@@ -55,16 +55,15 @@ export function FaqAccordion() {
               <Reveal key={item.q} delay={index * 60}>
                 <details
                   open={index === 0}
-                  className="group py-1"
+                  className="lm-faq group py-1"
                 >
                   <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 py-3.5 text-left font-lm-semibold text-lm-16 text-lm-ink transition-colors hover:text-lm-ink-accent group-open:text-lm-ink-accent [&::-webkit-details-marker]:hidden">
                     <span>{item.q}</span>
                     <span
-                      className="flex h-7 w-7 shrink-0 items-center justify-center text-lm-muted transition-colors group-open:text-lm-ink-accent"
+                      className="lm-faq-icon flex h-7 w-7 shrink-0 items-center justify-center text-lm-muted transition-colors group-open:text-lm-ink-accent"
                       aria-hidden="true"
                     >
-                      <Plus className="h-4 w-4 group-open:hidden" aria-hidden="true" />
-                      <X className="hidden h-4 w-4 group-open:block" aria-hidden="true" />
+                      <Plus className="h-4 w-4" aria-hidden="true" />
                     </span>
                   </summary>
                   <p className="pb-4 pr-10 text-lm-14 leading-relaxed text-lm-ink-soft">

@@ -17,7 +17,7 @@ export function AnnouncementBar() {
     <div
       role="region"
       aria-label="Announcement"
-      className="border-b border-lm-border-soft bg-lm-card"
+      className="lm-announce border-b border-lm-border-soft bg-lm-card"
     >
       <div className="lm-shell flex min-h-9 flex-wrap items-center justify-center gap-x-2 gap-y-1 py-2 text-center">
         <Sparkles className="h-4 w-4 shrink-0 text-lm-accent" aria-hidden="true" />
