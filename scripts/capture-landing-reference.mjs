@@ -403,6 +403,8 @@ async function capture(page, { w, h, name }, theme, report) {
 
   const metrics = await page.evaluate(collectMetrics, STYLE_KEYS);
   const animations = await page.evaluate(collectAnimations);
+  // Everything that ran and finished, with its real timing.
+  const recorded = await page.evaluate(() => window.__lmAnimLog || []);
 
   const prefix = `${TARGET}-${name}-${theme}`;
   try {
@@ -468,8 +470,13 @@ async function capture(page, { w, h, name }, theme, report) {
     viewport: name,
     theme,
     animations,
+    recorded,
   });
-  return { sections: sections.length, animations: animations.length };
+  return {
+    sections: sections.length,
+    animations: animations.length,
+    recorded: recorded.length,
+  };
 }
 
 async function main() {
@@ -488,6 +495,56 @@ async function main() {
           deviceScaleFactor: 1,
         });
         const page = await context.newPage();
+        // Record every animation the MOMENT it is created, not after the
+        // page has settled. `document.getAnimations()` only reports
+        // animations that are still running, so a one-shot entrance that
+        // finished during the settle would otherwise never be seen — and
+        // the reference's entrance timings are exactly the ones this
+        // milestone needs. The recorder is installed before any script on
+        // the page runs, so it cannot miss the first reveal.
+        await page.addInitScript(() => {
+          window.__lmAnimLog = [];
+          const seen = new Set();
+          const record = () => {
+            if (!document.getAnimations) return;
+            for (const anim of document.getAnimations()) {
+              if (seen.has(anim)) continue;
+              seen.add(anim);
+              const t =
+                anim.effect && anim.effect.getTiming
+                  ? anim.effect.getTiming()
+                  : {};
+              const target = anim.effect && anim.effect.target;
+              window.__lmAnimLog.push({
+                tag:
+                  target && target.nodeType === 1
+                    ? target.tagName.toLowerCase()
+                    : null,
+                cssName:
+                  target && target.nodeType === 1
+                    ? getComputedStyle(target).animationName
+                    : null,
+                duration: t.duration ?? null,
+                delay: t.delay ?? null,
+                easing: t.easing ?? null,
+                iterations: t.iterations ?? null,
+                fill: t.fill ?? null,
+                direction: t.direction ?? null,
+                at: Math.round(performance.now()),
+              });
+            }
+          };
+          window.__lmAnimRecord = record;
+          const timer = setInterval(record, 40);
+          document.addEventListener(
+            "DOMContentLoaded",
+            () => {
+              record();
+              clearInterval(timer);
+            },
+            { once: true },
+          );
+        });
         const errors = [];
         page.on("console", (m) => {
           if (m.type() === "error") errors.push(m.text());
@@ -503,7 +560,7 @@ async function main() {
           const last = report[report.length - 1];
           last.consoleErrors = errors.slice(0, 10);
           console.log(
-            `${TARGET} ${vp.name} ${theme}: ${summary.sections} sections, ${summary.animations} animations, overflow=${last.document.overflowX}`,
+            `${TARGET} ${vp.name} ${theme}: ${summary.sections} sections, ${summary.animations} live / ${summary.recorded} recorded animations, overflow=${last.document.overflowX}`,
           );
         } catch (error) {
           // A failed viewport must not lose the other eleven. The error is
