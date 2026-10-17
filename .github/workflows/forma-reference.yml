@@ -71,10 +71,14 @@ jobs:
             --out docs/screenshots/forma-reference
 
       - name: Capture the reference
+        env:
+          # `inputs` is only populated for workflow_dispatch; a push-triggered
+          # run must fall back to the same default rather than navigate to "".
+          REFERENCE: ${{ inputs.reference || 'https://forma-visuvate.framer.website/' }}
         run: |
           node scripts/capture-landing-reference.mjs \
             --target forma \
-            --base "${{ inputs.reference }}" \
+            --base "$REFERENCE" \
             --out docs/screenshots/forma-reference
 
       - name: Publish the capture to the capture branch
