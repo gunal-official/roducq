@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+
+import { SOCIAL_IMAGE, TWITTER_IMAGE } from "@/lib/site";
 import { Ticket } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
@@ -18,6 +20,22 @@ export const metadata: Metadata = {
   title: "Pricing — roducq",
   description:
     "roducq pricing: three ways to use the same product. The whole pipeline is free — team, templates and webhooks included. The paid plan is a Razorpay subscription per workspace in your currency, never per seat. No brief, seat or AI limits.",
+  alternates: { canonical: "/pricing" },
+  openGraph: {
+    type: "website",
+    url: "/pricing",
+    title: "Pricing — roducq",
+    description:
+      "roducq pricing: three ways to use the same product. The whole pipeline is free — team, templates and webhooks included. The paid plan is a Razorpay subscription per workspace in your currency, never per seat. No brief, seat or AI limits.",
+    images: [SOCIAL_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pricing — roducq",
+    description:
+      "roducq pricing: three ways to use the same product. The whole pipeline is free — team, templates and webhooks included. The paid plan is a Razorpay subscription per workspace in your currency, never per seat. No brief, seat or AI limits.",
+    images: [TWITTER_IMAGE],
+  },
 };
 
 /**

@@ -2,6 +2,9 @@ import { withSentryConfig } from "@sentry/nextjs/config";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Don't advertise the framework in a response header; it helps no
+  // legitimate client and saves fingerprinting effort for scanners.
+  poweredByHeader: false,
   // Sandbox-safe override: `.next` sits on the workspace snapshot exclusion
   // list and gets wiped mid-run in some environments. Default stays ".next";
   // verify tooling points NEXT_DIST_DIR outside the tree.

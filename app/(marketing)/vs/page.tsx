@@ -2,6 +2,8 @@ import Link from "next/link";
 import { ChevronRight, Scale } from "lucide-react";
 import type { Metadata } from "next";
 
+import { SOCIAL_IMAGE, TWITTER_IMAGE } from "@/lib/site";
+
 import { ProposalDocumentArt } from "@/components/workflow/ClientWorkArt";
 
 import { Badge } from "@/components/ui/badge";
@@ -12,6 +14,22 @@ export const metadata: Metadata = {
   title: "Comparisons — roducq",
   description:
     "How roducq compares with Notion, Bonsai, HoneyBook, Dubsado, 17hats, FreshBooks, ClickUp, Basecamp and PandaDoc for client work.",
+  alternates: { canonical: "/vs" },
+  openGraph: {
+    type: "website",
+    url: "/vs",
+    title: "Comparisons — roducq",
+    description:
+      "How roducq compares with Notion, Bonsai, HoneyBook, Dubsado, 17hats, FreshBooks, ClickUp, Basecamp and PandaDoc for client work.",
+    images: [SOCIAL_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Comparisons — roducq",
+    description:
+      "How roducq compares with Notion, Bonsai, HoneyBook, Dubsado, 17hats, FreshBooks, ClickUp, Basecamp and PandaDoc for client work.",
+    images: [TWITTER_IMAGE],
+  },
 };
 
 export default function VsHubPage() {

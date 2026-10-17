@@ -1,5 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+
+import { SOCIAL_IMAGE, TWITTER_IMAGE } from "@/lib/site";
 import { ArrowRight, MessageSquare, PenLine, Share2, Workflow } from "lucide-react";
 
 import { BriefSourceArt } from "@/components/workflow/ClientWorkArt";
@@ -15,6 +17,22 @@ export const metadata: Metadata = {
   title: "About — roducq",
   description:
     "What roducq is: a writing studio that turns messy client communication into structured briefs, proposals, plans, and updates.",
+  alternates: { canonical: "/about" },
+  openGraph: {
+    type: "website",
+    url: "/about",
+    title: "About — roducq",
+    description:
+      "What roducq is: a writing studio that turns messy client communication into structured briefs, proposals, plans, and updates.",
+    images: [SOCIAL_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About — roducq",
+    description:
+      "What roducq is: a writing studio that turns messy client communication into structured briefs, proposals, plans, and updates.",
+    images: [TWITTER_IMAGE],
+  },
 };
 
 const BUILT_TODAY = [
