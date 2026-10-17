@@ -1,0 +1,424 @@
+/* ══════════════════════════════════════════════════════════════════════════
+   RODUCQ MARKETING — FORMA LANDING DESIGN SYSTEM
+   ──────────────────────────────────────────────────────────────────────────
+   Reference: https://forma-visuvate.framer.website/ (visual system only —
+   no Forma asset, logo, illustration or marketing copy is reproduced here).
+
+   WHY A SEPARATE FILE. app/globals.css carries the product palette that
+   every authenticated surface, the PDF writer and the email renderer
+   consume, and tests/lib/design-tokens.test.ts locks that parity. The
+   marketing shell needs the reference's much lighter lilac system without
+   repainting the app, so every token below is scoped to `.rdq-marketing`
+   and nothing outside the marketing route group can read it.
+
+   WHY RAW CSS AND NOT @apply. This file is imported by a nested layout;
+   keeping it free of Tailwind directives means it cannot change what the
+   shared utilities compile to.
+
+   THE RULE FOR COMPONENTS. Nothing in components/marketing/** hardcodes a
+   hex value, a font-size or a shadow. Every visual decision resolves to a
+   `--lm-*` custom property here, surfaced through the `lm` namespaces in
+   tailwind.config.ts (bg-lm-*, text-lm-*, border-lm-*, rounded-lm-*,
+   shadow-lm-*, text-lm-*). Change a token, the whole page moves.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.rdq-marketing {
+  /* ── Canvas ──────────────────────────────────────────────────────────
+     The reference builds depth from three near-neutrals, not from borders:
+     a page wash, a slightly deeper band, and one mint panel reserved for
+     "free / included / on track" states. */
+  --lm-canvas: #f9f7fc;
+  --lm-canvas-alt: #f2eef8;
+  --lm-mint: #e7f7ed;
+
+  /* ── Surfaces ──────────────────────────────────────────────────────── */
+  --lm-card: #ffffff; /* card plane, sits above both washes */
+  --lm-surface-muted: #eae6f1; /* inset panels, mock chrome, empty rows */
+  --lm-surface-accent: #efebff; /* accent-tinted chips and active rows */
+  --lm-surface-neutral: #d1d5df; /* disabled fills, chart baselines */
+
+  /* ── Ink ───────────────────────────────────────────────────────────── */
+  --lm-ink: #1b1426; /* headlines */
+  --lm-ink-soft: #4b505f; /* body copy */
+  --lm-ink-accent: #5332d6; /* headline emphasis, links on light fills */
+
+  /* ── Secondary ink ─────────────────────────────────────────────────── */
+  --lm-muted: #7a659f; /* default secondary on lilac washes */
+  --lm-muted-alt: #7e66a7; /* secondary on accent-tinted fills */
+  --lm-muted-slate: #687083; /* reference secondary; used for large/decorative */
+  --lm-muted-sage: #969e99; /* metadata on mint fills */
+  --lm-muted-gray: #9ba4b6; /* decorative only: never text carrying meaning */
+
+  /* ── Accessible secondary steps ──────────────────────────────────────
+     The reference's #7a659f and #687083 clear 4.5:1 against its pale
+     canvas but fall just short on the deeper #f2eef8 wash (4.38 and 4.34),
+     and #9ba4b6 misses by a mile (2.36). Body copy and eyebrows use these
+     nudged steps, which hold ≥4.5:1 against all three of canvas, canvas-alt
+     and card — so a band can switch background without the text becoming
+     unreadable. The published hues above stay intact and are still used
+     where the contrast measurement allows them. */
+  --lm-muted-readable: #75609a; /* ≥4.71:1 on every landing wash */
+  --lm-muted-label: #656d7d; /* ≥4.55:1 on every landing wash */
+
+  /* ── Accent ────────────────────────────────────────────────────────── */
+  --lm-accent: #6246ea; /* primary action, active states */
+  --lm-accent-strong: #5b3fe0; /* hover/press on the primary action */
+  --lm-accent-line: #7f67e6; /* hairlines and decorative strokes */
+  --lm-on-accent: #ffffff;
+  --lm-success: #15803d; /* "included", "done", "on track" */
+
+  /* ── Border ────────────────────────────────────────────────────────── */
+  --lm-border: #ac7dfc; /* the reference's signature brand hairline */
+  --lm-border-hairline: rgba(172, 125, 252, 0.28);
+  --lm-border-soft: rgba(172, 125, 252, 0.16);
+  /* Warmer steps of the same hairline, for hover and for the featured tier.
+     These exist as NAMED tokens rather than `border-lm-border/45` modifiers
+     because a Tailwind opacity modifier cannot resolve against a `var()`
+     colour: the modifier compiles to no rule at all, and the border quietly
+     disappears instead of failing loudly. */
+  --lm-border-strong: color-mix(in srgb, var(--lm-border) 45%, transparent);
+  --lm-border-emphasis: color-mix(in srgb, var(--lm-border) 55%, transparent);
+
+  /* ── Translucent surfaces ──────────────────────────────────────────── */
+  --lm-scrim: color-mix(in srgb, var(--lm-ink) 25%, transparent);
+  --lm-header-wash: color-mix(in srgb, var(--lm-canvas) 85%, transparent);
+  --lm-glow: color-mix(in srgb, var(--lm-accent) 10%, transparent);
+  --lm-bar: color-mix(in srgb, var(--lm-surface-neutral) 70%, transparent);
+  --lm-dot-success: color-mix(in srgb, var(--lm-success) 60%, transparent);
+
+  /* ── Type ────────────────────────────────────────────────────────────
+     Manrope Variable, self-hosted by app/layout.tsx. Arimo and DM Sans are
+     the requested metric fallbacks before the generic stack. */
+  --lm-font: var(--font-manrope), "Manrope", "Arimo", "DM Sans",
+    ui-sans-serif, system-ui, sans-serif;
+  /* Contrast contract, measured against all three washes (#f9f7fc, #f2eef8,
+     #ffffff): ink 15.6–17.9, ink-soft 7.0–8.0, ink-accent 6.4–7.1,
+     muted-readable 4.7–5.4, muted-label 4.6–5.2, success-on-mint 4.52,
+     white-on-accent 5.86. Every text colour on the landing surface clears
+     4.5:1; nothing meaningful is set in muted-gray (2.36), which is
+     decorative only. tests/components/home.test.ts recomputes these. */
+  --lm-weight-regular: 400;
+  --lm-weight-semibold: 600;
+  --lm-weight-bold: 700;
+
+  /* The published scale. Everything on the page resolves to one of these. */
+  --lm-size-10: 10px;
+  --lm-size-12: 12px;
+  --lm-size-14: 14px;
+  --lm-size-16: 16px;
+  --lm-size-18: 18px;
+  --lm-size-22: 22px;
+  --lm-size-29: 29px;
+  --lm-size-54: 54px;
+  --lm-size-64: 64px;
+
+  /* Line-height pairs the reference uses with those steps. */
+  --lm-leading-tight: 1.04;
+  --lm-leading-snug: 1.2;
+  --lm-leading-normal: 1.5;
+  --lm-leading-relaxed: 1.65;
+
+  /* ── Radii ─────────────────────────────────────────────────────────── */
+  --lm-radius-hair: 2px;
+  --lm-radius-tile: 3px;
+  --lm-radius-chip: 4px;
+  --lm-radius-control: 5px;
+  --lm-radius-row: 8px;
+  --lm-radius-panel: 10px;
+  --lm-radius-card: 14px;
+  --lm-radius-frame: 16px;
+  --lm-radius-pill: 999px;
+  --lm-radius-dot: 50%;
+
+  /* ── Shadows ───────────────────────────────────────────────────────── */
+  --lm-shadow-none: rgba(40, 30, 80, 0) 0px 0px 0px 0px;
+  --lm-shadow-sm: rgba(33, 20, 56, 0.06) 0px 1px 2px 0px;
+  --lm-shadow-md: rgba(47, 24, 88, 0.06) 0px 3px 9px 0px;
+  --lm-shadow-lg: rgba(91, 66, 136, 0.08) 0px 8px 20px 0px;
+  /* The product frame in the hero carries the page's only heavy shadow. */
+  --lm-shadow-frame: rgba(91, 66, 136, 0.1) 0px 24px 60px -20px,
+    rgba(33, 20, 56, 0.06) 0px 1px 2px 0px;
+
+  /* ── Motion ────────────────────────────────────────────────────────── */
+  --lm-motion-fast: 160ms;
+  --lm-motion-standard: 260ms;
+  --lm-motion-slow: 620ms;
+  --lm-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* ── Layout ────────────────────────────────────────────────────────── */
+  --lm-container: 1200px;
+  --lm-gutter: 20px;
+
+  font-family: var(--lm-font);
+  background-color: var(--lm-canvas);
+  color: var(--lm-ink);
+}
+
+@media (min-width: 768px) {
+  .rdq-marketing {
+    --lm-gutter: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .rdq-marketing {
+    --lm-gutter: 40px;
+  }
+}
+
+/* ── Dark adaptation ───────────────────────────────────────────────────────
+   The reference is light-only, but roducq's theme switch is a real feature
+   on this shell (/about, /pricing, /vs share it). Rather than let the app's
+   dark palette bleed into a lilac design, the same token names are remapped
+   onto the product's plum dark palette: identical structure, no hybrid. */
+.dark .rdq-marketing {
+  /* Canvas and card are not new colours: they are the product's dark
+     palette, referenced so the two can never drift apart. */
+  --lm-canvas: var(--forma-background);
+  --lm-canvas-alt: #1d1826;
+  --lm-mint: #12291d;
+
+  --lm-card: var(--forma-surface);
+  --lm-surface-muted: #2a2233;
+  --lm-surface-accent: #2b2140;
+  --lm-surface-neutral: #3b3546;
+
+  --lm-ink: #f4f0fb;
+  --lm-ink-soft: #cdc4d8;
+  --lm-ink-accent: #c4b5fd;
+
+  --lm-muted: #a795c4;
+  --lm-muted-alt: #a99bc4;
+  --lm-muted-slate: #a4a2b3;
+  --lm-muted-sage: #8fae9b;
+  --lm-muted-gray: #8b8798;
+  --lm-muted-readable: #b3a3cd;
+  --lm-muted-label: #a9a7b8;
+
+  --lm-accent: #a78bfa;
+  --lm-accent-strong: #b9a3fb;
+  --lm-accent-line: #8b74e0;
+  --lm-on-accent: #1b1426;
+  --lm-success: #4ade80;
+
+  --lm-border: #7c5fd0;
+  --lm-border-hairline: rgba(124, 95, 208, 0.34);
+  --lm-border-soft: rgba(124, 95, 208, 0.2);
+
+  --lm-shadow-sm: rgba(0, 0, 0, 0.24) 0px 1px 2px 0px;
+  --lm-shadow-md: rgba(0, 0, 0, 0.26) 0px 3px 9px 0px;
+  --lm-shadow-lg: rgba(0, 0, 0, 0.3) 0px 8px 20px 0px;
+  --lm-shadow-frame: rgba(0, 0, 0, 0.42) 0px 24px 60px -20px,
+    rgba(0, 0, 0, 0.24) 0px 1px 2px 0px;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   SHARED LANDING PRIMITIVES
+   Small enough to live here rather than in a component: the section frame,
+   the brand hairline, the word-by-word hero reveal, and the scroll reveal.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* Section frame — one container rule, so every band measures identically. */
+.lm-shell {
+  width: 100%;
+  max-width: var(--lm-container);
+  margin-inline: auto;
+  padding-inline: var(--lm-gutter);
+}
+
+/* Hairline that separates bands without the weight of a border. */
+.lm-rule {
+  height: 1px;
+  background: var(--lm-border-soft);
+  border: 0;
+}
+
+/* Focus ring: 2px accent offset by 2px, the only focus treatment on the
+   marketing surface. `:focus-visible` so mouse clicks stay clean. */
+.rdq-marketing :where(a, button, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--lm-accent);
+  outline-offset: 2px;
+  border-radius: var(--lm-radius-chip);
+}
+
+/* ── Hero reveal ─────────────────────────────────────────────────────────
+   The reference lifts each headline line out of a masked slot on load.
+   `overflow: hidden` on the slot + a translateY on the line reproduces it
+   with no JS and no layout thrash. */
+@keyframes lm-line-rise {
+  from {
+    opacity: 0;
+    transform: translateY(102%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.lm-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em; /* descenders must not clip inside the mask */
+  margin-bottom: -0.08em;
+}
+
+.lm-line > span {
+  display: block;
+  animation: lm-line-rise var(--lm-motion-slow) var(--lm-ease) both;
+  animation-delay: var(--lm-line-delay, 0ms);
+}
+
+/* ── Scroll reveal ───────────────────────────────────────────────────────
+   One class pair, applied by components/marketing/landing/Reveal.tsx.
+   The element is visible in the server-rendered markup (no flash of empty
+   page for crawlers or with JS off); the observer only re-plays it. */
+@keyframes lm-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* The hidden state is gated on `lm-js`, which the marketing layout sets on
+   <html> before first paint. Without JavaScript the class is never added and
+   every section renders visible — a scroll reveal that hides content from a
+   reader without JS (or from a crawler) is a bug, not an enhancement. */
+.lm-js .lm-reveal {
+  opacity: 0;
+}
+
+.lm-js .lm-reveal[data-visible="true"] {
+  animation: lm-reveal var(--lm-motion-slow) var(--lm-ease) both;
+  animation-delay: var(--lm-reveal-delay, 0ms);
+}
+
+/* ── Decorative drift ────────────────────────────────────────────────────
+   The soft lilac blooms behind the hero. Opacity + transform only, so it
+   never forces a repaint of the text above it. */
+@keyframes lm-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -18px, 0) scale(1.04);
+  }
+}
+
+.lm-drift {
+  animation: lm-drift 14s var(--lm-ease) infinite;
+}
+
+/* ── Hero decoration ───────────────────────────────────────────────────
+   The page's only ornamental layer: two lilac blooms and a hairline grid
+   that fades out towards the edges. Both live here rather than as inline
+   styles on the component so the mask colour stays a token — a component
+   that inlines `#000` is a component that has stopped using the system. */
+.lm-hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+      to right,
+      var(--lm-border-soft) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, var(--lm-border-soft) 1px, transparent 1px);
+  background-size: 88px 88px;
+  /* Only the alpha channel matters to a mask, so the opaque stop is the
+     brand ink token rather than a literal. */
+  -webkit-mask-image: radial-gradient(
+    ellipse 78% 60% at 50% 26%,
+    var(--lm-ink) 30%,
+    transparent 78%
+  );
+  mask-image: radial-gradient(
+    ellipse 78% 60% at 50% 26%,
+    var(--lm-ink) 30%,
+    transparent 78%
+  );
+  opacity: 0.55;
+}
+
+.lm-bloom-a,
+.lm-bloom-b {
+  position: absolute;
+  border-radius: var(--lm-radius-dot);
+  filter: blur(110px);
+}
+
+.lm-bloom-a {
+  left: -14%;
+  top: -22%;
+  height: 38rem;
+  width: 38rem;
+  background: color-mix(in srgb, var(--lm-accent) 13%, transparent);
+}
+
+.lm-bloom-b {
+  right: -12%;
+  top: 6%;
+  height: 32rem;
+  width: 32rem;
+  background: color-mix(in srgb, var(--lm-border) 16%, transparent);
+  animation-delay: -6s;
+}
+
+/* The closing band's single centred bloom. */
+.lm-bloom-c {
+  position: absolute;
+  left: 50%;
+  top: -30%;
+  height: 34rem;
+  width: 34rem;
+  transform: translateX(-50%);
+  border-radius: var(--lm-radius-dot);
+  filter: blur(120px);
+  background: color-mix(in srgb, var(--lm-accent) 12%, transparent);
+}
+
+/* ── Reduced motion ──────────────────────────────────────────────────────
+   Reveals resolve to their end state instantly; the decorative loop stops. */
+@media (prefers-reduced-motion: reduce) {
+  .lm-line > span,
+  .lm-js .lm-reveal[data-visible="true"] {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .lm-js .lm-reveal {
+    opacity: 1;
+  }
+  .lm-drift {
+    animation: none;
+  }
+  .lm-hero-grid {
+    opacity: 0.4;
+  }
+  .rdq-marketing *,
+  .rdq-marketing *::before,
+  .rdq-marketing *::after {
+    transition-duration: 1ms !important;
+  }
+}
+
+/* ── Accordion ───────────────────────────────────────────────────────────
+   Native <details> keeps the FAQ keyboard- and AT-accessible with zero JS,
+   so the only styling that matters is the marker swap and the panel gap. */
+.lm-faq > summary {
+  list-style: none;
+  cursor: pointer;
+}
+.lm-faq > summary::-webkit-details-marker {
+  display: none;
+}
+.lm-faq[open] .lm-faq-icon {
+  transform: rotate(45deg);
+}
+.lm-faq-icon {
+  transition: transform var(--lm-motion-fast) var(--lm-ease);
+}

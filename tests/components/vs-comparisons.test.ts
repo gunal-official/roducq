@@ -2,6 +2,7 @@ import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 
+import { FOOTER } from "../../app/(marketing)/home/content.ts";
 import {
   VS_LIMITATION_NOTE,
   VS_PAGE_LIST,
@@ -12,6 +13,9 @@ import {
 // hub: the content map, the detail + hub pages, the shared header/footer links,
 // and the responsive-audit route list. Source-level checks, like nav.test.ts.
 const read = (rel: string) => readFileSync(new URL(`../../${rel}`, import.meta.url), "utf8");
+
+/** Every destination the shared marketing footer publishes. */
+const FOOTER_LINKS = FOOTER.columns.flatMap((column) => column.links);
 
 const EXPECTED_SLUGS = [
   "notion",
@@ -90,8 +94,15 @@ describe("/vs pages (source contract)", () => {
   });
 
   it("header and footer both link to /vs", () => {
-    assert.match(read("components/marketing/SiteHeader.tsx"), /href="\/vs"/);
-    assert.match(read("components/marketing/SiteFooter.tsx"), /href="\/vs"/);
+    // Asserted against the data each component actually renders from, not a
+    // literal in a comment: the header builds its nav from NAV, the footer
+    // from FOOTER.columns.
+    const header = read("components/marketing/SiteHeader.tsx");
+    assert.match(header, /\{ href: "\/vs", label: "Compare" \}/);
+    assert.match(header, /NAV\.map/);
+    const footer = read("components/marketing/SiteFooter.tsx");
+    assert.match(footer, /FOOTER\.columns\.map/);
+    assert.ok(FOOTER_LINKS.some((link) => link.href === "/vs"), "footer columns must include /vs");
   });
 
   it("responsive harness sweeps /vs and every /vs/<slug>", () => {

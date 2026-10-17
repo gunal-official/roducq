@@ -117,7 +117,7 @@ describe("Forma F — marketing responsiveness and semantics", () => {
     assert.match(header, /<Wordmark/);
   });
   it("gives all footer destination links a 44×44 minimum", () => {
-    assert.match(read("components/marketing/SiteFooter.tsx"), /min-h-11 min-w-11 items-center text-sm/);
+    assert.match(read("components/marketing/SiteFooter.tsx"), /min-h-11 min-w-11 items-center text-lm-14/);
   });
   it("compares every cell with a real caption and scoped table headings", () => {
     const comparison = read("app/(marketing)/vs/[slug]/page.tsx");
@@ -128,12 +128,22 @@ describe("Forma F — marketing responsiveness and semantics", () => {
     assert.ok(!block(".comparison-table thead").includes("overflow: hidden"));
   });
   it("clips decorative glow layers, never the hero or closing copy", () => {
-    const home = read("app/(marketing)/page.tsx");
-    assert.ok(home.includes('className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true"'));
-    assert.ok(!home.includes('className="relative isolate overflow-hidden'));
-    assert.ok(!home.includes('className="relative overflow-hidden rounded-surface bg-dark'));
-    assert.ok(home.includes("grid-cols-1 sm:grid-cols-[140px_minmax(0,1fr)]"));
-    assert.match(home, /Illustrative RoduCQ workspace/);
+    // The landing page is composition-only now, so the guard follows the
+    // decoration into the two bands that carry it. Each bloom layer must be
+    // pointer-transparent, below the content, hidden from AT, and inside a
+    // band that clips — a bloom that escapes its section is what caused the
+    // hero-callout occlusion in docs/screenshots/forma-production-audit/.
+    for (const name of ["HeroSection", "FinalCta"]) {
+      const band = read(`components/marketing/landing/${name}.tsx`);
+      assert.match(band, /<section className="relative isolate overflow-hidden/, `${name}: band must clip`);
+      assert.match(band, /pointer-events-none absolute inset-0 -z-10" aria-hidden="true"/, `${name}: decoration must not capture pointer events`);
+      assert.doesNotMatch(band, /bg-dark/, `${name}: the marketing surface has no dark slab`);
+    }
+    // The product frame keeps its illustrative label wherever it lives.
+    assert.match(read("components/marketing/landing/WorkspacePreview.tsx"), /Illustrative roducq workspace/);
+    // The mock still builds its sidebar/main grid rather than a fixed-width
+    // screenshot, so it reflows instead of clipping on a phone.
+    assert.match(read("components/marketing/landing/WorkspacePreview.tsx"), /grid-cols-1 md:grid-cols-\[13\.5rem_minmax\(0,1fr\)\]/);
   });
   it("replaces continuous marketing orbits with the same original artwork as the app", () => {
     assert.match(read("app/(marketing)/about/page.tsx"), /BriefSourceArt/);
