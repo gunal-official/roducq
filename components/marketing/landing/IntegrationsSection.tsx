@@ -1,13 +1,12 @@
 import {
-  ArrowRight,
+  ArrowUpRight,
+  FileDown,
   FileText,
-  Globe,
+  Inbox,
   Link2,
-  Mail,
   MessageSquare,
-  Notebook,
   Search,
-  ShieldCheck,
+  Sparkles,
   Webhook,
   type LucideIcon,
 } from "lucide-react";
@@ -22,37 +21,29 @@ import { GhostLink } from "./Buttons";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
 
-/**
- * Integrations — the reference's connector grid.
- *
- * FOUR ACROSS AT DESKTOP, two at tablet, one on a phone; every card the
- * same height, one icon, one name, one line. The reference's grid is flat
- * and quiet, so the only affordance here is a border that warms on hover —
- * no lift, no shadow, because eight cards that all jump is eight cards too
- * many.
- *
- * EVERY CARD IS REAL. Three are inbound OAuth/mailbox connectors, one is
- * the signed outbound webhook dispatcher, and the rest are outputs and
- * workspace capabilities that ship today. There is no "coming soon" tile
- * and no logo borrowed from the vendor it names.
- */
-const ICONS: Record<
-  Extract<IconKey, "chat" | "note" | "mail" | "webhook" | "pdf" | "share" | "search" | "shield">,
-  LucideIcon
-> = {
+const ICONS: Partial<Record<IconKey, LucideIcon>> = {
   chat: MessageSquare,
-  note: Notebook,
-  mail: Mail,
+  note: FileText,
+  mail: Inbox,
   webhook: Webhook,
-  pdf: FileText,
+  pdf: FileDown,
   share: Link2,
   search: Search,
-  shield: ShieldCheck,
+  sparkles: Sparkles,
 };
 
+/**
+ * Integrations — the reference's 3-column × 2-row integration grid:
+ * - Clean white background (`bg-lm-card`).
+ * - Left-aligned heading ("Works with the tools you already pay for").
+ * - Six cards in 3 columns × 2 rows (`lg:grid-cols-3`), each card having a
+ *   bordered square icon tile on the left, compact title + description in the
+ *   middle, and a subtle top-right `↗` icon.
+ * - Centered bottom text link ("Read how roducq compares ↗").
+ */
 export function IntegrationsSection() {
   return (
-    <section className="bg-lm-canvas-alt">
+    <section id="integrations" className="scroll-mt-20 bg-lm-card">
       <div className="lm-shell py-13 md:py-22 lg:py-30">
         <Reveal>
           <SectionHeading
@@ -60,37 +51,48 @@ export function IntegrationsSection() {
             before={INTEGRATIONS_SECTION.titleBefore}
             after={INTEGRATIONS_SECTION.titleAfter}
             intro={INTEGRATIONS_SECTION.intro}
+            align="start"
           />
         </Reveal>
 
-        <ul className="mt-12 grid gap-2.5 sm:grid-cols-2 md:mt-16 lg:grid-cols-4">
-          {INTEGRATION_CARDS.map((card, index) => {
-            const Icon = ICONS[card.icon as keyof typeof ICONS] ?? Globe;
+        {/* Three-column × two-row integration grid matching Forma reference */}
+        <ul className="mt-12 grid gap-4 sm:grid-cols-2 md:mt-16 lg:grid-cols-3">
+          {INTEGRATION_CARDS.map((item, index) => {
+            const Icon = ICONS[item.icon] ?? FileText;
             return (
               <Reveal
-                key={card.name}
+                key={item.name}
                 as="li"
-                delay={(index % 4) * 70}
-                className="flex h-full flex-col rounded-lm-card border border-lm-border-soft bg-lm-card p-4.5 transition-[border-color,background-color] duration-200 hover:border-lm-border-strong hover:bg-lm-card"
+                delay={(index % 3) * 70}
+                className="group relative flex items-start gap-4 rounded-lm-card border border-lm-border-soft bg-lm-card p-5 transition-[border-color,box-shadow] duration-150 hover:border-lm-border-strong hover:shadow-lm-sm"
               >
-                <span className="flex h-9 w-9 items-center justify-center rounded-lm-chip bg-lm-surface-accent text-lm-ink-accent">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lm-row border border-lm-border-soft bg-lm-canvas text-lm-ink-accent">
                   <Icon className="h-4 w-4" aria-hidden="true" />
                 </span>
-                <h3 className="mt-3.5 font-lm-bold text-lm-16 tracking-[-0.01em] text-lm-ink">
-                  {card.name}
-                </h3>
-                <p className="mt-1.5 text-lm-12 leading-relaxed text-lm-muted-readable">
-                  {card.copy}
-                </p>
+                <div className="min-w-0 flex-1 pr-5">
+                  <h3 className="font-lm-bold tracking-[-0.01em] text-lm-16 text-lm-ink">
+                    {item.name}
+                  </h3>
+                  <p className="mt-1.5 text-lm-14 leading-relaxed text-lm-ink-soft">
+                    {item.copy}
+                  </p>
+                </div>
+                <ArrowUpRight
+                  className="h-4 w-4 shrink-0 text-lm-muted transition-colors group-hover:text-lm-ink-accent"
+                  aria-hidden="true"
+                />
               </Reveal>
             );
           })}
         </ul>
 
         <Reveal className="mt-10 text-center md:mt-12">
-          <GhostLink href={INTEGRATIONS_SECTION.cta.href}>
+          <GhostLink
+            href={INTEGRATIONS_SECTION.cta.href}
+            className="border-b border-lm-border-soft pb-1"
+          >
             {INTEGRATIONS_SECTION.cta.label}
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
           </GhostLink>
         </Reveal>
       </div>

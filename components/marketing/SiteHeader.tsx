@@ -8,7 +8,7 @@ import { ArrowRight, Menu, X } from "lucide-react";
 
 import { RoduMark, Wordmark } from "@/components/app-shell/RoduMark";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { cn } from "@/lib/utils";
+import { clsx as cn } from "clsx";
 
 /**
  * Marketing header — the reference's chrome, on roducq's routes.

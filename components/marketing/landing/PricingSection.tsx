@@ -1,29 +1,33 @@
-import { ArrowRight, Check, Minus } from "lucide-react";
+import Link from "next/link";
+import { ArrowUpRight, Check, Minus } from "lucide-react";
 
-import { PRICING_SECTION } from "@/app/(marketing)/home/content";
-import { PLAN_TIERS, PRICES_UNCONFIGURED_NOTE, type PlanTier } from "@/app/(marketing)/pricing/plans";
-import { cn } from "@/lib/utils";
+import {
+  ENTERPRISE_COLUMN,
+  PRICING_SECTION,
+} from "@/app/(marketing)/home/content";
+import {
+  PLAN_TIERS,
+  PRICES_UNCONFIGURED_NOTE,
+  type PlanTier,
+} from "@/app/(marketing)/pricing/plans";
+import { clsx as cn } from "clsx";
 
 import { GhostLink, PrimaryLink, SecondaryLink } from "./Buttons";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
 
 /**
- * Pricing — the reference's tier band, priced from live config.
+ * Pricing — the reference's four-column tier band, priced from live config:
+ *   1. White Starter card ($0 / month, bordered white CTA)
+ *   2. Purple-highlighted Team featured card ("Most popular" top banner +
+ *      purple border + filled purple CTA, reading live Razorpay config or
+ *      showing the honest unconfigured note)
+ *   3. White Studio card (Custom, bordered white CTA)
+ *   4. Dark Enterprise premium card (Custom, `.lm-pricing-dark`, white CTA)
  *
  * NO PRICE IS TYPED HERE. The free tier's zero is the only literal; the
  * paid row is the operator's RAZORPAY_PLANS read through getPricesConfig
- * and formatted by formatPrice, exactly as app/(marketing)/pricing/page.tsx
- * does. When billing is not configured, the card says so in the words
- * plans.ts already publishes instead of showing a number nobody can be
- * charged. That is why this component takes props from the server page
- * rather than reading env itself: the landing page stays a plain server
- * component and the money still comes from one place.
- *
- * NO BILLING TOGGLE. The reference has a two-interval switch. roducq has
- * one recurring monthly price per currency and no yearly price to charge
- * (ANNUAL_PRICES is empty), so an interval toggle here would advertise a
- * saving that cannot be billed. The honest comparison lives on /pricing.
+ * and formatted by formatPrice.
  */
 export interface HomePricingProps {
   /** Pre-formatted price lines from the live Razorpay config (amount + currency code). */
@@ -37,7 +41,7 @@ export function PricingSection({
   billingConfigured,
 }: HomePricingProps) {
   return (
-    <section className="bg-lm-canvas-alt">
+    <section id="pricing" className="scroll-mt-20 bg-lm-card">
       <div className="lm-shell py-13 md:py-22 lg:py-30">
         <Reveal>
           <SectionHeading
@@ -45,12 +49,18 @@ export function PricingSection({
             before={PRICING_SECTION.titleBefore}
             after={PRICING_SECTION.titleAfter}
             intro={PRICING_SECTION.intro}
+            align="start"
           />
         </Reveal>
 
-        <ul className="mt-12 grid items-start gap-2.5 md:mt-16 lg:grid-cols-3">
+        <ul className="mt-12 grid items-stretch gap-3.5 md:mt-16 md:grid-cols-2 lg:grid-cols-4">
           {PLAN_TIERS.map((tier, index) => (
-            <Reveal key={tier.slug} as="li" delay={index * 90}>
+            <Reveal
+              key={tier.slug}
+              as="li"
+              delay={index * 80}
+              className="h-full min-w-0"
+            >
               <PricingCard
                 tier={tier}
                 priceLines={priceLines}
@@ -58,12 +68,20 @@ export function PricingSection({
               />
             </Reveal>
           ))}
+
+          {/* 4th column: Dark premium plan card matching Forma reference */}
+          <Reveal as="li" delay={240} className="h-full min-w-0">
+            <EnterprisePricingCard />
+          </Reveal>
         </ul>
 
         <Reveal className="mt-10 text-center md:mt-12">
-          <GhostLink href={PRICING_SECTION.cta.href}>
+          <GhostLink
+            href={PRICING_SECTION.cta.href}
+            className="border-b border-lm-border-soft pb-1"
+          >
             {PRICING_SECTION.cta.label}
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
           </GhostLink>
         </Reveal>
       </div>
@@ -71,14 +89,6 @@ export function PricingSection({
   );
 }
 
-/**
- * A pre-formatted line like "NN CUR" splits into `{ amount, currency }`.
- *
- * The amount and the currency are set at different sizes in the reference's
- * tier cards, so the pre-formatted line has to be split rather than
- * re-formatted here — the number itself still comes from formatPrice, which
- * is the only place a price is rendered from a raw amount.
- */
 function splitPrice(line: string): { amount: string; currency: string } {
   const match = line.match(/^(.*?)\s*([A-Z]{3})$/);
   return match
@@ -90,105 +100,179 @@ function PricingCard({
   tier,
   priceLines,
   billingConfigured,
-}: { tier: PlanTier; priceLines: string[]; billingConfigured: boolean }) {
+}: {
+  tier: PlanTier;
+  priceLines: string[];
+  billingConfigured: boolean;
+}) {
   const featured = Boolean(tier.badge);
 
   return (
     <div
       className={cn(
-        "flex h-full flex-col rounded-lm-card border p-5 shadow-lm-sm md:p-6.5",
+        "flex h-full flex-col overflow-hidden rounded-lm-card bg-lm-card",
         featured
-          ? "border-lm-border-emphasis bg-lm-card shadow-lm-lg"
-          : "border-lm-border-soft bg-lm-card"
+          ? "border-2 border-lm-accent shadow-lm-lg"
+          : "border border-lm-border-soft shadow-lm-sm"
       )}
     >
-      <div className="flex items-start justify-between gap-3">
+      {/* Full-width top banner on the featured "Most popular" plan */}
+      {featured ? (
+        <div className="bg-lm-accent px-4 py-2 text-center text-lm-12 font-lm-bold text-lm-on-accent">
+          {tier.badge}
+        </div>
+      ) : null}
+
+      <div className="flex flex-1 flex-col p-5 md:p-6">
         <div className="min-w-0">
-          <p className="text-lm-10 font-lm-semibold uppercase tracking-[0.18em] text-lm-muted">
+          <p className="text-lm-12 font-lm-semibold uppercase tracking-[0.14em] text-lm-muted">
             {tier.eyebrow}
           </p>
           <h3 className="mt-2 font-lm-bold tracking-[-0.015em] text-lm-22 text-lm-ink">
             {tier.name}
           </h3>
         </div>
-        {featured ? (
-          <span className="shrink-0 rounded-lm-pill bg-lm-accent px-2.5 py-1 text-lm-10 font-lm-bold uppercase tracking-[0.12em] text-lm-on-accent">
-            {tier.badge}
-          </span>
-        ) : null}
-      </div>
 
-      <p className="mt-3 text-lm-12 leading-relaxed text-lm-ink-soft">{tier.tagline}</p>
+        <p className="mt-2 text-lm-12 leading-relaxed text-lm-ink-soft">
+          {tier.tagline}
+        </p>
 
-      {/* The money row. One source of truth: the free tier is $0 because
-          billing_subscriptions has no row for it; the configured tier shows
-          what Razorpay would actually charge; the contact tier publishes no
-          number because there is no number to publish. */}
-      <div className="mt-5 border-t border-lm-border-soft pt-4.5">
-        {tier.pricing === "free" ? (
-          <p className="font-lm-bold text-lm-54 leading-none tracking-[-0.03em] text-lm-ink">
-            $0
-            <span className="ml-2 font-lm-regular text-lm-12 tracking-normal text-lm-muted">
-              / month
-            </span>
-          </p>
-        ) : tier.pricing === "configured" ? (
-          billingConfigured && priceLines.length > 0 ? (
+        <div className="mt-5 border-t border-lm-border-soft pt-4.5">
+          {tier.pricing === "free" ? (
             <p className="font-lm-bold text-lm-54 leading-none tracking-[-0.03em] text-lm-ink">
-              {splitPrice(priceLines[0]).amount}
+              $0
               <span className="ml-2 font-lm-regular text-lm-12 tracking-normal text-lm-muted">
-                {splitPrice(priceLines[0]).currency} / month
+                / month
               </span>
             </p>
+          ) : tier.pricing === "configured" ? (
+            billingConfigured && priceLines.length > 0 ? (
+              <p className="font-lm-bold text-lm-54 leading-none tracking-[-0.03em] text-lm-ink">
+                {splitPrice(priceLines[0]).amount}
+                <span className="ml-2 font-lm-regular text-lm-12 tracking-normal text-lm-muted">
+                  {splitPrice(priceLines[0]).currency} / month
+                </span>
+              </p>
+            ) : (
+              <p className="text-lm-14 leading-relaxed text-lm-muted-readable">
+                {PRICES_UNCONFIGURED_NOTE}
+              </p>
+            )
           ) : (
-            <p className="text-lm-14 leading-relaxed text-lm-muted-readable">
-              {PRICES_UNCONFIGURED_NOTE}
+            <p className="font-lm-bold text-lm-29 leading-none tracking-[-0.02em] text-lm-ink">
+              Custom
             </p>
-          )
-        ) : (
-          <p className="font-lm-bold text-lm-29 leading-none tracking-[-0.02em] text-lm-ink">
-            Custom
-          </p>
-        )}
-        <p className="mt-2 text-lm-12 text-lm-muted">{tier.billingNote}</p>
-        {tier.pricing === "configured" && billingConfigured && priceLines.length > 1 ? (
-          <p className="mt-1.5 text-lm-12 text-lm-muted">
-            Also available in {priceLines.slice(1).join(", ")}
-          </p>
-        ) : null}
+          )}
+          <p className="mt-2 text-lm-12 text-lm-muted">{tier.billingNote}</p>
+          {tier.pricing === "configured" &&
+          billingConfigured &&
+          priceLines.length > 1 ? (
+            <p className="mt-1.5 text-lm-12 text-lm-muted">
+              Also available in {priceLines.slice(1).join(", ")}
+            </p>
+          ) : null}
+        </div>
+
+        <div className="mt-5">
+          {featured ? (
+            <PrimaryLink
+              href={tier.cta.href}
+              className="w-full whitespace-normal text-center leading-tight"
+            >
+              {tier.cta.label}
+            </PrimaryLink>
+          ) : (
+            <SecondaryLink
+              href={tier.cta.href}
+              className="w-full whitespace-normal text-center leading-tight"
+            >
+              {tier.cta.label}
+            </SecondaryLink>
+          )}
+        </div>
+
+        <ul className="mt-5 flex flex-1 flex-col gap-2.5 border-t border-lm-border-soft pt-4.5">
+          {tier.features.map((feature) => (
+            <li
+              key={feature}
+              className="flex items-start gap-2.5 text-lm-12 text-lm-ink-soft"
+            >
+              <Check
+                className="mt-0.5 h-4 w-4 shrink-0 text-lm-ink-accent"
+                aria-hidden="true"
+              />
+              <span>{feature}</span>
+            </li>
+          ))}
+          {tier.planned?.map((feature) => (
+            <li
+              key={feature}
+              className="flex items-start gap-2.5 text-lm-12 text-lm-muted"
+            >
+              <Minus className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+              <span>
+                {feature}
+                <span className="ml-1.5 rounded-lm-chip bg-lm-surface-muted px-1.5 py-0.5 text-lm-12 font-lm-semibold text-lm-ink-soft">
+                  planned
+                </span>
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+function EnterprisePricingCard() {
+  return (
+    <div className="lm-pricing-dark flex h-full flex-col rounded-lm-card border p-5 md:p-6">
+      <div className="min-w-0">
+        <p className="text-lm-12 font-lm-semibold uppercase tracking-[0.14em] text-lm-dark-muted">
+          {ENTERPRISE_COLUMN.eyebrow}
+        </p>
+        <h3 className="mt-2 font-lm-bold tracking-[-0.015em] text-lm-22 text-lm-dark-ink">
+          {ENTERPRISE_COLUMN.name}
+        </h3>
       </div>
 
-      <ul className="mt-5 flex flex-1 flex-col gap-2.5">
-        {tier.features.map((feature) => (
-          <li key={feature} className="flex items-start gap-2.5 text-lm-12 text-lm-ink-soft">
-            <Check className="mt-0.5 h-4 w-4 shrink-0 text-lm-success" aria-hidden="true" />
+      <p className="mt-2 text-lm-12 leading-relaxed text-lm-dark-muted">
+        {ENTERPRISE_COLUMN.tagline}
+      </p>
+
+      <div className="mt-5 border-t border-lm-dark-border pt-4.5">
+        <p className="font-lm-bold text-lm-29 leading-none tracking-[-0.02em] text-lm-dark-ink">
+          Custom
+        </p>
+        <p className="mt-2 text-lm-12 text-lm-dark-muted">
+          {ENTERPRISE_COLUMN.billingNote}
+        </p>
+      </div>
+
+      <div className="mt-5">
+        <Link
+          href={ENTERPRISE_COLUMN.cta.href}
+          className="inline-flex h-11 min-h-11 w-full items-center justify-center rounded-lm-control bg-lm-card px-5 text-lm-14 font-lm-semibold text-lm-ink shadow-lm-sm transition-colors hover:bg-lm-surface-accent md:h-12"
+        >
+          {ENTERPRISE_COLUMN.cta.label}
+          <span className="sr-only">(opens your email client)</span>
+        </Link>
+      </div>
+
+      <ul className="mt-5 flex flex-1 flex-col gap-2.5 border-t border-lm-dark-border pt-4.5">
+        {ENTERPRISE_COLUMN.features.map((feature) => (
+          <li
+            key={feature}
+            className="flex items-start gap-2.5 text-lm-12 text-lm-dark-ink"
+          >
+            <Check
+              className="mt-0.5 h-4 w-4 shrink-0 text-lm-accent"
+              aria-hidden="true"
+            />
             <span>{feature}</span>
           </li>
         ))}
-        {tier.planned?.map((feature) => (
-          <li key={feature} className="flex items-start gap-2.5 text-lm-12 text-lm-muted">
-            <Minus className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
-            <span>
-              {feature}
-              <span className="ml-1.5 rounded-lm-chip bg-lm-surface-muted px-1.5 py-0.5 text-lm-10 font-lm-semibold text-lm-muted-readable">
-                planned
-              </span>
-            </span>
-          </li>
-        ))}
       </ul>
-
-      <div className="mt-6">
-        {tier.cta.primary ? (
-          <PrimaryLink href={tier.cta.href} className="w-full">
-            {tier.cta.label}
-          </PrimaryLink>
-        ) : (
-          <SecondaryLink href={tier.cta.href} className="w-full">
-            {tier.cta.label}
-          </SecondaryLink>
-        )}
-      </div>
     </div>
   );
 }

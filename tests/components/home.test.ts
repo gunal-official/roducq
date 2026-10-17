@@ -243,9 +243,9 @@ describe("/ landing structure", () => {
 /* ── Hero (C) ───────────────────────────────────────────────────────────── */
 
 describe("/ hero", () => {
-  it("has an eyebrow, a three-line H1 and supporting copy", () => {
+  it("has an eyebrow, a two-line H1 and supporting copy", () => {
     assert.ok(HERO.eyebrow.trim(), "eyebrow");
-    assert.equal(HERO.titleLines.length, 3, "the reference sets three masked lines");
+    assert.equal(HERO.titleLines.length, 2, "the reference sets two masked lines");
     assert.ok(HERO.intro.length > 120, "intro should explain the product");
     assert.ok(HERO.note.trim(), "note under the CTAs");
   });
@@ -328,9 +328,10 @@ describe("/ feature bands", () => {
     }
   });
 
-  it("renders the features as semantic articles, not a bare div list", () => {
+  it("renders the features as semantic articles in a four-column card grid", () => {
     const features = read("components/marketing/landing/FeaturesSection.tsx");
     assert.match(features, /as="article"/);
+    assert.match(features, /lg:grid-cols-4/);
   });
 
   it("the automation panel names transitions roducq really records", () => {
@@ -366,8 +367,9 @@ describe("/ feature bands", () => {
     assert.ok(ENGAGEMENT_PANEL.events.length >= 3);
   });
 
-  it("every integration card maps to a real surface", () => {
-    assert.ok(INTEGRATION_CARDS.length >= 6);
+  it("every integration card maps to a real surface in a 3x2 grid", () => {
+    assert.equal(INTEGRATION_CARDS.length, 6);
+    assert.match(read("components/marketing/landing/IntegrationsSection.tsx"), /lg:grid-cols-3/);
     const names = INTEGRATION_CARDS.map((c) => c.name);
     assert.equal(new Set(names).size, names.length, "no duplicate cards");
     for (const card of INTEGRATION_CARDS) {
@@ -377,9 +379,13 @@ describe("/ feature bands", () => {
     }
   });
 
-  it("the teams band publishes no named customers", () => {
+  it("the teams band renders a four-column divided layout with miniature UI previews and publishes no named customers", () => {
     assert.equal(TEAM_CARDS.length, 4);
     assert.deepEqual(TEAM_CARDS.map((c) => c.index), ["01", "02", "03", "04"]);
+    const teamsSource = read("components/marketing/landing/TeamsSection.tsx");
+    assert.match(teamsSource, /lg:grid-cols-4/);
+    assert.match(teamsSource, /lg:divide-x/);
+    assert.match(teamsSource, /TeamMiniPreview/);
     const copy = strings([TEAM_CARDS, TEAMS_SECTION]).join(" ");
     assert.doesNotMatch(copy, /testimonial|customer story|case study/i);
     for (const card of TEAM_CARDS) {
@@ -392,10 +398,12 @@ describe("/ feature bands", () => {
 /* ── Pricing (H) ────────────────────────────────────────────────────────── */
 
 describe("/ pricing band", () => {
-  it("reuses the /pricing tiers instead of restating them", () => {
+  it("reuses the /pricing tiers and adds the dark 4th column for a 4-column grid", () => {
     const pricing = read("components/marketing/landing/PricingSection.tsx");
     assert.match(pricing, /from "@\/app\/\(marketing\)\/pricing\/plans"/);
     assert.match(pricing, /PLAN_TIERS\.map/);
+    assert.match(pricing, /lg:grid-cols-4/);
+    assert.match(pricing, /lm-pricing-dark/);
     assert.equal(PLAN_TIERS.length, 3);
   });
 

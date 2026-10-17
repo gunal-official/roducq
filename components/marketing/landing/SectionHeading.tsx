@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { clsx as cn } from "clsx";
 
 /**
  * Section heading — eyebrow + a two-part headline.
@@ -20,6 +20,8 @@ interface SectionHeadingProps {
   align?: "center" | "start";
   /** h2 everywhere except the hero, which owns the page's h1. */
   as?: "h1" | "h2";
+  /** Optional right-aligned slot when `align="start"`. */
+  aside?: React.ReactNode;
   className?: string;
 }
 
@@ -30,26 +32,43 @@ export function SectionHeading({
   intro,
   align = "center",
   as: Tag = "h2",
+  aside,
   className,
 }: SectionHeadingProps) {
   const centered = align === "center";
-  return (
+  const headBlock = (
     <div
       className={cn(
-        "max-w-lm-measure",
+        aside ? "max-w-[44rem]" : "max-w-full",
         centered ? "mx-auto text-center" : "text-left",
         className
       )}
     >
-      <p className="text-lm-12 font-lm-semibold uppercase tracking-[0.16em] text-lm-muted-label">
+      <p className="text-lm-14 font-lm-semibold text-lm-ink-accent">
         {eyebrow}
       </p>
-      <Tag className="mt-4 font-lm-bold tracking-[-0.02em] text-lm-29 text-lm-ink md:text-lm-54">
+      <Tag className="mt-3 font-lm-bold tracking-[-0.025em] text-lm-29 text-lm-ink md:text-lm-54">
         {before} <span className="text-lm-ink-accent">{after}</span>
       </Tag>
       {intro ? (
-        <p className="mt-5 text-lm-16 text-lm-ink-soft md:text-lm-18">{intro}</p>
+        <p
+          className={cn(
+            "mt-4 max-w-[36rem] text-lm-16 text-lm-ink-soft md:text-lm-18",
+            centered && "mx-auto"
+          )}
+        >
+          {intro}
+        </p>
       ) : null}
+    </div>
+  );
+
+  if (!aside) return headBlock;
+
+  return (
+    <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+      {headBlock}
+      <div className="shrink-0">{aside}</div>
     </div>
   );
 }
@@ -69,7 +88,7 @@ export function CardLabel({
   return (
     <p
       className={cn(
-        "text-lm-10 font-lm-semibold uppercase tracking-[0.18em] text-lm-muted-label",
+        "text-lm-12 font-lm-semibold uppercase tracking-[0.16em] text-lm-ink-accent",
         className
       )}
     >

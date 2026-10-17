@@ -53,6 +53,14 @@ const config = {
           glow: "var(--lm-glow)",
           bar: "var(--lm-bar)",
           "dot-success": "var(--lm-dot-success)",
+          "dark-surface": "var(--lm-dark-surface)",
+          "dark-ink": "var(--lm-dark-ink)",
+          "dark-muted": "var(--lm-dark-muted)",
+          "dark-border": "var(--lm-dark-border)",
+          "cta-ink": "var(--lm-cta-ink)",
+          "cta-muted": "var(--lm-cta-muted)",
+          "cta-border": "var(--lm-cta-border)",
+          "cta-wash": "var(--lm-cta-wash)",
         },
         // Explicit Forma palette for new work, alongside semantic aliases
         // retained for every existing app component and shadcn-style API.
