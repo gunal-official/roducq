@@ -520,6 +520,40 @@ async function main() {
                   target && target.nodeType === 1
                     ? target.tagName.toLowerCase()
                     : null,
+                // The text and a short path, so a recorded timing can be
+                // attributed to the element that owns it rather than left
+                // as an anonymous duration.
+                text:
+                  target && target.nodeType === 1
+                    ? String(target.textContent || "").trim().slice(0, 60)
+                    : null,
+                path:
+                  target && target.nodeType === 1
+                    ? (() => {
+                        const parts = [];
+                        let node = target;
+                        while (
+                          node &&
+                          node.nodeType === 1 &&
+                          parts.length < 5
+                        ) {
+                          const parent = node.parentElement;
+                          if (!parent) {
+                            parts.unshift(node.tagName.toLowerCase());
+                            break;
+                          }
+                          const index = Array.prototype.indexOf.call(
+                            parent.children,
+                            node,
+                          );
+                          parts.unshift(
+                            `${node.tagName.toLowerCase()}:nth-of-type(${index + 1})`,
+                          );
+                          node = parent;
+                        }
+                        return parts.join(" > ");
+                      })()
+                    : null,
                 cssName:
                   target && target.nodeType === 1
                     ? getComputedStyle(target).animationName

@@ -17,20 +17,28 @@ gathered for the 1440px and 390px side-by-side comparison.
 Two different kinds of evidence back the numbers below, and they are labelled
 separately because they are not equally strong:
 
-| Evidence | What it covers |
-| --- | --- |
-| **Forma SSR DOM** (fetched through the W3C validator because the build sandbox cannot reach the Framer host) | Section order, headline rendered as separate word headings, FAQ implemented as a JS `div` row with `tabindex=0` and a Plus icon (not `<details>`), integration cards as `<button data-highlight>`, featured pricing ring `0 0 0 1px rgba(98,70,234,.35), 0 30px 60px -30px rgba(98,70,234,.7)`, buttons at `border-radius: 10px`. |
-| **Recorded reference motion vocabulary** used across this recreation | 620ms entrance on `cubic-bezier(0.22, 1, 0.36, 1)`, 90ms line stagger, 420/340ms chrome, 260ms standard state change, 160ms fast state change, 14s ambient drift. |
+| Evidence | Strength | What it covers |
+| --- | --- | --- |
+| **Live reference, measured** (`.github/workflows/forma-reference.yml` → `scripts/capture-landing-reference.mjs`) | **Directly measured** | The reference's own `document.getAnimations()` output: `flowLinesDash` at 1000ms / linear / infinite with no per-path delay; entrance animations at 750ms `cubic-bezier(0.45, 0, 0.55, 1)` and, at 390px, 700 / 600 / 450 / 500ms across three further easings; link transitions at 0.2s; the theme toggle at 0.3s. |
+| **Live reference, computed styles** (same capture) | **Directly measured** | The reference's type scale, weights, line-heights, tracking, radii, colours, container geometry and button metrics — the values behind §3 and behind the corrections in `docs/FORMA_FINAL_FIDELITY_AUDIT.md` §4. |
+| **Forma SSR DOM** (fetched through the W3C validator) | Structural | Section order, headline rendered as separate word headings, FAQ implemented as a JS `div` row with `tabindex=0` and a Plus icon (not `<details>`), integration cards as `<button data-highlight>`, featured pricing ring `0 0 0 1px rgba(98,70,234,.35), 0 30px 60px -30px rgba(98,70,234,.7)`, buttons at `border-radius: 10px`. |
+| **Recorded reference motion vocabulary** used across this recreation | **Estimate — inherited** | 620ms entrance on `cubic-bezier(0.22, 1, 0.36, 1)`, 90ms line stagger, 420/340ms chrome, 260ms standard state change, 160ms fast state change, 14s ambient drift. |
 
-**What could not be measured, and why.** Framer keeps animation specs inside
-external runtime bundles; the SSR HTML contains none of them. This build
-environment's egress allowlist blocks the Framer host, its CDN, and every
-HTML-to-markdown proxy tried, so no DevTools trace of the live site was
-possible. The values are therefore the recreation's recorded reference values,
-not timings scraped from the live page. Every value below **was** measured
-against the built page in Chromium (`scripts/verify-motion.mjs`), so the
-document states what the code actually does; it does not claim a frame-accurate
-diff against Framer's JS.
+**What is measured and what is still an estimate.** The reference's
+*connector flow* and *link transitions* are now **directly measured** and
+were corrected to match (see §3 and §7-D4). The reference's *entrance
+durations and easings* are measured too, but the reference uses several
+different easings for different entrances and no single "reference reveal
+easing" to adopt, so this page's own 620ms / `cubic-bezier(0.22, 1, 0.36, 1)`
+entrance remains an **inherited estimate** and is labelled as one below.
+
+**What still cannot be measured, and why.** Framer drives its entrances from
+an external runtime bundle, so a frame-accurate diff against the reference
+is not possible from outside the page; this document states the reference's
+animation *timings and easings*, read from `document.getAnimations()`, and
+does **not** claim frame-perfect fidelity for anything. The build sandbox's
+egress allowlist also still blocks the Framer host — the measurement above
+runs on a GitHub-hosted runner, which can reach it.
 
 Where the reference could be inspected structurally, the implementation was
 kept faithful (word-level headline markup is not reproduced — see D1).
@@ -84,7 +92,7 @@ Delays are per-element; a "stagger" means item *i* gets `i × step`.
 | 03 | Chart points ×4 | scale 0.6 → 1 + opacity | 260ms at 300 / 360 / 420 / 480ms | same | on hydration |
 | 04 | Feature cards ×4 | `Reveal` | 620ms, 0/80/160/240ms | 420ms, stagger ×0.6 | in view, once |
 | 05 | Step cards ×3 | `Reveal` | 620ms, 0/90/180ms | 420ms, stagger ×0.6 | in view, once |
-| 05 | Step connectors ×5 | dash offset 20 → 0 + fade, starts when the diagram's `Reveal` is visible | 620ms, 0/60/120/180/240ms, `cubic-bezier(0.33,1,0.68,1)` | same (620ms) | parent reveal visible |
+| 05 | Step connectors ×5 | dash offset 8 → 0, one full dash period, starts when the diagram's `Reveal` is visible | **1000ms, linear, infinite, no delay** — *measured on the reference (`flowLinesDash`)* | same (1000ms) | parent reveal visible |
 | 05 | Engagement timeline | `Reveal` | 620ms, 120ms delay | 420ms, 72ms delay | in view, once |
 | 06 | Integration cards | `Reveal` (row-based) | 620ms, 0/70/140ms per row | 420ms, stagger ×0.6 | in view, once |
 | 07 | Team rows ×4 | `Reveal` | 620ms, 0/80/160/240ms | 420ms, stagger ×0.6 | in view, once |
@@ -100,18 +108,20 @@ Delays are per-element; a "stagger" means item *i* gets `i × step`.
 
 | Surface | Property | Duration | Notes |
 | --- | --- | --- | --- |
-| Buttons (`Buttons.tsx`) | background, border, shadow, transform, colour | 150ms | Tailwind `duration-150`; measured computed `transition-duration: 0.15s` |
-| Header/footer links, FAQ summary, promo pill | colour / background / border | 150ms | `transition-colors` |
-| Feature cards | background | 150ms | `hover:bg-lm-canvas` |
-| Integration cards | border + shadow | 150ms | `transition-[border-color,box-shadow]`, no scale |
-| Pricing CTA | background | 150ms | `transition-colors` |
+| Buttons (`Buttons.tsx`) | background, border, shadow, transform, colour | **200ms** | the reference's buttons compute `transition-duration: 0.2s`; measured |
+| Header/footer links, FAQ summary, promo pill | colour / background / border | **200ms** | the reference's links all compute `transition-duration: 0.2s`; measured |
+| Feature cards | background | 200ms | `hover:bg-lm-canvas` |
+| Integration cards | border + shadow | **200ms** | `transition-[border-color,box-shadow]`, no scale |
+| Pricing CTA | background | **200ms** | `transition-colors` |
 
 ### Scroll trigger
 
 - One `IntersectionObserver` per `Reveal`, `amount: 0.08`, bottom margin
   `-8%`, `once: true` — reveals do **not** replay on scroll back.
-- Connectors start from the parent `[data-visible="true"]`, so the sequence is
-  spent when the diagram is actually on screen, not on hydration.
+- Connectors start from the parent `[data-visible="true"]`, so the march
+  begins when the diagram is actually on screen, not on hydration. The
+  reference's eleven connector paths all carry `animation-delay: 0s` and
+  march in step, so this page's per-path stagger was removed.
 - The chart draw is a hero element: it runs once on hydration, matching the
   reference's "dashboard is alive when you land" behaviour.
 
@@ -130,7 +140,7 @@ Delays are per-element; a "stagger" means item *i* gets `i × step`.
 | FAQ disclosure + icon | `app/(marketing)/landing.css` | `.lm-faq` rules L667–680, `.lm-faq-icon` L656–660 |
 | Compact reductions | `app/(marketing)/landing.css` | `@media (max-width: 767px)` (L687) |
 | Chart markup (`pathLength`, point delays) | `components/marketing/landing/WorkspacePreview.tsx` | `lm-chart-line`, `lm-chart-point` |
-| Connector markup (5 paths, delays) | `components/marketing/landing/StepsSection.tsx` | `lm-connector` + `--lm-connector-delay` |
+| Connector markup (5 paths, in step) | `components/marketing/landing/StepsSection.tsx` | `lm-connector` |
 | Hero dashboard reveal | `components/marketing/landing/HeroSection.tsx` | `<Reveal delay={180}>` |
 | FAQ markup (native disclosure) | `components/marketing/landing/FaqAccordion.tsx` | each item wrapped in `<Reveal delay={index * 60}>` |
 | Header / announcement classes | `SiteHeader.tsx`, `AnnouncementBar.tsx` | `lm-header`, `lm-announce` |
@@ -208,8 +218,8 @@ the entrance to settle, so the images show the post-animation state.
 | 02 Hero copy + CTAs | PASS | PASS | **D1**: reference renders the headline as one heading per word; this page keeps its pre-existing two-line heading and rises each line through a mask. Layout is unchanged by instruction; the 620ms/90ms rhythm is preserved. |
 | 03 Dashboard | PASS | PASS | Chart draw is a CSS/SVG recreation of the reference's static mock; exact Framer timing is unrecoverable (see §1). Mobile keeps the full 620ms draw. |
 | 04 Features | PASS | PASS | — |
-| 05 Steps | PASS | PASS | Connectors are drawn left-to-right on reveal; hidden below `lg` where the reference also stacks the steps. |
-| 06 Integrations | PASS | PASS | Hover is a border/shadow lift rather than the reference's `data-highlight` fill — pre-existing, same 150ms weight. |
+| 05 Steps | PASS | PASS | **D4 (corrected)**: the reference's connector paths run `flowLinesDash` at 1000ms / linear / infinite, in step and with no per-path delay; this page used to draw them once over 620ms with a left-to-right stagger. It now matches the measured reference. The connectors are hidden below `lg`, where the reference also stacks the steps. |
+| 06 Integrations | PASS | PASS | Hover is a border/shadow lift rather than the reference's `data-highlight` fill — pre-existing, now at the reference's measured 200ms. |
 | 07 Teams | PASS | PASS | — |
 | 08 Pricing | PASS | PASS | **D2 (pre-existing)**: no monthly/yearly toggle (documented in `docs/RODUCQ_LANDING_DESIGN.md`). Featured ring matches the reference's recorded shadow. |
 | 09 FAQ | PASS | PASS | **D3 (deliberate)**: reference is a JS accordion; this page keeps a native `<details>` for no-JS and assistive-tech correctness, now animated at 260ms via `::details-content`. |
@@ -238,7 +248,7 @@ Results at the time of writing:
 | --- | --- | --- |
 | Types | `npx tsc --noEmit` | exit 0 |
 | Lint | `npm run lint` | exit 0 |
-| Unit/component tests | `npm test` | **1098 pass, 0 fail** |
+| Unit/component tests | `npm test` | **1100 pass, 0 fail** |
 | Production build | `npm run build` | exit 0 |
 | Motion harness | `node scripts/verify-motion.mjs` | **PASS: 12 viewport/theme renders + motion + reduced motion** |
 
@@ -248,7 +258,8 @@ The harness asserts, from computed styles:
 - the 767px boundary: 768px resolves back to `620ms` / `desktop`, 420ms / 340ms
   chrome and a running drift loop;
 - hero line 620ms desktop / 420ms compact; chart draw 620ms with
-  `stroke-dashoffset: 0px`; connectors 620ms with sequenced delays;
+  `stroke-dashoffset: 0px`; connectors **1000ms, linear, infinite, no
+  delay** (the reference's measured `flowLinesDash`);
   header 420/340ms; announcement 360/300ms; drift 14s desktop, off on phone;
 - FAQ disclosure `0.26s, 0.26s`;
 - reduced motion: no animation, no transition on the disclosure, `0px` chart
@@ -260,13 +271,20 @@ The harness asserts, from computed styles:
 
 ## 9. Known limitations
 
-1. **No live Forma trace.** See §1. The recreated timings are the project's
-   recorded reference values, structurally checked against the reference DOM
-   where that was reachable.
+1. **No frame-level motion diff.** The reference's connector flow and link
+   transitions are now measured directly (§1), but Framer drives its
+   entrances from an external runtime bundle, so a frame-accurate diff is
+   not possible from outside the page. The entrance timings and easings
+   below remain the project's recorded values, and are labelled as
+   inherited estimates rather than measurements.
 2. **FAQ interpolation** requires `::details-content` + `interpolate-size`
    support (Chromium 131+, Safari 18.4+). Older engines open and close
    instantly with no layout break; the disclosure is never hidden.
 3. **D1 headline granularity** — two line masks instead of per-word headings,
    because the page must keep its current typography and layout.
 4. Screenshots are of this build; they are not reference-site captures. They
-   exist to prove the end states at 1440/390 and both themes.
+   exist to prove the end states at 1440/390 and both themes. A **measured**
+   reference capture does exist — `.github/workflows/forma-reference.yml`
+   produces it at all six widths in both themes and publishes it to the
+   `arena/forma-reference-capture` branch — and the comparison in
+   `docs/FORMA_FINAL_FIDELITY_AUDIT.md` is drawn from it.
