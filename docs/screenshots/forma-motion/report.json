@@ -37,8 +37,10 @@
       },
       "connector": {
         "animation": "lm-connector-flow",
-        "duration": "0.62s",
-        "delay": "0s"
+        "duration": "1s",
+        "delay": "0s",
+        "iterations": "infinite",
+        "easing": "linear"
       },
       "header": {
         "animation": "lm-chrome-in",
@@ -56,7 +58,7 @@
         "transitionDuration": "0.26s, 0.26s",
         "blockSize": "175.25px"
       },
-      "buttonTransition": "0.15s",
+      "buttonTransition": "0.2s",
       "consoleErrors": []
     },
     {
@@ -95,8 +97,10 @@
       },
       "connector": {
         "animation": "lm-connector-flow",
-        "duration": "0.62s",
-        "delay": "0s"
+        "duration": "1s",
+        "delay": "0s",
+        "iterations": "infinite",
+        "easing": "linear"
       },
       "header": {
         "animation": "lm-chrome-in",
@@ -114,7 +118,7 @@
         "transitionDuration": "0.26s, 0.26s",
         "blockSize": "175.25px"
       },
-      "buttonTransition": "0.15s",
+      "buttonTransition": "0.2s",
       "consoleErrors": []
     },
     {
@@ -153,8 +157,10 @@
       },
       "connector": {
         "animation": "lm-connector-flow",
-        "duration": "0.62s",
-        "delay": "0s"
+        "duration": "1s",
+        "delay": "0s",
+        "iterations": "infinite",
+        "easing": "linear"
       },
       "header": {
         "animation": "lm-chrome-in",
@@ -172,7 +178,7 @@
         "transitionDuration": "0.26s, 0.26s",
         "blockSize": "152.5px"
       },
-      "buttonTransition": "0.15s",
+      "buttonTransition": "0.2s",
       "consoleErrors": []
     },
     {
@@ -211,8 +217,10 @@
       },
       "connector": {
         "animation": "lm-connector-flow",
-        "duration": "0.62s",
-        "delay": "0s"
+        "duration": "1s",
+        "delay": "0s",
+        "iterations": "infinite",
+        "easing": "linear"
       },
       "header": {
         "animation": "lm-chrome-in",
@@ -230,7 +238,7 @@
         "transitionDuration": "0.26s, 0.26s",
         "blockSize": "152.5px"
       },
-      "buttonTransition": "0.15s",
+      "buttonTransition": "0.2s",
       "consoleErrors": []
     },
     {
@@ -269,8 +277,10 @@
       },
       "connector": {
         "animation": "lm-connector-flow",
-        "duration": "0.62s",
-        "delay": "0s"
+        "duration": "1s",
+        "delay": "0s",
+        "iterations": "infinite",
+        "easing": "linear"
       },
       "header": {
         "animation": "lm-chrome-in",
@@ -286,9 +296,9 @@
       },
       "faq": {
         "transitionDuration": "0.26s, 0.26s",
-        "blockSize": "152.5px"
+        "blockSize": "129.75px"
       },
-      "buttonTransition": "0.15s",
+      "buttonTransition": "0.2s",
       "consoleErrors": []
     },
     {
@@ -327,8 +337,10 @@
       },
       "connector": {
         "animation": "lm-connector-flow",
-        "duration": "0.62s",
-        "delay": "0s"
+        "duration": "1s",
+        "delay": "0s",
+        "iterations": "infinite",
+        "easing": "linear"
       },
       "header": {
         "animation": "lm-chrome-in",
@@ -344,9 +356,9 @@
       },
       "faq": {
         "transitionDuration": "0.26s, 0.26s",
-        "blockSize": "152.5px"
+        "blockSize": "129.75px"
       },
-      "buttonTransition": "0.15s",
+      "buttonTransition": "0.2s",
       "consoleErrors": []
     },
     {
@@ -385,8 +397,10 @@
       },
       "connector": {
         "animation": "lm-connector-flow",
-        "duration": "0.62s",
-        "delay": "0s"
+        "duration": "1s",
+        "delay": "0s",
+        "iterations": "infinite",
+        "easing": "linear"
       },
       "header": {
         "animation": "lm-chrome-in",
@@ -404,7 +418,7 @@
         "transitionDuration": "0.26s, 0.26s",
         "blockSize": "84.25px"
       },
-      "buttonTransition": "0.15s",
+      "buttonTransition": "0.2s",
       "consoleErrors": []
     },
     {
@@ -443,8 +457,10 @@
       },
       "connector": {
         "animation": "lm-connector-flow",
-        "duration": "0.62s",
-        "delay": "0s"
+        "duration": "1s",
+        "delay": "0s",
+        "iterations": "infinite",
+        "easing": "linear"
       },
       "header": {
         "animation": "lm-chrome-in",
@@ -462,7 +478,7 @@
         "transitionDuration": "0.26s, 0.26s",
         "blockSize": "84.25px"
       },
-      "buttonTransition": "0.15s",
+      "buttonTransition": "0.2s",
       "consoleErrors": []
     },
     {
@@ -501,8 +517,10 @@
       },
       "connector": {
         "animation": "lm-connector-flow",
-        "duration": "0.62s",
-        "delay": "0s"
+        "duration": "1s",
+        "delay": "0s",
+        "iterations": "infinite",
+        "easing": "linear"
       },
       "header": {
         "animation": "lm-chrome-in",
@@ -520,7 +538,7 @@
         "transitionDuration": "0.26s, 0.26s",
         "blockSize": "107px"
       },
-      "buttonTransition": "0.15s",
+      "buttonTransition": "0.2s",
       "consoleErrors": []
     },
     {
@@ -559,8 +577,10 @@
       },
       "connector": {
         "animation": "lm-connector-flow",
-        "duration": "0.62s",
-        "delay": "0s"
+        "duration": "1s",
+        "delay": "0s",
+        "iterations": "infinite",
+        "easing": "linear"
       },
       "header": {
         "animation": "lm-chrome-in",
@@ -578,7 +598,7 @@
         "transitionDuration": "0.26s, 0.26s",
         "blockSize": "107px"
       },
-      "buttonTransition": "0.15s",
+      "buttonTransition": "0.2s",
       "consoleErrors": []
     },
     {
@@ -617,8 +637,10 @@
       },
       "connector": {
         "animation": "lm-connector-flow",
-        "duration": "0.62s",
-        "delay": "0s"
+        "duration": "1s",
+        "delay": "0s",
+        "iterations": "infinite",
+        "easing": "linear"
       },
       "header": {
         "animation": "lm-chrome-in",
@@ -636,7 +658,7 @@
         "transitionDuration": "0.26s, 0.26s",
         "blockSize": "84.25px"
       },
-      "buttonTransition": "0.15s",
+      "buttonTransition": "0.2s",
       "consoleErrors": []
     },
     {
@@ -649,7 +671,7 @@
         {
           "tag": "div",
           "cls": "lm-bloom-a lm-drift",
-          "rect": 418
+          "rect": 419
         },
         {
           "tag": "div",
@@ -675,8 +697,10 @@
       },
       "connector": {
         "animation": "lm-connector-flow",
-        "duration": "0.62s",
-        "delay": "0s"
+        "duration": "1s",
+        "delay": "0s",
+        "iterations": "infinite",
+        "easing": "linear"
       },
       "header": {
         "animation": "lm-chrome-in",
@@ -694,7 +718,7 @@
         "transitionDuration": "0.26s, 0.26s",
         "blockSize": "84.25px"
       },
-      "buttonTransition": "0.15s",
+      "buttonTransition": "0.2s",
       "consoleErrors": []
     }
   ],
@@ -732,8 +756,10 @@
       },
       "connector": {
         "animation": "lm-connector-flow",
-        "duration": "0.62s",
-        "delay": "0s"
+        "duration": "1s",
+        "delay": "0s",
+        "iterations": "infinite",
+        "easing": "linear"
       },
       "header": {
         "animation": "lm-chrome-in",
@@ -751,7 +777,7 @@
         "transitionDuration": "0.26s, 0.26s",
         "blockSize": "84.25px"
       },
-      "buttonTransition": "0.15s"
+      "buttonTransition": "0.2s"
     },
     "compact": {
       "theme": "light",
@@ -786,8 +812,10 @@
       },
       "connector": {
         "animation": "lm-connector-flow",
-        "duration": "0.62s",
-        "delay": "0s"
+        "duration": "1s",
+        "delay": "0s",
+        "iterations": "infinite",
+        "easing": "linear"
       },
       "header": {
         "animation": "lm-chrome-in",
@@ -803,9 +831,9 @@
       },
       "faq": {
         "transitionDuration": "0.26s, 0.26s",
-        "blockSize": "152.5px"
+        "blockSize": "129.75px"
       },
-      "buttonTransition": "0.15s"
+      "buttonTransition": "0.2s"
     },
     "tablet": {
       "theme": "light",
@@ -840,8 +868,10 @@
       },
       "connector": {
         "animation": "lm-connector-flow",
-        "duration": "0.62s",
-        "delay": "0s"
+        "duration": "1s",
+        "delay": "0s",
+        "iterations": "infinite",
+        "easing": "linear"
       },
       "header": {
         "animation": "lm-chrome-in",
@@ -859,7 +889,7 @@
         "transitionDuration": "0.26s, 0.26s",
         "blockSize": "84.25px"
       },
-      "buttonTransition": "0.15s"
+      "buttonTransition": "0.2s"
     }
   },
   "reduced": {
@@ -897,7 +927,9 @@
       "connector": {
         "animation": "none",
         "duration": "0s",
-        "delay": "0s"
+        "delay": "0s",
+        "iterations": "1",
+        "easing": "ease"
       },
       "header": {
         "animation": "none",
@@ -913,7 +945,7 @@
       },
       "faq": {
         "transitionDuration": "0s",
-        "blockSize": "152.5px"
+        "blockSize": "129.75px"
       },
       "buttonTransition": "0.001s"
     },
@@ -951,7 +983,9 @@
       "connector": {
         "animation": "none",
         "duration": "0s",
-        "delay": "0s"
+        "delay": "0s",
+        "iterations": "1",
+        "easing": "ease"
       },
       "header": {
         "animation": "none",
@@ -972,54 +1006,5 @@
       "buttonTransition": "0.001s"
     }
   },
-  "screenshots": [
-    "1440-light/00-full.png",
-    "1440-light/01-header.png",
-    "1440-light/02-hero.png",
-    "1440-light/03-dashboard.png",
-    "1440-light/04-features.png",
-    "1440-light/05-steps.png",
-    "1440-light/06-integrations.png",
-    "1440-light/07-teams.png",
-    "1440-light/08-pricing.png",
-    "1440-light/09-faq.png",
-    "1440-light/10-final-cta.png",
-    "1440-light/11-footer.png",
-    "1440-dark/00-full.png",
-    "1440-dark/01-header.png",
-    "1440-dark/02-hero.png",
-    "1440-dark/03-dashboard.png",
-    "1440-dark/04-features.png",
-    "1440-dark/05-steps.png",
-    "1440-dark/06-integrations.png",
-    "1440-dark/07-teams.png",
-    "1440-dark/08-pricing.png",
-    "1440-dark/09-faq.png",
-    "1440-dark/10-final-cta.png",
-    "1440-dark/11-footer.png",
-    "390-light/00-full.png",
-    "390-light/01-header.png",
-    "390-light/02-hero.png",
-    "390-light/03-dashboard.png",
-    "390-light/04-features.png",
-    "390-light/05-steps.png",
-    "390-light/06-integrations.png",
-    "390-light/07-teams.png",
-    "390-light/08-pricing.png",
-    "390-light/09-faq.png",
-    "390-light/10-final-cta.png",
-    "390-light/11-footer.png",
-    "390-dark/00-full.png",
-    "390-dark/01-header.png",
-    "390-dark/02-hero.png",
-    "390-dark/03-dashboard.png",
-    "390-dark/04-features.png",
-    "390-dark/05-steps.png",
-    "390-dark/06-integrations.png",
-    "390-dark/07-teams.png",
-    "390-dark/08-pricing.png",
-    "390-dark/09-faq.png",
-    "390-dark/10-final-cta.png",
-    "390-dark/11-footer.png"
-  ]
+  "screenshots": []
 }

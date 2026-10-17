@@ -163,6 +163,8 @@ async function measure(page) {
             animation: style(".lm-connector").animationName,
             duration: style(".lm-connector").animationDuration,
             delay: style(".lm-connector").animationDelay,
+            iterations: style(".lm-connector").animationIterationCount,
+            easing: style(".lm-connector").animationTimingFunction,
           }
         : null,
       header: style(".lm-header")
@@ -240,8 +242,13 @@ async function main() {
     check(desktop.reveal?.opacity === "1", "desktop reveal did not settle at opacity 1", desktop.reveal);
     check(desktop.line?.duration === "0.62s", "desktop hero line is not 620ms", desktop.line);
     check(desktop.chart?.duration === "0.62s", "chart draw is not 620ms", desktop.chart);
-    check(desktop.connector?.duration === "0.62s", "connector draw is not 620ms", desktop.connector);
-    check(desktop.connector?.delay === "0.24s" || desktop.connector?.delay === "0s", "connector delay is not sequenced", desktop.connector);
+    // The reference's flow lines march continuously: `flowLinesDash` runs at
+    // 1000ms, linear, infinite, with no delay on any path. Measured on the
+    // live site — see docs/FORMA_FINAL_FIDELITY_AUDIT.md §5.
+    check(desktop.connector?.duration === "1s", "connector flow is not 1000ms", desktop.connector);
+    check(desktop.connector?.iterations === "infinite", "connector flow does not loop", desktop.connector);
+    check(desktop.connector?.easing === "linear", "connector flow is not linear", desktop.connector);
+    check(desktop.connector?.delay === "0s", "connector flow is delayed", desktop.connector);
     check(desktop.header?.duration === "0.42s", "header entrance is not 420ms", desktop.header);
     check(desktop.announce?.duration === "0.36s", "announcement entrance is not 360ms", desktop.announce);
     check(desktop.drift?.animation === "lm-drift", "desktop drift is not running", desktop.drift);

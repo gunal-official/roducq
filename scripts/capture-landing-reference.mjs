@@ -535,15 +535,11 @@ async function main() {
             }
           };
           window.__lmAnimRecord = record;
-          const timer = setInterval(record, 40);
-          document.addEventListener(
-            "DOMContentLoaded",
-            () => {
-              record();
-              clearInterval(timer);
-            },
-            { once: true },
-          );
+          // The recorder must outlive DOMContentLoaded: the reference's
+          // reveals are scroll-triggered, so they are created long after
+          // the document is ready. It stops on unload.
+          setInterval(record, 40);
+          window.addEventListener("pagehide", () => record(), { once: true });
         });
         const errors = [];
         page.on("console", (m) => {

@@ -33,7 +33,7 @@ export function FinalCta() {
           <div className="grid items-center gap-8 lg:grid-cols-[1.12fr_0.88fr] lg:gap-12">
             {/* Left column: left-aligned headline, supporting text, two CTA buttons */}
             <div className="min-w-0 text-left">
-              <h2 className="font-lm-bold tracking-[-0.03em] text-lm-cta-ink text-lm-29 sm:text-lm-54 lg:text-lm-64">
+              <h2 className="font-lm-semibold tracking-[-0.035em] text-lm-cta-ink text-lm-43 lg:text-lm-48 xl:text-lm-64">
                 {CLOSING.lines.map((line, index) => (
                   <span
                     key={line}
@@ -49,21 +49,21 @@ export function FinalCta() {
                 ))}
               </h2>
 
-              <p className="mt-5 max-w-[32rem] text-lm-16 text-lm-cta-muted md:text-lm-18">
+              <p className="mt-5 max-w-[32rem] text-lm-16 text-lm-cta-muted md:text-lm-19">
                 {CLOSING.intro}
               </p>
 
               <div className="mt-8 flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center">
                 <Link
                   href={CLOSING.primaryCta.href}
-                  className="inline-flex h-11 min-h-11 items-center justify-center gap-2 rounded-lm-control bg-lm-card px-5 text-lm-14 font-lm-semibold text-lm-ink shadow-lm-sm transition-colors hover:bg-lm-surface-accent md:h-12 md:px-6.5"
+                  className="inline-flex h-11 min-h-11 items-center justify-center gap-2 rounded-lm-button bg-lm-card px-5 text-lm-15 font-lm-regular text-lm-ink shadow-lm-sm transition-colors hover:bg-lm-surface-accent md:h-13 md:px-6.5"
                 >
                   {CLOSING.primaryCta.label}
                   <ArrowRight className="h-4 w-4 text-lm-accent" aria-hidden="true" />
                 </Link>
                 <Link
                   href={CLOSING.secondaryCta.href}
-                  className="inline-flex h-11 min-h-11 items-center justify-center gap-2 rounded-lm-control border border-lm-cta-border bg-lm-cta-wash px-5 text-lm-14 font-lm-semibold text-lm-cta-ink transition-colors hover:border-lm-cta-ink md:h-12 md:px-6.5"
+                  className="inline-flex h-11 min-h-11 items-center justify-center gap-2 rounded-lm-button border border-lm-cta-border bg-lm-cta-wash px-5 text-lm-15 font-lm-regular text-lm-cta-ink transition-colors hover:border-lm-cta-ink md:h-13 md:px-6.5"
                 >
                   {CLOSING.secondaryCta.label}
                   <span className="sr-only">(opens your email client)</span>

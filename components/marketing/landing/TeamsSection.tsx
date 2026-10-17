@@ -53,10 +53,10 @@ export function TeamsSection() {
                   </span>
                 </div>
 
-                <h3 className="mt-5 font-lm-bold tracking-[-0.015em] text-lm-18 text-lm-ink">
+                <h3 className="mt-5 font-lm-semibold leading-lm-card tracking-[-0.035em] text-lm-21 text-lm-ink lg:text-lm-20 xl:text-lm-23">
                   {team.title}
                 </h3>
-                <p className="mt-2.5 text-lm-14 leading-relaxed text-lm-ink-soft">
+                <p className="mt-2.5 text-lm-16 leading-relaxed text-lm-ink-soft">
                   {team.copy}
                 </p>
               </div>

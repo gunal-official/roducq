@@ -26,12 +26,13 @@ export function FaqAccordion() {
               before={FAQ_SECTION.titleBefore}
               after={FAQ_SECTION.titleAfter}
               align="start"
+              variant="faq"
             />
             <p className="mt-5 text-lm-14 text-lm-ink-soft">
               {FAQ_SECTION.intro}{" "}
               <a
                 href={FAQ_SECTION.contact.href}
-                className="inline-flex min-h-11 items-center font-lm-semibold text-lm-ink-accent underline underline-offset-4 transition-colors hover:text-lm-accent-strong"
+                className="inline-flex min-h-11 items-center font-lm-semibold text-lm-ink-accent underline underline-offset-4 transition-colors duration-200 hover:text-lm-accent-strong"
               >
                 {FAQ_SECTION.contact.label}
                 <span className="sr-only"> (opens your email client)</span>
@@ -57,7 +58,7 @@ export function FaqAccordion() {
                   open={index === 0}
                   className="lm-faq group py-1"
                 >
-                  <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 py-3.5 text-left font-lm-semibold text-lm-16 text-lm-ink transition-colors hover:text-lm-ink-accent group-open:text-lm-ink-accent [&::-webkit-details-marker]:hidden">
+                  <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 py-3.5 text-left font-lm-semibold text-lm-16 text-lm-ink transition-colors duration-200 hover:text-lm-ink-accent group-open:text-lm-ink-accent [&::-webkit-details-marker]:hidden">
                     <span>{item.q}</span>
                     <span
                       className="lm-faq-icon flex h-7 w-7 shrink-0 items-center justify-center text-lm-muted transition-colors group-open:text-lm-ink-accent"

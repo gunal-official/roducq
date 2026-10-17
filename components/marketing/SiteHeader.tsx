@@ -84,7 +84,7 @@ export function SiteHeader() {
               href={item.href}
               aria-current={active(item.href) ? "page" : undefined}
               className={cn(
-                "inline-flex min-h-11 min-w-11 items-center rounded-lm-control px-3.5 text-lm-14 transition-colors",
+                "inline-flex min-h-11 min-w-11 items-center rounded-lm-control px-3.5 text-lm-15 transition-colors duration-200",
                 active(item.href)
                   ? "font-lm-semibold text-lm-ink-accent"
                   : "font-lm-regular text-lm-muted-readable hover:bg-lm-surface-accent hover:text-lm-ink"
@@ -102,14 +102,14 @@ export function SiteHeader() {
 
           <Link
             href="/login"
-            className="hidden min-h-11 items-center rounded-lm-control px-3.5 text-lm-14 font-lm-semibold text-lm-ink transition-colors hover:bg-lm-surface-accent hover:text-lm-ink-accent sm:inline-flex"
+            className="hidden min-h-11 items-center rounded-lm-control px-3.5 text-lm-14 font-lm-regular text-lm-ink transition-colors duration-200 hover:bg-lm-surface-accent hover:text-lm-ink-accent sm:inline-flex"
           >
             Log in
           </Link>
 
           <Link
             href="/signup"
-            className="hidden h-11 items-center rounded-lm-control bg-lm-accent px-5 text-lm-14 font-lm-semibold text-lm-on-accent shadow-lm-sm transition-colors hover:bg-lm-accent-strong sm:inline-flex"
+            className="hidden h-11 items-center rounded-lm-button bg-lm-accent px-5 text-lm-14 font-lm-regular text-lm-on-accent shadow-lm-sm transition-colors duration-200 hover:bg-lm-accent-strong sm:inline-flex"
           >
             Start free
           </Link>
@@ -119,7 +119,7 @@ export function SiteHeader() {
               <button
                 type="button"
                 aria-label="Open menu"
-                className="flex min-h-11 min-w-11 items-center justify-center rounded-lm-control text-lm-ink transition-colors hover:bg-lm-surface-accent lg:hidden"
+                className="flex min-h-11 min-w-11 items-center justify-center rounded-lm-control text-lm-ink transition-colors duration-200 hover:bg-lm-surface-accent lg:hidden"
               >
                 <Menu className="h-5 w-5" aria-hidden="true" />
               </button>
@@ -188,7 +188,7 @@ export function SiteHeader() {
                   <Link
                     href="/signup"
                     onClick={() => setOpen(false)}
-                    className="inline-flex h-12 items-center justify-center gap-2 rounded-lm-control bg-lm-accent px-5 text-lm-14 font-lm-semibold text-lm-on-accent transition-colors hover:bg-lm-accent-strong"
+                    className="inline-flex h-12 items-center justify-center gap-2 rounded-lm-button bg-lm-accent px-5 text-lm-14 font-lm-regular text-lm-on-accent transition-colors duration-200 hover:bg-lm-accent-strong"
                   >
                     Create your workspace
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -196,7 +196,7 @@ export function SiteHeader() {
                   <Link
                     href="/login"
                     onClick={() => setOpen(false)}
-                    className="inline-flex h-12 items-center justify-center rounded-lm-control border border-lm-hairline bg-lm-card px-5 text-lm-14 font-lm-semibold text-lm-ink transition-colors hover:border-lm-border"
+                    className="inline-flex h-12 items-center justify-center rounded-lm-button border border-lm-hairline bg-lm-card px-5 text-lm-14 font-lm-regular text-lm-ink transition-colors duration-200 hover:border-lm-border"
                   >
                     Log in
                   </Link>

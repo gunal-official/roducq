@@ -18,6 +18,13 @@ interface SectionHeadingProps {
   intro?: string;
   /** Centred for the reference's full-width bands, left for split bands. */
   align?: "center" | "start";
+  /**
+   * The reference sets two different heading treatments: a 54px/400
+   * section heading and a 48px/600 FAQ heading. Both are measured on the
+   * live site, so they are two real variants rather than one size guessed
+   * twice. See docs/FORMA_FINAL_FIDELITY_AUDIT.md §4.
+   */
+  variant?: "section" | "faq";
   /** h2 everywhere except the hero, which owns the page's h1. */
   as?: "h1" | "h2";
   /** Optional right-aligned slot when `align="start"`. */
@@ -31,6 +38,7 @@ export function SectionHeading({
   after,
   intro,
   align = "center",
+  variant = "section",
   as: Tag = "h2",
   aside,
   className,
@@ -44,16 +52,23 @@ export function SectionHeading({
         className
       )}
     >
-      <p className="text-lm-14 font-lm-semibold text-lm-ink-accent">
+      <p className="text-lm-14 font-lm-semibold leading-lm-label text-lm-ink-accent">
         {eyebrow}
       </p>
-      <Tag className="mt-3 font-lm-bold tracking-[-0.025em] text-lm-29 text-lm-ink md:text-lm-54">
+      <Tag
+        className={cn(
+          "mt-3 tracking-[-0.03em] text-lm-ink",
+          variant === "faq"
+            ? "font-lm-semibold text-lm-32 lg:text-lm-28 xl:text-lm-48"
+            : "font-lm-regular text-lm-32 lg:text-lm-34 xl:text-lm-54",
+        )}
+      >
         {before} <span className="text-lm-ink-accent">{after}</span>
       </Tag>
       {intro ? (
         <p
           className={cn(
-            "mt-4 max-w-[36rem] text-lm-16 text-lm-ink-soft md:text-lm-18",
+            "mt-4 max-w-lm-measure-intro text-lm-16 text-lm-ink-soft md:text-lm-18",
             centered && "mx-auto"
           )}
         >
@@ -88,7 +103,7 @@ export function CardLabel({
   return (
     <p
       className={cn(
-        "text-lm-12 font-lm-semibold uppercase tracking-[0.16em] text-lm-ink-accent",
+        "text-lm-11 font-lm-regular tracking-[0.06em] text-lm-muted-slate",
         className
       )}
     >

@@ -83,14 +83,14 @@ export function StepsSection() {
             >
               <div>
                 <div className="flex items-start justify-between gap-3">
-                  <h3 className="font-lm-bold tracking-[-0.01em] text-lm-18 text-lm-ink">
+                  <h3 className="font-lm-semibold leading-lm-step tracking-[-0.035em] text-lm-18 text-lm-ink lg:text-lm-15 xl:text-lm-22">
                     {step.title}
                   </h3>
                   <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lm-pill bg-lm-surface-accent font-lm-bold text-lm-12 text-lm-ink-accent">
                     {step.index}
                   </span>
                 </div>
-                <p className="mt-2.5 text-lm-14 leading-relaxed text-lm-ink-soft">
+                <p className="mt-2.5 text-lm-16 leading-relaxed text-lm-ink-soft">
                   {step.copy}
                 </p>
               </div>
@@ -171,7 +171,6 @@ export function StepsSection() {
                 >
                   <path
                     className="lm-connector"
-                    style={{ "--lm-connector-delay": "0ms" } as React.CSSProperties}
                     d="M 4 28 C 72 28, 92 90, 140 90"
                     fill="none"
                     stroke="var(--lm-border-soft)"
@@ -180,7 +179,6 @@ export function StepsSection() {
                   />
                   <path
                     className="lm-connector"
-                    style={{ "--lm-connector-delay": "60ms" } as React.CSSProperties}
                     d="M 4 70 C 72 70, 92 90, 140 90"
                     fill="none"
                     stroke="var(--lm-border-soft)"
@@ -189,7 +187,6 @@ export function StepsSection() {
                   />
                   <path
                     className="lm-connector"
-                    style={{ "--lm-connector-delay": "120ms" } as React.CSSProperties}
                     d="M 4 114 C 72 114, 92 90, 140 90"
                     fill="none"
                     stroke="var(--lm-accent)"
@@ -198,7 +195,6 @@ export function StepsSection() {
                   />
                   <path
                     className="lm-connector"
-                    style={{ "--lm-connector-delay": "180ms" } as React.CSSProperties}
                     d="M 4 152 C 72 152, 92 90, 140 90"
                     fill="none"
                     stroke="var(--lm-border-soft)"
@@ -207,7 +203,6 @@ export function StepsSection() {
                   />
                   <path
                     className="lm-connector"
-                    style={{ "--lm-connector-delay": "240ms" } as React.CSSProperties}
                     d="M 140 90 L 276 90"
                     fill="none"
                     stroke="var(--lm-border)"

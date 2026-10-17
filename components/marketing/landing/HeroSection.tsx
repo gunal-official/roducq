@@ -52,9 +52,9 @@ export function HeroSection() {
           {/* Small announcement badge above headline */}
           <Link
             href={ANNOUNCEMENT.href}
-            className="inline-flex min-h-11 items-center gap-2.5 rounded-lm-pill border border-lm-border-soft bg-lm-card px-3.5 py-1.5 text-lm-12 font-lm-semibold text-lm-ink shadow-lm-sm transition-colors hover:border-lm-border-strong hover:bg-lm-surface-accent"
+            className="inline-flex min-h-11 items-center gap-2.5 rounded-lm-pill border border-lm-border-soft bg-lm-card px-3.5 py-1.5 text-lm-14 font-lm-regular text-lm-ink shadow-lm-sm transition-colors hover:border-lm-border-strong hover:bg-lm-surface-accent"
           >
-            <span className="rounded-lm-pill bg-lm-surface-accent px-2 py-0.5 text-lm-12 font-lm-bold text-lm-ink-accent">
+            <span className="rounded-lm-pill bg-lm-surface-accent px-2 py-0.5 text-lm-12 font-lm-semibold text-lm-ink-accent">
               {ANNOUNCEMENT.badge}
             </span>
             <span>{HERO.eyebrow}</span>
@@ -66,7 +66,7 @@ export function HeroSection() {
 
           <h1
             aria-label={HERO.title}
-            className="mt-6 font-lm-bold tracking-[-0.03em] text-lm-29 text-lm-ink sm:text-lm-54 lg:text-lm-64"
+            className="mt-6 font-lm-regular tracking-[-0.03em] text-lm-43 text-lm-ink lg:text-lm-48 xl:text-lm-72"
           >
             {HERO.titleLines.map((line, index) => (
               <span
@@ -83,7 +83,7 @@ export function HeroSection() {
             ))}
           </h1>
 
-          <p className="mt-5.5 max-w-[36rem] text-lm-16 text-lm-ink-soft md:text-lm-18">
+          <p className="mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18">
             {HERO.intro}
           </p>
 

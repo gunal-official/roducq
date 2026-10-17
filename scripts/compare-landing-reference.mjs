@@ -77,6 +77,21 @@ const viewportName = (entry) =>
 
 const key = (entry) => `${viewportName(entry)}|${entry.theme}`;
 
+/**
+ * The reference serves Manrope as a variable font and names the family
+ * "Manrope Variable"; this page serves the same typeface under the name
+ * "Manrope". The family STRING differs but the typeface does not, so the
+ * report would otherwise report a difference that is not one.
+ */
+const normalise = (value) => {
+  if (typeof value !== "string") return value;
+  return value
+    .replace(/Manrope Variable/g, "Manrope")
+    .replace(/Placeholder/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+};
+
 const byKey = new Map(B.map((e) => [key(e), e]));
 const out = [];
 const say = (line = "") => out.push(line);
@@ -143,32 +158,36 @@ for (const entryA of A) {
     );
   }
 
-  // Role-based element comparison inside each band.
-  const roles = [
-    ["h1", (e) => e.tag === "h1"],
-    ["h2", (e) => e.tag === "h2"],
-    ["h3", (e) => e.tag === "h3"],
-    ["p", (e) => e.tag === "p"],
-    ["a", (e) => e.tag === "a"],
-    ["button", (e) => e.tag === "button"],
-  ];
-  for (const [label, match] of roles) {
-    const listA = entryA.elements.filter(match);
-    const listB = entryB.elements.filter(match);
-    const n = Math.min(listA.length, listB.length, 3);
-    for (let i = 0; i < n; i += 1) {
+  // Band-aware comparison. Matching by DOM order compares a section
+  // heading on one page against a card heading on the other, which is
+  // noise. The first heading inside the SAME band is the like-for-like
+  // comparison, so the report groups by band and takes the first
+  // heading of each kind inside it.
+  const firstOfKind = (entry, band, kinds) => {
+    const top = band.box.y;
+    const bottom = top + band.box.h;
+    const hit = entry.elements
+      .filter((e) => kinds.includes(e.tag) && e.box.y >= top - 4 && e.box.y < bottom)
+      .sort((a, b) => a.box.y - b.box.y || a.box.x - b.box.x)[0];
+    return hit;
+  };
+
+  const kinds = ["h1", "h2", "h3", "p", "a", "button"];
+  for (let i = 0; i < bands; i += 1) {
+    for (const kind of kinds) {
+      const a = firstOfKind(entryA, entryA.sections[i], [kind]);
+      const b = firstOfKind(entryB, entryB.sections[i], [kind]);
+      if (!a || !b) continue;
       const diffs = [];
       for (const k of KEYS) {
-        const va = listA[i].style[k];
-        const vb = listB[i].style[k];
+        const va = normalise(a.style[k]);
+        const vb = normalise(b.style[k]);
         if (va === undefined || vb === undefined) continue;
         if (va === vb) continue;
         diffs.push(`${k}: ${LABEL_A} ${va} → ${LABEL_B} ${vb}`);
       }
       if (!diffs.length) continue;
-      say(
-        `  ${label}#${i} "${String(listA[i].text || "").slice(0, 42)}"`,
-      );
+      say(`  band ${String(i).padStart(2, "0")} ${kind} "${String(a.text || "").slice(0, 40)}"`);
       for (const d of diffs.slice(0, 8)) say(`      ${d}`);
     }
   }

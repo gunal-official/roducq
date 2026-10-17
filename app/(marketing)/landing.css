@@ -111,18 +111,42 @@
   --lm-weight-semibold: 600;
   --lm-weight-bold: 700;
 
-  /* The published scale. Everything on the page resolves to one of these. */
+  /* The published scale. Everything on the page resolves to one of these.
+     The steps are the reference's own measured type sizes, read off the
+     live site with getComputedStyle at 1440 / 1024 / 768 / 390 / 375
+     (see docs/FORMA_FINAL_FIDELITY_AUDIT.md §4). The old 29px and 64px
+     steps were estimates; the reference's real display sizes are 43 / 48 /
+     72px for the hero headline and 32 / 34 / 54px for a section heading. */
   --lm-size-10: 10px;
   --lm-size-12: 12px;
+  --lm-size-13: 13px;
   --lm-size-14: 14px;
+  --lm-size-15: 15px;
   --lm-size-16: 16px;
+  --lm-size-17: 17px;
   --lm-size-18: 18px;
+  --lm-size-19: 19px;
+  --lm-size-20: 20px;
+  --lm-size-21: 21px;
   --lm-size-22: 22px;
-  --lm-size-29: 29px;
+  --lm-size-23: 23px;
+  --lm-size-28: 28px;
+  --lm-size-32: 32px;
+  --lm-size-34: 34px;
+  --lm-size-35: 35px;
+  --lm-size-36: 36px;
+  --lm-size-43: 43px;
+  --lm-size-46: 46px;
+  --lm-size-48: 48px;
   --lm-size-54: 54px;
   --lm-size-64: 64px;
+  --lm-size-72: 72px;
 
-  /* Line-height pairs the reference uses with those steps. */
+  /* Line-height pairs the reference uses with those steps. The two display
+     curves are measured, not guessed: the hero headline runs at 73.44px on
+     a 72px size (1.02) and a section heading at 59.4px on 54px (1.1). */
+  --lm-leading-display: 1.02;
+  --lm-leading-heading: 1.1;
   --lm-leading-tight: 1.04;
   --lm-leading-snug: 1.2;
   --lm-leading-normal: 1.5;
@@ -135,6 +159,12 @@
   --lm-radius-control: 5px;
   --lm-radius-row: 8px;
   --lm-radius-panel: 10px;
+  /* The reference's action buttons measure a 10px corner radius (the
+     "Get started" / "Start for free" / "Try the demo" controls all report
+     border-radius: 10px). `--lm-radius-control` stays 5px because the
+     reference's own non-button controls (nav rows, in-page pills) measure
+     flatter than that; the button is its own step. */
+  --lm-radius-button: 10px;
   --lm-radius-card: 14px;
   --lm-radius-frame: 16px;
   --lm-radius-pill: 999px;
@@ -155,9 +185,14 @@
   --lm-motion-slow: 620ms;
   --lm-ease: cubic-bezier(0.22, 1, 0.36, 1);
 
-  /* ── Layout ────────────────────────────────────────────────────────── */
-  --lm-container: 1200px;
-  --lm-gutter: 20px;
+  /* ── Layout ──────────────────────────────────────────────────────────
+     The reference's content column measures 1240px at a 1440px viewport
+     (100px on each side), 940px at 1024, 736px at 768 and 358px at 390.
+     A 1320px shell with a 40px desktop gutter lands on all of those:
+     1320 - 80 = 1240 at 1440, 1024 - 80 = 944 at 1024 (the reference
+     rounds to 940), 768 - 32 = 736 at 768 and 390 - 32 = 358 at 390. */
+  --lm-container: 1320px;
+  --lm-gutter: 16px;
 
   font-family: var(--lm-font);
   background-color: var(--lm-canvas);
@@ -166,7 +201,7 @@
 
 @media (min-width: 768px) {
   .rdq-marketing {
-    --lm-gutter: 32px;
+    --lm-gutter: 16px;
   }
 }
 
@@ -416,31 +451,38 @@
     );
 }
 
-/* ── Forma purple outer frame (Dashboard Preview & Steps Demo Panel) ───── */
+/* ── Forma purple outer frame (Dashboard Preview & Steps Demo Panel) ─────
+   The reference's frame is a saturated violet that runs DARK at the top
+   left to LIGHT at the top right, not the pale top-to-bottom wash this
+   page used to draw. The stops below are sampled from the live reference
+   with scripts/sample-landing-pixels.mjs:
+     top-left  #36278c   top-right  #9178e6
+     bottom-left #6e49c3 bottom-right #7355e9   bottom-centre #5f45d6
+   Two layers reproduce that sweep: a dark-to-light vertical base and a
+   violet highlight anchored at the top right corner. */
 .lm-purple-frame {
-  background: linear-gradient(
-    180deg,
-    var(--lm-border) 0%,
-    var(--lm-accent-line) 36%,
-    var(--lm-accent) 76%,
-    var(--lm-accent-strong) 100%
-  );
+  background:
+    radial-gradient(
+      110% 120% at 100% 0%,
+      rgba(145, 120, 230, 0.92) 0%,
+      rgba(145, 120, 230, 0) 58%
+    ),
+    linear-gradient(170deg, #36278c 0%, #4a35b8 42%, #7355e9 100%);
   box-shadow: var(--lm-shadow-frame);
 }
 
-/* ── Forma Final CTA purple gradient card ─────────────────────────────── */
+/* ── Forma Final CTA purple gradient card ───────────────────────────────
+   The reference's closing card uses the same violet sweep as the frames
+   (sampled: #36288c top-left, #9279e6 top-right), so it shares the token
+   rather than inventing a second gradient. */
 .lm-cta-card {
-  background: radial-gradient(
-      110% 120% at 88% 12%,
-      var(--lm-border) 0%,
-      transparent 56%
+  background:
+    radial-gradient(
+      110% 120% at 100% 0%,
+      rgba(146, 121, 230, 0.92) 0%,
+      rgba(146, 121, 230, 0) 58%
     ),
-    linear-gradient(
-      125deg,
-      #2e1f7a 0%,
-      #472ec2 44%,
-      var(--lm-accent) 100%
-    );
+    linear-gradient(170deg, #36278c 0%, #4a35b8 42%, #7355e9 100%);
   box-shadow: var(--lm-shadow-frame);
 }
 
@@ -580,24 +622,26 @@
 }
 
 /* ── Connector lines ────────────────────────────────────────────────────
-   The steps diagram keeps its 4 4 dash pattern; the draw is a dash-offset
-   travel plus a fade, sequenced left-to-right. It starts when the diagram's
-   Reveal reports itself visible, so it is not spent before the visitor
-   scrolls to it. */
+   MEASURED, NOT ESTIMATED. The live reference runs every connector path
+   through a `flowLinesDash` animation: 1000ms, linear, infinite, with no
+   delay on any path (read from document.getAnimations() on the reference
+   itself — see docs/FORMA_FINAL_FIDELITY_AUDIT.md §5). The lines do not
+   draw once and stop; they march continuously, in step with each other.
+
+   The travel is one full dash period (4 + 4 = 8px) so the loop is
+   seamless, and the diagram's own Reveal still gates when the march
+   starts, so nothing is spent before the visitor scrolls to it. */
 @keyframes lm-connector-flow {
   from {
-    opacity: 0;
-    stroke-dashoffset: 20;
+    stroke-dashoffset: 8;
   }
   to {
-    opacity: 1;
     stroke-dashoffset: 0;
   }
 }
 
 .lm-js .lm-reveal[data-visible="true"] .lm-connector {
-  animation: lm-connector-flow 620ms cubic-bezier(0.33, 1, 0.68, 1) both;
-  animation-delay: var(--lm-connector-delay, 0ms);
+  animation: lm-connector-flow 1000ms linear infinite;
 }
 
 /* ── Reduced motion ──────────────────────────────────────────────────────

@@ -128,7 +128,7 @@ function PricingCard({
           <p className="text-lm-12 font-lm-semibold uppercase tracking-[0.14em] text-lm-muted">
             {tier.eyebrow}
           </p>
-          <h3 className="mt-2 font-lm-bold tracking-[-0.015em] text-lm-22 text-lm-ink">
+          <h3 className="mt-2 font-lm-semibold tracking-[-0.025em] text-lm-23 text-lm-ink lg:text-lm-21 xl:text-lm-23">
             {tier.name}
           </h3>
         </div>
@@ -139,7 +139,7 @@ function PricingCard({
 
         <div className="mt-5 border-t border-lm-border-soft pt-4.5">
           {tier.pricing === "free" ? (
-            <p className="font-lm-bold text-lm-54 leading-none tracking-[-0.03em] text-lm-ink">
+            <p className="font-lm-medium text-lm-36 tracking-[-0.03em] text-lm-ink lg:text-lm-35 xl:text-lm-46">
               $0
               <span className="ml-2 font-lm-regular text-lm-12 tracking-normal text-lm-muted">
                 / month
@@ -147,7 +147,7 @@ function PricingCard({
             </p>
           ) : tier.pricing === "configured" ? (
             billingConfigured && priceLines.length > 0 ? (
-              <p className="font-lm-bold text-lm-54 leading-none tracking-[-0.03em] text-lm-ink">
+              <p className="font-lm-medium text-lm-36 tracking-[-0.03em] text-lm-ink xl:text-lm-46">
                 {splitPrice(priceLines[0]).amount}
                 <span className="ml-2 font-lm-regular text-lm-12 tracking-normal text-lm-muted">
                   {splitPrice(priceLines[0]).currency} / month
@@ -159,7 +159,7 @@ function PricingCard({
               </p>
             )
           ) : (
-            <p className="font-lm-bold text-lm-29 leading-none tracking-[-0.02em] text-lm-ink">
+            <p className="font-lm-medium text-lm-36 tracking-[-0.02em] text-lm-ink lg:text-lm-35 xl:text-lm-46">
               Custom
             </p>
           )}
@@ -231,7 +231,7 @@ function EnterprisePricingCard() {
         <p className="text-lm-12 font-lm-semibold uppercase tracking-[0.14em] text-lm-dark-muted">
           {ENTERPRISE_COLUMN.eyebrow}
         </p>
-        <h3 className="mt-2 font-lm-bold tracking-[-0.015em] text-lm-22 text-lm-dark-ink">
+        <h3 className="mt-2 font-lm-semibold tracking-[-0.025em] text-lm-23 text-lm-dark-ink">
           {ENTERPRISE_COLUMN.name}
         </h3>
       </div>
@@ -241,7 +241,7 @@ function EnterprisePricingCard() {
       </p>
 
       <div className="mt-5 border-t border-lm-dark-border pt-4.5">
-        <p className="font-lm-bold text-lm-29 leading-none tracking-[-0.02em] text-lm-dark-ink">
+        <p className="font-lm-medium text-lm-36 tracking-[-0.02em] text-lm-dark-ink lg:text-lm-35 xl:text-lm-46">
           Custom
         </p>
         <p className="mt-2 text-lm-12 text-lm-dark-muted">
@@ -252,7 +252,7 @@ function EnterprisePricingCard() {
       <div className="mt-5">
         <Link
           href={ENTERPRISE_COLUMN.cta.href}
-          className="inline-flex h-11 min-h-11 w-full items-center justify-center rounded-lm-control bg-lm-card px-5 text-lm-14 font-lm-semibold text-lm-ink shadow-lm-sm transition-colors hover:bg-lm-surface-accent md:h-12"
+          className="inline-flex h-11 min-h-11 w-full items-center justify-center rounded-lm-button bg-lm-card px-5 text-lm-15 font-lm-regular text-lm-ink shadow-lm-sm transition-colors duration-200 hover:bg-lm-surface-accent md:h-13"
         >
           {ENTERPRISE_COLUMN.cta.label}
           <span className="sr-only">(opens your email client)</span>

@@ -180,6 +180,7 @@ const config = {
         "lm-control": "var(--lm-radius-control)",
         "lm-row": "var(--lm-radius-row)",
         "lm-panel": "var(--lm-radius-panel)",
+        "lm-button": "var(--lm-radius-button)",
         "lm-card": "var(--lm-radius-card)",
         "lm-frame": "var(--lm-radius-frame)",
         "lm-pill": "var(--lm-radius-pill)",
@@ -232,13 +233,28 @@ const config = {
       fontSize: {
         "lm-10": ["var(--lm-size-10)", { lineHeight: "1.5" }],
         "lm-12": ["var(--lm-size-12)", { lineHeight: "1.5" }],
+        "lm-13": ["var(--lm-size-13)", { lineHeight: "1.55" }],
         "lm-14": ["var(--lm-size-14)", { lineHeight: "1.65" }],
+        "lm-15": ["var(--lm-size-15)", { lineHeight: "1.55" }],
         "lm-16": ["var(--lm-size-16)", { lineHeight: "1.65" }],
-        "lm-18": ["var(--lm-size-18)", { lineHeight: "1.55" }],
-        "lm-22": ["var(--lm-size-22)", { lineHeight: "1.2" }],
-        "lm-29": ["var(--lm-size-29)", { lineHeight: "1.2" }],
-        "lm-54": ["var(--lm-size-54)", { lineHeight: "1.04" }],
-        "lm-64": ["var(--lm-size-64)", { lineHeight: "1.04" }],
+        "lm-17": ["var(--lm-size-17)", { lineHeight: "1.5" }],
+        "lm-18": ["var(--lm-size-18)", { lineHeight: "1.65" }],
+        "lm-19": ["var(--lm-size-19)", { lineHeight: "1.55" }],
+        "lm-20": ["var(--lm-size-20)", { lineHeight: "1.35" }],
+        "lm-21": ["var(--lm-size-21)", { lineHeight: "1.35" }],
+        "lm-22": ["var(--lm-size-22)", { lineHeight: "1.3" }],
+        "lm-23": ["var(--lm-size-23)", { lineHeight: "1.4" }],
+        "lm-28": ["var(--lm-size-28)", { lineHeight: "1.1" }],
+        "lm-32": ["var(--lm-size-32)", { lineHeight: "1.1" }],
+        "lm-34": ["var(--lm-size-34)", { lineHeight: "1.1" }],
+        "lm-35": ["var(--lm-size-35)", { lineHeight: "1.35" }],
+        "lm-36": ["var(--lm-size-36)", { lineHeight: "1.2" }],
+        "lm-43": ["var(--lm-size-43)", { lineHeight: "1.02" }],
+        "lm-46": ["var(--lm-size-46)", { lineHeight: "1.35" }],
+        "lm-48": ["var(--lm-size-48)", { lineHeight: "1.1" }],
+        "lm-54": ["var(--lm-size-54)", { lineHeight: "1.1" }],
+        "lm-64": ["var(--lm-size-64)", { lineHeight: "1.02" }],
+        "lm-72": ["var(--lm-size-72)", { lineHeight: "1.02" }],
       },
       /* ── Marketing landing spacing ─────────────────────────────────────
          Tailwind's default 4px grid already covers 1/2/4/6/8/10/12/14/16/
@@ -252,6 +268,7 @@ const config = {
         3.75: "15px",
         4.5: "18px",
         5.5: "22px",
+        6.25: "25px",
         6.5: "26px",
         7.5: "30px",
         /* Whole steps the reference uses that Tailwind's default scale skips
@@ -269,9 +286,21 @@ const config = {
            the pricing grid narrow themselves inside it. */
         "lm-container": "var(--lm-container)",
         "lm-measure": "620px",
+        /* Measured on the reference: a section's supporting paragraph is
+           500px wide, and the hero's is 640px. */
+        "lm-measure-intro": "500px",
+        "lm-measure-lead": "640px",
+      },
+      /* Measured on the reference: a section eyebrow runs at 1.2, a step
+         card title at 1.15 and a team card title at 1.35. */
+      lineHeight: {
+        "lm-label": "1.2",
+        "lm-step": "1.15",
+        "lm-card": "1.35",
       },
       fontWeight: {
         "lm-regular": "400",
+        "lm-medium": "500",
         "lm-semibold": "600",
         "lm-bold": "700",
       },
