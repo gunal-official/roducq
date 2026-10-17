@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Loader2 } from "lucide-react";
 
-import { cn } from "@/lib/utils";
+import { clsx as cn } from "clsx";
 
 /**
  * Marketing buttons — the reference's two-button vocabulary.

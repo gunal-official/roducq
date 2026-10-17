@@ -100,6 +100,7 @@ export type IconKey =
  * that is where the claim it makes is substantiated.
  */
 export const ANNOUNCEMENT = {
+  badge: "New",
   label: "Included on the free plan",
   text: "Team roles, templates and signed outbound webhooks",
   href: "/pricing",
@@ -109,20 +110,18 @@ export const ANNOUNCEMENT = {
 /* ── C. Hero ───────────────────────────────────────────────────────────── */
 
 /**
- * The reference sets its headline as three masked lines that rise on load.
- * `titleLines` is therefore an explicit three-entry array rather than one
- * string — the line breaks are part of the design, not a wrapping accident,
- * and the reveal component animates one entry at a time.
+ * The reference sets its headline as two masked lines that rise on load:
+ * dark first line, purple-emphasized second line.
  *
  * `emphasis` is the substring rendered in the accent ink; it must appear
  * verbatim inside one of the lines (asserted by the tests).
  */
 export const HERO = {
   eyebrow: "Client-work writing studio",
-  titleLines: ["The workspace that", "does the client", "writing for you"],
-  emphasis: "client",
+  titleLines: ["The workspace that does", "the client writing for you"],
+  emphasis: "the client writing",
   /** Screen-reader and SEO form of the headline, since the visual form is
-   *  split across three masked lines. */
+   *  split across two masked lines. */
   title: "The workspace that does the client writing for you",
   intro:
     "roducq keeps your client intake, briefs, proposals, plans and updates in one workspace, then carries each stage's structure into the next — so nothing gets re-typed and nothing gets lost between them.",
@@ -228,6 +227,7 @@ export const STEPS_SECTION = {
   title: "Three steps to get set up",
   intro:
     "Bring one live client project and run it end to end. Nothing to configure first, and no import to finish before the product is useful.",
+  connectsLead: "Connects to",
 };
 
 export interface Step {
@@ -267,6 +267,10 @@ export const STEPS: readonly Step[] = [
  * engagement looks like inside the pipeline instead of pretending otherwise.
  */
 export const ENGAGEMENT_PANEL = {
+  sourcesTitle: "CONNECTED SOURCES",
+  sources: ["Slack", "Notion", "Email inbox", "Uploaded files"],
+  hubName: "roducq",
+  hubSubtitle: "Your workspace",
   workspace: "Acme Studio",
   plan: "Team plan · 4 members",
   date: "MONDAY, MARCH 3",
@@ -280,7 +284,7 @@ export const ENGAGEMENT_PANEL = {
   ],
 };
 
-/** The onboarding checklist chip the reference floats over this section. */
+/** The onboarding checklist chip the reference floats over the CTA section. */
 export const ONBOARDING_CHECKLIST = {
   title: "Getting started",
   progress: "2 of 4",
@@ -297,8 +301,8 @@ export const ONBOARDING_CHECKLIST = {
 export const INTEGRATIONS_SECTION = {
   eyebrow: "Integrations",
   titleBefore: "Works with the tools",
-  titleAfter: "you already use",
-  title: "Works with the tools you already use",
+  titleAfter: "you already pay for",
+  title: "Works with the tools you already pay for",
   intro:
     "Paste it, upload it, or connect the tool it arrived in. Everything lands in the same workspace record, and everything you send leaves through a link you control.",
   cta: { label: "Read how roducq compares", href: "/vs" },
@@ -312,11 +316,10 @@ export interface IntegrationCard {
 }
 
 /**
- * Three of these are inbound OAuth or mailbox connectors
- * (lib/integrations, app/api/email); one is the signed outbound webhook
- * dispatcher; the rest are outputs and workspace capabilities that ship in
- * the same product. Grouped, not padded — no card here describes a
- * connector that does not exist.
+ * Six cards in a three-column × two-row grid matching the Forma reference:
+ * three inbound OAuth or mailbox connectors (lib/integrations, app/api/email),
+ * the signed outbound webhook dispatcher, and two document/sharing outputs
+ * that ship in the same product.
  */
 export const INTEGRATION_CARDS: readonly IntegrationCard[] = [
   {
@@ -353,18 +356,6 @@ export const INTEGRATION_CARDS: readonly IntegrationCard[] = [
     name: "Share links",
     copy: "Public read-only links for updates, invoices and contracts — revocable.",
     icon: "share",
-    tone: "info",
-  },
-  {
-    name: "Global search",
-    copy: "One box across every surface, scoped to what the role may open.",
-    icon: "search",
-    tone: "success",
-  },
-  {
-    name: "Roles and invites",
-    copy: "Owner, member and viewer — money surfaces stay hidden from viewers.",
-    icon: "shield",
     tone: "success",
   },
 ];
@@ -374,8 +365,8 @@ export const INTEGRATION_CARDS: readonly IntegrationCard[] = [
 export const TEAMS_SECTION = {
   eyebrow: "Teams",
   titleBefore: "Set up differently",
-  titleAfter: "for every studio",
-  title: "Set up differently for every studio",
+  titleAfter: "for every team",
+  title: "Set up differently for every team",
   intro:
     "One workspace, three roles, and templates you write once. What changes between practices is the shape of the work, not the product.",
   cta: { label: "Read the comparisons", href: "/vs" },
@@ -436,12 +427,38 @@ export const TEAM_CARDS: readonly TeamCard[] = [
  */
 export const PRICING_SECTION = {
   eyebrow: "Pricing",
-  titleBefore: "Free to start. Billed per",
-  titleAfter: "workspace, never per seat.",
-  title: "Free to start. Billed per workspace, never per seat.",
+  titleBefore: "Free to start,",
+  titleAfter: "easy to grow.",
+  title: "Free to start, easy to grow.",
   intro:
-    "One product, no feature paywalls. The paid plan is the same product with a Razorpay subscription behind it, and it cancels from Settings at any time.",
+    "Billed per workspace, never per seat. One product, no feature paywalls — the paid plan is the same product with a Razorpay subscription behind it, and it cancels from Settings at any time.",
   cta: { label: "Compare plans in detail", href: "/pricing" },
+};
+
+/**
+ * Fourth pricing column (Dark premium card) matching the Forma reference's
+ * four-column layout while keeping roducq's honest contact-only model and
+ * zero fabricated prices.
+ */
+export const ENTERPRISE_COLUMN = {
+  slug: "enterprise",
+  name: "Enterprise",
+  eyebrow: "Organizations",
+  tagline:
+    "For larger organizations that need custom onboarding, security review and invoiced billing.",
+  billingNote: "Invoiced per organization — talk to us.",
+  features: [
+    "Dedicated multi-workspace onboarding",
+    "Security & procurement review package",
+    "Custom webhook & integration setup",
+    "Row-level workspace isolation audit",
+    "Priority engineering support channel",
+    "Custom service agreement terms",
+  ],
+  cta: {
+    label: "Contact sales",
+    href: "mailto:hello@roducq.dev?subject=roducq%20Enterprise%20enquiry",
+  },
 };
 
 /* ── I. FAQ ────────────────────────────────────────────────────────────── */
@@ -454,6 +471,7 @@ export const FAQ_SECTION = {
   intro: "Something else on your mind?",
   /** Inline mailto — roducq has no support form or hosted help centre. */
   contact: { label: "Send us a message", href: "mailto:hello@roducq.dev" },
+  cta: { label: "Compare roducq", href: "/vs" },
 };
 
 export interface FaqItem {
@@ -539,10 +557,12 @@ export const LIMITATION = {
 export const FOOTER = {
   tagline:
     "A client-work writing studio: intake → briefs → proposals → plans → updates.",
+  cta: { label: "Start free", href: "/signup" },
   limits:
     "No e-signature, no payment collection. roducq writes the work; you and your tools handle the rest.",
   legal: "© 2026 roducq — client-work writing studio.",
   built: "Built on Next.js and Supabase, with row-level security per workspace.",
+  wordmark: "roducq.",
   columns: [
     {
       title: "Product",
@@ -550,6 +570,15 @@ export const FOOTER = {
         { href: "/about", label: "About" },
         { href: "/pricing", label: "Pricing" },
         { href: "/vs", label: "Compare" },
+      ],
+    },
+    {
+      title: "Workspace",
+      links: [
+        { href: "/intake", label: "Intake" },
+        { href: "/briefs", label: "Briefs" },
+        { href: "/proposals", label: "Proposals" },
+        { href: "/plans", label: "Plans" },
       ],
     },
     {

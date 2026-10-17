@@ -9,7 +9,7 @@ import {
   Upload,
 } from "lucide-react";
 
-import { cn } from "@/lib/utils";
+import { clsx as cn } from "clsx";
 
 /**
  * The four feature visuals — one per FEATURE_BLOCK, each drawn from the
@@ -35,7 +35,7 @@ function Frame({
     <div
       aria-hidden="true"
       className={cn(
-        "rounded-lm-card border border-lm-border-soft bg-lm-card p-4 shadow-lm-sm",
+        "flex min-h-[14.5rem] flex-col justify-between rounded-lm-panel border border-lm-border-soft bg-lm-canvas p-4",
         className
       )}
     >
@@ -188,7 +188,7 @@ export function ProposalVisual() {
                 "flex h-6 w-8 shrink-0 items-center justify-center rounded-lm-chip text-lm-10 font-lm-bold",
                 version.active
                   ? "bg-lm-accent text-lm-on-accent"
-                  : "bg-lm-surface-muted text-lm-muted-readable"
+                  : "bg-lm-surface-muted text-lm-ink-soft"
               )}
             >
               {version.name}
@@ -245,7 +245,7 @@ export function PlanVisual() {
             <span
               className={cn(
                 "flex-1 truncate text-lm-12",
-                task.done ? "text-lm-muted line-through" : "text-lm-ink"
+                task.done ? "text-lm-ink-soft line-through" : "text-lm-ink"
               )}
             >
               {task.label}

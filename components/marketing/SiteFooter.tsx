@@ -1,30 +1,21 @@
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 import { FOOTER } from "@/app/(marketing)/home/content";
 import { RoduMark, Wordmark } from "@/components/app-shell/RoduMark";
 
 /**
- * Marketing footer — the reference's quiet closing band.
- *
- * The reference footer is deliberately small: a mark, a one-line tagline,
- * a couple of short link columns and a legal line. It is not a sitemap.
- * This matches that, with two roducq-specific additions that stay because
- * they carry information rather than bulk:
- *
- *   • the limits line, so the "no e-signature, no payment collection"
- *     contract appears at the bottom of the page too, not only in the
- *     closing band;
- *   • the stack line, which the repo's existing footer already published.
- *
- * EVERY LINK RESOLVES. The columns come from FOOTER.columns, which
- * tests/components/home.test.ts checks against the routes the app router
- * actually serves — a footer is the easiest place on a site to ship a 404.
+ * Marketing footer — the reference's closing band:
+ * - Minimal white surface (`bg-lm-card`)
+ * - Small Roducq logo, tagline, and purple primary CTA button
+ * - Multiple navigation columns (`FOOTER.columns.map`)
+ * - Bottom legal links + very large pale Roducq wordmark (`lm-footer-wordmark`)
  */
 export function SiteFooter() {
   return (
-    <footer className="mt-auto border-t border-lm-border-soft bg-lm-canvas">
+    <footer className="mt-auto overflow-hidden border-t border-lm-border-soft bg-lm-card">
       <div className="lm-shell py-12 md:py-16">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1.4fr]">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
           <div className="max-w-xs">
             <Link
               href="/"
@@ -37,11 +28,23 @@ export function SiteFooter() {
             <p className="mt-3.5 text-lm-12 leading-relaxed text-lm-muted-readable">
               {FOOTER.tagline}
             </p>
+            <div className="mt-4.5">
+              <Link
+                href={FOOTER.cta.href}
+                className="inline-flex h-11 min-h-11 items-center justify-center gap-2 rounded-lm-control bg-lm-accent px-4 text-lm-14 font-lm-semibold text-lm-on-accent shadow-lm-sm transition-colors hover:bg-lm-accent-strong"
+              >
+                {FOOTER.cta.label}
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+            </div>
+            <p className="mt-4 text-lm-12 leading-relaxed text-lm-muted-readable">
+              {FOOTER.limits}
+            </p>
           </div>
 
           {FOOTER.columns.map((column) => (
             <nav key={column.title} aria-label={column.title}>
-              <p className="text-lm-10 font-lm-semibold uppercase tracking-[0.18em] text-lm-muted-label">
+              <p className="text-lm-12 font-lm-semibold uppercase tracking-[0.16em] text-lm-muted-label">
                 {column.title}
               </p>
               <ul className="mt-3.5 flex flex-col">
@@ -58,20 +61,35 @@ export function SiteFooter() {
               </ul>
             </nav>
           ))}
-
-          <div>
-            <p className="text-lm-10 font-lm-semibold uppercase tracking-[0.18em] text-lm-muted-label">
-              Limits
-            </p>
-            <p className="mt-3.5 text-lm-12 leading-relaxed text-lm-muted-readable">
-              {FOOTER.limits}
-            </p>
-          </div>
         </div>
 
         <div className="mt-10 flex flex-col gap-1.5 border-t border-lm-border-soft pt-6.5 text-lm-12 text-lm-muted sm:flex-row sm:items-center sm:justify-between">
           <p>{FOOTER.legal}</p>
           <p>{FOOTER.built}</p>
+        </div>
+
+        {/* Very large pale Roducq wordmark matching the Forma footer */}
+        <div
+          aria-hidden="true"
+          className="mt-8 select-none overflow-hidden text-center"
+        >
+          <svg
+            viewBox="0 0 1120 210"
+            aria-hidden="true"
+            className="lm-footer-wordmark mx-auto block h-auto w-full max-w-[64rem]"
+          >
+            <text
+              x="560"
+              y="174"
+              textAnchor="middle"
+              fill="currentColor"
+              fontSize="196"
+              fontWeight="700"
+              letterSpacing="-8"
+            >
+              {FOOTER.wordmark}
+            </text>
+          </svg>
         </div>
       </div>
     </footer>

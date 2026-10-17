@@ -1,97 +1,129 @@
-import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+import {
+  ArrowRight,
+  FileDown,
+  FileText,
+  Inbox,
+  MessageSquare,
+  Webhook,
+  type LucideIcon,
+} from "lucide-react";
 
-import { CONNECTS_WITH, HERO } from "@/app/(marketing)/home/content";
+import {
+  ANNOUNCEMENT,
+  CONNECTS_WITH,
+  HERO,
+} from "@/app/(marketing)/home/content";
 
 import { PrimaryLink, SecondaryLink } from "./Buttons";
 import { WorkspacePreview } from "./WorkspacePreview";
 
+const CONNECTOR_ICONS: Record<string, LucideIcon> = {
+  Slack: MessageSquare,
+  Notion: FileText,
+  "Email inbox": Inbox,
+  Webhooks: Webhook,
+  "PDF export": FileDown,
+};
+
 /**
- * Hero — the reference's composition, in its order:
- *
- *   eyebrow pill → three masked headline lines → measure-limited intro →
- *   primary + secondary action → reassurance note → "works with" strip →
- *   the product frame, full container width.
- *
- * WHY THE HEADLINE IS THREE LINES. The reference animates each line out of
- * a masked slot, which only works if the break points are authored, not
- * wrapped. HERO.titleLines is the layout and HERO.title is the accessible
- * form of the same sentence; the <h1> carries the sentence, the lines are
- * presentation inside it (asserted by tests/components/home.test.ts).
- *
- * BACKGROUND. Two soft lilac blooms behind the copy plus a hairline grid at
- * 3% opacity. Both are transform/opacity only, both stop under
- * prefers-reduced-motion, and neither is painted above the text.
+ * Hero — centered Forma composition + full-width purple-framed dashboard preview:
+ * - Pure white center background with stepped lavender/purple framing columns
+ *   on the left and right edges (`.lm-hero-grid`).
+ * - Small announcement pill (`New` badge + link text) above headline.
+ * - Large two-line headline (dark first line, purple emphasized second line).
+ * - Centered supporting paragraph, two horizontally aligned CTA buttons,
+ *   small reassurance note, and compact "Works with" icon strip.
+ * - Large purple-framed desktop dashboard mockup (`WorkspacePreview`) below.
  */
 export function HeroSection() {
   return (
-    <section className="relative isolate overflow-hidden bg-lm-canvas">
-      {/* Decorative layer. `pointer-events-none` keeps it out of the hit
-          test, and it sits below the content in paint order via -z-10. */}
+    <section className="relative isolate overflow-hidden bg-lm-card">
+      {/* Stepped vertical framing columns + subtle lilac blooms */}
       <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+        <div className="lm-hero-grid" />
         <div className="lm-bloom-a lm-drift" />
         <div className="lm-bloom-b lm-drift" />
-        <div className="lm-hero-grid" />
       </div>
 
-      <div className="lm-shell pt-13 pb-16 md:pt-22 md:pb-22 lg:pt-30 lg:pb-30">
-        <div className="mx-auto flex max-w-lm-measure flex-col items-center text-center">
-          <span className="inline-flex min-h-8 items-center gap-2 rounded-lm-pill border border-lm-border-soft bg-lm-surface-accent px-4 py-1 text-lm-12 font-lm-semibold text-lm-ink-accent">
-            <span
-              className="h-1.5 w-1.5 rounded-lm-dot bg-lm-accent"
+      <div className="lm-shell pt-13 pb-16 md:pt-22 md:pb-22 lg:pt-22 lg:pb-30">
+        <div className="mx-auto flex max-w-[54rem] flex-col items-center text-center">
+          {/* Small announcement badge above headline */}
+          <Link
+            href={ANNOUNCEMENT.href}
+            className="inline-flex min-h-11 items-center gap-2.5 rounded-lm-pill border border-lm-border-soft bg-lm-card px-3.5 py-1.5 text-lm-12 font-lm-semibold text-lm-ink shadow-lm-sm transition-colors hover:border-lm-border-strong hover:bg-lm-surface-accent"
+          >
+            <span className="rounded-lm-pill bg-lm-surface-accent px-2 py-0.5 text-lm-12 font-lm-bold text-lm-ink-accent">
+              {ANNOUNCEMENT.badge}
+            </span>
+            <span>{HERO.eyebrow}</span>
+            <ArrowRight
+              className="h-4 w-4 text-lm-ink-accent"
               aria-hidden="true"
             />
-            {HERO.eyebrow}
-          </span>
+          </Link>
 
-          <h1 className="mt-6.5 font-lm-bold tracking-[-0.03em] text-lm-ink text-lm-29 sm:text-lm-54 lg:text-lm-64">
+          <h1
+            aria-label={HERO.title}
+            className="mt-6 font-lm-bold tracking-[-0.03em] text-lm-29 text-lm-ink sm:text-lm-54 lg:text-lm-64"
+          >
             {HERO.titleLines.map((line, index) => (
               <span
                 key={line}
                 className="lm-line"
                 style={
-                  { "--lm-line-delay": `${index * 90}ms` } as React.CSSProperties
+                  {
+                    "--lm-line-delay": `${index * 90}ms`,
+                  } as React.CSSProperties
                 }
               >
-                <span>
-                  <Highlight line={line} emphasis={HERO.emphasis} />
-                </span>
+                <span>{renderLineWithAccent(line, HERO.emphasis)}</span>
               </span>
             ))}
           </h1>
 
-          <p className="mt-6.5 max-w-[34rem] text-lm-16 text-lm-ink-soft md:text-lm-18">
+          <p className="mt-5.5 max-w-[36rem] text-lm-16 text-lm-ink-soft md:text-lm-18">
             {HERO.intro}
           </p>
 
-          <div className="mt-8 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row">
-            <PrimaryLink href={HERO.primaryCta.href} className="w-full sm:w-auto">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <PrimaryLink href={HERO.primaryCta.href}>
               {HERO.primaryCta.label}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </PrimaryLink>
-            <SecondaryLink href={HERO.secondaryCta.href} className="w-full sm:w-auto">
+            <SecondaryLink href={HERO.secondaryCta.href}>
               {HERO.secondaryCta.label}
             </SecondaryLink>
           </div>
 
-          <p className="mt-5 text-lm-12 text-lm-muted">{HERO.note}</p>
+          <p className="mt-3.5 text-lm-12 text-lm-muted">{HERO.note}</p>
 
-          <dl className="mt-9 flex flex-wrap items-center justify-center gap-x-6.5 gap-y-3 border-t border-lm-border-soft pt-6.5">
-            <dt className="sr-only">{CONNECTS_WITH.lead}</dt>
-            <dd className="text-lm-10 font-lm-semibold uppercase tracking-[0.18em] text-lm-muted-label">
+          {/* Compact "Works with" icon strip right above the dashboard */}
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+            <span className="mr-1.5 text-lm-12 font-lm-medium text-lm-muted">
               {CONNECTS_WITH.lead}
-            </dd>
-            {CONNECTS_WITH.items.map((item) => (
-              <dd
-                key={item}
-                className="text-lm-12 font-lm-semibold text-lm-muted-readable"
-              >
-                {item}
-              </dd>
-            ))}
-          </dl>
+            </span>
+            <ul className="flex flex-wrap items-center justify-center gap-1.5">
+              {CONNECTS_WITH.items.map((item) => {
+                const Icon = CONNECTOR_ICONS[item] ?? FileText;
+                return (
+                  <li
+                    key={item}
+                    className="inline-flex h-9 items-center gap-1.5 rounded-lm-row border border-lm-border-soft bg-lm-card px-2.5 text-lm-12 font-lm-semibold text-lm-ink shadow-lm-sm"
+                  >
+                    <Icon
+                      className="h-4 w-4 text-lm-ink-soft"
+                      aria-hidden="true"
+                    />
+                    <span>{item}</span>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         </div>
 
-        <div className="mt-12 md:mt-16">
+        <div className="mt-12 md:mt-14">
           <WorkspacePreview />
         </div>
       </div>
@@ -100,19 +132,20 @@ export function HeroSection() {
 }
 
 /**
- * Wraps the emphasised word in accent ink. Returns the line untouched when
- * the emphasis is absent, so a copy edit can never blank a headline line.
+ * Splits the line on `accent` if present and wraps only that phrase in the
+ * brand accent colour. Matching is literal and case-sensitive, so if the
+ * copy changes and the word moves to another line, the highlight follows it.
  */
-function Highlight({ line, emphasis }: { line: string; emphasis: string }) {
-  const at = line.indexOf(emphasis);
-  if (at === -1) return <>{line}</>;
+function renderLineWithAccent(line: string, accent: string): React.ReactNode {
+  const at = line.indexOf(accent);
+  if (at === -1) return line;
+  const before = line.slice(0, at);
+  const after = line.slice(at + accent.length);
   return (
     <>
-      {line.slice(0, at)}
-      <span className="text-lm-ink-accent">{emphasis}</span>
-      {line.slice(at + emphasis.length)}
+      {before}
+      <span className="text-lm-ink-accent">{accent}</span>
+      {after}
     </>
   );
 }
-
-

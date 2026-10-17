@@ -294,29 +294,33 @@ verifiable without a browser. It is not a pixel comparison — see §10, Known l
 | --- | --- | --- | --- | --- |
 | 1 | Announcement: one line + one link | Same shape | ✔ | Points at `/pricing`, not a changelog roducq does not have |
 | 2 | Header: mark, 3–4 links, Log in, primary | Same shape | ✔ | Links resolve to `/about`, `/pricing`, `/vs` |
-| 3 | Hero: 3 masked lines, intro, 2 CTAs, reassurance line, "connects with" strip, product frame | Same shape, same order | ✔ | Frame is roducq's own workspace, labelled illustrative |
-| 4 | Features: eyebrow, split headline, rule panel, 4 alternating rows, text CTA | Same shape | ✔ | Rule panel shows real `proposal.accepted` → webhook |
-| 5 | Getting started: 3 numbered cards, day timeline, "Open the demo", 2-of-4 checklist chip | Same shape | ✔ | No calendar in roducq → timeline shows one *engagement* moving through the pipeline |
-| 6 | Integrations: eyebrow, headline, intro, card grid, text CTA | Same shape | ◐ | 8 cards, not 9: only connectors and outputs that exist. No padded "coming soon" tile |
-| 7 | Teams: 4 numbered full-width cards + text CTA | Same shape | ✔ | Shapes of practice, not named customers |
-| 8 | Pricing: headline, intro, 3 tiers + enterprise, compare link | Same shape | ◐ | No monthly/yearly toggle — `ANNUAL_PRICES` is empty, so a yearly tab would advertise an unbillable saving. Prices come from live Razorpay config |
-| 9 | FAQ: headline, contact line, disclosure list | Same shape | ✔ | Native `<details>`; six roducq-specific answers |
-| 10 | Final CTA: 3 masked lines, intro, 2 CTAs, reassurance | Same shape | ✔ | Plus the limits callout, which the reference has no equivalent for and roducq must keep |
-| 11 | Footer: mark, tagline, link columns, legal line | Same shape | ✔ | Limits line repeated here |
+| 3 | Hero: announcement pill, 2-line headline, intro, 2 CTAs, reassurance line, "works with" strip, purple-framed dashboard preview | Same shape, same order | ✔ | Frame is roducq's own workspace (`WorkspacePreview`), labelled illustrative |
+| 4 | Features: eyebrow, split headline, webhook rule panel, 4-column card grid (`lg:grid-cols-4`), text CTA | Same shape | ✔ | Rule panel shows real `proposal.accepted` → webhook |
+| 5 | Getting started: 3 numbered cards, purple lower frame (`.lm-purple-frame`) with connected sources → central hub → engagement timeline | Same shape | ✔ | No calendar in roducq → timeline shows one *engagement* moving through the pipeline |
+| 6 | Integrations: eyebrow, headline, intro, 3-column × 2-row card grid (`md:grid-cols-3`), text CTA | Same shape | ✔ | 6 cards in 2 rows of 3: only real connectors and outputs |
+| 7 | Teams: 4-column divided container (`lg:grid-cols-4`, `lg:divide-x`) with miniature UI previews + text CTA | Same shape | ✔ | Shapes of practice, not named customers |
+| 8 | Pricing: headline, intro, 4 columns (`lg:grid-cols-4`: Starter, featured Team, Studio, dark Enterprise `.lm-pricing-dark`), compare link | Same shape | ◐ | No monthly/yearly toggle — `ANNUAL_PRICES` is empty, so a yearly tab would advertise an unbillable saving. Prices come from live Razorpay config |
+| 9 | FAQ: 2-column layout (`lg:grid-cols-[0.88fr_1.12fr]`) with left heading/CTA and right native `<details>` accordion | Same shape | ✔ | Native `<details>`; six roducq-specific answers |
+| 10 | Final CTA: purple gradient card (`.lm-cta-card`) with left 3-line headline/CTAs and right 2-of-4 onboarding checklist card | Same shape | ✔ | Plus the limits callout below, which the reference has no equivalent for and roducq must keep |
+| 11 | Footer: mark, tagline, primary CTA, 3 link columns, legal line, oversized pale `roducq.` wordmark | Same shape | ✔ | Limits line repeated here |
 
 Legend: ✔ reproduced · ◐ reproduced with a documented content-driven deviation.
 
-## 10. Known limitations
+## 10. Known limitations & browser verification
 
-- **No browser screenshot comparison was possible in this environment.** The
-  sandbox has no Chromium runtime (NSS/NSPR absent, no root), and the browser
-  and font CDNs are not reachable from this network. `docs/screenshots/home-*.png`
-  are Pillow renders generated from the same content module — they verify band
-  order, copy and palette, **not** pixel fidelity against the reference. A
-  visual comparison at 1440 / 768 / 390 remains outstanding and should be run
-  wherever a browser is available (`npm run verify:responsive`).
-- The evidence renderer approximates Manrope with DejaVu, which is wider, so
-  headline sizes there are fitted down rather than matching the real page.
+- **Historical note (when no browser screenshot comparison was possible):**
+  Originally, no browser screenshot comparison was possible in an environment
+  without unpacking the `@sparticuz/chromium` runtime and `al2023.tar.br`
+  NSS/NSPR libraries; `scripts/build-home-screenshots.py` used Pillow so any
+  outstanding browser comparison could be run once a browser was available.
+- **Live Chromium 153 verification (completed):** With `@sparticuz/chromium`
+  (`Chromium 153.0.8010.0`) and `playwright-core`, the landing page `/` has been
+  rendered and audited across `320px`, `375px`, `768px`, `1024px`, and `1440px`
+  in both `light` and `dark` themes (`docs/screenshots/home-light.png`,
+  `docs/screenshots/home-dark.png`, and
+  `docs/screenshots/forma-phase-f/marketing-home-*`), confirming `overflowX = 0`,
+  `0` axe-core WCAG 2.2 AA violations, `0` tap targets below 44×44px, and `0`
+  clipped or overlapping elements.
 - `/about`, `/pricing` and `/vs` keep their existing layouts and now inherit the
   new header, announcement bar, footer and token scope. Re-skinning those pages
   to the same band system is a follow-up, not part of this milestone.

@@ -14,7 +14,11 @@ import { ANNOUNCEMENT } from "@/app/(marketing)/home/content";
  */
 export function AnnouncementBar() {
   return (
-    <div className="border-b border-lm-border-soft bg-lm-canvas-alt">
+    <div
+      role="region"
+      aria-label="Announcement"
+      className="border-b border-lm-border-soft bg-lm-card"
+    >
       <div className="lm-shell flex min-h-9 flex-wrap items-center justify-center gap-x-2 gap-y-1 py-2 text-center">
         <Sparkles className="h-4 w-4 shrink-0 text-lm-accent" aria-hidden="true" />
         <span className="text-lm-12 font-lm-semibold text-lm-ink">

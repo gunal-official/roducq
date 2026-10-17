@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-import { cn } from "@/lib/utils";
+import { clsx as cn } from "clsx";
 
 /**
  * Scroll reveal — one IntersectionObserver, one class flip.
