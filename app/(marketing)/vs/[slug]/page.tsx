@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { VS_LIMITATION_NOTE, VS_PAGES } from "./vs-pages";
+import { SOCIAL_IMAGE, TWITTER_IMAGE } from "@/lib/site";
 
 interface VsPageProps {
   params: Promise<{ slug: string }>;
@@ -26,6 +27,20 @@ export async function generateMetadata({ params }: VsPageProps): Promise<Metadat
   return {
     title: `${entry.heading} — roducq`,
     description: entry.intro,
+    alternates: { canonical: `/vs/${slug}` },
+    openGraph: {
+      type: "website",
+      url: `/vs/${slug}`,
+      title: `${entry.heading} — roducq`,
+      description: entry.intro,
+      images: [SOCIAL_IMAGE],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${entry.heading} — roducq`,
+      description: entry.intro,
+      images: [TWITTER_IMAGE],
+    },
   };
 }
 

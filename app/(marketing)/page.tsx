@@ -9,11 +9,28 @@ import { PricingSection } from "@/components/marketing/landing/PricingSection";
 import { StepsSection } from "@/components/marketing/landing/StepsSection";
 import { TeamsSection } from "@/components/marketing/landing/TeamsSection";
 import { getPricesConfig, formatPrice } from "@/lib/razorpay";
+import { getSiteUrl, isLocalSiteUrl, SOCIAL_IMAGE, TWITTER_IMAGE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "roducq — the workspace that does the client writing",
   description:
     "Turn messy client messages into gap-flagged briefs, proposals, plans and weekly updates — one purpose-built pipeline. Free to start, billed per workspace, never per seat. No e-signature and no payment collection, by design.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: "/",
+    title: "roducq — the workspace that does the client writing",
+    description:
+      "Turn messy client messages into gap-flagged briefs, proposals, plans and weekly updates — one purpose-built pipeline. Free to start, billed per workspace, never per seat. No e-signature and no payment collection, by design.",
+    images: [SOCIAL_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "roducq — the workspace that does the client writing",
+    description:
+      "Turn messy client messages into gap-flagged briefs, proposals, plans and weekly updates — one purpose-built pipeline. Free to start, billed per workspace, never per seat. No e-signature and no payment collection, by design.",
+    images: [TWITTER_IMAGE],
+  },
 };
 
 /**
@@ -53,8 +70,24 @@ export default function HomePage() {
     ? pricesConfig.prices.map((p) => `${formatPrice(p.amount, p.currency)} ${p.currency}`)
     : [];
 
+  // Structured data: name + the page's own published description only.
+  // The URL is included only when a real deployment origin is configured
+  // (lib/site.ts) — a localhost URL in JSON-LD would be worse than none.
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "roducq",
+    description:
+      "Turn messy client messages into gap-flagged briefs, proposals, plans and weekly updates — one purpose-built pipeline. Free to start, billed per workspace, never per seat. No e-signature and no payment collection, by design.",
+    ...(isLocalSiteUrl() ? {} : { url: `${getSiteUrl()}/` }),
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       {/* C. Hero */}
       <HeroSection />
 

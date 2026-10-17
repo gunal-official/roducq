@@ -209,9 +209,14 @@ export function WorkspacePreview() {
                     <p className="text-lm-10 font-lm-semibold uppercase tracking-[0.16em] text-lm-muted">
                       Monday, March 3
                     </p>
-                    <h2 className="mt-1 font-lm-bold tracking-[-0.01em] text-lm-22 text-lm-ink">
+                    {/* Mock-UI greeting, not a page heading: this whole
+                        frame is role="img" (presentational to AT), so a
+                        real heading element here would leak a fake section
+                        into the document outline and search indexes. A
+                        paragraph with the same classes renders identically. */}
+                    <p className="mt-1 font-lm-bold tracking-[-0.01em] text-lm-22 text-lm-ink">
                       Good morning, Priya
-                    </h2>
+                    </p>
                     <p className="mt-0.5 text-lm-12 text-lm-muted-readable">
                       3 briefs in review and 1 proposal to send.
                     </p>

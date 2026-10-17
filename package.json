@@ -17,7 +17,8 @@
     "verify:live": "node scripts/verify-live-schema.mjs",
     "verify:live:policies": "node scripts/verify-live-policies.mjs",
     "test": "node --test tests/lib/*.test.ts tests/components/*.test.ts tests/db/*.test.ts",
-    "verify:responsive:setup": "playwright-core install chromium"
+    "verify:responsive:setup": "playwright-core install chromium",
+    "verify:production": "node scripts/verify-production.mjs"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.1",

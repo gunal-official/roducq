@@ -54,6 +54,13 @@ export const TOKENS = {
   terracottaHover: CORE_TOKENS.purpleHover,
 } as const;
 
+/**
+ * Dark-theme canvas, mirrored for the one consumer that cannot read CSS
+ * custom properties: the root layout's `themeColor` (browser chrome tint).
+ * Must stay equal to `.dark { --forma-background }` in app/globals.css.
+ */
+export const DARK_BACKGROUND: Hex = "#17131e";
+
 /** Forma token key → CSS custom property; deprecated keys map to Forma values. */
 export const TOKEN_CSS_VAR: Record<TokenName, string> = {
   background: "--forma-background",
