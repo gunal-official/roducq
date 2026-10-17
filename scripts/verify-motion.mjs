@@ -5,7 +5,8 @@
  * WHAT IT PROVES
  *   • no horizontal overflow at 320/375/390/768/1024/1440 in light + dark
  *   • the recorded timings are the ones actually running (620/420ms reveals,
- *     620ms hero line + chart draw, 420/340ms chrome, 260ms FAQ disclosure)
+ *     900ms hero line, 620ms chart draw, 1000ms linear connector flow,
+ *     420/340ms chrome, 260ms FAQ disclosure)
  *   • below 768px the compact reductions are active (420ms, 8px, no drift)
  *   • prefers-reduced-motion: reduce resolves every sample to its end state —
  *     opacity 1, transform none, no animation, no SVG dash offset
@@ -240,7 +241,8 @@ async function main() {
     check(desktop.reveal?.duration === "620", "desktop reveal is not 620ms", desktop.reveal);
     check(desktop.reveal?.visible === "true", "desktop reveal did not become visible", desktop.reveal);
     check(desktop.reveal?.opacity === "1", "desktop reveal did not settle at opacity 1", desktop.reveal);
-    check(desktop.line?.duration === "0.62s", "desktop hero line is not 620ms", desktop.line);
+    // The reference raises display type over 900ms at every width (measured).
+    check(desktop.line?.duration === "0.9s", "desktop hero line is not 900ms", desktop.line);
     check(desktop.chart?.duration === "0.62s", "chart draw is not 620ms", desktop.chart);
     // The reference's flow lines march continuously: `flowLinesDash` runs at
     // 1000ms, linear, infinite, with no delay on any path. Measured on the
@@ -269,7 +271,7 @@ async function main() {
     report.motion.compact = compact;
     check(compact.reveal?.duration === "420", "compact reveal is not 420ms", compact.reveal);
     check(compact.reveal?.mode === "compact", "compact mode not reported", compact.reveal);
-    check(compact.line?.duration === "0.42s", "compact hero line is not 420ms", compact.line);
+    check(compact.line?.duration === "0.9s", "compact hero line is not 900ms (the reference does not shorten it)", compact.line);
     check(compact.header?.duration === "0.34s", "compact header is not 340ms", compact.header);
     check(compact.announce?.duration === "0.3s", "compact announcement is not 300ms", compact.announce);
     check(compact.drift?.animation === "none", "compact idle drift is still running", compact.drift);

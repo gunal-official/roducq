@@ -133,15 +133,15 @@ function PricingCard({
           </h3>
         </div>
 
-        <p className="mt-2 text-lm-12 leading-relaxed text-lm-ink-soft">
+        <p className="mt-2 text-lm-15 leading-relaxed text-lm-ink-soft">
           {tier.tagline}
         </p>
 
         <div className="mt-5 border-t border-lm-border-soft pt-4.5">
           {tier.pricing === "free" ? (
-            <p className="font-lm-medium text-lm-36 tracking-[-0.03em] text-lm-ink lg:text-lm-35 xl:text-lm-46">
+            <p className="font-lm-medium text-lm-36 tracking-[-0.07em] text-lm-ink lg:text-lm-35 xl:text-lm-46">
               $0
-              <span className="ml-2 font-lm-regular text-lm-12 tracking-normal text-lm-muted">
+              <span className="ml-2 font-lm-regular text-lm-14 tracking-normal text-lm-muted">
                 / month
               </span>
             </p>
@@ -149,7 +149,7 @@ function PricingCard({
             billingConfigured && priceLines.length > 0 ? (
               <p className="font-lm-medium text-lm-36 tracking-[-0.03em] text-lm-ink xl:text-lm-46">
                 {splitPrice(priceLines[0]).amount}
-                <span className="ml-2 font-lm-regular text-lm-12 tracking-normal text-lm-muted">
+                <span className="ml-2 font-lm-regular text-lm-14 tracking-normal text-lm-muted">
                   {splitPrice(priceLines[0]).currency} / month
                 </span>
               </p>
@@ -159,7 +159,7 @@ function PricingCard({
               </p>
             )
           ) : (
-            <p className="font-lm-medium text-lm-36 tracking-[-0.02em] text-lm-ink lg:text-lm-35 xl:text-lm-46">
+            <p className="font-lm-medium text-lm-36 tracking-[-0.07em] text-lm-ink lg:text-lm-35 xl:text-lm-46">
               Custom
             </p>
           )}
@@ -195,7 +195,7 @@ function PricingCard({
           {tier.features.map((feature) => (
             <li
               key={feature}
-              className="flex items-start gap-2.5 text-lm-12 text-lm-ink-soft"
+              className="flex items-start gap-2.5 text-lm-15 text-lm-ink-soft"
             >
               <Check
                 className="mt-0.5 h-4 w-4 shrink-0 text-lm-ink-accent"
@@ -241,7 +241,7 @@ function EnterprisePricingCard() {
       </p>
 
       <div className="mt-5 border-t border-lm-dark-border pt-4.5">
-        <p className="font-lm-medium text-lm-36 tracking-[-0.02em] text-lm-dark-ink lg:text-lm-35 xl:text-lm-46">
+        <p className="font-lm-medium text-lm-36 tracking-[-0.07em] text-lm-dark-ink lg:text-lm-35 xl:text-lm-46">
           Custom
         </p>
         <p className="mt-2 text-lm-12 text-lm-dark-muted">

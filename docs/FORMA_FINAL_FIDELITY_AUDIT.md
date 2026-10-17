@@ -28,7 +28,7 @@ there:
 | | |
 | --- | --- |
 | Workflow | `.github/workflows/forma-reference.yml` |
-| Trigger | `workflow_dispatch`, plus a temporary `push` trigger on the audit branch so GitHub would register the file (a `workflow_dispatch` workflow cannot be dispatched until it exists on the default branch) |
+| Trigger | `workflow_dispatch`. During the audit it also carried a temporary `push` trigger on the audit branch, because GitHub will not dispatch a workflow that does not yet exist on the default branch; that trigger was removed before the PR, so the workflow is dispatch-only. |
 | Harness | `scripts/capture-landing-reference.mjs` |
 | Browser | `playwright-core` + a pinned Chromium, the same build on both sides of the comparison |
 | Output | `docs/screenshots/forma-reference/` — full-page and per-band PNGs, a metrics JSON, an animation log, and a failures file |
@@ -93,7 +93,7 @@ both measured numbers and the difference — it never issues a verdict.
 
 | | Reference (Forma) | roducq before | roducq after |
 | --- | --- | --- | --- |
-| Page height @1440 | 8395px | 9755px | content-driven; see §3 |
+| Page height @1440 | 8395px | 9755px | 10030px — content-driven; see R10 |
 | Horizontal overflow @1440 | 0px | 0px | 0px |
 | Horizontal overflow @320/375/390/768/1024, light + dark | 0px | 0px | 0px |
 | Content column @1440 | 1240px (x = 100) | 1120px (x = 160) | **1240px (x = 100)** |
@@ -108,6 +108,9 @@ both measured numbers and the difference — it never issues a verdict.
 | Action button | r 10px, h 52px, 15px/400 | r 5px, h 48px, 14px/600 | **r 10px, h 52px, 15px/400** |
 | Purple frame | `#36278c` → `#9178e6` | `#9873f1` → `#5c40e2` (pale, vertical) | **`#36278c` → `#9178e6`** |
 | Connector flow | `flowLinesDash` 1000ms linear infinite | one-shot 620ms draw, staggered | **1000ms linear infinite, in step** |
+| Section headings | rise word by word, 900ms `cubic-bezier(0.16,1,0.3,1)`, 50ms apart | whole block fades with its band | **word by word, 900ms, 50ms apart** |
+| Hero headline | 900ms `cubic-bezier(0.16,1,0.3,1)`, starts at 80ms | 620ms (420ms phone), starts at 0 | **900ms at every width, starts at 80ms** |
+| Hero entrance ladder | 0 / 80 / 550 / 650 / 720 / 800 / 850ms, 900ms each (dashboard 1300ms) | headline only; dashboard via 620ms reveal at 180ms | **the measured ladder** |
 | Link transition | 0.2s | 0.15s `cubic-bezier(0.4,0,0.2,1)` | **0.2s** |
 
 ---
@@ -311,11 +314,26 @@ at any of the six widths, in either theme.
 Recorded from `document.getAnimations()` on the live site, with the
 recorder installed before the page's first script:
 
-| Animation | Timing | Where |
-| --- | --- | --- |
-| `flowLinesDash` | **1000ms, linear, infinite**, delay 0 on every path | 11 paths at 1440px, 6 at 390px — the connector lines in the getting-started diagram and in the integrations illustration |
-| reveal (WAAPI) | 750ms, `cubic-bezier(0.45, 0, 0.55, 1)`, 1 iteration | the scroll-triggered entrances |
-| reveal (WAAPI) | 700ms / 600ms / 450ms / 500ms with `cubic-bezier(0.45,0,0.55,1)`, `cubic-bezier(0.2,0.7,0.2,1)`, `cubic-bezier(0.65,0,0.35,1)` | further entrances at 390px |
+The recorder also captures the animated element's text and path, so every
+timing below is **attributed** to the surface that owns it. The full record
+is in `docs/screenshots/forma-final/reference-animations.json`.
+
+| Surface (attributed by text) | Duration | Delay | Easing |
+| --- | --- | --- | --- |
+| Every section heading, **one span per word** ("Four" / "jobs" / "Forma" …) | 900ms | 0, 50, 100, 150 … 350ms | `cubic-bezier(0.16, 1, 0.3, 1)` |
+| Hero announcement pill ("New · Focus time now syncs…") | 900ms | 0 | `cubic-bezier(0.2, 0.7, 0.2, 1)` |
+| Hero headline block | 900ms | 80ms | `cubic-bezier(0.16, 1, 0.3, 1)` |
+| Hero lead paragraph | 900ms | 550ms | `cubic-bezier(0.2, 0.7, 0.2, 1)` |
+| Hero CTA row ("Start for free / Try the demo") | 900ms | 650ms | same |
+| Hero reassurance line | 900ms | 720ms | same |
+| Hero "Connects with" strip | 900ms | 800ms | same |
+| Hero dashboard preview | **1300ms** | 850ms | same |
+| Hero background columns | 1400ms | 200ms | same |
+| Connector paths (`flowLinesDash`) | **1000ms, infinite** | 0 on all 11 paths | `linear` |
+| Card-level entrances inside bands | 350–750ms | 0 | `(0.45,0,0.55,1)`, `(0.2,0.7,0.2,1)`, `(0.42,0,0.58,1)`, `(0.65,0,0.35,1)` |
+
+**Every one of these timings is identical at 1440px and at 390px.** The
+reference does not shorten its display motion on a phone.
 
 CSS transitions on the reference's own controls: **0.2s** on links
 (`cubic-bezier(0.2, 0.7, 0.2, 1)` on the nav, `ease` on the FAQ mailto) and
@@ -343,20 +361,47 @@ own `Reveal` still gates when the march begins, so nothing is spent before
 the visitor scrolls to it. The per-path stagger was removed because the
 reference's eleven paths all carry `animation-delay: 0s`.
 
-**Link transitions.** 150ms → 200ms across the landing's links and buttons.
+**Section headings rise word by word.** `SectionHeading` now renders each
+word in its own mask (`.lm-word`) with `--lm-word-delay = index × 50ms`, and
+the rise is 900ms on `cubic-bezier(0.16, 1, 0.3, 1)`. The words wait, hidden,
+until the heading's own `Reveal` reports `data-visible="true"` — the same
+scroll trigger as every band — so nothing below the fold is spent on load.
+Without JavaScript there is no `.lm-js` marker and the words are plain text.
+They remain real words separated by real spaces, so the heading still reads
+as one sentence to a screen reader (verified: `#features h2` textContent is
+"Four jobs roducq takes off your plate").
+
+**The hero's entrance ladder.** The announcement, headline, lead, CTA row,
+reassurance line, "works with" strip and dashboard now arrive at the
+reference's measured 0 / 80 / 550 / 650 / 720 / 800 / 850ms, each over
+900ms on `cubic-bezier(0.2, 0.7, 0.2, 1)` (the dashboard over 1300ms). The
+dashboard previously used a Motion `Reveal` at 180ms; it is above the fold
+on every width, so the reference's load-time ladder is the faithful model,
+and it is a CSS animation so it also completes without hydration.
+
+**The hero headline.** 620ms (420ms on phones) → **900ms at every width**
+on `cubic-bezier(0.16, 1, 0.3, 1)`, starting at 80ms; the second line
+starts 200ms later (four words × the measured 50ms cadence).
+
+**The chart draw follows the dashboard.** Because the dashboard now arrives
+at 850ms, the chart's draw, area fade and point pops are offset by the same
+850ms (`--lm-chart-offset`). This keeps the existing 620ms draw visible
+instead of letting it finish behind a still-invisible card. The offset is
+*derived* from the measured dashboard delay; the chart's own 620ms draw
+remains an inherited value (see §5.3).
+
+**Link transitions.** 150ms → 200ms across the landing's links and buttons;
+the header navigation uses the reference's `cubic-bezier(0.2, 0.7, 0.2, 1)`
+and the FAQ's inline link uses `ease`, both measured.
 
 ### 5.3 What was deliberately NOT changed
 
-* **The reveal duration (620ms desktop / 420ms compact).** The reference's
-  measured entrances run 450–750ms with several different easings. 620ms
-  sits inside that band, and the recorded values are locked by
-  `scripts/verify-motion.mjs` and by `docs/ANIMATION_NOTES.md`. Replacing
-  one working estimate with another estimate would be churn, not fidelity.
-* **The reveal easing (`cubic-bezier(0.22, 1, 0.36, 1)`).** The reference
-  uses at least three different easings for different entrances
-  (`(0.45,0,0.55,1)`, `(0.2,0.7,0.2,1)`, `(0.65,0,0.35,1)`). There is no
-  single "reference reveal easing" to adopt, so the page's own recorded
-  value stands.
+* **The band/card reveal (620ms desktop / 420ms compact, `cubic-bezier(0.22, 1, 0.36, 1)`).**
+  The reference's card-level entrances run 350–750ms across four different
+  easings, and they are attached to the reference's own illustration
+  layers, which this page does not share. 620ms sits inside that measured
+  band. There is no single "reference card easing" to adopt, so the
+  recorded value stands and is labelled an inherited estimate.
 * **The chart draw.** The reference's dashboard chart path did not appear
   in the reference's animation list at the moment of capture. That is
   *absence of evidence*, not evidence of absence — the reference's chart
@@ -384,7 +429,7 @@ is a deliberate decision, not an oversight.
 | --- | --- | --- |
 | R1 | **Body copy is set in Manrope; the reference sets body copy in DM Sans** (276 of its paragraphs) and Manrope only for display headings. | The repository's own design system self-hosts one variable font and explicitly refuses a second runtime font stack. Adding DM Sans would mean a new font file, a new payload and a change to a published rule — a much larger change than a fidelity pass should make. The *typeface* is otherwise identical (the reference's display type is also Manrope). |
 | R2 | **Secondary ink.** The reference's body copy is the cool slate `#687083` (127 elements). This page uses the plum-tinted `#4b505f` / `#7a659f`. | `#687083` on the page's `--lm-canvas-alt` wash is 4.33:1 — below the 4.5:1 body-text floor the repository's contrast contract holds every text token to. The reference never puts it on that wash; this page does. The token is therefore kept, and the reference's slate is used where it is safe (the feature card label, which sits on a white card at 4.91:1). |
-| R3 | **The hero headline is two masked lines; the reference's is eight per-word headings.** | The reference's word-level markup is a by-product of how Framer builds the page. Reproducing it means rebuilding the headline as eight independently animated spans — a structural change to a working component for a difference the eye reads identically. Recorded as D1. |
+| R3 | **The hero headline rises as two masked lines; the reference's rises word by word.** | Section headings now rise word by word at the measured cadence. The hero keeps its two line masks because its accent phrase ("the client writing") spans a line break and its `aria-label` contract is tested; it now runs at the reference's measured 900ms / `cubic-bezier(0.16,1,0.3,1)` / 80ms start, with the second line offset by four words' worth of the 50ms cadence. Recorded as D1. |
 | R4 | **The FAQ is a native `<details>` disclosure; the reference's is a JS accordion with `tabindex=0` and a rotating icon.** | The native disclosure keeps working without JavaScript, which the milestone requires and the reference does not. The measured 260ms transition and the rotating `+`/`×` icon are already in place. Recorded as D3. |
 | R5 | **No monthly / yearly pricing toggle.** | A toggle that changes prices is pricing behaviour, and pricing is behind the protected Razorpay path. The reference's toggle is a real difference; it is recorded rather than implemented. |
 | R6 | **Six integration cards, not nine.** | The reference shows nine cards in its 3×3 grid and says "twelve integrations today". The grid *geometry* is corrected (3 columns, 14px gaps, 404px cards, 25px padding); the *count* would mean inventing three integration cards of marketing copy, which this milestone explicitly does not do. |
@@ -445,6 +490,30 @@ is a deliberate decision, not an oversight.
   corrections.
 * **No horizontal overflow** at 320 / 375 / 390 / 768 / 1024 / 1440 in
   either theme, before and after.
+* **The new entrances are transform + opacity only.** The word masks and
+  the hero ladder animate `transform` and `opacity`; the masks use
+  `overflow: hidden` on an inline-block, which does not affect layout.
+
+### Measured after-state (section heading, light theme)
+
+| Width | Reference | roducq after |
+| --- | --- | --- |
+| 1440 | 54px/400, x 100, w 1240 | 54px/400, x 100, w 1240 |
+| 1024 | 34px/400, x 42, w 940 | 34px/400, x 40, w 944 |
+| 768 | 32px/400, x 16, w 736 | 32px/400, x 16, w 736 |
+| 390 | 32px/400, x 16, w 358 | 32px/400, x 16, w 358 |
+| 375 | 32px/400, x 16, w 343 | 32px/400, x 16, w 343 |
+| 320 | 32px/400, x 16, w 288 | 32px/400, x 16, w 288 |
+
+Hero CTAs after: 52px tall at ≥768 (44px on phones, kept as the tap-target
+floor), radius 10px, 15px / 400, 0.2s — matching the reference.
+
+### Screenshot evidence
+
+`docs/screenshots/forma-final/{reference,before,after}/` holds the same
+bands from the reference, from this page before the pass and from this page
+after it, all captured by the same harness in the same Chromium at 1440×900
+(and 390×844 for the hero and features).
 
 ---
 
@@ -454,11 +523,13 @@ is a deliberate decision, not an oversight.
 | --- | --- | --- |
 | Types | `npx tsc --noEmit` | **pass** |
 | Lint | `npm run lint` | **pass** |
-| Tests | `npm test` | **1100 pass, 0 fail** (baseline 1098; two new assertions for the measured display type and the sampled gradient) |
+| Tests | `npm test` | **1104 pass, 0 fail** (baseline 1098; six new tests: measured display type, sampled gradient, connector flow, word-by-word headings, hero ladder, reduced-motion coverage of the new entrances) |
 | Build | `npm run build` | **pass** — 30 routes |
 | Motion + responsive | `node scripts/verify-motion.mjs` | **PASS**: 12 viewport/theme renders + tablet boundary + motion + reduced motion |
 | Overflow + console | same harness | 0px overflow and 0 console errors at 320 / 375 / 390 / 768 / 1024 / 1440, light and dark |
 | Reference capture | `.github/workflows/forma-reference.yml` | 12/12 reference viewports captured, 0 failures |
+| End-state probe | Chromium, JS on / reduced motion / JS off, 1440 + 390 | 39/39 heading words and 7/7 hero rungs settle at opacity 1 in every mode; 0px overflow |
+| Interactions | Chromium | all landing links resolve (app routes 307 to login, unchanged); nav 0.2s; FAQ opens on Enter, closes on Space, icon rotates 45°; theme toggle switches to dark; mobile menu opens, closes on Escape and returns focus to "Open menu"; CTA radius 10px |
 
 ### Protected paths
 
@@ -468,7 +539,6 @@ database or backend file. `git diff --name-only main...HEAD` contains only:
 ```
 .github/workflows/forma-reference.yml
 app/(marketing)/landing.css
-app/(marketing)/home/content.ts          (unchanged)
 components/marketing/SiteHeader.tsx
 components/marketing/SiteFooter.tsx
 components/marketing/landing/*.tsx
@@ -481,6 +551,8 @@ tailwind.config.ts
 tests/components/home.test.ts
 docs/FORMA_FINAL_FIDELITY_AUDIT.md
 docs/ANIMATION_NOTES.md
+docs/screenshots/forma-final/**           (evidence)
+docs/screenshots/forma-motion/**          (regenerated harness evidence)
 ```
 
 Razorpay production payments remain disabled and the PR #44 / #45

@@ -185,6 +185,15 @@
   --lm-motion-slow: 620ms;
   --lm-ease: cubic-bezier(0.22, 1, 0.36, 1);
 
+  /* MEASURED on the live reference (see docs/FORMA_FINAL_FIDELITY_AUDIT.md §5).
+     The reference's display type rises word by word over 900ms on
+     cubic-bezier(0.16, 1, 0.3, 1) at a 50ms cadence, and its body blocks
+     fade up over 900ms on cubic-bezier(0.2, 0.7, 0.2, 1). Both timings are
+     the same at 1440px and at 390px, so they are not reduced on a phone. */
+  --lm-motion-display: 900ms;
+  --lm-ease-display: cubic-bezier(0.16, 1, 0.3, 1);
+  --lm-ease-body: cubic-bezier(0.2, 0.7, 0.2, 1);
+
   /* ── Layout ──────────────────────────────────────────────────────────
      The reference's content column measures 1240px at a 1440px viewport
      (100px on each side), 940px at 1024, 736px at 768 and 358px at 390.
@@ -319,8 +328,65 @@
 
 .lm-line > span {
   display: block;
-  animation: lm-line-rise var(--lm-motion-slow) var(--lm-ease) both;
+  animation: lm-line-rise var(--lm-motion-display) var(--lm-ease-display) both;
   animation-delay: var(--lm-line-delay, 0ms);
+}
+
+/* ── Per-word heading rise ──────────────────────────────────────────────
+   The reference renders every heading as one span per word and raises them
+   in sequence: 900ms on cubic-bezier(0.16, 1, 0.3, 1), 50ms apart. The
+   same curve and duration are used for the hero's two lines, so they share
+   this token. */
+.lm-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.09em; /* descenders must not clip inside the mask */
+  margin-bottom: -0.09em;
+}
+
+.lm-word > span {
+  display: inline-block;
+}
+
+/* Section headings sit below the fold, so their words must not spend the
+   rise on page load: they wait, hidden, until the heading's own Reveal
+   reports itself visible — the same scroll trigger every band uses.
+   Without JavaScript (no `.lm-js`) the words are simply there. */
+.lm-js .lm-reveal .lm-word > span {
+  opacity: 0;
+  transform: translateY(102%);
+}
+
+.lm-js .lm-reveal[data-visible="true"] .lm-word > span {
+  opacity: 1;
+  transform: none;
+  animation: lm-line-rise var(--lm-motion-display) var(--lm-ease-display) both;
+  animation-delay: var(--lm-word-delay, 0ms);
+}
+
+/* ── The hero's entrance ladder ─────────────────────────────────────────
+   The reference brings the hero in as a sequence rather than all at once.
+   Measured on the live site: the announcement at 0ms, the headline at
+   80ms, the lead paragraph at 550ms, the call-to-action row at 650ms,
+   the reassurance line at 720ms, the "connects with" strip at 800ms and
+   the dashboard preview at 850ms. Every step is 900ms on
+   cubic-bezier(0.2, 0.7, 0.2, 1). */
+@keyframes lm-hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--lm-hero-rise, 14px));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.lm-hero-in {
+  animation: lm-hero-in var(--lm-hero-duration, var(--lm-motion-display))
+    var(--lm-ease-body) both;
+  animation-delay: var(--lm-hero-delay, 0ms);
 }
 
 /* ── Scroll reveal ───────────────────────────────────────────────────────
@@ -605,12 +671,14 @@
 .lm-js .lm-chart-line {
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
-  animation: lm-draw 620ms cubic-bezier(0.33, 1, 0.68, 1) 120ms both;
+  animation: lm-draw 620ms cubic-bezier(0.33, 1, 0.68, 1)
+    calc(var(--lm-chart-offset, 0ms) + 120ms) both;
 }
 
 .lm-js .lm-chart-area {
   opacity: 0;
-  animation: lm-chart-area 620ms cubic-bezier(0.33, 1, 0.68, 1) 180ms both;
+  animation: lm-chart-area 620ms cubic-bezier(0.33, 1, 0.68, 1)
+    calc(var(--lm-chart-offset, 0ms) + 180ms) both;
 }
 
 .lm-js .lm-chart-point {
@@ -618,7 +686,7 @@
   transform-box: fill-box;
   transform-origin: center;
   animation: lm-chart-pop 260ms var(--lm-ease) both;
-  animation-delay: var(--lm-chart-delay, 300ms);
+  animation-delay: calc(var(--lm-chart-offset, 0ms) + var(--lm-chart-delay, 300ms));
 }
 
 /* ── Connector lines ────────────────────────────────────────────────────
@@ -649,6 +717,10 @@
 @media (prefers-reduced-motion: reduce) {
   /* Every entrance resolves instantly: no fade, no translation, no draw. */
   .lm-line > span,
+  .lm-word > span,
+  .lm-js .lm-reveal .lm-word > span,
+  .lm-js .lm-reveal[data-visible="true"] .lm-word > span,
+  .lm-hero-in,
   .lm-js .lm-reveal,
   .lm-js .lm-reveal[data-visible="true"],
   .lm-js .lm-announce,
@@ -735,6 +807,9 @@
   }
   .lm-js .lm-reveal {
     --lm-reveal-shift: 8px;
+  }
+  .lm-hero-in {
+    --lm-hero-rise: 8px;
   }
   .lm-js .lm-announce {
     animation-duration: 300ms;

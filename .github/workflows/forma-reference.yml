@@ -22,9 +22,6 @@ on:
         description: "Reference site to measure against"
         required: false
         default: "https://forma-visuvate.framer.website/"
-  push:
-    branches:
-      - arena/4589c8ea-roducq
 
 permissions:
   contents: write

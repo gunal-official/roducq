@@ -84,7 +84,7 @@ export function SiteHeader() {
               href={item.href}
               aria-current={active(item.href) ? "page" : undefined}
               className={cn(
-                "inline-flex min-h-11 min-w-11 items-center rounded-lm-control px-3.5 text-lm-15 transition-colors duration-200",
+                "inline-flex min-h-11 min-w-11 items-center rounded-lm-control px-3.5 text-lm-15 transition-colors duration-200 ease-lm-nav",
                 active(item.href)
                   ? "font-lm-semibold text-lm-ink-accent"
                   : "font-lm-regular text-lm-muted-readable hover:bg-lm-surface-accent hover:text-lm-ink"

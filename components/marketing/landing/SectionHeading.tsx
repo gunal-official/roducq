@@ -63,7 +63,10 @@ export function SectionHeading({
             : "font-lm-regular text-lm-32 lg:text-lm-34 xl:text-lm-54",
         )}
       >
-        {before} <span className="text-lm-ink-accent">{after}</span>
+        <Words text={before} startIndex={0} />{" "}
+        <span className="text-lm-ink-accent">
+          <Words text={after} startIndex={countWords(before)} />
+        </span>
       </Tag>
       {intro ? (
         <p
@@ -85,6 +88,43 @@ export function SectionHeading({
       {headBlock}
       <div className="shrink-0">{aside}</div>
     </div>
+  );
+}
+
+/** The reference's measured word cadence: each word starts 50ms after the last. */
+const WORD_STAGGER_MS = 50;
+
+function countWords(text: string): number {
+  return text.split(/\s+/).filter(Boolean).length;
+}
+
+/**
+ * One masked span per word, so the heading can rise word by word the way
+ * the reference's does (900ms on cubic-bezier(0.16, 1, 0.3, 1), 50ms
+ * apart — measured on the live site). The words stay real text separated
+ * by real spaces, so the heading still reads as one sentence to a screen
+ * reader and still wraps like ordinary text.
+ */
+function Words({ text, startIndex }: { text: string; startIndex: number }) {
+  const words = text.split(/\s+/).filter(Boolean);
+  return (
+    <>
+      {words.map((word, index) => (
+        <span key={`${word}-${index}`}>
+          {index > 0 ? " " : null}
+          <span
+            className="lm-word"
+            style={
+              {
+                "--lm-word-delay": `${(startIndex + index) * WORD_STAGGER_MS}ms`,
+              } as React.CSSProperties
+            }
+          >
+            <span>{word}</span>
+          </span>
+        </span>
+      ))}
+    </>
   );
 }
 

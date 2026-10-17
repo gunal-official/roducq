@@ -16,7 +16,6 @@ import {
 } from "@/app/(marketing)/home/content";
 
 import { PrimaryLink, SecondaryLink } from "./Buttons";
-import { Reveal } from "./Reveal";
 import { WorkspacePreview } from "./WorkspacePreview";
 
 const CONNECTOR_ICONS: Record<string, LucideIcon> = {
@@ -37,6 +36,31 @@ const CONNECTOR_ICONS: Record<string, LucideIcon> = {
  *   small reassurance note, and compact "Works with" icon strip.
  * - Large purple-framed desktop dashboard mockup (`WorkspacePreview`) below.
  */
+/**
+ * The hero's entrance ladder, measured on the live reference: each step is
+ * a 900ms fade-up on cubic-bezier(0.2, 0.7, 0.2, 1) except the dashboard,
+ * which takes 1300ms. Keyed by element so the order reads like the page.
+ */
+const HERO_LADDER = {
+  announcement: 0,
+  headline: 80,
+  lead: 550,
+  actions: 650,
+  note: 720,
+  connects: 800,
+  dashboard: 850,
+} as const;
+
+/** The second headline line starts four words in: 4 × the 50ms word cadence. */
+const SECOND_LINE_OFFSET_MS = 200;
+
+function ladder(delay: number, duration?: number): React.CSSProperties {
+  return {
+    "--lm-hero-delay": `${delay}ms`,
+    ...(duration ? { "--lm-hero-duration": `${duration}ms` } : {}),
+  } as React.CSSProperties;
+}
+
 export function HeroSection() {
   return (
     <section className="relative isolate overflow-hidden bg-lm-card">
@@ -52,7 +76,8 @@ export function HeroSection() {
           {/* Small announcement badge above headline */}
           <Link
             href={ANNOUNCEMENT.href}
-            className="inline-flex min-h-11 items-center gap-2.5 rounded-lm-pill border border-lm-border-soft bg-lm-card px-3.5 py-1.5 text-lm-14 font-lm-regular text-lm-ink shadow-lm-sm transition-colors hover:border-lm-border-strong hover:bg-lm-surface-accent"
+            style={ladder(HERO_LADDER.announcement)}
+            className="lm-hero-in inline-flex min-h-11 items-center gap-2.5 rounded-lm-pill border border-lm-border-soft bg-lm-card px-3.5 py-1.5 text-lm-14 font-lm-regular text-lm-ink shadow-lm-sm transition-colors hover:border-lm-border-strong hover:bg-lm-surface-accent"
           >
             <span className="rounded-lm-pill bg-lm-surface-accent px-2 py-0.5 text-lm-12 font-lm-semibold text-lm-ink-accent">
               {ANNOUNCEMENT.badge}
@@ -74,7 +99,7 @@ export function HeroSection() {
                 className="lm-line"
                 style={
                   {
-                    "--lm-line-delay": `${index * 90}ms`,
+                    "--lm-line-delay": `${HERO_LADDER.headline + index * SECOND_LINE_OFFSET_MS}ms`,
                   } as React.CSSProperties
                 }
               >
@@ -83,11 +108,16 @@ export function HeroSection() {
             ))}
           </h1>
 
-          <p className="mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18">
+          <p
+            style={ladder(HERO_LADDER.lead)}
+            className="lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18">
             {HERO.intro}
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <div
+            style={ladder(HERO_LADDER.actions)}
+            className="lm-hero-in mt-8 flex flex-wrap items-center justify-center gap-3"
+          >
             <PrimaryLink href={HERO.primaryCta.href}>
               {HERO.primaryCta.label}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -97,10 +127,18 @@ export function HeroSection() {
             </SecondaryLink>
           </div>
 
-          <p className="mt-3.5 text-lm-12 text-lm-muted">{HERO.note}</p>
+          <p
+            style={ladder(HERO_LADDER.note)}
+            className="lm-hero-in mt-3.5 text-lm-12 text-lm-muted"
+          >
+            {HERO.note}
+          </p>
 
           {/* Compact "Works with" icon strip right above the dashboard */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+          <div
+            style={ladder(HERO_LADDER.connects)}
+            className="lm-hero-in mt-8 flex flex-wrap items-center justify-center gap-2"
+          >
             <span className="mr-1.5 text-lm-12 font-lm-medium text-lm-muted">
               {CONNECTS_WITH.lead}
             </span>
@@ -124,9 +162,21 @@ export function HeroSection() {
           </div>
         </div>
 
-        <Reveal delay={180} className="mt-12 md:mt-14">
+        {/* The dashboard is the last rung: 850ms in, over 1300ms. The chart
+            inside it offsets its own draw by the same 850ms so the line is
+            still drawing when the frame arrives, instead of finishing
+            behind an invisible card. */}
+        <div
+          style={
+            {
+              ...ladder(HERO_LADDER.dashboard, 1300),
+              "--lm-chart-offset": `${HERO_LADDER.dashboard}ms`,
+            } as React.CSSProperties
+          }
+          className="lm-hero-in mt-12 md:mt-14"
+        >
           <WorkspacePreview />
-        </Reveal>
+        </div>
       </div>
     </section>
   );

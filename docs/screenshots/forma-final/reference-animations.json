@@ -1,0 +1,389 @@
+{
+ "source": "document.getAnimations() on https://forma-visuvate.framer.website/ via .github/workflows/forma-reference.yml, 2026-10-17, 1440x900 light",
+ "recorded": [
+  {
+   "tag": "path",
+   "text": "",
+   "duration": 1000,
+   "delay": 0,
+   "easing": "linear",
+   "iterations": null
+  },
+  {
+   "tag": "div",
+   "text": "",
+   "duration": 1400,
+   "delay": 200,
+   "easing": "cubic-bezier(0.2, 0.7, 0.2, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "div",
+   "text": "NewFocus time now syncs with your calendarNewFocus time now ",
+   "duration": 900,
+   "delay": 0,
+   "easing": "cubic-bezier(0.2, 0.7, 0.2, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "div",
+   "text": "Theworkspacethatdoesthefollow-upforyou",
+   "duration": 900,
+   "delay": 80,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "div",
+   "text": "Forma keeps your tasks, calendar, and team tools in one plac",
+   "duration": 900,
+   "delay": 550,
+   "easing": "cubic-bezier(0.2, 0.7, 0.2, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "div",
+   "text": "Start for freeTry the demo",
+   "duration": 900,
+   "delay": 650,
+   "easing": "cubic-bezier(0.2, 0.7, 0.2, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "div",
+   "text": "Free plan available. No credit card needed.",
+   "duration": 900,
+   "delay": 720,
+   "easing": "cubic-bezier(0.2, 0.7, 0.2, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "div",
+   "text": "Connects with+5 more",
+   "duration": 900,
+   "delay": 800,
+   "easing": "cubic-bezier(0.2, 0.7, 0.2, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "div",
+   "text": "fforma.SStudio workspacePro plan \u00b7 8 membersWORKSPACEOvervie",
+   "duration": 1300,
+   "delay": 850,
+   "easing": "cubic-bezier(0.2, 0.7, 0.2, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "Four",
+   "duration": 900,
+   "delay": 0,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "jobs",
+   "duration": 900,
+   "delay": 50,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "Forma",
+   "duration": 900,
+   "delay": 100,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "takes",
+   "duration": 900,
+   "delay": 150.00000000000003,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "off",
+   "duration": 900,
+   "delay": 200,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "your",
+   "duration": 900,
+   "delay": 250,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "plate",
+   "duration": 900,
+   "delay": 300.00000000000006,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "Three",
+   "duration": 900,
+   "delay": 0,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "steps",
+   "duration": 900,
+   "delay": 50,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "to",
+   "duration": 900,
+   "delay": 100,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "get",
+   "duration": 900,
+   "delay": 150.00000000000003,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "set",
+   "duration": 900,
+   "delay": 200,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "up",
+   "duration": 900,
+   "delay": 250,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "Works",
+   "duration": 900,
+   "delay": 0,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "with",
+   "duration": 900,
+   "delay": 50,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "the",
+   "duration": 900,
+   "delay": 100,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "tools",
+   "duration": 900,
+   "delay": 150.00000000000003,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "you",
+   "duration": 900,
+   "delay": 200,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "already",
+   "duration": 900,
+   "delay": 250,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "pay",
+   "duration": 900,
+   "delay": 300.00000000000006,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "for",
+   "duration": 900,
+   "delay": 350.00000000000006,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "Set",
+   "duration": 900,
+   "delay": 0,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "up",
+   "duration": 900,
+   "delay": 50,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "differently",
+   "duration": 900,
+   "delay": 100,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "for",
+   "duration": 900,
+   "delay": 150.00000000000003,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "every",
+   "duration": 900,
+   "delay": 200,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "team",
+   "duration": 900,
+   "delay": 250,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "Free",
+   "duration": 900,
+   "delay": 0,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "to",
+   "duration": 900,
+   "delay": 50,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "start.",
+   "duration": 900,
+   "delay": 100,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "Paid",
+   "duration": 900,
+   "delay": 150.00000000000003,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "when",
+   "duration": 900,
+   "delay": 200,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "team",
+   "duration": 900,
+   "delay": 300.00000000000006,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "grows.",
+   "duration": 900,
+   "delay": 350.00000000000006,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "Questions",
+   "duration": 900,
+   "delay": 0,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "people",
+   "duration": 900,
+   "delay": 50,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "ask",
+   "duration": 900,
+   "delay": 100,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "before",
+   "duration": 900,
+   "delay": 150.00000000000003,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  },
+  {
+   "tag": "span",
+   "text": "signing",
+   "duration": 900,
+   "delay": 200,
+   "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "iterations": 1
+  }
+ ]
+}

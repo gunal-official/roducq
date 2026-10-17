@@ -1124,6 +1124,49 @@ describe("/ landing responsive + a11y", () => {
     assert.match(features, /font-lm-regular tracking-\[-0\.035em\] text-lm-21/);
   });
 
+  it("runs the connector flow at the reference's measured timing", () => {
+    // `flowLinesDash` on the live reference: 1000ms, linear, infinite, and
+    // no per-path delay — the lines march in step.
+    assert.match(TOKENS, /lm-connector-flow 1000ms linear infinite/);
+    const steps = read("components/marketing/landing/StepsSection.tsx");
+    assert.doesNotMatch(steps, /--lm-connector-delay/, "connector paths must not be staggered");
+  });
+
+  it("raises section headings word by word at the measured cadence", () => {
+    const heading = read("components/marketing/landing/SectionHeading.tsx");
+    assert.match(heading, /WORD_STAGGER_MS = 50/);
+    assert.match(heading, /lm-word/);
+    assert.match(TOKENS, /--lm-motion-display:\s*900ms/);
+    assert.match(TOKENS, /--lm-ease-display:\s*cubic-bezier\(0\.16, 1, 0\.3, 1\)/);
+    // The words wait for their band's scroll trigger instead of spending the
+    // rise on page load, and are plain text without JavaScript.
+    assert.match(TOKENS, /\.lm-js \.lm-reveal\[data-visible="true"\] \.lm-word > span/);
+  });
+
+  it("brings the hero in on the reference's measured ladder", () => {
+    const hero = read("components/marketing/landing/HeroSection.tsx");
+    for (const [rung, ms] of [
+      ["announcement", 0],
+      ["headline", 80],
+      ["lead", 550],
+      ["actions", 650],
+      ["note", 720],
+      ["connects", 800],
+      ["dashboard", 850],
+    ] as const) {
+      assert.match(hero, new RegExp(`${rung}: ${ms},`), `${rung} rung is not ${ms}ms`);
+    }
+    assert.match(hero, /ladder\(HERO_LADDER\.dashboard, 1300\)/);
+    assert.match(TOKENS, /--lm-ease-body:\s*cubic-bezier\(0\.2, 0\.7, 0\.2, 1\)/);
+  });
+
+  it("switches every new entrance off under reduced motion", () => {
+    const reduced = TOKENS.slice(TOKENS.indexOf("@media (prefers-reduced-motion: reduce)"));
+    assert.match(reduced, /\.lm-word > span/);
+    assert.match(reduced, /\.lm-js \.lm-reveal\[data-visible="true"\] \.lm-word > span/);
+    assert.match(reduced, /\.lm-hero-in/);
+  });
+
   it("draws the purple frames from the reference's sampled gradient", () => {
     // Sampled from the live reference with scripts/sample-landing-pixels.mjs:
     // #36278c at the top left, #9178e6 at the top right.

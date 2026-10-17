@@ -293,6 +293,13 @@ const config = {
       },
       /* Measured on the reference: a section eyebrow runs at 1.2, a step
          card title at 1.15 and a team card title at 1.35. */
+      /* Measured on the reference's links: the navigation uses
+         cubic-bezier(0.2, 0.7, 0.2, 1) and its inline text link uses the
+         CSS `ease` curve. */
+      transitionTimingFunction: {
+        "lm-nav": "cubic-bezier(0.2, 0.7, 0.2, 1)",
+        "lm-text": "cubic-bezier(0.25, 0.1, 0.25, 1)",
+      },
       lineHeight: {
         "lm-label": "1.2",
         "lm-step": "1.15",

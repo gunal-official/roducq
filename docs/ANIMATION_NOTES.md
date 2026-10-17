@@ -84,12 +84,14 @@ Delays are per-element; a "stagger" means item *i* gets `i × step`.
 | --- | --- | --- | --- | --- | --- |
 | 01 | Announcement bar | `lm-chrome-in` transform + opacity | 360ms, no delay | 300ms, no delay | page load |
 | 01 | Header | `lm-chrome-in` transform + opacity | 420ms, 60ms delay | 340ms, 40ms delay | page load |
-| 02 | Hero headline | `lm-line-rise` masked line rise (`translateY(102%)` → 0) | 620ms per line, 90ms stagger | 420ms per line, 90ms stagger | page load |
-| 02 | Hero CTAs / note / connector strip | static (no entrance) | — | — | — |
-| 03 | Hero dashboard frame | Motion.dev `Reveal` | 620ms, 180ms delay, 14px rise | 420ms, 108ms delay, 8px rise | in view, once |
-| 03 | Chart line | SVG draw: `pathLength="1"`, dash offset 1 → 0 | 620ms, 120ms delay, `cubic-bezier(0.33,1,0.68,1)` | same (620ms) | on hydration |
-| 03 | Chart area fill | opacity 0 → 1 | 620ms, 180ms delay, `cubic-bezier(0.33,1,0.68,1)` | same | on hydration |
-| 03 | Chart points ×4 | scale 0.6 → 1 + opacity | 260ms at 300 / 360 / 420 / 480ms | same | on hydration |
+| 02 | Announcement pill (hero) | `lm-hero-in` fade-up | **900ms at 0ms**, `cubic-bezier(0.2,0.7,0.2,1)` — *measured* | same | page load |
+| 02 | Hero headline | `lm-line-rise` masked line rise (`translateY(102%)` → 0) | **900ms**, lines at **80 / 280ms**, `cubic-bezier(0.16,1,0.3,1)` — *measured* | **same (900ms)** — the reference does not shorten it | page load |
+| 02 | Hero lead / CTA row / note / "works with" | `lm-hero-in` fade-up, 14px | **900ms at 550 / 650 / 720 / 800ms**, `cubic-bezier(0.2,0.7,0.2,1)` — *measured* | same, 8px rise | page load |
+| 03 | Hero dashboard frame | `lm-hero-in` fade-up | **1300ms at 850ms** — *measured* | same, 8px rise | page load |
+| 03 | Chart line | SVG draw: `pathLength="1"`, dash offset 1 → 0 | 620ms, 850 + 120ms delay, `cubic-bezier(0.33,1,0.68,1)` — *duration inherited; offset derived from the measured dashboard delay* | same | page load |
+| 03 | Chart area fill | opacity 0 → 1 | 620ms, 850 + 180ms delay | same | page load |
+| 03 | Chart points ×4 | scale 0.6 → 1 + opacity | 260ms at 850 + 300 / 360 / 420 / 480ms | same | page load |
+| 04–09 | Every section heading | `lm-word` per-word masked rise | **900ms, 50ms per word**, `cubic-bezier(0.16,1,0.3,1)` — *measured* | same | heading's `Reveal` visible |
 | 04 | Feature cards ×4 | `Reveal` | 620ms, 0/80/160/240ms | 420ms, stagger ×0.6 | in view, once |
 | 05 | Step cards ×3 | `Reveal` | 620ms, 0/90/180ms | 420ms, stagger ×0.6 | in view, once |
 | 05 | Step connectors ×5 | dash offset 8 → 0, one full dash period, starts when the diagram's `Reveal` is visible | **1000ms, linear, infinite, no delay** — *measured on the reference (`flowLinesDash`)* | same (1000ms) | parent reveal visible |
@@ -141,7 +143,8 @@ Delays are per-element; a "stagger" means item *i* gets `i × step`.
 | Compact reductions | `app/(marketing)/landing.css` | `@media (max-width: 767px)` (L687) |
 | Chart markup (`pathLength`, point delays) | `components/marketing/landing/WorkspacePreview.tsx` | `lm-chart-line`, `lm-chart-point` |
 | Connector markup (5 paths, in step) | `components/marketing/landing/StepsSection.tsx` | `lm-connector` |
-| Hero dashboard reveal | `components/marketing/landing/HeroSection.tsx` | `<Reveal delay={180}>` |
+| Hero entrance ladder + dashboard | `components/marketing/landing/HeroSection.tsx` | `HERO_LADDER`, `lm-hero-in`, `--lm-chart-offset` |
+| Per-word section headings | `components/marketing/landing/SectionHeading.tsx` | `Words`, `WORD_STAGGER_MS = 50`, `.lm-word` |
 | FAQ markup (native disclosure) | `components/marketing/landing/FaqAccordion.tsx` | each item wrapped in `<Reveal delay={index * 60}>` |
 | Header / announcement classes | `SiteHeader.tsx`, `AnnouncementBar.tsx` | `lm-header`, `lm-announce` |
 | Footer reveal | `components/marketing/SiteFooter.tsx` | `<Reveal className="grid …">` |
@@ -191,7 +194,7 @@ Screenshots and the full measured JSON are in
 | Stagger | section value | ×0.6 | `Reveal` computes `delay * 0.6` |
 | Header entrance | 420ms / 60ms | 340ms / 40ms | computed `0.34s` |
 | Announcement entrance | 360ms | 300ms | computed `0.3s` |
-| Headline line rise | 620ms | 420ms | `--lm-motion-slow: 420ms` |
+| Headline line rise | 900ms | **900ms** (measured: the reference keeps it) | `--lm-motion-display: 900ms` |
 | Ambient drift | 14s loop | disabled | `animation-name: none` |
 | Chart draw / points | 620ms / 260ms | unchanged | computed `0.62s` / `0.26s` |
 | Connector draw | 620ms | unchanged (hidden below `lg`) | computed `0.62s` |
@@ -257,7 +260,7 @@ The harness asserts, from computed styles:
 - 620ms desktop / 420ms compact reveals, `data-visible="true"`, opacity 1;
 - the 767px boundary: 768px resolves back to `620ms` / `desktop`, 420ms / 340ms
   chrome and a running drift loop;
-- hero line 620ms desktop / 420ms compact; chart draw 620ms with
+- hero line 900ms at every width; chart draw 620ms with
   `stroke-dashoffset: 0px`; connectors **1000ms, linear, infinite, no
   delay** (the reference's measured `flowLinesDash`);
   header 420/340ms; announcement 360/300ms; drift 14s desktop, off on phone;

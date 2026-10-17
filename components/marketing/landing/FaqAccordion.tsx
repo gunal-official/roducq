@@ -32,7 +32,7 @@ export function FaqAccordion() {
               {FAQ_SECTION.intro}{" "}
               <a
                 href={FAQ_SECTION.contact.href}
-                className="inline-flex min-h-11 items-center font-lm-semibold text-lm-ink-accent underline underline-offset-4 transition-colors duration-200 hover:text-lm-accent-strong"
+                className="inline-flex min-h-11 items-center font-lm-semibold text-lm-ink-accent underline underline-offset-4 transition-colors duration-200 ease-lm-text hover:text-lm-accent-strong"
               >
                 {FAQ_SECTION.contact.label}
                 <span className="sr-only"> (opens your email client)</span>

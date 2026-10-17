@@ -28,7 +28,7 @@
       },
       "line": {
         "animation": "lm-line-rise",
-        "duration": "0.42s"
+        "duration": "0.9s"
       },
       "chart": {
         "animation": "lm-draw",
@@ -88,7 +88,7 @@
       },
       "line": {
         "animation": "lm-line-rise",
-        "duration": "0.42s"
+        "duration": "0.9s"
       },
       "chart": {
         "animation": "lm-draw",
@@ -148,7 +148,7 @@
       },
       "line": {
         "animation": "lm-line-rise",
-        "duration": "0.42s"
+        "duration": "0.9s"
       },
       "chart": {
         "animation": "lm-draw",
@@ -208,7 +208,7 @@
       },
       "line": {
         "animation": "lm-line-rise",
-        "duration": "0.42s"
+        "duration": "0.9s"
       },
       "chart": {
         "animation": "lm-draw",
@@ -268,7 +268,7 @@
       },
       "line": {
         "animation": "lm-line-rise",
-        "duration": "0.42s"
+        "duration": "0.9s"
       },
       "chart": {
         "animation": "lm-draw",
@@ -328,7 +328,7 @@
       },
       "line": {
         "animation": "lm-line-rise",
-        "duration": "0.42s"
+        "duration": "0.9s"
       },
       "chart": {
         "animation": "lm-draw",
@@ -388,7 +388,7 @@
       },
       "line": {
         "animation": "lm-line-rise",
-        "duration": "0.62s"
+        "duration": "0.9s"
       },
       "chart": {
         "animation": "lm-draw",
@@ -448,7 +448,7 @@
       },
       "line": {
         "animation": "lm-line-rise",
-        "duration": "0.62s"
+        "duration": "0.9s"
       },
       "chart": {
         "animation": "lm-draw",
@@ -508,7 +508,7 @@
       },
       "line": {
         "animation": "lm-line-rise",
-        "duration": "0.62s"
+        "duration": "0.9s"
       },
       "chart": {
         "animation": "lm-draw",
@@ -568,7 +568,7 @@
       },
       "line": {
         "animation": "lm-line-rise",
-        "duration": "0.62s"
+        "duration": "0.9s"
       },
       "chart": {
         "animation": "lm-draw",
@@ -628,7 +628,7 @@
       },
       "line": {
         "animation": "lm-line-rise",
-        "duration": "0.62s"
+        "duration": "0.9s"
       },
       "chart": {
         "animation": "lm-draw",
@@ -688,7 +688,7 @@
       },
       "line": {
         "animation": "lm-line-rise",
-        "duration": "0.62s"
+        "duration": "0.9s"
       },
       "chart": {
         "animation": "lm-draw",
@@ -747,7 +747,7 @@
       },
       "line": {
         "animation": "lm-line-rise",
-        "duration": "0.62s"
+        "duration": "0.9s"
       },
       "chart": {
         "animation": "lm-draw",
@@ -803,7 +803,7 @@
       },
       "line": {
         "animation": "lm-line-rise",
-        "duration": "0.42s"
+        "duration": "0.9s"
       },
       "chart": {
         "animation": "lm-draw",
@@ -859,7 +859,7 @@
       },
       "line": {
         "animation": "lm-line-rise",
-        "duration": "0.62s"
+        "duration": "0.9s"
       },
       "chart": {
         "animation": "lm-draw",
@@ -1006,5 +1006,54 @@
       "buttonTransition": "0.001s"
     }
   },
-  "screenshots": []
+  "screenshots": [
+    "1440-light/00-full.png",
+    "1440-light/01-header.png",
+    "1440-light/02-hero.png",
+    "1440-light/03-dashboard.png",
+    "1440-light/04-features.png",
+    "1440-light/05-steps.png",
+    "1440-light/06-integrations.png",
+    "1440-light/07-teams.png",
+    "1440-light/08-pricing.png",
+    "1440-light/09-faq.png",
+    "1440-light/10-final-cta.png",
+    "1440-light/11-footer.png",
+    "1440-dark/00-full.png",
+    "1440-dark/01-header.png",
+    "1440-dark/02-hero.png",
+    "1440-dark/03-dashboard.png",
+    "1440-dark/04-features.png",
+    "1440-dark/05-steps.png",
+    "1440-dark/06-integrations.png",
+    "1440-dark/07-teams.png",
+    "1440-dark/08-pricing.png",
+    "1440-dark/09-faq.png",
+    "1440-dark/10-final-cta.png",
+    "1440-dark/11-footer.png",
+    "390-light/00-full.png",
+    "390-light/01-header.png",
+    "390-light/02-hero.png",
+    "390-light/03-dashboard.png",
+    "390-light/04-features.png",
+    "390-light/05-steps.png",
+    "390-light/06-integrations.png",
+    "390-light/07-teams.png",
+    "390-light/08-pricing.png",
+    "390-light/09-faq.png",
+    "390-light/10-final-cta.png",
+    "390-light/11-footer.png",
+    "390-dark/00-full.png",
+    "390-dark/01-header.png",
+    "390-dark/02-hero.png",
+    "390-dark/03-dashboard.png",
+    "390-dark/04-features.png",
+    "390-dark/05-steps.png",
+    "390-dark/06-integrations.png",
+    "390-dark/07-teams.png",
+    "390-dark/08-pricing.png",
+    "390-dark/09-faq.png",
+    "390-dark/10-final-cta.png",
+    "390-dark/11-footer.png"
+  ]
 }
