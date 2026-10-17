@@ -170,6 +170,8 @@ export function StepsSection() {
                   className="pointer-events-none hidden h-40 w-full lg:block"
                 >
                   <path
+                    className="lm-connector"
+                    style={{ "--lm-connector-delay": "0ms" } as React.CSSProperties}
                     d="M 4 28 C 72 28, 92 90, 140 90"
                     fill="none"
                     stroke="var(--lm-border-soft)"
@@ -177,6 +179,8 @@ export function StepsSection() {
                     strokeDasharray="4 4"
                   />
                   <path
+                    className="lm-connector"
+                    style={{ "--lm-connector-delay": "60ms" } as React.CSSProperties}
                     d="M 4 70 C 72 70, 92 90, 140 90"
                     fill="none"
                     stroke="var(--lm-border-soft)"
@@ -184,6 +188,8 @@ export function StepsSection() {
                     strokeDasharray="4 4"
                   />
                   <path
+                    className="lm-connector"
+                    style={{ "--lm-connector-delay": "120ms" } as React.CSSProperties}
                     d="M 4 114 C 72 114, 92 90, 140 90"
                     fill="none"
                     stroke="var(--lm-accent)"
@@ -191,6 +197,8 @@ export function StepsSection() {
                     strokeDasharray="4 4"
                   />
                   <path
+                    className="lm-connector"
+                    style={{ "--lm-connector-delay": "180ms" } as React.CSSProperties}
                     d="M 4 152 C 72 152, 92 90, 140 90"
                     fill="none"
                     stroke="var(--lm-border-soft)"
@@ -198,6 +206,8 @@ export function StepsSection() {
                     strokeDasharray="4 4"
                   />
                   <path
+                    className="lm-connector"
+                    style={{ "--lm-connector-delay": "240ms" } as React.CSSProperties}
                     d="M 140 90 L 276 90"
                     fill="none"
                     stroke="var(--lm-border)"

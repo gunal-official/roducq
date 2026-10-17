@@ -3,6 +3,7 @@ import "./landing.css";
 import { AnnouncementBar } from "@/components/marketing/landing/AnnouncementBar";
 import { SiteFooter } from "@/components/marketing/SiteFooter";
 import { SiteHeader } from "@/components/marketing/SiteHeader";
+import { MotionProvider } from "@/components/marketing/motion/MotionProvider";
 
 /**
  * Marketing shell: announcement band, shared header and footer around /,
@@ -32,6 +33,7 @@ export default function MarketingLayout({
   // /about, /pricing and /vs still read. `rdq-marketing` layers the landing
   // token system on top without replacing them.
   return (
+    <MotionProvider>
     <div className="marketing rdq-marketing flex min-h-dvh flex-col bg-lm-canvas text-lm-ink">
       {/* Progressive enhancement for the scroll reveal: the `.lm-js` marker
           is what enables the hidden-initial state in landing.css, so a
@@ -56,5 +58,6 @@ export default function MarketingLayout({
       </main>
       <SiteFooter />
     </div>
+    </MotionProvider>
   );
 }

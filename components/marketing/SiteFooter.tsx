@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 
 import { FOOTER } from "@/app/(marketing)/home/content";
 import { RoduMark, Wordmark } from "@/components/app-shell/RoduMark";
+import { Reveal } from "@/components/marketing/landing/Reveal";
 
 /**
  * Marketing footer — the reference's closing band:
@@ -15,7 +16,7 @@ export function SiteFooter() {
   return (
     <footer className="mt-auto overflow-hidden border-t border-lm-border-soft bg-lm-card">
       <div className="lm-shell py-12 md:py-16">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
+        <Reveal className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
           <div className="max-w-xs">
             <Link
               href="/"
@@ -61,7 +62,7 @@ export function SiteFooter() {
               </ul>
             </nav>
           ))}
-        </div>
+        </Reveal>
 
         <div className="mt-10 flex flex-col gap-1.5 border-t border-lm-border-soft pt-6.5 text-lm-12 text-lm-muted sm:flex-row sm:items-center sm:justify-between">
           <p>{FOOTER.legal}</p>

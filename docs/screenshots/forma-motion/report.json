@@ -1,0 +1,1025 @@
+{
+  "base": "http://127.0.0.1:3000",
+  "viewports": [
+    {
+      "width": 320,
+      "height": 568,
+      "requestedTheme": "light",
+      "theme": "light",
+      "overflowX": 0,
+      "offenders": [
+        {
+          "tag": "div",
+          "cls": "lm-bloom-a lm-drift",
+          "rect": 563
+        },
+        {
+          "tag": "div",
+          "cls": "lm-bloom-b lm-drift",
+          "rect": 358
+        }
+      ],
+      "reveal": {
+        "visible": "true",
+        "mode": "compact",
+        "duration": "420",
+        "opacity": "1",
+        "transform": "none"
+      },
+      "line": {
+        "animation": "lm-line-rise",
+        "duration": "0.42s"
+      },
+      "chart": {
+        "animation": "lm-draw",
+        "duration": "0.62s",
+        "dashoffset": "0px"
+      },
+      "connector": {
+        "animation": "lm-connector-flow",
+        "duration": "0.62s",
+        "delay": "0s"
+      },
+      "header": {
+        "animation": "lm-chrome-in",
+        "duration": "0.34s"
+      },
+      "announce": {
+        "animation": "lm-chrome-in",
+        "duration": "0.3s"
+      },
+      "drift": {
+        "animation": "none",
+        "duration": "0s"
+      },
+      "faq": {
+        "transitionDuration": "0.26s, 0.26s",
+        "blockSize": "175.25px"
+      },
+      "buttonTransition": "0.15s",
+      "consoleErrors": []
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "requestedTheme": "dark",
+      "theme": "dark",
+      "overflowX": 0,
+      "offenders": [
+        {
+          "tag": "div",
+          "cls": "lm-bloom-a lm-drift",
+          "rect": 563
+        },
+        {
+          "tag": "div",
+          "cls": "lm-bloom-b lm-drift",
+          "rect": 358
+        }
+      ],
+      "reveal": {
+        "visible": "true",
+        "mode": "compact",
+        "duration": "420",
+        "opacity": "1",
+        "transform": "none"
+      },
+      "line": {
+        "animation": "lm-line-rise",
+        "duration": "0.42s"
+      },
+      "chart": {
+        "animation": "lm-draw",
+        "duration": "0.62s",
+        "dashoffset": "0px"
+      },
+      "connector": {
+        "animation": "lm-connector-flow",
+        "duration": "0.62s",
+        "delay": "0s"
+      },
+      "header": {
+        "animation": "lm-chrome-in",
+        "duration": "0.34s"
+      },
+      "announce": {
+        "animation": "lm-chrome-in",
+        "duration": "0.3s"
+      },
+      "drift": {
+        "animation": "none",
+        "duration": "0s"
+      },
+      "faq": {
+        "transitionDuration": "0.26s, 0.26s",
+        "blockSize": "175.25px"
+      },
+      "buttonTransition": "0.15s",
+      "consoleErrors": []
+    },
+    {
+      "width": 375,
+      "height": 667,
+      "requestedTheme": "light",
+      "theme": "light",
+      "overflowX": 0,
+      "offenders": [
+        {
+          "tag": "div",
+          "cls": "lm-bloom-a lm-drift",
+          "rect": 556
+        },
+        {
+          "tag": "div",
+          "cls": "lm-bloom-b lm-drift",
+          "rect": 420
+        }
+      ],
+      "reveal": {
+        "visible": "true",
+        "mode": "compact",
+        "duration": "420",
+        "opacity": "1",
+        "transform": "none"
+      },
+      "line": {
+        "animation": "lm-line-rise",
+        "duration": "0.42s"
+      },
+      "chart": {
+        "animation": "lm-draw",
+        "duration": "0.62s",
+        "dashoffset": "0px"
+      },
+      "connector": {
+        "animation": "lm-connector-flow",
+        "duration": "0.62s",
+        "delay": "0s"
+      },
+      "header": {
+        "animation": "lm-chrome-in",
+        "duration": "0.34s"
+      },
+      "announce": {
+        "animation": "lm-chrome-in",
+        "duration": "0.3s"
+      },
+      "drift": {
+        "animation": "none",
+        "duration": "0s"
+      },
+      "faq": {
+        "transitionDuration": "0.26s, 0.26s",
+        "blockSize": "152.5px"
+      },
+      "buttonTransition": "0.15s",
+      "consoleErrors": []
+    },
+    {
+      "width": 375,
+      "height": 667,
+      "requestedTheme": "dark",
+      "theme": "dark",
+      "overflowX": 0,
+      "offenders": [
+        {
+          "tag": "div",
+          "cls": "lm-bloom-a lm-drift",
+          "rect": 556
+        },
+        {
+          "tag": "div",
+          "cls": "lm-bloom-b lm-drift",
+          "rect": 420
+        }
+      ],
+      "reveal": {
+        "visible": "true",
+        "mode": "compact",
+        "duration": "420",
+        "opacity": "1",
+        "transform": "none"
+      },
+      "line": {
+        "animation": "lm-line-rise",
+        "duration": "0.42s"
+      },
+      "chart": {
+        "animation": "lm-draw",
+        "duration": "0.62s",
+        "dashoffset": "0px"
+      },
+      "connector": {
+        "animation": "lm-connector-flow",
+        "duration": "0.62s",
+        "delay": "0s"
+      },
+      "header": {
+        "animation": "lm-chrome-in",
+        "duration": "0.34s"
+      },
+      "announce": {
+        "animation": "lm-chrome-in",
+        "duration": "0.3s"
+      },
+      "drift": {
+        "animation": "none",
+        "duration": "0s"
+      },
+      "faq": {
+        "transitionDuration": "0.26s, 0.26s",
+        "blockSize": "152.5px"
+      },
+      "buttonTransition": "0.15s",
+      "consoleErrors": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "requestedTheme": "light",
+      "theme": "light",
+      "overflowX": 0,
+      "offenders": [
+        {
+          "tag": "div",
+          "cls": "lm-bloom-a lm-drift",
+          "rect": 553
+        },
+        {
+          "tag": "div",
+          "cls": "lm-bloom-b lm-drift",
+          "rect": 437
+        }
+      ],
+      "reveal": {
+        "visible": "true",
+        "mode": "compact",
+        "duration": "420",
+        "opacity": "1",
+        "transform": "none"
+      },
+      "line": {
+        "animation": "lm-line-rise",
+        "duration": "0.42s"
+      },
+      "chart": {
+        "animation": "lm-draw",
+        "duration": "0.62s",
+        "dashoffset": "0px"
+      },
+      "connector": {
+        "animation": "lm-connector-flow",
+        "duration": "0.62s",
+        "delay": "0s"
+      },
+      "header": {
+        "animation": "lm-chrome-in",
+        "duration": "0.34s"
+      },
+      "announce": {
+        "animation": "lm-chrome-in",
+        "duration": "0.3s"
+      },
+      "drift": {
+        "animation": "none",
+        "duration": "0s"
+      },
+      "faq": {
+        "transitionDuration": "0.26s, 0.26s",
+        "blockSize": "152.5px"
+      },
+      "buttonTransition": "0.15s",
+      "consoleErrors": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "requestedTheme": "dark",
+      "theme": "dark",
+      "overflowX": 0,
+      "offenders": [
+        {
+          "tag": "div",
+          "cls": "lm-bloom-a lm-drift",
+          "rect": 553
+        },
+        {
+          "tag": "div",
+          "cls": "lm-bloom-b lm-drift",
+          "rect": 437
+        }
+      ],
+      "reveal": {
+        "visible": "true",
+        "mode": "compact",
+        "duration": "420",
+        "opacity": "1",
+        "transform": "none"
+      },
+      "line": {
+        "animation": "lm-line-rise",
+        "duration": "0.42s"
+      },
+      "chart": {
+        "animation": "lm-draw",
+        "duration": "0.62s",
+        "dashoffset": "0px"
+      },
+      "connector": {
+        "animation": "lm-connector-flow",
+        "duration": "0.62s",
+        "delay": "0s"
+      },
+      "header": {
+        "animation": "lm-chrome-in",
+        "duration": "0.34s"
+      },
+      "announce": {
+        "animation": "lm-chrome-in",
+        "duration": "0.3s"
+      },
+      "drift": {
+        "animation": "none",
+        "duration": "0s"
+      },
+      "faq": {
+        "transitionDuration": "0.26s, 0.26s",
+        "blockSize": "152.5px"
+      },
+      "buttonTransition": "0.15s",
+      "consoleErrors": []
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "requestedTheme": "light",
+      "theme": "light",
+      "overflowX": 0,
+      "offenders": [
+        {
+          "tag": "div",
+          "cls": "lm-bloom-a lm-drift",
+          "rect": 513
+        },
+        {
+          "tag": "div",
+          "cls": "lm-bloom-b lm-drift",
+          "rect": 860
+        }
+      ],
+      "reveal": {
+        "visible": "true",
+        "mode": "desktop",
+        "duration": "620",
+        "opacity": "1",
+        "transform": "none"
+      },
+      "line": {
+        "animation": "lm-line-rise",
+        "duration": "0.62s"
+      },
+      "chart": {
+        "animation": "lm-draw",
+        "duration": "0.62s",
+        "dashoffset": "0px"
+      },
+      "connector": {
+        "animation": "lm-connector-flow",
+        "duration": "0.62s",
+        "delay": "0s"
+      },
+      "header": {
+        "animation": "lm-chrome-in",
+        "duration": "0.42s"
+      },
+      "announce": {
+        "animation": "lm-chrome-in",
+        "duration": "0.36s"
+      },
+      "drift": {
+        "animation": "lm-drift",
+        "duration": "14s"
+      },
+      "faq": {
+        "transitionDuration": "0.26s, 0.26s",
+        "blockSize": "84.25px"
+      },
+      "buttonTransition": "0.15s",
+      "consoleErrors": []
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "requestedTheme": "dark",
+      "theme": "dark",
+      "overflowX": 0,
+      "offenders": [
+        {
+          "tag": "div",
+          "cls": "lm-bloom-a lm-drift",
+          "rect": 513
+        },
+        {
+          "tag": "div",
+          "cls": "lm-bloom-b lm-drift",
+          "rect": 860
+        }
+      ],
+      "reveal": {
+        "visible": "true",
+        "mode": "desktop",
+        "duration": "620",
+        "opacity": "1",
+        "transform": "none"
+      },
+      "line": {
+        "animation": "lm-line-rise",
+        "duration": "0.62s"
+      },
+      "chart": {
+        "animation": "lm-draw",
+        "duration": "0.62s",
+        "dashoffset": "0px"
+      },
+      "connector": {
+        "animation": "lm-connector-flow",
+        "duration": "0.62s",
+        "delay": "0s"
+      },
+      "header": {
+        "animation": "lm-chrome-in",
+        "duration": "0.42s"
+      },
+      "announce": {
+        "animation": "lm-chrome-in",
+        "duration": "0.36s"
+      },
+      "drift": {
+        "animation": "lm-drift",
+        "duration": "14s"
+      },
+      "faq": {
+        "transitionDuration": "0.26s, 0.26s",
+        "blockSize": "84.25px"
+      },
+      "buttonTransition": "0.15s",
+      "consoleErrors": []
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "requestedTheme": "light",
+      "theme": "light",
+      "overflowX": 0,
+      "offenders": [
+        {
+          "tag": "div",
+          "cls": "lm-bloom-a lm-drift",
+          "rect": 477
+        },
+        {
+          "tag": "div",
+          "cls": "lm-bloom-b lm-drift",
+          "rect": 1147
+        }
+      ],
+      "reveal": {
+        "visible": "true",
+        "mode": "desktop",
+        "duration": "620",
+        "opacity": "1",
+        "transform": "none"
+      },
+      "line": {
+        "animation": "lm-line-rise",
+        "duration": "0.62s"
+      },
+      "chart": {
+        "animation": "lm-draw",
+        "duration": "0.62s",
+        "dashoffset": "0px"
+      },
+      "connector": {
+        "animation": "lm-connector-flow",
+        "duration": "0.62s",
+        "delay": "0s"
+      },
+      "header": {
+        "animation": "lm-chrome-in",
+        "duration": "0.42s"
+      },
+      "announce": {
+        "animation": "lm-chrome-in",
+        "duration": "0.36s"
+      },
+      "drift": {
+        "animation": "lm-drift",
+        "duration": "14s"
+      },
+      "faq": {
+        "transitionDuration": "0.26s, 0.26s",
+        "blockSize": "107px"
+      },
+      "buttonTransition": "0.15s",
+      "consoleErrors": []
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "requestedTheme": "dark",
+      "theme": "dark",
+      "overflowX": 0,
+      "offenders": [
+        {
+          "tag": "div",
+          "cls": "lm-bloom-a lm-drift",
+          "rect": 477
+        },
+        {
+          "tag": "div",
+          "cls": "lm-bloom-b lm-drift",
+          "rect": 1147
+        }
+      ],
+      "reveal": {
+        "visible": "true",
+        "mode": "desktop",
+        "duration": "620",
+        "opacity": "1",
+        "transform": "none"
+      },
+      "line": {
+        "animation": "lm-line-rise",
+        "duration": "0.62s"
+      },
+      "chart": {
+        "animation": "lm-draw",
+        "duration": "0.62s",
+        "dashoffset": "0px"
+      },
+      "connector": {
+        "animation": "lm-connector-flow",
+        "duration": "0.62s",
+        "delay": "0s"
+      },
+      "header": {
+        "animation": "lm-chrome-in",
+        "duration": "0.42s"
+      },
+      "announce": {
+        "animation": "lm-chrome-in",
+        "duration": "0.36s"
+      },
+      "drift": {
+        "animation": "lm-drift",
+        "duration": "14s"
+      },
+      "faq": {
+        "transitionDuration": "0.26s, 0.26s",
+        "blockSize": "107px"
+      },
+      "buttonTransition": "0.15s",
+      "consoleErrors": []
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "requestedTheme": "light",
+      "theme": "light",
+      "overflowX": 0,
+      "offenders": [
+        {
+          "tag": "div",
+          "cls": "lm-bloom-a lm-drift",
+          "rect": 419
+        },
+        {
+          "tag": "div",
+          "cls": "lm-bloom-b lm-drift",
+          "rect": 1613
+        }
+      ],
+      "reveal": {
+        "visible": "true",
+        "mode": "desktop",
+        "duration": "620",
+        "opacity": "1",
+        "transform": "none"
+      },
+      "line": {
+        "animation": "lm-line-rise",
+        "duration": "0.62s"
+      },
+      "chart": {
+        "animation": "lm-draw",
+        "duration": "0.62s",
+        "dashoffset": "0px"
+      },
+      "connector": {
+        "animation": "lm-connector-flow",
+        "duration": "0.62s",
+        "delay": "0s"
+      },
+      "header": {
+        "animation": "lm-chrome-in",
+        "duration": "0.42s"
+      },
+      "announce": {
+        "animation": "lm-chrome-in",
+        "duration": "0.36s"
+      },
+      "drift": {
+        "animation": "lm-drift",
+        "duration": "14s"
+      },
+      "faq": {
+        "transitionDuration": "0.26s, 0.26s",
+        "blockSize": "84.25px"
+      },
+      "buttonTransition": "0.15s",
+      "consoleErrors": []
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "requestedTheme": "dark",
+      "theme": "dark",
+      "overflowX": 0,
+      "offenders": [
+        {
+          "tag": "div",
+          "cls": "lm-bloom-a lm-drift",
+          "rect": 418
+        },
+        {
+          "tag": "div",
+          "cls": "lm-bloom-b lm-drift",
+          "rect": 1613
+        }
+      ],
+      "reveal": {
+        "visible": "true",
+        "mode": "desktop",
+        "duration": "620",
+        "opacity": "1",
+        "transform": "none"
+      },
+      "line": {
+        "animation": "lm-line-rise",
+        "duration": "0.62s"
+      },
+      "chart": {
+        "animation": "lm-draw",
+        "duration": "0.62s",
+        "dashoffset": "0px"
+      },
+      "connector": {
+        "animation": "lm-connector-flow",
+        "duration": "0.62s",
+        "delay": "0s"
+      },
+      "header": {
+        "animation": "lm-chrome-in",
+        "duration": "0.42s"
+      },
+      "announce": {
+        "animation": "lm-chrome-in",
+        "duration": "0.36s"
+      },
+      "drift": {
+        "animation": "lm-drift",
+        "duration": "14s"
+      },
+      "faq": {
+        "transitionDuration": "0.26s, 0.26s",
+        "blockSize": "84.25px"
+      },
+      "buttonTransition": "0.15s",
+      "consoleErrors": []
+    }
+  ],
+  "motion": {
+    "desktop": {
+      "theme": "light",
+      "overflowX": 0,
+      "offenders": [
+        {
+          "tag": "div",
+          "cls": "lm-bloom-a lm-drift",
+          "rect": 419
+        },
+        {
+          "tag": "div",
+          "cls": "lm-bloom-b lm-drift",
+          "rect": 1613
+        }
+      ],
+      "reveal": {
+        "visible": "true",
+        "mode": "desktop",
+        "duration": "620",
+        "opacity": "1",
+        "transform": "none"
+      },
+      "line": {
+        "animation": "lm-line-rise",
+        "duration": "0.62s"
+      },
+      "chart": {
+        "animation": "lm-draw",
+        "duration": "0.62s",
+        "dashoffset": "0px"
+      },
+      "connector": {
+        "animation": "lm-connector-flow",
+        "duration": "0.62s",
+        "delay": "0s"
+      },
+      "header": {
+        "animation": "lm-chrome-in",
+        "duration": "0.42s"
+      },
+      "announce": {
+        "animation": "lm-chrome-in",
+        "duration": "0.36s"
+      },
+      "drift": {
+        "animation": "lm-drift",
+        "duration": "14s"
+      },
+      "faq": {
+        "transitionDuration": "0.26s, 0.26s",
+        "blockSize": "84.25px"
+      },
+      "buttonTransition": "0.15s"
+    },
+    "compact": {
+      "theme": "light",
+      "overflowX": 0,
+      "offenders": [
+        {
+          "tag": "div",
+          "cls": "lm-bloom-a lm-drift",
+          "rect": 553
+        },
+        {
+          "tag": "div",
+          "cls": "lm-bloom-b lm-drift",
+          "rect": 437
+        }
+      ],
+      "reveal": {
+        "visible": "true",
+        "mode": "compact",
+        "duration": "420",
+        "opacity": "1",
+        "transform": "none"
+      },
+      "line": {
+        "animation": "lm-line-rise",
+        "duration": "0.42s"
+      },
+      "chart": {
+        "animation": "lm-draw",
+        "duration": "0.62s",
+        "dashoffset": "0px"
+      },
+      "connector": {
+        "animation": "lm-connector-flow",
+        "duration": "0.62s",
+        "delay": "0s"
+      },
+      "header": {
+        "animation": "lm-chrome-in",
+        "duration": "0.34s"
+      },
+      "announce": {
+        "animation": "lm-chrome-in",
+        "duration": "0.3s"
+      },
+      "drift": {
+        "animation": "none",
+        "duration": "0s"
+      },
+      "faq": {
+        "transitionDuration": "0.26s, 0.26s",
+        "blockSize": "152.5px"
+      },
+      "buttonTransition": "0.15s"
+    },
+    "tablet": {
+      "theme": "light",
+      "overflowX": 0,
+      "offenders": [
+        {
+          "tag": "div",
+          "cls": "lm-bloom-a lm-drift",
+          "rect": 513
+        },
+        {
+          "tag": "div",
+          "cls": "lm-bloom-b lm-drift",
+          "rect": 860
+        }
+      ],
+      "reveal": {
+        "visible": "true",
+        "mode": "desktop",
+        "duration": "620",
+        "opacity": "1",
+        "transform": "none"
+      },
+      "line": {
+        "animation": "lm-line-rise",
+        "duration": "0.62s"
+      },
+      "chart": {
+        "animation": "lm-draw",
+        "duration": "0.62s",
+        "dashoffset": "0px"
+      },
+      "connector": {
+        "animation": "lm-connector-flow",
+        "duration": "0.62s",
+        "delay": "0s"
+      },
+      "header": {
+        "animation": "lm-chrome-in",
+        "duration": "0.42s"
+      },
+      "announce": {
+        "animation": "lm-chrome-in",
+        "duration": "0.36s"
+      },
+      "drift": {
+        "animation": "lm-drift",
+        "duration": "14s"
+      },
+      "faq": {
+        "transitionDuration": "0.26s, 0.26s",
+        "blockSize": "84.25px"
+      },
+      "buttonTransition": "0.15s"
+    }
+  },
+  "reduced": {
+    "390": {
+      "theme": "light",
+      "overflowX": 0,
+      "offenders": [
+        {
+          "tag": "div",
+          "cls": "lm-bloom-a lm-drift",
+          "rect": 553
+        },
+        {
+          "tag": "div",
+          "cls": "lm-bloom-b lm-drift",
+          "rect": 437
+        }
+      ],
+      "reveal": {
+        "visible": "true",
+        "mode": "compact",
+        "duration": "0",
+        "opacity": "1",
+        "transform": "none"
+      },
+      "line": {
+        "animation": "none",
+        "duration": "0s"
+      },
+      "chart": {
+        "animation": "none",
+        "duration": "0s",
+        "dashoffset": "0px"
+      },
+      "connector": {
+        "animation": "none",
+        "duration": "0s",
+        "delay": "0s"
+      },
+      "header": {
+        "animation": "none",
+        "duration": "0s"
+      },
+      "announce": {
+        "animation": "none",
+        "duration": "0s"
+      },
+      "drift": {
+        "animation": "none",
+        "duration": "0s"
+      },
+      "faq": {
+        "transitionDuration": "0s",
+        "blockSize": "152.5px"
+      },
+      "buttonTransition": "0.001s"
+    },
+    "1440": {
+      "theme": "light",
+      "overflowX": 0,
+      "offenders": [
+        {
+          "tag": "div",
+          "cls": "lm-bloom-a lm-drift",
+          "rect": 406
+        },
+        {
+          "tag": "div",
+          "cls": "lm-bloom-b lm-drift",
+          "rect": 1613
+        }
+      ],
+      "reveal": {
+        "visible": "true",
+        "mode": "desktop",
+        "duration": "0",
+        "opacity": "1",
+        "transform": "none"
+      },
+      "line": {
+        "animation": "none",
+        "duration": "0s"
+      },
+      "chart": {
+        "animation": "none",
+        "duration": "0s",
+        "dashoffset": "0px"
+      },
+      "connector": {
+        "animation": "none",
+        "duration": "0s",
+        "delay": "0s"
+      },
+      "header": {
+        "animation": "none",
+        "duration": "0s"
+      },
+      "announce": {
+        "animation": "none",
+        "duration": "0s"
+      },
+      "drift": {
+        "animation": "none",
+        "duration": "0s"
+      },
+      "faq": {
+        "transitionDuration": "0s",
+        "blockSize": "84.25px"
+      },
+      "buttonTransition": "0.001s"
+    }
+  },
+  "screenshots": [
+    "1440-light/00-full.png",
+    "1440-light/01-header.png",
+    "1440-light/02-hero.png",
+    "1440-light/03-dashboard.png",
+    "1440-light/04-features.png",
+    "1440-light/05-steps.png",
+    "1440-light/06-integrations.png",
+    "1440-light/07-teams.png",
+    "1440-light/08-pricing.png",
+    "1440-light/09-faq.png",
+    "1440-light/10-final-cta.png",
+    "1440-light/11-footer.png",
+    "1440-dark/00-full.png",
+    "1440-dark/01-header.png",
+    "1440-dark/02-hero.png",
+    "1440-dark/03-dashboard.png",
+    "1440-dark/04-features.png",
+    "1440-dark/05-steps.png",
+    "1440-dark/06-integrations.png",
+    "1440-dark/07-teams.png",
+    "1440-dark/08-pricing.png",
+    "1440-dark/09-faq.png",
+    "1440-dark/10-final-cta.png",
+    "1440-dark/11-footer.png",
+    "390-light/00-full.png",
+    "390-light/01-header.png",
+    "390-light/02-hero.png",
+    "390-light/03-dashboard.png",
+    "390-light/04-features.png",
+    "390-light/05-steps.png",
+    "390-light/06-integrations.png",
+    "390-light/07-teams.png",
+    "390-light/08-pricing.png",
+    "390-light/09-faq.png",
+    "390-light/10-final-cta.png",
+    "390-light/11-footer.png",
+    "390-dark/00-full.png",
+    "390-dark/01-header.png",
+    "390-dark/02-hero.png",
+    "390-dark/03-dashboard.png",
+    "390-dark/04-features.png",
+    "390-dark/05-steps.png",
+    "390-dark/06-integrations.png",
+    "390-dark/07-teams.png",
+    "390-dark/08-pricing.png",
+    "390-dark/09-faq.png",
+    "390-dark/10-final-cta.png",
+    "390-dark/11-footer.png"
+  ]
+}

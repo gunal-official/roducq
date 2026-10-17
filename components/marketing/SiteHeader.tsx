@@ -60,7 +60,7 @@ export function SiteHeader() {
     pathname === href || pathname.startsWith(`${href}/`);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-lm-border-soft bg-lm-header-wash backdrop-blur-md">
+    <header className="lm-header sticky top-0 z-40 border-b border-lm-border-soft bg-lm-header-wash backdrop-blur-md">
       <div className="lm-shell flex h-16 items-center gap-3 md:h-18">
         <Link
           href="/"

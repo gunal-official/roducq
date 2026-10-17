@@ -289,31 +289,26 @@
 }
 
 /* ── Scroll reveal ───────────────────────────────────────────────────────
-   One class pair, applied by components/marketing/landing/Reveal.tsx.
-   The element is visible in the server-rendered markup (no flash of empty
-   page for crawlers or with JS off); the observer only re-plays it. */
-@keyframes lm-reveal {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
+   Motion.dev owns the entrance (Reveal.tsx); this block owns only the
+   pre-hydration state. Keeping the hidden state in CSS behind `.lm-js` is
+   what lets a no-JS visitor and a crawler see the finished page instead of
+   ten opacity-0 bands. The transform is part of that state so Motion can
+   read it as the starting keyframe on hydration — there is no first-frame
+   snap and no spring default to drift away from the reference.
 
-/* The hidden state is gated on `lm-js`, which the marketing layout sets on
-   <html> before first paint. Without JavaScript the class is never added and
-   every section renders visible — a scroll reveal that hides content from a
-   reader without JS (or from a crawler) is a bug, not an enhancement. */
+   RECORDED VALUES (see docs/ANIMATION_NOTES.md):
+     duration 620ms desktop / 420ms <=767px
+     easing   cubic-bezier(0.22, 1, 0.36, 1)
+     distance 14px desktop / 8px compact
+     trigger  once, 8% threshold, -8% bottom margin */
 .lm-js .lm-reveal {
   opacity: 0;
+  transform: translateY(var(--lm-reveal-shift, 14px));
 }
 
 .lm-js .lm-reveal[data-visible="true"] {
-  animation: lm-reveal var(--lm-motion-slow) var(--lm-ease) both;
-  animation-delay: var(--lm-reveal-delay, 0ms);
+  opacity: 1;
+  transform: none;
 }
 
 /* ── Decorative drift ────────────────────────────────────────────────────
@@ -506,23 +501,140 @@
   background: color-mix(in srgb, var(--lm-accent) 12%, transparent);
 }
 
-/* ── Reduced motion ──────────────────────────────────────────────────────
-   Reveals resolve to their end state instantly; the decorative loop stops. */
-@media (prefers-reduced-motion: reduce) {
-  .lm-line > span,
-  .lm-js .lm-reveal[data-visible="true"] {
-    animation: none;
+/* ── Header and announcement entrance ───────────────────────────────────
+   The reference's chrome settles down into place on load, not with a spring.
+   420ms / 360ms on the same cubic curve as the bands; the header waits 60ms
+   so the announcement is already moving when the header follows. Both are
+   gated on `.lm-js`; without JavaScript the chrome is simply there. */
+@keyframes lm-chrome-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
     opacity: 1;
     transform: none;
   }
-  .lm-js .lm-reveal {
+}
+
+.lm-js .lm-announce {
+  animation: lm-chrome-in 360ms var(--lm-ease) both;
+}
+
+.lm-js .lm-header {
+  animation: lm-chrome-in 420ms var(--lm-ease) 60ms both;
+}
+
+/* ── Dashboard chart ────────────────────────────────────────────────────
+   A true SVG path draw: pathLength="1" normalises the geometry so one
+   dash pair works for every path, then the dash offset travels 1 -> 0 over
+   620ms. The area fill follows at 180ms and the four points pop at 300ms +
+   60ms intervals. All of it is gated on `.lm-js`; with no JS the chart is
+   complete, not invisible. */
+@keyframes lm-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes lm-chart-area {
+  from {
+    opacity: 0;
+  }
+  to {
     opacity: 1;
+  }
+}
+
+@keyframes lm-chart-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.lm-js .lm-chart-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: lm-draw 620ms cubic-bezier(0.33, 1, 0.68, 1) 120ms both;
+}
+
+.lm-js .lm-chart-area {
+  opacity: 0;
+  animation: lm-chart-area 620ms cubic-bezier(0.33, 1, 0.68, 1) 180ms both;
+}
+
+.lm-js .lm-chart-point {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: lm-chart-pop 260ms var(--lm-ease) both;
+  animation-delay: var(--lm-chart-delay, 300ms);
+}
+
+/* ── Connector lines ────────────────────────────────────────────────────
+   The steps diagram keeps its 4 4 dash pattern; the draw is a dash-offset
+   travel plus a fade, sequenced left-to-right. It starts when the diagram's
+   Reveal reports itself visible, so it is not spent before the visitor
+   scrolls to it. */
+@keyframes lm-connector-flow {
+  from {
+    opacity: 0;
+    stroke-dashoffset: 20;
+  }
+  to {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+.lm-js .lm-reveal[data-visible="true"] .lm-connector {
+  animation: lm-connector-flow 620ms cubic-bezier(0.33, 1, 0.68, 1) both;
+  animation-delay: var(--lm-connector-delay, 0ms);
+}
+
+/* ── Reduced motion ──────────────────────────────────────────────────────
+   Reveals resolve to their end state instantly; the decorative loop stops. */
+@media (prefers-reduced-motion: reduce) {
+  /* Every entrance resolves instantly: no fade, no translation, no draw. */
+  .lm-line > span,
+  .lm-js .lm-reveal,
+  .lm-js .lm-reveal[data-visible="true"],
+  .lm-js .lm-announce,
+  .lm-js .lm-header,
+  .lm-js .lm-chart-line,
+  .lm-js .lm-chart-area,
+  .lm-js .lm-chart-point,
+  .lm-js .lm-reveal[data-visible="true"] .lm-connector {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .lm-js .lm-chart-line,
+  .lm-chart-line {
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+  }
+  .lm-chart-point {
+    opacity: 1;
+    transform: none;
   }
   .lm-drift {
     animation: none;
   }
   .lm-hero-grid {
     opacity: 0.4;
+  }
+  .rdq-marketing .lm-faq::details-content {
+    transition: none !important;
   }
   .rdq-marketing *,
   .rdq-marketing *::before,
@@ -546,4 +658,51 @@
 }
 .lm-faq-icon {
   transition: transform var(--lm-motion-fast) var(--lm-ease);
+}
+
+/* Native <details> stays: no JS, correct keyboard and AT behaviour. Modern
+   browsers animate the disclosure with ::details-content; older engines
+   simply open instantly. 260ms is the reference's standard timing, and the
+   160ms icon rotation is its fast timing. */
+.lm-faq {
+  interpolate-size: allow-keywords;
+}
+.lm-faq::details-content {
+  block-size: 0;
+  overflow: hidden;
+  transition:
+    block-size 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    content-visibility 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-behavior: allow-discrete;
+}
+.lm-faq[open]::details-content {
+  block-size: auto;
+}
+
+/* ── Compact (phone) reductions ──────────────────────────────────────────
+   The reference shortens its entrances and removes idle motion below 768px
+   rather than reusing the desktop timings. Motion reads the same 767px
+   breakpoint in Reveal.tsx and halves the stagger; these tokens cover the
+   CSS-owned pieces. */
+@media (max-width: 767px) {
+  .rdq-marketing {
+    --lm-motion-slow: 420ms;
+    --lm-motion-standard: 200ms;
+  }
+  .lm-js .lm-reveal {
+    --lm-reveal-shift: 8px;
+  }
+  .lm-js .lm-announce {
+    animation-duration: 300ms;
+  }
+  .lm-js .lm-header {
+    animation-duration: 340ms;
+    animation-delay: 40ms;
+  }
+  .lm-drift {
+    animation: none;
+  }
+  .lm-hero-grid {
+    opacity: 0.55;
+  }
 }

@@ -95,11 +95,12 @@ describe("Forma F — inventory and honest browser evidence", () => {
     await assert.rejects(() => installFixtureNetwork(page, "https://roducq.nanexi.com", "http://127.0.0.1:54330"));
 
   });
-  it("keeps axe a dev-only dependency; no motion library or runtime package is added", () => {
+  it("keeps axe a dev-only dependency; Motion.dev is the only motion runtime", () => {
     const pkg = JSON.parse(read("package.json"));
     assert.ok(pkg.devDependencies["axe-core"]);
     assert.ok(!pkg.dependencies["axe-core"]);
-    for (const name of ["framer-motion", "motion", "gsap"]) assert.ok(!pkg.dependencies[name]);
+    assert.equal(pkg.dependencies.motion, "14.3.0");
+    for (const name of ["framer-motion", "gsap"]) assert.ok(!pkg.dependencies[name]);
   });
 });
 
