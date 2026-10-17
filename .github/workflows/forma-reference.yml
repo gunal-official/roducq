@@ -1,0 +1,82 @@
+# Forma reference capture — measured evidence for the final fidelity audit.
+#
+# WHY A SEPARATE WORKFLOW. The repository's development sandbox has an
+# egress allowlist that blocks `forma-visuvate.framer.website` (and every
+# other third-party host), so the reference cannot be measured in-process.
+# A GitHub-hosted runner can reach it, so this workflow runs the same
+# capture harness against the reference AND against this repository's own
+# landing page in one job, with the same browser build, the same viewports
+# and the same themes — which is the only way the two sides are comparable.
+#
+# IT IS DISPATCH-ONLY AND READ-ONLY. It never runs on push or on pull
+# request, it needs no secrets, and it publishes artefacts; it does not
+# write to the repository, deploy, or touch any payment, billing or
+# database path.
+name: forma-reference
+
+on:
+  workflow_dispatch:
+    inputs:
+      reference:
+        description: "Reference site to measure against"
+        required: false
+        default: "https://forma-visuvate.framer.website/"
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ">=22.18.0"
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright-core install --with-deps chromium
+
+      - name: Build
+        run: npm run build
+
+      - name: Start the landing page
+        run: |
+          npm start &
+          for i in $(seq 1 60); do
+            if curl -fsS http://127.0.0.1:3000/ -o /dev/null; then
+              echo "landing page is up"
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "landing page did not start" >&2
+          exit 1
+
+      - name: Capture this repository's landing page
+        run: |
+          node scripts/capture-landing-reference.mjs \
+            --target roducq \
+            --base http://127.0.0.1:3000 \
+            --out docs/screenshots/forma-reference
+
+      - name: Capture the reference
+        run: |
+          node scripts/capture-landing-reference.mjs \
+            --target forma \
+            --base "${{ inputs.reference }}" \
+            --out docs/screenshots/forma-reference
+
+      - name: Upload the capture
+        uses: actions/upload-artifact@v4
+        with:
+          name: forma-reference-capture
+          path: docs/screenshots/forma-reference
+          if-no-files-found: error
+          retention-days: 14
