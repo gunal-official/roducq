@@ -62,14 +62,31 @@ jobs:
       - name: Run the /solutions verification suite
         env:
           BASE_URL: http://localhost:3100
-          OUTPUT: docs/screenshots/forma-solutions-reference/solutions-verification.json
-        run: node scripts/verify-solutions-lcp.mjs
+          OUTPUT: solutions-verification.json
+        run: |
+          node scripts/verify-solutions-lcp.mjs
+
+      # The artifact endpoint is unreachable from some
+      # networks, so the report is also committed to the
+      # evidence branch, where it can be fetched with git.
+      - name: Publish the verification report to the capture branch
+        if: always()
+        run: |
+          git config user.name "Arena Agent"
+          git config user.email "agent@arena.ai"
+          git fetch --force origin arena/forma-solutions-capture:refs/remotes/origin/arena/forma-solutions-capture
+          git checkout --detach arena/forma-solutions-capture
+          mkdir -p docs/screenshots/forma-solutions-reference
+          cp solutions-verification.json docs/screenshots/forma-solutions-reference/solutions-verification.json
+          git add -f docs/screenshots/forma-solutions-reference/solutions-verification.json
+          git commit -q -m "verify: /solutions Phase D report $(date -u +%Y-%m-%dT%H:%M:%SZ)" || echo "no changes to commit"
+          git push --force origin arena/forma-solutions-capture
 
       - name: Upload the verification report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: forma-solutions-verification
-          path: docs/screenshots/forma-solutions-reference/solutions-verification.json
+          path: solutions-verification.json
           if-no-files-found: error
           retention-days: 14

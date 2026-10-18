@@ -274,6 +274,25 @@ async function checkServerHtml() {
   return { missing, bytes: html.length };
 }
 
+/** Run one phase, recording its failure in the report
+ *  instead of losing every measurement to a crash. */
+async function phase(report, path, run) {
+  const assign = (value) => {
+    const parts = path.split(".");
+    let target = report;
+    for (const part of parts.slice(0, -1)) {
+      target[part] ??= {};
+      target = target[part];
+    }
+    target[parts.at(-1)] = value;
+  };
+  try {
+    assign(await run());
+  } catch (error) {
+    assign({ __error: String(error) });
+  }
+}
+
 async function main() {
   const browser = await chromium.launch();
   const report = { page: PAGE_URL, capturedAt: new Date().toISOString(), lcp: {}, overflow: [], axe: null, serverHtml: null, tools: {} };
@@ -286,12 +305,14 @@ async function main() {
   ];
 
   for (const scenario of scenarios) {
-    report.lcp[scenario.key] = await runLcpScenario(browser, scenario);
+    await phase(report, `lcp.${scenario.key}`, () =>
+      runLcpScenario(browser, scenario),
+    );
   }
 
-  report.overflow = await runOverflowSweep(browser);
-  report.axe = await runAxe(browser);
-  report.serverHtml = await checkServerHtml();
+  await phase(report, "overflow", () => runOverflowSweep(browser));
+  await phase(report, "axe", () => runAxe(browser));
+  await phase(report, "serverHtml", () => checkServerHtml());
   report.tools = {
     playwrightChromium: browser.version(),
     // Lighthouse is not a dependency of this workspace and the
@@ -304,55 +325,69 @@ async function main() {
 
   await browser.close();
 
-  // Verdicts against the budget.
+  // Verdicts against the budget. A phase that crashed
+  // reads as a failure, never as a pass.
+  const lcpGroups = Object.values(report.lcp);
+  const lcpUsable = lcpGroups.every(
+    (runs) => Array.isArray(runs) && runs.length === RUNS,
+  );
+  const allRuns = lcpGroups.flatMap((runs) =>
+    Array.isArray(runs) ? runs : [],
+  );
   report.verdict = {
-    lcpUnder2500ms: Object.values(report.lcp).every((runs) =>
-      runs.every((run) => run.lcp !== null && run.lcp < LCP_BUDGET_MS),
-    ),
-    lcpElementAlwaysPresent: Object.values(report.lcp).every((runs) =>
-      runs.every((run) => run.lcpCandidates > 0),
-    ),
-    heroWordsAlwaysOpaque: Object.values(report.lcp).every((runs) =>
-      runs.every(
+    lcpUnder2500ms:
+      lcpUsable &&
+      allRuns.every((run) => run.lcp !== null && run.lcp < LCP_BUDGET_MS),
+    lcpElementAlwaysPresent:
+      lcpUsable && allRuns.every((run) => run.lcpCandidates > 0),
+    heroWordsAlwaysOpaque:
+      lcpUsable &&
+      allRuns.every(
         (run) =>
           run.heroOpacities.length > 0 &&
           run.heroOpacities.every((opacity) => parseFloat(opacity) === 1),
       ),
-    ),
-    mockPanelFollowsScroll: Object.values(report.lcp)
-      .flat()
-      .filter((run) => run.panelCheckable)
-      .every(
-        (run) =>
-          run.swapTrail.filter(Boolean).length >= 3 &&
-          new Set(run.swapTrail.filter(Boolean)).size >= 2,
+    mockPanelFollowsScroll:
+      lcpUsable &&
+      allRuns
+        .filter((run) => run.panelCheckable)
+        .every(
+          (run) =>
+            run.swapTrail.filter(Boolean).length >= 3 &&
+            new Set(run.swapTrail.filter(Boolean)).size >= 2,
+        ),
+    noConsoleErrors:
+      lcpUsable && allRuns.every((run) => run.consoleErrors.length === 0),
+    reducedMotionActiveInD:
+      lcpUsable &&
+      (report.lcp["D-mobile-reduced-motion"] || []).every(
+        (run) => run.reducedMotionActive === true,
       ),
-    noConsoleErrors: Object.values(report.lcp).every((runs) =>
-      runs.every((run) => run.consoleErrors.length === 0),
-    ),
-    reducedMotionActiveInD: report.lcp["D-mobile-reduced-motion"].every(
-      (run) => run.reducedMotionActive === true,
-    ),
-    noHorizontalOverflow: report.overflow.every(
-      (result) => result.overflowX === 0,
-    ),
-    clsBelow01: Object.values(report.lcp).every((runs) =>
-      runs.every((run) => run.cls < 0.1),
-    ),
-    axeZeroViolations: report.axe.violations.length === 0,
-    noJsVisibility: report.serverHtml.missing.length === 0,
+    noHorizontalOverflow:
+      Array.isArray(report.overflow) &&
+      report.overflow.every((result) => result.overflowX === 0),
+    clsBelow01:
+      lcpUsable && allRuns.every((run) => run.cls < 0.1),
+    axeZeroViolations:
+      report.axe && Array.isArray(report.axe.violations)
+        ? report.axe.violations.length === 0
+        : false,
+    noJsVisibility:
+      report.serverHtml && report.serverHtml.missing.length === 0,
   };
 
   const summary = {
     lcpMedians: Object.fromEntries(
       Object.entries(report.lcp).map(([key, runs]) => [
         key,
-        {
-          lcpMedian: median(runs.map((run) => run.lcp)),
-          lcpRuns: runs.map((run) => run.lcp),
-          clsRuns: runs.map((run) => run.cls),
-          lcpElement: runs[0].lcpElement,
-        },
+        Array.isArray(runs)
+          ? {
+              lcpMedian: median(runs.map((run) => run.lcp)),
+              lcpRuns: runs.map((run) => run.lcp),
+              clsRuns: runs.map((run) => run.cls),
+              lcpElement: runs[0].lcpElement,
+            }
+          : runs,
       ]),
     ),
     verdict: report.verdict,
@@ -365,6 +400,18 @@ async function main() {
     writeFileSync(OUTPUT, json);
   }
   console.log(json);
+
+  const failed = Object.entries(report.verdict).filter(
+    ([, passed]) => !passed,
+  );
+  if (failed.length > 0) {
+    console.error(
+      `VERDICT FAILED: ${failed.map(([key]) => key).join(", ")}`,
+    );
+    process.exitCode = 1;
+  } else {
+    console.error("VERDICT: every check passed");
+  }
 }
 
 main().catch((error) => {
