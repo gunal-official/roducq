@@ -338,10 +338,12 @@
 /* ── Hero reveal ─────────────────────────────────────────────────────────
    The reference lifts each headline line out of a masked slot on load.
    `overflow: hidden` on the slot + a translateY on the line reproduces it
-   with no JS and no layout thrash. */
+   with no JS and no layout thrash. Keeping `opacity: 1` at `from` ensures
+   Blink's PaintTimingDetector never drops first-viewport text as invisible
+   at first paint. */
 @keyframes lm-line-rise {
   from {
-    opacity: 0;
+    opacity: 1;
     transform: translateY(102%);
   }
   to {
@@ -402,16 +404,30 @@
    80ms, the lead paragraph at 550ms, the call-to-action row at 650ms,
    the reassurance line at 720ms, the "connects with" strip at 800ms and
    the dashboard preview at 850ms. Every step is 900ms on
-   cubic-bezier(0.2, 0.7, 0.2, 1). */
+   cubic-bezier(0.2, 0.7, 0.2, 1).
+
+   `opacity: 1` is maintained throughout while `clip-path: inset(...)` +
+   `translateY` perform the staggered reveal: Blink's TextPaintTimingDetector
+   registers the hero lead paragraph as a valid LCP candidate on first
+   paint (instead of aborting with NO_LCP when `opacity: 0` is used), and
+   neutralising the outer `.animate-route-in` wrapper inside `.rdq-marketing`
+   prevents an ancestor `opacity: 0` frame from suppressing that record. */
 @keyframes lm-hero-in {
   from {
-    opacity: 0;
+    opacity: 1;
+    clip-path: inset(0 -40px 100% -40px);
     transform: translateY(var(--lm-hero-rise, 14px));
   }
   to {
     opacity: 1;
+    clip-path: inset(-40px -40px -80px -40px);
     transform: translateY(0);
   }
+}
+
+.rdq-marketing .animate-route-in {
+  opacity: 1;
+  animation: none;
 }
 
 .lm-hero-in {
@@ -761,6 +777,7 @@
   .lm-js .lm-chart-point,
   .lm-js .lm-reveal[data-visible="true"] .lm-connector {
     animation: none;
+    clip-path: none;
     opacity: 1;
     transform: none;
     transition: none;

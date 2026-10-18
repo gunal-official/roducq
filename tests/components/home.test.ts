@@ -997,6 +997,43 @@ describe("/ landing motion", () => {
       );
     }
   });
+
+  it("never sets opacity below a paint-visible threshold at animation start in lm-line-rise or lm-hero-in", () => {
+    for (const name of ["lm-line-rise", "lm-hero-in"]) {
+      const match = TOKENS.match(
+        new RegExp(`@keyframes\\s+${name}\\s*\\{([\\s\\S]*?)\\n\\}`),
+      );
+      assert.ok(match, `missing @keyframes ${name}`);
+      const body = match[1];
+      const fromBlock = body.match(/(?:from|0%)\s*\{([^}]*)\}/);
+      assert.ok(fromBlock, `${name} must declare a from/0% keyframe`);
+      const opacities = [...body.matchAll(/opacity\s*:\s*([0-9.]+)/g)].map((m) =>
+        Number(m[1]),
+      );
+      for (const value of opacities) {
+        assert.ok(
+          value >= 1,
+          `${name} sets opacity ${value} (< 1), which suppresses Blink LCP candidate registration`,
+        );
+      }
+      assert.doesNotMatch(
+        fromBlock[1],
+        /opacity\s*:\s*0(?:\b|\.0*\b)/,
+        `${name} start keyframe must not set opacity: 0`,
+      );
+    }
+    assert.match(
+      TOKENS,
+      /\.rdq-marketing\s+\.animate-route-in\s*\{[^}]*opacity:\s*1;[^}]*animation:\s*none;/,
+      "marketing route wrapper must not suppress initial hero opacity",
+    );
+    const hero = read("components/marketing/landing/HeroSection.tsx");
+    assert.doesNotMatch(
+      hero,
+      /opacity\s*:\s*0/,
+      "HeroSection.tsx must not set inline opacity: 0",
+    );
+  });
 });
 
 /* ── Routes ─────────────────────────────────────────────────────────────── */
