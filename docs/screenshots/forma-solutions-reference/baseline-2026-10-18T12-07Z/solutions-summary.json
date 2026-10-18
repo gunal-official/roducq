@@ -1,0 +1,518 @@
+[
+  {
+    "viewport": "1440x900",
+    "label": "desktop",
+    "theme": "light",
+    "url": "https://forma-visuvate.framer.website/solutions",
+    "title": "Forma for Teams — Product, design, marketing, and ops",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "TeamsHow different teamsuse FormaProduct, design, marketing, and operations team",
+        "box": {
+          "x": 100,
+          "y": 69.7,
+          "w": 1240,
+          "h": 354.03
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "01Product & engineeringRoadmaps connected to shipped codeKeep roadmaps, specs, a",
+        "box": {
+          "x": 0,
+          "y": 483.44,
+          "w": 1440,
+          "h": 3156
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "Choosing a planFor a team, start with the Team planIt adds shared workspaces, wo",
+        "box": {
+          "x": 0,
+          "y": 3639.44,
+          "w": 1440,
+          "h": 356.48
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 3995.92,
+          "w": 1440,
+          "h": 750.83
+        }
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 4746.75,
+          "w": 1440,
+          "h": 703.86
+        }
+      }
+    ],
+    "headingCount": 14,
+    "svgCount": 22,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 872,
+    "outlineTruncated": false,
+    "trackedStyles": 500,
+    "keyframes": 0,
+    "waapiSeen": 88,
+    "animateCalls": 88,
+    "ioCreated": 75,
+    "mutations": 6000,
+    "perfEntries": 8,
+    "liveAnimations": 1,
+    "overflowX": 0,
+    "consoleErrors": []
+  },
+  {
+    "viewport": "1440x900",
+    "label": "desktop",
+    "theme": "dark",
+    "url": "https://forma-visuvate.framer.website/solutions",
+    "title": "Forma for Teams — Product, design, marketing, and ops",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "TeamsHow different teamsuse FormaProduct, design, marketing, and operations team",
+        "box": {
+          "x": 100,
+          "y": 69.7,
+          "w": 1240,
+          "h": 354.03
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "01Product & engineeringRoadmaps connected to shipped codeKeep roadmaps, specs, a",
+        "box": {
+          "x": 0,
+          "y": 483.44,
+          "w": 1440,
+          "h": 3156
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "Choosing a planFor a team, start with the Team planIt adds shared workspaces, wo",
+        "box": {
+          "x": 0,
+          "y": 3639.44,
+          "w": 1440,
+          "h": 356.48
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 3995.92,
+          "w": 1440,
+          "h": 750.83
+        }
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 4746.75,
+          "w": 1440,
+          "h": 703.86
+        }
+      }
+    ],
+    "headingCount": 14,
+    "svgCount": 22,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 872,
+    "outlineTruncated": false,
+    "trackedStyles": 500,
+    "keyframes": 0,
+    "waapiSeen": 99,
+    "animateCalls": 88,
+    "ioCreated": 78,
+    "mutations": 6000,
+    "perfEntries": 10,
+    "liveAnimations": 2,
+    "overflowX": 0,
+    "consoleErrors": []
+  },
+  {
+    "viewport": "768x1024",
+    "label": "tablet",
+    "theme": "light",
+    "url": "https://forma-visuvate.framer.website/solutions",
+    "title": "Forma for Teams — Product, design, marketing, and ops",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "TeamsHow different teamsuse FormaProduct, design, marketing, and operations team",
+        "box": {
+          "x": 16,
+          "y": 65.7,
+          "w": 736,
+          "h": 258.14
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "01Product & engineeringRoadmaps connected to shipped codeKeep roadmaps, specs, a",
+        "box": {
+          "x": 0,
+          "y": 383.55,
+          "w": 768,
+          "h": 3870.41
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "Choosing a planFor a team, start with the Team planIt adds shared workspaces, wo",
+        "box": {
+          "x": 0,
+          "y": 4253.95,
+          "w": 768,
+          "h": 322.92
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 4576.88,
+          "w": 768,
+          "h": 827.52
+        }
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 5404.39,
+          "w": 768,
+          "h": 745.39
+        }
+      }
+    ],
+    "headingCount": 14,
+    "svgCount": 22,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 847,
+    "outlineTruncated": false,
+    "trackedStyles": 486,
+    "keyframes": 0,
+    "waapiSeen": 73,
+    "animateCalls": 74,
+    "ioCreated": 48,
+    "mutations": 6000,
+    "perfEntries": 11,
+    "liveAnimations": 1,
+    "overflowX": 0,
+    "consoleErrors": []
+  },
+  {
+    "viewport": "768x1024",
+    "label": "tablet",
+    "theme": "dark",
+    "url": "https://forma-visuvate.framer.website/solutions",
+    "title": "Forma for Teams — Product, design, marketing, and ops",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "TeamsHow different teamsuse FormaProduct, design, marketing, and operations team",
+        "box": {
+          "x": 16,
+          "y": 65.7,
+          "w": 736,
+          "h": 258.14
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "01Product & engineeringRoadmaps connected to shipped codeKeep roadmaps, specs, a",
+        "box": {
+          "x": 0,
+          "y": 383.55,
+          "w": 768,
+          "h": 3870.41
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "Choosing a planFor a team, start with the Team planIt adds shared workspaces, wo",
+        "box": {
+          "x": 0,
+          "y": 4253.95,
+          "w": 768,
+          "h": 322.92
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 4576.88,
+          "w": 768,
+          "h": 827.52
+        }
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 5404.39,
+          "w": 768,
+          "h": 745.39
+        }
+      }
+    ],
+    "headingCount": 14,
+    "svgCount": 22,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 847,
+    "outlineTruncated": false,
+    "trackedStyles": 486,
+    "keyframes": 0,
+    "waapiSeen": 86,
+    "animateCalls": 74,
+    "ioCreated": 49,
+    "mutations": 6000,
+    "perfEntries": 11,
+    "liveAnimations": 2,
+    "overflowX": 0,
+    "consoleErrors": []
+  },
+  {
+    "viewport": "390x844",
+    "label": "mobile",
+    "theme": "light",
+    "url": "https://forma-visuvate.framer.website/solutions",
+    "title": "Forma for Teams — Product, design, marketing, and ops",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "TeamsHow different teamsuse FormaProduct, design, marketing, and operations team",
+        "box": {
+          "x": 16,
+          "y": 65.7,
+          "w": 358,
+          "h": 375.13
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "01Product & engineeringRoadmaps connected to shipped codeKeep roadmaps, specs, a",
+        "box": {
+          "x": 0,
+          "y": 500.53,
+          "w": 390,
+          "h": 4529.22
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "Choosing a planFor a team, start with the Team planIt adds shared workspaces, wo",
+        "box": {
+          "x": 0,
+          "y": 5029.75,
+          "w": 390,
+          "h": 412.02
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 5441.77,
+          "w": 390,
+          "h": 958.7
+        }
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 6400.47,
+          "w": 390,
+          "h": 745.39
+        }
+      }
+    ],
+    "headingCount": 14,
+    "svgCount": 22,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 847,
+    "outlineTruncated": false,
+    "trackedStyles": 486,
+    "keyframes": 0,
+    "waapiSeen": 74,
+    "animateCalls": 74,
+    "ioCreated": 39,
+    "mutations": 6000,
+    "perfEntries": 10,
+    "liveAnimations": 0,
+    "overflowX": 0,
+    "consoleErrors": []
+  },
+  {
+    "viewport": "390x844",
+    "label": "mobile",
+    "theme": "dark",
+    "url": "https://forma-visuvate.framer.website/solutions",
+    "title": "Forma for Teams — Product, design, marketing, and ops",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "TeamsHow different teamsuse FormaProduct, design, marketing, and operations team",
+        "box": {
+          "x": 16,
+          "y": 65.7,
+          "w": 358,
+          "h": 375.13
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "01Product & engineeringRoadmaps connected to shipped codeKeep roadmaps, specs, a",
+        "box": {
+          "x": 0,
+          "y": 500.53,
+          "w": 390,
+          "h": 4529.22
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "Choosing a planFor a team, start with the Team planIt adds shared workspaces, wo",
+        "box": {
+          "x": 0,
+          "y": 5029.75,
+          "w": 390,
+          "h": 412.02
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 5441.77,
+          "w": 390,
+          "h": 958.7
+        }
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 6400.47,
+          "w": 390,
+          "h": 745.39
+        }
+      }
+    ],
+    "headingCount": 14,
+    "svgCount": 22,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 847,
+    "outlineTruncated": false,
+    "trackedStyles": 486,
+    "keyframes": 0,
+    "waapiSeen": 86,
+    "animateCalls": 74,
+    "ioCreated": 40,
+    "mutations": 6000,
+    "perfEntries": 9,
+    "liveAnimations": 0,
+    "overflowX": 0,
+    "consoleErrors": []
+  }
+]

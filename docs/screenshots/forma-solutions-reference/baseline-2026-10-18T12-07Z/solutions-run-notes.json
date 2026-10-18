@@ -1,0 +1,31 @@
+{
+  "target": "forma-solutions",
+  "base": "https://forma-visuvate.framer.website/solutions",
+  "startedAt": "2026-10-18T12:06:11.854Z",
+  "browserVersion": "153.0.8010.12",
+  "viewports": [
+    {
+      "w": 1440,
+      "h": 900,
+      "name": "1440x900",
+      "label": "desktop"
+    },
+    {
+      "w": 768,
+      "h": 1024,
+      "name": "768x1024",
+      "label": "tablet"
+    },
+    {
+      "w": 390,
+      "h": 844,
+      "name": "390x844",
+      "label": "mobile"
+    }
+  ],
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "finishedAt": "2026-10-18T12:07:16.507Z"
+}
