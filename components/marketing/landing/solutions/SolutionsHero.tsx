@@ -54,7 +54,9 @@ export function SolutionsHero() {
             {SOLUTIONS_HERO.eyebrow}
           </p>
 
-          <h1 className="mt-5 font-lm-semibold tracking-[-0.03em] text-lm-44 text-lm-ink lg:text-lm-67">
+          {/* MEASURED: the reference puts a 10px spacer between the
+              eyebrow and the headline (y 178.5 -> 188.5), not 20px. */}
+          <h1 className="mt-2.5 font-lm-semibold tracking-[-0.03em] text-lm-44 text-lm-ink lg:text-lm-67">
             {before.map((word, index) => (
               <span key={word}>
                 <HeroWord delay={(index + 1) * 50}>{word}</HeroWord>{" "}
@@ -67,8 +69,10 @@ export function SolutionsHero() {
             </HeroWord>
           </h1>
 
+          {/* MEASURED: 32px spacer between the headline and the lead
+              (y 257.1 -> 289.1), not 24px. */}
           <p
-            className="lm-hero-in mt-6 max-w-[640px] text-lm-19 leading-[1.65] text-lm-muted-slate"
+            className="lm-hero-in mt-8 max-w-[640px] text-lm-19 leading-[1.65] text-lm-muted-slate"
             style={
               {
                 "--lm-hero-duration": "800ms",

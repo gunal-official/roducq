@@ -37,7 +37,7 @@ export function MockPanel({
 }) {
   return (
     <div
-      className="lm-solutions-stage relative hidden overflow-hidden rounded-lm-stage lg:block"
+      className="lm-solutions-stage relative hidden overflow-hidden rounded-lm-stage-sm shadow-lm-mock-stage lg:block"
       aria-label="Practice miniature"
     >
       {/* The card area: measured inset 52px from the
@@ -64,10 +64,15 @@ export function MockPanel({
 
       {/* The foot of the stage: which practice is in
           view, and how far through the four the reader
-          is. The fill steps at 25% per practice. */}
+          is. The fill steps at 25% per practice.
+
+          MEASURED (1440x900): 14px between the counter and the
+          track; the track is a 2px rail at radius 2 on
+          rgba(255,255,255,0.18); the fill is solid white at radius 0
+          (it was 6px and accent purple here before — both wrong). */}
       <div
         aria-hidden="true"
-        className="lm-mock-stage-foot inset-x-8 bottom-[26px] flex items-center gap-3"
+        className="lm-mock-stage-foot inset-x-8 bottom-[26px] flex items-center gap-3.5"
       >
         <span className="text-lm-13 font-lm-semibold text-lm-cta-ink">
           {String(active + 1).padStart(2, "0")}
@@ -75,9 +80,9 @@ export function MockPanel({
         <span className="text-lm-13 text-lm-cta-faint">
           / {String(categories.length).padStart(2, "0")}
         </span>
-        <span className="h-1.5 flex-1 overflow-hidden rounded-[2px] bg-lm-cta-track">
+        <span className="h-0.5 flex-1 overflow-hidden rounded-[2px] bg-lm-cta-track">
           <span
-            className="block h-full rounded-[2px] bg-lm-accent transition-[width] duration-500 ease-[cubic-bezier(0.2,0.7,0.2,1)]"
+            className="block h-full rounded-none bg-lm-cta-fill transition-[width] duration-500 ease-[cubic-bezier(0.2,0.7,0.2,1)]"
             style={{ width: `${((active + 1) / categories.length) * 100}%` }}
           />
         </span>

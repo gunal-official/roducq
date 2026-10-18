@@ -32,24 +32,32 @@ import { clsx as cn } from "clsx";
  * reproduced here.
  */
 
-/** The hairline-separated row every miniature uses. */
+/**
+ * The hairline-separated row every miniature uses.
+ *
+ * MEASURED type steps on the reference's own rows: the leading text
+ * is 13.5px / 500 and the trailing one 11px / 600 — this was 13px /
+ * 500 and 12px / 400. Roducq rows carry two cells where the
+ * reference's carry three (id / title / status); the copy is
+ * approved, so only the type steps move.
+ */
 function MockRow({ label, meta }: { label: string; meta: string }) {
   return (
     <div className="flex items-center justify-between gap-3 py-2.5">
-      <span className="truncate font-lm-medium text-lm-13 text-lm-ink">
+      <span className="truncate text-lm-mock font-lm-medium text-lm-ink">
         {label}
       </span>
-      <span className="shrink-0 text-lm-12 text-lm-muted-slate">
+      <span className="shrink-0 text-lm-chip font-lm-bold text-lm-muted-slate">
         {meta}
       </span>
     </div>
   );
 }
 
-/** The status pill that heads a miniature. */
+/** The status pill that heads a miniature. MEASURED 11px / 500. */
 function MockPill({ children }: { children: React.ReactNode }) {
   return (
-    <span className="shrink-0 rounded-lm-pill bg-lm-canvas px-2.5 py-1 text-lm-10 font-lm-semibold text-lm-ink-soft">
+    <span className="shrink-0 rounded-lm-pill bg-lm-canvas px-2.5 py-1 text-lm-chip font-lm-medium text-lm-ink-soft">
       {children}
     </span>
   );
@@ -64,7 +72,8 @@ function MockHeader({
 }) {
   return (
     <div className="flex items-center justify-between gap-3">
-      <p className="flex min-w-0 items-center gap-2 truncate font-lm-medium text-lm-13 text-lm-ink">
+      {/* MEASURED: the miniature's own title is 13.5px / 600, not 13 / 500. */}
+      <p className="flex min-w-0 items-center gap-2 truncate text-lm-mock font-lm-semibold text-lm-ink">
         <span className="h-2 w-2 shrink-0 rounded-lm-dot bg-lm-accent" aria-hidden="true" />
         <span className="truncate">{title}</span>
       </p>
@@ -119,14 +128,31 @@ function StatusSwap({ states }: { states: readonly [string, string] }) {
   );
 }
 
-/** Shared checklist renderer: the getting-started miniature
- *  (closing CTA) and the weekly miniature (consultancies)
- *  are the same component with different content. */
+/**
+ * Shared checklist renderer — but the two places it renders are NOT
+ * the same component on the reference, and collapsing them was a
+ * fidelity error. Both were measured at 1440x900:
+ *
+ *   "card"  the closing CTA's getting-started card
+ *           20x20 tiles at radius 6 (rounded squares, not circles),
+ *           15px labels, 12px between tile and label, the active row
+ *           inset 12px on #f3efff at radius 10
+ *
+ *   "mini"  the weekly miniature inside the sticky stage
+ *           25x25 tiles at radius 50% (circles), 13.5px labels
+ *
+ * The tile fills #6246ea when done in both. Roducq keeps the states
+ * ("Done" / "Next" / "Later") it already publishes; only the geometry
+ * and type follow the reference.
+ */
 export function ChecklistRows({
   items,
+  variant = "mini",
 }: {
   items: readonly { label: string; state: "Done" | "Next" | "Later" }[];
+  variant?: "card" | "mini";
 }) {
+  const card = variant === "card";
   return (
     <ul className="mt-3 flex flex-1 flex-col divide-y divide-lm-border-soft">
       {items.map((item) => (
@@ -135,13 +161,18 @@ export function ChecklistRows({
           className={cn(
             "flex items-center justify-between gap-3 py-2.5",
             item.state === "Next" &&
-              "-mx-2 my-1 rounded-lm-row bg-lm-surface-accent px-2.5 py-2.5",
+              (card
+                ? "-mx-3 my-1 rounded-[10px] bg-lm-mock-row-active px-3 py-2.5"
+                : "-mx-2 my-1 rounded-lm-row bg-lm-surface-accent px-2.5 py-2.5"),
           )}
         >
-          <span className="flex min-w-0 items-center gap-2.5">
+          <span
+            className={cn("flex min-w-0 items-center", card ? "gap-3" : "gap-2.5")}
+          >
             <span
               className={cn(
-                "flex h-5 w-5 shrink-0 items-center justify-center rounded-lm-tile border",
+                "flex shrink-0 items-center justify-center border",
+                card ? "h-5 w-5 rounded-[6px]" : "h-[25px] w-[25px] rounded-lm-dot",
                 item.state === "Done"
                   ? "border-lm-accent bg-lm-accent text-lm-on-accent"
                   : item.state === "Next"
@@ -151,16 +182,17 @@ export function ChecklistRows({
               aria-hidden="true"
             >
               {item.state === "Done" ? (
-                <Check className="h-4 w-4" />
+                <Check className={card ? "h-4 w-4" : "h-3.5 w-3.5"} />
               ) : null}
             </span>
             <span
               className={cn(
-                "truncate text-lm-12",
+                "truncate",
+                card ? "text-lm-15" : "text-lm-mock",
                 item.state === "Done"
                   ? "text-lm-ink-soft"
                   : item.state === "Next"
-                    ? "font-lm-semibold text-lm-ink"
+                    ? "font-lm-medium text-lm-ink"
                     : "text-lm-ink-soft",
               )}
             >
@@ -169,10 +201,9 @@ export function ChecklistRows({
           </span>
           <span
             className={cn(
-              "shrink-0 text-lm-10 font-lm-semibold",
-              item.state === "Next"
-                ? "text-lm-ink-accent"
-                : "text-lm-ink-soft",
+              "shrink-0 font-lm-semibold",
+              card ? "text-lm-12" : "text-lm-10",
+              item.state === "Next" ? "text-lm-ink-accent" : "text-lm-ink-soft",
             )}
           >
             {item.state}
@@ -186,7 +217,7 @@ export function ChecklistRows({
 function MockTrail() {
   const mock = MOCKS.trail;
   return (
-    <div className="lm-mock-card flex h-full flex-col p-[27px]">
+    <div className="lm-mock-card flex h-full flex-col rounded-lm-frame p-[27px]">
       <MockHeader title={mock.title} pill={<MockPill>{mock.pill}</MockPill>} />
       <div className="mt-3 divide-y divide-lm-border-soft">
         {mock.rows.map((row) => (
@@ -216,7 +247,7 @@ function MockTrail() {
 function MockBrief() {
   const mock = MOCKS.brief;
   return (
-    <div className="lm-mock-card flex h-full flex-col p-[27px]">
+    <div className="lm-mock-card flex h-full flex-col rounded-lm-frame p-[27px]">
       <MockHeader title={mock.title} pill={<MockPill>{mock.pill}</MockPill>} />
       <div className="mt-3 divide-y divide-lm-border-soft">
         {mock.rows.map((row) => (
@@ -244,7 +275,7 @@ function MockBrief() {
 function MockProposal() {
   const mock = MOCKS.proposal;
   return (
-    <div className="lm-mock-card flex h-full flex-col p-[27px]">
+    <div className="lm-mock-card flex h-full flex-col rounded-lm-frame p-[27px]">
       <MockHeader
         title={mock.title}
         pill={<StatusSwap states={mock.pillStates} />}
@@ -268,7 +299,7 @@ function MockProposal() {
 function MockWeek() {
   const mock = MOCKS.week;
   return (
-    <div className="lm-mock-card flex h-full flex-col p-[27px]">
+    <div className="lm-mock-card flex h-full flex-col rounded-lm-frame p-[27px]">
       <MockHeader title={mock.title} pill={<MockPill>{mock.pill}</MockPill>} />
       <ChecklistRows items={mock.items} />
     </div>

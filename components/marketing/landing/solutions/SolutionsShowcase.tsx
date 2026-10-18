@@ -19,11 +19,18 @@ import { PRACTICE_MOCKS } from "./PracticeMocks";
  * single section, not four).
  *
  * DESKTOP. The copy column (measured 561.53px of the 1240px
- * shell, 72px gap) is followed by a sticky stage
- * (position: sticky; the reference pins it 150px below the
- * viewport top, which this page reproduces verbatim) whose
- * miniature crossfades to the practice whose article is
- * 30% visible — the measured IntersectionObserver trigger.
+ * shell, 71.5px gap to the stage) is followed by a sticky stage
+ * (position: sticky — CONFIRMED by the capture) whose miniature
+ * crossfades to the practice whose article is 30% visible — the
+ * measured IntersectionObserver trigger.
+ *
+ * The stage's `top` offset is [UNVERIFIED]: the capture harness
+ * does not collect `top`, and every screenshot was taken with the
+ * stage in its natural flow position, so the reference's pin offset
+ * cannot be read from the evidence. `lg:top-[150px]` is retained as
+ * an [INFERRED] value that keeps the 710px stage inside a 900px
+ * viewport with room to spare; it is not a measured figure and the
+ * comment that previously claimed otherwise was wrong.
  *
  * PHONE / TABLET. The stage is hidden and each article
  * carries its own miniature inline, below the templates
@@ -71,13 +78,22 @@ function PracticeArticle({
   const Mock = PRACTICE_MOCKS[category.mock];
   return (
     <Reveal>
+      {/* MEASURED rhythm (1440x900): every article is 774px tall with
+          48px padding top and bottom, and its content block is
+          vertically centred in what remains — which is why the four
+          articles share one pitch even though their copy blocks
+          measure 532.9–590.7px. `min-h` (not `h`) so a longer
+          Roducq block grows instead of overflowing. */}
       <article
         id={category.id}
         data-practice-index={index}
-        className="scroll-mt-32 pb-[106px] lg:pb-0"
+        className="scroll-mt-32 pb-[106px] lg:flex lg:min-h-[774px] lg:flex-col lg:justify-center lg:py-12"
       >
-        <div className="flex items-center gap-2.5 border-b border-lm-border-soft pb-3.5">
-          <span className="text-lm-12 font-lm-bold leading-6 text-lm-ink-accent">
+        <div className="flex items-center gap-2 border-b border-lm-border-soft pb-3.5">
+          {/* MEASURED 900 in DM Sans. Roducq ships Manrope only, and its
+              variable face tops out at 800, so 800 is the heaviest real
+              weight available — asking for 900 would synthesise. */}
+          <span className="text-lm-12 font-extrabold leading-6 text-lm-ink-accent">
             {category.index}
           </span>
           <span className="text-lm-12 font-lm-semibold uppercase tracking-[0.08em] text-lm-muted-slate">
@@ -100,7 +116,7 @@ function PracticeArticle({
               <span className="absolute left-0 top-1 text-lm-12 font-lm-bold leading-6 text-lm-ink-accent">
                 {String(workflowIndex + 1).padStart(2, "0")}
               </span>
-              <p className="py-3 text-lm-15 leading-6 text-lm-muted-slate">
+              <p className="py-3.5 text-lm-15 leading-6 text-lm-muted-slate">
                 <strong className="font-lm-semibold text-lm-ink">
                   {workflow.lead}
                 </strong>{" "}
@@ -111,7 +127,11 @@ function PracticeArticle({
         </ol>
 
         <div className="mt-5 flex items-center gap-3">
-          <span className="shrink-0 rounded-lm-pill bg-lm-canvas px-2.5 py-1 text-lm-11 font-lm-semibold uppercase tracking-[0.06em] text-lm-ink">
+          {/* MEASURED: 11px / 600 / 0.06em, and the chip is 19.2px
+              tall — 3px of vertical padding around an 13.2px line box,
+              not the 4px this had. `text-lm-11` is a dead class (no
+              --lm-size-11 token), so the step is written literally. */}
+          <span className="shrink-0 rounded-lm-pill bg-lm-canvas px-2.5 py-[3px] text-lm-chip font-lm-semibold uppercase tracking-[0.06em] text-lm-ink">
             {TEMPLATES_LABEL}
           </span>
           <p className="text-lm-17 leading-[1.7] text-lm-muted-slate">
@@ -163,7 +183,14 @@ export function SolutionsShowcase() {
   }, []);
 
   return (
-    <section ref={sectionRef} aria-label="Practices" className="bg-lm-card">
+    /* MEASURED band padding: the reference's showcase section carries
+       20px top and 40px bottom, plus a 12px spacer between the sticky
+       category strip and the section — 32px above and 40px below. */
+    <section
+      ref={sectionRef}
+      aria-label="Practices"
+      className="bg-lm-card pb-10 pt-8"
+    >
       <div className="lm-shell">
         <div className="lg:grid lg:grid-cols-[minmax(0,561px)_minmax(0,1fr)] lg:gap-[72px]">
           <div>

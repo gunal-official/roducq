@@ -1032,20 +1032,67 @@
   /* Measured steps this page adds to the landing scale. */
   --lm-size-42: 42px; /* category headline, 46.2px line */
   --lm-size-44: 44px; /* phone/tablet hero headline */
+  --lm-size-65: 64.8px; /* closing CTA headline, 66.1px line */
   --lm-size-67: 67.2px; /* desktop hero headline */
+  /* Two fractional steps the reference measures that the shared
+     integer scale cannot express. They are deliberately NOT named
+     `lm-11` / `lm-13`: a shared `--lm-size-11` step would bring the
+     already-written-but-currently-dead `text-lm-11` in
+     SectionHeading.tsx to life and restyle CardLabel on /, /about,
+     /pricing and /vs — a cross-page change this milestone may not
+     make. These names are used only by /solutions. */
+  --lm-size-chip: 11px; /* nav chip index, Templates micro-label */
+  --lm-size-mock: 13.5px; /* miniature title and row text */
 
-  /* Radii the showcase publishes. */
-  --lm-radius-stage: 28px; /* gradient stage cards */
+  /* Two fills measured inside the miniature cards and the
+     getting-started checklist. They are NOT the shell's surface
+     steps (#eae6f1 / #efebff) — substituting those drifts 1–4%. */
+  --lm-mock-row-active: #f3efff; /* the "next" row inside a card */
+  --lm-mock-rail: #eeeaf7; /* the 6px progress track */
+
+  /* Radii the showcase publishes.
+     MEASURED, and they are NOT one value: the closing CTA stage is
+     28px, while the sticky miniature stage and the plan band are both
+     24px. Collapsing them to one radius was a fidelity error. */
+  --lm-radius-stage: 28px; /* closing CTA stage */
+  --lm-radius-stage-sm: 24px; /* miniature stage + plan band */
   --lm-radius-mock: 18px; /* the getting-started checklist card */
 
-  /* Elevation the showcase publishes. */
+  /* Elevation the showcase publishes — also three distinct values.
+     The plan band carries NO shadow at all; the miniature stage
+     carries one soft 80px lift; only the closing CTA pairs a 2px
+     hairline with a 80px lift. */
   --lm-shadow-mock: rgba(8, 2, 30, 0.55) 0px 30px 60px -24px;
+  --lm-shadow-mock-stage: rgba(30, 16, 80, 0.45) 0px 40px 80px -40px;
   --lm-shadow-stage: rgba(33, 20, 56, 0.04) 0px 2px 4px 0px,
     rgba(58, 28, 110, 0.32) 0px 40px 80px -30px;
 
   /* On-stage ink steps (white stage, measured rgba values). */
   --lm-cta-faint: rgba(255, 255, 255, 0.6);
   --lm-cta-track: rgba(255, 255, 255, 0.18);
+  --lm-cta-fill: #ffffff; /* measured 121px fill on the 486px track */
+  /* MEASURED: the filled stage button's label is #2a1570, not the
+     shell's #1b1426 ink — a dark indigo, not near-black. */
+  --lm-cta-button-ink: #2a1570;
+
+  /* The numbered category strip. MEASURED: the reference does not
+     draw a full-width bar — it floats a centred, content-sized pill
+     (756px at four chips) at rgba(255,255,255,0.72) with a 16px
+     backdrop blur and a 1px/2px hairline lift. No border. */
+  --lm-chip-wash: rgba(255, 255, 255, 0.72);
+  --lm-shadow-chip: rgba(33, 20, 56, 0.06) 0px 1px 2px 0px;
+}
+
+.dark .rdq-marketing {
+  /* Same construction, re-pointed at the dark surface: the reference
+     is light-only (its dark capture returns identical values), so the
+     dark value is the equivalent lift over this shell's own plane. */
+  --lm-chip-wash: rgba(20, 15, 29, 0.72);
+  --lm-shadow-chip: rgba(0, 0, 0, 0.24) 0px 1px 2px 0px;
+  /* The measured miniature fills are light-surface values. On the dark
+     shell they land on the same two surfaces the light values map to. */
+  --lm-mock-row-active: #2b2140;
+  --lm-mock-rail: #2a2233;
 }
 
 /* ── Headline word dissolve ──────────────────────────────────── */
@@ -1118,6 +1165,15 @@
    The measured 150deg purple sweep with its two radial glows,
    used by the plan band and the closing CTA. */
 .lm-solutions-stage {
+  /* The stage's own secondary button is NOT the shell's: measured
+     rgba(255,255,255,0.08) with no border, where FinalCta (and every
+     other page) uses 0.14 behind a 32% border. Re-pointed here rather
+     than on the shared token, so only the two /solutions stages move. */
+  --lm-cta-wash: rgba(255, 255, 255, 0.08);
+  /* MEASURED: the stage's body copy is 76% white, not the shell's
+     opaque #efebff. Scoped here so FinalCta keeps the shared value. */
+  --lm-cta-muted: rgba(255, 255, 255, 0.76);
+
   background:
     radial-gradient(
       70% 60% at 100% 0%,
@@ -1130,15 +1186,27 @@
       rgba(0, 0, 0, 0) 70%
     ),
     linear-gradient(150deg, #35278a 0%, #5139c9 52%, #7658ec 100%);
-  box-shadow: var(--lm-shadow-stage);
+  /* NO box-shadow here, deliberately. landing.css is emitted AFTER the
+     Tailwind utility layer, so a `box-shadow` on this class outranks
+     every `shadow-*` utility at equal specificity — which silently
+     defeated both `shadow-none` (plan band, measured: no shadow) and
+     `shadow-lm-mock-stage`. Each stage now states its own shadow; the
+     three measured values are 0 / one soft lift / hairline + lift. */
 }
 
-/* ── Miniature product surfaces ──────────────────────────────── */
+/* ── Miniature product surfaces ────────────────────────────────
+   MEASURED: radius 16px, 27px padding, and NO border — the card is
+   separated from its stage by the shadow alone
+   (rgba(8,2,30,0.55) 0 30px 60px -24px). The 1px hairline that was
+   here is not on the reference.                                    */
 .lm-mock-card {
   background-color: var(--lm-card);
-  border: 1px solid var(--lm-surface-muted);
-  border-radius: var(--lm-radius-frame);
+  border: 0;
   box-shadow: var(--lm-shadow-mock);
+  /* No border-radius either, for the same load-order reason: the four
+     miniatures measure 16px (`rounded-lm-frame`) but the getting-started
+     card in the closing CTA measures 18px (`rounded-lm-mock`), and a
+     radius here would flatten both to 16px. */
 }
 
 /* ── Mock panel crossfade ──────────────────────────────────────

@@ -61,6 +61,10 @@ const config = {
           "cta-muted": "var(--lm-cta-muted)",
           "cta-border": "var(--lm-cta-border)",
           "cta-wash": "var(--lm-cta-wash)",
+        "cta-button-ink": "var(--lm-cta-button-ink)",
+        // /solutions: the measured miniature fills.
+        "mock-row-active": "var(--lm-mock-row-active)",
+        "mock-rail": "var(--lm-mock-rail)",
         },
         // Explicit Forma palette for new work, alongside semantic aliases
         // retained for every existing app component and shadcn-style API.
@@ -186,6 +190,9 @@ const config = {
         "lm-pill": "var(--lm-radius-pill)",
         "lm-dot": "var(--lm-radius-dot)",
         "lm-stage": "var(--lm-radius-stage)",
+        // /solutions: the sticky miniature stage and the plan band
+        // measure 24px, not the closing CTA's 28px.
+        "lm-stage-sm": "var(--lm-radius-stage-sm)",
         "lm-mock": "var(--lm-radius-mock)",
         // The floating phone bar and the auth panel: a soft rectangle,
         // deliberately wider than `surface` so the chrome reads as a
@@ -211,7 +218,11 @@ const config = {
         "lm-lg": "var(--lm-shadow-lg)",
         "lm-frame": "var(--lm-shadow-frame)",
         "lm-mock": "var(--lm-shadow-mock)",
+        "lm-mock-stage": "var(--lm-shadow-mock-stage)",
         "lm-stage": "var(--lm-shadow-stage)",
+        // /solutions: the measured 1px/2px hairline lift under the
+        // floating numbered-category pill.
+        "lm-chip": "var(--lm-shadow-chip)",
         // Phase B: the floating bar, the drawer and the auth panel.
         shell: "var(--shell-shadow)",
         lift: "var(--shell-shadow-lift)",
@@ -260,6 +271,14 @@ const config = {
         "lm-48": ["var(--lm-size-48)", { lineHeight: "1.1" }],
         "lm-54": ["var(--lm-size-54)", { lineHeight: "1.1" }],
         "lm-64": ["var(--lm-size-64)", { lineHeight: "1.02" }],
+        // /solutions: the closing CTA headline measures 64.8px — it is
+        // NOT the hero's 67.2px, which it was borrowing.
+        "lm-65": ["var(--lm-size-65)", { lineHeight: "1.02" }],
+        // Two /solutions-only fractional steps the integer scale cannot
+        // express. Deliberately NOT `lm-11`: activating that shared step
+        // would restyle CardLabel on the other marketing pages.
+        "lm-chip": ["var(--lm-size-chip)", { lineHeight: "1.5" }],
+        "lm-mock": ["var(--lm-size-mock)", { lineHeight: "1.5" }],
         "lm-67": ["var(--lm-size-67)", { lineHeight: "1.02" }],
         "lm-72": ["var(--lm-size-72)", { lineHeight: "1.02" }],
       },
