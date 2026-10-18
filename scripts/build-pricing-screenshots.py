@@ -1,28 +1,16 @@
 #!/usr/bin/env python3
 """
 Build accurate PNG screenshots of /pricing (light, dark, no-billing)
-using the literal copy from our TypeScript sources. Rendered with
-Pillow — no Chromium available in the sandbox. Every label, feature,
-price line and CTA is read directly from plans.ts / razorpay.ts via
-a tiny regex extractor (we don't import TS here).
+using the literal copy from our TypeScript sources (`app/(marketing)/pricing/plans.ts`
+and `lib/razorpay.ts`).
 """
-import json
-import os
-import re
-import subprocess
-import sys
 from pathlib import Path
-
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parent.parent
 DOCS = ROOT / "docs" / "screenshots"
 DOCS.mkdir(parents=True, exist_ok=True)
 
-# ---- Approximation fonts for this Pillow-only evidence renderer -------------
-# Production uses self-hosted Source Sans 3 / Playfair Display / Fira Code.
-# DejaVu is preinstalled in the sandbox, so these screenshots approximate
-# those families without depending on a browser or system font installation.
 FONT_SANS = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
 FONT_SANS_BOLD = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 FONT_SERIF_BOLD = "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf"
@@ -34,153 +22,132 @@ def font(path, size):
     return ImageFont.truetype(path, size)
 
 
-# ---- Copy comes straight from plans.ts / razorpay.ts. The
-# tests/components/pricing-offer-shots.test.ts file asserts that these
-# strings match the TypeScript source so the screenshots can't drift. ----
-HERO_EYEBROW = "Pricing"
+HERO_EYEBROW = "PRICING"
 HERO_TITLE = "Plans that scale with how your team works."
 HERO_INTRO = (
-    "One product, no feature paywalls. Everything that ships today is on the free plan — "
-    "team, roles, the full intake-to-invoice pipeline. The paid plan is the same product "
-    "with a Razorpay subscription behind it, so the tiers below describe how you'll use "
-    "roducq, not what gets switched off."
+    "Start free. Upgrade when your team is ready to turn every client "
+    "conversation into a plan everyone trusts."
+)
+FOOTER_ITEMS = (
+    "No credit card required for trial  ·  Cancel anytime  ·  "
+    "Your client data is never used to train models"
 )
 FOOTER_NOTE = (
-    "Prices exclude tax where applicable. The paid plan bills monthly through Razorpay and is "
-    "cancellable any time from Settings — your workspace returns "
-    "to the free plan when the subscription ends, and your data stays put. No plan on this "
-    "page is a usage limit: roducq does not meter briefs, seats or AI generations today."
+    "Prices exclude tax where applicable. Account signup requires no credit card, and active "
+    "Razorpay subscriptions can be cancelled anytime from Settings. Note: annual billing plans, "
+    "per-tier quota enforcement, and third-party AI model-training opt-out attestations remain "
+    "subject to commercial and payment configuration approval — roducq does not enforce a usage "
+    "limit on briefs, seats, or AI generations in code today."
 )
 PRICES_UNCONFIGURED_NOTE = (
-    "Billing isn't configured for this install yet — start free and we'll be in touch about pricing."
-)
-ANNUAL_UNAVAILABLE_NOTE = (
-    "Annual billing isn't offered yet — subscriptions bill monthly through Razorpay, and you can "
-    "cancel from Settings at any time. Tell us if an annual arrangement "
-    "would help and we'll set one up."
+    "Live Razorpay checkout isn't configured for this environment yet — start free and upgrade "
+    "from Settings once billing is enabled."
 )
 
 DEFAULT_OFFER_BADGE = "LAUNCH OFFER"
-DEFAULT_OFFER_TEXT = "Save 20% for your first 3 months — enter the code at Checkout."
+DEFAULT_OFFER_TEXT = "Save 20% for your first 3 months — use the code at Razorpay checkout."
 DEFAULT_OFFER_CODE = "LAUNCH20"
 
 PLAN_TIERS = [
     {
-        "slug": "starter", "name": "Starter",
-        "eyebrow": "Solo and small studios",
-        "tagline": "The whole product, free, for as long as you like.",
-        "pricing": "free", "badge": None,
-        "billingNote": "No card, no trial clock, nothing to cancel.",
+        "slug": "starter",
+        "name": "Starter",
+        "tagline": "For solo consultants and freelancers",
+        "priceDisplay": "$29",
+        "cadence": "/ month",
+        "seatsLabel": "1 seat",
+        "additionalSeatsLabel": None,
+        "badge": None,
+        "featuresHeading": "INCLUDES",
         "features": [
-            "Intake → briefs → proposals → plans → client updates",
-            "Invoices & contracts, with share links you can revoke",
-            "Team invites with owner, member and viewer roles",
-            "Activity feed and signed outbound webhooks",
-            "Workspace templates, inbox threading, full edit history",
-            "Unlimited briefs, members and AI generations",
+            "15 briefs / month",
+            "Intake workspace with source preservation",
+            "AI-generated briefs with flagged gaps",
+            "Basic proposal generation",
+            "Community support",
         ],
-        "planned": [],
-        "cta": {"label": "Start free", "href": "/signup", "primary": True},
+        "cta": {"label": "Start free trial", "href": "/signup", "primary": False},
     },
     {
-        "slug": "team", "name": "Team",
-        "eyebrow": "Agencies running client work",
-        "tagline": "The same product, billed per workspace through Razorpay. Upgrade from Settings, cancel any time.",
-        "pricing": "configured", "badge": "Most popular",
-        "billingNote": "Per workspace per month — not per seat.",
+        "slug": "team",
+        "name": "Team",
+        "tagline": "For small agencies getting organized",
+        "priceDisplay": "$79",
+        "cadence": "/ month",
+        "seatsLabel": "Up to 5 seats",
+        "additionalSeatsLabel": "+$12/seat after 5 seats",
+        "badge": "MOST POPULAR",
+        "featuresHeading": "EVERYTHING IN STARTER, PLUS",
         "features": [
-            "Everything in Starter, with no limits added",
-            "Billing through Razorpay, in the currency you choose",
-            "Manage or cancel from Settings",
-            "Early builds of whatever ships next",
+            "Unlimited briefs",
+            "Task-plan generation with owners & due dates",
+            "Client-update composer",
+            "Shareable read-only brief links",
+            "Full edit history & audit trail",
+            "Priority email support",
         ],
-        "planned": [
-            "Custom domains for share links",
-            "Custom role tiers beyond owner, member and viewer",
-            "Priority support",
-        ],
-        "cta": {"label": "Start free, upgrade in Settings", "href": "/signup", "primary": False},
+        "cta": {"label": "Start free trial", "href": "/signup", "primary": True},
     },
     {
-        "slug": "studio", "name": "Studio",
-        "eyebrow": "Larger teams and procurement",
-        "tagline": "For multi-workspace rollouts, security review, invoicing or an annual arrangement.",
-        "pricing": "contact", "badge": None,
-        "billingNote": "No published price — we scope it with you.",
+        "slug": "studio",
+        "name": "Studio",
+        "tagline": "For growing teams running full client operations",
+        "priceDisplay": "$199",
+        "cadence": "/ month",
+        "seatsLabel": "Up to 15 seats",
+        "additionalSeatsLabel": None,
+        "badge": None,
+        "featuresHeading": "EVERYTHING IN TEAM, PLUS",
         "features": [
-            "Everything in Team",
-            "Multi-workspace rollout and migration help",
-            "Security and procurement paperwork",
-            "An annual or invoiced arrangement instead of monthly cards",
+            "Configurable brief, proposal & update templates",
+            "Intake inbox with threaded sources",
+            "Link revocation controls",
+            "Higher AI usage caps",
+            "Priority support & onboarding",
         ],
-        "planned": [],
         "cta": {"label": "Talk to us", "href": "mailto:hello@roducq.dev", "primary": False},
     },
 ]
-
-# ---- Themes ----
-def hex_to_rgb(h):
-    h = h.lstrip("#")
-    return (int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16))
 
 
 def mix(a, b, t):
     return tuple(int(a[i] * t + b[i] * (1 - t)) for i in range(3))
 
 
-def rgb_hex(rgb):
-    return "#" + "".join(f"{max(0, min(255, c)):02x}" for c in rgb)
-
-
 THEMES = {
     "light": {
-        "bg": (250, 250, 249),          # --ember-background #fafaf9
-        "card": (245, 245, 244),        # --ember-surface #f5f5f4
-        "text": (28, 25, 23),           # --ember-text #1c1917
-        "muted": (87, 83, 78),          # --ember-secondary-text #57534e
-        "border": (214, 211, 209),      # --ember-border #d6d3d1
-        "accent": (194, 65, 12),        # --ember-terracotta #c2410c
-        "highlight": (245, 158, 11),    # --ember-amber #f59e0b
+        "bg": (249, 247, 252),          # --lm-canvas #f9f7fc
+        "card": (255, 255, 255),        # --lm-card #ffffff
+        "text": (27, 20, 38),           # --lm-ink #1b1426
+        "muted": (75, 80, 95),          # --lm-ink-soft #4b505f
+        "border": (227, 223, 236),      # --lm-pricing-neutral-border #e3dfec
+        "accent": (201, 59, 20),        # --lm-pricing-accent #c93b14
+        "highlight": (201, 59, 20),     # --lm-pricing-accent #c93b14
+        "cta_light": (246, 244, 250),   # --lm-pricing-cta-light #f6f4fa
         "badge_fg": (255, 255, 255),
         "on_accent": (255, 255, 255),
-        "success": (31, 157, 104),
+        "success": (201, 59, 20),
     },
     "dark": {
-        "bg": (28, 25, 23),             # --ember-background #1c1917
-        "card": (41, 37, 36),           # --ember-surface #292524
-        "text": (250, 250, 249),        # --ember-text #fafaf9
-        "muted": (231, 229, 228),       # --ember-secondary-text #e7e5e4
-        "border": (87, 83, 78),         # --ember-border #57534e
-        "accent": (251, 146, 60),       # --ember-terracotta #fb923c
-        "highlight": (251, 191, 36),    # --ember-amber #fbbf24
-        "badge_fg": (28, 25, 23),
-        "on_accent": (28, 25, 23),
-        "success": (74, 222, 128),
+        "bg": (27, 20, 38),             # --lm-canvas #1b1426
+        "card": (33, 27, 41),           # --lm-card #211b29
+        "text": (244, 240, 251),        # --lm-ink #f4f0fb
+        "muted": (212, 202, 232),       # --lm-ink-soft #d4cae8
+        "border": (56, 48, 74),         # --lm-pricing-neutral-border #38304a
+        "accent": (255, 120, 79),       # --lm-pricing-accent #ff784f
+        "highlight": (255, 120, 79),    # --lm-pricing-accent #ff784f
+        "cta_light": (42, 34, 51),      # --lm-pricing-cta-light #2a2233
+        "badge_fg": (27, 20, 38),
+        "on_accent": (27, 20, 38),
+        "success": (255, 120, 79),
     },
 }
 for tn, t in THEMES.items():
-    t["accent_soft"] = mix(t["accent"], t["card"], 0.12 if tn == "light" else 0.18)
-    t["highlight_soft"] = mix(t["highlight"], t["card"], 0.18)
+    t["accent_soft"] = mix(t["accent"], t["card"], 0.14 if tn == "light" else 0.22)
+    t["highlight_soft"] = mix(t["highlight"], t["card"], 0.14)
 
-# ---- Sample price lines (mirroring .env.local.example; same render rules
-# as lib/razorpay.ts → formatPrice) ----
-SAMPLE_PRICES = [("USD", 19), ("EUR", 17), ("INR", 1499)]
+SCALE = 2
 
-
-def fmt(amount, currency):
-    sym = {"USD": "$", "EUR": "€", "INR": "₹", "GBP": "£"}.get(currency, currency + " ")
-    if currency == "INR":
-        return f"{sym}{amount:,}"
-    if amount == int(amount):
-        return f"{sym}{int(amount)}"
-    return f"{sym}{amount:.2f}"
-
-
-MONTHLY_LINES = [f"{fmt(a, c)} {c}" for c, a in SAMPLE_PRICES]
-
-
-# ---- Rendering helpers ----
-SCALE = 2  # 2x for retina
 
 def s(v):
     return int(v * SCALE)
@@ -191,7 +158,7 @@ class Canvas:
         self.T = THEMES[theme_name]
         self.theme = theme_name
         self.W = s(1280)
-        self.H = s(2200)  # will be cropped at the end
+        self.H = s(2200)
         self.img = Image.new("RGB", (self.W, self.H), self.T["bg"])
         self.draw = ImageDraw.Draw(self.img)
         self.y = s(70)
@@ -207,7 +174,7 @@ class Canvas:
         if mono:
             path = FONT_MONO_BOLD if weight == "bold" else FONT_MONO
         elif face == "serif":
-            path = FONT_SERIF_BOLD if weight == "bold" else FONT_SERIF_BOLD
+            path = FONT_SERIF_BOLD
         else:
             path = FONT_SANS_BOLD if weight == "bold" else FONT_SANS
         f = self._f(path, size)
@@ -246,7 +213,7 @@ class Canvas:
         lh = lh or size * 1.45
         lines = self.wrap(txt, max_w, size=size, weight=weight, mono=mono, face=face)
         h = 0
-        for i, ln in enumerate(lines):
+        for ln in lines:
             self.text(x, y + h, ln, size=size, color=color, weight=weight,
                       face=face, mono=mono, anchor=anchor)
             h += lh
@@ -269,17 +236,11 @@ class Canvas:
 
     def check(self, x, y, color=None):
         color = color or self.T["success"]
-        # 14x14 check mark
         self.draw.line([(s(x - 6), s(y)), (s(x - 2), s(y + 5)), (s(x + 7), s(y - 6))],
                        fill=color, width=s(2))
 
-    def dot(self, x, y, color=None):
-        color = color or self.T["accent"]
-        self.draw.ellipse([s(x - 3), s(y - 3), s(x + 3), s(y + 3)], fill=color)
-
     def crop_to(self, h):
         self.img = self.img.crop((0, 0, self.W, s(h)))
-        # Save @1x by resampling down (easier for viewer).
         self.img = self.img.resize((self.W // SCALE, h), Image.LANCZOS)
 
     def save(self, path):
@@ -290,67 +251,59 @@ def render(theme_name, path, *, show_offer, billing):
     c = Canvas(theme_name, offer_visible=show_offer, billing=billing)
     T = c.T
     PAD_X = 80
-    CONTENT_W = 1280 - 2 * PAD_X  # 1120
+    CONTENT_W = 1280 - 2 * PAD_X
 
-    # Hero eyebrow
-    c.text(640, c.y / SCALE, "PRICING", size=12, color=T["accent"], weight="bold", anchor="ma")
-    c.y += s(30)
+    # Eyebrow
+    c.text(640, c.y / SCALE, HERO_EYEBROW, size=13, color=T["accent"], weight="bold", anchor="ma")
+    c.y += s(28)
+
     # Title
     title_size = 44
-    title_lines = c.wrap(HERO_TITLE, CONTENT_W - 200, size=title_size, weight="bold", face="serif")
+    title_lines = c.wrap(HERO_TITLE, CONTENT_W - 200, size=title_size, weight="bold")
     for ln in title_lines:
-        c.text(640, c.y / SCALE, ln, size=title_size, weight="bold", face="serif", anchor="ma")
+        c.text(640, c.y / SCALE, ln, size=title_size, weight="bold", anchor="ma")
         c.y += s(title_size * 1.15)
-    c.y += s(18)
-    # Intro
-    intro_h = c.multiline(640, c.y / SCALE, HERO_INTRO, CONTENT_W - 200, size=16,
-                          color=T["muted"], anchor="ma")
-    c.y += s(intro_h + 30)
+    c.y += s(16)
 
-    # Offer
+    # Subtitle
+    intro_h = c.multiline(640, c.y / SCALE, HERO_INTRO, CONTENT_W - 280, size=16,
+                          color=T["muted"], anchor="ma")
+    c.y += s(intro_h + 26)
+
+    # Launch Offer Callout
     if show_offer and billing:
         cw = CONTENT_W - 200
         cx = PAD_X + 100
-        ch = 84
-        # Highlight border color (mix amber + surface 0.3).
+        ch = 76
         c.rect(cx, c.y / SCALE, cw, ch, fill=T["highlight_soft"],
-               stroke=mix(T["highlight"], T["card"], 0.3), radius=12)
-        c.circle(cx + 28, c.y / SCALE + ch / 2, 20, mix(T["highlight"], T["card"], 0.15))
-        # Simple filled ticket glyph as filled small rect + notch marks
-        # (skip for brevity — circle alone reads as chip icon)
-        pill_w = 130
-        pill_x = cx + 68
-        c.rect(pill_x, c.y / SCALE + 20, pill_w, 26, fill=T["accent"], radius=13)
-        c.text(pill_x + pill_w / 2, c.y / SCALE + 20 + 18, DEFAULT_OFFER_BADGE,
-               size=11, color=T["badge_fg"], weight="bold", anchor="mm")
-        code_x = pill_x + pill_w + 22
-        c.text(code_x, c.y / SCALE + 40, DEFAULT_OFFER_CODE, size=16,
-               color=T["accent"], weight="bold", mono=True)
-        text_x = code_x + 110
-        c.multiline(text_x, c.y / SCALE + 28, DEFAULT_OFFER_TEXT,
-                    cw - (text_x - cx) - 20, size=14)
-        c.y += s(ch + 28)
+               stroke=mix(T["highlight"], T["card"], 0.35), radius=12)
+        c.circle(cx + 28, c.y / SCALE + ch / 2, 18, mix(T["highlight"], T["card"], 0.2))
+        pill_w = 120
+        pill_x = cx + 64
+        c.rect(pill_x, c.y / SCALE + 16, pill_w, 24, fill=T["accent"], radius=12)
+        c.text(pill_x + pill_w / 2, c.y / SCALE + 16 + 12, DEFAULT_OFFER_BADGE,
+               size=10, color=T["badge_fg"], weight="bold", anchor="mm")
+        code_x = pill_x + pill_w + 16
+        c.text(code_x, c.y / SCALE + 28, DEFAULT_OFFER_CODE, size=14,
+               color=T["accent"], weight="bold", mono=True, anchor="lm")
+        text_x = code_x + 100
+        c.multiline(text_x, c.y / SCALE + 20, DEFAULT_OFFER_TEXT,
+                    cw - (text_x - cx) - 20, size=13)
+        c.y += s(ch + 24)
 
-    # Toggle
-    tw, th = 240, 44
+    # Segmented Billing Toggle (Monthly | Annual Save 17%)
+    tw, th = 290, 44
     tx = 640 - tw / 2
-    c.rect(tx, c.y / SCALE, tw, th, fill=T["card"], radius=12)
-    for i, bi in enumerate(["monthly", "annual"]):
-        seg_w = tw / 2
-        sx = tx + i * seg_w
-        active = bi == "monthly"
-        if active:
-            c.rect(sx + 4, c.y / SCALE + 4, seg_w - 8, th - 8,
-                   fill=T["accent"], radius=8)
-            c.text(sx + seg_w / 2, c.y / SCALE + th / 2, "Monthly" if bi == "monthly" else "Annual",
-                   size=14, color=T["on_accent"], weight="bold", anchor="mm")
-        else:
-            c.text(sx + seg_w / 2, c.y / SCALE + th / 2, "Monthly" if bi == "monthly" else "Annual",
-                   size=14, color=T["muted"], weight="bold", anchor="mm")
+    c.rect(tx, c.y / SCALE, tw, th, fill=T["cta_light"], stroke=T["border"], radius=22)
+    c.rect(tx + 4, c.y / SCALE + 4, 118, th - 8, fill=T["card"], stroke=T["border"], radius=18)
+    c.text(tx + 63, c.y / SCALE + th / 2, "Monthly", size=13, color=T["text"], weight="bold", anchor="mm")
+    c.text(tx + 162, c.y / SCALE + th / 2, "Annual", size=13, color=T["muted"], weight="bold", anchor="mm")
+    c.rect(tx + 200, c.y / SCALE + 10, 78, 24, fill=T["accent_soft"], radius=12)
+    c.text(tx + 239, c.y / SCALE + 22, "Save 17%", size=11, color=T["accent"], weight="bold", anchor="mm")
     c.y += s(th + 36)
 
-    # Cards
-    gap = 20
+    # Three Horizontal Cards (Starter | Team | Studio)
+    gap = 24
     card_w = (CONTENT_W - 2 * gap) / 3
     card_h = 560
     card_top = c.y / SCALE
@@ -360,79 +313,64 @@ def render(theme_name, path, *, show_offer, billing):
         c.rect(cx, card_top, card_w, card_h,
                fill=T["card"],
                stroke=T["highlight"] if highlighted else T["border"],
-               radius=12, width=2 if highlighted else 1)
-        cy = card_top + 26
-        # icon chip
-        c.rect(cx + 24, cy - 6, 36, 36, fill=T["accent_soft"], radius=12)
-        glyph = {"starter": "↑", "team": "◈", "studio": "■"}[tier["slug"]]
-        c.text(cx + 42, cy + 12, glyph, size=16, color=T["accent"],
-               weight="bold", anchor="mm")
+               radius=14, width=2 if highlighted else 1)
+        cy = card_top + 28
         if tier["badge"]:
-            bw = 110
-            c.rect(cx + card_w - bw - 24, cy - 2, bw, 24, fill=T["accent_soft"], radius=12)
-            c.text(cx + card_w - 24 - bw / 2, cy + 10, tier["badge"], size=11,
-                   color=T["accent"], weight="bold", anchor="mm")
-        cy += 50
-        c.text(cx + 24, cy, tier["name"], size=22, weight="bold", face="serif")
-        cy += 26
-        c.text(cx + 24, cy, tier["eyebrow"].upper(), size=10, color=T["muted"], weight="bold")
-        cy += 24
+            bw = 118
+            c.rect(cx + 24, cy, bw, 22, fill=T["accent"], radius=11)
+            c.text(cx + 24 + bw / 2, cy + 11, tier["badge"], size=10,
+                   color=T["badge_fg"], weight="bold", anchor="mm")
+            cy += 34
+
+        c.text(cx + 24, cy, tier["name"], size=22, weight="bold")
+        cy += 28
         tag_h = c.multiline(cx + 24, cy, tier["tagline"], card_w - 48, size=13, color=T["muted"])
-        cy += tag_h + 12
-        # Price
-        if tier["pricing"] == "free":
-            c.text(cx + 24, cy, "$0", size=34, weight="bold", face="serif")
-            c.text(cx + 24 + 60, cy + 6, "forever", size=14, color=T["muted"])
-        elif tier["pricing"] == "contact":
-            c.text(cx + 24, cy, "Let\u2019s talk", size=26, weight="bold", face="serif")
-        else:
-            if billing:
-                line = "  ·  ".join(MONTHLY_LINES)
-                fit = 18 if len(line) > 24 else 24
-                c.text(cx + 24, cy, line, size=fit, weight="bold", face="serif")
-                c.text(cx + 24, cy + 26, "per workspace", size=13, color=T["muted"])
-                cy += 20
-            else:
-                uh = c.multiline(cx + 24, cy, PRICES_UNCONFIGURED_NOTE, card_w - 48, size=13, color=T["muted"])
-                cy += uh
-        cy += 34
-        c.multiline(cx + 24, cy, tier["billingNote"], card_w - 48, size=11, color=T["muted"])
-        cy += 36
+        cy += tag_h + 16
         c.hline(cx + 24, cx + card_w - 24, cy)
-        cy += 20
-        for f in tier["features"]:
-            if cy > card_top + card_h - 120:
-                break
-            c.check(cx + 32, cy + 8)
-            fh = c.multiline(cx + 48, cy + 2, f, card_w - 72, size=12)
-            cy += max(22, fh + 4)
-        if tier["planned"] and cy < card_top + card_h - 120:
-            c.hline(cx + 24, cx + card_w - 24, cy - 6)
-            cy += 16
-            for f in tier["planned"]:
-                if cy > card_top + card_h - 90:
-                    break
-                c.dot(cx + 32, cy + 8)
-                fh = c.multiline(cx + 48, cy + 2, f + " — planned", card_w - 72, size=11, color=T["muted"])
-                cy += max(22, fh + 4)
-        # CTA
-        btn_y = card_top + card_h - 60
+        cy += 18
+
+        # Price + Cadence
+        c.text(cx + 24, cy, tier["priceDisplay"], size=38, weight="bold")
+        pw = c.text_width(tier["priceDisplay"], size=38, weight="bold")
+        c.text(cx + 24 + pw + 8, cy + 16, tier["cadence"], size=13, color=T["muted"])
+        cy += 48
+
+        # Seat label + additional seat pricing
+        seat_txt = tier["seatsLabel"]
+        if tier["additionalSeatsLabel"]:
+            seat_txt += f"  ·  {tier['additionalSeatsLabel']}"
+        c.text(cx + 24, cy, seat_txt, size=12, color=T["muted"], weight="bold")
+        cy += 24
+
+        # CTA Button above features (Forma layout)
         is_primary = tier["cta"].get("primary", False)
-        c.rect(cx + 24, btn_y, card_w - 48, 40,
-               fill=T["accent"] if is_primary else None,
+        c.rect(cx + 24, cy, card_w - 48, 44,
+               fill=T["accent"] if is_primary else T["cta_light"],
                stroke=T["accent"] if is_primary else T["border"],
-               radius=8, width=0 if is_primary else 1)
-        c.text(cx + card_w / 2, btn_y + 26, tier["cta"]["label"],
+               radius=10, width=0 if is_primary else 1)
+        c.text(cx + card_w / 2, cy + 22, tier["cta"]["label"],
                size=14, color=T["on_accent"] if is_primary else T["text"],
                weight="bold", anchor="mm")
+        cy += 60
 
-    c.y = s(card_top + card_h + 30)
-    # Footer divider
-    c.hline(PAD_X + 120, 1280 - PAD_X - 120, c.y / SCALE)
+        c.hline(cx + 24, cx + card_w - 24, cy)
+        cy += 16
+        c.text(cx + 24, cy, tier["featuresHeading"], size=10, color=T["muted"], weight="bold")
+        cy += 22
+
+        for f in tier["features"]:
+            c.check(cx + 32, cy + 8, color=T["accent"])
+            fh = c.multiline(cx + 48, cy + 1, f, card_w - 72, size=12)
+            cy += max(24, fh + 6)
+
+    c.y = s(card_top + card_h + 32)
+    c.hline(PAD_X + 80, 1280 - PAD_X - 80, c.y / SCALE)
     c.y += s(22)
+    c.text(640, c.y / SCALE, FOOTER_ITEMS, size=13, color=T["text"], weight="bold", anchor="ma")
+    c.y += s(26)
     footer_h = c.multiline(640, c.y / SCALE, FOOTER_NOTE + " Questions? Get in touch.",
-                           CONTENT_W - 120, size=12, color=T["muted"], anchor="ma")
-    c.crop_to(int(c.y / SCALE) + int(footer_h) + 60)
+                           CONTENT_W - 120, size=11, color=T["muted"], anchor="ma")
+    c.crop_to(int(c.y / SCALE) + int(footer_h) + 50)
     c.save(path)
 
 

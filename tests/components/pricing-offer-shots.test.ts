@@ -20,8 +20,6 @@ const ROOT = resolve(__dirname, "../..");
 const read = (rel: string) => readFileSync(resolve(ROOT, rel), "utf8");
 
 describe("docs/screenshots copy stays in sync with /pricing source", () => {
-  // Import the live modules through jiti (same trick as the screenshot
-  // script uses at build time).
   const jiti = require(resolve(ROOT, "node_modules/jiti"))(__filename);
   const plans = jiti(resolve(ROOT, "app/(marketing)/pricing/plans.ts"));
   const stripe = jiti(resolve(ROOT, "lib/razorpay.ts"));
@@ -34,16 +32,22 @@ describe("docs/screenshots copy stays in sync with /pricing source", () => {
   });
 
   it("hero + footer copy in plans.ts match the values baked into the screenshots", () => {
-    assert.equal(plans.HERO.eyebrow, "Pricing");
+    assert.equal(plans.HERO.eyebrow, "PRICING");
     assert.equal(plans.HERO.title, "Plans that scale with how your team works.");
-    assert.match(plans.HERO.intro, /no feature paywalls/);
+    assert.equal(
+      plans.HERO.subtitle,
+      "Start free. Upgrade when your team is ready to turn every client conversation into a plan everyone trusts."
+    );
     assert.match(plans.FOOTER_NOTE, /Razorpay/);
     assert.ok(plans.FOOTER_NOTE.includes("usage limit"), "footer should call out there's no usage limit");
   });
 
   it("three tiers in the exact order the screenshots render", () => {
-    assert.deepEqual(plans.PLAN_TIERS.map((t: { slug: string }) => t.slug), ["starter", "team", "studio"]);
-    assert.equal(plans.PLAN_TIERS[1].badge, "Most popular");
+    assert.deepEqual(
+      plans.PLAN_TIERS.map((t: { slug: string }) => t.slug),
+      ["starter", "team", "studio"]
+    );
+    assert.equal(plans.PLAN_TIERS[1].badge, "MOST POPULAR");
   });
 
   it("billing note is still per-workspace and not per-seat", () => {

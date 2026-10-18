@@ -1,66 +1,48 @@
 import type { Metadata } from "next";
-
-import { SOCIAL_IMAGE, TWITTER_IMAGE } from "@/lib/site";
 import { Ticket } from "lucide-react";
 
+import { Reveal } from "@/components/marketing/landing/Reveal";
 import { Badge } from "@/components/ui/badge";
-import { PricingPlans } from "./pricing-plans";
+import { formatPrice, getPricesConfig, getPricingOffer } from "@/lib/razorpay";
+import { SOCIAL_IMAGE, TWITTER_IMAGE } from "@/lib/site";
 import {
   ANNUAL_PRICES,
   buildAnnualView,
   buildMonthlyView,
+  FOOTER_ITEMS,
   FOOTER_NOTE,
   HERO,
   type BillingInterval,
   type IntervalView,
 } from "./plans";
-import { formatPrice, getPricingOffer, getPricesConfig } from "@/lib/razorpay";
+import { PricingPlans } from "./pricing-plans";
+
+const PRICING_TITLE = "Pricing — roducq";
+const PRICING_DESCRIPTION =
+  "Plans that scale with how your team works: Starter ($29/month), Team ($79/month), and Studio ($199/month). Start free and upgrade when your team is ready to turn every client conversation into a plan everyone trusts.";
 
 export const metadata: Metadata = {
-  title: "Pricing — roducq",
-  description:
-    "roducq pricing: three ways to use the same product. The whole pipeline is free — team, templates and webhooks included. The paid plan is a Razorpay subscription per workspace in your currency, never per seat. No brief, seat or AI limits.",
+  title: PRICING_TITLE,
+  description: PRICING_DESCRIPTION,
   alternates: { canonical: "/pricing" },
   openGraph: {
     type: "website",
     url: "/pricing",
-    title: "Pricing — roducq",
-    description:
-      "roducq pricing: three ways to use the same product. The whole pipeline is free — team, templates and webhooks included. The paid plan is a Razorpay subscription per workspace in your currency, never per seat. No brief, seat or AI limits.",
+    title: PRICING_TITLE,
+    description: PRICING_DESCRIPTION,
     images: [SOCIAL_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pricing — roducq",
-    description:
-      "roducq pricing: three ways to use the same product. The whole pipeline is free — team, templates and webhooks included. The paid plan is a Razorpay subscription per workspace in your currency, never per seat. No brief, seat or AI limits.",
+    title: PRICING_TITLE,
+    description: PRICING_DESCRIPTION,
     images: [TWITTER_IMAGE],
   },
 };
 
-/**
- * /pricing (redesign, 2026-10-10).
- *
- * Server component by design: this is the only place that reads billing
- * config, and it passes pre-rendered price lines down to the client
- * toggle. The Monthly tab carries the operator's real RAZORPAY_PLANS; the
- * Annual tab carries what exists for annual billing today, which is
- * nothing — so it renders the honest "not offered yet" note and no
- * discount chip instead of a saving nobody can be charged.
- *
- * When Razorpay billing is configured, an optional launch-offer callout
- * can appear above the tiers (see lib/razorpay.ts → getPricingOffer). It
- * is hidden when billing is off, or when PRICING_OFFER_TEXT="".
- *
- * Tier copy lives in ./plans.ts; the card/toggle markup in
- * ./pricing-plans.tsx. Structural + truthfulness tests:
- * tests/components/pricing.test.ts. Responsive harness route:
- * scripts/verify-responsive.mjs → slug "marketing-pricing".
- */
 export default function PricingPage() {
   const pricesConfig = getPricesConfig();
   const monthlyPrices = pricesConfig.ok ? pricesConfig.prices : [];
-
   const monthlyLines = monthlyPrices.map(
     (p) => `${formatPrice(p.amount, p.currency)} ${p.currency}`
   );
@@ -73,57 +55,90 @@ export default function PricingPage() {
   const offer = getPricingOffer(pricesConfig.ok);
 
   return (
-    <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:px-10">
-      <header className="mx-auto max-w-3xl text-center">
-        <p className="text-xs font-semibold uppercase tracking-widest text-accent">
-          {HERO.eyebrow}
-        </p>
-        <h1 className="mt-3 font-display text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
-          {HERO.title}
-        </h1>
-        <p className="mt-4 text-sm text-muted-foreground sm:text-base">
-          {HERO.intro}
-        </p>
-      </header>
+    <section
+      aria-labelledby="pricing-page-heading"
+      className="py-13 md:py-22 lg:py-30"
+    >
+      <div className="lm-shell">
+        {/* Pricing Header: Eyebrow + Main Heading + Description */}
+        <Reveal as="div" className="mx-auto max-w-2xl text-center">
+          <p className="lm-pricing-eyebrow text-lm-13 font-semibold uppercase tracking-lm-eyebrow sm:text-lm-14">
+            {HERO.eyebrow}
+          </p>
+          <h1
+            id="pricing-page-heading"
+            className="mt-3 font-display text-lm-32 font-normal leading-lm-heading tracking-lm-display text-lm-ink md:text-lm-34 lg:text-lm-54"
+          >
+            {HERO.title}
+          </h1>
+          <p className="mx-auto mt-4 max-w-xl text-lm-14 leading-lm-body text-lm-ink-soft lg:text-lm-18">
+            {HERO.subtitle}
+          </p>
+        </Reveal>
 
-      {offer ? (
-        <div
-          className="mx-auto mt-10 flex max-w-3xl flex-col items-center gap-3 rounded-xl border border-highlight/40 bg-highlight-soft px-5 py-4 text-center sm:flex-row sm:gap-4 sm:text-left"
-          data-testid="pricing-offer"
-          role="note"
-          aria-label="Pricing offer"
-        >
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-highlight/15">
-            <Ticket className="h-5 w-5 text-highlight" aria-hidden="true" />
-          </span>
-          <div className="flex-1 space-y-1.5">
-            <div className="flex flex-wrap items-center justify-center gap-2 sm:justify-start">
-              <Badge variant="default" className="text-xs">
-                {offer.badge}
-              </Badge>
-              <span className="font-mono text-sm font-semibold tracking-wide text-accent">
-                {offer.code}
+        {/* Optional Launch Offer Banner (from getPricingOffer() in lib/razorpay.ts) */}
+        {offer ? (
+          <Reveal as="div" delay={60}>
+            <div
+              className="mx-auto mt-8 flex max-w-3xl flex-col items-center gap-3 rounded-xl border border-highlight/40 bg-highlight-soft px-5 py-4 text-center sm:flex-row sm:gap-4 sm:text-left"
+              data-testid="pricing-offer"
+              role="note"
+              aria-label="Pricing offer"
+            >
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-highlight/15">
+                <Ticket className="h-5 w-5 text-highlight" aria-hidden="true" />
               </span>
+              <div className="flex-1 space-y-1.5">
+                <div className="flex flex-wrap items-center justify-center gap-2 sm:justify-start">
+                  <Badge variant="default" className="text-xs">
+                    {offer.badge}
+                  </Badge>
+                  <span className="font-mono text-sm font-semibold tracking-wide text-accent">
+                    {offer.code}
+                  </span>
+                </div>
+                <p className="text-sm text-text">{offer.text}</p>
+              </div>
             </div>
-            <p className="text-sm text-text">{offer.text}</p>
-          </div>
-        </div>
-      ) : null}
+          </Reveal>
+        ) : null}
 
-      <div className="mt-12">
-        <PricingPlans views={views} />
-      </div>
+        {/* Billing Period Toggle + Three Horizontal Pricing Cards */}
+        <PricingPlans monthlyPrices={monthlyPrices} views={views} />
 
-      <p className="mx-auto mt-12 max-w-3xl border-t border-border pt-6 text-center text-xs leading-relaxed text-muted-foreground">
-        {FOOTER_NOTE}{" "}
-        <a
-          href="mailto:hello@roducq.dev"
-          className="inline-flex min-h-11 min-w-11 items-center underline underline-offset-2 transition-colors hover:text-text"
+        {/* Pricing Footnote Row below cards (exact PDF items + policy note) */}
+        <div
+          data-testid="pricing-footnote"
+          style={{ "--lm-hero-delay": "240ms" } as React.CSSProperties}
+          className="lm-hero-in mx-auto mt-12 max-w-4xl border-t border-lm-border-soft pt-8 text-center"
         >
-          Questions? Get in touch
-        </a>
-        .
-      </p>
-    </div>
+          <ul
+            aria-label="Pricing guarantees"
+            className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-lm-13 font-medium text-lm-ink-soft sm:text-lm-14"
+          >
+            {FOOTER_ITEMS.map((item, idx) => (
+              <li key={item} className="inline-flex items-center gap-3">
+                {idx > 0 ? (
+                  <span aria-hidden="true" className="text-lm-muted-readable">
+                    ·
+                  </span>
+                ) : null}
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mx-auto mt-4 max-w-3xl text-lm-12 leading-lm-normal text-lm-muted-readable">
+            {FOOTER_NOTE}{" "}
+            <a
+              href="mailto:hello@roducq.dev"
+              className="inline-flex min-h-11 min-w-11 items-center underline underline-offset-2 transition-colors hover:text-lm-ink"
+            >
+              Questions? Get in touch
+            </a>
+            .
+          </p>
+        </div>
+      </div>
+    </section>
   );
 }
