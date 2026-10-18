@@ -96,6 +96,24 @@
   --lm-cta-border: rgba(255, 255, 255, 0.32);
   --lm-cta-wash: rgba(255, 255, 255, 0.14);
 
+  /* ── Dedicated /pricing PDF accent & card surface tokens ─────────────
+     Warm editorial orange-red accent from the Roducq pricing PDF for the
+     highlighted Team card border, MOST POPULAR badge, Save 17% pill, and
+     Team primary CTA button. Contrast verified ≥4.5:1 AA against #ffffff
+     and all marketing card/canvas washes. */
+  --lm-pricing-accent: #c93b14;
+  --lm-pricing-accent-strong: #b93815;
+  --lm-pricing-on-accent: #ffffff;
+  --lm-pricing-accent-surface: #fff1ec;
+  --lm-pricing-accent-ink: #b93815;
+  --lm-pricing-accent-border: #c93b14;
+  --lm-pricing-neutral-border: #e3dfec;
+  --lm-pricing-cta-light: #f6f4fa;
+  --lm-pricing-cta-light-hover: #eeeaf6;
+  --lm-pricing-cta-light-border: #dcd6ea;
+  --lm-pricing-toggle-track: #f2eef8;
+  --lm-pricing-shadow-featured: 0 24px 56px -24px rgba(201, 59, 20, 0.22);
+
   /* ── Type ────────────────────────────────────────────────────────────
      Manrope Variable, self-hosted by app/layout.tsx. Arimo and DM Sans are
      the requested metric fallbacks before the generic stack. */
@@ -273,6 +291,19 @@
   --lm-cta-muted: #efebff;
   --lm-cta-border: rgba(255, 255, 255, 0.32);
   --lm-cta-wash: rgba(255, 255, 255, 0.14);
+
+  --lm-pricing-accent: #ff784f;
+  --lm-pricing-accent-strong: #ff8e6b;
+  --lm-pricing-on-accent: #1b1426;
+  --lm-pricing-accent-surface: #3a1d16;
+  --lm-pricing-accent-ink: #ffb49a;
+  --lm-pricing-accent-border: #ff784f;
+  --lm-pricing-neutral-border: #38304a;
+  --lm-pricing-cta-light: #2a2233;
+  --lm-pricing-cta-light-hover: #342a40;
+  --lm-pricing-cta-light-border: #4a3f5d;
+  --lm-pricing-toggle-track: #1d1826;
+  --lm-pricing-shadow-featured: 0 28px 64px -26px rgba(0, 0, 0, 0.65);
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
@@ -825,3 +856,124 @@
     opacity: 0.55;
   }
 }
+
+/* ── Dedicated /pricing page styling (Forma geometry + PDF warm accent) ─── */
+.lm-pricing-eyebrow {
+  color: var(--lm-pricing-accent);
+}
+
+.lm-pricing-toggle-track {
+  background-color: var(--lm-pricing-toggle-track);
+  border: 1px solid var(--lm-pricing-neutral-border);
+  border-radius: var(--lm-radius-pill);
+}
+
+.lm-pricing-toggle-pill-active {
+  background-color: var(--lm-card);
+  color: var(--lm-ink);
+  box-shadow: var(--lm-shadow-sm);
+}
+
+.lm-pricing-toggle-pill-idle {
+  background-color: transparent;
+  color: var(--lm-muted-readable);
+}
+
+.lm-pricing-toggle-pill-idle:hover {
+  color: var(--lm-ink);
+}
+
+.lm-pricing-save-badge {
+  background-color: var(--lm-pricing-accent-surface);
+  color: var(--lm-pricing-accent-ink);
+}
+
+.lm-pricing-annual-notice {
+  background-color: var(--lm-card);
+  border: 1px solid var(--lm-pricing-neutral-border);
+  border-radius: var(--lm-radius-panel);
+  box-shadow: var(--lm-shadow-sm);
+}
+
+.lm-pricing-card {
+  background-color: var(--lm-card);
+  border: 1px solid var(--lm-pricing-neutral-border);
+  border-radius: var(--lm-radius-card);
+  box-shadow: var(--lm-shadow-sm);
+  transition:
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lm-pricing-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--lm-shadow-md);
+}
+
+.lm-pricing-card-featured {
+  background-color: var(--lm-card);
+  border: 2px solid var(--lm-pricing-accent-border);
+  border-radius: var(--lm-radius-card);
+  box-shadow: var(--lm-pricing-shadow-featured);
+  transition:
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lm-pricing-card-featured:hover {
+  transform: translateY(-3px);
+}
+
+.lm-pricing-popular-badge {
+  background-color: var(--lm-pricing-accent);
+  color: var(--lm-pricing-on-accent);
+}
+
+.lm-pricing-cta-primary {
+  background-color: var(--lm-pricing-accent);
+  color: var(--lm-pricing-on-accent);
+  border: 1px solid var(--lm-pricing-accent);
+  border-radius: var(--lm-radius-button);
+  box-shadow: var(--lm-shadow-sm);
+  transition:
+    background-color 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lm-pricing-cta-primary:hover {
+  background-color: var(--lm-pricing-accent-strong);
+  border-color: var(--lm-pricing-accent-strong);
+}
+
+.lm-pricing-cta-light {
+  background-color: var(--lm-pricing-cta-light);
+  color: var(--lm-ink);
+  border: 1px solid var(--lm-pricing-cta-light-border);
+  border-radius: var(--lm-radius-button);
+  transition:
+    background-color 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lm-pricing-cta-light:hover {
+  background-color: var(--lm-pricing-cta-light-hover);
+}
+
+.lm-pricing-cta-disabled {
+  background-color: var(--lm-surface-muted);
+  color: var(--lm-muted-readable);
+  border: 1px solid var(--lm-pricing-neutral-border);
+  border-radius: var(--lm-radius-button);
+  cursor: not-allowed;
+}
+
+.lm-pricing-check-featured {
+  color: var(--lm-pricing-accent);
+}
+
+.lm-pricing-check-neutral {
+  color: var(--lm-ink-soft);
+}
+

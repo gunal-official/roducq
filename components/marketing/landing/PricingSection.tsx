@@ -17,17 +17,12 @@ import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
 
 /**
- * Pricing — the reference's four-column tier band, priced from live config:
- *   1. White Starter card ($0 / month, bordered white CTA)
- *   2. Purple-highlighted Team featured card ("Most popular" top banner +
- *      purple border + filled purple CTA, reading live Razorpay config or
- *      showing the honest unconfigured note)
- *   3. White Studio card (Custom, bordered white CTA)
+ * Pricing — the reference's four-column tier band, shared with `/pricing`
+ * (`app/(marketing)/pricing/plans.ts`) plus the fourth Enterprise column:
+ *   1. Starter card ($29 / month, 1 seat)
+ *   2. Featured Team card ("MOST POPULAR" badge, $79 / month, Up to 5 seats)
+ *   3. Studio card ($199 / month, Up to 15 seats)
  *   4. Dark Enterprise premium card (Custom, `.lm-pricing-dark`, white CTA)
- *
- * NO PRICE IS TYPED HERE. The free tier's zero is the only literal; the
- * paid row is the operator's RAZORPAY_PLANS read through getPricesConfig
- * and formatted by formatPrice.
  */
 export interface HomePricingProps {
   /** Pre-formatted price lines from the live Razorpay config (amount + currency code). */
@@ -116,7 +111,7 @@ function PricingCard({
           : "border border-lm-border-soft shadow-lm-sm"
       )}
     >
-      {/* Full-width top banner on the featured "Most popular" plan */}
+      {/* Full-width top banner on the featured "MOST POPULAR" plan */}
       {featured ? (
         <div className="bg-lm-accent px-4 py-2 text-center text-lm-12 font-lm-bold text-lm-on-accent">
           {tier.badge}
@@ -138,39 +133,35 @@ function PricingCard({
         </p>
 
         <div className="mt-5 border-t border-lm-border-soft pt-4.5">
-          {tier.pricing === "free" ? (
-            <p className="font-lm-medium text-lm-36 tracking-[-0.07em] text-lm-ink lg:text-lm-35 xl:text-lm-46">
-              $0
-              <span className="ml-2 font-lm-regular text-lm-14 tracking-normal text-lm-muted">
-                / month
-              </span>
-            </p>
-          ) : tier.pricing === "configured" ? (
+          <p className="font-lm-medium text-lm-36 tracking-[-0.07em] text-lm-ink lg:text-lm-35 xl:text-lm-46">
+            {tier.priceDisplay ?? "$0"}
+            <span className="ml-2 font-lm-regular text-lm-14 tracking-normal text-lm-muted">
+              {tier.cadence}
+            </span>
+          </p>
+
+          <p className="mt-2 text-lm-12 text-lm-ink-soft">
+            {tier.seatsLabel}
+            {tier.additionalSeatsLabel ? ` · ${tier.additionalSeatsLabel}` : ""}
+          </p>
+
+          {tier.pricing === "configured" ? (
             billingConfigured && priceLines.length > 0 ? (
-              <p className="font-lm-medium text-lm-36 tracking-[-0.03em] text-lm-ink xl:text-lm-46">
-                {splitPrice(priceLines[0]).amount}
-                <span className="ml-2 font-lm-regular text-lm-14 tracking-normal text-lm-muted">
-                  {splitPrice(priceLines[0]).currency} / month
-                </span>
+              <p className="mt-1.5 text-lm-12 text-lm-muted">
+                Live checkout: {splitPrice(priceLines[0]).amount}{" "}
+                {splitPrice(priceLines[0]).currency} / month
+                {priceLines.length > 1
+                  ? ` (also ${priceLines.slice(1).join(", ")})`
+                  : ""}
               </p>
             ) : (
-              <p className="text-lm-14 leading-relaxed text-lm-muted-readable">
+              <p className="mt-1.5 text-lm-12 leading-relaxed text-lm-muted-readable">
                 {PRICES_UNCONFIGURED_NOTE}
               </p>
             )
           ) : (
-            <p className="font-lm-medium text-lm-36 tracking-[-0.07em] text-lm-ink lg:text-lm-35 xl:text-lm-46">
-              Custom
-            </p>
+            <p className="mt-1.5 text-lm-12 text-lm-muted">{tier.billingNote}</p>
           )}
-          <p className="mt-2 text-lm-12 text-lm-muted">{tier.billingNote}</p>
-          {tier.pricing === "configured" &&
-          billingConfigured &&
-          priceLines.length > 1 ? (
-            <p className="mt-1.5 text-lm-12 text-lm-muted">
-              Also available in {priceLines.slice(1).join(", ")}
-            </p>
-          ) : null}
         </div>
 
         <div className="mt-5">
@@ -191,34 +182,41 @@ function PricingCard({
           )}
         </div>
 
-        <ul className="mt-5 flex flex-1 flex-col gap-2.5 border-t border-lm-border-soft pt-4.5">
-          {tier.features.map((feature) => (
-            <li
-              key={feature}
-              className="flex items-start gap-2.5 text-lm-15 text-lm-ink-soft"
-            >
-              <Check
-                className="mt-0.5 h-4 w-4 shrink-0 text-lm-ink-accent"
-                aria-hidden="true"
-              />
-              <span>{feature}</span>
-            </li>
-          ))}
-          {tier.planned?.map((feature) => (
-            <li
-              key={feature}
-              className="flex items-start gap-2.5 text-lm-12 text-lm-muted"
-            >
-              <Minus className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
-              <span>
-                {feature}
-                <span className="ml-1.5 rounded-lm-chip bg-lm-surface-muted px-1.5 py-0.5 text-lm-12 font-lm-semibold text-lm-ink-soft">
-                  planned
+        <div className="mt-5 flex flex-1 flex-col border-t border-lm-border-soft pt-4.5">
+          {tier.featuresHeading ? (
+            <p className="mb-2.5 text-lm-10 font-lm-semibold uppercase tracking-[0.08em] text-lm-muted-label">
+              {tier.featuresHeading}
+            </p>
+          ) : null}
+          <ul className="flex flex-1 flex-col gap-2.5">
+            {tier.features.map((feature) => (
+              <li
+                key={feature}
+                className="flex items-start gap-2.5 text-lm-15 text-lm-ink-soft"
+              >
+                <Check
+                  className="mt-0.5 h-4 w-4 shrink-0 text-lm-ink-accent"
+                  aria-hidden="true"
+                />
+                <span>{feature}</span>
+              </li>
+            ))}
+            {tier.planned?.map((feature) => (
+              <li
+                key={feature}
+                className="flex items-start gap-2.5 text-lm-12 text-lm-muted"
+              >
+                <Minus className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+                <span>
+                  {feature}
+                  <span className="ml-1.5 rounded-lm-chip bg-lm-surface-muted px-1.5 py-0.5 text-lm-12 font-lm-semibold text-lm-ink-soft">
+                    planned
+                  </span>
                 </span>
-              </span>
-            </li>
-          ))}
-        </ul>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );

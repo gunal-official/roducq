@@ -1,224 +1,284 @@
 "use client";
 
-/**
- * The /pricing toggle + tier cards (pricing redesign, 2026-10-10).
- *
- * Client-side for one reason only: the Monthly/Annual switch is local UI
- * state. Every number it can show arrives pre-rendered from the server
- * page as an IntervalView, so this bundle reads no env and can't invent a
- * price. When the active interval has nothing real to bill (annual, today)
- * the card shows the honest note instead of a figure.
- */
-
 import Link from "next/link";
 import { useState } from "react";
-import { Building2, Check, Rocket, Users } from "lucide-react";
+import { Check } from "lucide-react";
+import { motion } from "motion/react";
 
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
+import { Reveal } from "@/components/marketing/landing/Reveal";
+import type { RazorpayPlanConfig } from "@/lib/razorpay";
 import { cn } from "@/lib/utils";
 import {
+  ANNUAL_BADGE_LABEL,
+  ANNUAL_PRICES,
+  ANNUAL_UNAVAILABLE_HEADLINE,
+  ANNUAL_UNAVAILABLE_NOTE,
   BILLING_INTERVALS,
   INTERVAL_LABEL,
-  PLAN_TIERS,
+  plansForInterval,
   type BillingInterval,
   type IntervalView,
-  type PlanTier,
 } from "./plans";
 
-const TIER_ICON: Record<PlanTier["slug"], typeof Rocket> = {
-  starter: Rocket,
-  team: Users,
-  studio: Building2,
-};
-
-const TIER_CHIP: Record<PlanTier["slug"], string> = {
-  starter: "icon-chip-success",
-  team: "icon-chip-accent",
-  studio: "icon-chip-muted",
-};
-
-function PriceRow({
-  tier,
-  view,
-}: {
-  tier: PlanTier;
-  view: IntervalView;
-}) {
-  if (tier.pricing === "free") {
-    return (
-      <p className="font-display text-3xl font-bold tracking-tight">
-        $0
-        <span className="ml-1.5 text-sm font-normal text-muted-foreground">
-          forever
-        </span>
-      </p>
-    );
-  }
-  if (tier.pricing === "contact") {
-    return (
-      <p className="font-display text-3xl font-bold tracking-tight">
-        Let&apos;s talk
-      </p>
-    );
-  }
-  // The configured (paid) tier — the only row that ever shows a figure, and
-  // it shows exactly what the operator's Razorpay config says.
-  if (!view.available) {
-    return (
-      <p className="text-sm text-muted-foreground">
-        {view.unavailableNote ?? "Billing isn't configured yet."}
-      </p>
-    );
-  }
-  return (
-    <p className="font-display text-3xl font-bold leading-tight tracking-tight">
-      {view.lines.join("  ·  ")}
-      <span className="ml-1.5 text-sm font-normal text-muted-foreground">
-        per workspace
-      </span>
-    </p>
-  );
-}
-
 export function PricingPlans({
+  monthlyPrices,
   views,
 }: {
+  monthlyPrices: readonly RazorpayPlanConfig[];
   views: Record<BillingInterval, IntervalView>;
 }) {
   const [interval, setInterval] = useState<BillingInterval>("monthly");
+  const tiers = plansForInterval(interval, monthlyPrices);
   const view = views[interval];
-  // The "Save N%" chip belongs to the Annual tab and only exists when real
-  // annual prices back the percentage — null today, so nothing renders.
-  const annualLabel = views.annual.discountLabel;
+  const isAnnualPending =
+    interval === "annual" && !view.available && ANNUAL_PRICES.length === 0;
 
   return (
-    <div>
-      <div
-        className="flex flex-wrap items-center justify-center gap-3"
-        role="group"
-        aria-label="Billing period"
-      >
-        <div className="inline-flex rounded-lg border border-border bg-card p-1">
+    <div className="mt-10 md:mt-12">
+      {/* Billing Period Toggle (Segmented Pill: Monthly | Annual + Save 17% badge) */}
+      <Reveal as="div" delay={80} className="flex flex-col items-center">
+        <div
+          role="group"
+          aria-label="Billing period"
+          className="lm-pricing-toggle-track inline-flex items-center p-1"
+        >
           {BILLING_INTERVALS.map((value) => {
-            const active = interval === value;
+            const selected = interval === value;
             return (
               <button
                 key={value}
                 type="button"
-                aria-pressed={active}
+                aria-pressed={selected}
                 onClick={() => setInterval(value)}
+                data-testid={`billing-toggle-${value}`}
                 className={cn(
-                  "inline-flex min-h-11 items-center justify-center rounded-md px-4 text-sm font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                  active
-                    ? "bg-accent text-accent-foreground"
-                    : "text-muted-foreground hover:text-text"
+                  "relative inline-flex min-h-11 items-center gap-2 rounded-lm-pill px-5 py-2 text-lm-14 font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                  selected
+                    ? "font-semibold text-lm-ink"
+                    : "text-lm-ink-soft hover:text-lm-ink"
                 )}
               >
-                {INTERVAL_LABEL[value]}
-                {value === "annual" && annualLabel ? (
-                  <span className="ml-2 rounded-full bg-white/20 px-2 py-0.5 text-xs">
-                    {annualLabel}
+                {selected ? (
+                  <motion.span
+                    layoutId="pricing-billing-pill"
+                    aria-hidden="true"
+                    transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+                    className="lm-pricing-toggle-pill-active absolute inset-0 rounded-lm-pill"
+                  />
+                ) : null}
+                <span className="relative z-10">{INTERVAL_LABEL[value]}</span>
+                {value === "annual" ? (
+                  <span
+                    data-testid="annual-save-badge"
+                    className="lm-pricing-save-badge relative z-10 inline-flex items-center rounded-lm-pill px-2.5 py-0.5 text-lm-12 font-semibold leading-none"
+                  >
+                    {view.discountLabel ?? ANNUAL_BADGE_LABEL}
                   </span>
                 ) : null}
               </button>
             );
           })}
         </div>
-      </div>
 
-      <div className="mt-10 grid gap-5 text-left sm:grid-cols-2 lg:grid-cols-3">
-        {PLAN_TIERS.map((tier) => {
-          const Icon = TIER_ICON[tier.slug];
-          const highlighted = tier.slug === "team";
+        {/* Safe Annual-Billing Pending Notice (no fabricated annual price or silent monthly checkout) */}
+        {isAnnualPending ? (
+          <div
+            role="status"
+            aria-live="polite"
+            data-testid="annual-unavailable-banner"
+            className="lm-pricing-annual-notice mt-5 max-w-2xl px-5 py-3.5 text-center text-lm-13 leading-lm-normal text-lm-ink-soft"
+          >
+            <p className="font-semibold text-lm-ink">
+              {ANNUAL_UNAVAILABLE_HEADLINE}
+            </p>
+            <p className="mt-1 text-lm-12 text-lm-muted-readable">
+              {view.unavailableNote ?? ANNUAL_UNAVAILABLE_NOTE}
+            </p>
+          </div>
+        ) : null}
+      </Reveal>
+
+      {/* Three Horizontal Pricing Cards on Desktop (Starter | Team | Studio) */}
+      <div
+        data-testid="pricing-cards-grid"
+        className="mt-10 grid grid-cols-1 items-stretch gap-6 lg:mt-14 lg:grid-cols-3 lg:gap-7"
+      >
+        {tiers.map((tier, index) => {
+          const isFeatured = tier.featured;
+
           return (
-            <Card
+            <motion.article
               key={tier.slug}
-              className={cn(
-                "flex flex-col",
-                highlighted && "border-highlight shadow-pop"
-              )}
+              initial={false}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.62,
+                delay: (120 + index * 60) / 1000,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              style={
+                {
+                  "--lm-hero-delay": `${120 + index * 60}ms`,
+                } as React.CSSProperties
+              }
+              aria-label={`${tier.name} plan`}
               data-tier={tier.slug}
+              data-featured={isFeatured ? "true" : "false"}
+              className={cn(
+                "lm-hero-in relative flex h-full flex-col justify-between p-6 sm:p-8",
+                isFeatured ? "lm-pricing-card-featured" : "lm-pricing-card"
+              )}
             >
-              <CardHeader className="space-y-3 border-b border-border px-5 py-5">
-                <div className="flex items-start justify-between gap-2">
-                  <span
-                    className={cn(
-                      "icon-chip h-9 w-9",
-                      TIER_CHIP[tier.slug]
-                    )}
-                  >
-                    <Icon className="h-4 w-4" aria-hidden="true" />
-                  </span>
-                  {tier.badge ? (
-                    <Badge className="border-accent bg-accent-soft text-accent">
+                {/* Top "MOST POPULAR" Badge on Team Card */}
+                {tier.badge ? (
+                  <div className="mb-4 flex items-center justify-between gap-2">
+                    <span
+                      data-testid="most-popular-badge"
+                      className="lm-pricing-popular-badge inline-flex items-center rounded-lm-pill px-3 py-1 text-lm-10 font-bold uppercase tracking-lm-label"
+                    >
                       {tier.badge}
-                    </Badge>
-                  ) : null}
-                </div>
-                <div className="space-y-1">
-                  <p className="font-display text-xl font-bold tracking-tight">
-                    {tier.name}
-                  </p>
-                  <p className="text-xs uppercase tracking-wide text-muted-foreground">
-                    {tier.eyebrow}
-                  </p>
-                </div>
-                <p className="text-sm text-muted-foreground">{tier.tagline}</p>
-                <PriceRow tier={tier} view={view} />
-                <p className="text-xs text-muted-foreground">
-                  {tier.billingNote}
-                </p>
-              </CardHeader>
-
-              <CardContent className="flex-1 space-y-4 p-5">
-                <ul className="space-y-2.5">
-                  {tier.features.map((feature) => (
-                    <li key={feature} className="flex gap-2.5 text-sm">
-                      <Check
-                        className="mt-0.5 h-4 w-4 shrink-0 text-success"
-                        aria-hidden="true"
-                      />
-                      <span className="text-text">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                {tier.planned && tier.planned.length > 0 ? (
-                  <ul className="space-y-2.5 border-t border-border pt-4">
-                    {tier.planned.map((feature) => (
-                      <li
-                        key={feature}
-                        className="flex gap-2.5 text-sm text-muted-foreground"
-                      >
-                        <span
-                          className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
-                          aria-hidden="true"
-                        />
-                        <span>
-                          {feature} <span className="italic">— planned</span>
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
+                    </span>
+                  </div>
                 ) : null}
-              </CardContent>
 
-              <CardFooter className="p-5 pt-0">
-                <Button
-                  asChild
-                  variant={tier.cta.primary ? "default" : "outline"}
-                  className="w-full"
-                >
-                  <Link href={tier.cta.href}>{tier.cta.label}</Link>
-                </Button>
-              </CardFooter>
-            </Card>
+                <div>
+                  {/* Plan Name + Audience Description */}
+                  <div>
+                    <h2 className="font-display text-lm-21 font-semibold tracking-lm-title text-lm-ink xl:text-lm-23">
+                      {tier.name}
+                    </h2>
+                    <p className="mt-1.5 text-lm-14 leading-lm-normal text-lm-ink-soft sm:text-lm-15">
+                      {tier.tagline}
+                    </p>
+                  </div>
+
+                  {/* Price Row + Seat Limit + Additional Seat Pricing */}
+                  <div className="mt-6 border-t border-lm-border-soft pt-6">
+                    {tier.resolvedPriceDisplay ? (
+                      <div className="flex items-baseline gap-1.5">
+                        <span
+                          data-testid={`plan-price-${tier.slug}`}
+                          className="font-display text-lm-36 font-medium leading-none tracking-lm-price text-lm-ink xl:text-lm-46"
+                        >
+                          {tier.resolvedPriceDisplay}
+                        </span>
+                        {tier.resolvedCadence ? (
+                          <span className="text-lm-14 font-normal text-lm-muted-readable">
+                            {tier.resolvedCadence}
+                          </span>
+                        ) : null}
+                      </div>
+                    ) : (
+                      <div
+                        data-testid={`plan-price-pending-${tier.slug}`}
+                        className="py-1"
+                      >
+                        <p className="text-lm-15 font-semibold text-lm-ink">
+                          Annual pricing pending configuration
+                        </p>
+                        <p className="mt-1 text-lm-12 leading-lm-normal text-lm-muted-readable">
+                          Switch to Monthly ({tier.priceDisplay} {tier.cadence}) or contact us for an annual invoice.
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Seat limit & additional seat pricing */}
+                    <div className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-lm-13 text-lm-ink-soft">
+                      <span className="font-medium text-lm-ink">
+                        {tier.seatsLabel}
+                      </span>
+                      {tier.additionalSeatsLabel ? (
+                        <>
+                          <span
+                            aria-hidden="true"
+                            className="text-lm-muted-readable"
+                          >
+                            ·
+                          </span>
+                          <span className="text-lm-muted-readable">
+                            {tier.additionalSeatsLabel}
+                          </span>
+                        </>
+                      ) : null}
+                    </div>
+
+                    {tier.priceNote && !isAnnualPending ? (
+                      <p className="mt-2 text-lm-12 leading-lm-normal text-lm-muted-readable">
+                        {tier.priceNote}
+                      </p>
+                    ) : null}
+                  </div>
+
+                  {/* Plan CTA Button (Forma placement: directly below price/seat block, above features) */}
+                  <div className="mt-6">
+                    {tier.ctaDisabled ? (
+                      <button
+                        type="button"
+                        disabled
+                        aria-disabled="true"
+                        data-testid={`plan-cta-disabled-${tier.slug}`}
+                        className={cn(
+                          "inline-flex min-h-12 w-full cursor-not-allowed items-center justify-center px-5 py-3 text-lm-15 font-semibold opacity-60",
+                          isFeatured
+                            ? "lm-pricing-cta-primary"
+                            : "lm-pricing-cta-light"
+                        )}
+                      >
+                        {tier.cta.label} (Monthly only)
+                      </button>
+                    ) : (
+                      <Link
+                        href={tier.cta.href}
+                        data-testid={`plan-cta-${tier.slug}`}
+                        className={cn(
+                          "inline-flex min-h-12 w-full items-center justify-center px-5 py-3 text-lm-15 font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                          isFeatured
+                            ? "lm-pricing-cta-primary"
+                            : "lm-pricing-cta-light"
+                        )}
+                      >
+                        {tier.cta.label}
+                      </Link>
+                    )}
+                  </div>
+
+                  {/* Feature List Section Header + Items */}
+                  <div className="mt-6 border-t border-lm-border-soft pt-6">
+                    {tier.featuresHeading ? (
+                      <p className="mb-3.5 text-lm-10 font-semibold uppercase tracking-lm-label text-lm-muted-label sm:text-lm-12">
+                        {tier.featuresHeading}
+                      </p>
+                    ) : (
+                      <p className="mb-3.5 text-lm-10 font-semibold uppercase tracking-lm-label text-lm-muted-label sm:text-lm-12">
+                        INCLUDES
+                      </p>
+                    )}
+
+                    <ul
+                      aria-label={`${tier.name} features`}
+                      className="space-y-3"
+                    >
+                      {tier.features.map((feature) => (
+                        <li
+                          key={feature}
+                          className="flex items-start gap-2.5 text-lm-13 leading-lm-normal text-lm-ink sm:text-lm-15"
+                        >
+                          <Check
+                            className={cn(
+                              "mt-0.5 h-4 w-4 shrink-0",
+                              isFeatured
+                                ? "lm-pricing-check-featured"
+                                : "text-lm-ink-accent"
+                            )}
+                            aria-hidden="true"
+                          />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+            </motion.article>
           );
         })}
       </div>
