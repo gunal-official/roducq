@@ -24,13 +24,11 @@ import { PRACTICE_MOCKS } from "./PracticeMocks";
  * crossfades to the practice whose article is 30% visible — the
  * measured IntersectionObserver trigger.
  *
- * The stage's `top` offset is [UNVERIFIED]: the capture harness
- * does not collect `top`, and every screenshot was taken with the
- * stage in its natural flow position, so the reference's pin offset
- * cannot be read from the evidence. `lg:top-[150px]` is retained as
- * an [INFERRED] value that keeps the 710px stage inside a 900px
- * viewport with room to spare; it is not a measured figure and the
- * comment that previously claimed otherwise was wrong.
+ * MEASURED: the reference pins the stage at `top: 150px`, read from
+ * its own stylesheet in the capture's raw-DOM dump
+ * (`.framer-1pi3c7f { position: sticky; top: 150px }`) — not from
+ * getComputedStyle, which the harness does not collect for `top`.
+ * `lg:top-[150px]` is therefore a true measured value, not a guess.
  *
  * PHONE / TABLET. The stage is hidden and each article
  * carries its own miniature inline, below the templates

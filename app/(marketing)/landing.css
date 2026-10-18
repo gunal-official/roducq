@@ -1231,8 +1231,26 @@
   inset: 0;
   opacity: 0;
   visibility: hidden;
+  /* MEASURED: an inactive slide sits at scale(0.97), the active one at
+     scale(1) (`transform: none`). The 0.97 is a computed style on the
+     live page, so it is a real resting state, not an inference.
+     [INFERRED] whether the reference *transitions* the scale — the
+     capture records only the opacity animation — so it rides the same
+     curve as the fade rather than inventing a new timing.
+
+     KNOWN CONFLICT, deliberately left unresolved. The 2026-10-18
+     capture measures BOTH directions of this crossfade at 700ms with
+     an 80ms delay. The 500ms exit below is locked by an existing
+     assertion in tests/components/solutions-page.test.ts, which this
+     milestone may not modify. The earlier reading appears to have
+     taken its 500ms from the mock's ambient content cycling (a
+     separate 500ms group on the comment card inside miniature 02),
+     not from the stage. Correcting the exit to 700ms/80ms requires
+     that assertion to change; see docs/SOLUTIONS_IMPLEMENTATION.md. */
+  transform: scale(0.97);
   transition:
     opacity 500ms var(--lm-ease-body),
+    transform 500ms var(--lm-ease-body),
     visibility 0s 500ms;
 }
 
@@ -1240,8 +1258,10 @@
   opacity: 1;
   visibility: visible;
   z-index: 1;
+  transform: scale(1);
   transition:
     opacity 700ms var(--lm-ease-body),
+    transform 700ms var(--lm-ease-body),
     visibility 0s;
 }
 

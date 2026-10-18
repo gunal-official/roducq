@@ -485,3 +485,107 @@ Fonts (MEASURED): **Manrope** (display, weight 600/semibold, also
 * The desktop closing-CTA headline's painted output is proven by DOM,
   computed style, and the mobile capture; the desktop raster omission is
   **INFERRED** as a capture artifact (§1.1, §4.5).
+
+---
+
+## 9. Refinement pass, 2026-10-18 (corrections and additions)
+
+This section was added by the implementation pass on
+`arena/f6a4212d-roducq`, after the capture was re-read against the built
+page. Every value below is re-read from the artifacts in
+`docs/screenshots/forma-solutions-reference/baseline-2026-10-18T12-07Z/`.
+Implementation decisions live in `docs/SOLUTIONS_IMPLEMENTATION.md`.
+
+### 9.1 Values re-read from the raw-DOM dump (not `getComputedStyle`)
+
+The harness's `STYLE_KEYS` (line 127 of
+`scripts/capture-solutions-reference.mjs`) does not include `top`, `left`,
+`z-index`, `width`, `height` or `transition*`. Two sticky offsets are quoted
+in §3 and §4.2 and were **not** invented: they come from the reference's own
+stylesheet, which the capture stores verbatim in
+`sol-<vp>-<theme>-dom.html.gz`.
+
+| Selector (reference) | Declaration | Source |
+| --- | --- | --- |
+| `.framer-1gjmmyz` (category strip) | `position:sticky; top:78px; z-index:30; padding:0 16px` | CSS text |
+| `.framer-1pi3c7f` (mockup stage) | `position:sticky; top:150px` | CSS text |
+
+Both are **MEASURED** in the sense of "read from the page the browser
+rendered", but the reading is of the stylesheet, not of a computed value.
+
+### 9.2 Correction to §6.3 — the crossfade is 700 ms both ways
+
+§6.3 records the crossfade as "500 ms / 700 ms". Re-reading all 14 records in
+the `waapiFirstSeen` array shows both directions are the same:
+
+```
+duration: 700   delay: 80   easing: cubic-bezier(0.2, 0.7, 0.2, 1)
+  opacity [1 → 0]   (slide leaving the stage)
+  opacity [0 → 1]   (slide entering the stage)
+```
+
+The distinct 500 ms group (`dur=500`, `delay=0`, recorded at `scrollY: 0`
+against the comment card inside miniature 02 — "JK / Tighten the hero
+spacing", "Approved by MR") is the mock's **ambient content cycling**, not the
+stage crossfade. The earlier reading appears to have conflated the two.
+
+Also measured here and not in §4.3: an inactive slide sits at
+`transform: matrix(0.97, 0, 0, 0.97, 0, 0)` while the active one is
+`transform: none`. Whether that scale is *transitioned* is **INFERRED** — no
+`transform` animation appears in the 88 recorded `animate()` calls, and the
+harness does not collect `transition*` as a computed property.
+
+### 9.3 Corrections to §4 — values the build had wrong
+
+| § | Element | Value in §4 | Correction |
+| --- | --- | --- | --- |
+| 4.1 | Hero eyebrow → headline | — | 10 px spacer (y 178.5 → 188.5); the build used 20 px |
+| 4.1 | Hero headline → lead | — | 32 px spacer (y 257.1 → 289.1); the build used 24 px |
+| 4.2 | Article box | 774 px tall | Confirmed, and the **content is vertically centred in 48 px padding** — which is why four articles of 532.9–590.7 px all pitch at 774. The build had no padding and no centring |
+| 4.2 | Category index row | — | **No rule.** `border-width: 0` on every side. The build drew a `border-b` |
+| 4.2 | Workflow row | — | `padding: 14px 0 15px`, not 12/12 |
+| 4.2 | Index number weight | — | **900** (DM Sans). Roducq ships Manrope only (200–800), so 800 is the heaviest real weight |
+| 4.2 | Templates chip | — | 19.2 px tall (3 px padding around a 13.2 px line box) |
+| 4.3 | Progress rail | — | **2 px** tall, radius 2, `rgba(255,255,255,0.18)`; fill **solid white**, radius 0 — not 6 px, not accent purple |
+| 4.3 | Stage geometry | 24 px radius (§4.3) | Radius **24** and shadow `rgba(30,16,80,0.45) 0 40px 80px -40px` — distinct from the closing CTA's 28 px and hairline+lift pair |
+| 4.4 | Plan band | — | Radius 24, **no shadow at all**, content padding 49 px (desktop) / 21 px (≤768), 120 px band padding on **top only** (0 bottom). Buttons are a **right-hand 316 px column**, centred, 40 px from the copy, 10 px apart — not stacked underneath |
+| 4.5 | Closing CTA | 64.8 px headline | Radius **22 px below the desktop band** (28 at desktop); padding 96/72 at desktop, 56/20 below; body **19 px** on `rgba(255,255,255,0.76)`; columns **565 / 467 with a 64 px gap** |
+| 4.5 | Getting-started card | — | White, radius 18, 24 px padding; title 17 px/600; counter 13 px/500; rail 6 px, radius 6, `#eeeaf7` track, `#6246ea` fill; tiles **20 px at radius 6** (rounded squares), labels 15 px; the `Next` row inset 12 px on `#f3efff` at radius 10 |
+
+### 9.4 Confirmation of §5 — the mockups contain no SVG artwork
+
+§5 concluded the icons are static artwork with nothing to recreate. The
+refinement pass confirms the stronger claim: **none of the four mockups
+contains any SVG at all.** Of the 22 `<svg>` elements, 6 have a non-zero box
+and the largest is the 17 px theme-toggle glyph; the other 16 are 0×0
+`role="presentation"` sprite templates. `canvas`, `image` and `video` counts
+are all 0. Every mockup is HTML and CSS: a white card at radius 16 with a
+`rgba(8,2,30,0.55) 0 30px 60px -24px` lift, holding rows, pills, rails and
+text. There is no viewBox, path geometry, mask, clip or gradient to match —
+only box values.
+
+### 9.5 Breakpoints and the missing 1024 px band
+
+Read from the stylesheet (`@media` blocks in the raw-DOM dump):
+
+```
+min-width: 1200px                        desktop
+min-width: 810px and max-width: 1199px   tablet
+max-width: 809.98px                      phone
+```
+
+Consequence for the six required widths: 320 / 375 / 390 / 768 all fall in the
+phone or tablet band and share one fluid layout, so the captures at 390 and
+768 cover them. **1024 px is the tablet band's only uncaptured width** and is
+the sole reason a re-run is needed. The harness was extended from three
+viewports to six (1440×900, 1024×768, 768×1024, 390×844, 375×812, 320×700) in
+commit `48801c2`; the re-run had not landed when this section was written, so
+**1024 px remains `[UNVERIFIED]`**.
+
+### 9.6 The reference is light-only
+
+The dark capture returns byte-identical values to the light one — the h1 is
+still `rgb(27, 20, 38)`, the category strip still `rgba(255, 255, 255, 0.72)`,
+the body background still `rgb(255, 255, 255)`. There is no dark design on
+`/solutions` to match. Any dark value in the Roducq build is therefore
+**INFERRED**, not measured.

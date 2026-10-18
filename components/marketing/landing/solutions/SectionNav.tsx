@@ -16,11 +16,14 @@ import { SECTION_NAV } from "@/app/(marketing)/solutions/content";
  *   number     11px / 700 / #5332d6
  *   label      14px / 400 / #687083
  *
- * Roducq reskin: the sticky offset is re-based onto this site's
- * chrome (`top-16 md:top-18`) because Roducq's marketing header is
- * 64/72px, not the reference's 70px. The wash is a token so the
- * dark shell gets an equivalent lift — the reference is light-only
- * and publishes no dark value.
+ * The strip itself is MEASURED from the reference's own stylesheet in
+ * the capture's raw-DOM dump: `position: sticky; top: 78px;
+ * z-index: 30; padding: 0 16px`, with the 756px pill centred inside.
+ * Roducq re-bases the offset onto this site's chrome
+ * (`top-16 md:top-18`) because Roducq's marketing header is 64/72px,
+ * not the reference's 70px. The wash is a token so the dark shell gets
+ * an equivalent lift — the reference is light-only and publishes no
+ * dark value.
  *
  * One deliberate departure: chips keep `min-h-11` (44px) rather than
  * the measured 37.7px, so the touch target meets the same minimum
