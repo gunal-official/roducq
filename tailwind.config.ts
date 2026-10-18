@@ -185,6 +185,8 @@ const config = {
         "lm-frame": "var(--lm-radius-frame)",
         "lm-pill": "var(--lm-radius-pill)",
         "lm-dot": "var(--lm-radius-dot)",
+        "lm-stage": "var(--lm-radius-stage)",
+        "lm-mock": "var(--lm-radius-mock)",
         // The floating phone bar and the auth panel: a soft rectangle,
         // deliberately wider than `surface` so the chrome reads as a
         // separate plane from the content cards.
@@ -208,6 +210,8 @@ const config = {
         "lm-md": "var(--lm-shadow-md)",
         "lm-lg": "var(--lm-shadow-lg)",
         "lm-frame": "var(--lm-shadow-frame)",
+        "lm-mock": "var(--lm-shadow-mock)",
+        "lm-stage": "var(--lm-shadow-stage)",
         // Phase B: the floating bar, the drawer and the auth panel.
         shell: "var(--shell-shadow)",
         lift: "var(--shell-shadow-lift)",
@@ -249,11 +253,14 @@ const config = {
         "lm-34": ["var(--lm-size-34)", { lineHeight: "1.1" }],
         "lm-35": ["var(--lm-size-35)", { lineHeight: "1.35" }],
         "lm-36": ["var(--lm-size-36)", { lineHeight: "1.2" }],
+        "lm-42": ["var(--lm-size-42)", { lineHeight: "1.1" }],
         "lm-43": ["var(--lm-size-43)", { lineHeight: "1.02" }],
+        "lm-44": ["var(--lm-size-44)", { lineHeight: "1.02" }],
         "lm-46": ["var(--lm-size-46)", { lineHeight: "1.35" }],
         "lm-48": ["var(--lm-size-48)", { lineHeight: "1.1" }],
         "lm-54": ["var(--lm-size-54)", { lineHeight: "1.1" }],
         "lm-64": ["var(--lm-size-64)", { lineHeight: "1.02" }],
+        "lm-67": ["var(--lm-size-67)", { lineHeight: "1.02" }],
         "lm-72": ["var(--lm-size-72)", { lineHeight: "1.02" }],
       },
       /* ── Marketing landing spacing ─────────────────────────────────────
