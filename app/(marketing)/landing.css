@@ -765,6 +765,9 @@
   /* Every entrance resolves instantly: no fade, no translation, no draw. */
   .lm-line > span,
   .lm-word > span,
+  .lm-hero-word > span,
+  .lm-js .lm-reveal .lm-word-blur > span,
+  .lm-js .lm-reveal[data-visible="true"] .lm-word-blur > span,
   .lm-js .lm-reveal .lm-word > span,
   .lm-js .lm-reveal[data-visible="true"] .lm-word > span,
   .lm-hero-in,
@@ -780,6 +783,13 @@
     clip-path: none;
     opacity: 1;
     transform: none;
+    transition: none;
+  }
+  /* The mock panel and its status pill swap instantly:
+     the content change stays, the crossfade goes. */
+  .lm-js .lm-mock-layer,
+  .lm-js .lm-mock-layer[data-active="true"],
+  .lm-pill-swap {
     transition: none;
   }
   .lm-js .lm-chart-line,
@@ -994,3 +1004,275 @@
   color: var(--lm-ink-soft);
 }
 
+
+/* ══════════════════════════════════════════════════════════════
+   /solutions — practice showcase additions (2026-10-18)
+   ──────────────────────────────────────────────────────────────────
+   Every value below is MEASURED on the live capture of
+   forma-visuvate.framer.website/solutions (see
+   docs/FORMA_SOLUTIONS_REFERENCE.md) and then reskinned to the
+   lm token system, with two exceptions that are labelled where
+   they are used:
+
+   - The reference animates headline words with a blur dissolve
+     (filter: blur(10px) -> blur(0px), 900ms,
+     cubic-bezier(0.16, 1, 0.3, 1), 50ms per word). The hero's
+     words run that dissolve on load; the category headlines run
+     it when their band scrolls into view. Opacity never leaves
+     1 in either keyframe — the PR #53 LCP rule — because the
+     blur alone does the hiding while the text still paints.
+
+   - The reference's mock panel swaps its four miniature UIs
+     with 500ms exits and 700ms entrances on
+     cubic-bezier(0.2, 0.7, 0.2, 1), triggered by an
+     IntersectionObserver at threshold 0.3 (one per category).
+   ══════════════════════════════════════════════════════════════ */
+
+.rdq-marketing {
+  /* Measured steps this page adds to the landing scale. */
+  --lm-size-42: 42px; /* category headline, 46.2px line */
+  --lm-size-44: 44px; /* phone/tablet hero headline */
+  --lm-size-65: 64.8px; /* closing CTA headline, 66.1px line */
+  --lm-size-67: 67.2px; /* desktop hero headline */
+  /* Two fractional steps the reference measures that the shared
+     integer scale cannot express. They are deliberately NOT named
+     `lm-11` / `lm-13`: a shared `--lm-size-11` step would bring the
+     already-written-but-currently-dead `text-lm-11` in
+     SectionHeading.tsx to life and restyle CardLabel on /, /about,
+     /pricing and /vs — a cross-page change this milestone may not
+     make. These names are used only by /solutions. */
+  --lm-size-chip: 11px; /* nav chip index, Templates micro-label */
+  --lm-size-mock: 13.5px; /* miniature title and row text */
+
+  /* Two fills measured inside the miniature cards and the
+     getting-started checklist. They are NOT the shell's surface
+     steps (#eae6f1 / #efebff) — substituting those drifts 1–4%. */
+  --lm-mock-row-active: #f3efff; /* the "next" row inside a card */
+  --lm-mock-rail: #eeeaf7; /* the 6px progress track */
+
+  /* Radii the showcase publishes.
+     MEASURED, and they are NOT one value: the closing CTA stage is
+     28px, while the sticky miniature stage and the plan band are both
+     24px. Collapsing them to one radius was a fidelity error. */
+  --lm-radius-stage: 28px; /* closing CTA stage */
+  --lm-radius-stage-sm: 24px; /* miniature stage + plan band */
+  --lm-radius-mock: 18px; /* the getting-started checklist card */
+
+  /* Elevation the showcase publishes — also three distinct values.
+     The plan band carries NO shadow at all; the miniature stage
+     carries one soft 80px lift; only the closing CTA pairs a 2px
+     hairline with a 80px lift. */
+  --lm-shadow-mock: rgba(8, 2, 30, 0.55) 0px 30px 60px -24px;
+  --lm-shadow-mock-stage: rgba(30, 16, 80, 0.45) 0px 40px 80px -40px;
+  --lm-shadow-stage: rgba(33, 20, 56, 0.04) 0px 2px 4px 0px,
+    rgba(58, 28, 110, 0.32) 0px 40px 80px -30px;
+
+  /* On-stage ink steps (white stage, measured rgba values). */
+  --lm-cta-faint: rgba(255, 255, 255, 0.6);
+  --lm-cta-track: rgba(255, 255, 255, 0.18);
+  --lm-cta-fill: #ffffff; /* measured 121px fill on the 486px track */
+  /* MEASURED: the filled stage button's label is #2a1570, not the
+     shell's #1b1426 ink — a dark indigo, not near-black. */
+  --lm-cta-button-ink: #2a1570;
+
+  /* The numbered category strip. MEASURED: the reference does not
+     draw a full-width bar — it floats a centred, content-sized pill
+     (756px at four chips) at rgba(255,255,255,0.72) with a 16px
+     backdrop blur and a 1px/2px hairline lift. No border. */
+  --lm-chip-wash: rgba(255, 255, 255, 0.72);
+  --lm-shadow-chip: rgba(33, 20, 56, 0.06) 0px 1px 2px 0px;
+}
+
+.dark .rdq-marketing {
+  /* Same construction, re-pointed at the dark surface: the reference
+     is light-only (its dark capture returns identical values), so the
+     dark value is the equivalent lift over this shell's own plane. */
+  --lm-chip-wash: rgba(20, 15, 29, 0.72);
+  --lm-shadow-chip: rgba(0, 0, 0, 0.24) 0px 1px 2px 0px;
+  /* The measured miniature fills are light-surface values. On the dark
+     shell they land on the same two surfaces the light values map to. */
+  --lm-mock-row-active: #2b2140;
+  --lm-mock-rail: #2a2233;
+}
+
+/* ── Headline word dissolve ──────────────────────────────────── */
+@keyframes lm-word-dissolve {
+  from {
+    opacity: 1;
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+/* The hero's words dissolve on load. No masked slot is needed
+   (the measured motion moves nothing), and opacity stays 1 in
+   both keyframes so the headline paints on the first frame. */
+.lm-hero-word {
+  display: inline-block;
+  animation: lm-word-dissolve var(--lm-motion-display)
+    var(--lm-ease-display) both;
+  animation-delay: var(--lm-word-delay, 0ms);
+}
+
+/* Category headlines sit below the fold, so their words wait,
+   dissolved, until the band's own Reveal reports visible — the
+   same scroll trigger every band uses. Without JavaScript (no
+   .lm-js) the words are simply there. */
+.lm-js .lm-reveal .lm-word-blur > span {
+  opacity: 0;
+  filter: blur(10px);
+}
+
+.lm-js .lm-reveal[data-visible="true"] .lm-word-blur > span {
+  opacity: 1;
+  filter: blur(0px);
+  animation: lm-word-dissolve var(--lm-motion-display)
+    var(--lm-ease-display) both;
+  animation-delay: var(--lm-word-delay, 0ms);
+}
+
+/* ── Gradient headline words ───────────────────────────────────
+   Two measured gradients: the hero's brand-purple sweep and the
+   closing headline's pale lavender sweep. */
+.lm-text-gradient {
+  background-image: linear-gradient(
+    90deg,
+    var(--lm-accent) 0%,
+    #8b5cf6 50%,
+    #c084fc 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.lm-text-gradient-soft {
+  background-image: linear-gradient(
+    90deg,
+    rgb(216, 199, 255) 0%,
+    rgb(234, 210, 255) 50%,
+    rgb(246, 200, 255) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── Gradient stage cards ──────────────────────────────────────
+   The measured 150deg purple sweep with its two radial glows,
+   used by the plan band and the closing CTA. */
+.lm-solutions-stage {
+  /* The stage's own secondary button is NOT the shell's: measured
+     rgba(255,255,255,0.08) with no border, where FinalCta (and every
+     other page) uses 0.14 behind a 32% border. Re-pointed here rather
+     than on the shared token, so only the two /solutions stages move. */
+  --lm-cta-wash: rgba(255, 255, 255, 0.08);
+  /* MEASURED: the stage's body copy is 76% white, not the shell's
+     opaque #efebff. Scoped here so FinalCta keeps the shared value. */
+  --lm-cta-muted: rgba(255, 255, 255, 0.76);
+
+  background:
+    radial-gradient(
+      70% 60% at 100% 0%,
+      rgba(205, 180, 255, 0.55) 0%,
+      rgba(0, 0, 0, 0) 65%
+    ),
+    radial-gradient(
+      60% 60% at 0% 100%,
+      rgba(240, 150, 225, 0.26) 0%,
+      rgba(0, 0, 0, 0) 70%
+    ),
+    linear-gradient(150deg, #35278a 0%, #5139c9 52%, #7658ec 100%);
+  /* NO box-shadow here, deliberately. landing.css is emitted AFTER the
+     Tailwind utility layer, so a `box-shadow` on this class outranks
+     every `shadow-*` utility at equal specificity — which silently
+     defeated both `shadow-none` (plan band, measured: no shadow) and
+     `shadow-lm-mock-stage`. Each stage now states its own shadow; the
+     three measured values are 0 / one soft lift / hairline + lift. */
+}
+
+/* ── Miniature product surfaces ────────────────────────────────
+   MEASURED: radius 16px, 27px padding, and NO border — the card is
+   separated from its stage by the shadow alone
+   (rgba(8,2,30,0.55) 0 30px 60px -24px). The 1px hairline that was
+   here is not on the reference.                                    */
+.lm-mock-card {
+  background-color: var(--lm-card);
+  border: 0;
+  box-shadow: var(--lm-shadow-mock);
+  /* No border-radius either, for the same load-order reason: the four
+     miniatures measure 16px (`rounded-lm-frame`) but the getting-started
+     card in the closing CTA measures 18px (`rounded-lm-mock`), and a
+     radius here would flatten both to 16px. */
+}
+
+/* ── Mock panel crossfade ──────────────────────────────────────
+   Layers stack absolutely and crossfade to the category whose
+   article is 30% visible. The duration is read from the state
+   a layer is ENTERING, so entrances take the measured 700ms
+   and exits the measured 500ms. Everything is gated on .lm-js:
+   with no JavaScript the stage keeps its natural height, the
+   layers stack in flow and every miniature is visible. */
+.lm-js .lm-solutions-stage {
+  height: 710px;
+}
+
+.lm-js .lm-mock-stage {
+  position: absolute;
+  inset: 215px 52px 84px;
+  padding: 0;
+}
+
+.lm-js .lm-mock-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  /* MEASURED: an inactive slide sits at scale(0.97), the active one at
+     scale(1) (`transform: none`). The 0.97 is a computed style on the
+     live page, so it is a real resting state, not an inference.
+     [INFERRED] whether the reference *transitions* the scale — the
+     capture records only the opacity animation — so it rides the same
+     curve as the fade rather than inventing a new timing.
+
+     KNOWN CONFLICT, deliberately left unresolved. The 2026-10-18
+     capture measures BOTH directions of this crossfade at 700ms with
+     an 80ms delay. The 500ms exit below is locked by an existing
+     assertion in tests/components/solutions-page.test.ts, which this
+     milestone may not modify. The earlier reading appears to have
+     taken its 500ms from the mock's ambient content cycling (a
+     separate 500ms group on the comment card inside miniature 02),
+     not from the stage. Correcting the exit to 700ms/80ms requires
+     that assertion to change; see docs/SOLUTIONS_IMPLEMENTATION.md. */
+  transform: scale(0.97);
+  transition:
+    opacity 500ms var(--lm-ease-body),
+    transform 500ms var(--lm-ease-body),
+    visibility 0s 500ms;
+}
+
+.lm-js .lm-mock-layer[data-active="true"] {
+  opacity: 1;
+  visibility: visible;
+  z-index: 1;
+  transform: scale(1);
+  transition:
+    opacity 700ms var(--lm-ease-body),
+    transform 700ms var(--lm-ease-body),
+    visibility 0s;
+}
+
+.lm-js .lm-mock-stage-foot {
+  position: absolute;
+}
+
+/* The status pill inside the agency miniature crossfades between
+   its two states on the measured ease-in-out curve. The swap
+   cadence is timer-driven in the component (the capture could
+   not measure the interval — see the reference doc). */
+.lm-pill-swap {
+  transition: opacity 500ms cubic-bezier(0.42, 0, 0.58, 1);
+}

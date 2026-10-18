@@ -25,7 +25,9 @@ function sourceFiles(dir: string): string[] {
 describe("Forma F — inventory and honest browser evidence", () => {
   it("inventories every actual App Router page and handler, without imagined features", () => {
     const inventory = discoverRoutes(ROOT);
-    assert.equal(inventory.filter((route) => route.kind === "page").length, 33);
+    // 34 pages: the marketing surface grew from /solutions
+    // (Forma-referenced practice showcase, 2026-10-18).
+    assert.equal(inventory.filter((route) => route.kind === "page").length, 34);
     assert.equal(inventory.filter((route) => route.kind === "handler").length, 18);
     for (const absent of ["/privacy", "/terms"]) assert.ok(!inventory.some((route) => route.pattern === absent));
     for (const present of ["/forgot-password", "/reset-password", "/dashboard", "/proposals/[id]/versions/[versionId]", "/share/[token]", "/invoice/[token]", "/invite/[token]"]) assert.ok(inventory.some((route) => route.pattern === present));

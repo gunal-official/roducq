@@ -1,0 +1,94 @@
+# Phase D verification for the recreated /solutions page —
+# the PR #53 four-scenario LCP suite (three fresh runs each,
+# PerformanceObserver-based), the horizontal-overflow sweep at
+# six widths in both colour schemes, an axe-core pass, and the
+# no-JS server-HTML content check.
+#
+# WHY A WORKFLOW. The development sandbox has no browser binary
+# and its egress allowlist blocks the Playwright CDN, so real
+# Chromium verification cannot run in-process here. A
+# GitHub-hosted runner can install Chromium, so the suite runs
+# there against the production build of this branch, exactly
+# like the Phase 0 capture did.
+#
+# IT IS READ-ONLY WITH RESPECT TO THE REPOSITORY'S CODE. It
+# builds, serves and probes; it never modifies a source file,
+# never deploys, and never touches any payment, billing or
+# database path.
+name: forma-solutions-verify
+
+on:
+  workflow_dispatch:
+  # TEMPORARY — this trigger exists only so the suite can run
+  # from this development branch before the workflow reaches
+  # the default branch (GitHub will not dispatch a workflow
+  # that is not on the default branch). It is removed before
+  # the pull request.
+  push:
+    branches:
+      - arena/1ebec4c7-roducq
+
+permissions:
+  # The report is published to the evidence branch,
+  # like the Phase 0 capture before it.
+  contents: write
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ">=22.18.0"
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright-core install --with-deps chromium
+
+      - name: Build and serve the production site
+        run: |
+          npm run build
+          npx next start -p 3100 -H 0.0.0.0 &
+          for i in $(seq 1 30); do
+            curl -sf http://localhost:3100/solutions >/dev/null && break
+            sleep 1
+          done
+          curl -sf http://localhost:3100/solutions >/dev/null || exit 1
+
+      - name: Run the /solutions verification suite
+        env:
+          BASE_URL: http://localhost:3100
+          OUTPUT: solutions-verification.json
+        run: |
+          node scripts/verify-solutions-lcp.mjs
+
+      # The artifact endpoint is unreachable from some
+      # networks, so the report is also committed to the
+      # evidence branch, where it can be fetched with git.
+      - name: Publish the verification report to the capture branch
+        if: always()
+        run: |
+          git config user.name "Arena Agent"
+          git config user.email "agent@arena.ai"
+          git fetch --force origin arena/forma-solutions-capture:refs/remotes/origin/arena/forma-solutions-capture
+          git checkout --detach arena/forma-solutions-capture
+          mkdir -p docs/screenshots/forma-solutions-reference
+          cp solutions-verification.json docs/screenshots/forma-solutions-reference/solutions-verification.json
+          git add -f docs/screenshots/forma-solutions-reference/solutions-verification.json
+          git commit -q -m "verify: /solutions Phase D report $(date -u +%Y-%m-%dT%H:%M:%SZ)" || echo "no changes to commit"
+          git push --force origin arena/forma-solutions-capture
+
+      - name: Upload the verification report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: forma-solutions-verification
+          path: solutions-verification.json
+          if-no-files-found: error
+          retention-days: 14
