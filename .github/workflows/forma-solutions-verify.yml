@@ -29,7 +29,9 @@ on:
       - arena/1ebec4c7-roducq
 
 permissions:
-  contents: read
+  # The report is published to the evidence branch,
+  # like the Phase 0 capture before it.
+  contents: write
 
 jobs:
   verify:
