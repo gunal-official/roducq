@@ -52,11 +52,24 @@ import { createRequire } from "node:module";
 const require = createRequire(import.meta.url);
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 
-/** The three breakpoints the milestone requires: mobile, tablet, desktop. */
+/**
+ * The six breakpoints the milestone requires: mobile-narrow, mobile-small,
+ * mobile, tablet, laptop, desktop.
+ *
+ * This is the same viewport set `scripts/capture-landing-reference.mjs`
+ * uses, so a /solutions capture and a landing-page capture are directly
+ * comparable. The original pass measured only 1440x900, 768x1024 and
+ * 390x844, which left 320px, 375px and 1024px unmeasured — the widths
+ * where the numbered category navigation and the four miniature mockups
+ * are most likely to change column count or clip.
+ */
 const VIEWPORTS = [
   { w: 1440, h: 900, name: "1440x900", label: "desktop" },
+  { w: 1024, h: 768, name: "1024x768", label: "laptop" },
   { w: 768, h: 1024, name: "768x1024", label: "tablet" },
   { w: 390, h: 844, name: "390x844", label: "mobile" },
+  { w: 375, h: 812, name: "375x812", label: "mobile-small" },
+  { w: 320, h: 700, name: "320x700", label: "mobile-narrow" },
 ];
 
 const THEMES = ["light", "dark"];
