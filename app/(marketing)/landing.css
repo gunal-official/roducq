@@ -1146,8 +1146,18 @@
    article is 30% visible. The duration is read from the state
    a layer is ENTERING, so entrances take the measured 700ms
    and exits the measured 500ms. Everything is gated on .lm-js:
-   with no JavaScript the layers simply stack in flow and every
-   miniature is visible. */
+   with no JavaScript the stage keeps its natural height, the
+   layers stack in flow and every miniature is visible. */
+.lm-js .lm-solutions-stage {
+  height: 710px;
+}
+
+.lm-js .lm-mock-stage {
+  position: absolute;
+  inset: 215px 52px 84px;
+  padding: 0;
+}
+
 .lm-js .lm-mock-layer {
   position: absolute;
   inset: 0;
@@ -1165,6 +1175,10 @@
   transition:
     opacity 700ms var(--lm-ease-body),
     visibility 0s;
+}
+
+.lm-js .lm-mock-stage-foot {
+  position: absolute;
 }
 
 /* The status pill inside the agency miniature crossfades between

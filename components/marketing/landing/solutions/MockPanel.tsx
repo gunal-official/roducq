@@ -37,13 +37,17 @@ export function MockPanel({
 }) {
   return (
     <div
-      className="lm-solutions-stage relative hidden h-[710px] overflow-hidden rounded-lm-stage lg:block"
+      className="lm-solutions-stage relative hidden overflow-hidden rounded-lm-stage lg:block"
       aria-label="Practice miniature"
     >
       {/* The card area: measured inset 52px from the
-          stage sides, 215px from its top. */}
-      <div className="absolute inset-x-[52px] bottom-[84px] top-[215px]">
-          {categories.map((category, index) => {
+          stage sides, 215px from its top. The absolute
+          geometry (and the stage's fixed height) exists
+          only under .lm-js — without JavaScript the four
+          miniatures stack in flow and every one stays
+          visible, at the cost of a taller stage. */}
+      <div className="lm-mock-stage px-[52px] pt-[215px]">
+        {categories.map((category, index) => {
           const Mock = PRACTICE_MOCKS[category.mock];
           return (
             <div
@@ -63,7 +67,7 @@ export function MockPanel({
           is. The fill steps at 25% per practice. */}
       <div
         aria-hidden="true"
-        className="absolute inset-x-8 bottom-[26px] flex items-center gap-3"
+        className="lm-mock-stage-foot inset-x-8 bottom-[26px] flex items-center gap-3"
       >
         <span className="text-lm-13 font-lm-semibold text-lm-cta-ink">
           {String(active + 1).padStart(2, "0")}

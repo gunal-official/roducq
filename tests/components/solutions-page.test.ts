@@ -345,6 +345,20 @@ describe("Solutions page (motion contract)", () => {
     assert.ok(NAV.includes("sticky top-16"));
     assert.ok(NAV.includes("md:top-18"));
   });
+
+  it("the stage geometry exists only under .lm-js (no-JS stacking)", () => {
+    // Without JavaScript the stage keeps its natural height
+    // and the four miniatures stack in flow; the fixed
+    // 710px stage, the absolute layer box and the absolute
+    // counter foot are all .lm-js-gated.
+    assert.ok(TOKENS.includes(".lm-js .lm-solutions-stage"));
+    assert.ok(TOKENS.includes("height: 710px"));
+    assert.ok(TOKENS.includes(".lm-js .lm-mock-stage"));
+    assert.ok(TOKENS.includes("inset: 215px 52px 84px"));
+    assert.ok(TOKENS.includes(".lm-js .lm-mock-stage-foot"));
+    // And the component does not hardcode the height.
+    assert.ok(!PANEL.includes("h-[710px]"));
+  });
 });
 
 describe("Solutions page (routes + a11y)", () => {
