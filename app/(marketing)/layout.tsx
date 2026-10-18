@@ -34,7 +34,7 @@ export default function MarketingLayout({
   // token system on top without replacing them.
   return (
     <MotionProvider>
-    <div className="marketing rdq-marketing flex min-h-dvh flex-col bg-lm-canvas text-lm-ink">
+    <div id="top" className="marketing rdq-marketing flex min-h-dvh flex-col bg-lm-canvas text-lm-ink">
       {/* Progressive enhancement for the scroll reveal: the `.lm-js` marker
           is what enables the hidden-initial state in landing.css, so a
           visitor without JavaScript gets every section fully visible

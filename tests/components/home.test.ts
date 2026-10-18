@@ -1109,6 +1109,12 @@ describe("/ landing routes", () => {
     }
   });
 
+  it("provides an accessible back-to-top footer link", () => {
+    assert.match(FOOTER_TSX, /href="#top"/);
+    assert.match(FOOTER_TSX, /Back to top/);
+    assert.match(LAYOUT, /id="top"/);
+  });
+
   it("still links the /vs comparisons the hub actually serves", () => {
     assert.ok(VS_PAGE_LIST.length >= 8, "the /vs hub should have real breadth");
     for (const entry of VS_PAGE_LIST) {

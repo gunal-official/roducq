@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUp } from "lucide-react";
 
 import { FOOTER } from "@/app/(marketing)/home/content";
 import { RoduMark, Wordmark } from "@/components/app-shell/RoduMark";
@@ -64,9 +64,18 @@ export function SiteFooter() {
           ))}
         </Reveal>
 
-        <div className="mt-10 flex flex-col gap-1.5 border-t border-lm-border-soft pt-6.5 text-lm-12 text-lm-muted sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 flex flex-col gap-1.5 border-t border-lm-border-soft pt-6.5 text-lm-12 text-lm-muted sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
           <p>{FOOTER.legal}</p>
-          <p>{FOOTER.built}</p>
+          <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-1.5">
+            <p>{FOOTER.built}</p>
+            <Link
+              href="#top"
+              className="inline-flex min-h-11 items-center gap-1.5 text-lm-12 text-lm-muted-readable transition-colors duration-200 hover:text-lm-ink-accent"
+            >
+              Back to top
+              <ArrowUp className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </div>
         </div>
 
         {/* Very large pale Roducq wordmark matching the Forma footer */}
