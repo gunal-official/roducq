@@ -95,7 +95,7 @@ export function MockPanel({
         </p>
         <span className="h-0.5 flex-1 overflow-hidden rounded-[2px] bg-lm-cta-track">
           <span
-            className="block h-full rounded-none bg-lm-cta-fill transition-[width] duration-500 ease-[cubic-bezier(0.2,0.7,0.2,1)]"
+            className="block h-full rounded-none bg-lm-cta-fill transition-[width] duration-500 ease-lm-nav"
             style={{ width: `${((active + 1) / categories.length) * 100}%` }}
           />
         </span>

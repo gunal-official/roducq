@@ -603,3 +603,57 @@ still `rgb(27, 20, 38)`, the category strip still `rgba(255, 255, 255, 0.72)`,
 the body background still `rgb(255, 255, 255)`. There is no dark design on
 `/solutions` to match. Any dark value in the Roducq build is therefore
 **INFERRED**, not measured.
+
+---
+
+## 10. Second refinement pass, 2026-10-19 (style-record corrections)
+
+Added while finishing the plan band and the closing CTA. Every value below was
+re-read from the **computed-style records** already in the capture branch
+(`sol-1440x900-light-styles.json`, `sol-768x1024-light-styles.json`,
+`sol-390x844-light-styles.json` — the `tracked[]` entries, keyed by path and
+box). Nothing here is a new capture; the prose in §4.4/§4.5 is corrected where
+it disagrees with the record it was written from.
+
+### 10.1 §4.4 "Choosing a plan" — corrections
+
+| Item | §4.4 prose | Style record | Consequence |
+| --- | --- | --- | --- |
+| Eyebrow | DM Sans 600 **13px/20.15px, white** | DM Sans 600 **14px/16.8px**, `rgb(205,184,255)` | The size had already been corrected to 14 in §3.3; the **colour** was never: it is lavender, not white |
+| Secondary button | "1px `rgba(255,255,255,0.3)` border" | `borderTopWidth: 0`, background `rgba(255,255,255,0.08)` | There is no border on the stage's secondary button |
+| Body | 16.5px/28.05px, 74% white | same | confirmed |
+| Headline | 36px/39.6px, −1.08px | same | confirmed |
+| Buttons | 164×52 / 141.6×52 | 164.03×52.03 / 141.61×52.03, labels **15.5px/24.03px** | label step added to the build |
+| Copy column | not recorded | 786.36 of 1142 inner (button column 315.64, gap 40) | the copy column is `flex:1`, not `justify-between` |
+| Below 1200 | "buttons stack full-width" | **no** — at 768 (694-wide inner) and 390 (316-wide inner) both buttons sit on one row, 52.03 tall, starting at the copy's left edge (37), at natural width (164.03, then 141.61 at 390) | build corrected to a wrapping row, natural width |
+| Headline below 1200 | not recorded | **30px/33px, −0.9px** at both 768 and 390 | new `--lm-size-30` step |
+
+### 10.2 §4.5 Closing CTA — corrections
+
+| Item | §4.5 prose | Style record | Consequence |
+| --- | --- | --- | --- |
+| Body line-height | "DM Sans 16.5px/28.05px" | at 1440: **19px / 29.45px** on `rgba(255,255,255,0.76)`; at 768 and 390: **16px / 24.8px** | 1.55, not 1.65; the compact body is 16px, not 19 |
+| Headline below 1200 | not recorded | **40px / 40.8px, −1.4px** at both 768 and 390 | new `--lm-size-40` step |
+| Buttons | "same geometry as §4.4" | 52.03 tall at every width, 15.5/24.03 labels; **stacked full-width** below 1200 (696 px at 768, 318 px at 390) | this band stacks where the plan band does not |
+| Columns | 565 / 467, 64 gap | 565.28 / 466.72 | confirmed |
+| Card padding | 24px | 24px at 1440, **18px at 768 and 390** | padding is responsive |
+| Card rows | "20px/15px" | 49.25 / 49.25 / 47.25 (highlighted) / 36.25 px tall; padding 13/13/12/13, last row bottom 0 | row rhythm differs from the earlier description |
+| Card labels | 15px | 15px/23.25px at 1440, **14px/21.7px** at 768 and 390 | responsive step |
+| Status ink | not recorded | `rgb(101,95,120)`, weight **400**; `Next` at weight 500 in the accent | measured ink, not the shell's `#4b505f` |
+| Card title | "17px/600" | 17px / **26.35px** (leading 1.55) | confirmed size, leading recorded |
+
+### 10.3 §4.6 Footer — what can and cannot be compared
+
+The reference footer's columns are Product / Teams / Company / Legal with a
+`fforma.` wordmark at **252px** (letter-spacing −18.9px) in
+`rgba(27,20,38,0.07)`. Roducq's shared footer publishes its own three columns
+and a `roducq.` wordmark, and it is rendered by **one component for five
+routes**; this page may not restyle it. Its animation state is `[UNVERIFIED]`:
+the capture's scroll pass stopped at y 4551 and the footer begins at 4746, so
+no WAAPI record exists for it in either direction.
+
+### 10.4 What this pass did **not** re-measure
+
+The reference page was not re-visited. Everything above is a re-read of the
+2026-10-18 capture. The build-side numbers that this pass compared against are
+in `docs/SOLUTIONS_IMPLEMENTATION.md` §15 and carry their own labels.

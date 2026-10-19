@@ -62,6 +62,10 @@ const config = {
           "cta-border": "var(--lm-cta-border)",
           "cta-wash": "var(--lm-cta-wash)",
         "cta-button-ink": "var(--lm-cta-button-ink)",
+        // /solutions: measured on-stage eyebrow (#cdb8ff) and the
+        // getting-started checklist's muted row ink (#655f78).
+        "cta-eyebrow": "var(--lm-cta-eyebrow)",
+        "mock-muted": "var(--lm-mock-muted)",
         // /solutions: the measured miniature fills.
         "mock-row-active": "var(--lm-mock-row-active)",
         "mock-rail": "var(--lm-mock-rail)",
@@ -251,6 +255,9 @@ const config = {
         "lm-13": ["var(--lm-size-13)", { lineHeight: "1.55" }],
         "lm-14": ["var(--lm-size-14)", { lineHeight: "1.65" }],
         "lm-15": ["var(--lm-size-15)", { lineHeight: "1.55" }],
+        // /solutions: the two on-stage buttons measure 15.5px / 24.03px
+        // (`sol-1440x900-light-styles.json`), not the shell's 15px step.
+        "lm-15-5": ["var(--lm-size-15-5)", { lineHeight: "1.55" }],
         "lm-16": ["var(--lm-size-16)", { lineHeight: "1.65" }],
         "lm-17": ["var(--lm-size-17)", { lineHeight: "1.5" }],
         "lm-18": ["var(--lm-size-18)", { lineHeight: "1.65" }],
@@ -260,10 +267,15 @@ const config = {
         "lm-22": ["var(--lm-size-22)", { lineHeight: "1.3" }],
         "lm-23": ["var(--lm-size-23)", { lineHeight: "1.4" }],
         "lm-28": ["var(--lm-size-28)", { lineHeight: "1.1" }],
+        "lm-30": ["var(--lm-size-30)", { lineHeight: "1.1" }],
         "lm-32": ["var(--lm-size-32)", { lineHeight: "1.1" }],
         "lm-34": ["var(--lm-size-34)", { lineHeight: "1.1" }],
         "lm-35": ["var(--lm-size-35)", { lineHeight: "1.35" }],
         "lm-36": ["var(--lm-size-36)", { lineHeight: "1.2" }],
+        // /solutions: the closing CTA headline measures 40px / 40.8px at
+        // 768 and 390 (`sol-768x1024-light-styles.json`,
+        // `sol-390x844-light-styles.json`).
+        "lm-40": ["var(--lm-size-40)", { lineHeight: "1.02" }],
         "lm-42": ["var(--lm-size-42)", { lineHeight: "1.1" }],
         "lm-43": ["var(--lm-size-43)", { lineHeight: "1.02" }],
         "lm-44": ["var(--lm-size-44)", { lineHeight: "1.02" }],

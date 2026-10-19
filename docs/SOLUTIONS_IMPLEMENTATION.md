@@ -1,8 +1,9 @@
 # Roducq `/solutions` — implementation record (refinement pass)
 
 Date: **2026-10-18** — page pass
-Updated: **2026-10-19** — hero-only refinement (§13), branch
-`arena/356595ce-roducq`
+Updated: **2026-10-19** — hero refinement (§13), sticky showcase (§14),
+then browser verification + plan band / closing CTA / footer completion
+(§15), branch `arena/356595ce-roducq`
 Branch: `arena/f6a4212d-roducq` (page pass)
 Reference: <https://forma-visuvate.framer.website/solutions>
 Evidence base: `docs/FORMA_SOLUTIONS_REFERENCE.md` + the capture under
@@ -21,7 +22,7 @@ the decision log.
 | Scope | `/solutions` route, its seven components, and route-scoped tokens only |
 | Changed files | 7 components under `components/marketing/landing/solutions/`, `app/(marketing)/landing.css`, `tailwind.config.ts` |
 | TypeScript | clean (`tsc --noEmit`) |
-| Existing `tests/components/solutions-page.test.ts` | 24/24 pass (run as a targeted check only — see §11) |
+| Existing `tests/components/solutions-page.test.ts` | 26/26 pass (run as a targeted check only — see §11) |
 | Regression testing | **Deferred.** Deliberately not performed. See §11 |
 | PR / merge / deploy | None. None requested |
 
@@ -796,3 +797,278 @@ query, `inset: 9px 52px 26px` and the 700ms/80ms transitions.
 Deferred per instruction: full `npm test`, Lighthouse, axe-core, LCP
 benchmarks, and the 320/375/390/768/1024/1440 screenshot sweep. No CI workflow
 was edited. Nothing was merged, deployed or opened as a PR.
+
+---
+
+## 15. Sticky showcase verified in a real browser; plan band, closing CTA and footer finished (2026-10-19)
+
+Scope: verification of the sticky showcase from commit `7eca8f9`, then the two
+`/solutions` bands that had never been measured against the capture's own style
+records — the plan band and the closing CTA — plus a cross-route check of the
+shared footer. Nothing in the header, the hero, `/pricing`, Razorpay, Supabase,
+auth, billing or the database was touched.
+
+### 15.1 Verification environment (and what it is not)
+
+Every number in this section was read from a **real Chromium render**, not from
+CSS text:
+
+| | |
+| --- | --- |
+| Browser | Chromium **153.0.8010.0** (headless shell; `HeadlessChrome/153.0.8010.0` UA), installed with `@sparticuz/chromium` because the sandbox has no system browser and its egress allowlist blocks `cdn.playwright.dev` |
+| Driver | `playwright-core@1.63` (already a devDependency), `chromium.launch({ executablePath })` |
+| Runtime | Debian 12 (glibc 2.36), Node 22.22.3, `next dev` (Turbopack) on `http://localhost:3000` |
+| Viewports | 1440×900, 1280×800, 1200×800, 1199×800, 1024×768, 768×1024, 390×844, device scale 1 |
+| Scrollbars | overlay (clientWidth = innerWidth at every width), so `window.innerWidth` **is** the CSS viewport here |
+
+**Limits of this harness:** it is a headless shell, not a full desktop Chrome,
+and it runs the **development** server. Composed-layer behaviour under a
+production build (`next build`, out of scope here) and the real mobile browsers
+are `[UNVERIFIED]`. The dev-mode LCP element was the hero lead paragraph
+(`P.lm-hero-in`, 34 770 px² at 432 ms), not a mock or a band; dev-mode timing
+is not a production LCP figure and is not treated as one.
+
+### 15.2 The sticky showcase, observed
+
+The right-hand column, the sticky box and the stage are the measured three-box
+nesting from §14.1. What was never observed before this pass now is:
+
+| Width (window.innerWidth) | 1440 | 1280 | 1200 | 1199 | 1024 | 768 | 390 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Match `min-width: 1200px` | true | true | true | **false** | false | false | false |
+| Right column box | 607 × 3096 | 567 × 3096 | 487 × 3096 | **0 × 0** (`display: none`) | 0 × 0 | 0 × 0 | 0 × 0 |
+| Stage box | 607 × 710 | 567 × 710 | 487 × 710 | absent | absent | absent | absent |
+| Sticky computed | `sticky` / `150px` | `sticky` / `150px` | `sticky` / `150px` | `static` / `auto` | `static` / `auto` | `static` / `auto` | `static` / `auto` |
+| Inline stage per category | — | — | — | 1119 wide, pad 41 | 944 wide, pad 41 | 736 wide, pad 13 | 358 wide, pad 13 |
+| `overflow-x` | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+
+The **sticky element's class list is exactly**
+`min-[1200px]:sticky min-[1200px]:top-[150px]`, the column is its static parent
+(`hidden min-[1200px]:block`, `align-self: stretch` by default), and the stage
+is the 710px child — the measured nesting, unchanged from `7eca8f9`.
+
+**Stage top while scrolling the band.** At 1440×900 the section spans
+y 609.58 → 3777.58 (3168 tall). Sampled every 100 px from y 0 to 3800:
+
+```
+y = 0      stage top 641.58   (not yet reached — flows with the page)
+y = 400    stage top 241.58
+y = 500    stage top 150.00   ← pinned
+y = 500 … 2868: 150.00 exactly, 24 consecutive samples, no drift
+y = 2878   stage top 149.58   (release begins at 2877.58)
+y = 2888   stage top 139.58
+… stage top then falls exactly 1:1 with scrollY
+```
+
+`150.00` was held for every sample from y = 500 to y = 2868 at 1440, 1280 and
+1200 (`getBoundingClientRect().top`, 0.5 px tolerance). The release point is
+`columnBottom − stageHeight − 150 = 3737.58 − 710 − 150 = 2877.58` — i.e. the
+panel sticks to the **end of its own column**, and after that the plan band
+scrolls normally (verified: at y 3100 → 3200 the stage moved 100.00 px while
+the page moved 100 px, and the next section's top met the column's bottom).
+
+**The four articles.** Settled docTops at 1440: **641.58 / 1415.58 / 2189.58 /
+2963.58**, each **774.00** tall — the reference's measured pitch exactly. (A
+mid-reveal read can show 788 / 774 / 774, because the first `Reveal` wrapper is
+still carrying its 14 px `translateY` when the article's *visual* rect is read;
+the layout tops are 774 apart as soon as the reveal settles. This is a
+measurement artefact, not a gap.)
+
+**Active category and the foot.** Scrolling 0 → 3800 at 100 px steps, the
+`data-active` flag moved once per band, **01 → 02 (y 700) → 03 (y 1500) → 04
+(y 2300)**, and never flickered backwards. The foot counter and fill, read after
+each state settled:
+
+| Active | Counter text | Fill / rail | Fill |
+| --- | --- | --- | --- |
+| 01 | `01 / 04` | 122 / 488 px | **25.00 %** |
+| 02 | `02 / 04` | 242.5 / 485 px | **50.00 %** |
+| 03 | `03 / 04` | 364.5 / 486 px | **75.00 %** |
+| 04 | `04 / 04` | 485 / 485 px | **100.00 %** |
+
+The fill's computed transition is `width 0.5s cubic-bezier(0.2, 0.7, 0.2, 1)` —
+its own timing, unchanged in duration and curve, but now expressed through the
+`ease-lm-nav` token instead of an arbitrary `ease-[…]` value (Tailwind warned
+that the arbitrary value matched multiple utilities; the compiled curve is
+identical).
+
+**Crossfade, sampled per animation frame.** Computed on both the resting and
+the active layer:
+
+```
+opacity   0.7s cubic-bezier(0.2, 0.7, 0.2, 1) 0.08s
+transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) 0.08s
+visibility 0s 0.08s      (entry)   0s 0.78s (exit — in the CSS, see §14.5)
+```
+
+Frame samples across a 01 → 02 switch: first opacity change at **112 ms**, both
+layers crossing at 50 % around **195–211 ms**, settled at **100 % by 795 ms**.
+Composite white coverage (incoming over outgoing) bottoms at **0.75**, i.e. at
+most 25 % of the purple stage shows through at the midpoint. There is **no white
+flash** and no fully-transparent frame; the midpoint dip is inherent in an
+equal-duration two-layer opacity crossfade and is what the measured 700 ms/80 ms
+pair produces.
+
+**No scroll handler was added.** Intercepting `EventTarget.prototype.addEventListener`
+for `scroll` before first paint recorded only React's own delegated capture
+listeners (from `listenToNativeEvent`) and Next's dev overlay portal. Our source
+adds none — the showcase uses one `IntersectionObserver` at `threshold: 0.3`,
+and no `requestAnimationFrame` loop.
+
+**Layout shift.** `layout-shift` entries during the entire scroll pass:
+**0.0000024** at 1440×900, **0.0000000** at every other width.
+
+### 15.3 Why the panel did not stick before `7eca8f9` — confirmed
+
+The earlier defect is exactly the one §14.1 diagnoses, and the browser agrees
+with the diagnosis: `position: sticky` on a **grid item** whose `align-self`
+is `stretch` gives the element a containing block as tall as the row, so the
+panel's travel range is `rowHeight − elementHeight = 0` — it scrolls away with
+the first article. In the current build the sticky box is a child of a stretched
+column: travel = 3096 − 710 = 2386 px, which is exactly what §15.2 measures.
+
+### 15.4 Plan band — corrections against the capture's style record
+
+Source of truth for this pass: `sol-1440x900-light-styles.json`,
+`sol-768x1024-light-styles.json`, `sol-390x844-light-styles.json` (the raw
+computed styles). Where `docs/FORMA_SOLUTIONS_REFERENCE.md` §4.4 disagreed, the
+style record won; the prose corrections are logged in
+`docs/FORMA_SOLUTIONS_REFERENCE.md` §10.
+
+| Value | Was in the build | Now | Reference record |
+| --- | --- | --- | --- |
+| Eyebrow ink | white | **`#cdb8ff`** (new `--lm-cta-eyebrow`) | `rgb(205,184,255)` |
+| Eyebrow leading | 1.55 (21.7 px) | **1.2 (16.8 px)** | 16.8 |
+| Headline leading | 1.2 (43.2 px) | **1.1 (39.6 px)** | 39.6 |
+| Headline below 1200 | 36 px | **30 px / 33 px** (new `--lm-size-30`) | 30 / 33 at 768 and 390 |
+| Body | 16 px / 1.7 | **16.5 px / 28.05 px**, `rgba(255,255,255,0.74)` | 16.5 / 28.05 / .74 |
+| Secondary button border | `border-0` | `border-0` (unchanged) | border-width **0**, not the prose's 1 px |
+| Button labels | 15 px | **15.5 px / 24.03 px** (`--lm-size-15-5`) | 15.5 / 24.03 |
+| Button height | 44 px below `md` | **52 px at every width** (`h-13`) | 52.03 at 1440, 768 and 390 |
+| Button row below 1200 | stacked, full width | **one row, natural width, left-aligned** | 37 → 201.03 → 352.64 at 390 |
+| Desktop split | `lg` (1024) | **`min-[1200px]`** | the reference's own desktop band |
+| Desktop button column | `justify-between` | **40 px gap, copy `flex-1`** | 315.64 px column, 40 px from copy |
+
+Measured in the build at 1440: card **1240 × 268.1**, radius **24**, shadow
+**none**, padding **49**, copy column **812.4**, button column **289.6**
+(160 + 10 + 119), buttons **52 px** tall on one row at y 4005.6. The card is
+31.6 px taller than the reference's 236.48 because Roducq's approved copy runs
+two lines longer at the same 560 px measure — a content difference, not a
+geometry error. Button widths differ (160 vs 164.03, 119 vs 141.61) because the
+labels differ ("Talk to us" vs "Talk to sales") and Roducq ships Manrope, not
+DM Sans.
+
+**No entrance animation.** The motion capture's scroll pass covered y 0–4551,
+which spans the entire plan band (3639–3995). **No WAAPI animation targets this
+band** at any scroll position. The scroll reveal this band carried was therefore
+removed: it was the discrepancy. Re-measured afterwards, the band's first paint
+is its final state (no `opacity: 0`, no transform), which also removes one
+failure mode for a failed hydrate.
+
+### 15.5 Closing CTA — corrections against the same record
+
+| Value | Was in the build | Now | Reference record |
+| --- | --- | --- | --- |
+| Headline below 1200 | 44 px / 1.02 | **40 px / 40.8 px / −1.4 px** (new `--lm-size-40`) | 40 / 40.8 / −1.4 at 768 and 390 |
+| Headline tracking at 1200+ | −0.035em (−2.268 px) | unchanged | −2.27 px |
+| Body at 1200+ | 19 px / 1.65 (31.35) | **19 px / 1.55 (29.45)** | 19 / 29.45 |
+| Body below 1200 | 19 px | **16 px / 24.8 px** | 16 / 24.8 at 768 and 390 |
+| Buttons | 44 px below `md` | **52 px at every width** (`h-13`) | 52.03 |
+| Button labels | 15 px | **15.5 px / 24.03 px** | 15.5 / 24.03 |
+| Button row | stacked until `sm` (640) | **stacked full-width below 1200, one row from 1200** | 696 px stacked at 768, 318 at 390; 146.53 + 150.23 at 1440 |
+| Columns | `lg` grid | **`min-[1200px]:grid-cols-[565fr_467fr]`, gap 64** | 565.28 / 466.72 |
+| Checklist card padding | 24 px at every width | **18 px below 1200, 24 px at 1200+** | 18 px at 768 and 390 |
+| Checklist labels | 15 px at every width | **14 px / 21.7 px below 1200**, 15 px / 23.25 px at 1200+ | both values read |
+| Checklist row heights | 43.25 / 44.25 | **49.25 / 50.25 / 48.25 / 37.25** | 49.25 / 49.25 / 47.25 / 36.25 |
+| Checklist status ink | `--lm-ink-soft` (#4b505f) | **`#655f78`** (new `--lm-mock-muted`), weight 400; `Next` stays 500 accent | `rgb(101,95,120)` / weight 400 |
+| Card title leading | 1.5 | **1.55 (26.35 px)** | 26.35 |
+
+Measured in the build at 1440: stage **1240 × 594.8**, radius 28, padding
+**96 / 72**; headline **64.8 / 66.096 / −2.268** in a **565** column; body
+**19 / 29.45**; columns **565 / 467 at 64**; checklist card **467 × 291.3**
+against the reference's 466.72 × 288.34. The stage is 60 px taller than the
+reference's 534.83 because Roducq's headline wraps to three lines (198.2 px) on
+the same 565 px column; the internal geometry matches. The card's 3 px surplus
+is the second row's 1 px plus the rail's 2 px block.
+
+**No entrance animation**, for the same measured reason: the capture's scroll
+pass reached y 4551 and this band starts at 3995, so its headline, body, buttons
+and card were all covered and none of them has a WAAPI record. The reveal was
+removed.
+
+### 15.6 Footer — checked, not changed
+
+The footer is shared (`app/(marketing)/layout.tsx` renders one `SiteFooter` for
+`/`, `/about`, `/pricing`, `/vs` and `/solutions`). It was **not edited** in
+this pass. Read back at 1440 on all five routes, the footer is identical:
+
+| | `/` | `/about` | `/pricing` | `/vs` | `/solutions` |
+| --- | --- | --- | --- | --- | --- |
+| Box | 678 px tall | 678 | 678 | 678 | 678 |
+| Columns | Product / Workspace / Account | same | same | same | same |
+| Grid | 381.3 / 254.2 / 254.2 / 254.2 | same | same | same | same |
+| Wordmark | 1024 × 192 | same | same | same | same |
+| Back to top | present | present | present | present | present |
+
+So the in-scope item "footer: columns, logo lockup, oversized wordmark" is
+already satisfied by the shared component, and **any** restyle of it would move
+four other routes — which this milestone forbids. The only footer difference
+from the reference is content (Roducq's own three columns and `roducq.`
+wordmark), and the reference's own footer animation is `[UNVERIFIED]`: the
+capture's scroll pass never reached it (max y 4551, footer starts at 4746).
+
+### 15.7 Motion audit (four sections, corrections only)
+
+| Section | Reference record | Build before | Action |
+| --- | --- | --- | --- |
+| Showcase headlines | 900 ms, `cubic-bezier(0.16,1,0.3,1)`, 50 ms/word, blur 10 px → 0 | same, gated on the article's `Reveal` | **kept** |
+| Showcase crossfade | opacity 700 ms + 80 ms, `cubic-bezier(0.2,0.7,0.2,1)`, both directions | same | **kept** (verified per frame) |
+| Showcase foot fill | own 500 ms width interpolation | `duration-500` + arbitrary ease | **kept**, re-expressed as `ease-lm-nav` (same curve, no ambiguity warning) |
+| Plan band | **no animation** in the capture | 620 ms scroll reveal, 14 px rise | **removed** |
+| Closing CTA | **no animation** in the capture | 620 ms scroll reveal, 14 px rise | **removed** |
+| Footer | not captured | shared `Reveal` | **not touched** (shared with four routes) |
+
+No second animation library, no scroll listener, no animation loop was added.
+Reduced motion and no-JS were re-verified after these edits (below).
+
+### 15.8 Reduced motion and no-JS, observed
+
+* **Reduced motion** (`reducedMotion: "reduce"`): the mock layers and the pill
+  swap compute `transition: none`; the foot fill computes `transition: none`;
+  the reveals compute `opacity: 1; transform: none; animation: none`. Scrolling
+  through all four categories still switches **01 → 04** and the fill still
+  reaches **25 / 50 / 75 / 100 %**, instantly.
+* **No JavaScript** (`javaScriptEnabled: false`): all four miniatures are in
+  flow and visible (`opacity: 1`, heights 289–326 px each, stage 1475.9 px), all
+  five remaining `.lm-reveal` bands are `opacity: 1`, the plan band, the closing
+  CTA and the footer all render their text, and the disclosure string appears
+  **8** times (four stage labels + four visible captions).
+
+### 15.9 Verification run for this pass
+
+| Check | Result |
+| --- | --- |
+| `npx tsc --noEmit` | clean |
+| `npx eslint` on the five changed files | clean |
+| `node --test tests/components/solutions-page.test.ts` | **26 / 26** (two new suites: the measured plan/closing values, and "the static bands stay static") |
+| Dev-server render of `/solutions` | 200; sticky wrapper, stage, four inline panels, 8 disclosures |
+| Browser sweep | 1440 / 1280 / 1200 / 1199 / 1024 / 768 / 390, all sections, both themes |
+
+**Not run, per instruction:** full `npm test`, Lighthouse, axe-core, `next build`,
+CI edits, any deploy, any PR.
+
+### 15.10 What remains unverified
+
+* **Production-build behaviour** (the `next build` output, RSC payload timing,
+  production LCP/CLS). Only the dev server was rendered.
+* **Real mobile browsers** (iOS Safari, Android Chrome): the harness is a
+  headless Chromium shell. 390 and 768 are emulated viewports, not devices.
+* **1024 and 1199 against the reference**: no capture exists at those widths
+  (§9.5). The build's values are measured; the reference's are `[INFERRED]`.
+* **The reference's footer animation**: never in the capture's scroll range.
+* **Dark theme fidelity**: the reference is light-only; every dark value is
+  `[INFERRED]` (verified only for internal consistency: `--lm-mock-muted`
+  remaps to `#b9aec9` on the dark card, `--lm-cta-eyebrow` stays `#cdb8ff`).
+* **The midpoint dim during the crossfade** is measured (coverage 0.75). Whether
+  the reference dims by the same amount cannot be derived from its capture (it
+  records opacity keyframes, not composited pixels mid-fade).
