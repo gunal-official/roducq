@@ -150,8 +150,11 @@ function StatusSwap({ states }: { states: readonly [string, string] }) {
  *
  *   "card"  the closing CTA's getting-started card
  *           20x20 tiles at radius 6 (rounded squares, not circles),
- *           15px labels, 12px between tile and label, the active row
- *           inset 12px on #f3efff at radius 10
+ *           15px / 23.25px labels, 12px between tile and label,
+ *           rows 49.25px tall (13px block padding), the active row
+ *           inset 12px on #f3efff at radius 10, 47.25px tall
+ *           (12px block padding); the status text is 12px / 18.6px,
+ *           weight 400 in rgb(101,95,120), weight 500 on "Next"
  *
  *   "mini"  the weekly miniature inside the sticky stage
  *           25x25 tiles at radius 50% (circles), 13.5px labels
@@ -169,15 +172,37 @@ export function ChecklistRows({
 }) {
   const card = variant === "card";
   return (
-    <ul className="mt-3 flex flex-1 flex-col divide-y divide-lm-border-soft">
-      {items.map((item) => (
+    <ul
+      className={cn(
+        "flex flex-1 flex-col divide-y divide-lm-border-soft",
+        // MEASURED card spacing: 8px under the rail, 14px above it
+        // (the rail's own margin lives on the caller).
+        card ? "mt-2" : "mt-3",
+      )}
+    >
+      {items.map((item, index) => (
         <li
           key={item.label}
           className={cn(
-            "flex items-center justify-between gap-3 py-2.5",
+            "flex items-center justify-between gap-3",
+            // MEASURED row boxes (card): 49.25px tall — 13px block
+            // padding around the 23.25px line — and 36.25px on the
+            // LAST row (13px top, 0 bottom), which is what the
+            // reference's 186px list sums to. "Next" is 47.25px with
+            // 12px padding and a 4px gap above it. The mini variant
+            // keeps its own 10px rhythm.
+            // `py-3` and `py-3.25` are both generated utilities, so the
+            // class list cannot arbitrate them — Tailwind's order does.
+            // Set the padding once per branch instead of overriding it.
+            card
+              ? item.state === "Next"
+                ? "py-3"
+                : "py-3.25"
+              : "py-2.5",
+            card && index === items.length - 1 && "pb-0",
             item.state === "Next" &&
               (card
-                ? "-mx-3 my-1 rounded-[10px] bg-lm-mock-row-active px-3 py-2.5"
+                ? "mt-1 -mx-3 rounded-[10px] bg-lm-mock-row-active px-3"
                 : "-mx-2 my-1 rounded-lm-row bg-lm-surface-accent px-2.5 py-2.5"),
           )}
         >
@@ -203,22 +228,37 @@ export function ChecklistRows({
             <span
               className={cn(
                 "truncate",
-                card ? "text-lm-15" : "text-lm-mock",
+                // MEASURED: the card's labels are 15px / 23.25px at
+                // >=1200 and 14px / 21.7px below it; the mini variant
+                // stays at the miniature's 13.5px step.
+                card
+                  ? "text-lm-14 leading-[1.55] min-[1200px]:text-lm-15"
+                  : "text-lm-mock",
                 item.state === "Done"
-                  ? "text-lm-ink-soft"
+                  ? card
+                    ? "text-lm-mock-muted"
+                    : "text-lm-ink-soft"
                   : item.state === "Next"
                     ? "font-lm-medium text-lm-ink"
-                    : "text-lm-ink-soft",
+                    : card
+                      ? "text-lm-mock-muted"
+                      : "text-lm-ink-soft",
               )}
             >
               {item.label}
             </span>
           </span>
+          {/* MEASURED (card): 12px / 18.6px, weight 400, rgb(101,95,120);
+              "Next" is weight 500 in the accent. */}
           <span
             className={cn(
-              "shrink-0 font-lm-semibold",
-              card ? "text-lm-12" : "text-lm-10",
-              item.state === "Next" ? "text-lm-ink-accent" : "text-lm-ink-soft",
+              "shrink-0",
+              card ? "text-lm-12 leading-[1.55]" : "text-lm-10 font-lm-semibold",
+              item.state === "Next"
+                ? "font-lm-medium text-lm-ink-accent"
+                : card
+                  ? "font-lm-regular text-lm-mock-muted"
+                  : "text-lm-ink-soft",
             )}
           >
             {item.state}

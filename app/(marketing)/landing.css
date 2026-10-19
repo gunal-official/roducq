@@ -1033,6 +1033,8 @@
 
 .rdq-marketing {
   /* Measured steps this page adds to the landing scale. */
+  --lm-size-30: 30px; /* plan-band headline below the desktop band, 33px line */
+  --lm-size-40: 40px; /* closing headline below the desktop band, 40.8px line */
   --lm-size-42: 42px; /* category headline, 46.2px line */
   --lm-size-44: 44px; /* phone/tablet hero headline */
   --lm-size-65: 64.8px; /* closing CTA headline, 66.1px line */
@@ -1046,6 +1048,10 @@
      make. These names are used only by /solutions. */
   --lm-size-chip: 11px; /* nav chip index, Templates micro-label */
   --lm-size-mock: 13.5px; /* miniature title and row text */
+  /* MEASURED from sol-1440x900-light-styles.json (2026-10-19 read-back):
+     the two on-stage buttons label at 15.5px / 24.03px, not the shell's
+     15px step. Only the plan band and the closing CTA use this step. */
+  --lm-size-15-5: 15.5px;
   /* The reference's compact hero lead measures 16.5px / 27.23px at
      768 and 390. It is a real measured step, not 16 or 17, and the
      hero is the only surface that uses it. */
@@ -1074,7 +1080,13 @@
   --lm-shadow-stage: rgba(33, 20, 56, 0.04) 0px 2px 4px 0px,
     rgba(58, 28, 110, 0.32) 0px 40px 80px -30px;
 
-  /* On-stage ink steps (white stage, measured rgba values). */
+  /* On-stage ink steps (white stage, measured values). */
+  /* MEASURED: the plan band's eyebrow is not white — the capture reads
+     rgb(205, 184, 255) at 14px / 16.8px. */
+  --lm-cta-eyebrow: #cdb8ff;
+  /* MEASURED: the getting-started checklist's Done/Later rows read
+     rgb(101, 95, 120) at 12px / 18.6px, weight 400. */
+  --lm-mock-muted: #655f78;
   --lm-cta-faint: rgba(255, 255, 255, 0.6);
   --lm-cta-track: rgba(255, 255, 255, 0.18);
   --lm-cta-fill: #ffffff; /* measured 121px fill on the 486px track */
@@ -1095,6 +1107,9 @@
      is light-only (its dark capture returns identical values), so the
      dark value is the equivalent lift over this shell's own plane. */
   --lm-chip-wash: rgba(20, 15, 29, 0.72);
+  /* The light reading is rgb(101,95,120); on the dark shell the same
+     role maps to the muted body step rather than a light-surface grey. */
+  --lm-mock-muted: #b9aec9;
   --lm-shadow-chip: rgba(0, 0, 0, 0.24) 0px 1px 2px 0px;
   /* The measured miniature fills are light-surface values. On the dark
      shell they land on the same two surfaces the light values map to. */
@@ -1259,6 +1274,14 @@
      defeated both `shadow-none` (plan band, measured: no shadow) and
      `shadow-lm-mock-stage`. Each stage now states its own shadow; the
      three measured values are 0 / one soft lift / hairline + lift. */
+}
+
+/* MEASURED: the plan band's body copy is 74% white, while the closing
+   CTA's is 76%. Declared AFTER `.lm-solutions-stage` because both class
+   rules land on the same element at equal specificity — the later
+   declaration wins, and this one must. */
+.lm-plan-stage {
+  --lm-cta-muted: rgba(255, 255, 255, 0.74);
 }
 
 /* ── Miniature product surfaces ────────────────────────────────

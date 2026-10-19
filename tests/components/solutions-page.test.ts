@@ -432,6 +432,61 @@ describe("Solutions page (routes + a11y)", () => {
     assert.ok(CLOSING.includes("min-h-11"));
   });
 
+  it("locks the plan band and closing CTA measurements read back on 2026-10-19", () => {
+    // These values come from the reference capture's own style records
+    // (`sol-1440x900-light-styles.json`, `sol-768x1024-light-styles.json`,
+    // `sol-390x844-light-styles.json`), not from the prose in
+    // docs/FORMA_SOLUTIONS_REFERENCE.md. Where the two disagree, the
+    // style record wins and the correction is logged in
+    // docs/SOLUTIONS_IMPLEMENTATION.md §15.
+
+    // The plan band's eyebrow is lavender, not white; its headline is
+    // 30px below the desktop band and 36px at it; its body is 16.5px
+    // at 74% white.
+    assert.ok(PLAN.includes("text-lm-cta-eyebrow"));
+    assert.ok(TOKENS.includes("--lm-cta-eyebrow: #cdb8ff"));
+    assert.ok(PLAN.includes("text-lm-30 text-lm-cta-ink min-[1200px]:text-lm-36"));
+    assert.ok(PLAN.includes("text-lm-16-5 leading-[1.7] text-lm-cta-muted"));
+    // 74% white is scoped to the plan band; the closing CTA keeps 76%.
+    assert.ok(TOKENS.includes(".lm-plan-stage {"));
+    assert.ok(TOKENS.includes("--lm-cta-muted: rgba(255, 255, 255, 0.74)"));
+    assert.ok(TOKENS.includes("--lm-cta-muted: rgba(255, 255, 255, 0.76)"));
+    // 315.64px right-hand button column, 40px from the copy, one row.
+    assert.ok(PLAN.includes("min-[1200px]:flex min-[1200px]:items-center min-[1200px]:gap-10"));
+    // Both stage buttons label at the measured 15.5px / 24.03px.
+    assert.ok(PLAN.includes("text-lm-15-5"));
+    assert.ok(CLOSING.includes("text-lm-15-5"));
+    assert.ok(CONFIG.includes('"lm-15-5"'));
+
+    // The closing CTA: 40px headline below the desktop band, 64.8px at
+    // it; 16px body below the band, 19px at it.
+    assert.ok(CLOSING.includes("text-lm-40 text-lm-cta-ink min-[1200px]:text-lm-65"));
+    assert.ok(CLOSING.includes("text-lm-16 leading-[1.55] text-lm-cta-muted min-[1200px]:text-lm-19"));
+    assert.ok(CONFIG.includes('"lm-40"'));
+    // Two columns only at the reference's own desktop boundary.
+    assert.ok(CLOSING.includes("min-[1200px]:grid-cols-[565fr_467fr]"));
+
+    // The getting-started card: 24px padding at >=1200, 18px below it.
+    assert.ok(CLOSING.includes("p-[18px] min-[1200px]:p-6"));
+    // Its Done/Later ink is the measured rgb(101,95,120) step.
+    assert.ok(TOKENS.includes("--lm-mock-muted: #655f78"));
+    assert.ok(MOCKS_TSX.includes("text-lm-mock-muted"));
+  });
+
+  it("leaves the reference's static bands static (no invented entrance)", () => {
+    // The motion capture's scroll pass covered y 0–4551, which includes
+    // the whole plan band (3639–3995) and the whole closing CTA
+    // (3995–4746): no WAAPI animation targets either band's copy.
+    // Both bands therefore carry no scroll reveal — a reveal here was
+    // the discrepancy, not the fidelity.
+    assert.ok(!PLAN.includes("<Reveal"));
+    assert.ok(!CLOSING.includes("<Reveal"));
+    assert.ok(
+      !/lm-word-blur|lm-word-dissolve/.test(PLAN + CLOSING),
+      "the two static bands must not grow an entrance animation",
+    );
+  });
+
   it("no fixed pixel width that can overflow a 320px viewport", () => {
     for (const [name, source] of SOLUTIONS_SOURCES) {
       const code = codeOnly(source);
