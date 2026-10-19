@@ -1,7 +1,9 @@
 # Roducq `/solutions` — implementation record (refinement pass)
 
-Date: **2026-10-18**
-Branch: `arena/f6a4212d-roducq`
+Date: **2026-10-18** — page pass
+Updated: **2026-10-19** — hero-only refinement (§13), branch
+`arena/356595ce-roducq`
+Branch: `arena/f6a4212d-roducq` (page pass)
 Reference: <https://forma-visuvate.framer.website/solutions>
 Evidence base: `docs/FORMA_SOLUTIONS_REFERENCE.md` + the capture under
 `docs/screenshots/forma-solutions-reference/baseline-2026-10-18T12-07Z/`
@@ -185,6 +187,12 @@ declaration back in.
 ## 5. Motion: what was implemented, and one deliberate non-change
 
 ### 5.1 The LCP rule overrides the reference (§7)
+
+> **Superseded for the hero on 2026-10-19 — see §13.** The blur dissolve this
+> section describes is still what the *category* headlines below the fold use.
+> The hero no longer runs it: the 10px filter was removed from the LCP surface
+> and replaced with the PR #53 `clip-path` mask. The reasoning below still
+> holds; the chosen mechanism changed.
 
 **The reference's hero is unsafe by Roducq's own standard, and Roducq does not
 copy it.** Measured on the reference, per hero word:
@@ -371,3 +379,238 @@ git archive origin/arena/forma-solutions-capture | tar -x -C /tmp/refsol
 
 The 1024px results will then appear as `sol-1024x768-{light,dark}-*.json`
 under `docs/screenshots/forma-solutions-reference/`.
+
+---
+
+## 13. Hero refinement (2026-10-19)
+
+Scope: **the `/solutions` hero and the minimum route-scoped styles it needs**.
+The header (PR #56), the jump strip, the showcase, the plan band, the closing
+CTA and the footer were not touched. No copy was re-approved: the hero now
+renders the approved strings exactly as supplied, which differ from the strings
+the page pass shipped (§13.1).
+
+### 13.1 Files modified
+
+| File | Change |
+| --- | --- |
+| `app/(marketing)/solutions/content.ts` | `SOLUTIONS_HERO` now carries the approved copy: eyebrow "Solutions", headline "Different client work. One writing workspace." (split ink / gradient at the sentence), lead as supplied |
+| `components/marketing/landing/solutions/SolutionsHero.tsx` | Rebuilt geometry, band padding, type bands, gradient unit as a block, clip-path entrance |
+| `app/(marketing)/landing.css` | New `@keyframes lm-hero-mask`, `.lm-hero-accent`; `.lm-hero-word` re-pointed at the mask; reduced-motion coverage; `--lm-size-16-5` token; §13.5 comment corrected |
+| `tailwind.config.ts` | `lm-16-5` type step (the measured 16.5px compact lead) |
+| `docs/SOLUTIONS_IMPLEMENTATION.md` | This section |
+
+Not modified: header, theme toggle, `SectionNav`, `SolutionsShowcase`,
+`MockPanel`, `PracticeMocks`, `PlanBand`, `ClosingCta`, `SiteFooter`, pricing,
+billing, auth, API routes, database, CI workflows, tests.
+
+### 13.2 Reference measurements used
+
+All values `[MEASURED]` at 1440×900 light unless noted. Sources:
+`docs/FORMA_SOLUTIONS_REFERENCE.md` §4.1, and the raw capture in
+`docs/screenshots/forma-solutions-reference/baseline-2026-10-18T12-07Z/`
+(`sol-*-structure.json`, `sol-*-motion.json.gz`, `sol-*-dom.html.gz`).
+
+| Property | 1440×900 | 768×1024 | 390×844 |
+| --- | --- | --- | --- |
+| Hero band box | 1240 × 354.03 @ y 69.7 | 736 × 258.14 | 358 × 375.13 |
+| Band padding | `92 0 72 0` | `56 0 44 0` | `56 0 44 0` |
+| Container | 1240 (48px outer + max-width 1240) | 736 (16px outer) | 358 (16px outer) |
+| Background | white page plane, hero transparent | same | same |
+| Eyebrow | DM Sans 600 14 / 16.8, `#5332d6` | same | same |
+| Eyebrow → headline | 10px spacer | 10px | 10px |
+| `h1` | Manrope 600 **67.2 / 68.54**, tracking **−2.016px** (−0.03em), `#1b1426` | **44 / 44.88**, −1.32px | **44 / 44.88**, −1.32px |
+| Headline → gradient gap | 11.4px | 7.7px | 7.5px |
+| Gradient unit | Manrope 600 67.2, one unit, `linear-gradient(90deg,#6246ea,#8b5cf6,#c084fc)` | 44px | 44px |
+| Headline → lead | 32px spacer | 32px | 32px |
+| Lead | **19 / 31.35**, `#687083`, measure 640 | **16.5 / 27.23**, measure 640 | **16.5 / 27.23**, full width |
+| Hero bottom → jump strip | 0 (strip wrapper starts at hero bottom, 5px inner padding) | same | same |
+| Alignment | centred at every width | centred | centred |
+
+The **distance from the header to the eyebrow is 92px at every width ≥ 810**
+and 56px below it, in both pages. The absolute `y` differs by one shell
+element: Roducq renders its announcement band above the header (≈37px,
+`min-h-9` + hairline), which the reference does not have. That band is part of
+the shared shell and is out of scope here; the header → hero distance itself
+matches exactly.
+
+Two measured facts drove corrections the page pass had wrong or untested:
+
+1. **The type bands and the padding band are different breakpoints.** The
+   stylesheet captured in the raw DOM dump reads
+   `.framer-jlyng5 { padding: var(--10ocmuz) }` (92/72) with
+   `.framer-v-1scul6l.framer-jlyng5 { padding: var(--1reti8r); width: 358px }`
+   (56/44). That phone preset is the markup both the 390 and the 768 captures
+   resolve to. The tablet preset (`framer-v-pa8y0r`, the 810–1199px band —
+   `[INFERRED]` from its 726px width, which matches that band's gutter)
+   overrides *width* and the headline gap but **not** padding. So the 92/72
+   band starts at **810px** — from stylesheet text, not a rendered 1024
+   measurement — while the 67.2px display step starts at **1200px**.
+2. **The gradient block is one animation target**, not a per-word stagger
+   (`delay 350ms`, `translateY(28px)`).
+
+### 13.3 Geometry corrections applied
+
+| # | Was (page pass) | Now | Evidence |
+| --- | --- | --- | --- |
+| 1 | Band padding `56/44` until `lg` (1024), then `92/72` | `56/44` below 810, `92/72` from 810 | stylesheet text (§13.2) |
+| 2 | Type switch at `lg` (1024) | Type switch at `min-[1200px]` (reference's own desktop band) | measured 67.2px at 1440 + 44px at 768 |
+| 3 | `h1` had no explicit width behaviour; the gradient ran inline inside a word span | Gradient is a block unit, `width: fit-content`, `margin-inline: auto`, so the 90° sweep spans the phrase and the sentence break is honoured | reference Title + Highlight composition |
+| 4 | Eyebrow line-height inherited 1.65 (23.1px) | `leading-[1.2]` → 16.8px | measured 16.8px line box |
+| 5 | Lead 19px / 1.65 at every width | 16.5 / 27.23 below 1200, 19 / 31.35 from 1200 | measured 16.5/27.23 at 768 and 390 |
+| 6 | Lead `max-w-[640px]` with `w-full` absent (could shrink to content) | `w-full max-w-[640px]`, so the 640px measure is real at every width ≥ 672px | measured 640×62.69 box |
+| 7 | Hero had no explicit bottom padding rhythm below `md` | 44px below 810, 72px from 810 | measured padding |
+| 8 | Gradient text ran on an inline word span: the 90° sweep restarted across a `fit-content` box, and at `line-height: 1.02` a **block-level** gradient phrase loses its descenders (see §13.4) | Block unit + `padding-block: 0.14em` with equal negative block margin | reference Highlight span measures `padding: 9.41px` @67.2px and `6.16px` @44px — exactly 0.14em at both |
+
+Roducq's heading copy is longer than the reference's, so the hero is taller
+than 354px at 1440: one extra headline line. That is a content difference, not
+a geometry error. Measured against Roducq's own tokens, the 1440 hero resolves
+to ≈423px (16.8 + 10 + 2×68.544 + 32 + 62.7 + 92 + 72) — every gap inside it
+matches the reference exactly.
+
+### 13.4 Typography decisions
+
+* **Manrope only.** No new font was added and no dependency was introduced.
+  The reference pairs DM Sans (eyebrow, lead) with Manrope (headline); Roducq
+  ships Manrope across the shell, so the eyebrow and lead render in Manrope at
+  the reference's *measured sizes, weights and line-heights*. This is the
+  same trade §6 records.
+* **Weights:** headline 600 (`font-lm-semibold`), eyebrow 600, lead 400 —
+  measured values.
+* **Tracking:** −0.03em, which resolves to −2.016px at 67.2px and −1.32px at
+  44px — both exactly the measured letter-spacing.
+* **Line-height:** 1.02 on the display steps (68.54 / 44.88), 1.2 on the
+  eyebrow (16.8), 1.65 on the lead (31.35 / 27.23). The existing `text-lm-19`
+  utility pairs 1.55, so the hero adds `min-[1200px]:leading-[1.65]` at the
+  call site rather than changing the shared step.
+* **Colours:** `#1b1426` (`--lm-ink`), `#5332d6` (`--lm-ink-accent`),
+  `#687083` (`--lm-muted-slate`), gradient stops `#6246ea → #8b5cf6 →
+  #c084fc` (`--lm-accent` + the two measured hexes already in
+  `.lm-text-gradient`).
+* **Descender paint area.** `background-clip: text` paints only inside the
+  element's own background positioning area. For an *inline* span that is the
+  font's content box (Manrope: 1.366em), which is why the closing CTA's
+  gradient words are safe as they are. For a *block* it is the line-height box
+  (1.02em), and Manrope 600 puts the tail of `g`/`p` **0.128em** below that box
+  — 8.6px at 67.2px if left alone. The reference's own Highlight span carries
+  `padding: 9.41px` at 67.2px and `6.16px` at 44px: both exactly **0.14em**,
+  i.e. just more than the overflow. The hero reproduces that with
+  `padding-block: .14em; margin-block: -.14em`, so the paint area grows but the
+  measured layout does not move. (`with a <br>` and inline-block were both
+  rejected: the first inserts an unnatural break, the second makes the
+  sentence break width-dependent.)
+* **Fit at each width** (Manrope metrics, so text-driven not guessed):
+
+  | Viewport | Content width | Ink line | Gradient line | Lead lines |
+  | --- | --- | --- | --- | --- |
+  | 1440 | 1240 | 1 (623px) | 1 (699px) | 2 |
+  | 1024 | 944 | 1 | 1 | 2 |
+  | 768 | 736 | 1 (408px) | 1 (458px) | 2 |
+  | 390 | 358 | 2 ("Different client" / "work.") | 2 ("One writing" / "workspace.") | 4 |
+  | 375 | 343 | 2 | 2 | 4 |
+  | 320 | 288 | 2 ("Different" / "client work.") | 2 | 5 |
+
+  No `<br>` is inserted anywhere; every break above is the natural wrap. The
+  only structural break is the sentence boundary, expressed as a block-level
+  gradient unit — the reference's own Title + Highlight split.
+
+### 13.5 Animation behaviour
+
+The measured cadence is reproduced exactly; **the mechanism is not** (§13.6).
+
+| Target | Duration | Easing | Delay | Travel |
+| --- | --- | --- | --- | --- |
+| Eyebrow | 800ms | `cubic-bezier(0.2, 0.7, 0.2, 1)` | 0 | `translateY(16px)` + mask |
+| Ink headline words | 900ms | `cubic-bezier(0.16, 1, 0.3, 1)` | 50 / 100 / 150ms | `translateY(16px)` + mask |
+| Gradient unit | 900ms | `cubic-bezier(0.16, 1, 0.3, 1)` | 350ms | `translateY(28px)` + mask |
+| Lead | 800ms | `cubic-bezier(0.2, 0.7, 0.2, 1)` | 450ms | `translateY(16px)` + mask |
+
+Implementation: CSS only (`@keyframes lm-hero-mask` and the existing
+`@keyframes lm-hero-in`), started at first paint, `fill: both`, no JavaScript
+and nothing scroll-triggered. Motion.dev remains the only animation library on
+the page; nothing here needed it, and no new dependency was added.
+
+The 16px word rise is `[INFERRED]`: the reference's words do not translate at
+all (they only blur), so there is no measured word travel to copy. 16px is the
+reference's *measured* rise for the two elements either side of them (eyebrow
+and lead), which keeps the ladder one visual gesture rather than two.
+
+### 13.6 LCP safety — PR #53's pattern preserved
+
+The reference's hero is driven by `opacity: [0.001, 1]` plus
+`filter: [blur(10px), blur(0px)]` on every target (13 records in
+`sol-1440x900-light-motion.json.gz`). Neither is reproduced:
+
+* **Opacity is 1 in every keyframe** of `lm-hero-mask` and `lm-hero-in`. There
+  is no initial `opacity: 0`, no `0.001`, and no ancestor fade: the marketing
+  route wrapper is still neutralised (`.rdq-marketing .animate-route-in`).
+* **The 10px blur is gone from the hero entirely.** It is not needed for the
+  effect (the mask supplies the reveal), it costs one composited layer per
+  word, and it defers the paint the metric waits for. This is the "prefer LCP
+  safety over exact blur fidelity" decision, applied literally.
+* **The mask is PR #53's technique**: `clip-path: inset(...)` + `translateY`,
+  the same pair already running on the homepage hero's `.lm-hero-in`.
+* **Nothing is gated on `.lm-js`.** The hero has no pre-hidden state: with
+  JavaScript disabled the CSS animation still runs and settles at its end
+  state, and if it cannot run the element is simply at its final state.
+* **`prefers-reduced-motion: reduce`** resolves `.lm-hero-word` and
+  `.lm-hero-accent` to `animation: none; clip-path: none; opacity: 1;
+  transform: none`, so the complete heading is visible instantly.
+* The hero emits **no `filter`**, no `will-change`, and no extra stacking
+  context on text.
+
+`@keyframes lm-word-dissolve` is unchanged and still used by the category `h2`s
+below the fold, which stay gated behind `.lm-js` and are not in the LCP surface.
+
+### 13.7 Responsive decisions
+
+| Width | Decision |
+| --- | --- |
+| 320 | 288px content. Headline wraps 2 + 2, lead 5 lines. No element has a fixed width; the headline's longest single word ("workspace." ≈225px) fits with 63px to spare |
+| 375 | 343px content. 2 + 2 headline, 4 lead lines |
+| 390 | 358px content — the reference's own mobile content width. 2 + 2 headline, 4 lead lines, matching the reference's stacked proportion |
+| 768 | 736px content — the reference's measured tablet width. 1 + 1 headline, 2 lead lines, 56/44 padding |
+| 1024 | 944px content (reference 940: its 810–1199 band uses 42px gutters, Roducq's shell uses 40 — a pre-existing, shell-level 4px difference). 92/72 padding, 44px headline `[INFERRED]` |
+| 1440 | 1240px content — identical to the reference. 92/72 padding, 67.2px headline, 640px lead measure |
+
+`overflow-x` is safe at every width: the section is `width:100%` inside
+`.lm-shell`, the `h1` is `max-w-full`, the lead is `w-full max-w-[640px]`, and
+the gradient block is `max-width:100%` with `width:fit-content`.
+
+### 13.8 Verified vs. inferred
+
+| Value | Status |
+| --- | --- |
+| Band padding 92/72 · 56/44 and their 810px boundary | `[MEASURED]` — computed at 1440/768/390, boundary from stylesheet text |
+| Container 1240 / 736 / 358 at 1440 / 768 / 390 | `[MEASURED]` |
+| Eyebrow 14/16.8 600 `#5332d6`, 10px spacer | `[MEASURED]` |
+| Headline 67.2/68.54 −0.03em at 1440, 44/44.88 below 1200 | `[MEASURED]` at 1440 and 768 |
+| Lead 19/31.35 at 1440, 16.5/27.23 below 1200, 640 measure | `[MEASURED]` at 1440/768/390 |
+| 32px headline → lead spacer | `[MEASURED]` |
+| Gradient stops and their order | `[MEASURED]` |
+| Motion durations, delays, easings | `[MEASURED]` (`motion.json.gz`) |
+| **1024px type step (44 / 16.5)** | `[INFERRED]` — the capture never rendered 1024; its tablet preset sits below the 1200px desktop preset |
+| **Word travel 16px** | `[INFERRED]` — the reference translates words 0px |
+| **810–1023px gutter (Roducq 16 vs reference 42)** | `[DIVERGENCE]` — shell-level, shared with every other band; not changed in a hero-only milestone |
+| Dark-theme hero values | `[INFERRED]` — the reference is light-only; the hero maps onto the existing `--lm-*` dark tokens |
+| Exact rendered pixel height of Roducq's hero | `[UNVERIFIED]` — no browser in this sandbox; computed from CSS + Manrope metrics, not screenshotted |
+
+### 13.9 Verification done, and deferred
+
+Done (editing aids, not the deferred regression milestone):
+
+* `tsc --noEmit` — clean.
+* `eslint` on the two changed TypeScript files — clean.
+* `tests/components/solutions-page.test.ts` in isolation — 24/24 pass. It
+  locked three things this pass had to respect: the LCP rule in
+  `lm-word-dissolve`, the `.lm-js` gating of below-fold words, and the ban on
+  arbitrary `text-[…]` sizes (which is why the 16.5px step became a token
+  rather than a bracket utility).
+* Development-server render read back over HTTP at `/solutions`: the hero
+  markup, class list and compiled `min-[810px]` / `min-[1200px]` rules are all
+  present, and the headline/lead render server-side.
+
+Deferred, per instruction: full `npm test`, Lighthouse, axe-core, LCP
+benchmarks, visual regression, and the 320/375/390/768/1024/1440 screenshot
+sweep. No CI workflow was modified. No PR was created and nothing was merged
+or deployed.

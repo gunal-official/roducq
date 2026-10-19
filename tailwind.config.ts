@@ -279,6 +279,10 @@ const config = {
         // would restyle CardLabel on the other marketing pages.
         "lm-chip": ["var(--lm-size-chip)", { lineHeight: "1.5" }],
         "lm-mock": ["var(--lm-size-mock)", { lineHeight: "1.5" }],
+        // The /solutions hero's compact lead: the reference measures
+        // 16.5px / 27.23px at both 768 and 390, so the measured step is
+        // 16.5 rather than the nearest integer token.
+        "lm-16-5": ["var(--lm-size-16-5)", { lineHeight: "1.65" }],
         "lm-67": ["var(--lm-size-67)", { lineHeight: "1.02" }],
         "lm-72": ["var(--lm-size-72)", { lineHeight: "1.02" }],
       },
