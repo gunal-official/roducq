@@ -1115,6 +1115,12 @@
      shell they land on the same two surfaces the light values map to. */
   --lm-mock-row-active: #2b2140;
   --lm-mock-rail: #2a2233;
+  /* axe-core color-contrast (serious, /solutions dark mode): the light
+     theme's button label sat on the dark card surface in both closing-CTA
+     buttons at a 1.15:1 ratio. The dark label takes the same lavender as
+     the band's muted copy (about 14:1 on that card). Scoped to the dark
+     theme; light values are unchanged. */
+  --lm-cta-button-ink: #efebff;
 }
 
 /* ── Headline word dissolve ──────────────────────────────────── */
@@ -1396,4 +1402,18 @@
    not measure the interval — see the reference doc). */
 .lm-pill-swap {
   transition: opacity 500ms cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+/* Reduced motion, category headlines. The word-dissolve rules above
+   come later in this file than the reduced-motion block, so at equal
+   specificity they held these words at opacity 0 until the band's
+   Reveal fired (about 300ms after load, observed in Chromium). Restate
+   the resolved state here so reduced-motion readers never see it. */
+@media (prefers-reduced-motion: reduce) {
+  .lm-js .lm-reveal .lm-word-blur > span,
+  .lm-js .lm-reveal[data-visible="true"] .lm-word-blur > span {
+    opacity: 1;
+    filter: none;
+    animation: none;
+  }
 }

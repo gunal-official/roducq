@@ -1,0 +1,307 @@
+{
+ "reducedMotion": {
+  "mediaActive": true,
+  "atT0": {
+   "heroHeadingText": "Different client work. One writing workspace.",
+   "heroWordOpacity": [
+    "1",
+    "1",
+    "1",
+    "1"
+   ],
+   "heroWordClip": [
+    "none",
+    "none"
+   ],
+   "heroAnim": [
+    "none",
+    "none"
+   ],
+   "leadOpacity": "1",
+   "leadAnim": "none",
+   "categories": 4,
+   "workflows": 12,
+   "visibleInlineMockups": 0,
+   "stageLayerOpacity": [
+    "1",
+    "0",
+    "0",
+    "0"
+   ],
+   "stageLayerVisibility": [
+    "visible",
+    "hidden",
+    "hidden",
+    "hidden"
+   ],
+   "stageLayerTransition": [
+    "0.001s",
+    "0.001s",
+    "0.001s",
+    "0.001s"
+   ],
+   "revealOpacities": [
+    "1"
+   ],
+   "wordBlurOpacities": [
+    "1"
+   ],
+   "clippedContainers": [],
+   "clippedCount": 0,
+   "footerPresent": true,
+   "footerSnippet": "roducq A client-work writing studio: intake → briefs → proposals → plans → updat",
+   "h2s": [
+    "One trail per client, end to end",
+    "Creative direction that survives the handoff",
+    "Proposals that become working plans",
+    "Reports that write themselves from the week",
+    "One workspace, one price, the whole pipeline",
+    "Try roducq with your own client project"
+   ],
+   "disclosureVisibleText": 1,
+   "planCtaText": true,
+   "templatesCount": 0,
+   "heroVisibleRect": [
+    252,
+    137
+   ]
+  },
+  "settled": {
+   "heroHeadingText": "Different client work. One writing workspace.",
+   "heroWordOpacity": [
+    "1",
+    "1",
+    "1",
+    "1"
+   ],
+   "heroWordClip": [
+    "none",
+    "none"
+   ],
+   "heroAnim": [
+    "none",
+    "none"
+   ],
+   "leadOpacity": "1",
+   "leadAnim": "none",
+   "categories": 4,
+   "workflows": 12,
+   "visibleInlineMockups": 0,
+   "stageLayerOpacity": [
+    "1",
+    "0",
+    "0",
+    "0"
+   ],
+   "stageLayerVisibility": [
+    "visible",
+    "hidden",
+    "hidden",
+    "hidden"
+   ],
+   "stageLayerTransition": [
+    "0.001s",
+    "0.001s",
+    "0.001s",
+    "0.001s"
+   ],
+   "revealOpacities": [
+    "1"
+   ],
+   "wordBlurOpacities": [
+    "1"
+   ],
+   "clippedContainers": [],
+   "clippedCount": 0,
+   "footerPresent": true,
+   "footerSnippet": "roducq A client-work writing studio: intake → briefs → proposals → plans → updat",
+   "h2s": [
+    "One trail per client, end to end",
+    "Creative direction that survives the handoff",
+    "Proposals that become working plans",
+    "Reports that write themselves from the week",
+    "One workspace, one price, the whole pipeline",
+    "Try roducq with your own client project"
+   ],
+   "disclosureVisibleText": 1,
+   "planCtaText": true,
+   "templatesCount": 0,
+   "heroVisibleRect": [
+    252,
+    137
+   ]
+  },
+  "switching": [
+   {
+    "counter": "01 / 04",
+    "fill": 25,
+    "transition": "0.001s"
+   },
+   {
+    "counter": "02 / 04",
+    "fill": 50,
+    "transition": "0.001s"
+   },
+   {
+    "counter": "03 / 04",
+    "fill": 75,
+    "transition": "0.001s"
+   },
+   {
+    "counter": "04 / 04",
+    "fill": 100,
+    "transition": "0.001s"
+   }
+  ]
+ },
+ "noJs-390": {
+  "status": 200,
+  "overflow": 0,
+  "heroHeadingText": "Different client work. One writing workspace.",
+  "heroWordOpacity": [
+   "1",
+   "1",
+   "1",
+   "1"
+  ],
+  "heroWordClip": [
+   "inset(-39.9654px -40px calc(0.0863861% - 79.9309px))",
+   "inset(-39.918px -40px calc(0.20492% - 79.8361px))"
+  ],
+  "heroAnim": [
+   "lm-hero-mask",
+   "lm-hero-mask"
+  ],
+  "leadOpacity": "1",
+  "leadAnim": "lm-hero-in",
+  "categories": 4,
+  "workflows": 12,
+  "visibleInlineMockups": 4,
+  "stageLayerOpacity": [
+   "1",
+   "1",
+   "1",
+   "1"
+  ],
+  "stageLayerVisibility": [
+   "visible",
+   "visible",
+   "visible",
+   "visible"
+  ],
+  "stageLayerTransition": [
+   "0s",
+   "0s",
+   "0s",
+   "0s"
+  ],
+  "revealOpacities": [
+   "1"
+  ],
+  "wordBlurOpacities": [
+   "1"
+  ],
+  "clippedContainers": [],
+  "clippedCount": 0,
+  "footerPresent": true,
+  "footerSnippet": "roducq A client-work writing studio: intake → briefs → proposals → plans → updat",
+  "h2s": [
+   "One trail per client, end to end",
+   "Creative direction that survives the handoff",
+   "Proposals that become working plans",
+   "Reports that write themselves from the week",
+   "One workspace, one price, the whole pipeline",
+   "Try roducq with your own client project"
+  ],
+  "disclosureVisibleText": 4,
+  "planCtaText": true,
+  "templatesCount": 0,
+  "heroVisibleRect": [
+   252,
+   180
+  ],
+  "serverHasCategories": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "serverDisclosureCount": 8,
+  "serverHasH1": false
+ },
+ "noJs-1440": {
+  "status": 200,
+  "overflow": 0,
+  "heroHeadingText": "Different client work. One writing workspace.",
+  "heroWordOpacity": [
+   "1",
+   "1",
+   "1",
+   "1"
+  ],
+  "heroWordClip": [
+   "inset(-39.9181px -40px calc(0.204809% - 79.8362px))",
+   "inset(-39.8343px -40px calc(0.414251% - 79.6686px))"
+  ],
+  "heroAnim": [
+   "lm-hero-mask",
+   "lm-hero-mask"
+  ],
+  "leadOpacity": "1",
+  "leadAnim": "lm-hero-in",
+  "categories": 4,
+  "workflows": 12,
+  "visibleInlineMockups": 0,
+  "stageLayerOpacity": [
+   "1",
+   "1",
+   "1",
+   "1"
+  ],
+  "stageLayerVisibility": [
+   "visible",
+   "visible",
+   "visible",
+   "visible"
+  ],
+  "stageLayerTransition": [
+   "0s",
+   "0s",
+   "0s",
+   "0s"
+  ],
+  "revealOpacities": [
+   "1"
+  ],
+  "wordBlurOpacities": [
+   "1"
+  ],
+  "clippedContainers": [],
+  "clippedCount": 0,
+  "footerPresent": true,
+  "footerSnippet": "roducq A client-work writing studio: intake → briefs → proposals → plans → updat",
+  "h2s": [
+   "One trail per client, end to end",
+   "Creative direction that survives the handoff",
+   "Proposals that become working plans",
+   "Reports that write themselves from the week",
+   "One workspace, one price, the whole pipeline",
+   "Try roducq with your own client project"
+  ],
+  "disclosureVisibleText": 4,
+  "planCtaText": true,
+  "templatesCount": 0,
+  "heroVisibleRect": [
+   252,
+   137
+  ],
+  "serverHasCategories": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "serverDisclosureCount": 8,
+  "serverHasH1": false
+ }
+}

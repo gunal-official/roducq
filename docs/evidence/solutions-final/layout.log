@@ -1,0 +1,19 @@
+320-light overflow=0 h1Lines=4 articles=4 wf=3,3,3,3 disc=8/5 errs=0 forbidden=0
+375-light overflow=0 h1Lines=4 articles=4 wf=3,3,3,3 disc=8/5 errs=0 forbidden=0
+390-light overflow=0 h1Lines=4 articles=4 wf=3,3,3,3 disc=8/5 errs=0 forbidden=0
+768-light overflow=0 h1Lines=2 articles=4 wf=3,3,3,3 disc=8/5 errs=0 forbidden=0
+1024-light overflow=0 h1Lines=2 articles=4 wf=3,3,3,3 disc=8/5 errs=0 forbidden=0
+1199-light overflow=0 h1Lines=2 articles=4 wf=3,3,3,3 disc=8/5 errs=0 forbidden=0
+1200-light overflow=0 h1Lines=2 articles=4 wf=3,3,3,3 disc=8/5 errs=0 forbidden=0
+1280-light overflow=0 h1Lines=2 articles=4 wf=3,3,3,3 disc=8/5 errs=0 forbidden=0
+1440-light overflow=0 h1Lines=2 articles=4 wf=3,3,3,3 disc=8/5 errs=0 forbidden=0
+320-dark overflow=0 h1Lines=4 articles=4 wf=3,3,3,3 disc=8/5 errs=0 forbidden=0
+375-dark overflow=0 h1Lines=4 articles=4 wf=3,3,3,3 disc=8/5 errs=0 forbidden=0
+390-dark overflow=0 h1Lines=4 articles=4 wf=3,3,3,3 disc=8/5 errs=0 forbidden=0
+768-dark overflow=0 h1Lines=2 articles=4 wf=3,3,3,3 disc=8/5 errs=0 forbidden=0
+1024-dark overflow=0 h1Lines=2 articles=4 wf=3,3,3,3 disc=8/5 errs=0 forbidden=0
+1199-dark overflow=0 h1Lines=2 articles=4 wf=3,3,3,3 disc=8/5 errs=0 forbidden=0
+1200-dark overflow=0 h1Lines=2 articles=4 wf=3,3,3,3 disc=8/5 errs=0 forbidden=0
+1280-dark overflow=0 h1Lines=2 articles=4 wf=3,3,3,3 disc=8/5 errs=0 forbidden=0
+1440-dark overflow=0 h1Lines=2 articles=4 wf=3,3,3,3 disc=8/5 errs=0 forbidden=0
+WROTE /home/user/browser-tools/out/layout/layout-results.json
