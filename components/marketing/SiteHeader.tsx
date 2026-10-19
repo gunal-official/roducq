@@ -7,7 +7,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { ArrowRight, Menu, X } from "lucide-react";
 
 import { RoduMark, Wordmark } from "@/components/app-shell/RoduMark";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { ThemeIconToggle, ThemeToggle } from "@/components/theme-toggle";
 import { clsx as cn } from "clsx";
 
 /**
@@ -33,6 +33,14 @@ import { clsx as cn } from "clsx";
  * app/(marketing); /login and /signup exist under app/(auth). Nothing here
  * points at a page the router does not serve (asserted by
  * tests/components/home.test.ts).
+ *
+ * SOLUTIONS VARIANT. `/solutions` is matched against the Forma reference's
+ * header (measured in docs/FORMA_SOLUTIONS_REFERENCE.md §9 and the capture
+ * DOM): white bar with no hairline, the route list centred in the viewport,
+ * a single icon theme button, and a purple "Get started" action. Every other
+ * marketing page keeps the header it has always had; the variant is switched
+ * on pathname here so the shared component stays the one place the header
+ * lives.
  */
 const NAV = [
   { href: "/about", label: "About" },
@@ -40,9 +48,24 @@ const NAV = [
   { href: "/vs", label: "Compare" },
 ];
 
+/**
+ * The Forma reference's route list, mapped onto roducq's real destinations.
+ * `hash` targets a section on the home page. Forma's "Changelog" is omitted:
+ * roducq serves no public changelog route, and /updates is the signed-in
+ * client-updates app, not a marketing page.
+ */
+const SOLUTIONS_NAV: { href: string; label: string; hash?: string }[] = [
+  { href: "/", label: "Features", hash: "features" },
+  { href: "/solutions", label: "Solutions" },
+  { href: "/", label: "Integrations", hash: "integrations" },
+  { href: "/pricing", label: "Pricing" },
+];
+
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const solutions = pathname === "/solutions" || pathname.startsWith("/solutions/");
+  const items = solutions ? SOLUTIONS_NAV : NAV;
 
   // A phone menu left open while the window grows past the desktop band
   // would leave a modal over a nav that is already visible.
@@ -58,68 +81,132 @@ export function SiteHeader() {
 
   const active = (href: string) =>
     pathname === href || pathname.startsWith(`${href}/`);
+  const hrefOf = (item: { href: string; hash?: string }) =>
+    item.hash ? `${item.href}#${item.hash}` : item.href;
 
   return (
-    <header className="lm-header sticky top-0 z-40 border-b border-lm-border-soft bg-lm-header-wash backdrop-blur-md">
-      <div className="lm-shell flex h-16 items-center gap-3 md:h-18">
+    <header
+      className={cn(
+        "lm-header sticky top-0 z-40 backdrop-blur-md",
+        solutions
+          ? "bg-lm-card"
+          : "border-b border-lm-border-soft bg-lm-header-wash"
+      )}
+    >
+      <div
+        className={cn(
+          "lm-shell flex h-16 items-center gap-3 md:h-18",
+          solutions && "relative"
+        )}
+      >
         <Link
           href="/"
           aria-label="roducq home"
           className="inline-flex min-h-11 shrink-0 items-center gap-2"
         >
-          <RoduMark size={28} />
+          <RoduMark size={solutions ? 30 : 28} />
           {/* The shared wordmark, re-toned to the landing ink. `cn` inside
               Wordmark resolves the conflicts, so the landing size and colour
               win without the app's own lockup changing anywhere else. */}
-          <Wordmark className="font-lm-bold text-lm-18 tracking-[-0.02em] text-lm-ink" />
+          <Wordmark
+            className={cn(
+              "font-lm-bold text-lm-ink",
+              solutions
+                ? "text-lm-22 tracking-[-0.06em] md:text-lm-28"
+                : "text-lm-18 tracking-[-0.02em]"
+            )}
+          />
         </Link>
 
         <nav
           aria-label="Main navigation"
-          className="ml-3.5 hidden items-center gap-1 lg:flex"
+          className={cn(
+            "hidden items-center lg:flex",
+            solutions
+              ? "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 gap-0.5"
+              : "ml-3.5 gap-1"
+          )}
         >
-          {NAV.map((item) => (
+          {items.map((item) => (
             <Link
-              key={item.href}
-              href={item.href}
+              key={item.label}
+              href={hrefOf(item)}
               aria-current={active(item.href) ? "page" : undefined}
               className={cn(
-                "inline-flex min-h-11 min-w-11 items-center rounded-lm-control px-3.5 text-lm-15 transition-colors duration-200 ease-lm-nav",
-                active(item.href)
-                  ? "font-lm-semibold text-lm-ink-accent"
-                  : "font-lm-regular text-lm-muted-readable hover:bg-lm-surface-accent hover:text-lm-ink"
+                "group relative inline-flex min-h-11 min-w-11 items-center rounded-lm-control transition-colors duration-200 ease-lm-nav",
+                solutions
+                  ? "px-3 text-lm-15 font-lm-regular"
+                  : "px-3.5 text-lm-15",
+                solutions && active(item.href)
+                  ? "text-lm-ink"
+                  : solutions
+                    ? "text-lm-muted-slate hover:text-lm-ink"
+                    : active(item.href)
+                      ? "font-lm-semibold text-lm-ink-accent"
+                      : "font-lm-regular text-lm-muted-readable hover:bg-lm-surface-accent hover:text-lm-ink"
               )}
             >
               {item.label}
+              {solutions ? (
+                <span
+                  aria-hidden="true"
+                  className={cn(
+                    "absolute inset-x-3 bottom-2 h-0.5 origin-left rounded-full bg-lm-ink transition-transform duration-200 ease-lm-nav motion-reduce:transition-none",
+                    active(item.href)
+                      ? "scale-x-100"
+                      : "scale-x-0 group-hover:scale-x-100"
+                  )}
+                />
+              ) : null}
             </Link>
           ))}
         </nav>
 
         <div className="ml-auto flex shrink-0 items-center gap-2">
-          <div className="hidden lg:block">
-            <ThemeToggle />
-          </div>
+          {solutions ? (
+            <>
+              <div className="hidden min-[360px]:block">
+                <ThemeIconToggle />
+              </div>
+              <Link
+                href="/signup"
+                className="inline-flex h-11 items-center rounded-lm-button bg-lm-accent-strong px-4 text-lm-14 font-lm-semibold text-lm-on-accent transition-colors duration-200 hover:bg-lm-ink-accent"
+              >
+                Get started
+              </Link>
+            </>
+          ) : (
+            <>
+              <div className="hidden lg:block">
+                <ThemeToggle />
+              </div>
 
-          <Link
-            href="/login"
-            className="hidden min-h-11 items-center rounded-lm-control px-3.5 text-lm-14 font-lm-regular text-lm-ink transition-colors duration-200 hover:bg-lm-surface-accent hover:text-lm-ink-accent sm:inline-flex"
-          >
-            Log in
-          </Link>
+              <Link
+                href="/login"
+                className="hidden min-h-11 items-center rounded-lm-control px-3.5 text-lm-14 font-lm-regular text-lm-ink transition-colors duration-200 hover:bg-lm-surface-accent hover:text-lm-ink-accent sm:inline-flex"
+              >
+                Log in
+              </Link>
 
-          <Link
-            href="/signup"
-            className="hidden h-11 items-center rounded-lm-button bg-lm-accent px-5 text-lm-14 font-lm-regular text-lm-on-accent shadow-lm-sm transition-colors duration-200 hover:bg-lm-accent-strong sm:inline-flex"
-          >
-            Start free
-          </Link>
+              <Link
+                href="/signup"
+                className="hidden h-11 items-center rounded-lm-button bg-lm-accent px-5 text-lm-14 font-lm-regular text-lm-on-accent shadow-lm-sm transition-colors duration-200 hover:bg-lm-accent-strong sm:inline-flex"
+              >
+                Start free
+              </Link>
+            </>
+          )}
 
           <Dialog.Root open={open} onOpenChange={setOpen}>
             <Dialog.Trigger asChild>
               <button
                 type="button"
                 aria-label="Open menu"
-                className="flex min-h-11 min-w-11 items-center justify-center rounded-lm-control text-lm-ink transition-colors duration-200 hover:bg-lm-surface-accent lg:hidden"
+                className={cn(
+                  "flex min-h-11 min-w-11 items-center justify-center rounded-lm-control text-lm-ink transition-colors duration-200 hover:bg-lm-surface-accent lg:hidden",
+                  solutions &&
+                    "min-h-10 min-w-10 rounded-lm-button border border-lm-surface-muted bg-lm-card shadow-lm-sm hover:bg-lm-card"
+                )}
               >
                 <Menu className="h-5 w-5" aria-hidden="true" />
               </button>
@@ -163,10 +250,10 @@ export function SiteHeader() {
                   aria-label="Main navigation"
                   className="flex flex-col gap-1.5"
                 >
-                  {NAV.map((item) => (
+                  {items.map((item) => (
                     <Link
-                      key={item.href}
-                      href={item.href}
+                      key={item.label}
+                      href={hrefOf(item)}
                       aria-current={active(item.href) ? "page" : undefined}
                       onClick={() => setOpen(false)}
                       className="flex min-h-12 items-center justify-between gap-3 rounded-lm-row bg-lm-canvas-alt px-4 text-lm-14 font-lm-semibold text-lm-ink transition-colors hover:bg-lm-surface-accent hover:text-lm-ink-accent aria-[current=page]:bg-lm-surface-accent aria-[current=page]:text-lm-ink-accent"
