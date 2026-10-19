@@ -35,16 +35,27 @@
  * invoice, share link, webhook — exists in the app today.
  */
 
-/** The page hero: eyebrow, two-part headline, lead. */
+/**
+ * The page hero: eyebrow, two-part headline, lead.
+ *
+ * THE SPLIT IS THE SENTENCE. "Different client work." is the ink line;
+ * "One writing workspace." is the gradient unit — the same
+ * Title + Highlight composition the reference measures on its own
+ * hero (docs/FORMA_SOLUTIONS_REFERENCE.md §4.1), applied to the
+ * approved copy. The reference's headline fits on one line at
+ * 1440px; this copy is 1,349px at the same 67.2px step, so the
+ * highlight becomes the second line. That break is content-driven,
+ * not an inserted <br>.
+ */
 export const SOLUTIONS_HERO = {
   eyebrow: "Solutions",
   /** Rendered in ink, one masked span per word (measured cadence). */
-  titleBefore: "The same pipeline,",
+  titleBefore: "Different client work.",
   /** Rendered in the accent gradient, as one animated unit. */
-  titleAfter: "shaped four ways.",
-  title: "The same pipeline, shaped four ways.",
+  titleAfter: "One writing workspace.",
+  title: "Different client work. One writing workspace.",
   intro:
-    "Solo practices, studios, agencies and consultancies run roducq around different work. Here is where each one starts.",
+    "From a solo engagement to a shared client account, keep the original request connected to the brief, proposal, plan and update it becomes.",
 } as const;
 
 /**
@@ -189,6 +200,15 @@ export const CATEGORIES: readonly PracticeCategory[] = [
 
 /** The templates line that closes every category block. */
 export const TEMPLATES_LABEL = "Templates";
+
+/**
+ * The disclosure every miniature carries, visibly, in both places it
+ * renders (the sticky stage on desktop and inline under each category
+ * below 1200px). The mock data is invented — see the MOCKS note below
+ * — and this is the sentence that says so on the page itself rather
+ * than only in a source comment.
+ */
+export const MOCK_DISCLOSURE = "Illustrative example · fictional client";
 
 /* ── Fabricated miniature surfaces (mock data) ────────────────────── */
 

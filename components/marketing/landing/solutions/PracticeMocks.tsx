@@ -11,7 +11,7 @@ import { Check } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useReducedMotion } from "motion/react";
 
-import { MOCKS } from "@/app/(marketing)/solutions/content";
+import { MOCK_DISCLOSURE, MOCKS } from "@/app/(marketing)/solutions/content";
 
 import { clsx as cn } from "clsx";
 
@@ -79,6 +79,21 @@ function MockHeader({
       </p>
       {pill}
     </div>
+  );
+}
+
+/**
+ * The disclosure every miniature ends with. It is real, visible text —
+ * not a tooltip and not a source comment — because the mock data is
+ * invented and the page has to say so where the data is shown. MEASURED
+ * type step: the chip's 11px, on the muted slate that holds 4.9:1
+ * against the white card.
+ */
+function MockCaption() {
+  return (
+    <p className="mt-3 border-t border-lm-border-soft pt-2.5 text-lm-chip text-lm-muted-slate">
+      {MOCK_DISCLOSURE}
+    </p>
   );
 }
 
@@ -217,7 +232,7 @@ export function ChecklistRows({
 function MockTrail() {
   const mock = MOCKS.trail;
   return (
-    <div className="lm-mock-card flex h-full flex-col rounded-lm-frame p-[27px]">
+    <div className="lm-mock-card flex flex-col rounded-lm-frame p-[27px]">
       <MockHeader title={mock.title} pill={<MockPill>{mock.pill}</MockPill>} />
       <div className="mt-3 divide-y divide-lm-border-soft">
         {mock.rows.map((row) => (
@@ -240,6 +255,7 @@ function MockTrail() {
           />
         </div>
       </div>
+      <MockCaption />
     </div>
   );
 }
@@ -247,7 +263,7 @@ function MockTrail() {
 function MockBrief() {
   const mock = MOCKS.brief;
   return (
-    <div className="lm-mock-card flex h-full flex-col rounded-lm-frame p-[27px]">
+    <div className="lm-mock-card flex flex-col rounded-lm-frame p-[27px]">
       <MockHeader title={mock.title} pill={<MockPill>{mock.pill}</MockPill>} />
       <div className="mt-3 divide-y divide-lm-border-soft">
         {mock.rows.map((row) => (
@@ -268,6 +284,7 @@ function MockBrief() {
           </p>
         </div>
       </div>
+      <MockCaption />
     </div>
   );
 }
@@ -275,7 +292,7 @@ function MockBrief() {
 function MockProposal() {
   const mock = MOCKS.proposal;
   return (
-    <div className="lm-mock-card flex h-full flex-col rounded-lm-frame p-[27px]">
+    <div className="lm-mock-card flex flex-col rounded-lm-frame p-[27px]">
       <MockHeader
         title={mock.title}
         pill={<StatusSwap states={mock.pillStates} />}
@@ -292,6 +309,7 @@ function MockProposal() {
           {mock.footerValue}
         </p>
       </div>
+      <MockCaption />
     </div>
   );
 }
@@ -299,9 +317,10 @@ function MockProposal() {
 function MockWeek() {
   const mock = MOCKS.week;
   return (
-    <div className="lm-mock-card flex h-full flex-col rounded-lm-frame p-[27px]">
+    <div className="lm-mock-card flex flex-col rounded-lm-frame p-[27px]">
       <MockHeader title={mock.title} pill={<MockPill>{mock.pill}</MockPill>} />
       <ChecklistRows items={mock.items} />
+      <MockCaption />
     </div>
   );
 }

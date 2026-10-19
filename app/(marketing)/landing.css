@@ -765,7 +765,8 @@
   /* Every entrance resolves instantly: no fade, no translation, no draw. */
   .lm-line > span,
   .lm-word > span,
-  .lm-hero-word > span,
+  .lm-hero-word,
+  .lm-hero-accent,
   .lm-js .lm-reveal .lm-word-blur > span,
   .lm-js .lm-reveal[data-visible="true"] .lm-word-blur > span,
   .lm-js .lm-reveal .lm-word > span,
@@ -1016,11 +1017,13 @@
 
    - The reference animates headline words with a blur dissolve
      (filter: blur(10px) -> blur(0px), 900ms,
-     cubic-bezier(0.16, 1, 0.3, 1), 50ms per word). The hero's
-     words run that dissolve on load; the category headlines run
-     it when their band scrolls into view. Opacity never leaves
-     1 in either keyframe — the PR #53 LCP rule — because the
-     blur alone does the hiding while the text still paints.
+     cubic-bezier(0.16, 1, 0.3, 1), 50ms per word) plus opacity
+     [0.001, 1]. The category headlines (below the fold) keep the
+     dissolve, gated behind .lm-js; the HERO words do not — the
+     2026-10-19 refinement replaced both the opacity start and the
+     10px blur with the PR #53 clip-path mask (see
+     `.lm-hero-mask` further down), because the hero is the LCP
+     surface. Opacity never leaves 1 in any keyframe.
 
    - The reference's mock panel swaps its four miniature UIs
      with 500ms exits and 700ms entrances on
@@ -1043,6 +1046,10 @@
      make. These names are used only by /solutions. */
   --lm-size-chip: 11px; /* nav chip index, Templates micro-label */
   --lm-size-mock: 13.5px; /* miniature title and row text */
+  /* The reference's compact hero lead measures 16.5px / 27.23px at
+     768 and 390. It is a real measured step, not 16 or 17, and the
+     hero is the only surface that uses it. */
+  --lm-size-16-5: 16.5px;
 
   /* Two fills measured inside the miniature cards and the
      getting-started checklist. They are NOT the shell's surface
@@ -1107,14 +1114,74 @@
   }
 }
 
-/* The hero's words dissolve on load. No masked slot is needed
-   (the measured motion moves nothing), and opacity stays 1 in
-   both keyframes so the headline paints on the first frame. */
+/* ── The /solutions hero's mask reveal ─────────────────────────────────
+   The reference animates each hero word with TWO parallel calls:
+   `blur(10px) -> blur(0px)` and `opacity [0.001, 1]`, both 900ms on
+   cubic-bezier(0.16, 1, 0.3, 1) at 50ms per word. Both are refused
+   here, for the reason PR #53 documented on the homepage hero:
+
+   * the opacity start suppresses Blink's LCP record;
+   * a 10px filter on the LCP candidate defers the paint the metric
+     is waiting for, and costs one composited layer per word.
+
+   What is kept is the measured cadence — 900ms, display easing,
+   50ms stagger — carried by the same `clip-path: inset()` mask the
+   homepage hero uses. Opacity is 1 in BOTH keyframes, so the words
+   are in the DOM, painted and selectable on the first frame; only
+   the visible band and a short rise travel. That is the PR #53
+   LCP-safe pattern, reused rather than reinvented.
+
+   `--lm-hero-rise` is 16px for the ink words (the measured rise of
+   the eyebrow and lead) and 28px for the gradient unit (its own
+   measured rise in docs/…/sol-1440x900-light-motion.json.gz). */
+@keyframes lm-hero-mask {
+  from {
+    opacity: 1;
+    clip-path: inset(0 -40px 100% -40px);
+    transform: translateY(var(--lm-hero-rise, 16px));
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(-40px -40px -80px -40px);
+    transform: translateY(0);
+  }
+}
+
+/* MEASURED: one span per word, inline-block, 50ms apart. */
 .lm-hero-word {
   display: inline-block;
-  animation: lm-word-dissolve var(--lm-motion-display)
-    var(--lm-ease-display) both;
+  animation: lm-hero-mask var(--lm-motion-display) var(--lm-ease-display) both;
   animation-delay: var(--lm-word-delay, 0ms);
+}
+
+/* MEASURED: the gradient unit is ONE target at delay 350ms, not a
+   per-word stagger. It is a block so the Title + Highlight
+   composition wraps as two sentences; `fit-content` keeps the
+   gradient's background box the width of the phrase, so the
+   90deg sweep spans the visible text rather than the whole shell.
+
+   THE 0.14em PADDING IS NOT DECORATION. `background-clip: text`
+   paints only inside the element's own box, and a block's box is
+   its line-height box — 1.02em here. Manrope 600 puts the tail of
+   "g" and "p" 0.128em below that box, so without padding the
+   descenders in "writing" / "workspace" lose their fill (8.6px at
+   67.2px). The reference solves the same problem the same way: its
+   Highlight span measures `padding: 9.41px` at 67.2px and
+   `padding: 6.16px` at 44px — exactly 0.14em at both sizes. The
+   equal negative block margin cancels the padding in layout, so
+   the glyphs sit where the measured spacing puts them while the
+   paint area grows around them. (The closing CTA's gradient words
+   are inline spans, whose background area is the font's own
+   content box — they are unaffected and unchanged.) */
+.lm-hero-accent {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  padding-block: 0.14em;
+  margin-block: -0.14em;
+  margin-inline: auto;
+  animation: lm-hero-mask var(--lm-motion-display) var(--lm-ease-display) both;
+  animation-delay: var(--lm-hero-delay, 350ms);
 }
 
 /* Category headlines sit below the fold, so their words wait,
@@ -1209,26 +1276,66 @@
      radius here would flatten both to 16px. */
 }
 
-/* ── Mock panel crossfade ──────────────────────────────────────
-   Layers stack absolutely and crossfade to the category whose
-   article is 30% visible. The duration is read from the state
-   a layer is ENTERING, so entrances take the measured 700ms
-   and exits the measured 500ms. Everything is gated on .lm-js:
-   with no JavaScript the stage keeps its natural height, the
-   layers stack in flow and every miniature is visible. */
-.lm-js .lm-solutions-stage {
+/* ── Mock panel: geometry, crossfade, foot ─────────────────────
+   One persistent stage, four layers, crossfaded as the matching
+   category's HEADLINE crosses 30% visibility (the measured trigger).
+
+   The stage is fixed at the measured 710px and the card area is the
+   full stage minus the measured 52px side insets. Cards are
+   CONTENT-sized and centred, not stretched: on the reference the
+   white card measures 502.5 x 264.8 (trail) and 487.4 x 322.1
+   (design review) and their centres both sit at ~347 of 710. A
+   stretched card would fill 411px of height and read as an empty
+   panel, which is why the layers centre instead.
+
+   Everything is gated on .lm-js: with no JavaScript the stage keeps
+   its natural height, the layers stack in flow and every miniature
+   is visible. */
+/* MEASURED: the inline panel that carries each category's miniature
+   below 1200px. Same gradient as the desktop stage, but 26px radius,
+   no shadow, and an inset of 13px that widens to 41px in the 810–1199
+   band (the reference's own media queries, read from its stylesheet). */
+.lm-stage-inline {
+  border-radius: 26px;
+  padding: 13px;
+}
+
+@media (min-width: 810px) {
+  .lm-stage-inline {
+    padding: 41px;
+  }
+}
+
+/* The fixed height belongs to the desktop stage only — the inline
+   panels are content-sized. */
+.lm-js .lm-stage-persistent {
   height: 710px;
 }
 
 .lm-js .lm-mock-stage {
   position: absolute;
-  inset: 215px 52px 84px;
+  /* 9px top and 26px bottom put the cards' vertical centre at 346.5 of
+     710 — the measured centre of the reference's white cards (347). */
+  inset: 9px 52px 26px;
   padding: 0;
 }
 
+/* MEASURED crossfade, BOTH directions: `opacity [1,0]` and `[0,1]`,
+   700ms, delay 80ms, cubic-bezier(0.2, 0.7, 0.2, 1) — 14 records in
+   sol-1440x900-light-motion.json.gz. The 500ms exit this file used to
+   carry was mis-read from the mock's ambient content cycling, not
+   from the stage (docs/SOLUTIONS_IMPLEMENTATION.md §5.2, §14.5).
+
+   The incoming layer is z-indexed above the outgoing one, and both
+   run the same 700ms/80ms, so neither is ever at (or near) zero
+   while the other is still dark — the panel never flashes the purple
+   through by dropping both cards at once. */
 .lm-js .lm-mock-layer {
   position: absolute;
   inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   opacity: 0;
   visibility: hidden;
   /* MEASURED: an inactive slide sits at scale(0.97), the active one at
@@ -1236,22 +1343,13 @@
      live page, so it is a real resting state, not an inference.
      [INFERRED] whether the reference *transitions* the scale — the
      capture records only the opacity animation — so it rides the same
-     curve as the fade rather than inventing a new timing.
-
-     KNOWN CONFLICT, deliberately left unresolved. The 2026-10-18
-     capture measures BOTH directions of this crossfade at 700ms with
-     an 80ms delay. The 500ms exit below is locked by an existing
-     assertion in tests/components/solutions-page.test.ts, which this
-     milestone may not modify. The earlier reading appears to have
-     taken its 500ms from the mock's ambient content cycling (a
-     separate 500ms group on the comment card inside miniature 02),
-     not from the stage. Correcting the exit to 700ms/80ms requires
-     that assertion to change; see docs/SOLUTIONS_IMPLEMENTATION.md. */
+     curve and the same 80ms delay as the fade rather than inventing
+     a new timing. */
   transform: scale(0.97);
   transition:
-    opacity 500ms var(--lm-ease-body),
-    transform 500ms var(--lm-ease-body),
-    visibility 0s 500ms;
+    opacity 700ms var(--lm-ease-body) 80ms,
+    transform 700ms var(--lm-ease-body) 80ms,
+    visibility 0s 780ms;
 }
 
 .lm-js .lm-mock-layer[data-active="true"] {
@@ -1260,9 +1358,9 @@
   z-index: 1;
   transform: scale(1);
   transition:
-    opacity 700ms var(--lm-ease-body),
-    transform 700ms var(--lm-ease-body),
-    visibility 0s;
+    opacity 700ms var(--lm-ease-body) 80ms,
+    transform 700ms var(--lm-ease-body) 80ms,
+    visibility 0s 80ms;
 }
 
 .lm-js .lm-mock-stage-foot {
