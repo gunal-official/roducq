@@ -259,12 +259,26 @@ Panel footer (MEASURED): counter "01" (DM Sans 600 13px/20.15px, white) +
 "/ 04" (DM Sans 400 13px, `rgba(255,255,255,0.6)`) + progress track
 (`background: rgba(255,255,255,0.18); border-radius: 2px`) with a Fill bar.
 
-At 390/768 the panel column is hidden at those breakpoints (`hidden-srm3hm`
-variant markers) and each category `article` embeds its own mock **inline
-below the copy** (332 px wide; e.g. Release mock at 390 lives inside
-article 01 at y≈1275). Mock swap crossfades are a desktop-sticky behaviour;
-mobile stacks all four statically. **MEASURED** (DOM outline at 390 vs
+**The sticky box is a child of a stretched column, not the column itself.**
+At 1440 the outline is `.framer-l1vvvg` (606.5 × 3096, the stage column, full
+band height) → `.framer-1pi3c7f` (606.5 × 710, `position: sticky; top: 150px`)
+→ `.framer-f13bqf-container` (the stage). **MEASURED** (structure dump at
 1440).
+
+**Below 1200px the panel column is absent, not hidden-with-height.** Its class
+list carries `hidden-srm3hm hidden-1xxithx`, the row flips to a column at
+`@media (max-width: 1199.98px)`, and neither the 768x1024 nor the 390x844
+structure dump contains `.framer-l1vvvg`, `.framer-1pi3c7f` or
+`.framer-f13bqf-container` at all. **MEASURED.**
+
+Each category then carries its **own inline purple stage** below the copy —
+not a bare white card. Measured at 768 and 390: `framer-tzgt8t`, the same
+150deg gradient, `overflow: clip`, radius **26px**, **no** shadow, and an
+inset of **13px** at ≤809.98 (widening to **41px** in the 810–1199.98 band),
+content-sized height. Widths: 358 at 390 and 736 at 768 — i.e. the full
+column inside the 16px band gutter. Mock swap crossfades remain a
+desktop-sticky behaviour; the compact page shows each category's own
+miniature statically. **MEASURED** (structure dump at 390/768 + stylesheet).
 
 ### 4.4 "Choosing a plan" band (MEASURED)
 
@@ -411,7 +425,7 @@ its inverse; a divider-bar pair uses 500 ms `cubic-bezier(0.65, 0, 0.35, 1)`
 | --- | --- | --- |
 | default (`threshold: 0`, no rootMargin) | 50 | per-element view reveals (Framer `whileInView`) |
 | `threshold: [0, 0.01 … 0.99]` (100 steps), `rootMargin: 0px` | 23 | scroll-progress tracking (mock counter/progress bar, sticky orchestration) |
-| `threshold: 0.3` | 4 | **mock-swap triggers — one per category block** |
+| `threshold: 0.3`, `rootMargin: 0px` | 4 | **mock-swap triggers — one per category heading** (`#product`, `#design`, `#marketing`, `#operations`; each 562 × 92 at left 100, all constructed at t≈567 ms) |
 
 Empirical trigger geometry (from first-seen records with target rects +
 scrollY): category h2 word animations begin as each article crosses into

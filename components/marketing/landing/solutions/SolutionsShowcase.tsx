@@ -14,44 +14,71 @@ import { MockPanel } from "./MockPanel";
 import { PRACTICE_MOCKS } from "./PracticeMocks";
 
 /**
- * The practice showcase — four numbered category blocks in
- * one band, exactly as the reference composes them (it is a
- * single section, not four).
+ * The practice showcase — four numbered category blocks in one band,
+ * with one persistent showcase beside them, exactly as the reference
+ * composes it.
  *
- * DESKTOP. The copy column (measured 561.53px of the 1240px
- * shell, 71.5px gap to the stage) is followed by a sticky stage
- * (position: sticky — CONFIRMED by the capture) whose miniature
- * crossfades to the practice whose article is 30% visible — the
- * measured IntersectionObserver trigger.
+ * THE STICKY GEOMETRY IS THE REFERENCE'S, ELEMENT FOR ELEMENT.
+ * Its capture shows three nested boxes (docs/FORMA_SOLUTIONS_REFERENCE.md
+ * §4.2/§4.3 and `sol-1440x900-light-structure.json`):
  *
- * MEASURED: the reference pins the stage at `top: 150px`, read from
- * its own stylesheet in the capture's raw-DOM dump
- * (`.framer-1pi3c7f { position: sticky; top: 150px }`) — not from
- * getComputedStyle, which the harness does not collect for `top`.
- * `lg:top-[150px]` is therefore a true measured value, not a guess.
+ *   .framer-l1vvvg   the stage column — 606.5 × 3096 at x 733.5,
+ *                    `align-self: stretch`: as tall as the whole band
+ *   .framer-1pi3c7f  a CHILD of that column — 606.5 × 710,
+ *                    `position: sticky; top: 150px`
+ *   .framer-f13bqf   the stage itself — 606.5 × 710, radius 24,
+ *                    `rgba(30,16,80,0.45) 0 40px 80px -40px`
  *
- * PHONE / TABLET. The stage is hidden and each article
- * carries its own miniature inline, below the templates
- * line, which is where the reference moves them.
+ * The sticky element must be the child of a stretched column, not the
+ * column itself. A grid/flex item with the default `align-self:
+ * stretch` is as tall as its row, and `position: sticky` can only
+ * travel inside its containing block — so a sticky grid item with a
+ * stretched height has exactly zero travel and never sticks. That was
+ * the state of this component before this pass: `lg:sticky` sat on the
+ * grid item, so the panel scrolled away with the first article. The
+ * markup below restores the measured three-box nesting.
  *
- * WORD CADENCE. Every category headline is one masked span
- * per word, dissolving in with the measured blur curve
- * (900ms, cubic-bezier(0.16, 1, 0.3, 1), 50ms apart) once
- * the band's Reveal fires — see .lm-word-blur in
- * landing.css.
+ * WHEN IT APPLIES. The reference's own stylesheet flips the row to a
+ * column at `max-width: 1199.98px` and hides the stage column below
+ * 1200px (`hidden-srm3hm hidden-1xxithx`), moving each miniature
+ * inline under its own category. The two-column sticky composition is
+ * therefore a ≥1200px behaviour, not Tailwind's `lg` (1024px) — see
+ * docs/SOLUTIONS_IMPLEMENTATION.md §14.
+ *
+ * ACTIVE CATEGORY. The reference constructs four IntersectionObservers
+ * with `threshold: 0.3` and each observes that category's HEADLINE
+ * element (measured 562 × 92), not the whole 774px article
+ * (`sol-1440x900-light-motion.json.gz`, observers at t=567). This
+ * component does the same, but keeps a set of the headings currently
+ * past 30% instead of assigning on every entry, so the active index is
+ * deterministic in BOTH scroll directions — with a single threshold,
+ * an entry that crosses downward still reports `isIntersecting`, which
+ * is why the ratio, not the flag, decides membership.
+ *
+ * WORD CADENCE. Every category headline is one masked span per word,
+ * dissolving in with the measured blur curve (900ms,
+ * cubic-bezier(0.16, 1, 0.3, 1), 50ms apart) once the band's Reveal
+ * fires — see .lm-word-blur in landing.css.
  */
 
 /** The reference's headline word dissolve, per word. */
-function WordHeading({ title }: { title: string }) {
+function WordHeading({ title, index }: { title: string; index: number }) {
   const words = title.split(/\s+/).filter(Boolean);
   return (
-    <h2 className="mt-3.5 font-lm-semibold tracking-[-0.03em] text-lm-34 text-lm-ink lg:text-lm-42">
-      {words.map((word, index) => (
-        <span key={word}>
+    // The measured observer target: the headline wrapper, 30% visible.
+    <h2
+      data-practice-heading
+      data-practice-index={index}
+      className="mt-3.5 font-lm-semibold tracking-[-0.03em] text-lm-34 text-lm-ink lg:text-lm-42"
+    >
+      {words.map((word, wordIndex) => (
+        <span key={`${word}-${wordIndex}`}>
           <span
             className="lm-word-blur"
             style={
-              { "--lm-word-delay": `${index * 50}ms` } as React.CSSProperties
+              {
+                "--lm-word-delay": `${wordIndex * 50}ms`,
+              } as React.CSSProperties
             }
           >
             <span>{word}</span>{" "}
@@ -81,11 +108,15 @@ function PracticeArticle({
           vertically centred in what remains — which is why the four
           articles share one pitch even though their copy blocks
           measure 532.9–590.7px. `min-h` (not `h`) so a longer
-          Roducq block grows instead of overflowing. */}
+          Roducq block grows instead of overflowing.
+
+          Compact band (<=1199px): the reference drops to `padding:
+          56px 0` with a content-sized article, because the stage is
+          hidden and each miniature moves inline. */}
       <article
         id={category.id}
         data-practice-index={index}
-        className="scroll-mt-32 pb-[106px] lg:flex lg:min-h-[774px] lg:flex-col lg:justify-center lg:py-12"
+        className="scroll-mt-32 py-14 min-[1200px]:flex min-[1200px]:min-h-[774px] min-[1200px]:flex-col min-[1200px]:justify-center min-[1200px]:py-12"
       >
         <div className="flex items-center gap-2 border-b border-lm-border-soft pb-3.5">
           {/* MEASURED 900 in DM Sans. Roducq ships Manrope only, and its
@@ -99,7 +130,7 @@ function PracticeArticle({
           </span>
         </div>
 
-        <WordHeading title={category.title} />
+        <WordHeading title={category.title} index={index} />
 
         <p className="mt-4 max-w-[520px] text-lm-17 leading-[1.7] text-lm-muted-slate">
           {category.copy}
@@ -137,10 +168,15 @@ function PracticeArticle({
           </p>
         </div>
 
-        {/* Phones and tablets stack the miniature here,
-            under the copy — where the reference moves it
-            once the sticky stage is hidden. */}
-        <div className="mt-6 lg:hidden">
+        {/* Compact band: the miniature moves inline, under the copy —
+            where the reference moves it once the stage is hidden. It is
+            exposed as one labelled illustration, the same way the
+            desktop stage is, rather than as a second copy of the rows. */}
+        <div
+          role="img"
+          aria-label={`Illustrative example, fictional client — miniature of the roducq ${category.label} workspace.`}
+          className="lm-solutions-stage lm-stage-inline mt-6 min-[1200px]:hidden"
+        >
           <Mock />
         </div>
       </article>
@@ -155,28 +191,32 @@ export function SolutionsShowcase() {
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
-    const articles = Array.from(
-      section.querySelectorAll<HTMLElement>("[data-practice-index]"),
+    const headings = Array.from(
+      section.querySelectorAll<HTMLElement>("[data-practice-heading]"),
     );
-    if (articles.length === 0) return;
+    if (headings.length === 0) return;
 
-    // The measured trigger: one observer per practice,
-    // firing when 30% of its article is visible, with
-    // the default root and margin.
+    // MEASURED trigger: threshold 0.3 on the headline wrapper. The set
+    // keeps the newest state per heading rather than trusting the order
+    // entries arrive in, so scrolling back up switches the panel back.
+    const past = new Set<number>();
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
-          const article = entry.target as HTMLElement;
-          const index = Number(
-            article.getAttribute("data-practice-index"),
-          );
-          if (Number.isInteger(index)) setActive(index);
+          const heading = entry.target as HTMLElement;
+          const index = Number(heading.getAttribute("data-practice-index"));
+          if (!Number.isInteger(index)) continue;
+          // The ratio decides, not `isIntersecting`: with a single
+          // threshold, a downward crossing still reports the element as
+          // intersecting while it is only partly on screen.
+          if (entry.intersectionRatio >= 0.3) past.add(index);
+          else past.delete(index);
         }
+        if (past.size > 0) setActive(Math.max(...past));
       },
       { threshold: 0.3 },
     );
-    articles.forEach((article) => observer.observe(article));
+    headings.forEach((heading) => observer.observe(heading));
     return () => observer.disconnect();
   }, []);
 
@@ -190,7 +230,9 @@ export function SolutionsShowcase() {
       className="bg-lm-card pb-10 pt-8"
     >
       <div className="lm-shell">
-        <div className="lg:grid lg:grid-cols-[minmax(0,561px)_minmax(0,1fr)] lg:gap-[72px]">
+        {/* Two columns from 1200px, stacked below it — the reference's
+            own composition boundary, not Tailwind's `lg`. */}
+        <div className="min-[1200px]:grid min-[1200px]:grid-cols-[minmax(0,561px)_minmax(0,1fr)] min-[1200px]:gap-[72px]">
           <div>
             {CATEGORIES.map((category, index) => (
               <PracticeArticle
@@ -201,8 +243,13 @@ export function SolutionsShowcase() {
             ))}
           </div>
 
-          <div className="lg:sticky lg:top-[150px]">
-            <MockPanel active={active} categories={CATEGORIES} />
+          {/* The stage column: stretched to the full band height, which
+              is what gives the sticky child its travel. Hidden below
+              1200px, where each article carries its own miniature. */}
+          <div className="hidden min-[1200px]:block">
+            <div className="min-[1200px]:sticky min-[1200px]:top-[150px]">
+              <MockPanel active={active} categories={CATEGORIES} />
+            </div>
           </div>
         </div>
       </div>

@@ -1276,26 +1276,66 @@
      radius here would flatten both to 16px. */
 }
 
-/* ── Mock panel crossfade ──────────────────────────────────────
-   Layers stack absolutely and crossfade to the category whose
-   article is 30% visible. The duration is read from the state
-   a layer is ENTERING, so entrances take the measured 700ms
-   and exits the measured 500ms. Everything is gated on .lm-js:
-   with no JavaScript the stage keeps its natural height, the
-   layers stack in flow and every miniature is visible. */
-.lm-js .lm-solutions-stage {
+/* ── Mock panel: geometry, crossfade, foot ─────────────────────
+   One persistent stage, four layers, crossfaded as the matching
+   category's HEADLINE crosses 30% visibility (the measured trigger).
+
+   The stage is fixed at the measured 710px and the card area is the
+   full stage minus the measured 52px side insets. Cards are
+   CONTENT-sized and centred, not stretched: on the reference the
+   white card measures 502.5 x 264.8 (trail) and 487.4 x 322.1
+   (design review) and their centres both sit at ~347 of 710. A
+   stretched card would fill 411px of height and read as an empty
+   panel, which is why the layers centre instead.
+
+   Everything is gated on .lm-js: with no JavaScript the stage keeps
+   its natural height, the layers stack in flow and every miniature
+   is visible. */
+/* MEASURED: the inline panel that carries each category's miniature
+   below 1200px. Same gradient as the desktop stage, but 26px radius,
+   no shadow, and an inset of 13px that widens to 41px in the 810–1199
+   band (the reference's own media queries, read from its stylesheet). */
+.lm-stage-inline {
+  border-radius: 26px;
+  padding: 13px;
+}
+
+@media (min-width: 810px) {
+  .lm-stage-inline {
+    padding: 41px;
+  }
+}
+
+/* The fixed height belongs to the desktop stage only — the inline
+   panels are content-sized. */
+.lm-js .lm-stage-persistent {
   height: 710px;
 }
 
 .lm-js .lm-mock-stage {
   position: absolute;
-  inset: 215px 52px 84px;
+  /* 9px top and 26px bottom put the cards' vertical centre at 346.5 of
+     710 — the measured centre of the reference's white cards (347). */
+  inset: 9px 52px 26px;
   padding: 0;
 }
 
+/* MEASURED crossfade, BOTH directions: `opacity [1,0]` and `[0,1]`,
+   700ms, delay 80ms, cubic-bezier(0.2, 0.7, 0.2, 1) — 14 records in
+   sol-1440x900-light-motion.json.gz. The 500ms exit this file used to
+   carry was mis-read from the mock's ambient content cycling, not
+   from the stage (docs/SOLUTIONS_IMPLEMENTATION.md §5.2, §14.5).
+
+   The incoming layer is z-indexed above the outgoing one, and both
+   run the same 700ms/80ms, so neither is ever at (or near) zero
+   while the other is still dark — the panel never flashes the purple
+   through by dropping both cards at once. */
 .lm-js .lm-mock-layer {
   position: absolute;
   inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   opacity: 0;
   visibility: hidden;
   /* MEASURED: an inactive slide sits at scale(0.97), the active one at
@@ -1303,22 +1343,13 @@
      live page, so it is a real resting state, not an inference.
      [INFERRED] whether the reference *transitions* the scale — the
      capture records only the opacity animation — so it rides the same
-     curve as the fade rather than inventing a new timing.
-
-     KNOWN CONFLICT, deliberately left unresolved. The 2026-10-18
-     capture measures BOTH directions of this crossfade at 700ms with
-     an 80ms delay. The 500ms exit below is locked by an existing
-     assertion in tests/components/solutions-page.test.ts, which this
-     milestone may not modify. The earlier reading appears to have
-     taken its 500ms from the mock's ambient content cycling (a
-     separate 500ms group on the comment card inside miniature 02),
-     not from the stage. Correcting the exit to 700ms/80ms requires
-     that assertion to change; see docs/SOLUTIONS_IMPLEMENTATION.md. */
+     curve and the same 80ms delay as the fade rather than inventing
+     a new timing. */
   transform: scale(0.97);
   transition:
-    opacity 500ms var(--lm-ease-body),
-    transform 500ms var(--lm-ease-body),
-    visibility 0s 500ms;
+    opacity 700ms var(--lm-ease-body) 80ms,
+    transform 700ms var(--lm-ease-body) 80ms,
+    visibility 0s 780ms;
 }
 
 .lm-js .lm-mock-layer[data-active="true"] {
@@ -1327,9 +1358,9 @@
   z-index: 1;
   transform: scale(1);
   transition:
-    opacity 700ms var(--lm-ease-body),
-    transform 700ms var(--lm-ease-body),
-    visibility 0s;
+    opacity 700ms var(--lm-ease-body) 80ms,
+    transform 700ms var(--lm-ease-body) 80ms,
+    visibility 0s 80ms;
 }
 
 .lm-js .lm-mock-stage-foot {

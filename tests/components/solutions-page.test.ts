@@ -24,7 +24,7 @@
  *
  *  4. MOTION CONTRACT. The measured values are locked in
  *     landing.css: the 900ms blur dissolve on
- *     cubic-bezier(0.16, 1, 0.3, 1), the 500/700ms mock
+ *     cubic-bezier(0.16, 1, 0.3, 1), the 700ms/80ms mock
  *     crossfade on cubic-bezier(0.2, 0.7, 0.2, 1), the
  *     500ms status-pill swap on cubic-bezier(0.42, 0, 0.58, 1),
  *     the 0.3 intersection trigger in the showcase, and the
@@ -313,11 +313,19 @@ describe("Solutions page (motion contract)", () => {
     assert.ok(!TOKENS.includes(".lm-js .lm-hero-word"));
   });
 
-  it("locks the measured mock crossfade: 700ms in, 500ms out, body easing", () => {
+  it("locks the measured mock crossfade: 700ms and 80ms in both directions", () => {
+    // CORRECTED 2026-10-19. This assertion used to lock a 500ms exit.
+    // The capture records 14 crossfade records, both directions, all
+    // `duration: 700`, `delay: 80`, cubic-bezier(0.2, 0.7, 0.2, 1);
+    // the 500ms had been read from the miniature's ambient content
+    // cycling, not from the stage (docs/SOLUTIONS_IMPLEMENTATION.md
+    // §5.2). The exit's visibility delay is duration + delay.
     assert.ok(TOKENS.includes(".lm-js .lm-mock-layer"));
-    assert.ok(TOKENS.includes("opacity 500ms var(--lm-ease-body)"));
-    assert.ok(TOKENS.includes("opacity 700ms var(--lm-ease-body)"));
-    assert.ok(TOKENS.includes('visibility 0s 500ms'));
+    assert.ok(TOKENS.includes("opacity 700ms var(--lm-ease-body) 80ms"));
+    assert.ok(TOKENS.includes("transform 700ms var(--lm-ease-body) 80ms"));
+    assert.ok(TOKENS.includes("visibility 0s 780ms"));
+    assert.ok(TOKENS.includes("visibility 0s 80ms"));
+    assert.ok(!TOKENS.includes("opacity 500ms var(--lm-ease-body)"));
   });
 
   it("locks the measured status-pill swap easing", () => {
@@ -341,7 +349,12 @@ describe("Solutions page (motion contract)", () => {
   });
 
   it("the sticky stage and the jump strip clear the shared header", () => {
-    assert.ok(SHOWCASE.includes("lg:sticky lg:top-[150px]"));
+    // CORRECTED 2026-10-19. The earlier assertion locked Tailwind's `lg`
+    // breakpoint. The reference's own stylesheet hides the stage column
+    // below 1200px (`hidden-srm3hm hidden-1xxithx`) and flips the row to
+    // a column at `max-width: 1199.98px`; the 768 and 390 captures
+    // contain no stage column at all. The measured offset stays 150px.
+    assert.ok(SHOWCASE.includes("min-[1200px]:sticky min-[1200px]:top-[150px]"));
     assert.ok(NAV.includes("sticky top-16"));
     assert.ok(NAV.includes("md:top-18"));
   });
@@ -351,10 +364,15 @@ describe("Solutions page (motion contract)", () => {
     // and the four miniatures stack in flow; the fixed
     // 710px stage, the absolute layer box and the absolute
     // counter foot are all .lm-js-gated.
-    assert.ok(TOKENS.includes(".lm-js .lm-solutions-stage"));
+    // The fixed height now sits on `.lm-stage-persistent` so the inline
+    // stage panels (which are content-sized) are not stretched to 710px.
+    assert.ok(TOKENS.includes(".lm-js .lm-stage-persistent"));
     assert.ok(TOKENS.includes("height: 710px"));
     assert.ok(TOKENS.includes(".lm-js .lm-mock-stage"));
-    assert.ok(TOKENS.includes("inset: 215px 52px 84px"));
+    // Cards are content-sized and centred, so the card area is the full
+    // stage minus the 52px side insets: 9px top / 26px bottom put their
+    // centre at 346.5 of 710, matching the measured 347.
+    assert.ok(TOKENS.includes("inset: 9px 52px 26px"));
     assert.ok(TOKENS.includes(".lm-js .lm-mock-stage-foot"));
     // And the component does not hardcode the height.
     assert.ok(!PANEL.includes("h-[710px]"));
@@ -395,7 +413,13 @@ describe("Solutions page (routes + a11y)", () => {
     // place the miniatures exist there), so its root carries
     // a label, not aria-hidden; only the counter footer is
     // decorative duplication.
-    assert.ok(PANEL.includes('aria-label="Practice miniature"'));
+    // CORRECTED 2026-10-19. The stage used to be labelled "Practice
+    // miniature", a bare name; it now names what is showing (category,
+    // step) and carries the fictional-client disclosure in the same
+    // label, so the label is asserted for those two facts.
+    assert.ok(PANEL.includes('role="img"'));
+    assert.ok(PANEL.includes("Illustrative example, fictional client"));
+    assert.ok(PANEL.includes("category ${step} of ${total}"));
     assert.ok(
       !PANEL.includes('lg:block" aria-hidden'),
       "the stage root must stay exposed to assistive tech",

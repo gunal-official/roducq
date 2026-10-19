@@ -201,6 +201,15 @@ export const CATEGORIES: readonly PracticeCategory[] = [
 /** The templates line that closes every category block. */
 export const TEMPLATES_LABEL = "Templates";
 
+/**
+ * The disclosure every miniature carries, visibly, in both places it
+ * renders (the sticky stage on desktop and inline under each category
+ * below 1200px). The mock data is invented — see the MOCKS note below
+ * — and this is the sentence that says so on the page itself rather
+ * than only in a source comment.
+ */
+export const MOCK_DISCLOSURE = "Illustrative example · fictional client";
+
 /* ── Fabricated miniature surfaces (mock data) ────────────────────── */
 
 /**
