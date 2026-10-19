@@ -33,3 +33,6 @@ tmp/
 # Razorpay Test Mode plan specs (operator-local; ids must never be committed)
 razorpay-plans.local.json
 scripts/razorpay-plans.local.json
+
+# Local output of scripts/solutions-verification (screenshots, JSON)
+verify-out/

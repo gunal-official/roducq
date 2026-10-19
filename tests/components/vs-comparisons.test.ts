@@ -99,7 +99,10 @@ describe("/vs pages (source contract)", () => {
     // from FOOTER.columns.
     const header = read("components/marketing/SiteHeader.tsx");
     assert.match(header, /\{ href: "\/vs", label: "Compare" \}/);
-    assert.match(header, /NAV\.map/);
+    // PR #56 added a /solutions-only nav (SOLUTIONS_NAV) selected by pathname;
+    // every other route still renders NAV, which carries the /vs link.
+    assert.match(header, /const items = solutions \? SOLUTIONS_NAV : NAV;/);
+    assert.match(header, /items\.map/);
     const footer = read("components/marketing/SiteFooter.tsx");
     assert.match(footer, /FOOTER\.columns\.map/);
     assert.ok(FOOTER_LINKS.some((link) => link.href === "/vs"), "footer columns must include /vs");

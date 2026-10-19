@@ -1,0 +1,1276 @@
+{
+  "startedAt": "2026-10-19T04:00:58.612Z",
+  "po": {
+    "/solutions": {
+      "A": {
+        "runs": [
+          {
+            "status": 200,
+            "candidates": 1,
+            "lcpMs": 292,
+            "lastCandidate": {
+              "t": 292,
+              "size": 28548,
+              "tag": "P",
+              "cls": "lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200p",
+              "text": "From a solo engagement to a shared client account, keep the ",
+              "opacityAtPaint": "1",
+              "clipAtPaint": "inset(0px -40px 100%)",
+              "filterAtPaint": "none"
+            },
+            "allCandidates": [
+              {
+                "t": 292,
+                "size": 28548,
+                "tag": "P",
+                "cls": "lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200p",
+                "text": "From a solo engagement to a shared client account, keep the ",
+                "opacityAtPaint": "1",
+                "clipAtPaint": "inset(0px -40px 100%)",
+                "filterAtPaint": "none"
+              }
+            ],
+            "cls": 0,
+            "reducedMotionActive": false,
+            "innerWidth": 412
+          },
+          {
+            "status": 200,
+            "candidates": 1,
+            "lcpMs": 300,
+            "lastCandidate": {
+              "t": 300,
+              "size": 28548,
+              "tag": "P",
+              "cls": "lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200p",
+              "text": "From a solo engagement to a shared client account, keep the ",
+              "opacityAtPaint": "1",
+              "clipAtPaint": "inset(0px -40px 100%)",
+              "filterAtPaint": "none"
+            },
+            "allCandidates": [
+              {
+                "t": 300,
+                "size": 28548,
+                "tag": "P",
+                "cls": "lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200p",
+                "text": "From a solo engagement to a shared client account, keep the ",
+                "opacityAtPaint": "1",
+                "clipAtPaint": "inset(0px -40px 100%)",
+                "filterAtPaint": "none"
+              }
+            ],
+            "cls": 0,
+            "reducedMotionActive": false,
+            "innerWidth": 412
+          },
+          {
+            "status": 200,
+            "candidates": 1,
+            "lcpMs": 296,
+            "lastCandidate": {
+              "t": 296,
+              "size": 28548,
+              "tag": "P",
+              "cls": "lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200p",
+              "text": "From a solo engagement to a shared client account, keep the ",
+              "opacityAtPaint": "1",
+              "clipAtPaint": "inset(0px -40px 100%)",
+              "filterAtPaint": "none"
+            },
+            "allCandidates": [
+              {
+                "t": 296,
+                "size": 28548,
+                "tag": "P",
+                "cls": "lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200p",
+                "text": "From a solo engagement to a shared client account, keep the ",
+                "opacityAtPaint": "1",
+                "clipAtPaint": "inset(0px -40px 100%)",
+                "filterAtPaint": "none"
+              }
+            ],
+            "cls": 0,
+            "reducedMotionActive": false,
+            "innerWidth": 412
+          }
+        ],
+        "medianLcpMs": 296,
+        "maxCls": 0
+      },
+      "B": {
+        "runs": [
+          {
+            "status": 200,
+            "candidates": 1,
+            "lcpMs": 472,
+            "lastCandidate": {
+              "t": 472,
+              "size": 28548,
+              "tag": "P",
+              "cls": "lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200p",
+              "text": "From a solo engagement to a shared client account, keep the ",
+              "opacityAtPaint": "1",
+              "clipAtPaint": "inset(0px -40px 100%)",
+              "filterAtPaint": "none"
+            },
+            "allCandidates": [
+              {
+                "t": 472,
+                "size": 28548,
+                "tag": "P",
+                "cls": "lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200p",
+                "text": "From a solo engagement to a shared client account, keep the ",
+                "opacityAtPaint": "1",
+                "clipAtPaint": "inset(0px -40px 100%)",
+                "filterAtPaint": "none"
+              }
+            ],
+            "cls": 0,
+            "reducedMotionActive": false,
+            "innerWidth": 412
+          },
+          {
+            "status": 200,
+            "candidates": 1,
+            "lcpMs": 532,
+            "lastCandidate": {
+              "t": 532,
+              "size": 28548,
+              "tag": "P",
+              "cls": "lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200p",
+              "text": "From a solo engagement to a shared client account, keep the ",
+              "opacityAtPaint": "1",
+              "clipAtPaint": "inset(0px -40px 100%)",
+              "filterAtPaint": "none"
+            },
+            "allCandidates": [
+              {
+                "t": 532,
+                "size": 28548,
+                "tag": "P",
+                "cls": "lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200p",
+                "text": "From a solo engagement to a shared client account, keep the ",
+                "opacityAtPaint": "1",
+                "clipAtPaint": "inset(0px -40px 100%)",
+                "filterAtPaint": "none"
+              }
+            ],
+            "cls": 0,
+            "reducedMotionActive": false,
+            "innerWidth": 412
+          },
+          {
+            "status": 200,
+            "candidates": 1,
+            "lcpMs": 504,
+            "lastCandidate": {
+              "t": 504,
+              "size": 28548,
+              "tag": "P",
+              "cls": "lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200p",
+              "text": "From a solo engagement to a shared client account, keep the ",
+              "opacityAtPaint": "1",
+              "clipAtPaint": "inset(0px -40px 100%)",
+              "filterAtPaint": "none"
+            },
+            "allCandidates": [
+              {
+                "t": 504,
+                "size": 28548,
+                "tag": "P",
+                "cls": "lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200p",
+                "text": "From a solo engagement to a shared client account, keep the ",
+                "opacityAtPaint": "1",
+                "clipAtPaint": "inset(0px -40px 100%)",
+                "filterAtPaint": "none"
+              }
+            ],
+            "cls": 0,
+            "reducedMotionActive": false,
+            "innerWidth": 412
+          }
+        ],
+        "medianLcpMs": 504,
+        "maxCls": 0
+      },
+      "C": {
+        "runs": [
+          {
+            "status": 200,
+            "candidates": 1,
+            "lcpMs": 332,
+            "lastCandidate": {
+              "t": 332,
+              "size": 34656,
+              "tag": "P",
+              "cls": "lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200p",
+              "text": "From a solo engagement to a shared client account, keep the ",
+              "opacityAtPaint": "1",
+              "clipAtPaint": "inset(0px -40px 100%)",
+              "filterAtPaint": "none"
+            },
+            "allCandidates": [
+              {
+                "t": 332,
+                "size": 34656,
+                "tag": "P",
+                "cls": "lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200p",
+                "text": "From a solo engagement to a shared client account, keep the ",
+                "opacityAtPaint": "1",
+                "clipAtPaint": "inset(0px -40px 100%)",
+                "filterAtPaint": "none"
+              }
+            ],
+            "cls": 0,
+            "reducedMotionActive": false,
+            "innerWidth": 1440
+          },
+          {
+            "status": 200,
+            "candidates": 1,
+            "lcpMs": 360,
+            "lastCandidate": {
+              "t": 360,
+              "size": 34656,
+              "tag": "P",
+              "cls": "lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200p",
+              "text": "From a solo engagement to a shared client account, keep the ",
+              "opacityAtPaint": "1",
+              "clipAtPaint": "inset(0px -40px 100%)",
+              "filterAtPaint": "none"
+            },
+            "allCandidates": [
+              {
+                "t": 360,
+                "size": 34656,
+                "tag": "P",
+                "cls": "lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200p",
+                "text": "From a solo engagement to a shared client account, keep the ",
+                "opacityAtPaint": "1",
+                "clipAtPaint": "inset(0px -40px 100%)",
+                "filterAtPaint": "none"
+              }
+            ],
+            "cls": 0,
+            "reducedMotionActive": false,
+            "innerWidth": 1440
+          },
+          {
+            "status": 200,
+            "candidates": 1,
+            "lcpMs": 308,
+            "lastCandidate": {
+              "t": 308,
+              "size": 34656,
+              "tag": "P",
+              "cls": "lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200p",
+              "text": "From a solo engagement to a shared client account, keep the ",
+              "opacityAtPaint": "1",
+              "clipAtPaint": "inset(0px -40px 100%)",
+              "filterAtPaint": "none"
+            },
+            "allCandidates": [
+              {
+                "t": 308,
+                "size": 34656,
+                "tag": "P",
+                "cls": "lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200p",
+                "text": "From a solo engagement to a shared client account, keep the ",
+                "opacityAtPaint": "1",
+                "clipAtPaint": "inset(0px -40px 100%)",
+                "filterAtPaint": "none"
+              }
+            ],
+            "cls": 0,
+            "reducedMotionActive": false,
+            "innerWidth": 1440
+          }
+        ],
+        "medianLcpMs": 332,
+        "maxCls": 0
+      },
+      "D": {
+        "runs": [
+          {
+            "status": 200,
+            "candidates": 1,
+            "lcpMs": 344,
+            "lastCandidate": {
+              "t": 344,
+              "size": 28548,
+              "tag": "P",
+              "cls": "lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200p",
+              "text": "From a solo engagement to a shared client account, keep the ",
+              "opacityAtPaint": "1",
+              "clipAtPaint": "none",
+              "filterAtPaint": "none"
+            },
+            "allCandidates": [
+              {
+                "t": 344,
+                "size": 28548,
+                "tag": "P",
+                "cls": "lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200p",
+                "text": "From a solo engagement to a shared client account, keep the ",
+                "opacityAtPaint": "1",
+                "clipAtPaint": "none",
+                "filterAtPaint": "none"
+              }
+            ],
+            "cls": 0,
+            "reducedMotionActive": true,
+            "innerWidth": 412
+          },
+          {
+            "status": 200,
+            "candidates": 1,
+            "lcpMs": 328,
+            "lastCandidate": {
+              "t": 328,
+              "size": 28548,
+              "tag": "P",
+              "cls": "lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200p",
+              "text": "From a solo engagement to a shared client account, keep the ",
+              "opacityAtPaint": "1",
+              "clipAtPaint": "none",
+              "filterAtPaint": "none"
+            },
+            "allCandidates": [
+              {
+                "t": 328,
+                "size": 28548,
+                "tag": "P",
+                "cls": "lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200p",
+                "text": "From a solo engagement to a shared client account, keep the ",
+                "opacityAtPaint": "1",
+                "clipAtPaint": "none",
+                "filterAtPaint": "none"
+              }
+            ],
+            "cls": 0,
+            "reducedMotionActive": true,
+            "innerWidth": 412
+          },
+          {
+            "status": 200,
+            "candidates": 1,
+            "lcpMs": 336,
+            "lastCandidate": {
+              "t": 336,
+              "size": 28548,
+              "tag": "P",
+              "cls": "lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200p",
+              "text": "From a solo engagement to a shared client account, keep the ",
+              "opacityAtPaint": "1",
+              "clipAtPaint": "none",
+              "filterAtPaint": "none"
+            },
+            "allCandidates": [
+              {
+                "t": 336,
+                "size": 28548,
+                "tag": "P",
+                "cls": "lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200p",
+                "text": "From a solo engagement to a shared client account, keep the ",
+                "opacityAtPaint": "1",
+                "clipAtPaint": "none",
+                "filterAtPaint": "none"
+              }
+            ],
+            "cls": 0,
+            "reducedMotionActive": true,
+            "innerWidth": 412
+          }
+        ],
+        "medianLcpMs": 336,
+        "maxCls": 0
+      }
+    },
+    "/": {
+      "A": {
+        "runs": [
+          {
+            "status": 200,
+            "candidates": 1,
+            "lcpMs": 460,
+            "lastCandidate": {
+              "t": 460,
+              "size": 38352,
+              "tag": "P",
+              "cls": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-1",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an",
+              "opacityAtPaint": "1",
+              "clipAtPaint": "inset(0px -40px 100%)",
+              "filterAtPaint": "none"
+            },
+            "allCandidates": [
+              {
+                "t": 460,
+                "size": 38352,
+                "tag": "P",
+                "cls": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-1",
+                "text": "roducq keeps your client intake, briefs, proposals, plans an",
+                "opacityAtPaint": "1",
+                "clipAtPaint": "inset(0px -40px 100%)",
+                "filterAtPaint": "none"
+              }
+            ],
+            "cls": 0,
+            "reducedMotionActive": false,
+            "innerWidth": 412
+          },
+          {
+            "status": 200,
+            "candidates": 1,
+            "lcpMs": 456,
+            "lastCandidate": {
+              "t": 456,
+              "size": 38352,
+              "tag": "P",
+              "cls": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-1",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an",
+              "opacityAtPaint": "1",
+              "clipAtPaint": "inset(0px -40px 100%)",
+              "filterAtPaint": "none"
+            },
+            "allCandidates": [
+              {
+                "t": 456,
+                "size": 38352,
+                "tag": "P",
+                "cls": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-1",
+                "text": "roducq keeps your client intake, briefs, proposals, plans an",
+                "opacityAtPaint": "1",
+                "clipAtPaint": "inset(0px -40px 100%)",
+                "filterAtPaint": "none"
+              }
+            ],
+            "cls": 0,
+            "reducedMotionActive": false,
+            "innerWidth": 412
+          },
+          {
+            "status": 200,
+            "candidates": 1,
+            "lcpMs": 440,
+            "lastCandidate": {
+              "t": 440,
+              "size": 38352,
+              "tag": "P",
+              "cls": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-1",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an",
+              "opacityAtPaint": "1",
+              "clipAtPaint": "inset(0px -40px 100%)",
+              "filterAtPaint": "none"
+            },
+            "allCandidates": [
+              {
+                "t": 440,
+                "size": 38352,
+                "tag": "P",
+                "cls": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-1",
+                "text": "roducq keeps your client intake, briefs, proposals, plans an",
+                "opacityAtPaint": "1",
+                "clipAtPaint": "inset(0px -40px 100%)",
+                "filterAtPaint": "none"
+              }
+            ],
+            "cls": 0,
+            "reducedMotionActive": false,
+            "innerWidth": 412
+          }
+        ],
+        "medianLcpMs": 456,
+        "maxCls": 0
+      },
+      "B": {
+        "runs": [
+          {
+            "status": 200,
+            "candidates": 1,
+            "lcpMs": 640,
+            "lastCandidate": {
+              "t": 640,
+              "size": 38352,
+              "tag": "P",
+              "cls": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-1",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an",
+              "opacityAtPaint": "1",
+              "clipAtPaint": "inset(0px -40px 100%)",
+              "filterAtPaint": "none"
+            },
+            "allCandidates": [
+              {
+                "t": 640,
+                "size": 38352,
+                "tag": "P",
+                "cls": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-1",
+                "text": "roducq keeps your client intake, briefs, proposals, plans an",
+                "opacityAtPaint": "1",
+                "clipAtPaint": "inset(0px -40px 100%)",
+                "filterAtPaint": "none"
+              }
+            ],
+            "cls": 0,
+            "reducedMotionActive": false,
+            "innerWidth": 412
+          },
+          {
+            "status": 200,
+            "candidates": 1,
+            "lcpMs": 628,
+            "lastCandidate": {
+              "t": 628,
+              "size": 38352,
+              "tag": "P",
+              "cls": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-1",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an",
+              "opacityAtPaint": "1",
+              "clipAtPaint": "inset(0px -40px 100%)",
+              "filterAtPaint": "none"
+            },
+            "allCandidates": [
+              {
+                "t": 628,
+                "size": 38352,
+                "tag": "P",
+                "cls": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-1",
+                "text": "roducq keeps your client intake, briefs, proposals, plans an",
+                "opacityAtPaint": "1",
+                "clipAtPaint": "inset(0px -40px 100%)",
+                "filterAtPaint": "none"
+              }
+            ],
+            "cls": 0,
+            "reducedMotionActive": false,
+            "innerWidth": 412
+          },
+          {
+            "status": 200,
+            "candidates": 1,
+            "lcpMs": 648,
+            "lastCandidate": {
+              "t": 648,
+              "size": 38352,
+              "tag": "P",
+              "cls": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-1",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an",
+              "opacityAtPaint": "1",
+              "clipAtPaint": "inset(0px -40px 100%)",
+              "filterAtPaint": "none"
+            },
+            "allCandidates": [
+              {
+                "t": 648,
+                "size": 38352,
+                "tag": "P",
+                "cls": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-1",
+                "text": "roducq keeps your client intake, briefs, proposals, plans an",
+                "opacityAtPaint": "1",
+                "clipAtPaint": "inset(0px -40px 100%)",
+                "filterAtPaint": "none"
+              }
+            ],
+            "cls": 0,
+            "reducedMotionActive": false,
+            "innerWidth": 412
+          }
+        ],
+        "medianLcpMs": 640,
+        "maxCls": 0
+      },
+      "C": {
+        "runs": [
+          {
+            "status": 200,
+            "candidates": 1,
+            "lcpMs": 528,
+            "lastCandidate": {
+              "t": 528,
+              "size": 51460,
+              "tag": "P",
+              "cls": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-1",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an",
+              "opacityAtPaint": "1",
+              "clipAtPaint": "inset(0px -40px 100%)",
+              "filterAtPaint": "none"
+            },
+            "allCandidates": [
+              {
+                "t": 528,
+                "size": 51460,
+                "tag": "P",
+                "cls": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-1",
+                "text": "roducq keeps your client intake, briefs, proposals, plans an",
+                "opacityAtPaint": "1",
+                "clipAtPaint": "inset(0px -40px 100%)",
+                "filterAtPaint": "none"
+              }
+            ],
+            "cls": 0,
+            "reducedMotionActive": false,
+            "innerWidth": 1440
+          },
+          {
+            "status": 200,
+            "candidates": 1,
+            "lcpMs": 608,
+            "lastCandidate": {
+              "t": 608,
+              "size": 51460,
+              "tag": "P",
+              "cls": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-1",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an",
+              "opacityAtPaint": "1",
+              "clipAtPaint": "inset(0px -40px 100%)",
+              "filterAtPaint": "none"
+            },
+            "allCandidates": [
+              {
+                "t": 608,
+                "size": 51460,
+                "tag": "P",
+                "cls": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-1",
+                "text": "roducq keeps your client intake, briefs, proposals, plans an",
+                "opacityAtPaint": "1",
+                "clipAtPaint": "inset(0px -40px 100%)",
+                "filterAtPaint": "none"
+              }
+            ],
+            "cls": 0,
+            "reducedMotionActive": false,
+            "innerWidth": 1440
+          },
+          {
+            "status": 200,
+            "candidates": 1,
+            "lcpMs": 512,
+            "lastCandidate": {
+              "t": 512,
+              "size": 51460,
+              "tag": "P",
+              "cls": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-1",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an",
+              "opacityAtPaint": "1",
+              "clipAtPaint": "inset(0px -40px 100%)",
+              "filterAtPaint": "none"
+            },
+            "allCandidates": [
+              {
+                "t": 512,
+                "size": 51460,
+                "tag": "P",
+                "cls": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-1",
+                "text": "roducq keeps your client intake, briefs, proposals, plans an",
+                "opacityAtPaint": "1",
+                "clipAtPaint": "inset(0px -40px 100%)",
+                "filterAtPaint": "none"
+              }
+            ],
+            "cls": 0,
+            "reducedMotionActive": false,
+            "innerWidth": 1440
+          }
+        ],
+        "medianLcpMs": 528,
+        "maxCls": 0
+      },
+      "D": {
+        "runs": [
+          {
+            "status": 200,
+            "candidates": 1,
+            "lcpMs": 444,
+            "lastCandidate": {
+              "t": 444,
+              "size": 38352,
+              "tag": "P",
+              "cls": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-1",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an",
+              "opacityAtPaint": "1",
+              "clipAtPaint": "none",
+              "filterAtPaint": "none"
+            },
+            "allCandidates": [
+              {
+                "t": 444,
+                "size": 38352,
+                "tag": "P",
+                "cls": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-1",
+                "text": "roducq keeps your client intake, briefs, proposals, plans an",
+                "opacityAtPaint": "1",
+                "clipAtPaint": "none",
+                "filterAtPaint": "none"
+              }
+            ],
+            "cls": 0,
+            "reducedMotionActive": true,
+            "innerWidth": 412
+          },
+          {
+            "status": 200,
+            "candidates": 1,
+            "lcpMs": 392,
+            "lastCandidate": {
+              "t": 392,
+              "size": 38352,
+              "tag": "P",
+              "cls": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-1",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an",
+              "opacityAtPaint": "1",
+              "clipAtPaint": "none",
+              "filterAtPaint": "none"
+            },
+            "allCandidates": [
+              {
+                "t": 392,
+                "size": 38352,
+                "tag": "P",
+                "cls": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-1",
+                "text": "roducq keeps your client intake, briefs, proposals, plans an",
+                "opacityAtPaint": "1",
+                "clipAtPaint": "none",
+                "filterAtPaint": "none"
+              }
+            ],
+            "cls": 0,
+            "reducedMotionActive": true,
+            "innerWidth": 412
+          },
+          {
+            "status": 200,
+            "candidates": 1,
+            "lcpMs": 388,
+            "lastCandidate": {
+              "t": 388,
+              "size": 38352,
+              "tag": "P",
+              "cls": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-1",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an",
+              "opacityAtPaint": "1",
+              "clipAtPaint": "none",
+              "filterAtPaint": "none"
+            },
+            "allCandidates": [
+              {
+                "t": 388,
+                "size": 38352,
+                "tag": "P",
+                "cls": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-1",
+                "text": "roducq keeps your client intake, briefs, proposals, plans an",
+                "opacityAtPaint": "1",
+                "clipAtPaint": "none",
+                "filterAtPaint": "none"
+              }
+            ],
+            "cls": 0,
+            "reducedMotionActive": true,
+            "innerWidth": 412
+          }
+        ],
+        "medianLcpMs": 392,
+        "maxCls": 0
+      }
+    }
+  },
+  "lh": {
+    "/solutions": {
+      "A": {
+        "runs": [
+          {
+            "lcpMs": 497.917,
+            "lcpError": null,
+            "lcpDisplay": "0.5 s",
+            "cls": 0,
+            "perfScore": 77,
+            "lcpElement": {
+              "selector": "section.bg-lm-card > div.lm-shell > div.mx-auto > p.lm-hero-in",
+              "snippet": "<p class=\"lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-…\" style=\"--lm-hero-duration:800ms;--lm-hero-delay:450ms;--lm-hero-rise:16px\">",
+              "nodeLabel": "From a solo engagement to a shared client account, keep the original request co…",
+              "boundingRect": {
+                "top": 463,
+                "bottom": 545,
+                "left": 16,
+                "right": 396,
+                "width": 380,
+                "height": 82
+              }
+            },
+            "fetchTime": "2026-10-19T04:01:54.049Z",
+            "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "throttling": "provided",
+            "cpu": 1,
+            "formFactor": "mobile"
+          },
+          {
+            "lcpMs": 185.986,
+            "lcpError": null,
+            "lcpDisplay": "0.2 s",
+            "cls": 0,
+            "perfScore": 81,
+            "lcpElement": {
+              "selector": "section.bg-lm-card > div.lm-shell > div.mx-auto > p.lm-hero-in",
+              "snippet": "<p class=\"lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-…\" style=\"--lm-hero-duration:800ms;--lm-hero-delay:450ms;--lm-hero-rise:16px\">",
+              "nodeLabel": "From a solo engagement to a shared client account, keep the original request co…",
+              "boundingRect": {
+                "top": 463,
+                "bottom": 545,
+                "left": 16,
+                "right": 396,
+                "width": 380,
+                "height": 82
+              }
+            },
+            "fetchTime": "2026-10-19T04:02:11.230Z",
+            "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "throttling": "provided",
+            "cpu": 1,
+            "formFactor": "mobile"
+          },
+          {
+            "lcpMs": 141.541,
+            "lcpError": null,
+            "lcpDisplay": "0.1 s",
+            "cls": 0,
+            "perfScore": 83,
+            "lcpElement": {
+              "selector": "section.bg-lm-card > div.lm-shell > div.mx-auto > p.lm-hero-in",
+              "snippet": "<p class=\"lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-…\" style=\"--lm-hero-duration:800ms;--lm-hero-delay:450ms;--lm-hero-rise:16px\">",
+              "nodeLabel": "From a solo engagement to a shared client account, keep the original request co…",
+              "boundingRect": {
+                "top": 463,
+                "bottom": 545,
+                "left": 16,
+                "right": 396,
+                "width": 380,
+                "height": 82
+              }
+            },
+            "fetchTime": "2026-10-19T04:02:27.971Z",
+            "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "throttling": "provided",
+            "cpu": 1,
+            "formFactor": "mobile"
+          }
+        ],
+        "medianLcpMs": 185.986,
+        "medianPerf": 81,
+        "maxCls": 0
+      },
+      "B": {
+        "runs": [
+          {
+            "lcpMs": 410.484,
+            "lcpError": null,
+            "lcpDisplay": "0.4 s",
+            "cls": 0,
+            "perfScore": 76,
+            "lcpElement": {
+              "selector": "section.bg-lm-card > div.lm-shell > div.mx-auto > p.lm-hero-in",
+              "snippet": "<p class=\"lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-…\" style=\"--lm-hero-duration:800ms;--lm-hero-delay:450ms;--lm-hero-rise:16px\">",
+              "nodeLabel": "From a solo engagement to a shared client account, keep the original request co…",
+              "boundingRect": {
+                "top": 463,
+                "bottom": 545,
+                "left": 16,
+                "right": 396,
+                "width": 380,
+                "height": 82
+              }
+            },
+            "fetchTime": "2026-10-19T04:02:44.485Z",
+            "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "throttling": "provided",
+            "cpu": 4,
+            "formFactor": "mobile"
+          },
+          {
+            "lcpMs": 147.894,
+            "lcpError": null,
+            "lcpDisplay": "0.1 s",
+            "cls": 0,
+            "perfScore": 83,
+            "lcpElement": {
+              "selector": "section.bg-lm-card > div.lm-shell > div.mx-auto > p.lm-hero-in",
+              "snippet": "<p class=\"lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-…\" style=\"--lm-hero-duration:800ms;--lm-hero-delay:450ms;--lm-hero-rise:16px\">",
+              "nodeLabel": "From a solo engagement to a shared client account, keep the original request co…",
+              "boundingRect": {
+                "top": 463,
+                "bottom": 545,
+                "left": 16,
+                "right": 396,
+                "width": 380,
+                "height": 82
+              }
+            },
+            "fetchTime": "2026-10-19T04:03:01.617Z",
+            "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "throttling": "provided",
+            "cpu": 4,
+            "formFactor": "mobile"
+          },
+          {
+            "lcpMs": 176.792,
+            "lcpError": null,
+            "lcpDisplay": "0.2 s",
+            "cls": 0,
+            "perfScore": 84,
+            "lcpElement": {
+              "selector": "section.bg-lm-card > div.lm-shell > div.mx-auto > p.lm-hero-in",
+              "snippet": "<p class=\"lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-…\" style=\"--lm-hero-duration:800ms;--lm-hero-delay:450ms;--lm-hero-rise:16px\">",
+              "nodeLabel": "From a solo engagement to a shared client account, keep the original request co…",
+              "boundingRect": {
+                "top": 463,
+                "bottom": 545,
+                "left": 16,
+                "right": 396,
+                "width": 380,
+                "height": 82
+              }
+            },
+            "fetchTime": "2026-10-19T04:03:17.840Z",
+            "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "throttling": "provided",
+            "cpu": 4,
+            "formFactor": "mobile"
+          }
+        ],
+        "medianLcpMs": 176.792,
+        "medianPerf": 83,
+        "maxCls": 0
+      },
+      "C": {
+        "runs": [
+          {
+            "lcpMs": 420.649,
+            "lcpError": null,
+            "lcpDisplay": "0.4 s",
+            "cls": 0,
+            "perfScore": 64,
+            "lcpElement": {
+              "selector": "section.bg-lm-card > div.lm-shell > div.mx-auto > p.lm-hero-in",
+              "snippet": "<p class=\"lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-…\" style=\"--lm-hero-duration:800ms;--lm-hero-delay:450ms;--lm-hero-rise:16px\">",
+              "nodeLabel": "From a solo engagement to a shared client account, keep the original request co…",
+              "boundingRect": {
+                "top": 421,
+                "bottom": 484,
+                "left": 393,
+                "right": 1033,
+                "width": 640,
+                "height": 63
+              }
+            },
+            "fetchTime": "2026-10-19T04:03:34.202Z",
+            "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "throttling": "provided",
+            "cpu": 1,
+            "formFactor": "desktop"
+          },
+          {
+            "lcpMs": 218.055,
+            "lcpError": null,
+            "lcpDisplay": "0.2 s",
+            "cls": 0,
+            "perfScore": 70,
+            "lcpElement": {
+              "selector": "section.bg-lm-card > div.lm-shell > div.mx-auto > p.lm-hero-in",
+              "snippet": "<p class=\"lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-…\" style=\"--lm-hero-duration:800ms;--lm-hero-delay:450ms;--lm-hero-rise:16px\">",
+              "nodeLabel": "From a solo engagement to a shared client account, keep the original request co…",
+              "boundingRect": {
+                "top": 421,
+                "bottom": 484,
+                "left": 393,
+                "right": 1033,
+                "width": 640,
+                "height": 63
+              }
+            },
+            "fetchTime": "2026-10-19T04:03:51.801Z",
+            "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "throttling": "provided",
+            "cpu": 1,
+            "formFactor": "desktop"
+          },
+          {
+            "lcpMs": 146.963,
+            "lcpError": null,
+            "lcpDisplay": "0.1 s",
+            "cls": 0,
+            "perfScore": 70,
+            "lcpElement": {
+              "selector": "section.bg-lm-card > div.lm-shell > div.mx-auto > p.lm-hero-in",
+              "snippet": "<p class=\"lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-…\" style=\"--lm-hero-duration:800ms;--lm-hero-delay:450ms;--lm-hero-rise:16px\">",
+              "nodeLabel": "From a solo engagement to a shared client account, keep the original request co…",
+              "boundingRect": {
+                "top": 421,
+                "bottom": 484,
+                "left": 393,
+                "right": 1033,
+                "width": 640,
+                "height": 63
+              }
+            },
+            "fetchTime": "2026-10-19T04:04:08.647Z",
+            "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "throttling": "provided",
+            "cpu": 1,
+            "formFactor": "desktop"
+          }
+        ],
+        "medianLcpMs": 218.055,
+        "medianPerf": 70,
+        "maxCls": 0
+      }
+    },
+    "/": {
+      "A": {
+        "runs": [
+          {
+            "lcpMs": 571.522,
+            "lcpError": null,
+            "lcpDisplay": "0.6 s",
+            "cls": 0,
+            "perfScore": 75,
+            "lcpElement": {
+              "selector": "section.relative > div.lm-shell > div.mx-auto > p.lm-hero-in",
+              "snippet": "<p style=\"--lm-hero-delay:550ms\" class=\"lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:tex…\">",
+              "nodeLabel": "roducq keeps your client intake, briefs, proposals, plans and updates in one wo…",
+              "boundingRect": {
+                "top": 487,
+                "bottom": 593,
+                "left": 16,
+                "right": 396,
+                "width": 380,
+                "height": 106
+              }
+            },
+            "fetchTime": "2026-10-19T04:05:22.971Z",
+            "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "throttling": "provided",
+            "cpu": 1,
+            "formFactor": "mobile"
+          },
+          {
+            "lcpMs": 210.307,
+            "lcpError": null,
+            "lcpDisplay": "0.2 s",
+            "cls": 0,
+            "perfScore": 89,
+            "lcpElement": {
+              "selector": "section.relative > div.lm-shell > div.mx-auto > p.lm-hero-in",
+              "snippet": "<p style=\"--lm-hero-delay:550ms\" class=\"lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:tex…\">",
+              "nodeLabel": "roducq keeps your client intake, briefs, proposals, plans and updates in one wo…",
+              "boundingRect": {
+                "top": 487,
+                "bottom": 593,
+                "left": 16,
+                "right": 396,
+                "width": 380,
+                "height": 106
+              }
+            },
+            "fetchTime": "2026-10-19T04:05:41.314Z",
+            "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "throttling": "provided",
+            "cpu": 1,
+            "formFactor": "mobile"
+          },
+          {
+            "lcpMs": 160.01,
+            "lcpError": null,
+            "lcpDisplay": "0.2 s",
+            "cls": 0.07588317494157197,
+            "perfScore": 84,
+            "lcpElement": {
+              "selector": "section.relative > div.lm-shell > div.mx-auto > p.lm-hero-in",
+              "snippet": "<p style=\"--lm-hero-delay:550ms\" class=\"lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:tex…\">",
+              "nodeLabel": "roducq keeps your client intake, briefs, proposals, plans and updates in one wo…",
+              "boundingRect": {
+                "top": 487,
+                "bottom": 593,
+                "left": 16,
+                "right": 396,
+                "width": 380,
+                "height": 106
+              }
+            },
+            "fetchTime": "2026-10-19T04:05:58.503Z",
+            "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "throttling": "provided",
+            "cpu": 1,
+            "formFactor": "mobile"
+          }
+        ],
+        "medianLcpMs": 210.307,
+        "medianPerf": 84,
+        "maxCls": 0.07588317494157197
+      },
+      "B": {
+        "runs": [
+          {
+            "lcpMs": 510.945,
+            "lcpError": null,
+            "lcpDisplay": "0.5 s",
+            "cls": 0,
+            "perfScore": 76,
+            "lcpElement": {
+              "selector": "section.relative > div.lm-shell > div.mx-auto > p.lm-hero-in",
+              "snippet": "<p style=\"--lm-hero-delay:550ms\" class=\"lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:tex…\">",
+              "nodeLabel": "roducq keeps your client intake, briefs, proposals, plans and updates in one wo…",
+              "boundingRect": {
+                "top": 487,
+                "bottom": 593,
+                "left": 16,
+                "right": 396,
+                "width": 380,
+                "height": 106
+              }
+            },
+            "fetchTime": "2026-10-19T04:06:15.688Z",
+            "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "throttling": "provided",
+            "cpu": 4,
+            "formFactor": "mobile"
+          },
+          {
+            "lcpMs": 214.494,
+            "lcpError": null,
+            "lcpDisplay": "0.2 s",
+            "cls": 0,
+            "perfScore": 87,
+            "lcpElement": {
+              "selector": "section.relative > div.lm-shell > div.mx-auto > p.lm-hero-in",
+              "snippet": "<p style=\"--lm-hero-delay:550ms\" class=\"lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:tex…\">",
+              "nodeLabel": "roducq keeps your client intake, briefs, proposals, plans and updates in one wo…",
+              "boundingRect": {
+                "top": 487,
+                "bottom": 593,
+                "left": 16,
+                "right": 396,
+                "width": 380,
+                "height": 106
+              }
+            },
+            "fetchTime": "2026-10-19T04:06:34.261Z",
+            "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "throttling": "provided",
+            "cpu": 4,
+            "formFactor": "mobile"
+          },
+          {
+            "lcpMs": 168.568,
+            "lcpError": null,
+            "lcpDisplay": "0.2 s",
+            "cls": 0,
+            "perfScore": 89,
+            "lcpElement": {
+              "selector": "section.relative > div.lm-shell > div.mx-auto > p.lm-hero-in",
+              "snippet": "<p style=\"--lm-hero-delay:550ms\" class=\"lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:tex…\">",
+              "nodeLabel": "roducq keeps your client intake, briefs, proposals, plans and updates in one wo…",
+              "boundingRect": {
+                "top": 487,
+                "bottom": 593,
+                "left": 16,
+                "right": 396,
+                "width": 380,
+                "height": 106
+              }
+            },
+            "fetchTime": "2026-10-19T04:06:51.420Z",
+            "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "throttling": "provided",
+            "cpu": 4,
+            "formFactor": "mobile"
+          }
+        ],
+        "medianLcpMs": 214.494,
+        "medianPerf": 87,
+        "maxCls": 0
+      },
+      "C": {
+        "runs": [
+          {
+            "lcpMs": 625.477,
+            "lcpError": null,
+            "lcpDisplay": "0.6 s",
+            "cls": 0,
+            "perfScore": 61,
+            "lcpElement": {
+              "selector": "section.relative > div.lm-shell > div.mx-auto > p.lm-hero-in",
+              "snippet": "<p style=\"--lm-hero-delay:550ms\" class=\"lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:tex…\">",
+              "nodeLabel": "roducq keeps your client intake, briefs, proposals, plans and updates in one wo…",
+              "boundingRect": {
+                "top": 459,
+                "bottom": 548,
+                "left": 393,
+                "right": 1033,
+                "width": 640,
+                "height": 89
+              }
+            },
+            "fetchTime": "2026-10-19T04:07:08.531Z",
+            "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "throttling": "provided",
+            "cpu": 1,
+            "formFactor": "desktop"
+          },
+          {
+            "lcpMs": 301.769,
+            "lcpError": null,
+            "lcpDisplay": "0.3 s",
+            "cls": 0,
+            "perfScore": 69,
+            "lcpElement": {
+              "selector": "section.relative > div.lm-shell > div.mx-auto > p.lm-hero-in",
+              "snippet": "<p style=\"--lm-hero-delay:550ms\" class=\"lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:tex…\">",
+              "nodeLabel": "roducq keeps your client intake, briefs, proposals, plans and updates in one wo…",
+              "boundingRect": {
+                "top": 459,
+                "bottom": 548,
+                "left": 393,
+                "right": 1033,
+                "width": 640,
+                "height": 89
+              }
+            },
+            "fetchTime": "2026-10-19T04:07:45.322Z",
+            "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "throttling": "provided",
+            "cpu": 1,
+            "formFactor": "desktop"
+          },
+          {
+            "lcpMs": 203.771,
+            "lcpError": null,
+            "lcpDisplay": "0.2 s",
+            "cls": 0,
+            "perfScore": 69,
+            "lcpElement": {
+              "selector": "section.relative > div.lm-shell > div.mx-auto > p.lm-hero-in",
+              "snippet": "<p style=\"--lm-hero-delay:550ms\" class=\"lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:tex…\">",
+              "nodeLabel": "roducq keeps your client intake, briefs, proposals, plans and updates in one wo…",
+              "boundingRect": {
+                "top": 459,
+                "bottom": 548,
+                "left": 393,
+                "right": 1033,
+                "width": 640,
+                "height": 89
+              }
+            },
+            "fetchTime": "2026-10-19T04:08:21.679Z",
+            "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "throttling": "provided",
+            "cpu": 1,
+            "formFactor": "desktop"
+          }
+        ],
+        "medianLcpMs": 301.769,
+        "medianPerf": 69,
+        "maxCls": 0
+      }
+    }
+  },
+  "finishedAt": "2026-10-19T04:08:46.149Z"
+}
