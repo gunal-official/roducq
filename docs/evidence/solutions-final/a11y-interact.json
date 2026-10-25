@@ -1,0 +1,205 @@
+{
+ "mobileButtons": [
+  {
+   "name": "Switch to dark theme",
+   "expanded": null,
+   "haspopup": null
+  },
+  {
+   "name": "Open menu",
+   "expanded": "false",
+   "haspopup": "dialog"
+  }
+ ],
+ "menuButtonName": "Open menu",
+ "mobileDialog": {
+  "modal": null,
+  "label": "radix-_R_bibtbH1_",
+  "links": [
+   [
+    "Features",
+    "/#features"
+   ],
+   [
+    "Solutions",
+    "/solutions"
+   ],
+   [
+    "Integrations",
+    "/#integrations"
+   ],
+   [
+    "Pricing",
+    "/pricing"
+   ],
+   [
+    "Create your workspace",
+    "/signup"
+   ],
+   [
+    "Log in",
+    "/login"
+   ]
+  ],
+  "active": ""
+ },
+ "dialogAfterEscape": false,
+ "focusAfterEscape": "Open menu",
+ "themeToggleMobile": {
+  "name": "Switch to dark theme"
+ },
+ "themeClassBefore": "lm-js light",
+ "themeClassAfter": "lm-js dark",
+ "tabOrder": [
+  {
+   "tag": "A",
+   "text": "Skip to content",
+   "href": "#main",
+   "focusVisible": true,
+   "ring": "outline 2px rgb(98, 70, 234)"
+  },
+  {
+   "tag": "A",
+   "text": "See what's included",
+   "href": "/pricing",
+   "focusVisible": true,
+   "ring": "outline 2px rgb(98, 70, 234)"
+  },
+  {
+   "tag": "A",
+   "text": "roducq home",
+   "href": "/",
+   "focusVisible": true,
+   "ring": "outline 2px rgb(98, 70, 234)"
+  },
+  {
+   "tag": "A",
+   "text": "Features",
+   "href": "/#features",
+   "focusVisible": true,
+   "ring": "outline 2px rgb(98, 70, 234)"
+  },
+  {
+   "tag": "A",
+   "text": "Solutions",
+   "href": "/solutions",
+   "focusVisible": true,
+   "ring": "outline 2px rgb(98, 70, 234)"
+  },
+  {
+   "tag": "A",
+   "text": "Integrations",
+   "href": "/#integrations",
+   "focusVisible": true,
+   "ring": "outline 2px rgb(98, 70, 234)"
+  },
+  {
+   "tag": "A",
+   "text": "Pricing",
+   "href": "/pricing",
+   "focusVisible": true,
+   "ring": "outline 2px rgb(98, 70, 234)"
+  },
+  {
+   "tag": "BUTTON",
+   "text": "Switch to dark theme",
+   "href": null,
+   "focusVisible": true,
+   "ring": "outline 2px rgb(98, 70, 234)"
+  },
+  {
+   "tag": "A",
+   "text": "Get started",
+   "href": "/signup",
+   "focusVisible": true,
+   "ring": "outline 2px rgb(98, 70, 234)"
+  },
+  {
+   "tag": "A",
+   "text": "01Solo practices",
+   "href": "#solo-practices",
+   "focusVisible": true,
+   "ring": "outline 2px rgb(98, 70, 234)"
+  },
+  {
+   "tag": "A",
+   "text": "02Design studios",
+   "href": "#design-studios",
+   "focusVisible": true,
+   "ring": "outline 2px rgb(98, 70, 234)"
+  },
+  {
+   "tag": "A",
+   "text": "03Agencies",
+   "href": "#agencies",
+   "focusVisible": true,
+   "ring": "outline 2px rgb(98, 70, 234)"
+  },
+  {
+   "tag": "A",
+   "text": "04Consultancies",
+   "href": "#consultancies",
+   "focusVisible": true,
+   "ring": "outline 2px rgb(98, 70, 234)"
+  },
+  {
+   "tag": "A",
+   "text": "Compare plans",
+   "href": "/pricing",
+   "focusVisible": true,
+   "ring": "outline 2px rgb(98, 70, 234)"
+  }
+ ],
+ "skipLink": "Skip to content",
+ "headings": [
+  "H1:Different client work. One writing workspace.",
+  "H2:One trail per client, end to end",
+  "H3:What each practice sets up first",
+  "H2:Creative direction that survives the handoff",
+  "H3:What each practice sets up first",
+  "H2:Proposals that become working plans",
+  "H3:What each practice sets up first",
+  "H2:Reports that write themselves from the week",
+  "H3:What each practice sets up first",
+  "H2:One workspace, one price, the whole pipeline",
+  "H2:Try roducq with your own client project"
+ ],
+ "svg": {
+  "aria-hidden|norole|unlabelled": 13,
+  "exposed|norole|unlabelled": 6
+ },
+ "anchors": [
+  {
+   "href": "#main",
+   "target": true
+  },
+  {
+   "href": "#solo-practices",
+   "target": true
+  },
+  {
+   "href": "#design-studios",
+   "target": true
+  },
+  {
+   "href": "#agencies",
+   "target": true
+  },
+  {
+   "href": "#consultancies",
+   "target": true
+  },
+  {
+   "href": "#top",
+   "target": true
+  }
+ ],
+ "duplicateControls": [
+  "roducq|/ x2",
+  "Pricing|/pricing x2",
+  "Talk to us(opens your email client)|mailto:hello@roducq.dev x2",
+  "Start free|/signup x2"
+ ],
+ "reachedFooter": true,
+ "darkClass": "lm-js dark"
+}

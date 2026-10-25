@@ -1,0 +1,539 @@
+{
+  "1199": {
+    "innerWidth": 1199,
+    "mqDesktop": false,
+    "stickyPosition": "static",
+    "stickyTop": "auto",
+    "columnDisplay": "none",
+    "columnVisible": false,
+    "columnAlignSelf": "auto",
+    "stageSize": [
+      0,
+      0
+    ],
+    "sectionTopAbs": 554,
+    "sectionHeight": 4106,
+    "stageDisplay": "block",
+    "inlineStagesVisible": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "below1200": {
+      "inlineVisibleCount": 4,
+      "inlineSizes": [
+        [
+          1119,
+          387
+        ],
+        [
+          1119,
+          408
+        ],
+        [
+          1119,
+          371
+        ],
+        [
+          1119,
+          403
+        ]
+      ],
+      "disclosureInVisibleInline": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "articleOverlaps": [],
+      "stickyPresent": false
+    }
+  },
+  "1200": {
+    "innerWidth": 1200,
+    "mqDesktop": true,
+    "stickyPosition": "sticky",
+    "stickyTop": "150px",
+    "columnDisplay": "block",
+    "columnVisible": true,
+    "columnAlignSelf": "auto",
+    "stageSize": [
+      487,
+      710
+    ],
+    "sectionTopAbs": 610,
+    "sectionHeight": 3168,
+    "stageDisplay": "block",
+    "inlineStagesVisible": [
+      false,
+      false,
+      false,
+      false
+    ],
+    "sampleCount": 168,
+    "pinnedSamples": 96,
+    "pinnedRange": [
+      500,
+      2875
+    ],
+    "pinnedTop": 150,
+    "holdViolations": [],
+    "holdViolationCount": 0,
+    "releaseSummary": [
+      "1:1"
+    ],
+    "states": [
+      {
+        "atScrollY": 0,
+        "activeLayer": 0,
+        "counter": "01 / 04",
+        "fillPct": 25
+      },
+      {
+        "atScrollY": 700,
+        "activeLayer": 1,
+        "counter": "02 / 04",
+        "fillPct": 25
+      },
+      {
+        "atScrollY": 1475,
+        "activeLayer": 2,
+        "counter": "03 / 04",
+        "fillPct": 50
+      },
+      {
+        "atScrollY": 2250,
+        "activeLayer": 3,
+        "counter": "04 / 04",
+        "fillPct": 75
+      }
+    ],
+    "timing": {
+      "layerTransitionsSample": {
+        "transition": "opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) 0.08s, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) 0.08s, visibility 0s 0.08s",
+        "opacityTransition": "opacity, transform, visibility"
+      },
+      "layerCount": 4,
+      "fillTransition": "width 0.5s cubic-bezier(0.2, 0.7, 0.2, 1)"
+    },
+    "crossfade": {
+      "frameCount": 62,
+      "firstChangeMs": 1,
+      "settledMs": 737,
+      "minNoStageCoverage": 0.75,
+      "sampledEvery": [
+        {
+          "ms": 0,
+          "op": [
+            1,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "ms": 100,
+          "op": [
+            0.898,
+            0.102,
+            0,
+            0
+          ]
+        },
+        {
+          "ms": 200,
+          "op": [
+            0.427,
+            0.573,
+            0,
+            0
+          ]
+        },
+        {
+          "ms": 300,
+          "op": [
+            0.192,
+            0.808,
+            0,
+            0
+          ]
+        },
+        {
+          "ms": 400,
+          "op": [
+            0.089,
+            0.911,
+            0,
+            0
+          ]
+        },
+        {
+          "ms": 500,
+          "op": [
+            0.039,
+            0.961,
+            0,
+            0
+          ]
+        },
+        {
+          "ms": 600,
+          "op": [
+            0.013,
+            0.987,
+            0,
+            0
+          ]
+        },
+        {
+          "ms": 700,
+          "op": [
+            0.002,
+            0.998,
+            0,
+            0
+          ]
+        },
+        {
+          "ms": 800,
+          "op": [
+            0,
+            1,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    "layoutShiftTotal": 0.0000257,
+    "sectionSpan": {
+      "top": 609.578125,
+      "bottom": 3777.578125
+    }
+  },
+  "1280": {
+    "innerWidth": 1280,
+    "mqDesktop": true,
+    "stickyPosition": "sticky",
+    "stickyTop": "150px",
+    "columnDisplay": "block",
+    "columnVisible": true,
+    "columnAlignSelf": "auto",
+    "stageSize": [
+      567,
+      710
+    ],
+    "sectionTopAbs": 610,
+    "sectionHeight": 3168,
+    "stageDisplay": "block",
+    "inlineStagesVisible": [
+      false,
+      false,
+      false,
+      false
+    ],
+    "sampleCount": 168,
+    "pinnedSamples": 96,
+    "pinnedRange": [
+      500,
+      2875
+    ],
+    "pinnedTop": 150,
+    "holdViolations": [],
+    "holdViolationCount": 0,
+    "releaseSummary": [
+      "1:1"
+    ],
+    "states": [
+      {
+        "atScrollY": 0,
+        "activeLayer": 0,
+        "counter": "01 / 04",
+        "fillPct": 25
+      },
+      {
+        "atScrollY": 700,
+        "activeLayer": 1,
+        "counter": "02 / 04",
+        "fillPct": 25
+      },
+      {
+        "atScrollY": 1475,
+        "activeLayer": 2,
+        "counter": "03 / 04",
+        "fillPct": 50
+      },
+      {
+        "atScrollY": 2250,
+        "activeLayer": 3,
+        "counter": "04 / 04",
+        "fillPct": 75
+      }
+    ],
+    "timing": {
+      "layerTransitionsSample": {
+        "transition": "opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) 0.08s, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) 0.08s, visibility 0s 0.08s",
+        "opacityTransition": "opacity, transform, visibility"
+      },
+      "layerCount": 4,
+      "fillTransition": "width 0.5s cubic-bezier(0.2, 0.7, 0.2, 1)"
+    },
+    "crossfade": {
+      "frameCount": 62,
+      "firstChangeMs": 1,
+      "settledMs": 737,
+      "minNoStageCoverage": 0.75,
+      "sampledEvery": [
+        {
+          "ms": 0,
+          "op": [
+            1,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "ms": 100,
+          "op": [
+            0.898,
+            0.102,
+            0,
+            0
+          ]
+        },
+        {
+          "ms": 200,
+          "op": [
+            0.427,
+            0.573,
+            0,
+            0
+          ]
+        },
+        {
+          "ms": 300,
+          "op": [
+            0.192,
+            0.808,
+            0,
+            0
+          ]
+        },
+        {
+          "ms": 400,
+          "op": [
+            0.089,
+            0.911,
+            0,
+            0
+          ]
+        },
+        {
+          "ms": 500,
+          "op": [
+            0.039,
+            0.961,
+            0,
+            0
+          ]
+        },
+        {
+          "ms": 600,
+          "op": [
+            0.013,
+            0.987,
+            0,
+            0
+          ]
+        },
+        {
+          "ms": 700,
+          "op": [
+            0.002,
+            0.998,
+            0,
+            0
+          ]
+        },
+        {
+          "ms": 800,
+          "op": [
+            0,
+            1,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    "layoutShiftTotal": 0.0000226,
+    "sectionSpan": {
+      "top": 609.578125,
+      "bottom": 3777.578125
+    }
+  },
+  "1440": {
+    "innerWidth": 1440,
+    "mqDesktop": true,
+    "stickyPosition": "sticky",
+    "stickyTop": "150px",
+    "columnDisplay": "block",
+    "columnVisible": true,
+    "columnAlignSelf": "auto",
+    "stageSize": [
+      607,
+      710
+    ],
+    "sectionTopAbs": 610,
+    "sectionHeight": 3168,
+    "stageDisplay": "block",
+    "inlineStagesVisible": [
+      false,
+      false,
+      false,
+      false
+    ],
+    "sampleCount": 168,
+    "pinnedSamples": 96,
+    "pinnedRange": [
+      500,
+      2875
+    ],
+    "pinnedTop": 150,
+    "holdViolations": [],
+    "holdViolationCount": 0,
+    "releaseSummary": [
+      "1:1"
+    ],
+    "states": [
+      {
+        "atScrollY": 0,
+        "activeLayer": 0,
+        "counter": "01 / 04",
+        "fillPct": 25
+      },
+      {
+        "atScrollY": 700,
+        "activeLayer": 1,
+        "counter": "02 / 04",
+        "fillPct": 25
+      },
+      {
+        "atScrollY": 1475,
+        "activeLayer": 2,
+        "counter": "03 / 04",
+        "fillPct": 50
+      },
+      {
+        "atScrollY": 2250,
+        "activeLayer": 3,
+        "counter": "04 / 04",
+        "fillPct": 75
+      }
+    ],
+    "timing": {
+      "layerTransitionsSample": {
+        "transition": "opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) 0.08s, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) 0.08s, visibility 0s 0.08s",
+        "opacityTransition": "opacity, transform, visibility"
+      },
+      "layerCount": 4,
+      "fillTransition": "width 0.5s cubic-bezier(0.2, 0.7, 0.2, 1)"
+    },
+    "crossfade": {
+      "frameCount": 62,
+      "firstChangeMs": 2,
+      "settledMs": 752,
+      "minNoStageCoverage": 0.75,
+      "sampledEvery": [
+        {
+          "ms": 0,
+          "op": [
+            1,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "ms": 100,
+          "op": [
+            0.983,
+            0.017,
+            0,
+            0
+          ]
+        },
+        {
+          "ms": 200,
+          "op": [
+            0.49,
+            0.51,
+            0,
+            0
+          ]
+        },
+        {
+          "ms": 300,
+          "op": [
+            0.218,
+            0.782,
+            0,
+            0
+          ]
+        },
+        {
+          "ms": 400,
+          "op": [
+            0.102,
+            0.898,
+            0,
+            0
+          ]
+        },
+        {
+          "ms": 500,
+          "op": [
+            0.045,
+            0.955,
+            0,
+            0
+          ]
+        },
+        {
+          "ms": 600,
+          "op": [
+            0.016,
+            0.984,
+            0,
+            0
+          ]
+        },
+        {
+          "ms": 700,
+          "op": [
+            0.003,
+            0.997,
+            0,
+            0
+          ]
+        },
+        {
+          "ms": 800,
+          "op": [
+            0,
+            1,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    "layoutShiftTotal": 0.0000189,
+    "sectionSpan": {
+      "top": 609.578125,
+      "bottom": 3777.578125
+    }
+  }
+}

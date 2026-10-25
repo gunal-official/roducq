@@ -1,0 +1,1204 @@
+[
+  {
+    "width": 320,
+    "scheme": "light",
+    "status": 200,
+    "heroWordsOpacity1": true,
+    "errors": [],
+    "innerWidth": 320,
+    "clientWidth": 320,
+    "scrollWidth": 320,
+    "overflowPx": 0,
+    "offenders": [],
+    "h1": "Different client work. One writing workspace.",
+    "h1FontSize": "44px",
+    "h1LineHeight": "44.88px",
+    "h1Lines": 4,
+    "h1Height": 180,
+    "h2Count": 4,
+    "h2s": [
+      "One trail per client, end to end",
+      "Creative direction that survives the handoff",
+      "Proposals that become working plans",
+      "Reports that write themselves from the week"
+    ],
+    "articleCount": 4,
+    "workflowCounts": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "disclosureTextNodes": 8,
+    "disclosureAriaLabels": 5,
+    "forbiddenHits": [],
+    "headerNav": [
+      {
+        "text": "Features",
+        "href": "/#features"
+      },
+      {
+        "text": "Solutions",
+        "href": "/solutions"
+      },
+      {
+        "text": "Integrations",
+        "href": "/#integrations"
+      },
+      {
+        "text": "Pricing",
+        "href": "/pricing"
+      }
+    ],
+    "sectionNavPresent": true,
+    "sectionNavBox": [
+      320,
+      54
+    ],
+    "headerHeight": 64,
+    "planBand": true,
+    "bodyBackground": "rgb(250, 248, 252)",
+    "hasPlanText": true,
+    "prices": [],
+    "footerPresent": true,
+    "backToTop": true,
+    "mainText": "main",
+    "screenshots": [
+      "/home/user/browser-tools/out/layout/solutions-320-light-viewport.png",
+      "/home/user/browser-tools/out/layout/solutions-320-light-full.png"
+    ]
+  },
+  {
+    "width": 375,
+    "scheme": "light",
+    "status": 200,
+    "heroWordsOpacity1": true,
+    "errors": [],
+    "innerWidth": 375,
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "overflowPx": 0,
+    "offenders": [],
+    "h1": "Different client work. One writing workspace.",
+    "h1FontSize": "44px",
+    "h1LineHeight": "44.88px",
+    "h1Lines": 4,
+    "h1Height": 180,
+    "h2Count": 4,
+    "h2s": [
+      "One trail per client, end to end",
+      "Creative direction that survives the handoff",
+      "Proposals that become working plans",
+      "Reports that write themselves from the week"
+    ],
+    "articleCount": 4,
+    "workflowCounts": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "disclosureTextNodes": 8,
+    "disclosureAriaLabels": 5,
+    "forbiddenHits": [],
+    "headerNav": [
+      {
+        "text": "Features",
+        "href": "/#features"
+      },
+      {
+        "text": "Solutions",
+        "href": "/solutions"
+      },
+      {
+        "text": "Integrations",
+        "href": "/#integrations"
+      },
+      {
+        "text": "Pricing",
+        "href": "/pricing"
+      }
+    ],
+    "sectionNavPresent": true,
+    "sectionNavBox": [
+      375,
+      54
+    ],
+    "headerHeight": 64,
+    "planBand": true,
+    "bodyBackground": "rgb(250, 248, 252)",
+    "hasPlanText": true,
+    "prices": [],
+    "footerPresent": true,
+    "backToTop": true,
+    "mainText": "main"
+  },
+  {
+    "width": 390,
+    "scheme": "light",
+    "status": 200,
+    "heroWordsOpacity1": true,
+    "errors": [],
+    "innerWidth": 390,
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "overflowPx": 0,
+    "offenders": [],
+    "h1": "Different client work. One writing workspace.",
+    "h1FontSize": "44px",
+    "h1LineHeight": "44.88px",
+    "h1Lines": 4,
+    "h1Height": 180,
+    "h2Count": 4,
+    "h2s": [
+      "One trail per client, end to end",
+      "Creative direction that survives the handoff",
+      "Proposals that become working plans",
+      "Reports that write themselves from the week"
+    ],
+    "articleCount": 4,
+    "workflowCounts": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "disclosureTextNodes": 8,
+    "disclosureAriaLabels": 5,
+    "forbiddenHits": [],
+    "headerNav": [
+      {
+        "text": "Features",
+        "href": "/#features"
+      },
+      {
+        "text": "Solutions",
+        "href": "/solutions"
+      },
+      {
+        "text": "Integrations",
+        "href": "/#integrations"
+      },
+      {
+        "text": "Pricing",
+        "href": "/pricing"
+      }
+    ],
+    "sectionNavPresent": true,
+    "sectionNavBox": [
+      390,
+      54
+    ],
+    "headerHeight": 64,
+    "planBand": true,
+    "bodyBackground": "rgb(250, 248, 252)",
+    "hasPlanText": true,
+    "prices": [],
+    "footerPresent": true,
+    "backToTop": true,
+    "mainText": "main",
+    "screenshots": [
+      "/home/user/browser-tools/out/layout/solutions-390-light-viewport.png",
+      "/home/user/browser-tools/out/layout/solutions-390-light-full.png"
+    ]
+  },
+  {
+    "width": 768,
+    "scheme": "light",
+    "status": 200,
+    "heroWordsOpacity1": true,
+    "errors": [],
+    "innerWidth": 768,
+    "clientWidth": 768,
+    "scrollWidth": 768,
+    "overflowPx": 0,
+    "offenders": [],
+    "h1": "Different client work. One writing workspace.",
+    "h1FontSize": "44px",
+    "h1LineHeight": "44.88px",
+    "h1Lines": 2,
+    "h1Height": 90,
+    "h2Count": 4,
+    "h2s": [
+      "One trail per client, end to end",
+      "Creative direction that survives the handoff",
+      "Proposals that become working plans",
+      "Reports that write themselves from the week"
+    ],
+    "articleCount": 4,
+    "workflowCounts": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "disclosureTextNodes": 8,
+    "disclosureAriaLabels": 5,
+    "forbiddenHits": [],
+    "headerNav": [
+      {
+        "text": "Features",
+        "href": "/#features"
+      },
+      {
+        "text": "Solutions",
+        "href": "/solutions"
+      },
+      {
+        "text": "Integrations",
+        "href": "/#integrations"
+      },
+      {
+        "text": "Pricing",
+        "href": "/pricing"
+      }
+    ],
+    "sectionNavPresent": true,
+    "sectionNavBox": [
+      768,
+      54
+    ],
+    "headerHeight": 72,
+    "planBand": true,
+    "bodyBackground": "rgb(250, 248, 252)",
+    "hasPlanText": true,
+    "prices": [],
+    "footerPresent": true,
+    "backToTop": true,
+    "mainText": "main"
+  },
+  {
+    "width": 1024,
+    "scheme": "light",
+    "status": 200,
+    "heroWordsOpacity1": true,
+    "errors": [],
+    "innerWidth": 1024,
+    "clientWidth": 1024,
+    "scrollWidth": 1024,
+    "overflowPx": 0,
+    "offenders": [],
+    "h1": "Different client work. One writing workspace.",
+    "h1FontSize": "44px",
+    "h1LineHeight": "44.88px",
+    "h1Lines": 2,
+    "h1Height": 90,
+    "h2Count": 4,
+    "h2s": [
+      "One trail per client, end to end",
+      "Creative direction that survives the handoff",
+      "Proposals that become working plans",
+      "Reports that write themselves from the week"
+    ],
+    "articleCount": 4,
+    "workflowCounts": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "disclosureTextNodes": 8,
+    "disclosureAriaLabels": 5,
+    "forbiddenHits": [],
+    "headerNav": [
+      {
+        "text": "Features",
+        "href": "/#features"
+      },
+      {
+        "text": "Solutions",
+        "href": "/solutions"
+      },
+      {
+        "text": "Integrations",
+        "href": "/#integrations"
+      },
+      {
+        "text": "Pricing",
+        "href": "/pricing"
+      }
+    ],
+    "sectionNavPresent": true,
+    "sectionNavBox": [
+      1024,
+      54
+    ],
+    "headerHeight": 72,
+    "planBand": true,
+    "bodyBackground": "rgb(250, 248, 252)",
+    "hasPlanText": true,
+    "prices": [],
+    "footerPresent": true,
+    "backToTop": true,
+    "mainText": "main",
+    "screenshots": [
+      "/home/user/browser-tools/out/layout/solutions-1024-light-viewport.png",
+      "/home/user/browser-tools/out/layout/solutions-1024-light-full.png"
+    ]
+  },
+  {
+    "width": 1199,
+    "scheme": "light",
+    "status": 200,
+    "heroWordsOpacity1": true,
+    "errors": [],
+    "innerWidth": 1199,
+    "clientWidth": 1199,
+    "scrollWidth": 1199,
+    "overflowPx": 0,
+    "offenders": [],
+    "h1": "Different client work. One writing workspace.",
+    "h1FontSize": "44px",
+    "h1LineHeight": "44.88px",
+    "h1Lines": 2,
+    "h1Height": 90,
+    "h2Count": 4,
+    "h2s": [
+      "One trail per client, end to end",
+      "Creative direction that survives the handoff",
+      "Proposals that become working plans",
+      "Reports that write themselves from the week"
+    ],
+    "articleCount": 4,
+    "workflowCounts": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "disclosureTextNodes": 8,
+    "disclosureAriaLabels": 5,
+    "forbiddenHits": [],
+    "headerNav": [
+      {
+        "text": "Features",
+        "href": "/#features"
+      },
+      {
+        "text": "Solutions",
+        "href": "/solutions"
+      },
+      {
+        "text": "Integrations",
+        "href": "/#integrations"
+      },
+      {
+        "text": "Pricing",
+        "href": "/pricing"
+      }
+    ],
+    "sectionNavPresent": true,
+    "sectionNavBox": [
+      1199,
+      54
+    ],
+    "headerHeight": 72,
+    "planBand": true,
+    "bodyBackground": "rgb(250, 248, 252)",
+    "hasPlanText": true,
+    "prices": [],
+    "footerPresent": true,
+    "backToTop": true,
+    "mainText": "main"
+  },
+  {
+    "width": 1200,
+    "scheme": "light",
+    "status": 200,
+    "heroWordsOpacity1": true,
+    "errors": [],
+    "innerWidth": 1200,
+    "clientWidth": 1200,
+    "scrollWidth": 1200,
+    "overflowPx": 0,
+    "offenders": [],
+    "h1": "Different client work. One writing workspace.",
+    "h1FontSize": "67.2px",
+    "h1LineHeight": "68.544px",
+    "h1Lines": 2,
+    "h1Height": 137,
+    "h2Count": 4,
+    "h2s": [
+      "One trail per client, end to end",
+      "Creative direction that survives the handoff",
+      "Proposals that become working plans",
+      "Reports that write themselves from the week"
+    ],
+    "articleCount": 4,
+    "workflowCounts": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "disclosureTextNodes": 8,
+    "disclosureAriaLabels": 5,
+    "forbiddenHits": [],
+    "headerNav": [
+      {
+        "text": "Features",
+        "href": "/#features"
+      },
+      {
+        "text": "Solutions",
+        "href": "/solutions"
+      },
+      {
+        "text": "Integrations",
+        "href": "/#integrations"
+      },
+      {
+        "text": "Pricing",
+        "href": "/pricing"
+      }
+    ],
+    "sectionNavPresent": true,
+    "sectionNavBox": [
+      1200,
+      54
+    ],
+    "headerHeight": 72,
+    "planBand": true,
+    "bodyBackground": "rgb(250, 248, 252)",
+    "hasPlanText": true,
+    "prices": [],
+    "footerPresent": true,
+    "backToTop": true,
+    "mainText": "main",
+    "screenshots": [
+      "/home/user/browser-tools/out/layout/solutions-1200-light-viewport.png",
+      "/home/user/browser-tools/out/layout/solutions-1200-light-full.png"
+    ]
+  },
+  {
+    "width": 1280,
+    "scheme": "light",
+    "status": 200,
+    "heroWordsOpacity1": true,
+    "errors": [],
+    "innerWidth": 1280,
+    "clientWidth": 1280,
+    "scrollWidth": 1280,
+    "overflowPx": 0,
+    "offenders": [],
+    "h1": "Different client work. One writing workspace.",
+    "h1FontSize": "67.2px",
+    "h1LineHeight": "68.544px",
+    "h1Lines": 2,
+    "h1Height": 137,
+    "h2Count": 4,
+    "h2s": [
+      "One trail per client, end to end",
+      "Creative direction that survives the handoff",
+      "Proposals that become working plans",
+      "Reports that write themselves from the week"
+    ],
+    "articleCount": 4,
+    "workflowCounts": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "disclosureTextNodes": 8,
+    "disclosureAriaLabels": 5,
+    "forbiddenHits": [],
+    "headerNav": [
+      {
+        "text": "Features",
+        "href": "/#features"
+      },
+      {
+        "text": "Solutions",
+        "href": "/solutions"
+      },
+      {
+        "text": "Integrations",
+        "href": "/#integrations"
+      },
+      {
+        "text": "Pricing",
+        "href": "/pricing"
+      }
+    ],
+    "sectionNavPresent": true,
+    "sectionNavBox": [
+      1280,
+      54
+    ],
+    "headerHeight": 72,
+    "planBand": true,
+    "bodyBackground": "rgb(250, 248, 252)",
+    "hasPlanText": true,
+    "prices": [],
+    "footerPresent": true,
+    "backToTop": true,
+    "mainText": "main"
+  },
+  {
+    "width": 1440,
+    "scheme": "light",
+    "status": 200,
+    "heroWordsOpacity1": true,
+    "errors": [],
+    "innerWidth": 1440,
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "overflowPx": 0,
+    "offenders": [],
+    "h1": "Different client work. One writing workspace.",
+    "h1FontSize": "67.2px",
+    "h1LineHeight": "68.544px",
+    "h1Lines": 2,
+    "h1Height": 137,
+    "h2Count": 4,
+    "h2s": [
+      "One trail per client, end to end",
+      "Creative direction that survives the handoff",
+      "Proposals that become working plans",
+      "Reports that write themselves from the week"
+    ],
+    "articleCount": 4,
+    "workflowCounts": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "disclosureTextNodes": 8,
+    "disclosureAriaLabels": 5,
+    "forbiddenHits": [],
+    "headerNav": [
+      {
+        "text": "Features",
+        "href": "/#features"
+      },
+      {
+        "text": "Solutions",
+        "href": "/solutions"
+      },
+      {
+        "text": "Integrations",
+        "href": "/#integrations"
+      },
+      {
+        "text": "Pricing",
+        "href": "/pricing"
+      }
+    ],
+    "sectionNavPresent": true,
+    "sectionNavBox": [
+      1440,
+      54
+    ],
+    "headerHeight": 72,
+    "planBand": true,
+    "bodyBackground": "rgb(250, 248, 252)",
+    "hasPlanText": true,
+    "prices": [],
+    "footerPresent": true,
+    "backToTop": true,
+    "mainText": "main",
+    "screenshots": [
+      "/home/user/browser-tools/out/layout/solutions-1440-light-viewport.png",
+      "/home/user/browser-tools/out/layout/solutions-1440-light-full.png"
+    ]
+  },
+  {
+    "width": 320,
+    "scheme": "dark",
+    "status": 200,
+    "heroWordsOpacity1": true,
+    "errors": [],
+    "innerWidth": 320,
+    "clientWidth": 320,
+    "scrollWidth": 320,
+    "overflowPx": 0,
+    "offenders": [],
+    "h1": "Different client work. One writing workspace.",
+    "h1FontSize": "44px",
+    "h1LineHeight": "44.88px",
+    "h1Lines": 4,
+    "h1Height": 180,
+    "h2Count": 4,
+    "h2s": [
+      "One trail per client, end to end",
+      "Creative direction that survives the handoff",
+      "Proposals that become working plans",
+      "Reports that write themselves from the week"
+    ],
+    "articleCount": 4,
+    "workflowCounts": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "disclosureTextNodes": 8,
+    "disclosureAriaLabels": 5,
+    "forbiddenHits": [],
+    "headerNav": [
+      {
+        "text": "Features",
+        "href": "/#features"
+      },
+      {
+        "text": "Solutions",
+        "href": "/solutions"
+      },
+      {
+        "text": "Integrations",
+        "href": "/#integrations"
+      },
+      {
+        "text": "Pricing",
+        "href": "/pricing"
+      }
+    ],
+    "sectionNavPresent": true,
+    "sectionNavBox": [
+      320,
+      54
+    ],
+    "headerHeight": 64,
+    "planBand": true,
+    "bodyBackground": "rgb(23, 19, 30)",
+    "hasPlanText": true,
+    "prices": [],
+    "footerPresent": true,
+    "backToTop": true,
+    "mainText": "main"
+  },
+  {
+    "width": 375,
+    "scheme": "dark",
+    "status": 200,
+    "heroWordsOpacity1": true,
+    "errors": [],
+    "innerWidth": 375,
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "overflowPx": 0,
+    "offenders": [],
+    "h1": "Different client work. One writing workspace.",
+    "h1FontSize": "44px",
+    "h1LineHeight": "44.88px",
+    "h1Lines": 4,
+    "h1Height": 180,
+    "h2Count": 4,
+    "h2s": [
+      "One trail per client, end to end",
+      "Creative direction that survives the handoff",
+      "Proposals that become working plans",
+      "Reports that write themselves from the week"
+    ],
+    "articleCount": 4,
+    "workflowCounts": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "disclosureTextNodes": 8,
+    "disclosureAriaLabels": 5,
+    "forbiddenHits": [],
+    "headerNav": [
+      {
+        "text": "Features",
+        "href": "/#features"
+      },
+      {
+        "text": "Solutions",
+        "href": "/solutions"
+      },
+      {
+        "text": "Integrations",
+        "href": "/#integrations"
+      },
+      {
+        "text": "Pricing",
+        "href": "/pricing"
+      }
+    ],
+    "sectionNavPresent": true,
+    "sectionNavBox": [
+      375,
+      54
+    ],
+    "headerHeight": 64,
+    "planBand": true,
+    "bodyBackground": "rgb(23, 19, 30)",
+    "hasPlanText": true,
+    "prices": [],
+    "footerPresent": true,
+    "backToTop": true,
+    "mainText": "main"
+  },
+  {
+    "width": 390,
+    "scheme": "dark",
+    "status": 200,
+    "heroWordsOpacity1": true,
+    "errors": [],
+    "innerWidth": 390,
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "overflowPx": 0,
+    "offenders": [],
+    "h1": "Different client work. One writing workspace.",
+    "h1FontSize": "44px",
+    "h1LineHeight": "44.88px",
+    "h1Lines": 4,
+    "h1Height": 180,
+    "h2Count": 4,
+    "h2s": [
+      "One trail per client, end to end",
+      "Creative direction that survives the handoff",
+      "Proposals that become working plans",
+      "Reports that write themselves from the week"
+    ],
+    "articleCount": 4,
+    "workflowCounts": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "disclosureTextNodes": 8,
+    "disclosureAriaLabels": 5,
+    "forbiddenHits": [],
+    "headerNav": [
+      {
+        "text": "Features",
+        "href": "/#features"
+      },
+      {
+        "text": "Solutions",
+        "href": "/solutions"
+      },
+      {
+        "text": "Integrations",
+        "href": "/#integrations"
+      },
+      {
+        "text": "Pricing",
+        "href": "/pricing"
+      }
+    ],
+    "sectionNavPresent": true,
+    "sectionNavBox": [
+      390,
+      54
+    ],
+    "headerHeight": 64,
+    "planBand": true,
+    "bodyBackground": "rgb(23, 19, 30)",
+    "hasPlanText": true,
+    "prices": [],
+    "footerPresent": true,
+    "backToTop": true,
+    "mainText": "main",
+    "screenshots": [
+      "/home/user/browser-tools/out/layout/solutions-390-dark-viewport.png",
+      "/home/user/browser-tools/out/layout/solutions-390-dark-full.png"
+    ]
+  },
+  {
+    "width": 768,
+    "scheme": "dark",
+    "status": 200,
+    "heroWordsOpacity1": true,
+    "errors": [],
+    "innerWidth": 768,
+    "clientWidth": 768,
+    "scrollWidth": 768,
+    "overflowPx": 0,
+    "offenders": [],
+    "h1": "Different client work. One writing workspace.",
+    "h1FontSize": "44px",
+    "h1LineHeight": "44.88px",
+    "h1Lines": 2,
+    "h1Height": 90,
+    "h2Count": 4,
+    "h2s": [
+      "One trail per client, end to end",
+      "Creative direction that survives the handoff",
+      "Proposals that become working plans",
+      "Reports that write themselves from the week"
+    ],
+    "articleCount": 4,
+    "workflowCounts": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "disclosureTextNodes": 8,
+    "disclosureAriaLabels": 5,
+    "forbiddenHits": [],
+    "headerNav": [
+      {
+        "text": "Features",
+        "href": "/#features"
+      },
+      {
+        "text": "Solutions",
+        "href": "/solutions"
+      },
+      {
+        "text": "Integrations",
+        "href": "/#integrations"
+      },
+      {
+        "text": "Pricing",
+        "href": "/pricing"
+      }
+    ],
+    "sectionNavPresent": true,
+    "sectionNavBox": [
+      768,
+      54
+    ],
+    "headerHeight": 72,
+    "planBand": true,
+    "bodyBackground": "rgb(23, 19, 30)",
+    "hasPlanText": true,
+    "prices": [],
+    "footerPresent": true,
+    "backToTop": true,
+    "mainText": "main",
+    "screenshots": [
+      "/home/user/browser-tools/out/layout/solutions-768-dark-viewport.png",
+      "/home/user/browser-tools/out/layout/solutions-768-dark-full.png"
+    ]
+  },
+  {
+    "width": 1024,
+    "scheme": "dark",
+    "status": 200,
+    "heroWordsOpacity1": true,
+    "errors": [],
+    "innerWidth": 1024,
+    "clientWidth": 1024,
+    "scrollWidth": 1024,
+    "overflowPx": 0,
+    "offenders": [],
+    "h1": "Different client work. One writing workspace.",
+    "h1FontSize": "44px",
+    "h1LineHeight": "44.88px",
+    "h1Lines": 2,
+    "h1Height": 90,
+    "h2Count": 4,
+    "h2s": [
+      "One trail per client, end to end",
+      "Creative direction that survives the handoff",
+      "Proposals that become working plans",
+      "Reports that write themselves from the week"
+    ],
+    "articleCount": 4,
+    "workflowCounts": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "disclosureTextNodes": 8,
+    "disclosureAriaLabels": 5,
+    "forbiddenHits": [],
+    "headerNav": [
+      {
+        "text": "Features",
+        "href": "/#features"
+      },
+      {
+        "text": "Solutions",
+        "href": "/solutions"
+      },
+      {
+        "text": "Integrations",
+        "href": "/#integrations"
+      },
+      {
+        "text": "Pricing",
+        "href": "/pricing"
+      }
+    ],
+    "sectionNavPresent": true,
+    "sectionNavBox": [
+      1024,
+      54
+    ],
+    "headerHeight": 72,
+    "planBand": true,
+    "bodyBackground": "rgb(23, 19, 30)",
+    "hasPlanText": true,
+    "prices": [],
+    "footerPresent": true,
+    "backToTop": true,
+    "mainText": "main"
+  },
+  {
+    "width": 1199,
+    "scheme": "dark",
+    "status": 200,
+    "heroWordsOpacity1": true,
+    "errors": [],
+    "innerWidth": 1199,
+    "clientWidth": 1199,
+    "scrollWidth": 1199,
+    "overflowPx": 0,
+    "offenders": [],
+    "h1": "Different client work. One writing workspace.",
+    "h1FontSize": "44px",
+    "h1LineHeight": "44.88px",
+    "h1Lines": 2,
+    "h1Height": 90,
+    "h2Count": 4,
+    "h2s": [
+      "One trail per client, end to end",
+      "Creative direction that survives the handoff",
+      "Proposals that become working plans",
+      "Reports that write themselves from the week"
+    ],
+    "articleCount": 4,
+    "workflowCounts": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "disclosureTextNodes": 8,
+    "disclosureAriaLabels": 5,
+    "forbiddenHits": [],
+    "headerNav": [
+      {
+        "text": "Features",
+        "href": "/#features"
+      },
+      {
+        "text": "Solutions",
+        "href": "/solutions"
+      },
+      {
+        "text": "Integrations",
+        "href": "/#integrations"
+      },
+      {
+        "text": "Pricing",
+        "href": "/pricing"
+      }
+    ],
+    "sectionNavPresent": true,
+    "sectionNavBox": [
+      1199,
+      54
+    ],
+    "headerHeight": 72,
+    "planBand": true,
+    "bodyBackground": "rgb(23, 19, 30)",
+    "hasPlanText": true,
+    "prices": [],
+    "footerPresent": true,
+    "backToTop": true,
+    "mainText": "main"
+  },
+  {
+    "width": 1200,
+    "scheme": "dark",
+    "status": 200,
+    "heroWordsOpacity1": true,
+    "errors": [],
+    "innerWidth": 1200,
+    "clientWidth": 1200,
+    "scrollWidth": 1200,
+    "overflowPx": 0,
+    "offenders": [],
+    "h1": "Different client work. One writing workspace.",
+    "h1FontSize": "67.2px",
+    "h1LineHeight": "68.544px",
+    "h1Lines": 2,
+    "h1Height": 137,
+    "h2Count": 4,
+    "h2s": [
+      "One trail per client, end to end",
+      "Creative direction that survives the handoff",
+      "Proposals that become working plans",
+      "Reports that write themselves from the week"
+    ],
+    "articleCount": 4,
+    "workflowCounts": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "disclosureTextNodes": 8,
+    "disclosureAriaLabels": 5,
+    "forbiddenHits": [],
+    "headerNav": [
+      {
+        "text": "Features",
+        "href": "/#features"
+      },
+      {
+        "text": "Solutions",
+        "href": "/solutions"
+      },
+      {
+        "text": "Integrations",
+        "href": "/#integrations"
+      },
+      {
+        "text": "Pricing",
+        "href": "/pricing"
+      }
+    ],
+    "sectionNavPresent": true,
+    "sectionNavBox": [
+      1200,
+      54
+    ],
+    "headerHeight": 72,
+    "planBand": true,
+    "bodyBackground": "rgb(23, 19, 30)",
+    "hasPlanText": true,
+    "prices": [],
+    "footerPresent": true,
+    "backToTop": true,
+    "mainText": "main"
+  },
+  {
+    "width": 1280,
+    "scheme": "dark",
+    "status": 200,
+    "heroWordsOpacity1": true,
+    "errors": [],
+    "innerWidth": 1280,
+    "clientWidth": 1280,
+    "scrollWidth": 1280,
+    "overflowPx": 0,
+    "offenders": [],
+    "h1": "Different client work. One writing workspace.",
+    "h1FontSize": "67.2px",
+    "h1LineHeight": "68.544px",
+    "h1Lines": 2,
+    "h1Height": 137,
+    "h2Count": 4,
+    "h2s": [
+      "One trail per client, end to end",
+      "Creative direction that survives the handoff",
+      "Proposals that become working plans",
+      "Reports that write themselves from the week"
+    ],
+    "articleCount": 4,
+    "workflowCounts": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "disclosureTextNodes": 8,
+    "disclosureAriaLabels": 5,
+    "forbiddenHits": [],
+    "headerNav": [
+      {
+        "text": "Features",
+        "href": "/#features"
+      },
+      {
+        "text": "Solutions",
+        "href": "/solutions"
+      },
+      {
+        "text": "Integrations",
+        "href": "/#integrations"
+      },
+      {
+        "text": "Pricing",
+        "href": "/pricing"
+      }
+    ],
+    "sectionNavPresent": true,
+    "sectionNavBox": [
+      1280,
+      54
+    ],
+    "headerHeight": 72,
+    "planBand": true,
+    "bodyBackground": "rgb(23, 19, 30)",
+    "hasPlanText": true,
+    "prices": [],
+    "footerPresent": true,
+    "backToTop": true,
+    "mainText": "main"
+  },
+  {
+    "width": 1440,
+    "scheme": "dark",
+    "status": 200,
+    "heroWordsOpacity1": true,
+    "errors": [],
+    "innerWidth": 1440,
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "overflowPx": 0,
+    "offenders": [],
+    "h1": "Different client work. One writing workspace.",
+    "h1FontSize": "67.2px",
+    "h1LineHeight": "68.544px",
+    "h1Lines": 2,
+    "h1Height": 137,
+    "h2Count": 4,
+    "h2s": [
+      "One trail per client, end to end",
+      "Creative direction that survives the handoff",
+      "Proposals that become working plans",
+      "Reports that write themselves from the week"
+    ],
+    "articleCount": 4,
+    "workflowCounts": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "disclosureTextNodes": 8,
+    "disclosureAriaLabels": 5,
+    "forbiddenHits": [],
+    "headerNav": [
+      {
+        "text": "Features",
+        "href": "/#features"
+      },
+      {
+        "text": "Solutions",
+        "href": "/solutions"
+      },
+      {
+        "text": "Integrations",
+        "href": "/#integrations"
+      },
+      {
+        "text": "Pricing",
+        "href": "/pricing"
+      }
+    ],
+    "sectionNavPresent": true,
+    "sectionNavBox": [
+      1440,
+      54
+    ],
+    "headerHeight": 72,
+    "planBand": true,
+    "bodyBackground": "rgb(23, 19, 30)",
+    "hasPlanText": true,
+    "prices": [],
+    "footerPresent": true,
+    "backToTop": true,
+    "mainText": "main",
+    "screenshots": [
+      "/home/user/browser-tools/out/layout/solutions-1440-dark-viewport.png",
+      "/home/user/browser-tools/out/layout/solutions-1440-dark-full.png"
+    ]
+  }
+]
