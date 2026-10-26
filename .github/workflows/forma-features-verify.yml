@@ -19,13 +19,6 @@ name: forma-features-verify
 
 on:
   workflow_dispatch:
-  # TEMPORARY — this trigger exists only so the suite can run from
-  # this development branch before the workflow reaches the default
-  # branch (GitHub will not dispatch a workflow that is not on the
-  # default branch). It is removed before the pull request.
-  push:
-    branches:
-      - arena/e0c5626f-roducq
 
 permissions:
   # The report is published to the evidence branch, like the

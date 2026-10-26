@@ -354,3 +354,83 @@ and Notion are read-only inbound); no ⌘K command menu; no CSV/JSON export;
 no task comments; no automations beyond the recorded event types and signed
 webhooks; no Forma pricing, names or data; no invented customer, testimonial
 or metric.
+
+## 11. Implementation record (2026-10-26)
+
+Built on branch `arena/e0c5626f-roducq` from the approved §7 mapping. No
+section of the reference copy, naming or mock data was reproduced; every
+string lives in `app/(marketing)/features/content.ts`.
+
+### 11.1 Files
+
+- Route: `app/(marketing)/features/{page.tsx,content.ts}` (static export,
+  canonical `/features`).
+- Components under `components/marketing/landing/features/`:
+  `FeaturesHero`, `FeaturesSectionNav`, `FeaturesShowcase`,
+  `FeatureMockPanel`, `FeatureMocks`, `DetailsBand`, `FeaturesClosingCta`.
+  The closing checklist reuses the approved `ChecklistRows variant="card"`
+  from the `/solutions` mocks; the stage, crossfade, word-dissolve and
+  reduced-motion machinery is the shared `landing.css` layer.
+- `SiteHeader` gains one `features` pathname boolean feeding a `showcase`
+  visual gate. The locked line
+  `const items = solutions ? SOLUTIONS_NAV : NAV;` is byte-identical, and
+  `/`, `/about`, `/pricing`, `/vs` keep their original header (covered by
+  the existing `vs-comparisons` and nav tests).
+- `tailwind.config.ts`: maps the already-declared `--lm-cta-faint`,
+  `--lm-cta-track`, `--lm-cta-fill` custom properties to utilities. The
+  properties shipped with `/solutions` but had no config mapping, so the
+  stage rail and counter were silently unstyled there; the mapping repairs
+  both pages.
+- Tests: `tests/components/features-page.test.ts` (30 tests); route
+  inventory 34 → 35 in `forma-phase-f.test.ts`; the responsive harness
+  gains the `marketing-features` fixture.
+- Verification: `scripts/verify-features-lcp.mjs` (four LCP scenarios ×
+  three runs on both `/features` and `/`, seven-width × two-theme overflow,
+  axe-core, reduced-motion and no-JS) with the dispatch-only workflow
+  `.github/workflows/forma-features-verify.yml` publishing its report to
+  `arena/forma-features-capture`.
+
+### 11.2 Deliberate, documented departures
+
+- **No ⌘K / CSV / JSON cells.** The details band keeps the measured
+  four-cell structure but substitutes global search, tracked brief
+  questions, the theme switch and PDF-only export — all real surfaces.
+- **"Blocked" state ink.** The token set maps two state inks (success
+  green, accent purple); the update mock's blocked row uses strong neutral
+  ink rather than an unmapped vermillion.
+- **Automation chip ink.** Non-accent rule chips sit on the deeper
+  `canvas-alt` wash, where `muted-slate` measures 4.34:1; they use the
+  documented `muted-readable` step (4.71:1 on every wash). This fixed the
+  only eight axe color-contrast nodes the first browser run found.
+- **Touch floor.** The measured 37.7px chips and 52px buttons keep their
+  visual geometry while meeting the shell's 44px `min-h-11` floor, exactly
+  as `/solutions` does.
+- Fictional names stay inside the content module (the mock `ariaLabel`
+  fields); components render only through the data, satisfying the
+  fabricated-data guard.
+
+### 11.3 Measured verification (Chromium 153.0.8010.12, GitHub runner)
+
+Report: `features-verification.json` on the `arena/forma-features-capture`
+branch. Every verdict passed on both routes after the contrast fix:
+
+| Check | `/features` | `/` (regression control) |
+| --- | --- | --- |
+| LCP median, mobile unthrottled (budget 2500ms) | 76ms | 128ms |
+| LCP median, mobile 4× CPU | 208ms | 208ms |
+| LCP median, desktop 1440 | 76ms | 140ms |
+| LCP median, reduced motion | 84ms | 116ms |
+| CLS, all 12 runs | 0 | 0 |
+| Hero elements computed opacity | 1 throughout | 1 throughout |
+| Horizontal overflow, 320/375/390/768/1024/1200/1440 × light/dark | 0px | 0px |
+| axe-core (wcag2a/aa/2.1/2.2 + best-practice) | 0 violations, 40 passes | 0 violations, 41 passes |
+| Reduced-motion emulation | active, entrance animation resolves to none | same |
+| No-JS render | 6 articles, six miniatures, 59 disclosure texts, no `lm-js` flag, hero opacity 1 | n/a |
+| Sticky stage scroll follow | 0.3-threshold swap trail across all six articles | n/a |
+| Console/page errors | none | none |
+
+Offline gates also green: `npm test` (1174 tests), `npx tsc --noEmit`,
+`npm run lint`, `npm run build` (`/features` prerenders static), plus the
+standard `verify` CI workflow. The temporary `push` triggers on both
+features workflows were removed before the pull request; both are
+`workflow_dispatch`-only.
