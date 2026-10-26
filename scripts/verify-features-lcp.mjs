@@ -49,15 +49,17 @@ const TARGETS = [
   {
     path: "/features",
     // Strings the raw server HTML must contain (the no-JS promise).
+    // Headlines are split into per-word mask spans, so only contiguous
+    // copy (lead text, point leads, band titles, captions) is asserted.
     serverHtml: [
-      "Capture, structure, and send",
       "client work in one workspace.",
-      "Hand-offs that carry themselves forward",
-      "One workspace, clear roles, clients on a link",
+      "roducq brings client intake",
+      "Signed webhooks on real transitions",
       "Smaller things that save time",
       "Global search",
       "PDF export anytime",
-      "Try roducq with",
+      "Browse all integrations",
+      "The whole pipeline is free, with no trial clock to watch.",
       "First project",
       "Illustrative example · fictional client",
     ],
