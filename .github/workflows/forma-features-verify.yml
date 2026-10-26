@@ -75,13 +75,15 @@ jobs:
         run: |
           git config user.name "Arena Agent"
           git config user.email "agent@arena.ai"
-          git fetch --force origin arena/forma-features-capture:refs/remotes/origin/arena/forma-features-capture
-          git checkout --detach arena/forma-features-capture
+          git fetch --force origin arena/forma-features-capture
+          # A real local branch (not a detached remote-tracking checkout)
+          # so the push refspec resolves on the runner.
+          git checkout -B arena/forma-features-capture origin/arena/forma-features-capture
           mkdir -p docs/screenshots/forma-features-reference
           cp features-verification.json docs/screenshots/forma-features-reference/features-verification.json
           git add -f docs/screenshots/forma-features-reference/features-verification.json
           git commit -q -m "verify: /features Phase D report $(date -u +%Y-%m-%dT%H:%M:%SZ)" || echo "no changes to commit"
-          git push --force origin arena/forma-features-capture
+          git push --force origin HEAD:arena/forma-features-capture
 
       - name: Upload the verification report
         if: always()
