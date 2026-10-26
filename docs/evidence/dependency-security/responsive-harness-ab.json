@@ -1,0 +1,136 @@
+{
+  "method": "scripts/verify-responsive.mjs (repo harness), RUN_INTERACT=1 RUN_DIALOG=1, Chromium 153.0.8010.0 via CHROMIUM_EXECUTABLE_PATH; each tree built and served by the harness against its in-process Supabase stub.",
+  "widths": [
+    320,
+    375,
+    414,
+    600,
+    768,
+    1024,
+    1440
+  ],
+  "pages": 57,
+  "baseline": {
+    "resultRows": 415,
+    "pageRenders": 399,
+    "pageRendersPass": 392,
+    "pageRendersFindings": 7,
+    "dialogAndInteractionSteps": 16,
+    "dialogAndInteractionStepsPass": 16
+  },
+  "updated": {
+    "resultRows": 415,
+    "pageRenders": 399,
+    "pageRendersPass": 392,
+    "pageRendersFindings": 7,
+    "dialogAndInteractionSteps": 16,
+    "dialogAndInteractionStepsPass": 16
+  },
+  "stepTypes": [
+    "dialog-template",
+    "interact-checkout-return-canceled",
+    "interact-checkout-return-success",
+    "interact-drawer-navigate",
+    "interact-drawer-open",
+    "interact-select-open",
+    "interact-team-confirm",
+    "interact-timer-running",
+    "interact-timer-stop-form"
+  ],
+  "perRowDifferences": [],
+  "findingsIdentical": true,
+  "findings": [
+    {
+      "page": "marketing-home",
+      "width": 320,
+      "cutoffs": [
+        {
+          "tag": "SECTION",
+          "cls": "relative isolate overflow-hidden bg-lm-card",
+          "text": "NewClient-work writing studioThe wor",
+          "sw": 563,
+          "cw": 320
+        }
+      ]
+    },
+    {
+      "page": "marketing-home",
+      "width": 375,
+      "cutoffs": [
+        {
+          "tag": "SECTION",
+          "cls": "relative isolate overflow-hidden bg-lm-card",
+          "text": "NewClient-work writing studioThe wor",
+          "sw": 556,
+          "cw": 375
+        }
+      ]
+    },
+    {
+      "page": "marketing-home",
+      "width": 414,
+      "cutoffs": [
+        {
+          "tag": "SECTION",
+          "cls": "relative isolate overflow-hidden bg-lm-card",
+          "text": "NewClient-work writing studioThe wor",
+          "sw": 550,
+          "cw": 414
+        }
+      ]
+    },
+    {
+      "page": "marketing-home",
+      "width": 600,
+      "cutoffs": [
+        {
+          "tag": "SECTION",
+          "cls": "relative isolate overflow-hidden bg-lm-card",
+          "text": "NewClient-work writing studioThe wor",
+          "sw": 672,
+          "cw": 600
+        }
+      ]
+    },
+    {
+      "page": "marketing-home",
+      "width": 768,
+      "cutoffs": [
+        {
+          "tag": "SECTION",
+          "cls": "relative isolate overflow-hidden bg-lm-card",
+          "text": "NewClient-work writing studioThe wor",
+          "sw": 865,
+          "cw": 768
+        }
+      ]
+    },
+    {
+      "page": "marketing-home",
+      "width": 1024,
+      "cutoffs": [
+        {
+          "tag": "SECTION",
+          "cls": "relative isolate overflow-hidden bg-lm-card",
+          "text": "NewClient-work writing studioThe wor",
+          "sw": 1153,
+          "cw": 1024
+        }
+      ]
+    },
+    {
+      "page": "marketing-home",
+      "width": 1440,
+      "cutoffs": [
+        {
+          "tag": "SECTION",
+          "cls": "relative isolate overflow-hidden bg-lm-card",
+          "text": "NewClient-work writing studioThe wor",
+          "sw": 1619,
+          "cw": 1440
+        }
+      ]
+    }
+  ],
+  "note": "The 7 findings are pre-existing (identical on 85f94da): the marketing-home hero clips decorative content inside overflow-hidden, which the harness counts as cut-off text; page-level horizontal overflow is 0."
+}

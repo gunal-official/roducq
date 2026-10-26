@@ -1,0 +1,280 @@
+{
+  "capturedAt": "2026-10-26",
+  "question": "Is the installed postcss-selector-parser@6.1.5 genuinely patched for GHSA-rj75-hqrm-r3gf?",
+  "officialAdvisory": {
+    "ghsa_id": "GHSA-rj75-hqrm-r3gf",
+    "cve_id": "CVE-2026-104844",
+    "html_url": "https://github.com/advisories/GHSA-rj75-hqrm-r3gf",
+    "summary": "PostCSS: Quadratic complexity in flat selector parsing allows CPU exhaustion",
+    "severity": "medium",
+    "published_at": "2026-10-05T22:53:54Z",
+    "updated_at": "2026-10-05T22:53:57Z",
+    "github_reviewed_at": "2026-10-05T22:53:54Z",
+    "cvss_v3": {
+      "vector_string": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+      "score": 5.9
+    },
+    "cwes": [
+      "CWE-400",
+      "CWE-407"
+    ],
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "postcss-selector-parser"
+        },
+        "vulnerable_version_range": "< 7.1.6",
+        "first_patched_version": "7.1.6",
+        "vulnerable_functions": []
+      }
+    ],
+    "fixCommitReference": "postcss/postcss-selector-parser@62b191792df0a0bc56062e5a875bc74aae2a51cd",
+    "osvRecord": "github/advisory-database advisories/github-reviewed/2026/10/GHSA-rj75-hqrm-r3gf: one range {introduced 0, fixed 7.1.6}; single commit e65fe52e94 (2026-10-05) — never updated",
+    "reachabilityStatement": "Only consumers that parse untrusted, attacker-supplied selectors synchronously in a request path are exposed ... Ordinary build-time use on trusted sources is not affected."
+  },
+  "upstream": {
+    "release_6.1.5": {
+      "published": "2026-10-19T15:00:37Z",
+      "publisher": "MoOx",
+      "notes": "fix ... (CVE-2026-104844 / GHSA-rj75-hqrm-r3gf) backported from 7.1.6 (#346). 6.1.5 is the patched version for the 6.x line. Published under the legacy-v6 dist-tag."
+    },
+    "backportPR": {
+      "number": 346,
+      "author": "bradyshutt",
+      "mergedBy": "MoOx",
+      "merged": "2026-10-19",
+      "base": "6.x.x",
+      "commit": "70b0779c843462197380d25daa02d1528bf7eae5",
+      "files": [
+        "src/parser.js (+13/-6)",
+        "src/__tests__/complexity.mjs (+94)"
+      ]
+    },
+    "officialFix_7.1.6": {
+      "commit": "62b191792df0a0bc56062e5a875bc74aae2a51cd",
+      "author": "MoOx",
+      "date": "2026-09-03",
+      "files": [
+        "src/parser.js (+12/-6)",
+        "src/__tests__/complexity.mjs (+98)"
+      ]
+    },
+    "codeComparison": "Style-normalised (quotes, whitespace, comments) added/removed code lines of src/parser.js: 12 in each commit, IDENTICAL. Covers all three passes named by the advisory: uniqs() (Set), the Sass-interpolation filter (Set), and the indices.forEach membership tests (classIndexes / idIndexes Sets)."
+  },
+  "installedArtifact": {
+    "npmLs": "single copy: tailwindcss@3.4.19 -> postcss-selector-parser@6.1.5; postcss-nested@6.2.0 -> deduped",
+    "lockfile": {
+      "resolved": "https://registry.npmjs.org/postcss-selector-parser/-/postcss-selector-parser-6.1.5.tgz",
+      "integrity": "sha512-TEHFzb5KRDKaOgJ4TYE+0jyJtFbjLvkdVOu0fZ2b6MTWzoqZd4Le+61aEppWkvTlYePgOX4ATL1wsAIPMLTw6Q=="
+    },
+    "registry": {
+      "gitHead": "d90b6e38a0c79d07b02bf0d602bc242fe94be6b9 (the 6.1.5 release commit; parent is backport 70b0779c)",
+      "publisher": "moox",
+      "dist-tags": {
+        "latest": "7.1.7",
+        "legacy-v6": "6.1.5"
+      },
+      "provenanceAttestation": "none published"
+    },
+    "registrySignatures": "2 ECDSA (ecdsa-sha2-nistp256, keyid SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U from registry.npmjs.org/-/npm/v1/keys) over 'postcss-selector-parser@6.1.5:<integrity>': both VALID",
+    "lockfileIntegrityEqualsSignedIntegrity": true,
+    "freshTarballSha512EqualsIntegrity": true,
+    "installedDirectoryEqualsRegistryTarball": "diff -r: no differences (37 files)",
+    "compiledFixPresent": "node_modules/postcss-selector-parser/dist/parser.js lines 89 (uniqs Set), 818-820 (interpolationIndexes), 827-828 (classIndexes/idIndexes), 840/847 (.has); 6.1.4 dist still has list.indexOf(item), ~interpolations.indexOf, ~hasClass.indexOf, ~hasId.indexOf"
+  },
+  "proofOfConcept": {
+    "method": "Upstream's own regression test (src/__tests__/complexity.mjs @ 6.1.5): ratio = fastest-of-3 time(atom.repeat(60000)) / time(`${atom} `.repeat(60000)); healthy < 2 (linear ≈ < 1); quadratic builds measured 4–8 upstream. Atoms: '.a' (classes), '#a' (ids), '#{a}' (Sass interpolations). Plus upstream's correctness assertions.",
+    "results": [
+      {
+        "label": "6.1.4 (vulnerable)",
+        "version": "6.1.4",
+        "N": 60000,
+        "atoms": {
+          ".a": {
+            "hostileMs": 3636.2,
+            "benignMs": 196.7,
+            "ratio": 18.48,
+            "pass": false
+          },
+          "#a": {
+            "hostileMs": 3612,
+            "benignMs": 203.5,
+            "ratio": 17.75,
+            "pass": false
+          },
+          "#{a}": {
+            "hostileMs": 1817.1,
+            "benignMs": 198.2,
+            "ratio": 9.17,
+            "pass": false
+          }
+        },
+        "correctness": {
+          "oneNodePerClass20000": true,
+          "dedupLeadingClass": true,
+          "dedupLeadingId": true,
+          "singleLeadingClass": true
+        }
+      },
+      {
+        "label": "6.1.5 (INSTALLED in roducq)",
+        "version": "6.1.5",
+        "N": 60000,
+        "atoms": {
+          ".a": {
+            "hostileMs": 72.5,
+            "benignMs": 203,
+            "ratio": 0.36,
+            "pass": true
+          },
+          "#a": {
+            "hostileMs": 46.5,
+            "benignMs": 189.9,
+            "ratio": 0.24,
+            "pass": true
+          },
+          "#{a}": {
+            "hostileMs": 12.5,
+            "benignMs": 212.7,
+            "ratio": 0.06,
+            "pass": true
+          }
+        },
+        "correctness": {
+          "oneNodePerClass20000": true,
+          "dedupLeadingClass": true,
+          "dedupLeadingId": true,
+          "singleLeadingClass": true
+        }
+      },
+      {
+        "label": "7.1.5 (vulnerable 7.x)",
+        "version": "7.1.5",
+        "N": 60000,
+        "atoms": {
+          ".a": {
+            "hostileMs": 3612.9,
+            "benignMs": 234.9,
+            "ratio": 15.38,
+            "pass": false
+          },
+          "#a": {
+            "hostileMs": 3616.4,
+            "benignMs": 201.4,
+            "ratio": 17.96,
+            "pass": false
+          },
+          "#{a}": {
+            "hostileMs": 1794.2,
+            "benignMs": 220.3,
+            "ratio": 8.14,
+            "pass": false
+          }
+        },
+        "correctness": {
+          "oneNodePerClass20000": true,
+          "dedupLeadingClass": true,
+          "dedupLeadingId": true,
+          "singleLeadingClass": true
+        }
+      },
+      {
+        "label": "7.1.6 (official fix)",
+        "version": "7.1.6",
+        "N": 60000,
+        "atoms": {
+          ".a": {
+            "hostileMs": 66.3,
+            "benignMs": 264.3,
+            "ratio": 0.25,
+            "pass": true
+          },
+          "#a": {
+            "hostileMs": 48,
+            "benignMs": 242,
+            "ratio": 0.2,
+            "pass": true
+          },
+          "#{a}": {
+            "hostileMs": 13.9,
+            "benignMs": 232.8,
+            "ratio": 0.06,
+            "pass": true
+          }
+        },
+        "correctness": {
+          "oneNodePerClass20000": true,
+          "dedupLeadingClass": true,
+          "dedupLeadingId": true,
+          "singleLeadingClass": true
+        }
+      }
+    ],
+    "headline400KB": {
+      "payload": "'.a'.repeat(200000) — 400,000 bytes, 200,000 class nodes (the advisory's '400 KB ... ~34 s' case)",
+      "results": [
+        {
+          "label": "6.1.5 (installed)",
+          "bytes": 400000,
+          "nodes": 200000,
+          "ms": 256
+        },
+        {
+          "label": "7.1.6 (official fix)",
+          "bytes": 400000,
+          "nodes": 200000,
+          "ms": 245
+        },
+        {
+          "label": "6.1.4 (vulnerable)",
+          "bytes": 400000,
+          "nodes": 200000,
+          "ms": 40694
+        }
+      ]
+    },
+    "behaviourDifferential": {
+      "source": "Tailwind CLI output of this repo (tailwind.config.ts + app/globals.css)",
+      "cssBytes": 165373,
+      "distinctSelectors": 1539,
+      "identicalAstAndOutput": 1539,
+      "differing": 0
+    }
+  },
+  "advisoryCorrection": {
+    "pending": "github/advisory-database#10456 (open, 2026-10-20) by the package maintainer @MoOx: ranges -> {introduced 0, fixed 6.1.5} and {introduced 7.0.0, fixed 7.1.6}",
+    "allPRs": [
+      {
+        "author": "mikael-mattsson",
+        "closed": "",
+        "created": "2026-10-20",
+        "number": 10457,
+        "state": "open"
+      },
+      {
+        "author": "MoOx",
+        "closed": "",
+        "created": "2026-10-20",
+        "number": 10456,
+        "state": "open"
+      },
+      {
+        "author": "whataboutpereira",
+        "closed": "2026-10-26",
+        "created": "2026-10-25",
+        "number": 10676,
+        "state": "closed"
+      },
+      {
+        "author": "markscott-ms",
+        "closed": "2026-10-24",
+        "created": "2026-10-21",
+        "number": 10481,
+        "state": "closed"
+      }
+    ],
+    "note": "#10457 (open), #10481 and #10676 are duplicates of #10456. #10481 and #10676 were closed by their own authors (closed_by = author) after the maintainer asked them to close; neither was rejected by GitHub."
+  },
+  "conclusion": "Genuinely patched in code and behaviour (identical fix to 7.1.6, verified artifact, PoC fixed). The official advisory still lists 6.1.5 as affected because its range predates the 6.1.5 release; npm audit will keep reporting it until GitHub applies #10456. Roducq's use is build-time on trusted sources, which the advisory itself states is not affected."
+}

@@ -1,0 +1,130 @@
+{
+  "capturedAt": "2026-10-26T10:34:34.229Z",
+  "method": "Ad-hoc script (not committed): the app's lib/invite-email.ts sendInviteEmail() against a local smtp-server from the same tree (STARTTLS disabled for the loopback test double; fake credentials).",
+  "baseline": {
+    "versions": {
+      "nodemailer": "10.0.10",
+      "smtpServer": "3.19.13"
+    },
+    "summary": {
+      "checks": 10,
+      "passed": 10
+    },
+    "checks": [
+      {
+        "name": "sendInviteEmail → { ok: true }",
+        "ok": true,
+        "detail": "{\"ok\":true}"
+      },
+      {
+        "name": "SMTP server received exactly one message",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "AUTH as SMTP_USER",
+        "ok": true,
+        "detail": "audit-smtp-user"
+      },
+      {
+        "name": "envelope MAIL FROM = SMTP_FROM address",
+        "ok": true,
+        "detail": "invites@roducq.test"
+      },
+      {
+        "name": "envelope RCPT TO = invitee only",
+        "ok": true,
+        "detail": "[\"new.member@studio.test\"]"
+      },
+      {
+        "name": "From/To/Subject headers",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "multipart/alternative with text/plain + text/html parts",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "invite URL in the text part and as the HTML link href",
+        "ok": true,
+        "detail": "occurrences=2"
+      },
+      {
+        "name": "server rejects AUTH → { ok: false, reason: 'send-failed' }, nothing delivered",
+        "ok": true,
+        "detail": "send-failed: Invalid login: 535 Invalid username or password"
+      },
+      {
+        "name": "SMTP not configured → { ok: false, reason: 'not-configured' }",
+        "ok": true,
+        "detail": ""
+      }
+    ]
+  },
+  "updated": {
+    "versions": {
+      "nodemailer": "10.1.4",
+      "smtpServer": "3.19.24"
+    },
+    "summary": {
+      "checks": 10,
+      "passed": 10
+    },
+    "checks": [
+      {
+        "name": "sendInviteEmail → { ok: true }",
+        "ok": true,
+        "detail": "{\"ok\":true}"
+      },
+      {
+        "name": "SMTP server received exactly one message",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "AUTH as SMTP_USER",
+        "ok": true,
+        "detail": "audit-smtp-user"
+      },
+      {
+        "name": "envelope MAIL FROM = SMTP_FROM address",
+        "ok": true,
+        "detail": "invites@roducq.test"
+      },
+      {
+        "name": "envelope RCPT TO = invitee only",
+        "ok": true,
+        "detail": "[\"new.member@studio.test\"]"
+      },
+      {
+        "name": "From/To/Subject headers",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "multipart/alternative with text/plain + text/html parts",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "invite URL in the text part and as the HTML link href",
+        "ok": true,
+        "detail": "occurrences=2"
+      },
+      {
+        "name": "server rejects AUTH → { ok: false, reason: 'send-failed' }, nothing delivered",
+        "ok": true,
+        "detail": "send-failed: Invalid login: 535 Invalid username or password"
+      },
+      {
+        "name": "SMTP not configured → { ok: false, reason: 'not-configured' }",
+        "ok": true,
+        "detail": ""
+      }
+    ]
+  },
+  "normalisedMessageIdentical": true,
+  "normalisedMessage": "From: Roducq Invites <invites@roducq.test>\r\nTo: new.member@studio.test\r\nSubject: You're invited to Audit Studio on Roducq\r\nMessage-ID: <x>\r\nDate: <x>\r\nMIME-Version: 1.0\r\nContent-Type: multipart/alternative;\r\n boundary=\"--BOUNDARYPart_1\"\r\n\r\n----BOUNDARYPart_1\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Transfer-Encoding: quoted-printable\r\n\r\nMaya Login invited you to join Audit Studio on Roducq as a member.\r\n\r\nOpen the invite (it expires November 9, 2026):\r\nhttps://roducq.=\r\ntest/invite/00000000-0000-0000-0000-000000000172\r\n\r\nAlready have an account? =\r\nSign in first, then open the link.\r\n\r\n=E2=80=94 Roducq\r\n----BOUNDARYPart_1\r\nContent-Type: text/html; charset=utf-8\r\nContent-Transfer-Encoding: quoted-printable\r\n\r\n<div style=3D\"font-family:'Manrope', ui-sans-serif, system-ui, =\r\n-apple-system, 'Segoe UI', sans-serif;max-width:480px;margin:0 =\r\nauto;padding:24px 16px;color:#261d2d;\">\r\n      <p style=3D\"font-size:15px;li=\r\nne-height:1.6;\">Maya Login invited you to join\r\n        <strong>Audit =\r\nStudio</strong> on Roducq as a member.</p>\r\n      <p style=3D\"padding:16px =\r\n0;\">\r\n        <a href=3D\"https://roducq.test/invite/00000000-0000-0000-0000-=\r\n000000000172\"\r\n           style=3D\"display:inline-block;background:#7c3aed;c=\r\nolor:#ffffff;text-decoration:none;font-size:14px;font-weight:600;padding:10=\r\npx 18px;border-radius:8px;\">\r\n          Open the invite\r\n        </a>\r\n      </p>\r\n      <p style=3D\"font-size:13px;line-height:1.=\r\n6;color:#665c70;\">\r\n        The link expires November 9, 2026. Already have =\r\nan account? Sign in\r\n        first, then open the link.\r\n      </p>\r\n      <p style=3D\"font-size:12px;color:#74677f;margin-top:24px;\">Roducq</p>\r\n    </div>\r\n----BOUNDARYPart_1--\r\n"
+}

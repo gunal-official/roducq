@@ -1,0 +1,491 @@
+{
+  "capturedAt": "2026-10-26",
+  "question": "Does next@16.4.1 (the documented rollback target) fix every relevant critical and high vulnerability?",
+  "advisoryDatabase": {
+    "source": "gh api /advisories?ecosystem=npm&affects=next (all pages): 77 advisories, 0 withdrawn; ranges evaluated with npm's semver",
+    "affecting": {
+      "16.3.6": 10,
+      "16.4.1": 0,
+      "16.4.2": 0,
+      "16.4.3": 0
+    },
+    "apiVersionFilterCrossCheck": {
+      "affects=next@16.3.6": 10,
+      "affects=next@16.4.1": 0,
+      "affects=next@16.4.3": 0
+    },
+    "criticalAndHighOn16x": [
+      {
+        "id": "GHSA-673q-mjm6-r5xr",
+        "severity": "critical",
+        "range": ">= 16.0.0, <= 16.4.0",
+        "patched": "16.4.1"
+      },
+      {
+        "id": "GHSA-2464-fhr4-w9xw",
+        "severity": "critical",
+        "range": ">= 16.0.0, <= 16.4.0",
+        "patched": "16.4.1"
+      },
+      {
+        "id": "GHSA-p3m5-59mp-jv5r",
+        "severity": "high",
+        "range": ">= 16.0.0, <= 16.4.0",
+        "patched": "16.4.1"
+      },
+      {
+        "id": "GHSA-cjq9-62q9-8jv4",
+        "severity": "high",
+        "range": ">= 16.0.0, < 16.3.8",
+        "patched": "16.3.8"
+      },
+      {
+        "id": "GHSA-vcvr-r3jv-pc5j",
+        "severity": "critical",
+        "range": ">= 16.2.0, < 16.3.6",
+        "patched": "16.3.6"
+      },
+      {
+        "id": "GHSA-2xp9-vwfh-vxw4",
+        "severity": "critical",
+        "range": ">= 16.0.0, < 16.3.3",
+        "patched": "16.3.3"
+      },
+      {
+        "id": "GHSA-p293-qw3h-jr36",
+        "severity": "critical",
+        "range": ">= 16.0.0, < 16.3.3",
+        "patched": "16.3.3"
+      },
+      {
+        "id": "GHSA-89xv-2m56-2m9x",
+        "severity": "high",
+        "range": ">= 16.0.0, < 16.2.11",
+        "patched": "16.2.11"
+      },
+      {
+        "id": "GHSA-p9j2-gv94-2wf4",
+        "severity": "high",
+        "range": ">= 16.0.0, < 16.2.11",
+        "patched": "16.2.11"
+      },
+      {
+        "id": "GHSA-6gpp-xcg3-4w24",
+        "severity": "high",
+        "range": ">= 16.0.0, < 16.2.11",
+        "patched": "16.2.11"
+      },
+      {
+        "id": "GHSA-m99w-x7hq-7vfj",
+        "severity": "high",
+        "range": ">= 16.0.0, < 16.2.11",
+        "patched": "16.2.11"
+      },
+      {
+        "id": "GHSA-26hh-7cqf-hhc6",
+        "severity": "high",
+        "range": ">= 16.0.0, < 16.2.6",
+        "patched": "16.2.6"
+      },
+      {
+        "id": "GHSA-mg66-mrh9-m8jx",
+        "severity": "high",
+        "range": ">= 16.0.0, < 16.2.5",
+        "patched": "16.2.5"
+      },
+      {
+        "id": "GHSA-c4j6-fc7j-m34r",
+        "severity": "high",
+        "range": ">= 16.0.0, < 16.2.5",
+        "patched": "16.2.5"
+      },
+      {
+        "id": "GHSA-267c-6grr-h53f",
+        "severity": "high",
+        "range": ">= 16.0.0, < 16.2.5",
+        "patched": "16.2.5"
+      },
+      {
+        "id": "GHSA-492v-c6pp-mqqv",
+        "severity": "high",
+        "range": ">= 16.0.0, < 16.2.5",
+        "patched": "16.2.5"
+      },
+      {
+        "id": "GHSA-36qx-fr4f-26g5",
+        "severity": "high",
+        "range": ">= 16.0.0, < 16.2.5",
+        "patched": "16.2.5"
+      },
+      {
+        "id": "GHSA-8h8q-6873-q5fj",
+        "severity": "high",
+        "range": ">= 16.0.0, < 16.2.5",
+        "patched": "16.2.5"
+      },
+      {
+        "id": "GHSA-q4gf-8mx6-v5v3",
+        "severity": "high",
+        "range": ">= 16.0.0-beta.0, < 16.2.3",
+        "patched": "16.2.3"
+      },
+      {
+        "id": "GHSA-h25m-26qc-wcjf",
+        "severity": "high",
+        "range": ">= 16.0.0-beta.0, < 16.0.11",
+        "patched": "16.0.11"
+      },
+      {
+        "id": "GHSA-h25m-26qc-wcjf",
+        "severity": "high",
+        "range": ">= 16.1.0-canary.0, < 16.1.5",
+        "patched": "16.1.5"
+      },
+      {
+        "id": "GHSA-5j59-xgg2-r9c4",
+        "severity": "high",
+        "range": ">= 16.0.9, < 16.0.10",
+        "patched": "16.0.10"
+      },
+      {
+        "id": "GHSA-5j59-xgg2-r9c4",
+        "severity": "high",
+        "range": ">= 16.1.0-canary.17, < 16.1.0-canary.19",
+        "patched": "16.1.0-canary.19"
+      },
+      {
+        "id": "GHSA-mwv6-3258-q52c",
+        "severity": "high",
+        "range": ">= 16.0.0-beta.0, < 16.0.9",
+        "patched": "16.0.9"
+      },
+      {
+        "id": "GHSA-mwv6-3258-q52c",
+        "severity": "high",
+        "range": ">= 16.1.0-canary.0, < 16.1.0-canary.17",
+        "patched": "16.1.0-canary.17"
+      },
+      {
+        "id": "GHSA-9qr9-h5gf-34mp",
+        "severity": "critical",
+        "range": ">= 16.0.0-canary.0, < 16.0.7",
+        "patched": "16.0.7"
+      }
+    ]
+  },
+  "transitive": {
+    "next@16.4.1 optionalDependencies.sharp": "^0.35.5 (same as 16.4.3; 16.3.6 allowed ^0.35.4)",
+    "sharp@0.35.5 advisories": 0,
+    "sharp@0.35.4 advisories": "GHSA-wq5f-xc86-pv6w (high, < 0.35.5)",
+    "otherDependencies": "identical to 16.4.3: postcss 8.5.23, styled-jsx 5.1.6, @swc/helpers 0.5.23; engines >=20.9.0; React peer ^18.2.0 || ^19.0.0",
+    "vendoredReact": {
+      "16.4.1": "19.3.0-canary-278794d7-20261002",
+      "16.4.3": "19.3.0-canary-278794d7-20261002"
+    }
+  },
+  "releaseNotes": {
+    "v16.4.1": "security release: GHSA-673q-mjm6-r5xr (critical), GHSA-2464-fhr4-w9xw (critical), GHSA-p3m5-59mp-jv5r (high)",
+    "v16.4.2": "Turbopack/dev fixes and docs; no advisories",
+    "v16.4.3": "bug-fix backports; no advisories; includes #100423 (backport of #100384) — proxy.ts no longer loads the app-page runtime: a cold-start optimisation (minimal proxy 53.8 -> 39.1 ms, JS 1,466 -> 748 KB), not a correctness fix"
+  },
+  "rehearsal": {
+    "procedure": "pristine `git archive 90053fe` in /tmp; npm ci; npm install next@16.4.1 (the repository was not modified)",
+    "packageJson": "next ^16.4.3 -> ^16.4.1 (only change)",
+    "lockfileDelta": {
+      "changed": [
+        "@next/env: 16.4.3 -> 16.4.1",
+        "@next/swc-darwin-arm64: 16.4.3 -> 16.4.1",
+        "@next/swc-darwin-x64: 16.4.3 -> 16.4.1",
+        "@next/swc-linux-arm64-gnu: 16.4.3 -> 16.4.1",
+        "@next/swc-linux-arm64-musl: 16.4.3 -> 16.4.1",
+        "@next/swc-linux-x64-gnu: 16.4.3 -> 16.4.1",
+        "@next/swc-linux-x64-musl: 16.4.3 -> 16.4.1",
+        "@next/swc-win32-arm64-msvc: 16.4.3 -> 16.4.1",
+        "@next/swc-win32-x64-msvc: 16.4.3 -> 16.4.1",
+        "next: 16.4.3 -> 16.4.1"
+      ],
+      "added": 0,
+      "removed": 0
+    },
+    "keptFixes": {
+      "sharp": "0.35.5",
+      "nodemailer": "10.1.4",
+      "zod": "4.6.7",
+      "source-map-js": "1.2.2",
+      "fast-uri": "3.1.9",
+      "postcss-selector-parser": "6.1.5"
+    },
+    "npmAudit": {
+      "rollback_next_16.4.1": {
+        "counts": {
+          "critical": 0,
+          "high": 0,
+          "moderate": 4,
+          "low": 0,
+          "total": 4
+        },
+        "advisories": [
+          "GHSA-rj75-hqrm-r3gf"
+        ]
+      },
+      "pr_head_90053fe_rechecked_today": {
+        "counts": {
+          "critical": 0,
+          "high": 0,
+          "moderate": 4,
+          "low": 0,
+          "total": 4
+        },
+        "advisories": [
+          "GHSA-rj75-hqrm-r3gf"
+        ]
+      }
+    },
+    "gates": {
+      "npm test": "# tests 1243 # pass 1243 # fail 0 # skipped 0",
+      "tsc": "clean",
+      "lint": "clean",
+      "build": "Next.js 16.4.1 (Turbopack) 45/45; route table identical to 16.4.3 (62 routes + proxy)"
+    },
+    "runtimeProxyProbe": {
+      "16.4.1": {
+        "checks": 37,
+        "passed": 37
+      },
+      "16.4.3": {
+        "checks": 37,
+        "passed": 37
+      },
+      "identicalOutcomesAndDetails": true,
+      "unexpectedServerErrors": {
+        "16.4.1": 0,
+        "16.4.3": 0
+      },
+      "checks": [
+        {
+          "group": "anonymous",
+          "name": "/intake → 307 /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "anonymous",
+          "name": "/briefs → 307 /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "anonymous",
+          "name": "/proposals → 307 /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "anonymous",
+          "name": "/plans → 307 /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "anonymous",
+          "name": "/updates → 307 /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "anonymous",
+          "name": "/invoices → 307 /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "anonymous",
+          "name": "/time → 307 /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "anonymous",
+          "name": "/contracts → 307 /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "anonymous",
+          "name": "/reports → 307 /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "anonymous",
+          "name": "/settings → 307 /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "anonymous",
+          "name": "/onboarding → 307 /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "anonymous",
+          "name": "/dashboard → 307 /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "anonymous",
+          "name": "/settings/billing → 307 /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "anonymous",
+          "name": "/ → 200",
+          "ok": true,
+          "detail": "200"
+        },
+        {
+          "group": "anonymous",
+          "name": "/features → 200",
+          "ok": true,
+          "detail": "200"
+        },
+        {
+          "group": "anonymous",
+          "name": "/solutions → 200",
+          "ok": true,
+          "detail": "200"
+        },
+        {
+          "group": "anonymous",
+          "name": "/integrations → 200",
+          "ok": true,
+          "detail": "200"
+        },
+        {
+          "group": "anonymous",
+          "name": "/pricing → 200",
+          "ok": true,
+          "detail": "200"
+        },
+        {
+          "group": "anonymous",
+          "name": "/changelog → 200",
+          "ok": true,
+          "detail": "200"
+        },
+        {
+          "group": "anonymous",
+          "name": "/about → 200",
+          "ok": true,
+          "detail": "200"
+        },
+        {
+          "group": "anonymous",
+          "name": "/vs → 200",
+          "ok": true,
+          "detail": "200"
+        },
+        {
+          "group": "anonymous",
+          "name": "/vs/notion → 200",
+          "ok": true,
+          "detail": "200"
+        },
+        {
+          "group": "anonymous",
+          "name": "/login → 200",
+          "ok": true,
+          "detail": "200"
+        },
+        {
+          "group": "anonymous",
+          "name": "/signup → 200",
+          "ok": true,
+          "detail": "200"
+        },
+        {
+          "group": "anonymous",
+          "name": "/forgot-password → 200",
+          "ok": true,
+          "detail": "200"
+        },
+        {
+          "group": "anonymous",
+          "name": "/reset-password → 200",
+          "ok": true,
+          "detail": "200"
+        },
+        {
+          "group": "signed-in",
+          "name": "/login → 307 /intake (proxy keeps sessions out of auth pages)",
+          "ok": true,
+          "detail": "307 /intake"
+        },
+        {
+          "group": "signed-in",
+          "name": "/signup → 307 /intake (proxy keeps sessions out of auth pages)",
+          "ok": true,
+          "detail": "307 /intake"
+        },
+        {
+          "group": "signed-in",
+          "name": "/forgot-password → 307 /intake (proxy keeps sessions out of auth pages)",
+          "ok": true,
+          "detail": "307 /intake"
+        },
+        {
+          "group": "signed-in",
+          "name": "/ → rewritten into the app (not the marketing page): app layout redirects to /onboarding for a user without a workspace",
+          "ok": true,
+          "detail": "signed-in 307 /onboarding | anonymous 200"
+        },
+        {
+          "group": "signed-in",
+          "name": "/intake passes the proxy (no /login bounce)",
+          "ok": true,
+          "detail": "307 /onboarding"
+        },
+        {
+          "group": "signed-in",
+          "name": "proxy verified the session against Supabase (GET /auth/v1/user)",
+          "ok": true,
+          "detail": "8 getUser calls"
+        },
+        {
+          "group": "rate-limit",
+          "name": "/share/* requests 1–30 pass the limiter, request 31 → 429",
+          "ok": true,
+          "detail": "first30=200 31st=429"
+        },
+        {
+          "group": "headers",
+          "name": "CSP / HSTS / X-Frame-Options / nosniff present",
+          "ok": true,
+          "detail": "default-src 'self'; script-src 'self' 'unsafe-inline'; style"
+        },
+        {
+          "group": "image-optimizer",
+          "name": "/_next/image?url=/icon.svg → 400",
+          "ok": true,
+          "detail": "400"
+        },
+        {
+          "group": "image-optimizer",
+          "name": "/_next/image?url=/apple-icon → 200",
+          "ok": true,
+          "detail": "200"
+        },
+        {
+          "group": "image-optimizer",
+          "name": "/_next/image?url=https://example.com/x.png → 400",
+          "ok": true,
+          "detail": "400"
+        }
+      ]
+    }
+  },
+  "conclusion": "Yes. next@16.4.1 is outside every affected range (0 of 77 advisories), carries all three October fixes, forces sharp >= 0.35.5, vendors the same React runtime as 16.4.3, and a rehearsed next-only rollback keeps 0 critical / 0 high with all gates and runtime proxy checks identical to 16.4.3. Unsafe rollbacks: anything below 16.4.1 on the 16.x line, `git revert 973fe84`, restoring 85f94da's package files, or Vercel Instant Rollback to a deployment built from 85f94da (next 16.3.6)."
+}

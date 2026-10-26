@@ -1,0 +1,624 @@
+{
+  "capturedAt": "2026-10-26T11:22:25.577Z",
+  "method": "Ad-hoc Playwright script (not committed): `next start` of each tree's verify:responsive stub build against an in-process stateful GoTrue/PostgREST stub; real Chromium; same script for both builds. Live-Mode gate: same build started with obviously fake live-mode Razorpay env (values not recorded). Passwords are never logged (the stub records only their length).",
+  "identicalOutcomes": {
+    "auth": true,
+    "liveModeGate": true
+  },
+  "auth": {
+    "baseline": {
+      "next": "16.3.6",
+      "chromium": "153.0.8010.0",
+      "summary": {
+        "checks": 40,
+        "passed": 40,
+        "failed": 0
+      },
+      "results": [
+        {
+          "group": "redirects",
+          "name": "anonymous /intake → /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /briefs → /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /proposals → /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /plans → /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /updates → /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /invoices → /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /time → /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /contracts → /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /reports → /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /settings → /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /onboarding → /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /dashboard → /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /settings/billing → /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /invoices/00000000-0000-0000-0000-000000000115 → /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous / stays public",
+          "ok": true,
+          "detail": "200"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /login stays public",
+          "ok": true,
+          "detail": "200"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /signup stays public",
+          "ok": true,
+          "detail": "200"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /forgot-password stays public",
+          "ok": true,
+          "detail": "200"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /reset-password stays public",
+          "ok": true,
+          "detail": "200"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /pricing stays public",
+          "ok": true,
+          "detail": "200"
+        },
+        {
+          "group": "sign-in",
+          "name": "wrong password → error shown, stays on /login, no session",
+          "ok": true,
+          "detail": "browser:POST /auth/v1/token — password grant → 400 invalid_credentials"
+        },
+        {
+          "group": "sign-in",
+          "name": "correct password → /intake inside the app shell, session cookie set",
+          "ok": true,
+          "detail": "url=/intake shell=true cookies=sb-127-auth-token | browser:POST /auth/v1/token — password grant → 200 session | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200"
+        },
+        {
+          "group": "session",
+          "name": "reload keeps the session (still /intake, shell rendered)",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "group": "session",
+          "name": "signed-in visit to /login → bounced to /intake",
+          "ok": true,
+          "detail": "/intake"
+        },
+        {
+          "group": "session",
+          "name": "signed-in \"/\" → Pipeline dashboard rewrite (URL stays /)",
+          "ok": true,
+          "detail": "url=/ shell=true"
+        },
+        {
+          "group": "recovery-guard",
+          "name": "normal session on /reset-password → 'Reset link problem', no form; /auth/recovery/claim → 403",
+          "ok": true,
+          "detail": "claim=403 {\"recovery\":false} | stub PUT /auth/v1/user calls=0"
+        },
+        {
+          "group": "logout",
+          "name": "Log out → /login, session cookie cleared, /intake redirects to /login again",
+          "ok": true,
+          "detail": "cookies after=none final=/login status=200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | browser:POST /auth/v1/logout — logout scope=local → 204"
+        },
+        {
+          "group": "signup",
+          "name": "signup → server action createWorkspaceAction → create_workspace RPC as the new user → /intake",
+          "ok": true,
+          "detail": "server-action POST /signup status=307 | url=/intake shell=true | browser:POST /auth/v1/signup — signup → 200 session (full_name=\"Sam Signup\") | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:POST /rest/v1/rpc/create_workspace — rpc create_workspace(\"Audit Signup Studio\") as usr-12ad3a62 → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200"
+        },
+        {
+          "group": "server-action-authz",
+          "name": "replayed createWorkspaceAction without a session → 'session has expired' error, no RPC",
+          "ok": true,
+          "detail": "status=200 rpcCalls=0 bodyHasExpiredMsg=true"
+        },
+        {
+          "group": "recovery",
+          "name": "forgot-password → 'Check your email', PKCE recover call with the callback redirect",
+          "ok": true,
+          "detail": "browser:POST /auth/v1/recover — recover → 200 (pkce=true, method=s256, redirect_to=http://localhost:41011/auth/callback?next=%2Freset-password&recovery=1)"
+        },
+        {
+          "group": "recovery",
+          "name": "email link → /auth/callback exchanges code (S256 verified) → recovery grant cookie → 'Set a new password' form",
+          "ok": true,
+          "detail": "url=/reset-password grantCookie=true | server:POST /auth/v1/token — pkce exchange → 200 recovery session (verifier matches S256 challenge) | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200"
+        },
+        {
+          "group": "recovery",
+          "name": "reload of /reset-password keeps the recovery session + grant → form ready again",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "group": "recovery",
+          "name": "submit → server action updatePasswordAction → PUT /auth/v1/user → 'Password updated', grant consumed, signed out",
+          "ok": true,
+          "detail": "server-action POST /reset-password status=200 grantAfter=false logoutCall=true sessionCookiesAfter=none | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:PUT /auth/v1/user — update user → 200 (password set(len 20)) | browser:POST /auth/v1/logout — logout scope=global → 204"
+        },
+        {
+          "group": "recovery",
+          "name": "sign-in with the NEW password through /login → /intake inside the app shell",
+          "ok": true,
+          "detail": "browser:POST /auth/v1/token — password grant → 200 session"
+        },
+        {
+          "group": "recovery",
+          "name": "replaying the used link → exchange rejected → 'Reset link problem' (expired)",
+          "ok": true,
+          "detail": "url=/reset-password?error=expired | "
+        },
+        {
+          "group": "recovery-guard",
+          "name": "anonymous /reset-password → 'Reset link problem', no form",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "group": "payments",
+          "name": "anonymous POST /api/razorpay/verify → 401 Not authenticated",
+          "ok": true,
+          "detail": "401 {\"error\":\"Not authenticated.\"}"
+        },
+        {
+          "group": "payments",
+          "name": "unsigned POST /api/razorpay/webhook → refused (no entitlement change)",
+          "ok": true,
+          "detail": "500 {\"error\":\"Webhook handling failed.\"}"
+        },
+        {
+          "group": "payments",
+          "name": "/pricing Annual tab → 'annual unavailable' banner, no annual checkout, no Razorpay request",
+          "ok": true,
+          "detail": "annualTab=true banner=true checkoutLinks=0 razorpayRequests=0"
+        },
+        {
+          "group": "payments",
+          "name": "owner /settings with billing unconfigured → no 'Upgrade to Pro' checkout, no Test Mode badge",
+          "ok": true,
+          "detail": "signedIn=true settingsRendered=true upgradeButtons=0 testModeBadge=0"
+        }
+      ],
+      "browserConsoleErrors": [
+        {
+          "flow": "login",
+          "kind": "console",
+          "text": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        },
+        {
+          "flow": "login",
+          "kind": "console",
+          "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+        },
+        {
+          "flow": "login",
+          "kind": "console",
+          "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+        }
+      ],
+      "serverLogErrors": []
+    },
+    "updated": {
+      "next": "16.4.3",
+      "chromium": "153.0.8010.0",
+      "summary": {
+        "checks": 40,
+        "passed": 40,
+        "failed": 0
+      },
+      "results": [
+        {
+          "group": "redirects",
+          "name": "anonymous /intake → /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /briefs → /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /proposals → /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /plans → /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /updates → /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /invoices → /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /time → /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /contracts → /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /reports → /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /settings → /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /onboarding → /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /dashboard → /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /settings/billing → /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /invoices/00000000-0000-0000-0000-000000000115 → /login",
+          "ok": true,
+          "detail": "307 /login"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous / stays public",
+          "ok": true,
+          "detail": "200"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /login stays public",
+          "ok": true,
+          "detail": "200"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /signup stays public",
+          "ok": true,
+          "detail": "200"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /forgot-password stays public",
+          "ok": true,
+          "detail": "200"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /reset-password stays public",
+          "ok": true,
+          "detail": "200"
+        },
+        {
+          "group": "redirects",
+          "name": "anonymous /pricing stays public",
+          "ok": true,
+          "detail": "200"
+        },
+        {
+          "group": "sign-in",
+          "name": "wrong password → error shown, stays on /login, no session",
+          "ok": true,
+          "detail": "browser:POST /auth/v1/token — password grant → 400 invalid_credentials"
+        },
+        {
+          "group": "sign-in",
+          "name": "correct password → /intake inside the app shell, session cookie set",
+          "ok": true,
+          "detail": "url=/intake shell=true cookies=sb-127-auth-token | browser:POST /auth/v1/token — password grant → 200 session | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200"
+        },
+        {
+          "group": "session",
+          "name": "reload keeps the session (still /intake, shell rendered)",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "group": "session",
+          "name": "signed-in visit to /login → bounced to /intake",
+          "ok": true,
+          "detail": "/intake"
+        },
+        {
+          "group": "session",
+          "name": "signed-in \"/\" → Pipeline dashboard rewrite (URL stays /)",
+          "ok": true,
+          "detail": "url=/ shell=true"
+        },
+        {
+          "group": "recovery-guard",
+          "name": "normal session on /reset-password → 'Reset link problem', no form; /auth/recovery/claim → 403",
+          "ok": true,
+          "detail": "claim=403 {\"recovery\":false} | stub PUT /auth/v1/user calls=0"
+        },
+        {
+          "group": "logout",
+          "name": "Log out → /login, session cookie cleared, /intake redirects to /login again",
+          "ok": true,
+          "detail": "cookies after=none final=/login status=200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | browser:POST /auth/v1/logout — logout scope=local → 204"
+        },
+        {
+          "group": "signup",
+          "name": "signup → server action createWorkspaceAction → create_workspace RPC as the new user → /intake",
+          "ok": true,
+          "detail": "server-action POST /signup status=307 | url=/intake shell=true | browser:POST /auth/v1/signup — signup → 200 session (full_name=\"Sam Signup\") | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:POST /rest/v1/rpc/create_workspace — rpc create_workspace(\"Audit Signup Studio\") as usr-406ae8c1 → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200"
+        },
+        {
+          "group": "server-action-authz",
+          "name": "replayed createWorkspaceAction without a session → 'session has expired' error, no RPC",
+          "ok": true,
+          "detail": "status=200 rpcCalls=0 bodyHasExpiredMsg=true"
+        },
+        {
+          "group": "recovery",
+          "name": "forgot-password → 'Check your email', PKCE recover call with the callback redirect",
+          "ok": true,
+          "detail": "browser:POST /auth/v1/recover — recover → 200 (pkce=true, method=s256, redirect_to=http://localhost:34513/auth/callback?next=%2Freset-password&recovery=1)"
+        },
+        {
+          "group": "recovery",
+          "name": "email link → /auth/callback exchanges code (S256 verified) → recovery grant cookie → 'Set a new password' form",
+          "ok": true,
+          "detail": "url=/reset-password grantCookie=true | server:POST /auth/v1/token — pkce exchange → 200 recovery session (verifier matches S256 challenge) | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200"
+        },
+        {
+          "group": "recovery",
+          "name": "reload of /reset-password keeps the recovery session + grant → form ready again",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "group": "recovery",
+          "name": "submit → server action updatePasswordAction → PUT /auth/v1/user → 'Password updated', grant consumed, signed out",
+          "ok": true,
+          "detail": "server-action POST /reset-password status=200 grantAfter=false logoutCall=true sessionCookiesAfter=none | server:GET /auth/v1/user — get user → 200 | server:GET /auth/v1/user — get user → 200 | server:PUT /auth/v1/user — update user → 200 (password set(len 20)) | browser:POST /auth/v1/logout — logout scope=global → 204"
+        },
+        {
+          "group": "recovery",
+          "name": "sign-in with the NEW password through /login → /intake inside the app shell",
+          "ok": true,
+          "detail": "browser:POST /auth/v1/token — password grant → 200 session"
+        },
+        {
+          "group": "recovery",
+          "name": "replaying the used link → exchange rejected → 'Reset link problem' (expired)",
+          "ok": true,
+          "detail": "url=/reset-password?error=expired | "
+        },
+        {
+          "group": "recovery-guard",
+          "name": "anonymous /reset-password → 'Reset link problem', no form",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "group": "payments",
+          "name": "anonymous POST /api/razorpay/verify → 401 Not authenticated",
+          "ok": true,
+          "detail": "401 {\"error\":\"Not authenticated.\"}"
+        },
+        {
+          "group": "payments",
+          "name": "unsigned POST /api/razorpay/webhook → refused (no entitlement change)",
+          "ok": true,
+          "detail": "500 {\"error\":\"Webhook handling failed.\"}"
+        },
+        {
+          "group": "payments",
+          "name": "/pricing Annual tab → 'annual unavailable' banner, no annual checkout, no Razorpay request",
+          "ok": true,
+          "detail": "annualTab=true banner=true checkoutLinks=0 razorpayRequests=0"
+        },
+        {
+          "group": "payments",
+          "name": "owner /settings with billing unconfigured → no 'Upgrade to Pro' checkout, no Test Mode badge",
+          "ok": true,
+          "detail": "signedIn=true settingsRendered=true upgradeButtons=0 testModeBadge=0"
+        }
+      ],
+      "browserConsoleErrors": [
+        {
+          "flow": "login",
+          "kind": "console",
+          "text": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        },
+        {
+          "flow": "login",
+          "kind": "console",
+          "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+        },
+        {
+          "flow": "login",
+          "kind": "console",
+          "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+        }
+      ],
+      "serverLogErrors": []
+    }
+  },
+  "liveModeGate": {
+    "baseline": {
+      "next": "16.3.6",
+      "chromium": "153.0.8010.0",
+      "summary": {
+        "checks": 3,
+        "passed": 3,
+        "failed": 0
+      },
+      "results": [
+        {
+          "group": "live-mode-gate",
+          "name": "signed-in owner POST /api/razorpay/verify with rzp_live_ + RAZORPAY_MODE=live → 500 Live Mode disabled",
+          "ok": true,
+          "detail": "500 {\"error\":\"Razorpay Live Mode is disabled in this build — production payments are not enabled. Set RAZORPAY_MODE=test and use rzp_test_ credentials.\"}"
+        },
+        {
+          "group": "live-mode-gate",
+          "name": "owner clicks 'Upgrade to Pro' → server action createRazorpayCheckout refuses (Live Mode disabled), Checkout.js never loads",
+          "ok": true,
+          "detail": "button=true refusedToast=true serverAction=200 razorpayRequests=0 testModeBadge=0"
+        },
+        {
+          "group": "live-mode-gate",
+          "name": "webhook with a bad signature under live-looking env → refused",
+          "ok": true,
+          "detail": "500 {\"error\":\"Webhook handling failed.\"}"
+        }
+      ],
+      "browserConsoleErrors": [
+        {
+          "flow": "settings-live-env",
+          "kind": "console",
+          "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+        }
+      ],
+      "serverLogErrors": []
+    },
+    "updated": {
+      "next": "16.4.3",
+      "chromium": "153.0.8010.0",
+      "summary": {
+        "checks": 3,
+        "passed": 3,
+        "failed": 0
+      },
+      "results": [
+        {
+          "group": "live-mode-gate",
+          "name": "signed-in owner POST /api/razorpay/verify with rzp_live_ + RAZORPAY_MODE=live → 500 Live Mode disabled",
+          "ok": true,
+          "detail": "500 {\"error\":\"Razorpay Live Mode is disabled in this build — production payments are not enabled. Set RAZORPAY_MODE=test and use rzp_test_ credentials.\"}"
+        },
+        {
+          "group": "live-mode-gate",
+          "name": "owner clicks 'Upgrade to Pro' → server action createRazorpayCheckout refuses (Live Mode disabled), Checkout.js never loads",
+          "ok": true,
+          "detail": "button=true refusedToast=true serverAction=200 razorpayRequests=0 testModeBadge=0"
+        },
+        {
+          "group": "live-mode-gate",
+          "name": "webhook with a bad signature under live-looking env → refused",
+          "ok": true,
+          "detail": "500 {\"error\":\"Webhook handling failed.\"}"
+        }
+      ],
+      "browserConsoleErrors": [
+        {
+          "flow": "settings-live-env",
+          "kind": "console",
+          "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+        }
+      ],
+      "serverLogErrors": []
+    }
+  }
+}
