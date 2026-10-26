@@ -1,0 +1,1206 @@
+[
+  {
+    "viewport": "1440x900",
+    "label": "desktop",
+    "theme": "light",
+    "url": "https://forma-visuvate.framer.website/features",
+    "title": "Forma Features — Automations, projects, and focus time",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "FeaturesPlan, automate, and trackyour work in one placeForma brings tasks, proje",
+        "box": {
+          "x": 100,
+          "y": 69.7,
+          "w": 1240,
+          "h": 537.95
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "01AutomationsAutomations for the routine updatesA rule has a trigger, an optiona",
+        "box": {
+          "x": 0,
+          "y": 667.36,
+          "w": 1440,
+          "h": 4704
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "DetailsSmaller things that save timeCommand menuPress ⌘K to create, find, or mov",
+        "box": {
+          "x": 0,
+          "y": 5371.36,
+          "w": 1440,
+          "h": 444.91
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 5816.27,
+          "w": 1440,
+          "h": 750.83
+        }
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 6567.09,
+          "w": 1440,
+          "h": 703.86
+        }
+      }
+    ],
+    "headingCount": 16,
+    "svgCount": 34,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 1072,
+    "outlineTruncated": false,
+    "trackedStyles": 612,
+    "keyframes": 1,
+    "waapiSeen": 126,
+    "animateCalls": 128,
+    "ioCreated": 113,
+    "mutations": 6000,
+    "perfEntries": 12,
+    "liveAnimations": 1,
+    "overflowX": 0,
+    "consoleErrors": []
+  },
+  {
+    "viewport": "1440x900",
+    "label": "desktop",
+    "theme": "dark",
+    "url": "https://forma-visuvate.framer.website/features",
+    "title": "Forma Features — Automations, projects, and focus time",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "FeaturesPlan, automate, and trackyour work in one placeForma brings tasks, proje",
+        "box": {
+          "x": 100,
+          "y": 69.7,
+          "w": 1240,
+          "h": 537.95
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "01AutomationsAutomations for the routine updatesA rule has a trigger, an optiona",
+        "box": {
+          "x": 0,
+          "y": 667.36,
+          "w": 1440,
+          "h": 4704
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "DetailsSmaller things that save timeCommand menuPress ⌘K to create, find, or mov",
+        "box": {
+          "x": 0,
+          "y": 5371.36,
+          "w": 1440,
+          "h": 444.91
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 5816.27,
+          "w": 1440,
+          "h": 750.83
+        }
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 6567.09,
+          "w": 1440,
+          "h": 703.86
+        }
+      }
+    ],
+    "headingCount": 16,
+    "svgCount": 34,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 1072,
+    "outlineTruncated": false,
+    "trackedStyles": 612,
+    "keyframes": 1,
+    "waapiSeen": 142,
+    "animateCalls": 130,
+    "ioCreated": 113,
+    "mutations": 6000,
+    "perfEntries": 11,
+    "liveAnimations": 2,
+    "overflowX": 0,
+    "consoleErrors": []
+  },
+  {
+    "viewport": "1200x900",
+    "label": "desktop-1200",
+    "theme": "light",
+    "url": "https://forma-visuvate.framer.website/features",
+    "title": "Forma Features — Automations, projects, and focus time",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "FeaturesPlan, automate, and trackyour work in one placeForma brings tasks, proje",
+        "box": {
+          "x": 48,
+          "y": 69.7,
+          "w": 1104,
+          "h": 537.95
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "01AutomationsAutomations for the routine updatesA rule has a trigger, an optiona",
+        "box": {
+          "x": 0,
+          "y": 667.36,
+          "w": 1200,
+          "h": 4704
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "DetailsSmaller things that save timeCommand menuPress ⌘K to create, find, or mov",
+        "box": {
+          "x": 0,
+          "y": 5371.36,
+          "w": 1200,
+          "h": 444.91
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 5816.27,
+          "w": 1200,
+          "h": 816.92
+        }
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 6633.19,
+          "w": 1200,
+          "h": 703.86
+        }
+      }
+    ],
+    "headingCount": 16,
+    "svgCount": 34,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 1072,
+    "outlineTruncated": false,
+    "trackedStyles": 612,
+    "keyframes": 1,
+    "waapiSeen": 126,
+    "animateCalls": 127,
+    "ioCreated": 113,
+    "mutations": 6000,
+    "perfEntries": 8,
+    "liveAnimations": 1,
+    "overflowX": 0,
+    "consoleErrors": []
+  },
+  {
+    "viewport": "1200x900",
+    "label": "desktop-1200",
+    "theme": "dark",
+    "url": "https://forma-visuvate.framer.website/features",
+    "title": "Forma Features — Automations, projects, and focus time",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "FeaturesPlan, automate, and trackyour work in one placeForma brings tasks, proje",
+        "box": {
+          "x": 48,
+          "y": 69.7,
+          "w": 1104,
+          "h": 537.95
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "01AutomationsAutomations for the routine updatesA rule has a trigger, an optiona",
+        "box": {
+          "x": 0,
+          "y": 667.36,
+          "w": 1200,
+          "h": 4704
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "DetailsSmaller things that save timeCommand menuPress ⌘K to create, find, or mov",
+        "box": {
+          "x": 0,
+          "y": 5371.36,
+          "w": 1200,
+          "h": 444.91
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 5816.27,
+          "w": 1200,
+          "h": 816.92
+        }
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 6633.19,
+          "w": 1200,
+          "h": 703.86
+        }
+      }
+    ],
+    "headingCount": 16,
+    "svgCount": 34,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 1072,
+    "outlineTruncated": false,
+    "trackedStyles": 612,
+    "keyframes": 1,
+    "waapiSeen": 138,
+    "animateCalls": 128,
+    "ioCreated": 114,
+    "mutations": 6000,
+    "perfEntries": 9,
+    "liveAnimations": 2,
+    "overflowX": 0,
+    "consoleErrors": []
+  },
+  {
+    "viewport": "1024x768",
+    "label": "laptop",
+    "theme": "light",
+    "url": "https://forma-visuvate.framer.website/features",
+    "title": "Forma Features — Automations, projects, and focus time",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "FeaturesPlan, automate, and trackyour work in one placeForma brings tasks, proje",
+        "box": {
+          "x": 42,
+          "y": 69.7,
+          "w": 940,
+          "h": 493.42
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "01AutomationsAutomations for the routine updatesA rule has a trigger, an optiona",
+        "box": {
+          "x": 0,
+          "y": 622.83,
+          "w": 1024,
+          "h": 5669.5
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "DetailsSmaller things that save timeCommand menuPress ⌘K to create, find, or mov",
+        "box": {
+          "x": 0,
+          "y": 6292.33,
+          "w": 1024,
+          "h": 499.61
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 6791.94,
+          "w": 1024,
+          "h": 906.16
+        }
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 7698.09,
+          "w": 1024,
+          "h": 810.16
+        }
+      }
+    ],
+    "headingCount": 16,
+    "svgCount": 34,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 1076,
+    "outlineTruncated": false,
+    "trackedStyles": 612,
+    "keyframes": 1,
+    "waapiSeen": 108,
+    "animateCalls": 108,
+    "ioCreated": 62,
+    "mutations": 6000,
+    "perfEntries": 10,
+    "liveAnimations": 0,
+    "overflowX": 0,
+    "consoleErrors": []
+  },
+  {
+    "viewport": "1024x768",
+    "label": "laptop",
+    "theme": "dark",
+    "url": "https://forma-visuvate.framer.website/features",
+    "title": "Forma Features — Automations, projects, and focus time",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "FeaturesPlan, automate, and trackyour work in one placeForma brings tasks, proje",
+        "box": {
+          "x": 42,
+          "y": 69.7,
+          "w": 940,
+          "h": 493.42
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "01AutomationsAutomations for the routine updatesA rule has a trigger, an optiona",
+        "box": {
+          "x": 0,
+          "y": 622.83,
+          "w": 1024,
+          "h": 5669.5
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "DetailsSmaller things that save timeCommand menuPress ⌘K to create, find, or mov",
+        "box": {
+          "x": 0,
+          "y": 6292.33,
+          "w": 1024,
+          "h": 499.61
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 6791.94,
+          "w": 1024,
+          "h": 906.16
+        }
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 7698.09,
+          "w": 1024,
+          "h": 810.16
+        }
+      }
+    ],
+    "headingCount": 16,
+    "svgCount": 34,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 1076,
+    "outlineTruncated": false,
+    "trackedStyles": 612,
+    "keyframes": 1,
+    "waapiSeen": 120,
+    "animateCalls": 108,
+    "ioCreated": 62,
+    "mutations": 6000,
+    "perfEntries": 9,
+    "liveAnimations": 0,
+    "overflowX": 0,
+    "consoleErrors": []
+  },
+  {
+    "viewport": "768x1024",
+    "label": "tablet",
+    "theme": "light",
+    "url": "https://forma-visuvate.framer.website/features",
+    "title": "Forma Features — Automations, projects, and focus time",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "FeaturesPlan, automate, and trackyour work in one placeForma brings tasks, proje",
+        "box": {
+          "x": 16,
+          "y": 65.7,
+          "w": 736,
+          "h": 387.05
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "01AutomationsAutomations for the routine updatesA rule has a trigger, an optiona",
+        "box": {
+          "x": 0,
+          "y": 512.45,
+          "w": 768,
+          "h": 5285.5
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "DetailsSmaller things that save timeCommand menuPress ⌘K to create, find, or mov",
+        "box": {
+          "x": 0,
+          "y": 5797.95,
+          "w": 768,
+          "h": 727.81
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 6525.77,
+          "w": 768,
+          "h": 827.52
+        }
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 7353.28,
+          "w": 768,
+          "h": 745.39
+        }
+      }
+    ],
+    "headingCount": 16,
+    "svgCount": 34,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 1053,
+    "outlineTruncated": false,
+    "trackedStyles": 602,
+    "keyframes": 1,
+    "waapiSeen": 108,
+    "animateCalls": 108,
+    "ioCreated": 67,
+    "mutations": 6000,
+    "perfEntries": 10,
+    "liveAnimations": 2,
+    "overflowX": 0,
+    "consoleErrors": []
+  },
+  {
+    "viewport": "768x1024",
+    "label": "tablet",
+    "theme": "dark",
+    "url": "https://forma-visuvate.framer.website/features",
+    "title": "Forma Features — Automations, projects, and focus time",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "FeaturesPlan, automate, and trackyour work in one placeForma brings tasks, proje",
+        "box": {
+          "x": 16,
+          "y": 65.7,
+          "w": 736,
+          "h": 387.05
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "01AutomationsAutomations for the routine updatesA rule has a trigger, an optiona",
+        "box": {
+          "x": 0,
+          "y": 512.45,
+          "w": 768,
+          "h": 5285.5
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "DetailsSmaller things that save timeCommand menuPress ⌘K to create, find, or mov",
+        "box": {
+          "x": 0,
+          "y": 5797.95,
+          "w": 768,
+          "h": 727.81
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 6525.77,
+          "w": 768,
+          "h": 827.52
+        }
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 7353.28,
+          "w": 768,
+          "h": 745.39
+        }
+      }
+    ],
+    "headingCount": 16,
+    "svgCount": 34,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 1053,
+    "outlineTruncated": false,
+    "trackedStyles": 602,
+    "keyframes": 1,
+    "waapiSeen": 120,
+    "animateCalls": 108,
+    "ioCreated": 65,
+    "mutations": 6000,
+    "perfEntries": 8,
+    "liveAnimations": 2,
+    "overflowX": 0,
+    "consoleErrors": []
+  },
+  {
+    "viewport": "390x844",
+    "label": "mobile",
+    "theme": "light",
+    "url": "https://forma-visuvate.framer.website/features",
+    "title": "Forma Features — Automations, projects, and focus time",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "FeaturesPlan, automate, and trackyour work in one placeForma brings tasks, proje",
+        "box": {
+          "x": 16,
+          "y": 65.7,
+          "w": 358,
+          "h": 531.27
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "01AutomationsAutomations for the routine updatesA rule has a trigger, an optiona",
+        "box": {
+          "x": 0,
+          "y": 656.67,
+          "w": 390,
+          "h": 5953.84
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "DetailsSmaller things that save timeCommand menuPress ⌘K to create, find, or mov",
+        "box": {
+          "x": 0,
+          "y": 6610.52,
+          "w": 390,
+          "h": 859.02
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 7469.53,
+          "w": 390,
+          "h": 958.7
+        }
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 8428.23,
+          "w": 390,
+          "h": 745.39
+        }
+      }
+    ],
+    "headingCount": 16,
+    "svgCount": 34,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 1053,
+    "outlineTruncated": false,
+    "trackedStyles": 602,
+    "keyframes": 1,
+    "waapiSeen": 108,
+    "animateCalls": 108,
+    "ioCreated": 62,
+    "mutations": 6000,
+    "perfEntries": 10,
+    "liveAnimations": 0,
+    "overflowX": 0,
+    "consoleErrors": []
+  },
+  {
+    "viewport": "390x844",
+    "label": "mobile",
+    "theme": "dark",
+    "url": "https://forma-visuvate.framer.website/features",
+    "title": "Forma Features — Automations, projects, and focus time",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "FeaturesPlan, automate, and trackyour work in one placeForma brings tasks, proje",
+        "box": {
+          "x": 16,
+          "y": 65.7,
+          "w": 358,
+          "h": 531.27
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "01AutomationsAutomations for the routine updatesA rule has a trigger, an optiona",
+        "box": {
+          "x": 0,
+          "y": 656.67,
+          "w": 390,
+          "h": 5953.84
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "DetailsSmaller things that save timeCommand menuPress ⌘K to create, find, or mov",
+        "box": {
+          "x": 0,
+          "y": 6610.52,
+          "w": 390,
+          "h": 859.02
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 7469.53,
+          "w": 390,
+          "h": 958.7
+        }
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 8428.23,
+          "w": 390,
+          "h": 745.39
+        }
+      }
+    ],
+    "headingCount": 16,
+    "svgCount": 34,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 1053,
+    "outlineTruncated": false,
+    "trackedStyles": 602,
+    "keyframes": 1,
+    "waapiSeen": 120,
+    "animateCalls": 108,
+    "ioCreated": 62,
+    "mutations": 6000,
+    "perfEntries": 8,
+    "liveAnimations": 0,
+    "overflowX": 0,
+    "consoleErrors": []
+  },
+  {
+    "viewport": "375x812",
+    "label": "mobile-small",
+    "theme": "light",
+    "url": "https://forma-visuvate.framer.website/features",
+    "title": "Forma Features — Automations, projects, and focus time",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "FeaturesPlan, automate, and trackyour work in one placeForma brings tasks, proje",
+        "box": {
+          "x": 16,
+          "y": 65.7,
+          "w": 343,
+          "h": 531.27
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "01AutomationsAutomations for the routine updatesA rule has a trigger, an optiona",
+        "box": {
+          "x": 0,
+          "y": 656.67,
+          "w": 375,
+          "h": 6030.75
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "DetailsSmaller things that save timeCommand menuPress ⌘K to create, find, or mov",
+        "box": {
+          "x": 0,
+          "y": 6687.42,
+          "w": 375,
+          "h": 859.02
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 7546.44,
+          "w": 375,
+          "h": 958.7
+        }
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 8505.14,
+          "w": 375,
+          "h": 768.64
+        }
+      }
+    ],
+    "headingCount": 16,
+    "svgCount": 34,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 1053,
+    "outlineTruncated": false,
+    "trackedStyles": 602,
+    "keyframes": 1,
+    "waapiSeen": 108,
+    "animateCalls": 108,
+    "ioCreated": 62,
+    "mutations": 6000,
+    "perfEntries": 8,
+    "liveAnimations": 0,
+    "overflowX": 0,
+    "consoleErrors": []
+  },
+  {
+    "viewport": "375x812",
+    "label": "mobile-small",
+    "theme": "dark",
+    "url": "https://forma-visuvate.framer.website/features",
+    "title": "Forma Features — Automations, projects, and focus time",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "FeaturesPlan, automate, and trackyour work in one placeForma brings tasks, proje",
+        "box": {
+          "x": 16,
+          "y": 65.7,
+          "w": 343,
+          "h": 531.27
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "01AutomationsAutomations for the routine updatesA rule has a trigger, an optiona",
+        "box": {
+          "x": 0,
+          "y": 656.67,
+          "w": 375,
+          "h": 6030.75
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "DetailsSmaller things that save timeCommand menuPress ⌘K to create, find, or mov",
+        "box": {
+          "x": 0,
+          "y": 6687.42,
+          "w": 375,
+          "h": 859.02
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 7546.44,
+          "w": 375,
+          "h": 958.7
+        }
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 8505.14,
+          "w": 375,
+          "h": 768.64
+        }
+      }
+    ],
+    "headingCount": 16,
+    "svgCount": 34,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 1053,
+    "outlineTruncated": false,
+    "trackedStyles": 602,
+    "keyframes": 1,
+    "waapiSeen": 120,
+    "animateCalls": 108,
+    "ioCreated": 62,
+    "mutations": 6000,
+    "perfEntries": 8,
+    "liveAnimations": 0,
+    "overflowX": 0,
+    "consoleErrors": []
+  },
+  {
+    "viewport": "320x700",
+    "label": "mobile-narrow",
+    "theme": "light",
+    "url": "https://forma-visuvate.framer.website/features",
+    "title": "Forma Features — Automations, projects, and focus time",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "FeaturesPlan, automate, and trackyour work in one placeForma brings tasks, proje",
+        "box": {
+          "x": 16,
+          "y": 65.7,
+          "w": 288,
+          "h": 603.38
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "01AutomationsAutomations for the routine updatesA rule has a trigger, an optiona",
+        "box": {
+          "x": 0,
+          "y": 728.78,
+          "w": 320,
+          "h": 6482.98
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "DetailsSmaller things that save timeCommand menuPress ⌘K to create, find, or mov",
+        "box": {
+          "x": 0,
+          "y": 7211.77,
+          "w": 320,
+          "h": 907.02
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 8118.78,
+          "w": 320,
+          "h": 1045.52
+        }
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 9164.3,
+          "w": 320,
+          "h": 798.8
+        }
+      }
+    ],
+    "headingCount": 16,
+    "svgCount": 34,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 1053,
+    "outlineTruncated": false,
+    "trackedStyles": 602,
+    "keyframes": 1,
+    "waapiSeen": 108,
+    "animateCalls": 108,
+    "ioCreated": 61,
+    "mutations": 6000,
+    "perfEntries": 8,
+    "liveAnimations": 0,
+    "overflowX": 0,
+    "consoleErrors": []
+  },
+  {
+    "viewport": "320x700",
+    "label": "mobile-narrow",
+    "theme": "dark",
+    "url": "https://forma-visuvate.framer.website/features",
+    "title": "Forma Features — Automations, projects, and focus time",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "FeaturesPlan, automate, and trackyour work in one placeForma brings tasks, proje",
+        "box": {
+          "x": 16,
+          "y": 65.7,
+          "w": 288,
+          "h": 603.38
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "01AutomationsAutomations for the routine updatesA rule has a trigger, an optiona",
+        "box": {
+          "x": 0,
+          "y": 728.78,
+          "w": 320,
+          "h": 6482.98
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "DetailsSmaller things that save timeCommand menuPress ⌘K to create, find, or mov",
+        "box": {
+          "x": 0,
+          "y": 7211.77,
+          "w": 320,
+          "h": 907.02
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 8118.78,
+          "w": 320,
+          "h": 1045.52
+        }
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 9164.3,
+          "w": 320,
+          "h": 798.8
+        }
+      }
+    ],
+    "headingCount": 16,
+    "svgCount": 34,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 1053,
+    "outlineTruncated": false,
+    "trackedStyles": 602,
+    "keyframes": 1,
+    "waapiSeen": 121,
+    "animateCalls": 108,
+    "ioCreated": 61,
+    "mutations": 6000,
+    "perfEntries": 8,
+    "liveAnimations": 0,
+    "overflowX": 0,
+    "consoleErrors": []
+  }
+]
