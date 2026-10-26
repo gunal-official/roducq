@@ -1777,6 +1777,19 @@ async function deepCatalogPass(page) {
 
   const behaviours = { initial: await readState(), tabClicks: [], search: [], cardClick: null };
 
+  // HOVER FIRST, ON THE PRISTINE GRID. Hovering after the search probe would
+  // measure the "no match" panel instead of a card, which is exactly the
+  // kind of silently-wrong evidence this capture exists to avoid. The two
+  // probes below run before the pointer is ever used for anything else.
+  const hoverProbes = [];
+  for (const heading of result.headings.slice(0, 2)) {
+    try {
+      hoverProbes.push(await catalogHoverProbe(page, heading.text));
+    } catch (error) {
+      hoverProbes.push({ found: false, error: String((error && error.message) || error) });
+    }
+  }
+
   const tabsFound = result.tabs.map((t) => t.text);
   for (const label of tabsFound.slice(0, 8)) {
     const clicked = await page.evaluate((want) => {
@@ -1822,8 +1835,26 @@ async function deepCatalogPass(page) {
       await page.waitForTimeout(500);
       behaviours.search.push({ term, state: await readState() });
     }
+    // Clearing has to be VERIFIED, not assumed: the card-click probe below
+    // is meaningless on a filtered grid.
     await searchHandle.fill("").catch(() => {});
-    await page.waitForTimeout(400);
+    await page.evaluate(() => {
+      const el = [...document.querySelectorAll("input")].find((i) =>
+        /search/i.test(i.getAttribute("placeholder") || ""),
+      );
+      if (!el) return;
+      el.value = "";
+      el.dispatchEvent(new Event("input", { bubbles: true }));
+      el.dispatchEvent(new KeyboardEvent("keyup", { bubbles: true, key: "Backspace" }));
+    });
+    await page.waitForTimeout(700);
+    const restored = await readState();
+    if (!restored || restored.titles.length < 5) {
+      // Fall back to a clean load; a filtered grid must not be mistaken for
+      // "cards do nothing on click".
+      await page.reload({ waitUntil: "domcontentloaded" }).catch(() => {});
+      await page.waitForTimeout(SETTLE_MS);
+    }
   }
 
   // ── behaviour: card click ──────────────────────────────────────────────
@@ -1857,7 +1888,7 @@ async function deepCatalogPass(page) {
     await page.waitForTimeout(400);
   }
 
-  return { ...result, behaviours };
+  return { ...result, behaviours, hoverProbes };
 }
 
 /**
@@ -1969,7 +2000,7 @@ async function catalogHoverProbe(page, titleHint) {
     box: { w: prepared.w, h: prepared.h },
     html: prepared.html,
     chainBefore: prepared.chainBefore,
-    chainAfter: prepared.chainAfter,
+    chainAfter,
     nodesCompared: (before || []).length,
     hoverChanges: diff(before, after),
     settledChanges: diff(before, settled),
@@ -2032,12 +2063,8 @@ async function capture(page, vp, theme, report) {
   if (theme === "light" && (vp.w === 1440 || vp.w === 390)) {
     try {
       deep = await deepCatalogPass(page);
-      const firstTitle = deep.headings[0] ? deep.headings[0].text : null;
-      deep.hoverProbe = await catalogHoverProbe(page, firstTitle);
-      // A second hover, on a card that is not the first, catches a hover that
-      // only the featured tile carries.
-      const secondTitle = deep.headings[1] ? deep.headings[1].text : null;
-      if (secondTitle) deep.hoverProbeSecond = await catalogHoverProbe(page, secondTitle);
+      deep.hoverProbe = (deep.hoverProbes && deep.hoverProbes[0]) || null;
+      deep.hoverProbeSecond = (deep.hoverProbes && deep.hoverProbes[1]) || null;
     } catch (error) {
       deep = { error: String((error && error.message) || error) };
     }
