@@ -204,6 +204,21 @@ measured the PR #54 build here to confirm. Running the same Lighthouse profile o
 `fd1a573`-era build and the current build, on the same machine, is the follow-up that would
 settle it.
 
+> **Follow-up, 2026-10-25 — resolved.** That experiment has now been run, against the
+> PR #54 build (`3315a1fc`) and the PR #59 build (`d2266eb`), on one machine with one
+> browser binary, one Lighthouse version, identical launch flags, viewport, CPU and
+> network profiles, 40 interleaved runs. Result: **no regression.** Both builds score
+> **100 (100–100, 5 runs each)** on `/` under the profile PR #54 recorded its 100s with,
+> which also reproduces PR #54's 94–99 pattern for its 4× CPU scenario. Under stock
+> Lighthouse mobile throttling the builds score 95 (#54) and 93 (#59) — inside the
+> 76–97 spread that one build alone produces in a single session. The 76–84 / 64–70
+> figures above are **not reproducible on either build** under any pinned condition,
+> including 3× CPU oversubscription; the same code scored 66–73 with six busy-loop
+> processes on the host. `/solutions` (which returns 404 on the PR #54 build) scores in
+> the same band as `/`. Full records, controls and reproduction commands:
+> `docs/PERF_PR54_VS_PR59_LIGHTHOUSE.md`, harness in `scripts/perf/`, evidence in
+> `docs/evidence/perf-pr54-vs-pr59/`. No application code was changed by that follow-up.
+
 ### 5.5 Lighthouse tool limits
 
 - Lighthouse 13.5.0 cannot emulate `prefers-reduced-motion`, so scenario D is PO-only.

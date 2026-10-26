@@ -1,0 +1,1176 @@
+{
+  "startedAt": "2026-10-25T23:56:18.551Z",
+  "finishedAt": "2026-10-25T23:59:42.821Z",
+  "lighthouseVersion": "13.5.0",
+  "chromePath": "/tmp/chromium",
+  "flagMode": "standard",
+  "launchFlags": [
+    "--headless=new",
+    "--no-sandbox",
+    "--disable-setuid-sandbox",
+    "--disable-dev-shm-usage",
+    "--disable-gpu",
+    "--font-render-hinting=none",
+    "--no-first-run",
+    "--no-default-browser-check",
+    "--disable-extensions",
+    "--disable-background-timer-throttling",
+    "--disable-backgrounding-occluded-windows",
+    "--disable-renderer-backgrounding",
+    "--disable-features=Translate,BackForwardCache"
+  ],
+  "runsPerCell": 3,
+  "builds": [
+    {
+      "label": "A",
+      "tree": "/tmp/perf/base",
+      "url": "http://127.0.0.1:3101"
+    },
+    {
+      "label": "B",
+      "tree": "/tmp/perf/head",
+      "url": "http://127.0.0.1:3102"
+    }
+  ],
+  "routes": [
+    "/"
+  ],
+  "profiles": {
+    "pr54-unthrottled": {
+      "formFactor": "mobile",
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "throttlingMethod": "provided",
+      "throttling": {
+        "rttMs": 0,
+        "throughputKbps": 0,
+        "requestLatencyMs": 0,
+        "downloadThroughputKbps": 0,
+        "uploadThroughputKbps": 0,
+        "cpuSlowdownMultiplier": 1
+      }
+    },
+    "std-mobile": {
+      "formFactor": "mobile",
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "throttlingMethod": "simulate",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1471.36,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      }
+    }
+  },
+  "calibration": {
+    "hostCpuCalibrationMs": [
+      1398.326774,
+      1329.104078,
+      1377.11031
+    ],
+    "hostCpuCalibrationMedianMs": 1377.11031
+  },
+  "stressChildren": 6,
+  "summary": [
+    {
+      "route": "/",
+      "profile": "pr54-unthrottled",
+      "build": "A",
+      "runs": 3,
+      "score": [
+        0.99,
+        0.99,
+        0.99
+      ],
+      "median": {
+        "perfScore": 99,
+        "fcpMs": 478.5,
+        "lcpMs": 478.5,
+        "speedIndexMs": 649,
+        "tbtMs": 127.7,
+        "cls": 0,
+        "ttiMs": 989.7,
+        "mainThreadWorkMs": 1170.8,
+        "bootupMs": 443.7,
+        "totalByteWeight": 361696
+      },
+      "spread": {
+        "perfScore": {
+          "min": 99,
+          "max": 99
+        },
+        "lcpMs": {
+          "min": 325.3,
+          "max": 497.4
+        },
+        "tbtMs": {
+          "min": 98.2,
+          "max": 136.2
+        }
+      }
+    },
+    {
+      "route": "/",
+      "profile": "pr54-unthrottled",
+      "build": "B",
+      "runs": 3,
+      "score": [
+        1,
+        1,
+        0.97
+      ],
+      "median": {
+        "perfScore": 100,
+        "fcpMs": 490.1,
+        "lcpMs": 490.1,
+        "speedIndexMs": 663,
+        "tbtMs": 87.1,
+        "cls": 0,
+        "ttiMs": 1049.8,
+        "mainThreadWorkMs": 1303.5,
+        "bootupMs": 517.9,
+        "totalByteWeight": 364812
+      },
+      "spread": {
+        "perfScore": {
+          "min": 97,
+          "max": 100
+        },
+        "lcpMs": {
+          "min": 458.1,
+          "max": 496.6
+        },
+        "tbtMs": {
+          "min": 69.8,
+          "max": 189.8
+        }
+      }
+    },
+    {
+      "route": "/",
+      "profile": "std-mobile",
+      "build": "A",
+      "runs": 3,
+      "score": [
+        0.66,
+        0.69,
+        0.69
+      ],
+      "median": {
+        "perfScore": 69,
+        "fcpMs": 1069.3,
+        "lcpMs": 3157.9,
+        "speedIndexMs": 1836.3,
+        "tbtMs": 1432.5,
+        "cls": 0,
+        "ttiMs": 4518.3,
+        "mainThreadWorkMs": 4883.5,
+        "bootupMs": 2089.2,
+        "totalByteWeight": 361696
+      },
+      "spread": {
+        "perfScore": {
+          "min": 66,
+          "max": 69
+        },
+        "lcpMs": {
+          "min": 2907.9,
+          "max": 3376.9
+        },
+        "tbtMs": {
+          "min": 1240.2,
+          "max": 1503.5
+        }
+      }
+    },
+    {
+      "route": "/",
+      "profile": "std-mobile",
+      "build": "B",
+      "runs": 3,
+      "score": [
+        0.69,
+        0.71,
+        0.73
+      ],
+      "median": {
+        "perfScore": 71,
+        "fcpMs": 1055.1,
+        "lcpMs": 2906.1,
+        "speedIndexMs": 1543.4,
+        "tbtMs": 1184,
+        "cls": 0,
+        "ttiMs": 4010.6,
+        "mainThreadWorkMs": 4394.6,
+        "bootupMs": 1675.3,
+        "totalByteWeight": 364812
+      },
+      "spread": {
+        "perfScore": {
+          "min": 69,
+          "max": 73
+        },
+        "lcpMs": {
+          "min": 2860.7,
+          "max": 3288.9
+        },
+        "tbtMs": {
+          "min": 968.5,
+          "max": 1247
+        }
+      }
+    }
+  ],
+  "failures": [],
+  "runs": [
+    {
+      "build": "A",
+      "tree": "/tmp/perf/base",
+      "route": "/",
+      "profile": "pr54-unthrottled",
+      "url": "http://127.0.0.1:3101/",
+      "fetchTime": "2026-10-25T23:56:26.039Z",
+      "status": "ok",
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+      "requestedConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "provided",
+        "throttling": {
+          "rttMs": 0,
+          "throughputKbps": 0,
+          "requestLatencyMs": 0,
+          "downloadThroughputKbps": 0,
+          "uploadThroughputKbps": 0,
+          "cpuSlowdownMultiplier": 1
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        }
+      },
+      "effectiveConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "provided",
+        "throttling": {
+          "rttMs": 0,
+          "throughputKbps": 0,
+          "requestLatencyMs": 0,
+          "downloadThroughputKbps": 0,
+          "uploadThroughputKbps": 0,
+          "cpuSlowdownMultiplier": 1
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36"
+      },
+      "perfScore": 0.99,
+      "metrics": {
+        "fcpMs": 325.273,
+        "lcpMs": 325.273,
+        "speedIndexMs": 497,
+        "tbtMs": 136.2380000000001,
+        "cls": 0,
+        "ttiMs": 983.32
+      },
+      "diagnostics": {
+        "mainThreadWorkMs": 1145.755999999993,
+        "bootupMs": 444.1799999999975,
+        "scriptEvaluationMs": 444.1799999999975,
+        "totalByteWeight": 361696,
+        "domSize": null,
+        "serverResponseMs": 11,
+        "requestCount": 26,
+        "renderBlockingCount": null,
+        "unusedJsBytes": 63712
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.lm-shell > div.mx-auto > p.lm-hero-in",
+        "nodeLabel": "roducq keeps your client intake, briefs, proposals, plans and updates in one wo…",
+        "subparts": {
+          "timeToFirstByte": 20.166,
+          "elementRenderDelay": 305.107
+        }
+      }
+    },
+    {
+      "build": "B",
+      "tree": "/tmp/perf/head",
+      "route": "/",
+      "profile": "pr54-unthrottled",
+      "url": "http://127.0.0.1:3102/",
+      "fetchTime": "2026-10-25T23:56:47.589Z",
+      "status": "ok",
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+      "requestedConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "provided",
+        "throttling": {
+          "rttMs": 0,
+          "throughputKbps": 0,
+          "requestLatencyMs": 0,
+          "downloadThroughputKbps": 0,
+          "uploadThroughputKbps": 0,
+          "cpuSlowdownMultiplier": 1
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        }
+      },
+      "effectiveConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "provided",
+        "throttling": {
+          "rttMs": 0,
+          "throughputKbps": 0,
+          "requestLatencyMs": 0,
+          "downloadThroughputKbps": 0,
+          "uploadThroughputKbps": 0,
+          "cpuSlowdownMultiplier": 1
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36"
+      },
+      "perfScore": 1,
+      "metrics": {
+        "fcpMs": 496.574,
+        "lcpMs": 496.574,
+        "speedIndexMs": 670,
+        "tbtMs": 69.75099999976163,
+        "cls": 0,
+        "ttiMs": 1049.7809999997617
+      },
+      "diagnostics": {
+        "mainThreadWorkMs": 1303.4649999999885,
+        "bootupMs": 517.9000000000008,
+        "scriptEvaluationMs": 517.9000000000008,
+        "totalByteWeight": 364812,
+        "domSize": null,
+        "serverResponseMs": 6,
+        "requestCount": 26,
+        "renderBlockingCount": null,
+        "unusedJsBytes": 63712
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.lm-shell > div.mx-auto > p.lm-hero-in",
+        "nodeLabel": "roducq keeps your client intake, briefs, proposals, plans and updates in one wo…",
+        "subparts": {
+          "timeToFirstByte": 15.15,
+          "elementRenderDelay": 481.424
+        }
+      }
+    },
+    {
+      "build": "B",
+      "tree": "/tmp/perf/head",
+      "route": "/",
+      "profile": "pr54-unthrottled",
+      "url": "http://127.0.0.1:3102/",
+      "fetchTime": "2026-10-25T23:57:08.611Z",
+      "status": "ok",
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+      "requestedConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "provided",
+        "throttling": {
+          "rttMs": 0,
+          "throughputKbps": 0,
+          "requestLatencyMs": 0,
+          "downloadThroughputKbps": 0,
+          "uploadThroughputKbps": 0,
+          "cpuSlowdownMultiplier": 1
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        }
+      },
+      "effectiveConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "provided",
+        "throttling": {
+          "rttMs": 0,
+          "throughputKbps": 0,
+          "requestLatencyMs": 0,
+          "downloadThroughputKbps": 0,
+          "uploadThroughputKbps": 0,
+          "cpuSlowdownMultiplier": 1
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36"
+      },
+      "perfScore": 1,
+      "metrics": {
+        "fcpMs": 458.146,
+        "lcpMs": 458.146,
+        "speedIndexMs": 623,
+        "tbtMs": 87.10700000000003,
+        "cls": 0,
+        "ttiMs": 1011.67
+      },
+      "diagnostics": {
+        "mainThreadWorkMs": 1178.542999999993,
+        "bootupMs": 394.9909999999967,
+        "scriptEvaluationMs": 394.9909999999967,
+        "totalByteWeight": 364812,
+        "domSize": null,
+        "serverResponseMs": 9,
+        "requestCount": 26,
+        "renderBlockingCount": null,
+        "unusedJsBytes": 63712
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.lm-shell > div.mx-auto > p.lm-hero-in",
+        "nodeLabel": "roducq keeps your client intake, briefs, proposals, plans and updates in one wo…",
+        "subparts": {
+          "timeToFirstByte": 18.471,
+          "elementRenderDelay": 439.675
+        }
+      }
+    },
+    {
+      "build": "A",
+      "tree": "/tmp/perf/base",
+      "route": "/",
+      "profile": "pr54-unthrottled",
+      "url": "http://127.0.0.1:3101/",
+      "fetchTime": "2026-10-25T23:57:29.660Z",
+      "status": "ok",
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+      "requestedConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "provided",
+        "throttling": {
+          "rttMs": 0,
+          "throughputKbps": 0,
+          "requestLatencyMs": 0,
+          "downloadThroughputKbps": 0,
+          "uploadThroughputKbps": 0,
+          "cpuSlowdownMultiplier": 1
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        }
+      },
+      "effectiveConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "provided",
+        "throttling": {
+          "rttMs": 0,
+          "throughputKbps": 0,
+          "requestLatencyMs": 0,
+          "downloadThroughputKbps": 0,
+          "uploadThroughputKbps": 0,
+          "cpuSlowdownMultiplier": 1
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36"
+      },
+      "perfScore": 0.99,
+      "metrics": {
+        "fcpMs": 497.433,
+        "lcpMs": 497.433,
+        "speedIndexMs": 660,
+        "tbtMs": 127.67500000000007,
+        "cls": 0,
+        "ttiMs": 1175.617
+      },
+      "diagnostics": {
+        "mainThreadWorkMs": 1321.1519999999869,
+        "bootupMs": 433.6370000000012,
+        "scriptEvaluationMs": 433.6370000000012,
+        "totalByteWeight": 361696,
+        "domSize": null,
+        "serverResponseMs": 6,
+        "requestCount": 26,
+        "renderBlockingCount": null,
+        "unusedJsBytes": 63712
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.lm-shell > div.mx-auto > p.lm-hero-in",
+        "nodeLabel": "roducq keeps your client intake, briefs, proposals, plans and updates in one wo…",
+        "subparts": {
+          "timeToFirstByte": 20.486999999761583,
+          "elementRenderDelay": 476.9460000002384
+        }
+      }
+    },
+    {
+      "build": "A",
+      "tree": "/tmp/perf/base",
+      "route": "/",
+      "profile": "pr54-unthrottled",
+      "url": "http://127.0.0.1:3101/",
+      "fetchTime": "2026-10-25T23:57:50.519Z",
+      "status": "ok",
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+      "requestedConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "provided",
+        "throttling": {
+          "rttMs": 0,
+          "throughputKbps": 0,
+          "requestLatencyMs": 0,
+          "downloadThroughputKbps": 0,
+          "uploadThroughputKbps": 0,
+          "cpuSlowdownMultiplier": 1
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        }
+      },
+      "effectiveConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "provided",
+        "throttling": {
+          "rttMs": 0,
+          "throughputKbps": 0,
+          "requestLatencyMs": 0,
+          "downloadThroughputKbps": 0,
+          "uploadThroughputKbps": 0,
+          "cpuSlowdownMultiplier": 1
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36"
+      },
+      "perfScore": 0.99,
+      "metrics": {
+        "fcpMs": 478.524,
+        "lcpMs": 478.524,
+        "speedIndexMs": 649,
+        "tbtMs": 98.15500000000009,
+        "cls": 0,
+        "ttiMs": 989.697
+      },
+      "diagnostics": {
+        "mainThreadWorkMs": 1170.7629999999933,
+        "bootupMs": 443.6619999999974,
+        "scriptEvaluationMs": 443.6619999999974,
+        "totalByteWeight": 361696,
+        "domSize": null,
+        "serverResponseMs": 33,
+        "requestCount": 26,
+        "renderBlockingCount": null,
+        "unusedJsBytes": 63712
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.lm-shell > div.mx-auto > p.lm-hero-in",
+        "nodeLabel": "roducq keeps your client intake, briefs, proposals, plans and updates in one wo…",
+        "subparts": {
+          "timeToFirstByte": 39.96699999976158,
+          "elementRenderDelay": 438.5570000002384
+        }
+      }
+    },
+    {
+      "build": "B",
+      "tree": "/tmp/perf/head",
+      "route": "/",
+      "profile": "pr54-unthrottled",
+      "url": "http://127.0.0.1:3102/",
+      "fetchTime": "2026-10-25T23:58:11.951Z",
+      "status": "ok",
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+      "requestedConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "provided",
+        "throttling": {
+          "rttMs": 0,
+          "throughputKbps": 0,
+          "requestLatencyMs": 0,
+          "downloadThroughputKbps": 0,
+          "uploadThroughputKbps": 0,
+          "cpuSlowdownMultiplier": 1
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        }
+      },
+      "effectiveConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "provided",
+        "throttling": {
+          "rttMs": 0,
+          "throughputKbps": 0,
+          "requestLatencyMs": 0,
+          "downloadThroughputKbps": 0,
+          "uploadThroughputKbps": 0,
+          "cpuSlowdownMultiplier": 1
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36"
+      },
+      "perfScore": 0.97,
+      "metrics": {
+        "fcpMs": 490.104,
+        "lcpMs": 490.104,
+        "speedIndexMs": 663,
+        "tbtMs": 189.7620000000001,
+        "cls": 0,
+        "ttiMs": 1320.802
+      },
+      "diagnostics": {
+        "mainThreadWorkMs": 1457.9409999999896,
+        "bootupMs": 590.3659999999961,
+        "scriptEvaluationMs": 590.3659999999961,
+        "totalByteWeight": 364812,
+        "domSize": null,
+        "serverResponseMs": 7,
+        "requestCount": 26,
+        "renderBlockingCount": null,
+        "unusedJsBytes": 63712
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.lm-shell > div.mx-auto > p.lm-hero-in",
+        "nodeLabel": "roducq keeps your client intake, briefs, proposals, plans and updates in one wo…",
+        "subparts": {
+          "timeToFirstByte": 15.36200000023842,
+          "elementRenderDelay": 474.74199999976156
+        }
+      }
+    },
+    {
+      "build": "A",
+      "tree": "/tmp/perf/base",
+      "route": "/",
+      "profile": "std-mobile",
+      "url": "http://127.0.0.1:3101/",
+      "fetchTime": "2026-10-25T23:58:32.555Z",
+      "status": "ok",
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+      "requestedConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1471.36,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        }
+      },
+      "effectiveConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1471.36,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36"
+      },
+      "perfScore": 0.66,
+      "metrics": {
+        "fcpMs": 1069.287,
+        "lcpMs": 3376.9305,
+        "speedIndexMs": 2237.305558445351,
+        "tbtMs": 1432.5000000000005,
+        "cls": 0,
+        "ttiMs": 4699.430500000001
+      },
+      "diagnostics": {
+        "mainThreadWorkMs": 4777.003999999954,
+        "bootupMs": 1804.2959999999869,
+        "scriptEvaluationMs": 1804.2959999999869,
+        "totalByteWeight": 361696,
+        "domSize": null,
+        "serverResponseMs": 8,
+        "requestCount": 26,
+        "renderBlockingCount": null,
+        "unusedJsBytes": 63712
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.lm-shell > div.mx-auto > p.lm-hero-in",
+        "nodeLabel": "roducq keeps your client intake, briefs, proposals, plans and updates in one wo…",
+        "subparts": {
+          "timeToFirstByte": 15.103999999761582,
+          "elementRenderDelay": 500.2760000002384
+        }
+      }
+    },
+    {
+      "build": "B",
+      "tree": "/tmp/perf/head",
+      "route": "/",
+      "profile": "std-mobile",
+      "url": "http://127.0.0.1:3102/",
+      "fetchTime": "2026-10-25T23:58:44.699Z",
+      "status": "ok",
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+      "requestedConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1471.36,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        }
+      },
+      "effectiveConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1471.36,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36"
+      },
+      "perfScore": 0.69,
+      "metrics": {
+        "fcpMs": 1051.928,
+        "lcpMs": 3288.892,
+        "speedIndexMs": 1418.3121922724708,
+        "tbtMs": 1184,
+        "cls": 0,
+        "ttiMs": 4199.5419999999995
+      },
+      "diagnostics": {
+        "mainThreadWorkMs": 4324.731999999969,
+        "bootupMs": 1847.1920000000043,
+        "scriptEvaluationMs": 1847.1920000000043,
+        "totalByteWeight": 364812,
+        "domSize": null,
+        "serverResponseMs": 7,
+        "requestCount": 26,
+        "renderBlockingCount": null,
+        "unusedJsBytes": 63712
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.lm-shell > div.mx-auto > p.lm-hero-in",
+        "nodeLabel": "roducq keeps your client intake, briefs, proposals, plans and updates in one wo…",
+        "subparts": {
+          "timeToFirstByte": 16.534,
+          "elementRenderDelay": 452.514
+        }
+      }
+    },
+    {
+      "build": "B",
+      "tree": "/tmp/perf/head",
+      "route": "/",
+      "profile": "std-mobile",
+      "url": "http://127.0.0.1:3102/",
+      "fetchTime": "2026-10-25T23:58:56.727Z",
+      "status": "ok",
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+      "requestedConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1471.36,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        }
+      },
+      "effectiveConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1471.36,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36"
+      },
+      "perfScore": 0.71,
+      "metrics": {
+        "fcpMs": 1180.159,
+        "lcpMs": 2860.7385000000004,
+        "speedIndexMs": 1894.5076643042385,
+        "tbtMs": 1246.9999999999993,
+        "cls": 0,
+        "ttiMs": 4010.6385
+      },
+      "diagnostics": {
+        "mainThreadWorkMs": 4552.279999999958,
+        "bootupMs": 1613.9440000000034,
+        "scriptEvaluationMs": 1613.9440000000034,
+        "totalByteWeight": 364812,
+        "domSize": null,
+        "serverResponseMs": 6,
+        "requestCount": 26,
+        "renderBlockingCount": null,
+        "unusedJsBytes": 63712
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.lm-shell > div.mx-auto > p.lm-hero-in",
+        "nodeLabel": "roducq keeps your client intake, briefs, proposals, plans and updates in one wo…",
+        "subparts": {
+          "timeToFirstByte": 13.55,
+          "elementRenderDelay": 482.415
+        }
+      }
+    },
+    {
+      "build": "A",
+      "tree": "/tmp/perf/base",
+      "route": "/",
+      "profile": "std-mobile",
+      "url": "http://127.0.0.1:3101/",
+      "fetchTime": "2026-10-25T23:59:09.079Z",
+      "status": "ok",
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+      "requestedConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1471.36,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        }
+      },
+      "effectiveConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1471.36,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36"
+      },
+      "perfScore": 0.69,
+      "metrics": {
+        "fcpMs": 1132.95,
+        "lcpMs": 2907.9249999999997,
+        "speedIndexMs": 1498.4615980203375,
+        "tbtMs": 1503.5249999999994,
+        "cls": 0,
+        "ttiMs": 4280.374999999999
+      },
+      "diagnostics": {
+        "mainThreadWorkMs": 5067.463999999962,
+        "bootupMs": 2377.379999999989,
+        "scriptEvaluationMs": 2377.379999999989,
+        "totalByteWeight": 361696,
+        "domSize": null,
+        "serverResponseMs": 7,
+        "requestCount": 26,
+        "renderBlockingCount": null,
+        "unusedJsBytes": 63712
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.lm-shell > div.mx-auto > p.lm-hero-in",
+        "nodeLabel": "roducq keeps your client intake, briefs, proposals, plans and updates in one wo…",
+        "subparts": {
+          "timeToFirstByte": 16.242,
+          "elementRenderDelay": 369.765
+        }
+      }
+    },
+    {
+      "build": "A",
+      "tree": "/tmp/perf/base",
+      "route": "/",
+      "profile": "std-mobile",
+      "url": "http://127.0.0.1:3101/",
+      "fetchTime": "2026-10-25T23:59:21.014Z",
+      "status": "ok",
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+      "requestedConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1471.36,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        }
+      },
+      "effectiveConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1471.36,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36"
+      },
+      "perfScore": 0.69,
+      "metrics": {
+        "fcpMs": 1062.57,
+        "lcpMs": 3157.8549999999996,
+        "speedIndexMs": 1836.333032542242,
+        "tbtMs": 1240.215,
+        "cls": 0,
+        "ttiMs": 4518.305
+      },
+      "diagnostics": {
+        "mainThreadWorkMs": 4883.547999999967,
+        "bootupMs": 2089.1559999999813,
+        "scriptEvaluationMs": 2089.1559999999813,
+        "totalByteWeight": 361696,
+        "domSize": null,
+        "serverResponseMs": 7,
+        "requestCount": 26,
+        "renderBlockingCount": null,
+        "unusedJsBytes": 63712
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.lm-shell > div.mx-auto > p.lm-hero-in",
+        "nodeLabel": "roducq keeps your client intake, briefs, proposals, plans and updates in one wo…",
+        "subparts": {
+          "timeToFirstByte": 15.316,
+          "elementRenderDelay": 438.853
+        }
+      }
+    },
+    {
+      "build": "B",
+      "tree": "/tmp/perf/head",
+      "route": "/",
+      "profile": "std-mobile",
+      "url": "http://127.0.0.1:3102/",
+      "fetchTime": "2026-10-25T23:59:33.013Z",
+      "status": "ok",
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+      "requestedConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1471.36,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        }
+      },
+      "effectiveConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1471.36,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36"
+      },
+      "perfScore": 0.73,
+      "metrics": {
+        "fcpMs": 1055.131,
+        "lcpMs": 2906.1310000000003,
+        "speedIndexMs": 1543.3539471014872,
+        "tbtMs": 968.4999999999998,
+        "cls": 0,
+        "ttiMs": 3769.8465
+      },
+      "diagnostics": {
+        "mainThreadWorkMs": 4394.5679999999675,
+        "bootupMs": 1675.308000000004,
+        "scriptEvaluationMs": 1675.308000000004,
+        "totalByteWeight": 364812,
+        "domSize": null,
+        "serverResponseMs": 6,
+        "requestCount": 26,
+        "renderBlockingCount": null,
+        "unusedJsBytes": 63727
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.lm-shell > div.mx-auto > p.lm-hero-in",
+        "nodeLabel": "roducq keeps your client intake, briefs, proposals, plans and updates in one wo…",
+        "subparts": {
+          "timeToFirstByte": 15.67,
+          "elementRenderDelay": 310.111
+        }
+      }
+    }
+  ]
+}
