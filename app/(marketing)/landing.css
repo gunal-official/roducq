@@ -148,6 +148,12 @@
   --lm-size-21: 21px;
   --lm-size-22: 22px;
   --lm-size-23: 23px;
+  /* 26px: the statistic numerals inside the homepage workspace preview
+     (WorkspacePreview.tsx carries `text-lm-26` since the 2026-10-17
+     redesign). The step was requested by that markup but never declared,
+     so the utilities compiled to nothing and the numbers inherited 16px.
+     The consisistency audit declares it at the value the class names. */
+  --lm-size-26: 26px;
   --lm-size-28: 28px;
   --lm-size-32: 32px;
   --lm-size-34: 34px;
@@ -169,6 +175,25 @@
   --lm-leading-snug: 1.2;
   --lm-leading-normal: 1.5;
   --lm-leading-relaxed: 1.65;
+  /* The /pricing subtitle's measured body leading (1.65 at 18px, see
+     docs/RODUCQ_PRICING_PAGE.md §2). The page has always asked for
+     `leading-lm-body`; the token and its Tailwind mapping were missing, so
+     the utility silently did nothing. */
+  --lm-leading-body: 1.65;
+
+  /* ── Tracking ────────────────────────────────────────────────────────
+     Letterspacing the marketing pages name explicitly. `display` and
+     `eyebrow` are the two documented values (docs/RODUCQ_PRICING_PAGE.md
+     §2: the /pricing h1 is −0.03em at 54px and its eyebrow 0.14em). The
+     other three steps are the closest values already used elsewhere in
+     the marketing corpus, recorded here so `tracking-lm-*` resolves
+     instead of compiling to nothing — see the audit doc's [INFERRED]
+     rows before changing them. */
+  --lm-tracking-display: -0.03em;
+  --lm-tracking-eyebrow: 0.14em;
+  --lm-tracking-label: 0.14em;
+  --lm-tracking-title: -0.02em;
+  --lm-tracking-price: -0.03em;
 
   /* ── Radii ─────────────────────────────────────────────────────────── */
   --lm-radius-hair: 2px;

@@ -1,0 +1,10 @@
+{
+ "scans": 54,
+ "violations": 0,
+ "violationDetail": [],
+ "incompleteNodes": 634,
+ "incompleteByRule": {
+  "color-contrast": 634
+ },
+ "passes": 2262
+}

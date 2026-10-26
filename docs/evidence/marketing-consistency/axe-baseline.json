@@ -1,0 +1,95 @@
+{
+ "scans": 48,
+ "violations": 6,
+ "violationDetail": [
+  {
+   "route": "/changelog",
+   "width": 320,
+   "scheme": "light",
+   "id": "label-content-name-mismatch",
+   "impact": "serious",
+   "help": "Elements must have their visible text as part of their accessible name",
+   "nodes": 8,
+   "targets": [
+    "#integrations-directory > .items-start.min-\\[1200px\\]\\:sticky.min-\\[1200px\\]\\:top-27\\.5 > .-my-2\\.5.leading-\\[1\\.9\\].underline",
+    "#features-overview > .items-start.min-\\[1200px\\]\\:sticky.min-\\[1200px\\]\\:top-27\\.5 > .-my-2\\.5.leading-\\[1\\.9\\].underline",
+    "#solutions-by-practice > .items-start.min-\\[1200px\\]\\:sticky.min-\\[1200px\\]\\:top-27\\.5 > .-my-2\\.5.leading-\\[1\\.9\\].underline"
+   ]
+  },
+  {
+   "route": "/changelog",
+   "width": 320,
+   "scheme": "dark",
+   "id": "label-content-name-mismatch",
+   "impact": "serious",
+   "help": "Elements must have their visible text as part of their accessible name",
+   "nodes": 8,
+   "targets": [
+    "#integrations-directory > .items-start.min-\\[1200px\\]\\:sticky.min-\\[1200px\\]\\:top-27\\.5 > .-my-2\\.5.leading-\\[1\\.9\\].underline",
+    "#features-overview > .items-start.min-\\[1200px\\]\\:sticky.min-\\[1200px\\]\\:top-27\\.5 > .-my-2\\.5.leading-\\[1\\.9\\].underline",
+    "#solutions-by-practice > .items-start.min-\\[1200px\\]\\:sticky.min-\\[1200px\\]\\:top-27\\.5 > .-my-2\\.5.leading-\\[1\\.9\\].underline"
+   ]
+  },
+  {
+   "route": "/changelog",
+   "width": 768,
+   "scheme": "light",
+   "id": "label-content-name-mismatch",
+   "impact": "serious",
+   "help": "Elements must have their visible text as part of their accessible name",
+   "nodes": 8,
+   "targets": [
+    "#integrations-directory > .items-start.min-\\[1200px\\]\\:sticky.min-\\[1200px\\]\\:top-27\\.5 > .-my-2\\.5.leading-\\[1\\.9\\].underline",
+    "#features-overview > .items-start.min-\\[1200px\\]\\:sticky.min-\\[1200px\\]\\:top-27\\.5 > .-my-2\\.5.leading-\\[1\\.9\\].underline",
+    "#solutions-by-practice > .items-start.min-\\[1200px\\]\\:sticky.min-\\[1200px\\]\\:top-27\\.5 > .-my-2\\.5.leading-\\[1\\.9\\].underline"
+   ]
+  },
+  {
+   "route": "/changelog",
+   "width": 768,
+   "scheme": "dark",
+   "id": "label-content-name-mismatch",
+   "impact": "serious",
+   "help": "Elements must have their visible text as part of their accessible name",
+   "nodes": 8,
+   "targets": [
+    "#integrations-directory > .items-start.min-\\[1200px\\]\\:sticky.min-\\[1200px\\]\\:top-27\\.5 > .-my-2\\.5.leading-\\[1\\.9\\].underline",
+    "#features-overview > .items-start.min-\\[1200px\\]\\:sticky.min-\\[1200px\\]\\:top-27\\.5 > .-my-2\\.5.leading-\\[1\\.9\\].underline",
+    "#solutions-by-practice > .items-start.min-\\[1200px\\]\\:sticky.min-\\[1200px\\]\\:top-27\\.5 > .-my-2\\.5.leading-\\[1\\.9\\].underline"
+   ]
+  },
+  {
+   "route": "/changelog",
+   "width": 1440,
+   "scheme": "light",
+   "id": "label-content-name-mismatch",
+   "impact": "serious",
+   "help": "Elements must have their visible text as part of their accessible name",
+   "nodes": 8,
+   "targets": [
+    "#integrations-directory > .items-start.min-\\[1200px\\]\\:sticky.min-\\[1200px\\]\\:top-27\\.5 > .-my-2\\.5.leading-\\[1\\.9\\].underline",
+    "#features-overview > .items-start.min-\\[1200px\\]\\:sticky.min-\\[1200px\\]\\:top-27\\.5 > .-my-2\\.5.leading-\\[1\\.9\\].underline",
+    "#solutions-by-practice > .items-start.min-\\[1200px\\]\\:sticky.min-\\[1200px\\]\\:top-27\\.5 > .-my-2\\.5.leading-\\[1\\.9\\].underline"
+   ]
+  },
+  {
+   "route": "/changelog",
+   "width": 1440,
+   "scheme": "dark",
+   "id": "label-content-name-mismatch",
+   "impact": "serious",
+   "help": "Elements must have their visible text as part of their accessible name",
+   "nodes": 8,
+   "targets": [
+    "#integrations-directory > .items-start.min-\\[1200px\\]\\:sticky.min-\\[1200px\\]\\:top-27\\.5 > .-my-2\\.5.leading-\\[1\\.9\\].underline",
+    "#features-overview > .items-start.min-\\[1200px\\]\\:sticky.min-\\[1200px\\]\\:top-27\\.5 > .-my-2\\.5.leading-\\[1\\.9\\].underline",
+    "#solutions-by-practice > .items-start.min-\\[1200px\\]\\:sticky.min-\\[1200px\\]\\:top-27\\.5 > .-my-2\\.5.leading-\\[1\\.9\\].underline"
+   ]
+  }
+ ],
+ "incompleteNodes": 628,
+ "incompleteByRule": {
+  "color-contrast": 628
+ },
+ "passes": 1992
+}

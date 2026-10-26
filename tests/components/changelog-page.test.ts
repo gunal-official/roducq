@@ -327,21 +327,15 @@ describe("Changelog page — closing CTA, navigation, sitemap, and token hygiene
   });
 
   it("registers /changelog in SiteHeader, FOOTER, sitemap.ts, and verify-responsive.mjs without breaking locked invariants", () => {
-    assert.ok(
-      HEADER.includes("const items = solutions ? SOLUTIONS_NAV : NAV;"),
-    );
-    assert.ok(HEADER.includes('{ href: "/vs", label: "Compare" }'));
+    // The consistency pass (docs/RODUCQ_MARKETING_CONSISTENCY_AUDIT.md) put
+    // every marketing route on ONE header, so the old per-route `showcase`
+    // booleans are gone and the locked nav ternary is gone with them.
+    // tests/components/marketing-header.test.ts now owns the full contract;
+    // this file keeps asserting that /changelog is one of its destinations.
     assert.ok(HEADER.includes('{ href: "/changelog", label: "Changelog" }'));
-    assert.ok(
-      HEADER.includes(
-        'const changelog =\n    pathname === "/changelog" || pathname.startsWith("/changelog/");',
-      ),
-    );
-    assert.ok(
-      HEADER.includes(
-        "const showcase = solutions || features || integrations || changelog;",
-      ),
-    );
+    assert.ok(HEADER.includes("const items = NAV;"));
+    assert.ok(!HEADER.includes("const showcase ="));
+    assert.ok(HEADER.includes('{ href: "/vs", label: "Compare" }'));
     assert.ok(
       FOOTER.columns[0].links.some(
         (link) => link.href === "/changelog" && link.label === "Changelog",

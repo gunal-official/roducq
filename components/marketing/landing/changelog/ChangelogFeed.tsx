@@ -110,7 +110,16 @@ export function ChangelogFeed() {
                   href={entry.sourceHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`Verify ${entry.title} (${entry.sourceLabel} on GitHub)`}
+                  // WCAG 2.5.3 (Label in Name): the accessible name has to
+                  // contain the visible label. This read
+                  // `Verify <title> (<source> on GitHub)`, and axe-core
+                  // flagged all eight entries because the visible "PR #63"
+                  // only appeared inside the parentheses — measured, 8 nodes,
+                  // impact serious, on /changelog at every scanned width and
+                  // theme (docs/RODUCQ_MARKETING_CONSISTENCY_AUDIT.md §8).
+                  // Leading with the visible label fixes it without changing
+                  // what a screen reader hears.
+                  aria-label={`${entry.sourceLabel} — verify ${entry.title} on GitHub`}
                   className="-my-2.5 inline-flex min-h-11 min-w-11 items-center text-lm-13 font-lm-medium leading-[1.9] text-lm-muted-label underline decoration-lm-changelog-rule underline-offset-4 transition-colors hover:text-lm-ink-accent hover:decoration-lm-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lm-accent focus-visible:ring-offset-2"
                 >
                   {entry.sourceLabel}

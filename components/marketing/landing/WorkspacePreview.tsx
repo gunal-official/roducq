@@ -83,7 +83,7 @@ export function WorkspacePreview() {
         aria-label="Illustrative roducq workspace for a studio called Acme Studio: a sidebar of intake, briefs, proposals, plans, updates, invoices and time; counts of briefs drafted, proposals sent, plan tasks done and hours logged; a seven-day line chart; and a list of today's work. Example data, not a live account."
         className="lm-purple-frame rounded-lm-frame p-3 sm:p-4 md:p-5"
       >
-        <div className="overflow-hidden rounded-lm-card border border-lm-border-hairline bg-lm-card">
+        <div className="overflow-hidden rounded-lm-card border border-lm-hairline bg-lm-card">
           <div className="grid min-h-[29rem] grid-cols-1 md:grid-cols-[13.5rem_minmax(0,1fr)]">
             {/* ── Left navigation sidebar ─────────────────────────────── */}
             <aside

@@ -143,7 +143,7 @@ export function CardLabel({
   return (
     <p
       className={cn(
-        "text-lm-11 font-lm-regular tracking-[0.06em] text-lm-muted-slate",
+        "text-lm-chip font-lm-regular tracking-[0.06em] text-lm-muted-slate",
         className
       )}
     >

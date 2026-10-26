@@ -582,31 +582,16 @@ describe("Features page (routes + a11y)", () => {
   });
 });
 
-describe("Features page (shared header extension)", () => {
-  it("keeps the locked nav ternary and adds only pathname booleans", () => {
-    // vs-comparisons.test.ts locks this exact line; the features work
-    // must extend around it, never rewrite it.
-    assert.ok(
-      HEADER.includes("const items = solutions ? SOLUTIONS_NAV : NAV;"),
-    );
-    assert.ok(
-      HEADER.includes(
-        'const features = pathname === "/features" || pathname.startsWith("/features/");',
-      ),
-    );
-    // The gate widened as /integrations and /changelog shipped: it is
-    // still ONE boolean built from pathname predicates, and the clauses
-    // asserted above survive verbatim, so /solutions and /features
-    // render exactly what they rendered before.
-    assert.ok(
-      HEADER.includes(
-        "const showcase = solutions || features || integrations || changelog;",
-      ),
-    );
-    // The default nav (and its /vs Compare link) is untouched, so /,
-    // /about, /pricing and /vs keep their original header.
+describe("Features page (shared marketing header)", () => {
+  it("is one destination inside the single site-wide header", () => {
+    // The consistency pass removed the per-route visual gate, so /features
+    // renders the same header as every other marketing route and finally
+    // has a nav item of its own to light. The full contract lives in
+    // tests/components/marketing-header.test.ts.
+    assert.ok(HEADER.includes('{ href: "/features", label: "Features" }'));
+    assert.ok(HEADER.includes("const items = NAV;"));
+    assert.ok(!HEADER.includes("const showcase ="));
     assert.ok(HEADER.includes('{ href: "/vs", label: "Compare" }'));
-    // The visual variant follows the combined gate, not a rewrite.
-    assert.ok(HEADER.includes('showcase\n          ? "bg-lm-card"'));
+    assert.ok(HEADER.includes('className="lm-header sticky top-0 z-40 bg-lm-card'));
   });
 });

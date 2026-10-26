@@ -1,0 +1,105 @@
+{
+ "reducedMotion": {
+  "/": {
+   "running": 0,
+   "runningNames": [],
+   "hiddenBands": 0
+  },
+  "/features": {
+   "running": 0,
+   "runningNames": [],
+   "hiddenBands": 0
+  },
+  "/solutions": {
+   "running": 0,
+   "runningNames": [],
+   "hiddenBands": 0
+  },
+  "/integrations": {
+   "running": 0,
+   "runningNames": [],
+   "hiddenBands": 0
+  },
+  "/pricing": {
+   "running": 0,
+   "runningNames": [],
+   "hiddenBands": 0
+  },
+  "/changelog": {
+   "running": 0,
+   "runningNames": [],
+   "hiddenBands": 0
+  },
+  "/about": {
+   "running": 0,
+   "runningNames": [],
+   "hiddenBands": 0
+  },
+  "/vs": {
+   "running": 0,
+   "runningNames": [],
+   "hiddenBands": 0
+  }
+ },
+ "noJavaScript": {
+  "/": {
+   "h1": "The workspace that doesthe client writing for you",
+   "h2Count": 7,
+   "sections": 8,
+   "zeroOpacity": [],
+   "textLength": 9835
+  },
+  "/features": {
+   "h1": "Capture, structure, and send client work in one workspace.",
+   "h2Count": 8,
+   "sections": 4,
+   "zeroOpacity": [],
+   "textLength": 7162
+  },
+  "/solutions": {
+   "h1": "Different client work. One writing workspace.",
+   "h2Count": 6,
+   "sections": 4,
+   "zeroOpacity": [
+    "span.lm-pill-swap",
+    "span.lm-pill-swap"
+   ],
+   "textLength": 4451
+  },
+  "/integrations": {
+   "h1": "Bring the work in. Send the work out.",
+   "h2Count": 4,
+   "sections": 5,
+   "zeroOpacity": [],
+   "textLength": 2654
+  },
+  "/pricing": {
+   "h1": "Plans that scale with how your team works.",
+   "h2Count": 3,
+   "sections": 1,
+   "zeroOpacity": [],
+   "textLength": 1705
+  },
+  "/changelog": {
+   "h1": "What's new in roducq",
+   "h2Count": 9,
+   "sections": 3,
+   "zeroOpacity": [],
+   "textLength": 4195
+  },
+  "/about": {
+   "h1": "A writing studio for client work.",
+   "h2Count": 1,
+   "sections": 3,
+   "zeroOpacity": [],
+   "textLength": 1522
+  },
+  "/vs": {
+   "h1": "How roducq compares",
+   "h2Count": 9,
+   "sections": 0,
+   "zeroOpacity": [],
+   "textLength": 1548
+  }
+ }
+}

@@ -1,0 +1,1565 @@
+{
+ "capturedAt": "2026-10-26T06:35:00.686Z",
+ "chromium": "153.0.8010.0",
+ "runsPerScenario": 3,
+ "scenarios": [
+  "A mobile 412x823 @1.75 DPR unthrottled",
+  "B mobile 4x CPU",
+  "C desktop 1440x900",
+  "D mobile prefers-reduced-motion"
+ ],
+ "routes": {
+  "/": {
+   "A-mobile-unthrottled": {
+    "median": 180,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 152,
+      "cls": 0,
+      "fcp": 152,
+      "lcpElement": "p.lm-hero-in.mt-5.5",
+      "lcpText": "roducq keeps your client intake, briefs,",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 180,
+      "cls": 0,
+      "fcp": 180,
+      "lcpElement": "p.lm-hero-in.mt-5.5",
+      "lcpText": "roducq keeps your client intake, briefs,",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 188,
+      "cls": 0,
+      "fcp": 188,
+      "lcpElement": "p.lm-hero-in.mt-5.5",
+      "lcpText": "roducq keeps your client intake, briefs,",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "B-mobile-cpu-4x": {
+    "median": 396,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 396,
+      "cls": 0,
+      "fcp": 396,
+      "lcpElement": "p.lm-hero-in.mt-5.5",
+      "lcpText": "roducq keeps your client intake, briefs,",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 412,
+      "cls": 0,
+      "fcp": 412,
+      "lcpElement": "p.lm-hero-in.mt-5.5",
+      "lcpText": "roducq keeps your client intake, briefs,",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 352,
+      "cls": 0,
+      "fcp": 352,
+      "lcpElement": "p.lm-hero-in.mt-5.5",
+      "lcpText": "roducq keeps your client intake, briefs,",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "C-desktop": {
+    "median": 256,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 280,
+      "cls": 0,
+      "fcp": 280,
+      "lcpElement": "p.lm-hero-in.mt-5.5",
+      "lcpText": "roducq keeps your client intake, briefs,",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 252,
+      "cls": 0,
+      "fcp": 252,
+      "lcpElement": "p.lm-hero-in.mt-5.5",
+      "lcpText": "roducq keeps your client intake, briefs,",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 256,
+      "cls": 0,
+      "fcp": 256,
+      "lcpElement": "p.lm-hero-in.mt-5.5",
+      "lcpText": "roducq keeps your client intake, briefs,",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "D-mobile-reduced-motion": {
+    "median": 220,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 216,
+      "cls": 0,
+      "fcp": 216,
+      "lcpElement": "p.lm-hero-in.mt-5.5",
+      "lcpText": "roducq keeps your client intake, briefs,",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 220,
+      "cls": 0,
+      "fcp": 220,
+      "lcpElement": "p.lm-hero-in.mt-5.5",
+      "lcpText": "roducq keeps your client intake, briefs,",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 228,
+      "cls": 0,
+      "fcp": 228,
+      "lcpElement": "p.lm-hero-in.mt-5.5",
+      "lcpText": "roducq keeps your client intake, briefs,",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   }
+  },
+  "/features": {
+   "A-mobile-unthrottled": {
+    "median": 128,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 128,
+      "cls": 0,
+      "fcp": 128,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "roducq brings client intake, briefs, pro",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 120,
+      "cls": 0,
+      "fcp": 120,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "roducq brings client intake, briefs, pro",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 148,
+      "cls": 0,
+      "fcp": 148,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "roducq brings client intake, briefs, pro",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "B-mobile-cpu-4x": {
+    "median": 224,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 224,
+      "cls": 0,
+      "fcp": 224,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "roducq brings client intake, briefs, pro",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 224,
+      "cls": 0,
+      "fcp": 224,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "roducq brings client intake, briefs, pro",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 148,
+      "cls": 0.0153,
+      "fcp": 148,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "roducq brings client intake, briefs, pro",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "C-desktop": {
+    "median": 124,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 120,
+      "cls": 0,
+      "fcp": 120,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "roducq brings client intake, briefs, pro",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 148,
+      "cls": 0,
+      "fcp": 148,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "roducq brings client intake, briefs, pro",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 124,
+      "cls": 0,
+      "fcp": 124,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "roducq brings client intake, briefs, pro",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "D-mobile-reduced-motion": {
+    "median": 100,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 100,
+      "cls": 0,
+      "fcp": 100,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "roducq brings client intake, briefs, pro",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 116,
+      "cls": 0,
+      "fcp": 116,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "roducq brings client intake, briefs, pro",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 96,
+      "cls": 0,
+      "fcp": 96,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "roducq brings client intake, briefs, pro",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   }
+  },
+  "/solutions": {
+   "A-mobile-unthrottled": {
+    "median": 104,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 104,
+      "cls": 0,
+      "fcp": 104,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "From a solo engagement to a shared clien",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 108,
+      "cls": 0,
+      "fcp": 108,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "From a solo engagement to a shared clien",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 104,
+      "cls": 0,
+      "fcp": 104,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "From a solo engagement to a shared clien",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "B-mobile-cpu-4x": {
+    "median": 208,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 128,
+      "cls": 0,
+      "fcp": 128,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "From a solo engagement to a shared clien",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 208,
+      "cls": 0,
+      "fcp": 208,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "From a solo engagement to a shared clien",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 368,
+      "cls": 0,
+      "fcp": 368,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "From a solo engagement to a shared clien",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "C-desktop": {
+    "median": 132,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 124,
+      "cls": 0,
+      "fcp": 124,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "From a solo engagement to a shared clien",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 132,
+      "cls": 0,
+      "fcp": 132,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "From a solo engagement to a shared clien",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 152,
+      "cls": 0,
+      "fcp": 152,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "From a solo engagement to a shared clien",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "D-mobile-reduced-motion": {
+    "median": 128,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 128,
+      "cls": 0,
+      "fcp": 128,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "From a solo engagement to a shared clien",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 108,
+      "cls": 0,
+      "fcp": 108,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "From a solo engagement to a shared clien",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 144,
+      "cls": 0,
+      "fcp": 144,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "From a solo engagement to a shared clien",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   }
+  },
+  "/integrations": {
+   "A-mobile-unthrottled": {
+    "median": 104,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 112,
+      "cls": 0,
+      "fcp": 112,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Slack, Notion and a connected mailbox fe",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 100,
+      "cls": 0,
+      "fcp": 100,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Slack, Notion and a connected mailbox fe",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 104,
+      "cls": 0,
+      "fcp": 104,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Slack, Notion and a connected mailbox fe",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "B-mobile-cpu-4x": {
+    "median": 248,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 256,
+      "cls": 0,
+      "fcp": 256,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Slack, Notion and a connected mailbox fe",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 176,
+      "cls": 0,
+      "fcp": 176,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Slack, Notion and a connected mailbox fe",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 248,
+      "cls": 0,
+      "fcp": 248,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Slack, Notion and a connected mailbox fe",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "C-desktop": {
+    "median": 116,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 116,
+      "cls": 0,
+      "fcp": 116,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Slack, Notion and a connected mailbox fe",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 124,
+      "cls": 0,
+      "fcp": 124,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Slack, Notion and a connected mailbox fe",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 112,
+      "cls": 0,
+      "fcp": 112,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Slack, Notion and a connected mailbox fe",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "D-mobile-reduced-motion": {
+    "median": 100,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 100,
+      "cls": 0,
+      "fcp": 100,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Slack, Notion and a connected mailbox fe",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 128,
+      "cls": 0,
+      "fcp": 128,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Slack, Notion and a connected mailbox fe",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 100,
+      "cls": 0,
+      "fcp": 100,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Slack, Notion and a connected mailbox fe",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   }
+  },
+  "/pricing": {
+   "A-mobile-unthrottled": {
+    "median": 104,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 104,
+      "cls": 0,
+      "fcp": 104,
+      "lcpElement": "h1.lm-hero-in.mt-3",
+      "lcpText": "Plans that scale with how your team work",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 112,
+      "cls": 0,
+      "fcp": 112,
+      "lcpElement": "h1.lm-hero-in.mt-3",
+      "lcpText": "Plans that scale with how your team work",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 100,
+      "cls": 0,
+      "fcp": 100,
+      "lcpElement": "h1.lm-hero-in.mt-3",
+      "lcpText": "Plans that scale with how your team work",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "B-mobile-cpu-4x": {
+    "median": 220,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 220,
+      "cls": 0,
+      "fcp": 220,
+      "lcpElement": "h1.lm-hero-in.mt-3",
+      "lcpText": "Plans that scale with how your team work",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 208,
+      "cls": 0,
+      "fcp": 208,
+      "lcpElement": "h1.lm-hero-in.mt-3",
+      "lcpText": "Plans that scale with how your team work",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 244,
+      "cls": 0,
+      "fcp": 244,
+      "lcpElement": "h1.lm-hero-in.mt-3",
+      "lcpText": "Plans that scale with how your team work",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "C-desktop": {
+    "median": 116,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 112,
+      "cls": 0,
+      "fcp": 112,
+      "lcpElement": "h1.lm-hero-in.mt-3",
+      "lcpText": "Plans that scale with how your team work",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 140,
+      "cls": 0,
+      "fcp": 140,
+      "lcpElement": "h1.lm-hero-in.mt-3",
+      "lcpText": "Plans that scale with how your team work",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 116,
+      "cls": 0,
+      "fcp": 116,
+      "lcpElement": "h1.lm-hero-in.mt-3",
+      "lcpText": "Plans that scale with how your team work",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "D-mobile-reduced-motion": {
+    "median": 112,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 112,
+      "cls": 0,
+      "fcp": 112,
+      "lcpElement": "h1.lm-hero-in.mt-3",
+      "lcpText": "Plans that scale with how your team work",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 124,
+      "cls": 0,
+      "fcp": 124,
+      "lcpElement": "h1.lm-hero-in.mt-3",
+      "lcpText": "Plans that scale with how your team work",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 112,
+      "cls": 0,
+      "fcp": 112,
+      "lcpElement": "h1.lm-hero-in.mt-3",
+      "lcpText": "Plans that scale with how your team work",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   }
+  },
+  "/changelog": {
+   "A-mobile-unthrottled": {
+    "median": 96,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 104,
+      "cls": 0,
+      "fcp": 104,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Verified product updates, interface impr",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 96,
+      "cls": 0,
+      "fcp": 96,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Verified product updates, interface impr",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 92,
+      "cls": 0,
+      "fcp": 92,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Verified product updates, interface impr",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "B-mobile-cpu-4x": {
+    "median": 204,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 268,
+      "cls": 0,
+      "fcp": 268,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Verified product updates, interface impr",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 204,
+      "cls": 0,
+      "fcp": 204,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Verified product updates, interface impr",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 172,
+      "cls": 0,
+      "fcp": 172,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Verified product updates, interface impr",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "C-desktop": {
+    "median": 112,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 108,
+      "cls": 0,
+      "fcp": 108,
+      "lcpElement": "p.mt-3.text-lm-16-5",
+      "lcpText": "Published /integrations with a searchabl",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 116,
+      "cls": 0,
+      "fcp": 116,
+      "lcpElement": "p.mt-3.text-lm-16-5",
+      "lcpText": "Published /integrations with a searchabl",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 112,
+      "cls": 0,
+      "fcp": 112,
+      "lcpElement": "p.mt-3.text-lm-16-5",
+      "lcpText": "Published /integrations with a searchabl",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "D-mobile-reduced-motion": {
+    "median": 88,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 112,
+      "cls": 0,
+      "fcp": 112,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Verified product updates, interface impr",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 88,
+      "cls": 0,
+      "fcp": 88,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Verified product updates, interface impr",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 80,
+      "cls": 0,
+      "fcp": 80,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Verified product updates, interface impr",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   }
+  },
+  "/about": {
+   "A-mobile-unthrottled": {
+    "median": 96,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 96,
+      "cls": 0,
+      "fcp": 96,
+      "lcpElement": "p.mt-4.max-w-xl",
+      "lcpText": "Client work starts as scattered communic",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 132,
+      "cls": 0,
+      "fcp": 132,
+      "lcpElement": "p.mt-4.max-w-xl",
+      "lcpText": "Client work starts as scattered communic",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 80,
+      "cls": 0,
+      "fcp": 80,
+      "lcpElement": "p.mt-4.max-w-xl",
+      "lcpText": "Client work starts as scattered communic",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "B-mobile-cpu-4x": {
+    "median": 184,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 228,
+      "cls": 0,
+      "fcp": 228,
+      "lcpElement": "p.mt-4.max-w-xl",
+      "lcpText": "Client work starts as scattered communic",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 168,
+      "cls": 0,
+      "fcp": 168,
+      "lcpElement": "p.mt-4.max-w-xl",
+      "lcpText": "Client work starts as scattered communic",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 184,
+      "cls": 0,
+      "fcp": 184,
+      "lcpElement": "p.mt-4.max-w-xl",
+      "lcpText": "Client work starts as scattered communic",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "C-desktop": {
+    "median": 100,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 100,
+      "cls": 0,
+      "fcp": 100,
+      "lcpElement": "p.mt-4.max-w-xl",
+      "lcpText": "Client work starts as scattered communic",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 96,
+      "cls": 0,
+      "fcp": 96,
+      "lcpElement": "p.mt-4.max-w-xl",
+      "lcpText": "Client work starts as scattered communic",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 100,
+      "cls": 0,
+      "fcp": 100,
+      "lcpElement": "p.mt-4.max-w-xl",
+      "lcpText": "Client work starts as scattered communic",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "D-mobile-reduced-motion": {
+    "median": 104,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 104,
+      "cls": 0,
+      "fcp": 104,
+      "lcpElement": "p.mt-4.max-w-xl",
+      "lcpText": "Client work starts as scattered communic",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 80,
+      "cls": 0,
+      "fcp": 80,
+      "lcpElement": "p.mt-4.max-w-xl",
+      "lcpText": "Client work starts as scattered communic",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 136,
+      "cls": 0,
+      "fcp": 136,
+      "lcpElement": "p.mt-4.max-w-xl",
+      "lcpText": "Client work starts as scattered communic",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   }
+  },
+  "/vs": {
+   "A-mobile-unthrottled": {
+    "median": 100,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 100,
+      "cls": 0,
+      "fcp": 100,
+      "lcpElement": "p.mt-8.rounded-md",
+      "lcpText": "Limits of these comparisons. How to read",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 124,
+      "cls": 0,
+      "fcp": 124,
+      "lcpElement": "p.mt-8.rounded-md",
+      "lcpText": "Limits of these comparisons. How to read",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 84,
+      "cls": 0,
+      "fcp": 84,
+      "lcpElement": "p.mt-8.rounded-md",
+      "lcpText": "Limits of these comparisons. How to read",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "B-mobile-cpu-4x": {
+    "median": 160,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 200,
+      "cls": 0,
+      "fcp": 200,
+      "lcpElement": "p.mt-8.rounded-md",
+      "lcpText": "Limits of these comparisons. How to read",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 160,
+      "cls": 0,
+      "fcp": 160,
+      "lcpElement": "p.mt-8.rounded-md",
+      "lcpText": "Limits of these comparisons. How to read",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 148,
+      "cls": 0,
+      "fcp": 148,
+      "lcpElement": "p.mt-8.rounded-md",
+      "lcpText": "Limits of these comparisons. How to read",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "C-desktop": {
+    "median": 112,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 108,
+      "cls": 0,
+      "fcp": 108,
+      "lcpElement": "p.mt-8.rounded-md",
+      "lcpText": "Limits of these comparisons. How to read",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 112,
+      "cls": 0,
+      "fcp": 112,
+      "lcpElement": "p.mt-8.rounded-md",
+      "lcpText": "Limits of these comparisons. How to read",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 120,
+      "cls": 0,
+      "fcp": 120,
+      "lcpElement": "p.mt-8.rounded-md",
+      "lcpText": "Limits of these comparisons. How to read",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "D-mobile-reduced-motion": {
+    "median": 104,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 104,
+      "cls": 0,
+      "fcp": 104,
+      "lcpElement": "p.mt-8.rounded-md",
+      "lcpText": "Limits of these comparisons. How to read",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 116,
+      "cls": 0,
+      "fcp": 116,
+      "lcpElement": "p.mt-8.rounded-md",
+      "lcpText": "Limits of these comparisons. How to read",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 92,
+      "cls": 0,
+      "fcp": 92,
+      "lcpElement": "p.mt-8.rounded-md",
+      "lcpText": "Limits of these comparisons. How to read",
+      "lcpCandidates": 1,
+      "heroAtFirstPaint": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   }
+  }
+ }
+}

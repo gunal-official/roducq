@@ -660,29 +660,15 @@ describe("Integrations page (routes + a11y)", () => {
   });
 });
 
-describe("Integrations page (shared header extension)", () => {
-  it("extends the showcase gate without touching the locked ternary", () => {
-    // vs-comparisons.test.ts locks the nav-data line; the integrations
-    // work extends around it exactly as the features work did.
-    assert.ok(
-      HEADER.includes("const items = solutions ? SOLUTIONS_NAV : NAV;"),
-    );
-    assert.ok(
-      HEADER.includes(
-        'const integrations =\n    pathname === "/integrations" || pathname.startsWith("/integrations/");',
-      ),
-    );
-    assert.ok(
-      HEADER.includes(
-        "const showcase = solutions || features || integrations || changelog;",
-      ),
-    );
-    // The three earlier gate inputs survive verbatim.
-    assert.ok(HEADER.includes("const solutions ="));
-    assert.ok(
-      HEADER.includes(
-        'const features = pathname === "/features" || pathname.startsWith("/features/");',
-      ),
-    );
+describe("Integrations page (shared marketing header)", () => {
+  it("is one destination inside the single site-wide header", () => {
+    // /integrations no longer needs a pathname gate of its own: every
+    // marketing route renders the same header, and this page is one of its
+    // seven destinations. See tests/components/marketing-header.test.ts for
+    // the full contract.
+    assert.ok(HEADER.includes('{ href: "/integrations", label: "Integrations" }'));
+    assert.ok(HEADER.includes("const items = NAV;"));
+    assert.ok(!HEADER.includes("const showcase ="));
+    assert.ok(!HEADER.includes("const integrations ="));
   });
 });
