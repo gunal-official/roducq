@@ -1483,50 +1483,324 @@ function writeJson(name, value) {
 }
 
 /**
- * HOVER PROBE — the measured card interaction, not an assumed one.
+ * DEEP CATALOG PASS — the part of this page a generic band measurement
+ * cannot answer.
  *
- * The audit has to say what a card does on pointer-over. So: park the pointer
- * at (0,0), snapshot the card subtree's computed style, then move the real
- * pointer onto the card's centre, wait for any transition to finish, and
- * snapshot again. The returned diff lists only properties that actually
- * changed, with both values — which is exactly what a "hover: border becomes
- * stronger, shadow lifts by 6px" claim needs in order to be evidence rather
- * than recollection.
+ * `/integrations` is not a scroll story with cards in it; the catalog is the
+ * page. So this pass measures the catalog as an instrument:
  *
- * A card with no diff is a real, useful result: it means the reference ships
- * no hover state and the recreation must not invent one.
+ *   • HERO COMPOSITION. The section's own subtree, with the box and style of
+ *     every direct child, so "eyebrow / line 1 / gradient line 2 / lead" is
+ *     read off the DOM instead of reconstructed from a screenshot.
+ *   • TABS. Every control in the catalog's filter row, with active/inactive
+ *     ink, fill, border and radius.
+ *   • CARDS. The ancestor chain above each card heading, five levels up, with
+ *     box + style at each level — this is how the card's true container,
+ *     radius, hairline and padding are found in a Framer export whose class
+ *     names are opaque.
+ *   • THE COUNT. The "12 integrations" affordance's text, before and after
+ *     each interaction, so a filter that changes the grid can be told apart
+ *     from one that only re-styles a chip.
+ *   • FILTER BEHAVIOUR. Each tab is clicked and the visible card names are
+ *     re-read. A filter is real when the list changes; if nothing changes,
+ *     that is recorded as "no filtering" and the recreation must not ship a
+ *     live-looking filter.
+ *   • SEARCH BEHAVIOUR. The search input is filled with a term that matches
+ *     exactly one card and a term that matches none, and the count and list
+ *     are re-read each time.
+ *   • CARD CLICK. A card is clicked and the URL, the dialog count and the DOM
+ *     are compared, so "cards are inert" is a measurement rather than an
+ *     assumption.
+ *   • HOVER. Pointer-over the first card's container with a real mouse, and
+ *     diff the computed style of the container and its subtree.
+ *
+ * Everything is restored between probes (tab "All" re-selected, input
+ * cleared) so one probe cannot contaminate the next, and the pass runs after
+ * the screenshots so no probe state leaks into the pixels.
  */
-async function hoverProbe(page, selector) {
-  const prepared = await page.evaluate((sel) => {
-    let el = null;
-    try {
-      el = document.querySelector(sel);
-    } catch {
-      el = null;
+async function deepCatalogPass(page) {
+  const result = await page.evaluate(() => {
+    const round = (n) => (typeof n === "number" ? Math.round(n * 100) / 100 : n);
+    const boxOf = (el) => {
+      const r = el.getBoundingClientRect();
+      return { x: round(r.x), y: round(r.y + window.scrollY), w: round(r.width), h: round(r.height) };
+    };
+    const styleSubset = (el) => {
+      const cs = getComputedStyle(el);
+      const keys = [
+        "display", "position", "fontFamily", "fontSize", "fontWeight", "lineHeight",
+        "letterSpacing", "color", "backgroundColor", "backgroundImage", "borderTopWidth",
+        "borderTopColor", "borderTopStyle", "borderRadius", "boxShadow", "paddingTop",
+        "paddingRight", "paddingBottom", "paddingLeft", "marginTop", "marginBottom",
+        "gap", "gridTemplateColumns", "flexDirection", "alignItems", "justifyContent",
+        "width", "height", "maxWidth", "minHeight", "opacity", "transform", "overflow",
+        "textAlign", "transitionProperty", "transitionDuration", "transitionTimingFunction",
+      ];
+      const out = {};
+      for (const k of keys) out[k] = cs[k];
+      return out;
+    };
+    const textOf = (el) => (el.textContent || "").replace(/\s+/g, " ").trim();
+
+    const search = [...document.querySelectorAll("input")].find((el) =>
+      /search/i.test(el.getAttribute("placeholder") || el.getAttribute("aria-label") || ""),
+    );
+    const catalog = search ? search.closest("section") : null;
+    const hero = document.querySelector("section");
+
+    // The hero's own composition.
+    const heroParts = hero
+      ? [...hero.querySelectorAll("h1, p, span, div, a, button")]
+          .filter((el) => {
+            const own = [...el.childNodes]
+              .filter((n) => n.nodeType === 3)
+              .map((n) => n.textContent.trim())
+              .join(" ");
+            return own.length > 1;
+          })
+          .map((el) => ({
+            tag: el.tagName.toLowerCase(),
+            text: textOf(el).slice(0, 120),
+            box: boxOf(el),
+            style: styleSubset(el),
+            html: el.outerHTML.slice(0, 900),
+          }))
+      : [];
+
+    const heroSubtree = hero ? hero.outerHTML.slice(0, 14000) : null;
+
+    // Tabs + cards.
+    const tabStrip = catalog
+      ? [...catalog.querySelectorAll("button, [role='tab'], a[href]")].filter((el) => {
+          const t = textOf(el);
+          return t.length > 1 && t.length < 40 && boxOf(el).h < 70;
+        })
+      : [];
+    const tabs = tabStrip.map((el) => ({
+      tag: el.tagName.toLowerCase(),
+      role: el.getAttribute("role"),
+      text: textOf(el),
+      box: boxOf(el),
+      style: styleSubset(el),
+      parent: (() => {
+        const p = el.parentElement;
+        return p ? { tag: p.tagName.toLowerCase(), box: boxOf(p), style: styleSubset(p) } : null;
+      })(),
+    }));
+
+    const countNode = catalog
+      ? [...catalog.querySelectorAll("p, span, div")]
+          .filter((el) => /^\d+\s+integrations?$/i.test(textOf(el)))
+          .map((el) => ({ tag: el.tagName.toLowerCase(), text: textOf(el), box: boxOf(el), style: styleSubset(el) }))[0] || null
+      : null;
+
+    const headings = catalog ? [...catalog.querySelectorAll("h3")] : [];
+    const cards = headings.map((h3) => {
+      const chain = [];
+      let node = h3;
+      for (let i = 0; i < 5 && node; i += 1) {
+        node = node.parentElement;
+        if (!node) break;
+        chain.push({
+          level: i + 1,
+          tag: node.tagName.toLowerCase(),
+          className: typeof node.className === "string" ? node.className.slice(0, 120) : null,
+          box: boxOf(node),
+          style: styleSubset(node),
+          childCount: node.children.length,
+        });
+      }
+      const description = (() => {
+        // The card's body copy: the longest short paragraph after the heading.
+        let parent = h3.parentElement;
+        for (let i = 0; i < 4 && parent; i += 1) {
+          const p = [...parent.querySelectorAll("p")].find((el) => textOf(el).length > 25);
+          if (p) return { tag: "p", text: textOf(p).slice(0, 200), box: boxOf(p), style: styleSubset(p) };
+          parent = parent.parentElement;
+        }
+        return null;
+      })();
+      const buttons = [...h3.parentElement.querySelectorAll("button, a")]
+        .map((el) => ({ tag: el.tagName.toLowerCase(), text: textOf(el).slice(0, 40), href: el.getAttribute("href"), box: boxOf(el) }))
+        .slice(0, 4);
+      const svgs = [...(h3.parentElement || h3).querySelectorAll("svg")].map((s) => ({
+        box: boxOf(s),
+        viewBox: s.getAttribute("viewBox"),
+        html: s.outerHTML.slice(0, 1600),
+      }));
+      return {
+        title: textOf(h3),
+        heading: { box: boxOf(h3), style: styleSubset(h3) },
+        description,
+        buttons,
+        svgs,
+        chain,
+      };
+    });
+
+    // Which card container is the real "card": the ancestor whose width is
+    // the column width and whose height encloses the whole row content.
+    const cardContainer = (card) => {
+      const candidate = card.chain.find(
+        (c) => c.box.w > 200 && c.box.h > 90 && c.box.w < (window.innerWidth > 900 ? 460 : window.innerWidth),
+      );
+      return candidate || card.chain[card.chain.length - 1] || null;
+    };
+
+    return {
+      heroParts,
+      heroSubtree,
+      catalogBox: catalog ? boxOf(catalog) : null,
+      catalogSubtree: catalog ? catalog.outerHTML.slice(0, 6000) : null,
+      tabs,
+      count: countNode,
+      cardCount: cards.length,
+      cards,
+      cardContainers: cards.map((c) => ({ title: c.title, container: cardContainer(c) })),
+      headings: headings.map((h) => ({ text: textOf(h), box: boxOf(h) })),
+    };
+  });
+
+  // ── behaviour: tabs ────────────────────────────────────────────────────
+  const readState = () =>
+    page.evaluate(() => {
+      const textOf = (el) => (el.textContent || "").replace(/\s+/g, " ").trim();
+      const search = [...document.querySelectorAll("input")].find((el) =>
+        /search/i.test(el.getAttribute("placeholder") || ""),
+      );
+      const catalog = search ? search.closest("section") : null;
+      if (!catalog) return null;
+      const count = [...catalog.querySelectorAll("p, span, div")]
+        .map((el) => textOf(el))
+        .find((t) => /^\d+\s+integrations?$/i.test(t)) || null;
+      const titles = [...catalog.querySelectorAll("h3")].map(textOf).filter(Boolean);
+      const activeTab = [...catalog.querySelectorAll("button, [role='tab'], a[href]")]
+        .filter((el) => {
+          const cs = getComputedStyle(el);
+          return Number(cs.opacity) > 0.9 && textOf(el).length > 1 && textOf(el).length < 40;
+        })
+        .map((el) => ({ text: textOf(el), color: getComputedStyle(el).color, bg: getComputedStyle(el).backgroundColor }))
+        .slice(0, 12);
+      return { count, titles, activeTab };
+    });
+
+  const behaviours = { initial: await readState(), tabClicks: [], search: [], cardClick: null };
+
+  const tabsFound = result.tabs.map((t) => t.text);
+  for (const label of tabsFound.slice(0, 8)) {
+    const clicked = await page.evaluate((want) => {
+      const textOf = (el) => (el.textContent || "").replace(/\s+/g, " ").trim();
+      const search = [...document.querySelectorAll("input")].find((el) =>
+        /search/i.test(el.getAttribute("placeholder") || ""),
+      );
+      const catalog = search ? search.closest("section") : null;
+      if (!catalog) return false;
+      const target = [...catalog.querySelectorAll("button, [role='tab'], a[href]")].find(
+        (el) => textOf(el) === want,
+      );
+      if (!target) return false;
+      target.click();
+      return true;
+    }, label);
+    if (!clicked) continue;
+    await page.waitForTimeout(450);
+    behaviours.tabClicks.push({ tab: label, state: await readState() });
+  }
+
+  // Restore "All" before the search probe.
+  await page.evaluate(() => {
+    const textOf = (el) => (el.textContent || "").replace(/\s+/g, " ").trim();
+    const search = [...document.querySelectorAll("input")].find((el) =>
+      /search/i.test(el.getAttribute("placeholder") || ""),
+    );
+    const catalog = search ? search.closest("section") : null;
+    if (!catalog) return;
+    const all = [...catalog.querySelectorAll("button, [role='tab'], a[href]")].find(
+      (el) => textOf(el) === "All",
+    );
+    if (all) all.click();
+  });
+  await page.waitForTimeout(350);
+
+  // ── behaviour: search ──────────────────────────────────────────────────
+  const searchHandle = await page.$('input[placeholder*="earch" i]');
+  if (searchHandle) {
+    for (const term of ["slack", "notion", "zzzz"]) {
+      await searchHandle.click({ clickCount: 3 }).catch(() => {});
+      await searchHandle.fill(term).catch(() => {});
+      await page.waitForTimeout(500);
+      behaviours.search.push({ term, state: await readState() });
     }
-    if (!el) return null;
-    el.scrollIntoView({ block: "center", behavior: "instant" });
-    window.__hoverTarget = el;
-    const r = el.getBoundingClientRect();
+    await searchHandle.fill("").catch(() => {});
+    await page.waitForTimeout(400);
+  }
+
+  // ── behaviour: card click ──────────────────────────────────────────────
+  const before = await page.evaluate(() => ({
+    url: location.href,
+    dialogs: document.querySelectorAll('[role="dialog"], dialog').length,
+  }));
+  const clicked = await page.evaluate(() => {
+    const h3 = document.querySelector("section h3");
+    if (!h3) return false;
+    const box = h3.getBoundingClientRect();
+    // Click the card the heading sits in, not the heading text itself.
+    let node = h3;
+    for (let i = 0; i < 4; i += 1) node = node.parentElement || node;
+    const r = node.getBoundingClientRect();
+    return { x: Math.round(r.x + r.width / 2), y: Math.round(r.y + r.height / 2), w: Math.round(r.width), h: Math.round(r.height), headingBox: { x: box.x, y: box.y } };
+  });
+  if (clicked) {
+    await page.mouse.click(clicked.x, clicked.y);
+    await page.waitForTimeout(700);
+    behaviours.cardClick = {
+      clickedAt: clicked,
+      before,
+      after: await page.evaluate(() => ({
+        url: location.href,
+        dialogs: document.querySelectorAll('[role="dialog"], dialog').length,
+        bodyRows: document.body.innerText.length,
+      })),
+    };
+    await page.goBack().catch(() => {});
+    await page.waitForTimeout(400);
+  }
+
+  return { ...result, behaviours };
+}
+
+/**
+ * The catalog card's hover state, measured on the container the deep pass
+ * identified rather than on an inferred grid cell.
+ */
+async function catalogHoverProbe(page, titleHint) {
+  const prepared = await page.evaluate((hint) => {
+    const textOf = (el) => (el.textContent || "").replace(/\s+/g, " ").trim();
+    const h3s = [...document.querySelectorAll("section h3")];
+    const h3 = (hint && h3s.find((el) => textOf(el) === hint)) || h3s[0];
+    if (!h3) return null;
+    let node = h3;
+    for (let i = 0; i < 3; i += 1) node = node.parentElement || node;
+    node.scrollIntoView({ block: "center", behavior: "instant" });
+    window.__hoverTarget = node;
+    const r = node.getBoundingClientRect();
     return {
       x: Math.round(r.x + r.width / 2),
       y: Math.round(r.y + r.height / 2),
       w: Math.round(r.width),
       h: Math.round(r.height),
-      text: (el.textContent || "").replace(/\s+/g, " ").trim().slice(0, 80),
+      title: textOf(h3),
+      html: node.outerHTML.slice(0, 3000),
     };
-  }, selector);
-  if (!prepared) return { selector, found: false };
+  }, titleHint);
+  if (!prepared) return { found: false };
 
   await page.mouse.move(0, 0);
   await page.waitForTimeout(420);
   const before = await page.evaluate(snapshotCardSurface);
-
   await page.mouse.move(prepared.x, prepared.y);
   await page.waitForTimeout(520);
   const after = await page.evaluate(snapshotCardSurface);
-
-  // Also catch transitions that land after the first sample.
   await page.waitForTimeout(600);
   const settled = await page.evaluate(snapshotCardSurface);
 
@@ -1556,10 +1830,10 @@ async function hoverProbe(page, selector) {
   };
 
   return {
-    selector,
     found: true,
+    title: prepared.title,
     box: { w: prepared.w, h: prepared.h },
-    text: prepared.text,
+    html: prepared.html,
     nodesCompared: (before || []).length,
     hoverChanges: diff(before, after),
     settledChanges: diff(before, settled),
@@ -1614,26 +1888,25 @@ async function capture(page, vp, theme, report) {
     }
   }
 
-  // Hover probes run after the screenshots so the pointer never tints the
-  // captured pixels. Two surfaces: the largest grid (the card catalog) and
-  // the second-largest, when it is a different container.
-  const probes = [];
-  const seen = new Set();
-  for (const candidate of interaction.gridCandidates) {
-    if (probes.length >= 2) break;
-    if (seen.has(candidate.containerPath)) continue;
-    seen.add(candidate.containerPath);
+  // The deep catalog pass runs once per viewport, light theme only: the
+  // page's interactive surface is identical in dark (both schemes rendered
+  // byte-identical control counts), and the extra passes cost a page-load
+  // each. Geometry, hover and filter behaviour are measured for real here.
+  let deep = null;
+  if (theme === "light") {
     try {
-      probes.push(await hoverProbe(page, candidate.cardSelector));
+      deep = await deepCatalogPass(page);
+      const firstTitle = deep.headings[0] ? deep.headings[0].text : null;
+      deep.hoverProbe = await catalogHoverProbe(page, firstTitle);
+      // A second hover, on a card that is not the first, catches a hover that
+      // only the featured tile carries.
+      const secondTitle = deep.headings[1] ? deep.headings[1].text : null;
+      if (secondTitle) deep.hoverProbeSecond = await catalogHoverProbe(page, secondTitle);
     } catch (error) {
-      probes.push({
-        selector: candidate.cardSelector,
-        found: false,
-        error: String((error && error.message) || error),
-      });
+      deep = { error: String((error && error.message) || error) };
     }
   }
-  writeJson(`int-${vp.name}-${theme}-interaction.json`, { ...interaction, hoverProbes: probes });
+  writeJson(`int-${vp.name}-${theme}-catalog.json`, deep);
 
   report.push({
     viewport: vp.name,
@@ -1678,11 +1951,49 @@ async function capture(page, vp, theme, report) {
       cardBox: c.cardBox,
       band: c.band,
     })),
-    hoverProbeChanges: probes.map((p) => ({
-      selector: p.selector,
-      found: p.found,
-      changes: (p.hoverChanges || []).length,
-    })),
+    catalog: deep && !deep.error
+      ? {
+          cardCount: deep.cardCount,
+          tabs: deep.tabs.map((t) => t.text),
+          count: deep.count ? deep.count.text : null,
+          firstCard: deep.cards[0]
+            ? {
+                title: deep.cards[0].title,
+                description: deep.cards[0].description
+                  ? deep.cards[0].description.text.slice(0, 100)
+                  : null,
+                chain: deep.cards[0].chain.map((c) => ({
+                  level: c.level,
+                  tag: c.tag,
+                  box: c.box,
+                  radius: c.style.borderRadius,
+                  border: c.style.borderTopWidth + " " + c.style.borderTopColor,
+                  bg: c.style.backgroundColor,
+                  pad: c.style.paddingTop,
+                })),
+              }
+            : null,
+          tabClickCounts: deep.behaviours.tabClicks.map((t) => ({
+            tab: t.tab,
+            count: t.state ? t.state.count : null,
+            titles: t.state ? t.state.titles.length : null,
+          })),
+          searchCounts: deep.behaviours.search.map((t) => ({
+            term: t.term,
+            count: t.state ? t.state.count : null,
+            titles: t.state ? t.state.titles.length : null,
+          })),
+          cardClickChanges: deep.behaviours.cardClick
+            ? {
+                urlChanged: deep.behaviours.cardClick.before.url !== deep.behaviours.cardClick.after.url,
+                dialogsBefore: deep.behaviours.cardClick.before.dialogs,
+                dialogsAfter: deep.behaviours.cardClick.after.dialogs,
+              }
+            : null,
+          hoverChanges: deep.hoverProbe ? (deep.hoverProbe.hoverChanges || []).length : null,
+          hoverSettledChanges: deep.hoverProbe ? (deep.hoverProbe.settledChanges || []).length : null,
+        }
+      : { error: deep ? deep.error : "not run" },
   });
 
   return {
