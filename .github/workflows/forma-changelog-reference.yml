@@ -1,0 +1,107 @@
+# Forma /changelog reference capture — measured evidence for the
+# /changelog recreation (DOM structure, computed CSS, raw SVG markup,
+# runtime animation behavior, filter/hover probes, and reduced-motion behavior).
+#
+# WHY THIS WORKFLOW EXISTS. The repository's development sandbox has an
+# egress allowlist that blocks `forma-visuvate.framer.website`, so the
+# reference cannot be measured in-process. A GitHub-hosted runner can reach
+# it, so this workflow runs the established discipline from
+# `forma-solutions-reference.yml`, `forma-features-reference.yml`, and
+# `forma-integrations-reference.yml`: a real Chromium (`playwright-core`) on
+# the live page at the seven milestone widths in both colour schemes, plus
+# reduced-motion emulation, with instrumentation installed BEFORE the page's
+# first script.
+#
+# IT IS READ-ONLY WITH RESPECT TO THE REPOSITORY'S CODE. It never modifies
+# a source file, never deploys, and never touches any payment, billing or
+# database path. The only write it performs is to the dedicated
+# `arena/forma-changelog-capture` branch so the measured output survives as
+# a fetchable artefact over `github.com`.
+name: forma-changelog-reference
+
+on:
+  workflow_dispatch:
+    inputs:
+      reference:
+        description: "Changelog page to measure"
+        required: false
+        default: "https://forma-visuvate.framer.website/changelog"
+  # TEMPORARY — removed before the pull request so the merged workflow stays
+  # dispatch-only, matching `forma-integrations-reference.yml`.
+  push:
+    branches:
+      - arena/d1b4526c-roducq
+    paths:
+      - "scripts/capture-changelog-reference.mjs"
+      - ".github/workflows/forma-changelog-reference.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ">=22.18.0"
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright-core install --with-deps chromium
+
+      - name: Capture the reference /changelog page
+        env:
+          REFERENCE: ${{ inputs.reference || 'https://forma-visuvate.framer.website/changelog' }}
+        run: |
+          node scripts/capture-changelog-reference.mjs \
+            --target forma-changelog \
+            --base "$REFERENCE" \
+            --out docs/screenshots/forma-changelog-reference
+
+      - name: Report what was measured
+        if: always()
+        run: |
+          node -e '
+            const fs = require("node:fs");
+            const p = "docs/screenshots/forma-changelog-reference/changelog-summary.json";
+            if (!fs.existsSync(p)) { console.log("no summary written"); process.exit(0); }
+            const s = JSON.parse(fs.readFileSync(p, "utf8"));
+            for (const r of s) {
+              console.log(`${r.viewport} ${r.theme}: bands=${r.sections.length} svgs=${r.svgCount} imgs=${r.imageCount} overflowX=${r.overflowX} chg=${JSON.stringify(r.changelog)}`);
+            }
+            const f = "docs/screenshots/forma-changelog-reference/changelog-failures.json";
+            if (fs.existsSync(f)) console.log("failures:", fs.readFileSync(f, "utf8"));
+          '
+
+      - name: Upload the capture
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: forma-changelog-capture
+          path: docs/screenshots/forma-changelog-reference
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Publish the capture to the evidence branch
+        if: always()
+        run: |
+          if [ ! -d docs/screenshots/forma-changelog-reference ]; then
+            echo "nothing captured; skipping the evidence branch"
+            exit 0
+          fi
+          du -sh docs/screenshots/forma-changelog-reference || true
+          git config user.name "Arena Agent"
+          git config user.email "agent@arena.ai"
+          git checkout --orphan arena/forma-changelog-capture
+          git rm -rf --quiet . || true
+          mkdir -p docs/screenshots/forma-changelog-reference
+          git add -f docs/screenshots/forma-changelog-reference
+          git commit -q -m "capture: measured /changelog reference evidence"
+          git push --force origin arena/forma-changelog-capture
