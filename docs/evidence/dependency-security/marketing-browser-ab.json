@@ -1,0 +1,420 @@
+{
+  "environment": {
+    "chromium": "153.0.8010.0",
+    "playwrightCore": "1.63.0",
+    "axeCore": "4.14.0",
+    "servers": "next start (production build) of each tree on 127.0.0.1; same session, same scripts"
+  },
+  "shellAxeMotion": {
+    "source": "scripts/verify-marketing-consistency.mjs PHASES=shell,axe,motion (8 routes; widths 320/375/390/768/1024/1200/1440; light+dark)",
+    "updated": {
+      "chromium": "153.0.8010.0",
+      "axeCore": true,
+      "shell": {
+        "rows": 112,
+        "overflowXMax": 0,
+        "rowsWithOverflow": 0,
+        "headerRendered": 112,
+        "footerRendered": 112,
+        "smallTapTargets": 0,
+        "themeSwitchChecked": 48,
+        "themeSwitchChanged": 48,
+        "firstTabIsSkipLink": 112,
+        "allTabStopsVisibleFocus": 112,
+        "pageErrors": 0
+      },
+      "axe": {
+        "runs": 48,
+        "violations": 0,
+        "violationRules": {},
+        "incompleteRules": {
+          "color-contrast (serious)": {
+            "runs": 48,
+            "nodes": 628
+          }
+        },
+        "passesTotal": 1992
+      },
+      "motion": {
+        "reducedMotionRoutes": 8,
+        "runningAnimationsUnderReducedMotion": 0,
+        "hiddenBandsUnderReducedMotion": 0,
+        "noJsRoutes": 8,
+        "noJsH1Present": 8,
+        "noJsZeroOpacityElements": 2,
+        "noJsTextLength": {
+          "/": 9835,
+          "/features": 7162,
+          "/solutions": 4451,
+          "/integrations": 2654,
+          "/pricing": 1705,
+          "/changelog": 4195,
+          "/about": 1522,
+          "/vs": 1548
+        }
+      }
+    },
+    "baseline": {
+      "chromium": "153.0.8010.0",
+      "axeCore": true,
+      "shell": {
+        "rows": 112,
+        "overflowXMax": 0,
+        "rowsWithOverflow": 0,
+        "headerRendered": 112,
+        "footerRendered": 112,
+        "smallTapTargets": 0,
+        "themeSwitchChecked": 48,
+        "themeSwitchChanged": 48,
+        "firstTabIsSkipLink": 112,
+        "allTabStopsVisibleFocus": 112,
+        "pageErrors": 0
+      },
+      "axe": {
+        "runs": 48,
+        "violations": 0,
+        "violationRules": {},
+        "incompleteRules": {
+          "color-contrast (serious)": {
+            "runs": 48,
+            "nodes": 628
+          }
+        },
+        "passesTotal": 1992
+      },
+      "motion": {
+        "reducedMotionRoutes": 8,
+        "runningAnimationsUnderReducedMotion": 0,
+        "hiddenBandsUnderReducedMotion": 0,
+        "noJsRoutes": 8,
+        "noJsH1Present": 8,
+        "noJsZeroOpacityElements": 2,
+        "noJsTextLength": {
+          "/": 9835,
+          "/features": 7162,
+          "/solutions": 4451,
+          "/integrations": 2654,
+          "/pricing": 1705,
+          "/changelog": 4195,
+          "/about": 1522,
+          "/vs": 1548
+        }
+      }
+    },
+    "perRowDifferences": []
+  },
+  "supplement": {
+    "source": "ad-hoc script (not committed): console errors, mobile menu, theme control at every width",
+    "updated": {
+      "pages": 56,
+      "clean": 56,
+      "overflowMax": 0,
+      "headerFooterMissing": 0,
+      "headerThemeChecked": 48,
+      "headerThemeOk": 48,
+      "menuChecked": 32,
+      "menuOk": 32,
+      "menuWidths": [
+        320,
+        375,
+        390,
+        768
+      ],
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "failedRequests": 0,
+      "httpErrors": 0
+    },
+    "baseline": {
+      "pages": 56,
+      "clean": 56,
+      "overflowMax": 0,
+      "headerFooterMissing": 0,
+      "headerThemeChecked": 48,
+      "headerThemeOk": 48,
+      "menuChecked": 32,
+      "menuOk": 32,
+      "menuWidths": [
+        320,
+        375,
+        390,
+        768
+      ],
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "failedRequests": 0,
+      "httpErrors": 0
+    },
+    "rowsWithDifferentOutcome": []
+  },
+  "renderedEquivalence": {
+    "source": "ad-hoc script (not committed): DOM signature (classes excluded), visible text, full-page pixel diff",
+    "conditions": "Chromium 153.0.8010.0, reducedMotion=reduce, colorScheme=light, DPR 1, fullPage screenshots, channel threshold 16",
+    "summary": {
+      "pairs": 16,
+      "domIdentical": 16,
+      "textIdentical": 16,
+      "pixelIdentical": 16,
+      "sameSize": 16,
+      "maxDiffRatio": 0
+    },
+    "rows": [
+      {
+        "route": "/",
+        "width": 375,
+        "domIdentical": true,
+        "domNodes": [
+          1356,
+          1356
+        ],
+        "textIdentical": true,
+        "pixels": {
+          "sameSize": true,
+          "size": "375x17168",
+          "diffPixels": 0,
+          "diffRatio": 0
+        }
+      },
+      {
+        "route": "/",
+        "width": 1440,
+        "domIdentical": true,
+        "domNodes": [
+          1356,
+          1356
+        ],
+        "textIdentical": true,
+        "pixels": {
+          "sameSize": true,
+          "size": "1440x9983",
+          "diffPixels": 0,
+          "diffRatio": 0
+        }
+      },
+      {
+        "route": "/features",
+        "width": 375,
+        "domIdentical": true,
+        "domNodes": [
+          942,
+          942
+        ],
+        "textIdentical": true,
+        "pixels": {
+          "sameSize": true,
+          "size": "375x11980",
+          "diffPixels": 0,
+          "diffRatio": 0
+        }
+      },
+      {
+        "route": "/features",
+        "width": 1440,
+        "domIdentical": true,
+        "domNodes": [
+          942,
+          942
+        ],
+        "textIdentical": true,
+        "pixels": {
+          "sameSize": true,
+          "size": "1440x7387",
+          "diffPixels": 0,
+          "diffRatio": 0
+        }
+      },
+      {
+        "route": "/solutions",
+        "width": 375,
+        "domIdentical": true,
+        "domNodes": [
+          634,
+          634
+        ],
+        "textIdentical": true,
+        "pixels": {
+          "sameSize": true,
+          "size": "375x8252",
+          "diffPixels": 0,
+          "diffRatio": 0
+        }
+      },
+      {
+        "route": "/solutions",
+        "width": 1440,
+        "domIdentical": true,
+        "domNodes": [
+          634,
+          634
+        ],
+        "textIdentical": true,
+        "pixels": {
+          "sameSize": true,
+          "size": "1440x5655",
+          "diffPixels": 0,
+          "diffRatio": 0
+        }
+      },
+      {
+        "route": "/integrations",
+        "width": 375,
+        "domIdentical": true,
+        "domNodes": [
+          380,
+          380
+        ],
+        "textIdentical": true,
+        "pixels": {
+          "sameSize": true,
+          "size": "375x6245",
+          "diffPixels": 0,
+          "diffRatio": 0
+        }
+      },
+      {
+        "route": "/integrations",
+        "width": 1440,
+        "domIdentical": true,
+        "domNodes": [
+          380,
+          380
+        ],
+        "textIdentical": true,
+        "pixels": {
+          "sameSize": true,
+          "size": "1440x3936",
+          "diffPixels": 0,
+          "diffRatio": 0
+        }
+      },
+      {
+        "route": "/pricing",
+        "width": 375,
+        "domIdentical": true,
+        "domNodes": [
+          290,
+          290
+        ],
+        "textIdentical": true,
+        "pixels": {
+          "sameSize": true,
+          "size": "375x3907",
+          "diffPixels": 0,
+          "diffRatio": 0
+        }
+      },
+      {
+        "route": "/pricing",
+        "width": 1440,
+        "domIdentical": true,
+        "domNodes": [
+          290,
+          290
+        ],
+        "textIdentical": true,
+        "pixels": {
+          "sameSize": true,
+          "size": "1440x2407",
+          "diffPixels": 0,
+          "diffRatio": 0
+        }
+      },
+      {
+        "route": "/changelog",
+        "width": 375,
+        "domIdentical": true,
+        "domNodes": [
+          333,
+          333
+        ],
+        "textIdentical": true,
+        "pixels": {
+          "sameSize": true,
+          "size": "375x7300",
+          "diffPixels": 0,
+          "diffRatio": 0
+        }
+      },
+      {
+        "route": "/changelog",
+        "width": 1440,
+        "domIdentical": true,
+        "domNodes": [
+          333,
+          333
+        ],
+        "textIdentical": true,
+        "pixels": {
+          "sameSize": true,
+          "size": "1440x4820",
+          "diffPixels": 0,
+          "diffRatio": 0
+        }
+      },
+      {
+        "route": "/about",
+        "width": 375,
+        "domIdentical": true,
+        "domNodes": [
+          224,
+          224
+        ],
+        "textIdentical": true,
+        "pixels": {
+          "sameSize": true,
+          "size": "375x3362",
+          "diffPixels": 0,
+          "diffRatio": 0
+        }
+      },
+      {
+        "route": "/about",
+        "width": 1440,
+        "domIdentical": true,
+        "domNodes": [
+          224,
+          224
+        ],
+        "textIdentical": true,
+        "pixels": {
+          "sameSize": true,
+          "size": "1440x2030",
+          "diffPixels": 0,
+          "diffRatio": 0
+        }
+      },
+      {
+        "route": "/vs",
+        "width": 375,
+        "domIdentical": true,
+        "domNodes": [
+          257,
+          257
+        ],
+        "textIdentical": true,
+        "pixels": {
+          "sameSize": true,
+          "size": "375x3421",
+          "diffPixels": 0,
+          "diffRatio": 0
+        }
+      },
+      {
+        "route": "/vs",
+        "width": 1440,
+        "domIdentical": true,
+        "domNodes": [
+          257,
+          257
+        ],
+        "textIdentical": true,
+        "pixels": {
+          "sameSize": true,
+          "size": "1440x1659",
+          "diffPixels": 0,
+          "diffRatio": 0
+        }
+      }
+    ]
+  }
+}

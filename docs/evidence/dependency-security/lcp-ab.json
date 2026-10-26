@@ -1,0 +1,1545 @@
+{
+  "generatedAt": "2026-10-26T11:05:50.905Z",
+  "method": "verify-marketing-consistency.mjs PHASES=lcp RUNS=3, interleaved A,B,B,A (6 runs per route × scenario × build)",
+  "chromium": "153.0.8010.0",
+  "summary": {
+    "routeScenarioPairs": 32,
+    "updatedAllUnder2500": true,
+    "baselineAllUnder2500": true,
+    "updatedWorstLcpMs": 428,
+    "baselineWorstLcpMs": 428,
+    "updatedWorstCls": 0.2792,
+    "baselineWorstCls": 0.3622,
+    "sameLcpElementEverywhere": true,
+    "erroredRuns": {
+      "updated": 0,
+      "baseline": 0
+    },
+    "pageErrors": {
+      "updated": 0,
+      "baseline": 0
+    }
+  },
+  "rows": [
+    {
+      "route": "/",
+      "scenario": "A-mobile-unthrottled",
+      "updated": {
+        "runs": 6,
+        "median": 180,
+        "min": 156,
+        "max": 220,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.lm-hero-in.mt-5.5"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "baseline": {
+        "runs": 6,
+        "median": 184,
+        "min": 164,
+        "max": 236,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.lm-hero-in.mt-5.5"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "erroredRuns": {
+        "updated": 0,
+        "baseline": 0
+      },
+      "sameLcpElement": true,
+      "allRunsUnder2500": true
+    },
+    {
+      "route": "/",
+      "scenario": "B-mobile-cpu-4x",
+      "updated": {
+        "runs": 6,
+        "median": 332,
+        "min": 272,
+        "max": 380,
+        "clsMax": 0.2792,
+        "lcpElement": [
+          "p.lm-hero-in.mt-5.5"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "baseline": {
+        "runs": 6,
+        "median": 362,
+        "min": 292,
+        "max": 428,
+        "clsMax": 0.3622,
+        "lcpElement": [
+          "p.lm-hero-in.mt-5.5"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "erroredRuns": {
+        "updated": 0,
+        "baseline": 0
+      },
+      "sameLcpElement": true,
+      "allRunsUnder2500": true
+    },
+    {
+      "route": "/",
+      "scenario": "C-desktop",
+      "updated": {
+        "runs": 6,
+        "median": 286,
+        "min": 264,
+        "max": 428,
+        "clsMax": 0.0033,
+        "lcpElement": [
+          "p.lm-hero-in.mt-5.5"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "baseline": {
+        "runs": 6,
+        "median": 380,
+        "min": 252,
+        "max": 412,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.lm-hero-in.mt-5.5"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "erroredRuns": {
+        "updated": 0,
+        "baseline": 0
+      },
+      "sameLcpElement": true,
+      "allRunsUnder2500": true
+    },
+    {
+      "route": "/",
+      "scenario": "D-mobile-reduced-motion",
+      "updated": {
+        "runs": 6,
+        "median": 254,
+        "min": 220,
+        "max": 272,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.lm-hero-in.mt-5.5"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "baseline": {
+        "runs": 6,
+        "median": 234,
+        "min": 216,
+        "max": 276,
+        "clsMax": 0.2695,
+        "lcpElement": [
+          "p.lm-hero-in.mt-5.5"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "erroredRuns": {
+        "updated": 0,
+        "baseline": 0
+      },
+      "sameLcpElement": true,
+      "allRunsUnder2500": true
+    },
+    {
+      "route": "/features",
+      "scenario": "A-mobile-unthrottled",
+      "updated": {
+        "runs": 6,
+        "median": 132,
+        "min": 120,
+        "max": 156,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.lm-hero-in.mt-8"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "baseline": {
+        "runs": 6,
+        "median": 128,
+        "min": 124,
+        "max": 140,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.lm-hero-in.mt-8"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "erroredRuns": {
+        "updated": 0,
+        "baseline": 0
+      },
+      "sameLcpElement": true,
+      "allRunsUnder2500": true
+    },
+    {
+      "route": "/features",
+      "scenario": "B-mobile-cpu-4x",
+      "updated": {
+        "runs": 6,
+        "median": 278,
+        "min": 252,
+        "max": 344,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.lm-hero-in.mt-8"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "baseline": {
+        "runs": 6,
+        "median": 268,
+        "min": 224,
+        "max": 300,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.lm-hero-in.mt-8"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "erroredRuns": {
+        "updated": 0,
+        "baseline": 0
+      },
+      "sameLcpElement": true,
+      "allRunsUnder2500": true
+    },
+    {
+      "route": "/features",
+      "scenario": "C-desktop",
+      "updated": {
+        "runs": 6,
+        "median": 148,
+        "min": 132,
+        "max": 168,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.lm-hero-in.mt-8"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "baseline": {
+        "runs": 6,
+        "median": 160,
+        "min": 132,
+        "max": 236,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.lm-hero-in.mt-8"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "erroredRuns": {
+        "updated": 0,
+        "baseline": 0
+      },
+      "sameLcpElement": true,
+      "allRunsUnder2500": true
+    },
+    {
+      "route": "/features",
+      "scenario": "D-mobile-reduced-motion",
+      "updated": {
+        "runs": 6,
+        "median": 126,
+        "min": 120,
+        "max": 144,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.lm-hero-in.mt-8"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "baseline": {
+        "runs": 6,
+        "median": 124,
+        "min": 120,
+        "max": 128,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.lm-hero-in.mt-8"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "erroredRuns": {
+        "updated": 0,
+        "baseline": 0
+      },
+      "sameLcpElement": true,
+      "allRunsUnder2500": true
+    },
+    {
+      "route": "/solutions",
+      "scenario": "A-mobile-unthrottled",
+      "updated": {
+        "runs": 6,
+        "median": 122,
+        "min": 116,
+        "max": 156,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.lm-hero-in.mt-8"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "baseline": {
+        "runs": 6,
+        "median": 122,
+        "min": 108,
+        "max": 152,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.lm-hero-in.mt-8"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "erroredRuns": {
+        "updated": 0,
+        "baseline": 0
+      },
+      "sameLcpElement": true,
+      "allRunsUnder2500": true
+    },
+    {
+      "route": "/solutions",
+      "scenario": "B-mobile-cpu-4x",
+      "updated": {
+        "runs": 6,
+        "median": 256,
+        "min": 220,
+        "max": 304,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.lm-hero-in.mt-8"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "baseline": {
+        "runs": 6,
+        "median": 238,
+        "min": 212,
+        "max": 280,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.lm-hero-in.mt-8"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "erroredRuns": {
+        "updated": 0,
+        "baseline": 0
+      },
+      "sameLcpElement": true,
+      "allRunsUnder2500": true
+    },
+    {
+      "route": "/solutions",
+      "scenario": "C-desktop",
+      "updated": {
+        "runs": 6,
+        "median": 136,
+        "min": 132,
+        "max": 196,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.lm-hero-in.mt-8"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "baseline": {
+        "runs": 6,
+        "median": 130,
+        "min": 128,
+        "max": 144,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.lm-hero-in.mt-8"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "erroredRuns": {
+        "updated": 0,
+        "baseline": 0
+      },
+      "sameLcpElement": true,
+      "allRunsUnder2500": true
+    },
+    {
+      "route": "/solutions",
+      "scenario": "D-mobile-reduced-motion",
+      "updated": {
+        "runs": 6,
+        "median": 122,
+        "min": 116,
+        "max": 136,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.lm-hero-in.mt-8"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "baseline": {
+        "runs": 6,
+        "median": 122,
+        "min": 116,
+        "max": 164,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.lm-hero-in.mt-8"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "erroredRuns": {
+        "updated": 0,
+        "baseline": 0
+      },
+      "sameLcpElement": true,
+      "allRunsUnder2500": true
+    },
+    {
+      "route": "/integrations",
+      "scenario": "A-mobile-unthrottled",
+      "updated": {
+        "runs": 6,
+        "median": 126,
+        "min": 112,
+        "max": 172,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.lm-hero-in.mt-8"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "baseline": {
+        "runs": 6,
+        "median": 122,
+        "min": 108,
+        "max": 128,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.lm-hero-in.mt-8"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "erroredRuns": {
+        "updated": 0,
+        "baseline": 0
+      },
+      "sameLcpElement": true,
+      "allRunsUnder2500": true
+    },
+    {
+      "route": "/integrations",
+      "scenario": "B-mobile-cpu-4x",
+      "updated": {
+        "runs": 6,
+        "median": 224,
+        "min": 180,
+        "max": 268,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.lm-hero-in.mt-8"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "baseline": {
+        "runs": 6,
+        "median": 256,
+        "min": 176,
+        "max": 276,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.lm-hero-in.mt-8"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "erroredRuns": {
+        "updated": 0,
+        "baseline": 0
+      },
+      "sameLcpElement": true,
+      "allRunsUnder2500": true
+    },
+    {
+      "route": "/integrations",
+      "scenario": "C-desktop",
+      "updated": {
+        "runs": 6,
+        "median": 138,
+        "min": 116,
+        "max": 172,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.lm-hero-in.mt-8"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "baseline": {
+        "runs": 6,
+        "median": 130,
+        "min": 124,
+        "max": 180,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.lm-hero-in.mt-8"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "erroredRuns": {
+        "updated": 0,
+        "baseline": 0
+      },
+      "sameLcpElement": true,
+      "allRunsUnder2500": true
+    },
+    {
+      "route": "/integrations",
+      "scenario": "D-mobile-reduced-motion",
+      "updated": {
+        "runs": 6,
+        "median": 118,
+        "min": 100,
+        "max": 128,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.lm-hero-in.mt-8"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "baseline": {
+        "runs": 6,
+        "median": 118,
+        "min": 108,
+        "max": 132,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.lm-hero-in.mt-8"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "erroredRuns": {
+        "updated": 0,
+        "baseline": 0
+      },
+      "sameLcpElement": true,
+      "allRunsUnder2500": true
+    },
+    {
+      "route": "/pricing",
+      "scenario": "A-mobile-unthrottled",
+      "updated": {
+        "runs": 6,
+        "median": 110,
+        "min": 100,
+        "max": 120,
+        "clsMax": 0,
+        "lcpElement": [
+          "h1.lm-hero-in.mt-3"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "baseline": {
+        "runs": 6,
+        "median": 108,
+        "min": 96,
+        "max": 156,
+        "clsMax": 0,
+        "lcpElement": [
+          "h1.lm-hero-in.mt-3"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "erroredRuns": {
+        "updated": 0,
+        "baseline": 0
+      },
+      "sameLcpElement": true,
+      "allRunsUnder2500": true
+    },
+    {
+      "route": "/pricing",
+      "scenario": "B-mobile-cpu-4x",
+      "updated": {
+        "runs": 6,
+        "median": 224,
+        "min": 184,
+        "max": 328,
+        "clsMax": 0,
+        "lcpElement": [
+          "h1.lm-hero-in.mt-3"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "baseline": {
+        "runs": 6,
+        "median": 244,
+        "min": 216,
+        "max": 332,
+        "clsMax": 0,
+        "lcpElement": [
+          "h1.lm-hero-in.mt-3"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "erroredRuns": {
+        "updated": 0,
+        "baseline": 0
+      },
+      "sameLcpElement": true,
+      "allRunsUnder2500": true
+    },
+    {
+      "route": "/pricing",
+      "scenario": "C-desktop",
+      "updated": {
+        "runs": 6,
+        "median": 128,
+        "min": 116,
+        "max": 136,
+        "clsMax": 0,
+        "lcpElement": [
+          "h1.lm-hero-in.mt-3"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "baseline": {
+        "runs": 6,
+        "median": 128,
+        "min": 112,
+        "max": 164,
+        "clsMax": 0,
+        "lcpElement": [
+          "h1.lm-hero-in.mt-3"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "erroredRuns": {
+        "updated": 0,
+        "baseline": 0
+      },
+      "sameLcpElement": true,
+      "allRunsUnder2500": true
+    },
+    {
+      "route": "/pricing",
+      "scenario": "D-mobile-reduced-motion",
+      "updated": {
+        "runs": 6,
+        "median": 116,
+        "min": 104,
+        "max": 124,
+        "clsMax": 0,
+        "lcpElement": [
+          "h1.lm-hero-in.mt-3"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "baseline": {
+        "runs": 6,
+        "median": 112,
+        "min": 108,
+        "max": 124,
+        "clsMax": 0,
+        "lcpElement": [
+          "h1.lm-hero-in.mt-3"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "erroredRuns": {
+        "updated": 0,
+        "baseline": 0
+      },
+      "sameLcpElement": true,
+      "allRunsUnder2500": true
+    },
+    {
+      "route": "/changelog",
+      "scenario": "A-mobile-unthrottled",
+      "updated": {
+        "runs": 6,
+        "median": 116,
+        "min": 104,
+        "max": 140,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.lm-hero-in.mt-8"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "baseline": {
+        "runs": 6,
+        "median": 118,
+        "min": 104,
+        "max": 152,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.lm-hero-in.mt-8"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "erroredRuns": {
+        "updated": 0,
+        "baseline": 0
+      },
+      "sameLcpElement": true,
+      "allRunsUnder2500": true
+    },
+    {
+      "route": "/changelog",
+      "scenario": "B-mobile-cpu-4x",
+      "updated": {
+        "runs": 6,
+        "median": 222,
+        "min": 164,
+        "max": 260,
+        "clsMax": 0.0033,
+        "lcpElement": [
+          "p.lm-hero-in.mt-8"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "baseline": {
+        "runs": 6,
+        "median": 230,
+        "min": 200,
+        "max": 244,
+        "clsMax": 0.0039,
+        "lcpElement": [
+          "p.lm-hero-in.mt-8"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "erroredRuns": {
+        "updated": 0,
+        "baseline": 0
+      },
+      "sameLcpElement": true,
+      "allRunsUnder2500": true
+    },
+    {
+      "route": "/changelog",
+      "scenario": "C-desktop",
+      "updated": {
+        "runs": 6,
+        "median": 126,
+        "min": 116,
+        "max": 148,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.mt-3.text-lm-16-5"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "baseline": {
+        "runs": 6,
+        "median": 132,
+        "min": 120,
+        "max": 156,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.mt-3.text-lm-16-5"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "erroredRuns": {
+        "updated": 0,
+        "baseline": 0
+      },
+      "sameLcpElement": true,
+      "allRunsUnder2500": true
+    },
+    {
+      "route": "/changelog",
+      "scenario": "D-mobile-reduced-motion",
+      "updated": {
+        "runs": 6,
+        "median": 124,
+        "min": 112,
+        "max": 144,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.lm-hero-in.mt-8"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "baseline": {
+        "runs": 6,
+        "median": 118,
+        "min": 104,
+        "max": 152,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.lm-hero-in.mt-8"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "erroredRuns": {
+        "updated": 0,
+        "baseline": 0
+      },
+      "sameLcpElement": true,
+      "allRunsUnder2500": true
+    },
+    {
+      "route": "/about",
+      "scenario": "A-mobile-unthrottled",
+      "updated": {
+        "runs": 6,
+        "median": 102,
+        "min": 96,
+        "max": 116,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.mt-4.max-w-xl"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "baseline": {
+        "runs": 6,
+        "median": 112,
+        "min": 88,
+        "max": 156,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.mt-4.max-w-xl"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "erroredRuns": {
+        "updated": 0,
+        "baseline": 0
+      },
+      "sameLcpElement": true,
+      "allRunsUnder2500": true
+    },
+    {
+      "route": "/about",
+      "scenario": "B-mobile-cpu-4x",
+      "updated": {
+        "runs": 6,
+        "median": 212,
+        "min": 204,
+        "max": 256,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.mt-4.max-w-xl"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "baseline": {
+        "runs": 6,
+        "median": 196,
+        "min": 152,
+        "max": 208,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.mt-4.max-w-xl"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "erroredRuns": {
+        "updated": 0,
+        "baseline": 0
+      },
+      "sameLcpElement": true,
+      "allRunsUnder2500": true
+    },
+    {
+      "route": "/about",
+      "scenario": "C-desktop",
+      "updated": {
+        "runs": 6,
+        "median": 114,
+        "min": 108,
+        "max": 136,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.mt-4.max-w-xl"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "baseline": {
+        "runs": 6,
+        "median": 116,
+        "min": 100,
+        "max": 132,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.mt-4.max-w-xl"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "erroredRuns": {
+        "updated": 0,
+        "baseline": 0
+      },
+      "sameLcpElement": true,
+      "allRunsUnder2500": true
+    },
+    {
+      "route": "/about",
+      "scenario": "D-mobile-reduced-motion",
+      "updated": {
+        "runs": 6,
+        "median": 104,
+        "min": 104,
+        "max": 140,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.mt-4.max-w-xl"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "baseline": {
+        "runs": 6,
+        "median": 108,
+        "min": 100,
+        "max": 112,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.mt-4.max-w-xl"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "erroredRuns": {
+        "updated": 0,
+        "baseline": 0
+      },
+      "sameLcpElement": true,
+      "allRunsUnder2500": true
+    },
+    {
+      "route": "/vs",
+      "scenario": "A-mobile-unthrottled",
+      "updated": {
+        "runs": 6,
+        "median": 112,
+        "min": 92,
+        "max": 164,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.mt-8.rounded-md"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "baseline": {
+        "runs": 6,
+        "median": 110,
+        "min": 96,
+        "max": 176,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.mt-8.rounded-md"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "erroredRuns": {
+        "updated": 0,
+        "baseline": 0
+      },
+      "sameLcpElement": true,
+      "allRunsUnder2500": true
+    },
+    {
+      "route": "/vs",
+      "scenario": "B-mobile-cpu-4x",
+      "updated": {
+        "runs": 6,
+        "median": 208,
+        "min": 196,
+        "max": 308,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.mt-8.rounded-md"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "baseline": {
+        "runs": 6,
+        "median": 194,
+        "min": 184,
+        "max": 212,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.mt-8.rounded-md"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "erroredRuns": {
+        "updated": 0,
+        "baseline": 0
+      },
+      "sameLcpElement": true,
+      "allRunsUnder2500": true
+    },
+    {
+      "route": "/vs",
+      "scenario": "C-desktop",
+      "updated": {
+        "runs": 6,
+        "median": 120,
+        "min": 112,
+        "max": 164,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.mt-8.rounded-md"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "baseline": {
+        "runs": 6,
+        "median": 126,
+        "min": 112,
+        "max": 144,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.mt-8.rounded-md"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "erroredRuns": {
+        "updated": 0,
+        "baseline": 0
+      },
+      "sameLcpElement": true,
+      "allRunsUnder2500": true
+    },
+    {
+      "route": "/vs",
+      "scenario": "D-mobile-reduced-motion",
+      "updated": {
+        "runs": 6,
+        "median": 112,
+        "min": 108,
+        "max": 120,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.mt-8.rounded-md"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "baseline": {
+        "runs": 6,
+        "median": 108,
+        "min": 84,
+        "max": 144,
+        "clsMax": 0,
+        "lcpElement": [
+          "p.mt-8.rounded-md"
+        ],
+        "opacityAtStart": [
+          "1"
+        ],
+        "pageErrors": 0
+      },
+      "erroredRuns": {
+        "updated": 0,
+        "baseline": 0
+      },
+      "sameLcpElement": true,
+      "allRunsUnder2500": true
+    }
+  ],
+  "homepageClsDeepDive": {
+    "extendedSample": {
+      "method": "verify-marketing-consistency.mjs ROUTES=/ PHASES=lcp RUNS=5, interleaved A,B,B,A, pooled with the 6-run main suite (16 runs per scenario per build)",
+      "perScenario": {
+        "updated|A-mobile-unthrottled": {
+          "n": 16,
+          "nonzero": 0,
+          "gt01": 0,
+          "max": 0,
+          "median": 0.0,
+          "lcpMax": 236,
+          "extraRuns": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "updated|B-mobile-cpu-4x": {
+          "n": 16,
+          "nonzero": 8,
+          "gt01": 6,
+          "max": 0.28,
+          "median": 0.03795,
+          "lcpMax": 452,
+          "extraRuns": [
+            0.136,
+            0.28,
+            0,
+            0,
+            0.1201,
+            0.0838,
+            0,
+            0,
+            0,
+            0.0759
+          ]
+        },
+        "updated|C-desktop": {
+          "n": 16,
+          "nonzero": 1,
+          "gt01": 0,
+          "max": 0.0366,
+          "median": 0.0,
+          "lcpMax": 428,
+          "extraRuns": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0.0366,
+            0,
+            0
+          ]
+        },
+        "updated|D-mobile-reduced-motion": {
+          "n": 16,
+          "nonzero": 0,
+          "gt01": 0,
+          "max": 0,
+          "median": 0.0,
+          "lcpMax": 332,
+          "extraRuns": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "baseline|A-mobile-unthrottled": {
+          "n": 16,
+          "nonzero": 1,
+          "gt01": 1,
+          "max": 0.1238,
+          "median": 0.0,
+          "lcpMax": 240,
+          "extraRuns": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0.1238
+          ]
+        },
+        "baseline|B-mobile-cpu-4x": {
+          "n": 16,
+          "nonzero": 5,
+          "gt01": 2,
+          "max": 0.3622,
+          "median": 0.0,
+          "lcpMax": 620,
+          "extraRuns": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0.0759,
+            0.2695
+          ]
+        },
+        "baseline|C-desktop": {
+          "n": 16,
+          "nonzero": 0,
+          "gt01": 0,
+          "max": 0.0033,
+          "median": 0.0,
+          "lcpMax": 412,
+          "extraRuns": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0.0033
+          ]
+        },
+        "baseline|D-mobile-reduced-motion": {
+          "n": 16,
+          "nonzero": 2,
+          "gt01": 2,
+          "max": 0.2695,
+          "median": 0.0,
+          "lcpMax": 292,
+          "extraRuns": [
+            0,
+            0,
+            0.136,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "shiftSources": {
+      "scenario": "PR #53 B exactly as scripts/verify-marketing-consistency.mjs runs it: 412x823 @1.75 DPR viewport (no isMobile), 4x CPU, waitUntil load + 1200 ms, route /",
+      "baseline": {
+        "runs": 12,
+        "runsWithShift": 4,
+        "runsOver01": 3,
+        "max": 0.136,
+        "cls": [
+          0.136,
+          0,
+          0.0881,
+          0.134,
+          0,
+          0,
+          0.136,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "sources": {
+          "div.animate-route-in > section.relative.isolate > div.pointer-events-none.absolute > div.lm-bloom-b.lm-drift": {
+            "count": 5,
+            "totalValue": 0.4941,
+            "examples": [
+              {
+                "t": 354,
+                "value": 0.136,
+                "prev": [
+                  245,
+                  512
+                ],
+                "curr": [
+                  285,
+                  512
+                ]
+              }
+            ]
+          },
+          "div.animate-route-in > section.relative.isolate > div.pointer-events-none.absolute > div.lm-bloom-a.lm-drift": {
+            "count": 5,
+            "totalValue": 0.4941,
+            "examples": [
+              {
+                "t": 354,
+                "value": 0.136,
+                "prev": [
+                  169,
+                  329
+                ],
+                "curr": [
+                  169,
+                  182
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "updated": {
+        "runs": 12,
+        "runsWithShift": 2,
+        "runsOver01": 1,
+        "max": 0.1336,
+        "cls": [
+          0,
+          0,
+          0,
+          0.1336,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0.073
+        ],
+        "sources": {
+          "div.animate-route-in > section.relative.isolate > div.pointer-events-none.absolute > div.lm-bloom-b.lm-drift": {
+            "count": 2,
+            "totalValue": 0.2066,
+            "examples": [
+              {
+                "t": 407,
+                "value": 0.1336,
+                "prev": [
+                  246,
+                  512
+                ],
+                "curr": [
+                  285,
+                  512
+                ]
+              }
+            ]
+          },
+          "div.animate-route-in > section.relative.isolate > div.pointer-events-none.absolute > div.lm-bloom-a.lm-drift": {
+            "count": 2,
+            "totalValue": 0.2066,
+            "examples": [
+              {
+                "t": 407,
+                "value": 0.1336,
+                "prev": [
+                  169,
+                  326
+                ],
+                "curr": [
+                  169,
+                  182
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    "fisherExactTwoSided": {
+      "scenarioB_cls_gt_0.1_pooled_28_per_build": {
+        "updated": 7,
+        "baseline": 5,
+        "p": 0.746
+      },
+      "scenarioB_cls_gt_0.01_pooled_28_per_build": {
+        "updated": 10,
+        "baseline": 9,
+        "p": 1.0
+      },
+      "allHomepageRuns_cls_gt_0.1_64_per_build": {
+        "updated": 6,
+        "baseline": 5,
+        "p": 1.0
+      }
+    },
+    "conclusion": "Same decorative hero nodes (lm-bloom-a / lm-bloom-b .lm-drift) shift on both builds; no statistical difference; pre-existing."
+  }
+}
