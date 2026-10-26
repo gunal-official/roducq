@@ -1,0 +1,1637 @@
+{
+  "capturedAt": "2026-10-26T04:58:20.543Z",
+  "routes": {
+    "/changelog": {
+      "page": "http://localhost:3100/changelog",
+      "lcp": {
+        "A-mobile-unthrottled": [
+          {
+            "run": 1,
+            "lcp": 96,
+            "lcpElement": {
+              "tag": "P",
+              "className": "lm-hero-in mt-8 w-full max-w-lm-measure-lead text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
+              "text": "Verified product updates, interface improvements, and fixes "
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 96,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          },
+          {
+            "run": 2,
+            "lcp": 72,
+            "lcpElement": {
+              "tag": "P",
+              "className": "lm-hero-in mt-8 w-full max-w-lm-measure-lead text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
+              "text": "Verified product updates, interface improvements, and fixes "
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 72,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          },
+          {
+            "run": 3,
+            "lcp": 72,
+            "lcpElement": {
+              "tag": "P",
+              "className": "lm-hero-in mt-8 w-full max-w-lm-measure-lead text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
+              "text": "Verified product updates, interface improvements, and fixes "
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 72,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          }
+        ],
+        "B-mobile-throttled-4g-4xcpu": [
+          {
+            "run": 1,
+            "lcp": 932,
+            "lcpElement": {
+              "tag": "P",
+              "className": "lm-hero-in mt-8 w-full max-w-lm-measure-lead text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
+              "text": "Verified product updates, interface improvements, and fixes "
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 932,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          },
+          {
+            "run": 2,
+            "lcp": 924,
+            "lcpElement": {
+              "tag": "P",
+              "className": "lm-hero-in mt-8 w-full max-w-lm-measure-lead text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
+              "text": "Verified product updates, interface improvements, and fixes "
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 924,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          },
+          {
+            "run": 3,
+            "lcp": 948,
+            "lcpElement": {
+              "tag": "P",
+              "className": "lm-hero-in mt-8 w-full max-w-lm-measure-lead text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
+              "text": "Verified product updates, interface improvements, and fixes "
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 948,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          }
+        ],
+        "C-desktop-unthrottled": [
+          {
+            "run": 1,
+            "lcp": 80,
+            "lcpElement": {
+              "tag": "P",
+              "className": "mt-3 text-lm-16-5 leading-[1.7] text-lm-muted-slate",
+              "text": "Published /integrations with a searchable catalog of every l"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 80,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          },
+          {
+            "run": 2,
+            "lcp": 80,
+            "lcpElement": {
+              "tag": "P",
+              "className": "mt-3 text-lm-16-5 leading-[1.7] text-lm-muted-slate",
+              "text": "Published /integrations with a searchable catalog of every l"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 80,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          },
+          {
+            "run": 3,
+            "lcp": 88,
+            "lcpElement": {
+              "tag": "P",
+              "className": "mt-3 text-lm-16-5 leading-[1.7] text-lm-muted-slate",
+              "text": "Published /integrations with a searchable catalog of every l"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 88,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          }
+        ],
+        "D-desktop-throttled-4g-4xcpu": [
+          {
+            "run": 1,
+            "lcp": 936,
+            "lcpElement": {
+              "tag": "P",
+              "className": "mt-3 text-lm-16-5 leading-[1.7] text-lm-muted-slate",
+              "text": "Published /integrations with a searchable catalog of every l"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 936,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          },
+          {
+            "run": 2,
+            "lcp": 940,
+            "lcpElement": {
+              "tag": "P",
+              "className": "mt-3 text-lm-16-5 leading-[1.7] text-lm-muted-slate",
+              "text": "Published /integrations with a searchable catalog of every l"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 940,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          },
+          {
+            "run": 3,
+            "lcp": 944,
+            "lcpElement": {
+              "tag": "P",
+              "className": "mt-3 text-lm-16-5 leading-[1.7] text-lm-muted-slate",
+              "text": "Published /integrations with a searchable catalog of every l"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 944,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          }
+        ],
+        "E-mobile-reduced-motion": [
+          {
+            "run": 1,
+            "lcp": 68,
+            "lcpElement": {
+              "tag": "P",
+              "className": "lm-hero-in mt-8 w-full max-w-lm-measure-lead text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
+              "text": "Verified product updates, interface improvements, and fixes "
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 68,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "consoleErrors": [],
+            "reducedMotionActive": true,
+            "reducedMotionStyle": [
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              },
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              },
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              },
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              },
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              }
+            ]
+          },
+          {
+            "run": 2,
+            "lcp": 76,
+            "lcpElement": {
+              "tag": "P",
+              "className": "lm-hero-in mt-8 w-full max-w-lm-measure-lead text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
+              "text": "Verified product updates, interface improvements, and fixes "
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 76,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "consoleErrors": [],
+            "reducedMotionActive": true,
+            "reducedMotionStyle": [
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              },
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              },
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              },
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              },
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              }
+            ]
+          },
+          {
+            "run": 3,
+            "lcp": 64,
+            "lcpElement": {
+              "tag": "P",
+              "className": "lm-hero-in mt-8 w-full max-w-lm-measure-lead text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
+              "text": "Verified product updates, interface improvements, and fixes "
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 64,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "consoleErrors": [],
+            "reducedMotionActive": true,
+            "reducedMotionStyle": [
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              },
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              },
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              },
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              },
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              }
+            ]
+          }
+        ]
+      },
+      "responsive": [
+        {
+          "scheme": "light",
+          "width": 320,
+          "overflowX": 0,
+          "offenders": [],
+          "smallTargets": [],
+          "firstMeta": {
+            "position": "static",
+            "top": "auto",
+            "width": 272
+          },
+          "h1Info": {
+            "fontSize": "44px",
+            "height": 89.8
+          },
+          "darkActive": false
+        },
+        {
+          "scheme": "light",
+          "width": 375,
+          "overflowX": 0,
+          "offenders": [],
+          "smallTargets": [],
+          "firstMeta": {
+            "position": "static",
+            "top": "auto",
+            "width": 327
+          },
+          "h1Info": {
+            "fontSize": "44px",
+            "height": 89.8
+          },
+          "darkActive": false
+        },
+        {
+          "scheme": "light",
+          "width": 390,
+          "overflowX": 0,
+          "offenders": [],
+          "smallTargets": [],
+          "firstMeta": {
+            "position": "static",
+            "top": "auto",
+            "width": 342
+          },
+          "h1Info": {
+            "fontSize": "44px",
+            "height": 89.8
+          },
+          "darkActive": false
+        },
+        {
+          "scheme": "light",
+          "width": 768,
+          "overflowX": 0,
+          "offenders": [],
+          "smallTargets": [],
+          "firstMeta": {
+            "position": "static",
+            "top": "auto",
+            "width": 720
+          },
+          "h1Info": {
+            "fontSize": "44px",
+            "height": 44.9
+          },
+          "darkActive": false
+        },
+        {
+          "scheme": "light",
+          "width": 1024,
+          "overflowX": 0,
+          "offenders": [],
+          "smallTargets": [],
+          "firstMeta": {
+            "position": "static",
+            "top": "auto",
+            "width": 976
+          },
+          "h1Info": {
+            "fontSize": "45.4px",
+            "height": 46.3
+          },
+          "darkActive": false
+        },
+        {
+          "scheme": "light",
+          "width": 1200,
+          "overflowX": 0,
+          "offenders": [],
+          "smallTargets": [],
+          "firstMeta": {
+            "position": "sticky",
+            "top": "110px",
+            "width": 210
+          },
+          "h1Info": {
+            "fontSize": "67.2px",
+            "height": 68.5
+          },
+          "darkActive": false
+        },
+        {
+          "scheme": "light",
+          "width": 1440,
+          "overflowX": 0,
+          "offenders": [],
+          "smallTargets": [],
+          "firstMeta": {
+            "position": "sticky",
+            "top": "110px",
+            "width": 210
+          },
+          "h1Info": {
+            "fontSize": "67.2px",
+            "height": 68.5
+          },
+          "darkActive": false
+        },
+        {
+          "scheme": "dark",
+          "width": 320,
+          "overflowX": 0,
+          "offenders": [],
+          "smallTargets": [],
+          "firstMeta": {
+            "position": "static",
+            "top": "auto",
+            "width": 272
+          },
+          "h1Info": {
+            "fontSize": "44px",
+            "height": 89.8
+          },
+          "darkActive": true
+        },
+        {
+          "scheme": "dark",
+          "width": 375,
+          "overflowX": 0,
+          "offenders": [],
+          "smallTargets": [],
+          "firstMeta": {
+            "position": "static",
+            "top": "auto",
+            "width": 327
+          },
+          "h1Info": {
+            "fontSize": "44px",
+            "height": 89.8
+          },
+          "darkActive": true
+        },
+        {
+          "scheme": "dark",
+          "width": 390,
+          "overflowX": 0,
+          "offenders": [],
+          "smallTargets": [],
+          "firstMeta": {
+            "position": "static",
+            "top": "auto",
+            "width": 342
+          },
+          "h1Info": {
+            "fontSize": "44px",
+            "height": 89.8
+          },
+          "darkActive": true
+        },
+        {
+          "scheme": "dark",
+          "width": 768,
+          "overflowX": 0,
+          "offenders": [],
+          "smallTargets": [],
+          "firstMeta": {
+            "position": "static",
+            "top": "auto",
+            "width": 720
+          },
+          "h1Info": {
+            "fontSize": "44px",
+            "height": 44.9
+          },
+          "darkActive": true
+        },
+        {
+          "scheme": "dark",
+          "width": 1024,
+          "overflowX": 0,
+          "offenders": [],
+          "smallTargets": [],
+          "firstMeta": {
+            "position": "static",
+            "top": "auto",
+            "width": 976
+          },
+          "h1Info": {
+            "fontSize": "45.4px",
+            "height": 46.3
+          },
+          "darkActive": true
+        },
+        {
+          "scheme": "dark",
+          "width": 1200,
+          "overflowX": 0,
+          "offenders": [],
+          "smallTargets": [],
+          "firstMeta": {
+            "position": "sticky",
+            "top": "110px",
+            "width": 210
+          },
+          "h1Info": {
+            "fontSize": "67.2px",
+            "height": 68.5
+          },
+          "darkActive": true
+        },
+        {
+          "scheme": "dark",
+          "width": 1440,
+          "overflowX": 0,
+          "offenders": [],
+          "smallTargets": [],
+          "firstMeta": {
+            "position": "sticky",
+            "top": "110px",
+            "width": 210
+          },
+          "h1Info": {
+            "fontSize": "67.2px",
+            "height": 68.5
+          },
+          "darkActive": true
+        }
+      ],
+      "axeLight": {
+        "scheme": "light",
+        "violations": [],
+        "passes": 40
+      },
+      "axeDark": {
+        "scheme": "dark",
+        "violations": [],
+        "passes": 40
+      },
+      "serverHtml": {
+        "status": 200,
+        "missing": [],
+        "bytes": 77598
+      },
+      "noJs": {
+        "articleCount": 8,
+        "articlesVisible": 8,
+        "chipCount": 4,
+        "heroOpacities": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "jsFlag": false,
+        "closingVisible": true
+      },
+      "interactive": {
+        "pointerChecks": [
+          {
+            "label": "New",
+            "pressed": [
+              "New"
+            ],
+            "count": 7,
+            "expected": 7,
+            "badgesMatch": true,
+            "liveText": "Showing 7 verified updates tagged New.",
+            "pass": true
+          },
+          {
+            "label": "Improved",
+            "pressed": [
+              "Improved"
+            ],
+            "count": 3,
+            "expected": 3,
+            "badgesMatch": true,
+            "liveText": "Showing 3 verified updates tagged Improved.",
+            "pass": true
+          },
+          {
+            "label": "Fixed",
+            "pressed": [
+              "Fixed"
+            ],
+            "count": 2,
+            "expected": 2,
+            "badgesMatch": true,
+            "liveText": "Showing 2 verified updates tagged Fixed.",
+            "pass": true
+          },
+          {
+            "label": "All updates",
+            "pressed": [
+              "All updates"
+            ],
+            "count": 8,
+            "expected": 8,
+            "badgesMatch": true,
+            "liveText": "Showing all 8 verified updates.",
+            "pass": true
+          }
+        ],
+        "focusedAfterTab": {
+          "text": "New",
+          "boxShadow": "rgb(255, 255, 255) 0px 0px 0px 2px, rgb(98, 70, 234) 0px 0px 0px 4px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+          "outlineStyle": "solid"
+        },
+        "afterEnterCount": 7,
+        "afterSpaceCount": 3,
+        "headerActive": "page",
+        "consoleErrors": [],
+        "verdict": {
+          "allPointerFiltersPass": true,
+          "keyboardTabReachesNew": true,
+          "keyboardVisibleFocusRing": true,
+          "keyboardEnterActivatesNew": true,
+          "keyboardSpaceActivatesImproved": true,
+          "allPrLinksValidAndSafe": true,
+          "headerMarksChangelogCurrent": true,
+          "zeroConsoleErrors": true
+        }
+      },
+      "verdict": {
+        "lcpUnder2500ms": true,
+        "lcpElementAlwaysPresent": true,
+        "heroWordsAlwaysOpaque": true,
+        "noConsoleErrors": true,
+        "reducedMotionDisablesEntrance": true,
+        "noHorizontalOverflow7WidthsLightAndDark": true,
+        "clsBelow01": true,
+        "axeLightZeroViolations": true,
+        "axeDarkZeroViolations": true,
+        "serverHtmlComplete": true,
+        "tapTargetsAtAllWidths": true,
+        "stickyMetaAt1200PlusOnly": true,
+        "noJsAllEntriesVisible": true,
+        "interactiveFilterAndKeyboardSuite": true
+      },
+      "summary": {
+        "lcpMedians": {
+          "A-mobile-unthrottled": {
+            "lcpMedianMs": 72,
+            "lcpRunsMs": [
+              96,
+              72,
+              72
+            ],
+            "fcpMedianMs": 72,
+            "clsRuns": [
+              0,
+              0,
+              0
+            ],
+            "lcpElement": {
+              "tag": "P",
+              "className": "lm-hero-in mt-8 w-full max-w-lm-measure-lead text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
+              "text": "Verified product updates, interface improvements, and fixes "
+            }
+          },
+          "B-mobile-throttled-4g-4xcpu": {
+            "lcpMedianMs": 932,
+            "lcpRunsMs": [
+              932,
+              924,
+              948
+            ],
+            "fcpMedianMs": 932,
+            "clsRuns": [
+              0,
+              0,
+              0
+            ],
+            "lcpElement": {
+              "tag": "P",
+              "className": "lm-hero-in mt-8 w-full max-w-lm-measure-lead text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
+              "text": "Verified product updates, interface improvements, and fixes "
+            }
+          },
+          "C-desktop-unthrottled": {
+            "lcpMedianMs": 80,
+            "lcpRunsMs": [
+              80,
+              80,
+              88
+            ],
+            "fcpMedianMs": 80,
+            "clsRuns": [
+              0,
+              0,
+              0
+            ],
+            "lcpElement": {
+              "tag": "P",
+              "className": "mt-3 text-lm-16-5 leading-[1.7] text-lm-muted-slate",
+              "text": "Published /integrations with a searchable catalog of every l"
+            }
+          },
+          "D-desktop-throttled-4g-4xcpu": {
+            "lcpMedianMs": 940,
+            "lcpRunsMs": [
+              936,
+              940,
+              944
+            ],
+            "fcpMedianMs": 940,
+            "clsRuns": [
+              0,
+              0,
+              0
+            ],
+            "lcpElement": {
+              "tag": "P",
+              "className": "mt-3 text-lm-16-5 leading-[1.7] text-lm-muted-slate",
+              "text": "Published /integrations with a searchable catalog of every l"
+            }
+          },
+          "E-mobile-reduced-motion": {
+            "lcpMedianMs": 68,
+            "lcpRunsMs": [
+              68,
+              76,
+              64
+            ],
+            "fcpMedianMs": 68,
+            "clsRuns": [
+              0,
+              0,
+              0
+            ],
+            "lcpElement": {
+              "tag": "P",
+              "className": "lm-hero-in mt-8 w-full max-w-lm-measure-lead text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
+              "text": "Verified product updates, interface improvements, and fixes "
+            }
+          }
+        },
+        "verdict": {
+          "lcpUnder2500ms": true,
+          "lcpElementAlwaysPresent": true,
+          "heroWordsAlwaysOpaque": true,
+          "noConsoleErrors": true,
+          "reducedMotionDisablesEntrance": true,
+          "noHorizontalOverflow7WidthsLightAndDark": true,
+          "clsBelow01": true,
+          "axeLightZeroViolations": true,
+          "axeDarkZeroViolations": true,
+          "serverHtmlComplete": true,
+          "tapTargetsAtAllWidths": true,
+          "stickyMetaAt1200PlusOnly": true,
+          "noJsAllEntriesVisible": true,
+          "interactiveFilterAndKeyboardSuite": true
+        }
+      }
+    },
+    "/": {
+      "page": "http://localhost:3100/",
+      "lcp": {
+        "A-mobile-unthrottled": [
+          {
+            "run": 1,
+            "lcp": 128,
+            "lcpElement": {
+              "tag": "P",
+              "className": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 128,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          },
+          {
+            "run": 2,
+            "lcp": 104,
+            "lcpElement": {
+              "tag": "P",
+              "className": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 104,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          },
+          {
+            "run": 3,
+            "lcp": 112,
+            "lcpElement": {
+              "tag": "P",
+              "className": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 112,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          }
+        ],
+        "B-mobile-throttled-4g-4xcpu": [
+          {
+            "run": 1,
+            "lcp": 1032,
+            "lcpElement": {
+              "tag": "P",
+              "className": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 1032,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          },
+          {
+            "run": 2,
+            "lcp": 1028,
+            "lcpElement": {
+              "tag": "P",
+              "className": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 1028,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          },
+          {
+            "run": 3,
+            "lcp": 1028,
+            "lcpElement": {
+              "tag": "P",
+              "className": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 1028,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          }
+        ],
+        "C-desktop-unthrottled": [
+          {
+            "run": 1,
+            "lcp": 176,
+            "lcpElement": {
+              "tag": "P",
+              "className": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 176,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          },
+          {
+            "run": 2,
+            "lcp": 168,
+            "lcpElement": {
+              "tag": "P",
+              "className": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 168,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          },
+          {
+            "run": 3,
+            "lcp": 168,
+            "lcpElement": {
+              "tag": "P",
+              "className": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 168,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          }
+        ],
+        "D-desktop-throttled-4g-4xcpu": [
+          {
+            "run": 1,
+            "lcp": 1096,
+            "lcpElement": {
+              "tag": "P",
+              "className": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 1096,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          },
+          {
+            "run": 2,
+            "lcp": 1084,
+            "lcpElement": {
+              "tag": "P",
+              "className": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 1084,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          },
+          {
+            "run": 3,
+            "lcp": 1084,
+            "lcpElement": {
+              "tag": "P",
+              "className": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 1084,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          }
+        ],
+        "E-mobile-reduced-motion": [
+          {
+            "run": 1,
+            "lcp": 128,
+            "lcpElement": {
+              "tag": "P",
+              "className": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 128,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "consoleErrors": [],
+            "reducedMotionActive": true,
+            "reducedMotionStyle": [
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              },
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              },
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              },
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              },
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              },
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              }
+            ]
+          },
+          {
+            "run": 2,
+            "lcp": 132,
+            "lcpElement": {
+              "tag": "P",
+              "className": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 132,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "consoleErrors": [],
+            "reducedMotionActive": true,
+            "reducedMotionStyle": [
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              },
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              },
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              },
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              },
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              },
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              }
+            ]
+          },
+          {
+            "run": 3,
+            "lcp": 128,
+            "lcpElement": {
+              "tag": "P",
+              "className": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 128,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "consoleErrors": [],
+            "reducedMotionActive": true,
+            "reducedMotionStyle": [
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              },
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              },
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              },
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              },
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              },
+              {
+                "animationName": "none",
+                "animationDuration": "0s",
+                "opacity": "1"
+              }
+            ]
+          }
+        ]
+      },
+      "responsive": [
+        {
+          "scheme": "light",
+          "width": 320,
+          "overflowX": 0,
+          "offenders": [],
+          "smallTargets": [],
+          "firstMeta": null,
+          "h1Info": null,
+          "darkActive": false
+        },
+        {
+          "scheme": "light",
+          "width": 375,
+          "overflowX": 0,
+          "offenders": [],
+          "smallTargets": [],
+          "firstMeta": null,
+          "h1Info": null,
+          "darkActive": false
+        },
+        {
+          "scheme": "light",
+          "width": 390,
+          "overflowX": 0,
+          "offenders": [],
+          "smallTargets": [],
+          "firstMeta": null,
+          "h1Info": null,
+          "darkActive": false
+        },
+        {
+          "scheme": "light",
+          "width": 768,
+          "overflowX": 0,
+          "offenders": [],
+          "smallTargets": [],
+          "firstMeta": null,
+          "h1Info": null,
+          "darkActive": false
+        },
+        {
+          "scheme": "light",
+          "width": 1024,
+          "overflowX": 0,
+          "offenders": [],
+          "smallTargets": [],
+          "firstMeta": null,
+          "h1Info": null,
+          "darkActive": false
+        },
+        {
+          "scheme": "light",
+          "width": 1200,
+          "overflowX": 0,
+          "offenders": [],
+          "smallTargets": [],
+          "firstMeta": null,
+          "h1Info": null,
+          "darkActive": false
+        },
+        {
+          "scheme": "light",
+          "width": 1440,
+          "overflowX": 0,
+          "offenders": [],
+          "smallTargets": [],
+          "firstMeta": null,
+          "h1Info": null,
+          "darkActive": false
+        },
+        {
+          "scheme": "dark",
+          "width": 320,
+          "overflowX": 0,
+          "offenders": [],
+          "smallTargets": [],
+          "firstMeta": null,
+          "h1Info": null,
+          "darkActive": true
+        },
+        {
+          "scheme": "dark",
+          "width": 375,
+          "overflowX": 0,
+          "offenders": [],
+          "smallTargets": [],
+          "firstMeta": null,
+          "h1Info": null,
+          "darkActive": true
+        },
+        {
+          "scheme": "dark",
+          "width": 390,
+          "overflowX": 0,
+          "offenders": [],
+          "smallTargets": [],
+          "firstMeta": null,
+          "h1Info": null,
+          "darkActive": true
+        },
+        {
+          "scheme": "dark",
+          "width": 768,
+          "overflowX": 0,
+          "offenders": [],
+          "smallTargets": [],
+          "firstMeta": null,
+          "h1Info": null,
+          "darkActive": true
+        },
+        {
+          "scheme": "dark",
+          "width": 1024,
+          "overflowX": 0,
+          "offenders": [],
+          "smallTargets": [],
+          "firstMeta": null,
+          "h1Info": null,
+          "darkActive": true
+        },
+        {
+          "scheme": "dark",
+          "width": 1200,
+          "overflowX": 0,
+          "offenders": [],
+          "smallTargets": [],
+          "firstMeta": null,
+          "h1Info": null,
+          "darkActive": true
+        },
+        {
+          "scheme": "dark",
+          "width": 1440,
+          "overflowX": 0,
+          "offenders": [],
+          "smallTargets": [],
+          "firstMeta": null,
+          "h1Info": null,
+          "darkActive": true
+        }
+      ],
+      "axeLight": {
+        "scheme": "light",
+        "violations": [],
+        "passes": 41
+      },
+      "axeDark": {
+        "scheme": "dark",
+        "violations": [],
+        "passes": 41
+      },
+      "serverHtml": {
+        "status": 200,
+        "missing": [],
+        "bytes": 326841
+      },
+      "noJs": null,
+      "interactive": null,
+      "verdict": {
+        "lcpUnder2500ms": true,
+        "lcpElementAlwaysPresent": true,
+        "heroWordsAlwaysOpaque": true,
+        "noConsoleErrors": true,
+        "reducedMotionDisablesEntrance": true,
+        "noHorizontalOverflow7WidthsLightAndDark": true,
+        "clsBelow01": true,
+        "axeLightZeroViolations": true,
+        "axeDarkZeroViolations": true,
+        "serverHtmlComplete": true
+      },
+      "summary": {
+        "lcpMedians": {
+          "A-mobile-unthrottled": {
+            "lcpMedianMs": 112,
+            "lcpRunsMs": [
+              128,
+              104,
+              112
+            ],
+            "fcpMedianMs": 112,
+            "clsRuns": [
+              0,
+              0,
+              0
+            ],
+            "lcpElement": {
+              "tag": "P",
+              "className": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an"
+            }
+          },
+          "B-mobile-throttled-4g-4xcpu": {
+            "lcpMedianMs": 1028,
+            "lcpRunsMs": [
+              1032,
+              1028,
+              1028
+            ],
+            "fcpMedianMs": 1028,
+            "clsRuns": [
+              0,
+              0,
+              0
+            ],
+            "lcpElement": {
+              "tag": "P",
+              "className": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an"
+            }
+          },
+          "C-desktop-unthrottled": {
+            "lcpMedianMs": 168,
+            "lcpRunsMs": [
+              176,
+              168,
+              168
+            ],
+            "fcpMedianMs": 168,
+            "clsRuns": [
+              0,
+              0,
+              0
+            ],
+            "lcpElement": {
+              "tag": "P",
+              "className": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an"
+            }
+          },
+          "D-desktop-throttled-4g-4xcpu": {
+            "lcpMedianMs": 1084,
+            "lcpRunsMs": [
+              1096,
+              1084,
+              1084
+            ],
+            "fcpMedianMs": 1084,
+            "clsRuns": [
+              0,
+              0,
+              0
+            ],
+            "lcpElement": {
+              "tag": "P",
+              "className": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an"
+            }
+          },
+          "E-mobile-reduced-motion": {
+            "lcpMedianMs": 128,
+            "lcpRunsMs": [
+              128,
+              132,
+              128
+            ],
+            "fcpMedianMs": 128,
+            "clsRuns": [
+              0,
+              0,
+              0
+            ],
+            "lcpElement": {
+              "tag": "P",
+              "className": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an"
+            }
+          }
+        },
+        "verdict": {
+          "lcpUnder2500ms": true,
+          "lcpElementAlwaysPresent": true,
+          "heroWordsAlwaysOpaque": true,
+          "noConsoleErrors": true,
+          "reducedMotionDisablesEntrance": true,
+          "noHorizontalOverflow7WidthsLightAndDark": true,
+          "clsBelow01": true,
+          "axeLightZeroViolations": true,
+          "axeDarkZeroViolations": true,
+          "serverHtmlComplete": true
+        }
+      }
+    }
+  },
+  "tools": {
+    "playwrightChromium": "153.0.8010.12"
+  },
+  "verdict": {
+    "/changelog": true,
+    "/": true
+  }
+}
