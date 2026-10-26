@@ -1100,6 +1100,30 @@
      backdrop blur and a 1px/2px hairline lift. No border. */
   --lm-chip-wash: rgba(255, 255, 255, 0.72);
   --lm-shadow-chip: rgba(33, 20, 56, 0.06) 0px 1px 2px 0px;
+
+  /* ── /integrations steps ─────────────────────────────────────────────
+     MEASURED on the live catalog page (docs/FORMA_INTEGRATIONS_REFERENCE.md
+     §3, §5, §6). Each of these is a real value from the reference that the
+     shared scale cannot express, and three of them are page-local on
+     purpose — activating a shared `--lm-size-11` step, for instance, would
+     bring the already-written-but-dead `text-lm-11` in SectionHeading.tsx
+     to life and restyle /, /about, /pricing and /vs.
+
+       45.4px  the catalog hero's headline at the 1024px width — a THIRD
+               type step the /solutions and /features heroes never needed,
+               because their tablet band sat below the 44px step
+       40.8px  the request band's h2 (the /solutions closing uses 40px)
+       54px    the "how connecting works" h2, at WEIGHT 400 — lighter than
+               every other heading on the shell
+       13.5px  the catalog's "N integrations" count line
+       12.5px  the request card's footnote
+       18px    the step container's corner (measured 18px, and its 1px
+               gaps are what draw the dividers, so it cannot be a border) */
+  --lm-size-45-4: 45.4px;
+  --lm-size-40-8: 40.8px;
+  --lm-size-13-5: 13.5px;
+  --lm-size-12-5: 12.5px;
+  --lm-radius-step: 18px;
 }
 
 .dark .rdq-marketing {

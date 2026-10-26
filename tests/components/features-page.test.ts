@@ -583,7 +583,7 @@ describe("Features page (routes + a11y)", () => {
 });
 
 describe("Features page (shared header extension)", () => {
-  it("keeps the locked nav ternary and adds only a pathname boolean", () => {
+  it("keeps the locked nav ternary and adds only pathname booleans", () => {
     // vs-comparisons.test.ts locks this exact line; the features work
     // must extend around it, never rewrite it.
     assert.ok(
@@ -594,7 +594,13 @@ describe("Features page (shared header extension)", () => {
         'const features = pathname === "/features" || pathname.startsWith("/features/");',
       ),
     );
-    assert.ok(HEADER.includes("const showcase = solutions || features;"));
+    // The gate widened when /integrations shipped: it is still ONE
+    // boolean built from three pathname predicates, the two clauses
+    // asserted above survive verbatim, so /solutions and /features
+    // render exactly what they rendered before.
+    assert.ok(
+      HEADER.includes("const showcase = solutions || features || integrations;"),
+    );
     // The default nav (and its /vs Compare link) is untouched, so /,
     // /about, /pricing and /vs keep their original header.
     assert.ok(HEADER.includes('{ href: "/vs", label: "Compare" }'));

@@ -79,7 +79,17 @@ export function SiteHeader() {
   // `showcase` only drives the visual variant, so /, /about, /pricing and
   // /vs render byte-identical headers and /solutions is unchanged.
   const features = pathname === "/features" || pathname.startsWith("/features/");
-  const showcase = solutions || features;
+  // /integrations joins the same reference page family (measured against
+  // forma-visuvate.framer.website/integrations — docs/FORMA_INTEGRATIONS_REFERENCE.md),
+  // so it renders the identical white showcase chrome. This is the smallest
+  // possible extension: one pathname boolean feeds the `showcase` gate every
+  // visual branch below already reads, and the nav-data ternary on the next
+  // line is deliberately untouched — tests/components/vs-comparisons.test.ts
+  // locks its exact form. /integrations therefore keeps the same route list
+  // /features renders today, and /, /about, /pricing and /vs do not move.
+  const integrations =
+    pathname === "/integrations" || pathname.startsWith("/integrations/");
+  const showcase = solutions || features || integrations;
   const items = solutions ? SOLUTIONS_NAV : NAV;
 
   // A phone menu left open while the window grows past the desktop band
