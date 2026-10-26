@@ -2,9 +2,6 @@ name: forma-changelog-verify
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - arena/d1b4526c-roducq
 
 permissions:
   contents: write
