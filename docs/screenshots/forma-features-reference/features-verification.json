@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-26T01:52:19.490Z",
+  "capturedAt": "2026-10-26T01:58:01.352Z",
   "routes": {
     "/features": {
       "page": "http://localhost:3100/features",
@@ -7,7 +7,7 @@
         "A-mobile-unthrottled": [
           {
             "run": 1,
-            "lcp": 104,
+            "lcp": 140,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200px]:text-lm-19 min-[1200px]:leading-[1.65]",
@@ -15,8 +15,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 104,
-            "fcp": 104,
+            "firstPaint": 72,
+            "fcp": 140,
             "heroOpacities": [
               "1",
               "1",
@@ -32,7 +32,7 @@
           },
           {
             "run": 2,
-            "lcp": 80,
+            "lcp": 108,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200px]:text-lm-19 min-[1200px]:leading-[1.65]",
@@ -40,8 +40,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 80,
-            "fcp": 80,
+            "firstPaint": 52,
+            "fcp": 108,
             "heroOpacities": [
               "1",
               "1",
@@ -57,7 +57,7 @@
           },
           {
             "run": 3,
-            "lcp": 68,
+            "lcp": 96,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200px]:text-lm-19 min-[1200px]:leading-[1.65]",
@@ -65,8 +65,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 28,
-            "fcp": 68,
+            "firstPaint": 96,
+            "fcp": 96,
             "heroOpacities": [
               "1",
               "1",
@@ -84,31 +84,6 @@
         "B-mobile-cpu-4x": [
           {
             "run": 1,
-            "lcp": 156,
-            "lcpElement": {
-              "tag": "P",
-              "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200px]:text-lm-19 min-[1200px]:leading-[1.65]",
-              "text": "roducq brings client intake, briefs, proposals, plans and up"
-            },
-            "lcpCandidates": 1,
-            "cls": 0,
-            "firstPaint": 156,
-            "fcp": 156,
-            "heroOpacities": [
-              "1",
-              "1",
-              "1",
-              "1",
-              "1"
-            ],
-            "swapTrail": [],
-            "panelCheckable": false,
-            "consoleErrors": [],
-            "reducedMotionActive": null,
-            "reducedMotionStyle": null
-          },
-          {
-            "run": 2,
             "lcp": 160,
             "lcpElement": {
               "tag": "P",
@@ -117,7 +92,7 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 60,
+            "firstPaint": 160,
             "fcp": 160,
             "heroOpacities": [
               "1",
@@ -133,8 +108,8 @@
             "reducedMotionStyle": null
           },
           {
-            "run": 3,
-            "lcp": 228,
+            "run": 2,
+            "lcp": 268,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200px]:text-lm-19 min-[1200px]:leading-[1.65]",
@@ -142,8 +117,33 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 80,
-            "fcp": 228,
+            "firstPaint": 116,
+            "fcp": 268,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "swapTrail": [],
+            "panelCheckable": false,
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          },
+          {
+            "run": 3,
+            "lcp": 248,
+            "lcpElement": {
+              "tag": "P",
+              "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200px]:text-lm-19 min-[1200px]:leading-[1.65]",
+              "text": "roducq brings client intake, briefs, proposals, plans and up"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "firstPaint": 128,
+            "fcp": 248,
             "heroOpacities": [
               "1",
               "1",
@@ -161,7 +161,7 @@
         "C-desktop": [
           {
             "run": 1,
-            "lcp": 84,
+            "lcp": 140,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200px]:text-lm-19 min-[1200px]:leading-[1.65]",
@@ -169,8 +169,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 28,
-            "fcp": 84,
+            "firstPaint": 56,
+            "fcp": 140,
             "heroOpacities": [
               "1",
               "1",
@@ -193,7 +193,7 @@
           },
           {
             "run": 2,
-            "lcp": 80,
+            "lcp": 120,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200px]:text-lm-19 min-[1200px]:leading-[1.65]",
@@ -201,8 +201,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 80,
-            "fcp": 80,
+            "firstPaint": 120,
+            "fcp": 120,
             "heroOpacities": [
               "1",
               "1",
@@ -225,7 +225,7 @@
           },
           {
             "run": 3,
-            "lcp": 84,
+            "lcp": 116,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200px]:text-lm-19 min-[1200px]:leading-[1.65]",
@@ -233,8 +233,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 84,
-            "fcp": 84,
+            "firstPaint": 116,
+            "fcp": 116,
             "heroOpacities": [
               "1",
               "1",
@@ -259,7 +259,7 @@
         "D-mobile-reduced-motion": [
           {
             "run": 1,
-            "lcp": 96,
+            "lcp": 128,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200px]:text-lm-19 min-[1200px]:leading-[1.65]",
@@ -267,8 +267,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 52,
-            "fcp": 96,
+            "firstPaint": 68,
+            "fcp": 128,
             "heroOpacities": [
               "1",
               "1",
@@ -288,7 +288,7 @@
           },
           {
             "run": 2,
-            "lcp": 72,
+            "lcp": 124,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200px]:text-lm-19 min-[1200px]:leading-[1.65]",
@@ -296,8 +296,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 72,
-            "fcp": 72,
+            "firstPaint": 124,
+            "fcp": 124,
             "heroOpacities": [
               "1",
               "1",
@@ -317,7 +317,7 @@
           },
           {
             "run": 3,
-            "lcp": 100,
+            "lcp": 108,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1200px]:text-lm-19 min-[1200px]:leading-[1.65]",
@@ -325,8 +325,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 36,
-            "fcp": 100,
+            "firstPaint": 108,
+            "fcp": 108,
             "heroOpacities": [
               "1",
               "1",
@@ -346,601 +346,142 @@
           }
         ]
       },
-      "overflow": [
-        {
-          "scheme": "light",
-          "width": 320,
-          "overflowX": 0,
-          "offenders": [
-            {
-              "tag": "A",
-              "className": "sr-only min-h-11 focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lm-control focus:bg-lm-card focus:px-3 focus:py-2 focus:text-lm-14 focus:font-lm-semibold focus:shadow-lm-md",
-              "scrollWidth": 111,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 178,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "truncate",
-              "scrollWidth": 188,
-              "clientWidth": 126
-            },
-            {
-              "tag": "SPAN",
-              "className": "truncate",
-              "scrollWidth": 217,
-              "clientWidth": 100
-            },
-            {
-              "tag": "SPAN",
-              "className": "truncate text-lm-mock text-lm-ink",
-              "scrollWidth": 153,
-              "clientWidth": 127
-            },
-            {
-              "tag": "P",
-              "className": "truncate text-lm-12 text-lm-muted-slate",
-              "scrollWidth": 153,
-              "clientWidth": 115
-            },
-            {
-              "tag": "P",
-              "className": "truncate text-lm-12 text-lm-muted-slate",
-              "scrollWidth": 128,
-              "clientWidth": 115
-            },
-            {
-              "tag": "P",
-              "className": "truncate text-lm-12 text-lm-muted-slate",
-              "scrollWidth": 144,
-              "clientWidth": 115
-            },
-            {
-              "tag": "SPAN",
-              "className": "truncate",
-              "scrollWidth": 111,
-              "clientWidth": 99
-            },
-            {
-              "tag": "P",
-              "className": "flex min-w-0 items-center gap-2 truncate text-lm-mock font-lm-semibold text-lm-ink",
-              "scrollWidth": 16,
-              "clientWidth": 4
-            }
-          ]
-        },
-        {
-          "scheme": "light",
-          "width": 375,
-          "overflowX": 0,
-          "offenders": [
-            {
-              "tag": "A",
-              "className": "sr-only min-h-11 focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lm-control focus:bg-lm-card focus:px-3 focus:py-2 focus:text-lm-14 focus:font-lm-semibold focus:shadow-lm-md",
-              "scrollWidth": 111,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 178,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "truncate",
-              "scrollWidth": 188,
-              "clientWidth": 181
-            },
-            {
-              "tag": "SPAN",
-              "className": "truncate",
-              "scrollWidth": 217,
-              "clientWidth": 155
-            },
-            {
-              "tag": "SPAN",
-              "className": "truncate",
-              "scrollWidth": 171,
-              "clientWidth": 43
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 178,
-              "clientWidth": 1
-            },
-            {
-              "tag": "UL",
-              "className": "flex flex-1 flex-col divide-y divide-lm-border-soft mt-2",
-              "scrollWidth": 279,
-              "clientWidth": 267
-            }
-          ]
-        },
-        {
-          "scheme": "light",
-          "width": 390,
-          "overflowX": 0,
-          "offenders": [
-            {
-              "tag": "A",
-              "className": "sr-only min-h-11 focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lm-control focus:bg-lm-card focus:px-3 focus:py-2 focus:text-lm-14 focus:font-lm-semibold focus:shadow-lm-md",
-              "scrollWidth": 111,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 178,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "truncate",
-              "scrollWidth": 217,
-              "clientWidth": 170
-            },
-            {
-              "tag": "SPAN",
-              "className": "truncate",
-              "scrollWidth": 171,
-              "clientWidth": 58
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 178,
-              "clientWidth": 1
-            },
-            {
-              "tag": "UL",
-              "className": "flex flex-1 flex-col divide-y divide-lm-border-soft mt-2",
-              "scrollWidth": 294,
-              "clientWidth": 282
-            }
-          ]
-        },
-        {
-          "scheme": "light",
-          "width": 768,
-          "overflowX": 0,
-          "offenders": [
-            {
-              "tag": "A",
-              "className": "sr-only min-h-11 focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lm-control focus:bg-lm-card focus:px-3 focus:py-2 focus:text-lm-14 focus:font-lm-semibold focus:shadow-lm-md",
-              "scrollWidth": 111,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 178,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 178,
-              "clientWidth": 1
-            },
-            {
-              "tag": "UL",
-              "className": "flex flex-1 flex-col divide-y divide-lm-border-soft mt-2",
-              "scrollWidth": 672,
-              "clientWidth": 660
-            }
-          ]
-        },
-        {
-          "scheme": "light",
-          "width": 1024,
-          "overflowX": 0,
-          "offenders": [
-            {
-              "tag": "A",
-              "className": "sr-only min-h-11 focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lm-control focus:bg-lm-card focus:px-3 focus:py-2 focus:text-lm-14 focus:font-lm-semibold focus:shadow-lm-md",
-              "scrollWidth": 111,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 178,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 178,
-              "clientWidth": 1
-            },
-            {
-              "tag": "UL",
-              "className": "flex flex-1 flex-col divide-y divide-lm-border-soft mt-2",
-              "scrollWidth": 880,
-              "clientWidth": 868
-            }
-          ]
-        },
-        {
-          "scheme": "light",
-          "width": 1200,
-          "overflowX": 0,
-          "offenders": [
-            {
-              "tag": "A",
-              "className": "sr-only min-h-11 focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lm-control focus:bg-lm-card focus:px-3 focus:py-2 focus:text-lm-14 focus:font-lm-semibold focus:shadow-lm-md",
-              "scrollWidth": 111,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 178,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "truncate",
-              "scrollWidth": 171,
-              "clientWidth": 109
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 178,
-              "clientWidth": 1
-            },
-            {
-              "tag": "UL",
-              "className": "flex flex-1 flex-col divide-y divide-lm-border-soft mt-2",
-              "scrollWidth": 377,
-              "clientWidth": 365
-            }
-          ]
-        },
-        {
-          "scheme": "light",
-          "width": 1440,
-          "overflowX": 0,
-          "offenders": [
-            {
-              "tag": "A",
-              "className": "sr-only min-h-11 focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lm-control focus:bg-lm-card focus:px-3 focus:py-2 focus:text-lm-14 focus:font-lm-semibold focus:shadow-lm-md",
-              "scrollWidth": 111,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 178,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 178,
-              "clientWidth": 1
-            },
-            {
-              "tag": "UL",
-              "className": "flex flex-1 flex-col divide-y divide-lm-border-soft mt-2",
-              "scrollWidth": 431,
-              "clientWidth": 419
-            }
-          ]
-        },
-        {
-          "scheme": "dark",
-          "width": 320,
-          "overflowX": 0,
-          "offenders": [
-            {
-              "tag": "A",
-              "className": "sr-only min-h-11 focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lm-control focus:bg-lm-card focus:px-3 focus:py-2 focus:text-lm-14 focus:font-lm-semibold focus:shadow-lm-md",
-              "scrollWidth": 111,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 178,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "truncate",
-              "scrollWidth": 188,
-              "clientWidth": 126
-            },
-            {
-              "tag": "SPAN",
-              "className": "truncate",
-              "scrollWidth": 217,
-              "clientWidth": 100
-            },
-            {
-              "tag": "SPAN",
-              "className": "truncate text-lm-mock text-lm-ink",
-              "scrollWidth": 153,
-              "clientWidth": 127
-            },
-            {
-              "tag": "P",
-              "className": "truncate text-lm-12 text-lm-muted-slate",
-              "scrollWidth": 153,
-              "clientWidth": 115
-            },
-            {
-              "tag": "P",
-              "className": "truncate text-lm-12 text-lm-muted-slate",
-              "scrollWidth": 128,
-              "clientWidth": 115
-            },
-            {
-              "tag": "P",
-              "className": "truncate text-lm-12 text-lm-muted-slate",
-              "scrollWidth": 144,
-              "clientWidth": 115
-            },
-            {
-              "tag": "SPAN",
-              "className": "truncate",
-              "scrollWidth": 111,
-              "clientWidth": 99
-            },
-            {
-              "tag": "P",
-              "className": "flex min-w-0 items-center gap-2 truncate text-lm-mock font-lm-semibold text-lm-ink",
-              "scrollWidth": 16,
-              "clientWidth": 4
-            }
-          ]
-        },
-        {
-          "scheme": "dark",
-          "width": 375,
-          "overflowX": 0,
-          "offenders": [
-            {
-              "tag": "A",
-              "className": "sr-only min-h-11 focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lm-control focus:bg-lm-card focus:px-3 focus:py-2 focus:text-lm-14 focus:font-lm-semibold focus:shadow-lm-md",
-              "scrollWidth": 111,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 178,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "truncate",
-              "scrollWidth": 188,
-              "clientWidth": 181
-            },
-            {
-              "tag": "SPAN",
-              "className": "truncate",
-              "scrollWidth": 217,
-              "clientWidth": 155
-            },
-            {
-              "tag": "SPAN",
-              "className": "truncate",
-              "scrollWidth": 171,
-              "clientWidth": 43
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 178,
-              "clientWidth": 1
-            },
-            {
-              "tag": "UL",
-              "className": "flex flex-1 flex-col divide-y divide-lm-border-soft mt-2",
-              "scrollWidth": 279,
-              "clientWidth": 267
-            }
-          ]
-        },
-        {
-          "scheme": "dark",
-          "width": 390,
-          "overflowX": 0,
-          "offenders": [
-            {
-              "tag": "A",
-              "className": "sr-only min-h-11 focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lm-control focus:bg-lm-card focus:px-3 focus:py-2 focus:text-lm-14 focus:font-lm-semibold focus:shadow-lm-md",
-              "scrollWidth": 111,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 178,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "truncate",
-              "scrollWidth": 217,
-              "clientWidth": 170
-            },
-            {
-              "tag": "SPAN",
-              "className": "truncate",
-              "scrollWidth": 171,
-              "clientWidth": 58
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 178,
-              "clientWidth": 1
-            },
-            {
-              "tag": "UL",
-              "className": "flex flex-1 flex-col divide-y divide-lm-border-soft mt-2",
-              "scrollWidth": 294,
-              "clientWidth": 282
-            }
-          ]
-        },
-        {
-          "scheme": "dark",
-          "width": 768,
-          "overflowX": 0,
-          "offenders": [
-            {
-              "tag": "A",
-              "className": "sr-only min-h-11 focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lm-control focus:bg-lm-card focus:px-3 focus:py-2 focus:text-lm-14 focus:font-lm-semibold focus:shadow-lm-md",
-              "scrollWidth": 111,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 178,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 178,
-              "clientWidth": 1
-            },
-            {
-              "tag": "UL",
-              "className": "flex flex-1 flex-col divide-y divide-lm-border-soft mt-2",
-              "scrollWidth": 672,
-              "clientWidth": 660
-            }
-          ]
-        },
-        {
-          "scheme": "dark",
-          "width": 1024,
-          "overflowX": 0,
-          "offenders": [
-            {
-              "tag": "A",
-              "className": "sr-only min-h-11 focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lm-control focus:bg-lm-card focus:px-3 focus:py-2 focus:text-lm-14 focus:font-lm-semibold focus:shadow-lm-md",
-              "scrollWidth": 111,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 178,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 178,
-              "clientWidth": 1
-            },
-            {
-              "tag": "UL",
-              "className": "flex flex-1 flex-col divide-y divide-lm-border-soft mt-2",
-              "scrollWidth": 880,
-              "clientWidth": 868
-            }
-          ]
-        },
-        {
-          "scheme": "dark",
-          "width": 1200,
-          "overflowX": 0,
-          "offenders": [
-            {
-              "tag": "A",
-              "className": "sr-only min-h-11 focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lm-control focus:bg-lm-card focus:px-3 focus:py-2 focus:text-lm-14 focus:font-lm-semibold focus:shadow-lm-md",
-              "scrollWidth": 111,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 178,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "truncate",
-              "scrollWidth": 171,
-              "clientWidth": 109
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 178,
-              "clientWidth": 1
-            },
-            {
-              "tag": "UL",
-              "className": "flex flex-1 flex-col divide-y divide-lm-border-soft mt-2",
-              "scrollWidth": 377,
-              "clientWidth": 365
-            }
-          ]
-        },
-        {
-          "scheme": "dark",
-          "width": 1440,
-          "overflowX": 0,
-          "offenders": [
-            {
-              "tag": "A",
-              "className": "sr-only min-h-11 focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lm-control focus:bg-lm-card focus:px-3 focus:py-2 focus:text-lm-14 focus:font-lm-semibold focus:shadow-lm-md",
-              "scrollWidth": 111,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 178,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 178,
-              "clientWidth": 1
-            },
-            {
-              "tag": "UL",
-              "className": "flex flex-1 flex-col divide-y divide-lm-border-soft mt-2",
-              "scrollWidth": 431,
-              "clientWidth": 419
-            }
-          ]
-        }
-      ],
+      "overflow": {
+        "__error": "Error: page.evaluate: TypeError: el.closest is not a function\n    at eval (eval at evaluate (:311:30), <anonymous>:16:20)\n    at Array.filter (<anonymous>)\n    at eval (eval at evaluate (:311:30), <anonymous>:15:12)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+      },
       "axe": {
         "violations": [
           {
             "id": "color-contrast",
             "impact": "serious",
             "nodes": 8,
-            "help": "Elements must meet minimum color contrast ratio thresholds"
+            "help": "Elements must meet minimum color contrast ratio thresholds",
+            "details": [
+              {
+                "target": "div[data-mock=\"automation\"] > .rounded-lm-frame.p-\\[27px\\].lm-mock-card > ol > .p-2\\.5.rounded-lm-row.border:nth-child(1) > .mt-1\\.5.flex-wrap.gap-1\\.5 > .bg-lm-canvas-alt.py-1.px-2\\.5:nth-child(1)",
+                "html": "<span class=\"rounded-lm-pill px-2.5 py-1 text-lm-12 bg-lm-canvas-alt text-lm-muted-slate\">Proposal status</span>",
+                "contrast": {
+                  "fgColor": "#687083",
+                  "bgColor": "#f2eef8",
+                  "contrastRatio": 4.33,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                }
+              },
+              {
+                "target": "div[data-mock=\"automation\"] > .rounded-lm-frame.p-\\[27px\\].lm-mock-card > ol > .p-2\\.5.rounded-lm-row.border:nth-child(1) > .mt-1\\.5.flex-wrap.gap-1\\.5 > .bg-lm-canvas-alt.py-1.px-2\\.5:nth-child(2)",
+                "html": "<span class=\"rounded-lm-pill px-2.5 py-1 text-lm-12 bg-lm-canvas-alt text-lm-muted-slate\">changes to</span>",
+                "contrast": {
+                  "fgColor": "#687083",
+                  "bgColor": "#f2eef8",
+                  "contrastRatio": 4.33,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                }
+              },
+              {
+                "target": "div[data-mock=\"automation\"] > .rounded-lm-frame.p-\\[27px\\].lm-mock-card > ol > .p-2\\.5.rounded-lm-row.border:nth-child(2) > .mt-1\\.5.flex-wrap.gap-1\\.5 > .bg-lm-canvas-alt.py-1.px-2\\.5:nth-child(1)",
+                "html": "<span class=\"rounded-lm-pill px-2.5 py-1 text-lm-12 bg-lm-canvas-alt text-lm-muted-slate\">Workspace</span>",
+                "contrast": {
+                  "fgColor": "#687083",
+                  "bgColor": "#f2eef8",
+                  "contrastRatio": 4.33,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                }
+              },
+              {
+                "target": "div[data-mock=\"automation\"] > .rounded-lm-frame.p-\\[27px\\].lm-mock-card > ol > .p-2\\.5.rounded-lm-row.border:nth-child(2) > .mt-1\\.5.flex-wrap.gap-1\\.5 > .bg-lm-canvas-alt.py-1.px-2\\.5:nth-child(2)",
+                "html": "<span class=\"rounded-lm-pill px-2.5 py-1 text-lm-12 bg-lm-canvas-alt text-lm-muted-slate\">is</span>",
+                "contrast": {
+                  "fgColor": "#687083",
+                  "bgColor": "#f2eef8",
+                  "contrastRatio": 4.33,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                }
+              },
+              {
+                "target": "div[data-mock=\"automation\"] > .rounded-lm-frame.p-\\[27px\\].lm-mock-card > ol > .p-2\\.5.rounded-lm-row.border:nth-child(3) > .mt-1\\.5.flex-wrap.gap-1\\.5 > .bg-lm-canvas-alt.py-1.px-2\\.5:nth-child(1)",
+                "html": "<span class=\"rounded-lm-pill px-2.5 py-1 text-lm-12 bg-lm-canvas-alt text-lm-muted-slate\">Run webhook</span>",
+                "contrast": {
+                  "fgColor": "#687083",
+                  "bgColor": "#f2eef8",
+                  "contrastRatio": 4.33,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                }
+              },
+              {
+                "target": "div[data-mock=\"automation\"] > .rounded-lm-frame.p-\\[27px\\].lm-mock-card > ol > .p-2\\.5.rounded-lm-row.border:nth-child(3) > .mt-1\\.5.flex-wrap.gap-1\\.5 > .bg-lm-canvas-alt.py-1.px-2\\.5:nth-child(2)",
+                "html": "<span class=\"rounded-lm-pill px-2.5 py-1 text-lm-12 bg-lm-canvas-alt text-lm-muted-slate\">in</span>",
+                "contrast": {
+                  "fgColor": "#687083",
+                  "bgColor": "#f2eef8",
+                  "contrastRatio": 4.33,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                }
+              },
+              {
+                "target": "div[data-mock=\"automation\"] > .rounded-lm-frame.p-\\[27px\\].lm-mock-card > ol > .p-2\\.5.rounded-lm-row.border:nth-child(4) > .mt-1\\.5.flex-wrap.gap-1\\.5 > .bg-lm-canvas-alt.py-1.px-2\\.5:nth-child(1)",
+                "html": "<span class=\"rounded-lm-pill px-2.5 py-1 text-lm-12 bg-lm-canvas-alt text-lm-muted-slate\">Create the delivery plan</span>",
+                "contrast": {
+                  "fgColor": "#687083",
+                  "bgColor": "#f2eef8",
+                  "contrastRatio": 4.33,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                }
+              },
+              {
+                "target": "div[data-mock=\"automation\"] > .rounded-lm-frame.p-\\[27px\\].lm-mock-card > ol > .p-2\\.5.rounded-lm-row.border:nth-child(4) > .mt-1\\.5.flex-wrap.gap-1\\.5 > .bg-lm-canvas-alt.py-1.px-2\\.5:nth-child(2)",
+                "html": "<span class=\"rounded-lm-pill px-2.5 py-1 text-lm-12 bg-lm-canvas-alt text-lm-muted-slate\">for</span>",
+                "contrast": {
+                  "fgColor": "#687083",
+                  "bgColor": "#f2eef8",
+                  "contrastRatio": 4.33,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                }
+              }
+            ]
           }
         ],
         "passes": 40,
-        "incomplete": 1
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "nodes": [
+              ".lm-hero-accent",
+              ".items-baseline > .text-lm-cta-ink.font-lm-semibold",
+              ".items-baseline > .text-lm-cta-faint",
+              ".tracking-\\[-0\\.035em\\] > span:nth-child(1)",
+              ".tracking-\\[-0\\.035em\\] > span:nth-child(2)",
+              ".tracking-\\[-0\\.035em\\] > span:nth-child(3)"
+            ]
+          }
+        ]
       },
       "serverHtml": {
         "missing": [],
-        "bytes": 128289
+        "bytes": 127977
       },
       "noJs": {
         "articleCount": 6,
@@ -971,11 +512,11 @@
       "summary": {
         "lcpMedians": {
           "A-mobile-unthrottled": {
-            "lcpMedian": 80,
+            "lcpMedian": 108,
             "lcpRuns": [
-              104,
-              80,
-              68
+              140,
+              108,
+              96
             ],
             "clsRuns": [
               0,
@@ -989,11 +530,11 @@
             }
           },
           "B-mobile-cpu-4x": {
-            "lcpMedian": 160,
+            "lcpMedian": 248,
             "lcpRuns": [
-              156,
               160,
-              228
+              268,
+              248
             ],
             "clsRuns": [
               0,
@@ -1007,11 +548,11 @@
             }
           },
           "C-desktop": {
-            "lcpMedian": 84,
+            "lcpMedian": 120,
             "lcpRuns": [
-              84,
-              80,
-              84
+              140,
+              120,
+              116
             ],
             "clsRuns": [
               0,
@@ -1025,11 +566,11 @@
             }
           },
           "D-mobile-reduced-motion": {
-            "lcpMedian": 96,
+            "lcpMedian": 124,
             "lcpRuns": [
-              96,
-              72,
-              100
+              128,
+              124,
+              108
             ],
             "clsRuns": [
               0,
@@ -1065,7 +606,7 @@
         "A-mobile-unthrottled": [
           {
             "run": 1,
-            "lcp": 92,
+            "lcp": 128,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
@@ -1073,8 +614,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 44,
-            "fcp": 92,
+            "firstPaint": 40,
+            "fcp": 128,
             "heroOpacities": [
               "1",
               "1",
@@ -1091,7 +632,7 @@
           },
           {
             "run": 2,
-            "lcp": 88,
+            "lcp": 136,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
@@ -1099,8 +640,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 88,
-            "fcp": 88,
+            "firstPaint": 136,
+            "fcp": 136,
             "heroOpacities": [
               "1",
               "1",
@@ -1117,7 +658,7 @@
           },
           {
             "run": 3,
-            "lcp": 112,
+            "lcp": 144,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
@@ -1125,8 +666,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 112,
-            "fcp": 112,
+            "firstPaint": 144,
+            "fcp": 144,
             "heroOpacities": [
               "1",
               "1",
@@ -1145,7 +686,7 @@
         "B-mobile-cpu-4x": [
           {
             "run": 1,
-            "lcp": 160,
+            "lcp": 292,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
@@ -1153,8 +694,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 160,
-            "fcp": 160,
+            "firstPaint": 124,
+            "fcp": 292,
             "heroOpacities": [
               "1",
               "1",
@@ -1171,16 +712,16 @@
           },
           {
             "run": 2,
-            "lcp": 212,
+            "lcp": 196,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
               "text": "roducq keeps your client intake, briefs, proposals, plans an"
             },
             "lcpCandidates": 1,
-            "cls": 0,
-            "firstPaint": 212,
-            "fcp": 212,
+            "cls": 0.0881,
+            "firstPaint": 196,
+            "fcp": 196,
             "heroOpacities": [
               "1",
               "1",
@@ -1197,7 +738,7 @@
           },
           {
             "run": 3,
-            "lcp": 188,
+            "lcp": 220,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
@@ -1205,8 +746,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 188,
-            "fcp": 188,
+            "firstPaint": 220,
+            "fcp": 220,
             "heroOpacities": [
               "1",
               "1",
@@ -1225,7 +766,7 @@
         "C-desktop": [
           {
             "run": 1,
-            "lcp": 132,
+            "lcp": 216,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
@@ -1233,8 +774,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 132,
-            "fcp": 132,
+            "firstPaint": 52,
+            "fcp": 216,
             "heroOpacities": [
               "1",
               "1",
@@ -1251,7 +792,7 @@
           },
           {
             "run": 2,
-            "lcp": 132,
+            "lcp": 204,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
@@ -1259,8 +800,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 132,
-            "fcp": 132,
+            "firstPaint": 204,
+            "fcp": 204,
             "heroOpacities": [
               "1",
               "1",
@@ -1277,7 +818,7 @@
           },
           {
             "run": 3,
-            "lcp": 140,
+            "lcp": 200,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
@@ -1285,8 +826,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 140,
-            "fcp": 140,
+            "firstPaint": 200,
+            "fcp": 200,
             "heroOpacities": [
               "1",
               "1",
@@ -1305,7 +846,7 @@
         "D-mobile-reduced-motion": [
           {
             "run": 1,
-            "lcp": 108,
+            "lcp": 152,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
@@ -1313,8 +854,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 108,
-            "fcp": 108,
+            "firstPaint": 152,
+            "fcp": 152,
             "heroOpacities": [
               "1",
               "1",
@@ -1335,7 +876,7 @@
           },
           {
             "run": 2,
-            "lcp": 96,
+            "lcp": 148,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
@@ -1343,8 +884,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 32,
-            "fcp": 96,
+            "firstPaint": 148,
+            "fcp": 148,
             "heroOpacities": [
               "1",
               "1",
@@ -1365,7 +906,7 @@
           },
           {
             "run": 3,
-            "lcp": 116,
+            "lcp": 168,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
@@ -1373,8 +914,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 116,
-            "fcp": 116,
+            "firstPaint": 64,
+            "fcp": 168,
             "heroOpacities": [
               "1",
               "1",
@@ -1395,950 +936,25 @@
           }
         ]
       },
-      "overflow": [
-        {
-          "scheme": "light",
-          "width": 320,
-          "overflowX": 0,
-          "offenders": [
-            {
-              "tag": "A",
-              "className": "sr-only min-h-11 focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lm-control focus:bg-lm-card focus:px-3 focus:py-2 focus:text-lm-14 focus:font-lm-semibold focus:shadow-lm-md",
-              "scrollWidth": 111,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SECTION",
-              "className": "relative isolate overflow-hidden bg-lm-card",
-              "scrollWidth": 563,
-              "clientWidth": 320
-            },
-            {
-              "tag": "DIV",
-              "className": "pointer-events-none absolute inset-0 -z-10",
-              "scrollWidth": 563,
-              "clientWidth": 320
-            },
-            {
-              "tag": "SPAN",
-              "className": "block truncate text-lm-12 font-lm-semibold text-lm-muted line-through",
-              "scrollWidth": 103,
-              "clientWidth": 99
-            },
-            {
-              "tag": "SPAN",
-              "className": "block truncate text-lm-12 font-lm-semibold text-lm-ink",
-              "scrollWidth": 95,
-              "clientWidth": 80
-            },
-            {
-              "tag": "SPAN",
-              "className": "block truncate text-lm-12 font-lm-semibold text-lm-ink",
-              "scrollWidth": 140,
-              "clientWidth": 99
-            },
-            {
-              "tag": "SPAN",
-              "className": "block truncate text-lm-12 font-lm-semibold text-lm-muted line-through",
-              "scrollWidth": 112,
-              "clientWidth": 87
-            },
-            {
-              "tag": "P",
-              "className": "truncate text-lm-12 font-lm-semibold text-lm-ink",
-              "scrollWidth": 193,
-              "clientWidth": 142
-            },
-            {
-              "tag": "P",
-              "className": "truncate text-lm-10 text-lm-muted-readable",
-              "scrollWidth": 155,
-              "clientWidth": 142
-            },
-            {
-              "tag": "SPAN",
-              "className": "min-w-0 flex-1 truncate text-lm-12 text-lm-ink-soft",
-              "scrollWidth": 135,
-              "clientWidth": 122
-            }
-          ]
-        },
-        {
-          "scheme": "light",
-          "width": 375,
-          "overflowX": 0,
-          "offenders": [
-            {
-              "tag": "A",
-              "className": "sr-only min-h-11 focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lm-control focus:bg-lm-card focus:px-3 focus:py-2 focus:text-lm-14 focus:font-lm-semibold focus:shadow-lm-md",
-              "scrollWidth": 111,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SECTION",
-              "className": "relative isolate overflow-hidden bg-lm-card",
-              "scrollWidth": 556,
-              "clientWidth": 375
-            },
-            {
-              "tag": "DIV",
-              "className": "pointer-events-none absolute inset-0 -z-10",
-              "scrollWidth": 556,
-              "clientWidth": 375
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 40,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 49,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 83,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 33,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 76,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 107,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 173,
-              "clientWidth": 1
-            }
-          ]
-        },
-        {
-          "scheme": "light",
-          "width": 390,
-          "overflowX": 0,
-          "offenders": [
-            {
-              "tag": "A",
-              "className": "sr-only min-h-11 focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lm-control focus:bg-lm-card focus:px-3 focus:py-2 focus:text-lm-14 focus:font-lm-semibold focus:shadow-lm-md",
-              "scrollWidth": 111,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SECTION",
-              "className": "relative isolate overflow-hidden bg-lm-card",
-              "scrollWidth": 553,
-              "clientWidth": 390
-            },
-            {
-              "tag": "DIV",
-              "className": "pointer-events-none absolute inset-0 -z-10",
-              "scrollWidth": 553,
-              "clientWidth": 390
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 40,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 49,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 83,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 33,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 76,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 107,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 173,
-              "clientWidth": 1
-            }
-          ]
-        },
-        {
-          "scheme": "light",
-          "width": 768,
-          "overflowX": 0,
-          "offenders": [
-            {
-              "tag": "A",
-              "className": "sr-only min-h-11 focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lm-control focus:bg-lm-card focus:px-3 focus:py-2 focus:text-lm-14 focus:font-lm-semibold focus:shadow-lm-md",
-              "scrollWidth": 111,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SECTION",
-              "className": "relative isolate overflow-hidden bg-lm-card",
-              "scrollWidth": 870,
-              "clientWidth": 768
-            },
-            {
-              "tag": "DIV",
-              "className": "pointer-events-none absolute inset-0 -z-10",
-              "scrollWidth": 870,
-              "clientWidth": 768
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 40,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 49,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 83,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 33,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 76,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 107,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 173,
-              "clientWidth": 1
-            }
-          ]
-        },
-        {
-          "scheme": "light",
-          "width": 1024,
-          "overflowX": 0,
-          "offenders": [
-            {
-              "tag": "A",
-              "className": "sr-only min-h-11 focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lm-control focus:bg-lm-card focus:px-3 focus:py-2 focus:text-lm-14 focus:font-lm-semibold focus:shadow-lm-md",
-              "scrollWidth": 111,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SECTION",
-              "className": "relative isolate overflow-hidden bg-lm-card",
-              "scrollWidth": 1157,
-              "clientWidth": 1024
-            },
-            {
-              "tag": "DIV",
-              "className": "pointer-events-none absolute inset-0 -z-10",
-              "scrollWidth": 1157,
-              "clientWidth": 1024
-            },
-            {
-              "tag": "SPAN",
-              "className": "min-w-0 flex-1 truncate text-lm-12 text-lm-ink-soft",
-              "scrollWidth": 135,
-              "clientWidth": 63
-            },
-            {
-              "tag": "SPAN",
-              "className": "min-w-0 flex-1 truncate text-lm-12 text-lm-ink-soft",
-              "scrollWidth": 84,
-              "clientWidth": 63
-            },
-            {
-              "tag": "SPAN",
-              "className": "flex-1 truncate text-lm-12 text-lm-ink-soft line-through",
-              "scrollWidth": 109,
-              "clientWidth": 105
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 40,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 49,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 83,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 33,
-              "clientWidth": 1
-            }
-          ]
-        },
-        {
-          "scheme": "light",
-          "width": 1200,
-          "overflowX": 0,
-          "offenders": [
-            {
-              "tag": "A",
-              "className": "sr-only min-h-11 focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lm-control focus:bg-lm-card focus:px-3 focus:py-2 focus:text-lm-14 focus:font-lm-semibold focus:shadow-lm-md",
-              "scrollWidth": 111,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SECTION",
-              "className": "relative isolate overflow-hidden bg-lm-card",
-              "scrollWidth": 1354,
-              "clientWidth": 1200
-            },
-            {
-              "tag": "DIV",
-              "className": "pointer-events-none absolute inset-0 -z-10",
-              "scrollWidth": 1354,
-              "clientWidth": 1200
-            },
-            {
-              "tag": "SPAN",
-              "className": "min-w-0 flex-1 truncate text-lm-12 text-lm-ink-soft",
-              "scrollWidth": 135,
-              "clientWidth": 107
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 40,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 49,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 83,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 33,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 76,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 107,
-              "clientWidth": 1
-            }
-          ]
-        },
-        {
-          "scheme": "light",
-          "width": 1440,
-          "overflowX": 0,
-          "offenders": [
-            {
-              "tag": "A",
-              "className": "sr-only min-h-11 focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lm-control focus:bg-lm-card focus:px-3 focus:py-2 focus:text-lm-14 focus:font-lm-semibold focus:shadow-lm-md",
-              "scrollWidth": 111,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SECTION",
-              "className": "relative isolate overflow-hidden bg-lm-card",
-              "scrollWidth": 1623,
-              "clientWidth": 1440
-            },
-            {
-              "tag": "DIV",
-              "className": "pointer-events-none absolute inset-0 -z-10",
-              "scrollWidth": 1623,
-              "clientWidth": 1440
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 40,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 49,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 83,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 33,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 76,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 107,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 173,
-              "clientWidth": 1
-            }
-          ]
-        },
-        {
-          "scheme": "dark",
-          "width": 320,
-          "overflowX": 0,
-          "offenders": [
-            {
-              "tag": "A",
-              "className": "sr-only min-h-11 focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lm-control focus:bg-lm-card focus:px-3 focus:py-2 focus:text-lm-14 focus:font-lm-semibold focus:shadow-lm-md",
-              "scrollWidth": 111,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SECTION",
-              "className": "relative isolate overflow-hidden bg-lm-card",
-              "scrollWidth": 563,
-              "clientWidth": 320
-            },
-            {
-              "tag": "DIV",
-              "className": "pointer-events-none absolute inset-0 -z-10",
-              "scrollWidth": 563,
-              "clientWidth": 320
-            },
-            {
-              "tag": "SPAN",
-              "className": "block truncate text-lm-12 font-lm-semibold text-lm-muted line-through",
-              "scrollWidth": 103,
-              "clientWidth": 99
-            },
-            {
-              "tag": "SPAN",
-              "className": "block truncate text-lm-12 font-lm-semibold text-lm-ink",
-              "scrollWidth": 95,
-              "clientWidth": 80
-            },
-            {
-              "tag": "SPAN",
-              "className": "block truncate text-lm-12 font-lm-semibold text-lm-ink",
-              "scrollWidth": 140,
-              "clientWidth": 99
-            },
-            {
-              "tag": "SPAN",
-              "className": "block truncate text-lm-12 font-lm-semibold text-lm-muted line-through",
-              "scrollWidth": 112,
-              "clientWidth": 87
-            },
-            {
-              "tag": "P",
-              "className": "truncate text-lm-12 font-lm-semibold text-lm-ink",
-              "scrollWidth": 193,
-              "clientWidth": 142
-            },
-            {
-              "tag": "P",
-              "className": "truncate text-lm-10 text-lm-muted-readable",
-              "scrollWidth": 155,
-              "clientWidth": 142
-            },
-            {
-              "tag": "SPAN",
-              "className": "min-w-0 flex-1 truncate text-lm-12 text-lm-ink-soft",
-              "scrollWidth": 135,
-              "clientWidth": 122
-            }
-          ]
-        },
-        {
-          "scheme": "dark",
-          "width": 375,
-          "overflowX": 0,
-          "offenders": [
-            {
-              "tag": "A",
-              "className": "sr-only min-h-11 focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lm-control focus:bg-lm-card focus:px-3 focus:py-2 focus:text-lm-14 focus:font-lm-semibold focus:shadow-lm-md",
-              "scrollWidth": 111,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SECTION",
-              "className": "relative isolate overflow-hidden bg-lm-card",
-              "scrollWidth": 556,
-              "clientWidth": 375
-            },
-            {
-              "tag": "DIV",
-              "className": "pointer-events-none absolute inset-0 -z-10",
-              "scrollWidth": 556,
-              "clientWidth": 375
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 40,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 49,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 83,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 33,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 76,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 107,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 173,
-              "clientWidth": 1
-            }
-          ]
-        },
-        {
-          "scheme": "dark",
-          "width": 390,
-          "overflowX": 0,
-          "offenders": [
-            {
-              "tag": "A",
-              "className": "sr-only min-h-11 focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lm-control focus:bg-lm-card focus:px-3 focus:py-2 focus:text-lm-14 focus:font-lm-semibold focus:shadow-lm-md",
-              "scrollWidth": 111,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SECTION",
-              "className": "relative isolate overflow-hidden bg-lm-card",
-              "scrollWidth": 553,
-              "clientWidth": 390
-            },
-            {
-              "tag": "DIV",
-              "className": "pointer-events-none absolute inset-0 -z-10",
-              "scrollWidth": 553,
-              "clientWidth": 390
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 40,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 49,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 83,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 33,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 76,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 107,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 173,
-              "clientWidth": 1
-            }
-          ]
-        },
-        {
-          "scheme": "dark",
-          "width": 768,
-          "overflowX": 0,
-          "offenders": [
-            {
-              "tag": "A",
-              "className": "sr-only min-h-11 focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lm-control focus:bg-lm-card focus:px-3 focus:py-2 focus:text-lm-14 focus:font-lm-semibold focus:shadow-lm-md",
-              "scrollWidth": 111,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SECTION",
-              "className": "relative isolate overflow-hidden bg-lm-card",
-              "scrollWidth": 870,
-              "clientWidth": 768
-            },
-            {
-              "tag": "DIV",
-              "className": "pointer-events-none absolute inset-0 -z-10",
-              "scrollWidth": 870,
-              "clientWidth": 768
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 40,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 49,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 83,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 33,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 76,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 107,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 173,
-              "clientWidth": 1
-            }
-          ]
-        },
-        {
-          "scheme": "dark",
-          "width": 1024,
-          "overflowX": 0,
-          "offenders": [
-            {
-              "tag": "A",
-              "className": "sr-only min-h-11 focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lm-control focus:bg-lm-card focus:px-3 focus:py-2 focus:text-lm-14 focus:font-lm-semibold focus:shadow-lm-md",
-              "scrollWidth": 111,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SECTION",
-              "className": "relative isolate overflow-hidden bg-lm-card",
-              "scrollWidth": 1157,
-              "clientWidth": 1024
-            },
-            {
-              "tag": "DIV",
-              "className": "pointer-events-none absolute inset-0 -z-10",
-              "scrollWidth": 1157,
-              "clientWidth": 1024
-            },
-            {
-              "tag": "SPAN",
-              "className": "min-w-0 flex-1 truncate text-lm-12 text-lm-ink-soft",
-              "scrollWidth": 135,
-              "clientWidth": 63
-            },
-            {
-              "tag": "SPAN",
-              "className": "min-w-0 flex-1 truncate text-lm-12 text-lm-ink-soft",
-              "scrollWidth": 84,
-              "clientWidth": 63
-            },
-            {
-              "tag": "SPAN",
-              "className": "flex-1 truncate text-lm-12 text-lm-ink-soft line-through",
-              "scrollWidth": 109,
-              "clientWidth": 105
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 40,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 49,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 83,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 33,
-              "clientWidth": 1
-            }
-          ]
-        },
-        {
-          "scheme": "dark",
-          "width": 1200,
-          "overflowX": 0,
-          "offenders": [
-            {
-              "tag": "A",
-              "className": "sr-only min-h-11 focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lm-control focus:bg-lm-card focus:px-3 focus:py-2 focus:text-lm-14 focus:font-lm-semibold focus:shadow-lm-md",
-              "scrollWidth": 111,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SECTION",
-              "className": "relative isolate overflow-hidden bg-lm-card",
-              "scrollWidth": 1354,
-              "clientWidth": 1200
-            },
-            {
-              "tag": "DIV",
-              "className": "pointer-events-none absolute inset-0 -z-10",
-              "scrollWidth": 1354,
-              "clientWidth": 1200
-            },
-            {
-              "tag": "SPAN",
-              "className": "min-w-0 flex-1 truncate text-lm-12 text-lm-ink-soft",
-              "scrollWidth": 135,
-              "clientWidth": 107
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 40,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 49,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 83,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 33,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 76,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 107,
-              "clientWidth": 1
-            }
-          ]
-        },
-        {
-          "scheme": "dark",
-          "width": 1440,
-          "overflowX": 0,
-          "offenders": [
-            {
-              "tag": "A",
-              "className": "sr-only min-h-11 focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lm-control focus:bg-lm-card focus:px-3 focus:py-2 focus:text-lm-14 focus:font-lm-semibold focus:shadow-lm-md",
-              "scrollWidth": 111,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SECTION",
-              "className": "relative isolate overflow-hidden bg-lm-card",
-              "scrollWidth": 1623,
-              "clientWidth": 1440
-            },
-            {
-              "tag": "DIV",
-              "className": "pointer-events-none absolute inset-0 -z-10",
-              "scrollWidth": 1623,
-              "clientWidth": 1440
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 40,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 49,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 83,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 33,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 76,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 107,
-              "clientWidth": 1
-            },
-            {
-              "tag": "SPAN",
-              "className": "sr-only",
-              "scrollWidth": 173,
-              "clientWidth": 1
-            }
-          ]
-        }
-      ],
+      "overflow": {
+        "__error": "Error: page.evaluate: TypeError: el.closest is not a function\n    at eval (eval at evaluate (:311:30), <anonymous>:16:20)\n    at Array.filter (<anonymous>)\n    at eval (eval at evaluate (:311:30), <anonymous>:15:12)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+      },
       "axe": {
         "violations": [],
         "passes": 41,
-        "incomplete": 1
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "nodes": [
+              ".bg-accent-soft",
+              "h1 > .lm-line:nth-child(1) > span",
+              "h1 > .lm-line:nth-child(2) > span",
+              "span > .text-lm-ink-accent",
+              ".mt-5\\.5",
+              ".lm-hero-in.mt-3\\.5.text-lm-muted"
+            ]
+          }
+        ]
       },
       "serverHtml": {
         "missing": [],
@@ -2360,11 +976,11 @@
       "summary": {
         "lcpMedians": {
           "A-mobile-unthrottled": {
-            "lcpMedian": 92,
+            "lcpMedian": 136,
             "lcpRuns": [
-              92,
-              88,
-              112
+              128,
+              136,
+              144
             ],
             "clsRuns": [
               0,
@@ -2378,15 +994,15 @@
             }
           },
           "B-mobile-cpu-4x": {
-            "lcpMedian": 188,
+            "lcpMedian": 220,
             "lcpRuns": [
-              160,
-              212,
-              188
+              292,
+              196,
+              220
             ],
             "clsRuns": [
               0,
-              0,
+              0.0881,
               0
             ],
             "lcpElement": {
@@ -2396,11 +1012,11 @@
             }
           },
           "C-desktop": {
-            "lcpMedian": 132,
+            "lcpMedian": 204,
             "lcpRuns": [
-              132,
-              132,
-              140
+              216,
+              204,
+              200
             ],
             "clsRuns": [
               0,
@@ -2414,11 +1030,11 @@
             }
           },
           "D-mobile-reduced-motion": {
-            "lcpMedian": 108,
+            "lcpMedian": 152,
             "lcpRuns": [
-              108,
-              96,
-              116
+              152,
+              148,
+              168
             ],
             "clsRuns": [
               0,
