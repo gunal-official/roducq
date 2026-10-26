@@ -109,11 +109,14 @@ function AutomationMock() {
               {row.cells.map((cell, index) => (
                 <span
                   key={cell}
-                  className={cn(
+                    className={cn(
                     "rounded-lm-pill px-2.5 py-1 text-lm-12",
                     index === row.cells.length - 1
                       ? "bg-lm-surface-accent font-lm-semibold text-lm-ink-accent"
-                      : "bg-lm-canvas-alt text-lm-muted-slate",
+                      : // muted-slate only reaches 4.34:1 on the deeper
+                        // canvas-alt wash; muted-readable clears 4.5:1 on
+                        // every landing wash (see landing.css token note).
+                        "bg-lm-canvas-alt text-lm-muted-readable",
                   )}
                 >
                   {cell}

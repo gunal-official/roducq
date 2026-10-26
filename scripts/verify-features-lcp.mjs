@@ -266,22 +266,23 @@ async function runOverflowSweep(browser, target) {
       const offenders = await page.evaluate(() => {
         return Array.from(document.querySelectorAll("body *"))
           .filter((el) => el.scrollWidth > el.clientWidth + 2)
+          // Only elements whose painted box actually crosses the viewport
+          // count: truncated text and sr-only clips have a large inner
+          // scrollWidth by design but never cause page overflow. The
+          // measured audit criterion is document overflowX === 0; this
+          // list names the element that would break it, if any. Filter
+          // the live elements BEFORE mapping them to plain objects.
+          .filter((el) => {
+            if (el.closest(".sr-only")) return false;
+            const rect = el.getBoundingClientRect();
+            return rect.right > document.documentElement.clientWidth + 1;
+          })
           .map((el) => ({
             tag: el.tagName,
             className: typeof el.className === "string" ? el.className : "",
             scrollWidth: el.scrollWidth,
             clientWidth: el.clientWidth,
           }))
-          // Only elements whose painted box actually crosses the viewport
-          // count: truncated text and sr-only clips have a large inner
-          // scrollWidth by design but never cause page overflow. The
-          // measured audit criterion is document overflowX === 0; this
-          // list names the element that would break it, if any.
-          .filter((el) => {
-            if (el.closest(".sr-only")) return false;
-            const rect = el.getBoundingClientRect();
-            return rect.right > document.documentElement.clientWidth + 1;
-          })
           .slice(0, 10);
       });
       results.push({
