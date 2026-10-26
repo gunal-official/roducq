@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-26T03:24:03.093Z",
+  "capturedAt": "2026-10-26T03:27:37.097Z",
   "routes": {
     "/integrations": {
       "page": "http://localhost:3100/integrations",
@@ -7,266 +7,6 @@
         "A-mobile-unthrottled": [
           {
             "run": 1,
-            "lcp": 124,
-            "lcpElement": {
-              "tag": "P",
-              "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
-              "text": "Slack, Notion and a connected mailbox feed the Inbox; signed"
-            },
-            "lcpCandidates": 1,
-            "cls": 0,
-            "firstPaint": 68,
-            "fcp": 124,
-            "heroOpacities": [
-              "1",
-              "1",
-              "1",
-              "1",
-              "1"
-            ],
-            "swapTrail": [],
-            "panelCheckable": false,
-            "consoleErrors": [],
-            "reducedMotionActive": null,
-            "reducedMotionStyle": null
-          },
-          {
-            "run": 2,
-            "lcp": 104,
-            "lcpElement": {
-              "tag": "P",
-              "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
-              "text": "Slack, Notion and a connected mailbox feed the Inbox; signed"
-            },
-            "lcpCandidates": 1,
-            "cls": 0,
-            "firstPaint": 104,
-            "fcp": 104,
-            "heroOpacities": [
-              "1",
-              "1",
-              "1",
-              "1",
-              "1"
-            ],
-            "swapTrail": [],
-            "panelCheckable": false,
-            "consoleErrors": [],
-            "reducedMotionActive": null,
-            "reducedMotionStyle": null
-          },
-          {
-            "run": 3,
-            "lcp": 84,
-            "lcpElement": {
-              "tag": "P",
-              "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
-              "text": "Slack, Notion and a connected mailbox feed the Inbox; signed"
-            },
-            "lcpCandidates": 1,
-            "cls": 0,
-            "firstPaint": 48,
-            "fcp": 84,
-            "heroOpacities": [
-              "1",
-              "1",
-              "1",
-              "1",
-              "1"
-            ],
-            "swapTrail": [],
-            "panelCheckable": false,
-            "consoleErrors": [],
-            "reducedMotionActive": null,
-            "reducedMotionStyle": null
-          }
-        ],
-        "B-mobile-cpu-4x": [
-          {
-            "run": 1,
-            "lcp": 200,
-            "lcpElement": {
-              "tag": "P",
-              "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
-              "text": "Slack, Notion and a connected mailbox feed the Inbox; signed"
-            },
-            "lcpCandidates": 1,
-            "cls": 0,
-            "firstPaint": 100,
-            "fcp": 200,
-            "heroOpacities": [
-              "1",
-              "1",
-              "1",
-              "1",
-              "1"
-            ],
-            "swapTrail": [],
-            "panelCheckable": false,
-            "consoleErrors": [],
-            "reducedMotionActive": null,
-            "reducedMotionStyle": null
-          },
-          {
-            "run": 2,
-            "lcp": 192,
-            "lcpElement": {
-              "tag": "P",
-              "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
-              "text": "Slack, Notion and a connected mailbox feed the Inbox; signed"
-            },
-            "lcpCandidates": 1,
-            "cls": 0,
-            "firstPaint": 100,
-            "fcp": 192,
-            "heroOpacities": [
-              "1",
-              "1",
-              "1",
-              "1",
-              "1"
-            ],
-            "swapTrail": [],
-            "panelCheckable": false,
-            "consoleErrors": [],
-            "reducedMotionActive": null,
-            "reducedMotionStyle": null
-          },
-          {
-            "run": 3,
-            "lcp": 180,
-            "lcpElement": {
-              "tag": "P",
-              "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
-              "text": "Slack, Notion and a connected mailbox feed the Inbox; signed"
-            },
-            "lcpCandidates": 1,
-            "cls": 0,
-            "firstPaint": 180,
-            "fcp": 180,
-            "heroOpacities": [
-              "1",
-              "1",
-              "1",
-              "1",
-              "1"
-            ],
-            "swapTrail": [],
-            "panelCheckable": false,
-            "consoleErrors": [],
-            "reducedMotionActive": null,
-            "reducedMotionStyle": null
-          }
-        ],
-        "C-desktop": [
-          {
-            "run": 1,
-            "lcp": 120,
-            "lcpElement": {
-              "tag": "P",
-              "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
-              "text": "Slack, Notion and a connected mailbox feed the Inbox; signed"
-            },
-            "lcpCandidates": 1,
-            "cls": 0,
-            "firstPaint": 56,
-            "fcp": 120,
-            "heroOpacities": [
-              "1",
-              "1",
-              "1",
-              "1",
-              "1"
-            ],
-            "swapTrail": [],
-            "panelCheckable": false,
-            "consoleErrors": [],
-            "reducedMotionActive": null,
-            "reducedMotionStyle": null
-          },
-          {
-            "run": 2,
-            "lcp": 104,
-            "lcpElement": {
-              "tag": "P",
-              "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
-              "text": "Slack, Notion and a connected mailbox feed the Inbox; signed"
-            },
-            "lcpCandidates": 1,
-            "cls": 0,
-            "firstPaint": 104,
-            "fcp": 104,
-            "heroOpacities": [
-              "1",
-              "1",
-              "1",
-              "1",
-              "1"
-            ],
-            "swapTrail": [],
-            "panelCheckable": false,
-            "consoleErrors": [],
-            "reducedMotionActive": null,
-            "reducedMotionStyle": null
-          },
-          {
-            "run": 3,
-            "lcp": 96,
-            "lcpElement": {
-              "tag": "P",
-              "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
-              "text": "Slack, Notion and a connected mailbox feed the Inbox; signed"
-            },
-            "lcpCandidates": 1,
-            "cls": 0,
-            "firstPaint": 48,
-            "fcp": 96,
-            "heroOpacities": [
-              "1",
-              "1",
-              "1",
-              "1",
-              "1"
-            ],
-            "swapTrail": [],
-            "panelCheckable": false,
-            "consoleErrors": [],
-            "reducedMotionActive": null,
-            "reducedMotionStyle": null
-          }
-        ],
-        "D-mobile-reduced-motion": [
-          {
-            "run": 1,
-            "lcp": 100,
-            "lcpElement": {
-              "tag": "P",
-              "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
-              "text": "Slack, Notion and a connected mailbox feed the Inbox; signed"
-            },
-            "lcpCandidates": 1,
-            "cls": 0,
-            "firstPaint": 52,
-            "fcp": 100,
-            "heroOpacities": [
-              "1",
-              "1",
-              "1",
-              "1",
-              "1"
-            ],
-            "swapTrail": [],
-            "panelCheckable": false,
-            "consoleErrors": [],
-            "reducedMotionActive": true,
-            "reducedMotionStyle": {
-              "animationName": "none",
-              "animationDuration": "0s",
-              "opacity": "1"
-            }
-          },
-          {
-            "run": 2,
             "lcp": 88,
             "lcpElement": {
               "tag": "P",
@@ -287,6 +27,266 @@
             "swapTrail": [],
             "panelCheckable": false,
             "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          },
+          {
+            "run": 2,
+            "lcp": 60,
+            "lcpElement": {
+              "tag": "P",
+              "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
+              "text": "Slack, Notion and a connected mailbox feed the Inbox; signed"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "firstPaint": 60,
+            "fcp": 60,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "swapTrail": [],
+            "panelCheckable": false,
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          },
+          {
+            "run": 3,
+            "lcp": 60,
+            "lcpElement": {
+              "tag": "P",
+              "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
+              "text": "Slack, Notion and a connected mailbox feed the Inbox; signed"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "firstPaint": 60,
+            "fcp": 60,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "swapTrail": [],
+            "panelCheckable": false,
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          }
+        ],
+        "B-mobile-cpu-4x": [
+          {
+            "run": 1,
+            "lcp": 140,
+            "lcpElement": {
+              "tag": "P",
+              "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
+              "text": "Slack, Notion and a connected mailbox feed the Inbox; signed"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "firstPaint": 140,
+            "fcp": 140,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "swapTrail": [],
+            "panelCheckable": false,
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          },
+          {
+            "run": 2,
+            "lcp": 148,
+            "lcpElement": {
+              "tag": "P",
+              "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
+              "text": "Slack, Notion and a connected mailbox feed the Inbox; signed"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "firstPaint": 148,
+            "fcp": 148,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "swapTrail": [],
+            "panelCheckable": false,
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          },
+          {
+            "run": 3,
+            "lcp": 148,
+            "lcpElement": {
+              "tag": "P",
+              "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
+              "text": "Slack, Notion and a connected mailbox feed the Inbox; signed"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "firstPaint": 148,
+            "fcp": 148,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "swapTrail": [],
+            "panelCheckable": false,
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          }
+        ],
+        "C-desktop": [
+          {
+            "run": 1,
+            "lcp": 124,
+            "lcpElement": {
+              "tag": "P",
+              "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
+              "text": "Slack, Notion and a connected mailbox feed the Inbox; signed"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "firstPaint": 40,
+            "fcp": 124,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "swapTrail": [],
+            "panelCheckable": false,
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          },
+          {
+            "run": 2,
+            "lcp": 64,
+            "lcpElement": {
+              "tag": "P",
+              "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
+              "text": "Slack, Notion and a connected mailbox feed the Inbox; signed"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "firstPaint": 64,
+            "fcp": 64,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "swapTrail": [],
+            "panelCheckable": false,
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          },
+          {
+            "run": 3,
+            "lcp": 72,
+            "lcpElement": {
+              "tag": "P",
+              "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
+              "text": "Slack, Notion and a connected mailbox feed the Inbox; signed"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "firstPaint": 32,
+            "fcp": 72,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "swapTrail": [],
+            "panelCheckable": false,
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          }
+        ],
+        "D-mobile-reduced-motion": [
+          {
+            "run": 1,
+            "lcp": 80,
+            "lcpElement": {
+              "tag": "P",
+              "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
+              "text": "Slack, Notion and a connected mailbox feed the Inbox; signed"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "firstPaint": 36,
+            "fcp": 80,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "swapTrail": [],
+            "panelCheckable": false,
+            "consoleErrors": [],
+            "reducedMotionActive": true,
+            "reducedMotionStyle": {
+              "animationName": "none",
+              "animationDuration": "0s",
+              "opacity": "1"
+            }
+          },
+          {
+            "run": 2,
+            "lcp": 56,
+            "lcpElement": {
+              "tag": "P",
+              "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
+              "text": "Slack, Notion and a connected mailbox feed the Inbox; signed"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "firstPaint": 56,
+            "fcp": 56,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "swapTrail": [],
+            "panelCheckable": false,
+            "consoleErrors": [],
             "reducedMotionActive": true,
             "reducedMotionStyle": {
               "animationName": "none",
@@ -296,7 +296,7 @@
           },
           {
             "run": 3,
-            "lcp": 84,
+            "lcp": 64,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
@@ -304,8 +304,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 84,
-            "fcp": 84,
+            "firstPaint": 64,
+            "fcp": 64,
             "heroOpacities": [
               "1",
               "1",
@@ -673,9 +673,7 @@
           ],
           "forms": [],
           "h1Count": 1,
-          "forbidden": [
-            "Connect"
-          ],
+          "forbidden": [],
           "cardsInert": true,
           "chipCount": 7,
           "cardCount": 7,
@@ -698,7 +696,7 @@
           "mailtoOnlyOutbound": true,
           "noForms": true,
           "oneH1": true,
-          "noForbiddenCopy": false,
+          "noForbiddenCopy": true,
           "noConsoleErrors": true
         }
       },
@@ -713,17 +711,17 @@
         "clsBelow01": true,
         "axeZeroViolations": true,
         "noJsVisibility": true,
-        "catalogSuite": false,
+        "catalogSuite": true,
         "noJsCatalog": true
       },
       "summary": {
         "lcpMedians": {
           "A-mobile-unthrottled": {
-            "lcpMedian": 104,
+            "lcpMedian": 60,
             "lcpRuns": [
-              124,
-              104,
-              84
+              88,
+              60,
+              60
             ],
             "clsRuns": [
               0,
@@ -737,11 +735,11 @@
             }
           },
           "B-mobile-cpu-4x": {
-            "lcpMedian": 192,
+            "lcpMedian": 148,
             "lcpRuns": [
-              200,
-              192,
-              180
+              140,
+              148,
+              148
             ],
             "clsRuns": [
               0,
@@ -755,11 +753,11 @@
             }
           },
           "C-desktop": {
-            "lcpMedian": 104,
+            "lcpMedian": 72,
             "lcpRuns": [
-              120,
-              104,
-              96
+              124,
+              64,
+              72
             ],
             "clsRuns": [
               0,
@@ -773,11 +771,11 @@
             }
           },
           "D-mobile-reduced-motion": {
-            "lcpMedian": 88,
+            "lcpMedian": 64,
             "lcpRuns": [
-              100,
-              88,
-              84
+              80,
+              56,
+              64
             ],
             "clsRuns": [
               0,
@@ -802,7 +800,7 @@
           "clsBelow01": true,
           "axeZeroViolations": true,
           "noJsVisibility": true,
-          "catalogSuite": false,
+          "catalogSuite": true,
           "noJsCatalog": true
         }
       }
@@ -813,7 +811,7 @@
         "A-mobile-unthrottled": [
           {
             "run": 1,
-            "lcp": 152,
+            "lcp": 88,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
@@ -821,8 +819,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 60,
-            "fcp": 152,
+            "firstPaint": 32,
+            "fcp": 88,
             "heroOpacities": [
               "1",
               "1",
@@ -839,6 +837,192 @@
           },
           {
             "run": 2,
+            "lcp": 128,
+            "lcpElement": {
+              "tag": "P",
+              "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "firstPaint": 128,
+            "fcp": 128,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "swapTrail": [],
+            "panelCheckable": false,
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          },
+          {
+            "run": 3,
+            "lcp": 88,
+            "lcpElement": {
+              "tag": "P",
+              "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "firstPaint": 88,
+            "fcp": 88,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "swapTrail": [],
+            "panelCheckable": false,
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          }
+        ],
+        "B-mobile-cpu-4x": [
+          {
+            "run": 1,
+            "lcp": 164,
+            "lcpElement": {
+              "tag": "P",
+              "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an"
+            },
+            "lcpCandidates": 1,
+            "cls": 0.1341,
+            "firstPaint": 164,
+            "fcp": 164,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "swapTrail": [],
+            "panelCheckable": false,
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          },
+          {
+            "run": 2,
+            "lcp": 152,
+            "lcpElement": {
+              "tag": "P",
+              "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "firstPaint": 152,
+            "fcp": 152,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "swapTrail": [],
+            "panelCheckable": false,
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          },
+          {
+            "run": 3,
+            "lcp": 168,
+            "lcpElement": {
+              "tag": "P",
+              "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "firstPaint": 168,
+            "fcp": 168,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "swapTrail": [],
+            "panelCheckable": false,
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          }
+        ],
+        "C-desktop": [
+          {
+            "run": 1,
+            "lcp": 148,
+            "lcpElement": {
+              "tag": "P",
+              "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "firstPaint": 148,
+            "fcp": 148,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "swapTrail": [],
+            "panelCheckable": false,
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          },
+          {
+            "run": 2,
+            "lcp": 144,
+            "lcpElement": {
+              "tag": "P",
+              "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "firstPaint": 144,
+            "fcp": 144,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "swapTrail": [],
+            "panelCheckable": false,
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          },
+          {
+            "run": 3,
             "lcp": 132,
             "lcpElement": {
               "tag": "P",
@@ -862,198 +1046,12 @@
             "consoleErrors": [],
             "reducedMotionActive": null,
             "reducedMotionStyle": null
-          },
-          {
-            "run": 3,
-            "lcp": 124,
-            "lcpElement": {
-              "tag": "P",
-              "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
-              "text": "roducq keeps your client intake, briefs, proposals, plans an"
-            },
-            "lcpCandidates": 1,
-            "cls": 0,
-            "firstPaint": 124,
-            "fcp": 124,
-            "heroOpacities": [
-              "1",
-              "1",
-              "1",
-              "1",
-              "1",
-              "1"
-            ],
-            "swapTrail": [],
-            "panelCheckable": false,
-            "consoleErrors": [],
-            "reducedMotionActive": null,
-            "reducedMotionStyle": null
-          }
-        ],
-        "B-mobile-cpu-4x": [
-          {
-            "run": 1,
-            "lcp": 208,
-            "lcpElement": {
-              "tag": "P",
-              "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
-              "text": "roducq keeps your client intake, briefs, proposals, plans an"
-            },
-            "lcpCandidates": 1,
-            "cls": 0,
-            "firstPaint": 208,
-            "fcp": 208,
-            "heroOpacities": [
-              "1",
-              "1",
-              "1",
-              "1",
-              "1",
-              "1"
-            ],
-            "swapTrail": [],
-            "panelCheckable": false,
-            "consoleErrors": [],
-            "reducedMotionActive": null,
-            "reducedMotionStyle": null
-          },
-          {
-            "run": 2,
-            "lcp": 212,
-            "lcpElement": {
-              "tag": "P",
-              "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
-              "text": "roducq keeps your client intake, briefs, proposals, plans an"
-            },
-            "lcpCandidates": 1,
-            "cls": 0,
-            "firstPaint": 212,
-            "fcp": 212,
-            "heroOpacities": [
-              "1",
-              "1",
-              "1",
-              "1",
-              "1",
-              "1"
-            ],
-            "swapTrail": [],
-            "panelCheckable": false,
-            "consoleErrors": [],
-            "reducedMotionActive": null,
-            "reducedMotionStyle": null
-          },
-          {
-            "run": 3,
-            "lcp": 296,
-            "lcpElement": {
-              "tag": "P",
-              "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
-              "text": "roducq keeps your client intake, briefs, proposals, plans an"
-            },
-            "lcpCandidates": 1,
-            "cls": 0,
-            "firstPaint": 124,
-            "fcp": 296,
-            "heroOpacities": [
-              "1",
-              "1",
-              "1",
-              "1",
-              "1",
-              "1"
-            ],
-            "swapTrail": [],
-            "panelCheckable": false,
-            "consoleErrors": [],
-            "reducedMotionActive": null,
-            "reducedMotionStyle": null
-          }
-        ],
-        "C-desktop": [
-          {
-            "run": 1,
-            "lcp": 200,
-            "lcpElement": {
-              "tag": "P",
-              "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
-              "text": "roducq keeps your client intake, briefs, proposals, plans an"
-            },
-            "lcpCandidates": 1,
-            "cls": 0,
-            "firstPaint": 44,
-            "fcp": 200,
-            "heroOpacities": [
-              "1",
-              "1",
-              "1",
-              "1",
-              "1",
-              "1"
-            ],
-            "swapTrail": [],
-            "panelCheckable": false,
-            "consoleErrors": [],
-            "reducedMotionActive": null,
-            "reducedMotionStyle": null
-          },
-          {
-            "run": 2,
-            "lcp": 208,
-            "lcpElement": {
-              "tag": "P",
-              "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
-              "text": "roducq keeps your client intake, briefs, proposals, plans an"
-            },
-            "lcpCandidates": 1,
-            "cls": 0,
-            "firstPaint": 208,
-            "fcp": 208,
-            "heroOpacities": [
-              "1",
-              "1",
-              "1",
-              "1",
-              "1",
-              "1"
-            ],
-            "swapTrail": [],
-            "panelCheckable": false,
-            "consoleErrors": [],
-            "reducedMotionActive": null,
-            "reducedMotionStyle": null
-          },
-          {
-            "run": 3,
-            "lcp": 200,
-            "lcpElement": {
-              "tag": "P",
-              "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
-              "text": "roducq keeps your client intake, briefs, proposals, plans an"
-            },
-            "lcpCandidates": 1,
-            "cls": 0,
-            "firstPaint": 200,
-            "fcp": 200,
-            "heroOpacities": [
-              "1",
-              "1",
-              "1",
-              "1",
-              "1",
-              "1"
-            ],
-            "swapTrail": [],
-            "panelCheckable": false,
-            "consoleErrors": [],
-            "reducedMotionActive": null,
-            "reducedMotionStyle": null
           }
         ],
         "D-mobile-reduced-motion": [
           {
             "run": 1,
-            "lcp": 156,
+            "lcp": 100,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
@@ -1061,8 +1059,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 156,
-            "fcp": 156,
+            "firstPaint": 36,
+            "fcp": 100,
             "heroOpacities": [
               "1",
               "1",
@@ -1083,7 +1081,7 @@
           },
           {
             "run": 2,
-            "lcp": 148,
+            "lcp": 140,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
@@ -1091,8 +1089,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 148,
-            "fcp": 148,
+            "firstPaint": 140,
+            "fcp": 140,
             "heroOpacities": [
               "1",
               "1",
@@ -1113,7 +1111,7 @@
           },
           {
             "run": 3,
-            "lcp": 152,
+            "lcp": 100,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
@@ -1121,8 +1119,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 152,
-            "fcp": 152,
+            "firstPaint": 32,
+            "fcp": 100,
             "heroOpacities": [
               "1",
               "1",
@@ -1260,18 +1258,18 @@
         "reducedMotionActiveInD": true,
         "reducedMotionDisablesEntrance": true,
         "noHorizontalOverflow": true,
-        "clsBelow01": true,
+        "clsBelow01": false,
         "axeZeroViolations": true,
         "noJsVisibility": true
       },
       "summary": {
         "lcpMedians": {
           "A-mobile-unthrottled": {
-            "lcpMedian": 132,
+            "lcpMedian": 88,
             "lcpRuns": [
-              152,
-              132,
-              124
+              88,
+              128,
+              88
             ],
             "clsRuns": [
               0,
@@ -1285,14 +1283,14 @@
             }
           },
           "B-mobile-cpu-4x": {
-            "lcpMedian": 212,
+            "lcpMedian": 164,
             "lcpRuns": [
-              208,
-              212,
-              296
+              164,
+              152,
+              168
             ],
             "clsRuns": [
-              0,
+              0.1341,
               0,
               0
             ],
@@ -1303,11 +1301,11 @@
             }
           },
           "C-desktop": {
-            "lcpMedian": 200,
+            "lcpMedian": 144,
             "lcpRuns": [
-              200,
-              208,
-              200
+              148,
+              144,
+              132
             ],
             "clsRuns": [
               0,
@@ -1321,11 +1319,11 @@
             }
           },
           "D-mobile-reduced-motion": {
-            "lcpMedian": 152,
+            "lcpMedian": 100,
             "lcpRuns": [
-              156,
-              148,
-              152
+              100,
+              140,
+              100
             ],
             "clsRuns": [
               0,
@@ -1347,7 +1345,7 @@
           "reducedMotionActiveInD": true,
           "reducedMotionDisablesEntrance": true,
           "noHorizontalOverflow": true,
-          "clsBelow01": true,
+          "clsBelow01": false,
           "axeZeroViolations": true,
           "noJsVisibility": true
         }
@@ -1359,7 +1357,7 @@
     "lighthouse": "unavailable in this environment"
   },
   "verdict": {
-    "/integrations": false,
-    "/": true
+    "/integrations": true,
+    "/": false
   }
 }
