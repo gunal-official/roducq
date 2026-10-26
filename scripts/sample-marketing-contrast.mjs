@@ -1,8 +1,23 @@
 // Manual contrast inspection for the nodes axe-core leaves "incomplete":
 // text whose background is a gradient, an image or a decorative overlay.
-// axe cannot resolve those, so this samples the *actual rendered pixel* next
-// to each text box, composites the computed text colour (including alpha)
-// over it, and prints the WCAG 2.x ratio.
+// axe cannot resolve those, so this samples the *actual rendered pixel* and
+// composites the computed text colour (including alpha) over it, then prints
+// the WCAG 2.x ratio.
+//
+// Two sampling modes:
+//   interior - the element box is captured twice, once as rendered and once
+//              with the text made transparent. Pixels that change are glyph
+//              pixels; the transparent pass gives the exact backdrop under
+//              each one, and the lightest of those is the worst case. This
+//              is the only mode that survives a gradient crossing the box:
+//              sampling *beside* the box misses the bright corner entirely
+//              (it read 5.02:1 where the glyphs actually sit on 3.58:1).
+//   beside   - a background-only pixel 6px left of the box, used for the
+//              gradient-stop sweep where each stop needs a known x.
+//
+// CASE entries are [route, selector, label, width?]; width defaults to 1440.
+// Widths below the desktop breakpoint matter: the stage reflows, the copy
+// crosses the gradient's bright corner, and that is the worst case.
 import { chromium } from "/home/user/roducq/node_modules/playwright-core/index.mjs";
 import { inflateSync } from "node:zlib";
 
@@ -77,6 +92,56 @@ const parseColor = (value) => {
 const composite = (fg, alpha, bg) =>
   fg.map((c, i) => Math.round(c * alpha + bg[i] * (1 - alpha)));
 
+/** Lightest backdrop pixel under the glyphs of `handle`, or null when the
+ *  box holds no text. Works by diffing a normal screenshot against one with
+ *  the text made transparent; the second pass supplies the backdrop. */
+async function lightestGlyphBackdrop(page, handle) {
+  const clip = await handle.evaluate((el) => {
+    const r = el.getBoundingClientRect();
+    return {
+      x: Math.floor(r.left),
+      y: Math.floor(r.top),
+      width: Math.ceil(r.width),
+      height: Math.ceil(r.height),
+    };
+  });
+  if (clip.width < 2 || clip.height < 2) return null;
+  const { pixels, channels } = decodePng(await page.screenshot({ clip }));
+  await handle.evaluate((el) => {
+    for (const node of [el, ...el.querySelectorAll("*")]) {
+      node.style.setProperty("color", "transparent", "important");
+    }
+  });
+  await page.waitForTimeout(120);
+  const bare = decodePng(await page.screenshot({ clip }));
+  await handle.evaluate((el) => {
+    for (const node of [el, ...el.querySelectorAll("*")]) {
+      node.style.removeProperty("color");
+    }
+  });
+  const diffs = [];
+  let maxDiff = 0;
+  for (let p = 0; p < pixels.length; p += channels) {
+    const d = Math.abs(pixels[p] - bare.pixels[p])
+      + Math.abs(pixels[p + 1] - bare.pixels[p + 1])
+      + Math.abs(pixels[p + 2] - bare.pixels[p + 2]);
+    diffs.push(d);
+    if (d > maxDiff) maxDiff = d;
+  }
+  if (maxDiff < 30) return null; // no glyphs inside the box
+  // Only the core of each stroke: antialiased edges would understate the
+  // ratio, and they are not what a reader sees.
+  const core = maxDiff * 0.55;
+  let lightest = null;
+  for (let i = 0; i < diffs.length; i += 1) {
+    if (diffs[i] < core) continue;
+    const p = i * channels;
+    const bg = [bare.pixels[p], bare.pixels[p + 1], bare.pixels[p + 2]];
+    if (!lightest || luminance(bg) > luminance(lightest)) lightest = bg;
+  }
+  return lightest;
+}
+
 const browser = await chromium.launch({
   executablePath: "/tmp/chromium/chromium",
   args: ["--no-sandbox"],
@@ -86,33 +151,37 @@ const browser = await chromium.launch({
 const CASES = [
   ["/", "p.lm-hero-in.mt-3\\.5", "hero note (muted ink on card)"],
   ["/", ".lm-cta-card h2", "closing CTA headline (white on gradient)"],
-  ["/", ".lm-cta-card p", "closing CTA body (soft white on gradient)"],
+  ["/", ".lm-cta-card p", "closing CTA body (#efebff on gradient)"],
   ["/", ".lm-pricing-dark h3", "dark pricing card title"],
   ["/", ".lm-pricing-dark p", "dark pricing card body"],
   ["/", ".lm-purple-frame .rounded-lm-chip", "works-with chip inside the purple frame"],
   ["/solutions", ".lm-solutions-stage h2", "stage headline (white on gradient)"],
-  ["/solutions", ".lm-solutions-stage p.text-lm-cta-muted", "stage body (76% white on gradient)"],
-  ["/solutions", ".lm-solutions-stage p.text-lm-cta-faint", "stage note (60% white on gradient)"],
+  ["/solutions", ".lm-solutions-stage p.text-lm-cta-muted", "stage body (94% white on gradient)"],
+  ["/solutions", ".lm-solutions-stage p.text-lm-cta-faint", "stage note (76% white on gradient)"],
+  ["/solutions", ".lm-solutions-stage p.text-lm-cta-muted", "stage body at 768px (94% white on gradient)", 768],
   ["/features", ".lm-solutions-stage h2", "stage headline (white on gradient)"],
-  ["/features", ".lm-solutions-stage p.text-lm-cta-muted", "stage body (76% white on gradient)"],
+  ["/features", ".lm-solutions-stage p.text-lm-cta-muted", "stage body (94% white on gradient)"],
   ["/integrations", ".lm-solutions-stage h2", "stage headline (white on gradient)"],
   ["/changelog", ".lm-solutions-stage h2", "stage headline (white on gradient)"],
-  ["/changelog", ".lm-solutions-stage p.text-lm-cta-muted", "stage body (76% white on gradient)"],
+  ["/changelog", ".lm-solutions-stage p.text-lm-cta-muted", "stage body (94% white on gradient)"],
+  ["/changelog", ".lm-solutions-stage p.text-lm-cta-muted", "stage body at 768px (94% white on gradient)", 768],
+  ["/changelog", ".lm-solutions-stage p.lm-stage-disclosure", "mock disclosure at 320px (94% white on gradient)", 320],
+  ["/integrations", ".lm-solutions-stage p.lm-stage-disclosure", "mock disclosure at 320px (94% white on gradient)", 320],
 ];
 
 /** Gradient-clipped headlines: the visible colour is the gradient stop at
  *  that x position, so each documented stop is measured against the pixel
  *  the text actually sits on. */
 const GRADIENT_CASES = [
-  ["/", ".lm-text-gradient, .lm-hero-accent", [[98, 70, 234], [139, 92, 246], [192, 132, 252]]],
-  ["/features", ".lm-hero-accent", [[98, 70, 234], [139, 92, 246], [192, 132, 252]]],
-  ["/solutions", ".lm-hero-accent", [[98, 70, 234], [139, 92, 246], [192, 132, 252]]],
+  ["/", ".lm-text-gradient, .lm-hero-accent", [[98, 70, 234], [139, 92, 246], [168, 85, 251]]],
+  ["/features", ".lm-hero-accent", [[98, 70, 234], [139, 92, 246], [168, 85, 251]]],
+  ["/solutions", ".lm-hero-accent", [[98, 70, 234], [139, 92, 246], [168, 85, 251]]],
   ["/solutions", ".lm-text-gradient-soft", [[216, 199, 255], [234, 210, 255], [246, 200, 255]]],
 ];
 
-for (const [route, selector, label] of CASES) {
+for (const [route, selector, label, width = 1440] of CASES) {
   for (const scheme of ["light", "dark"]) {
-    const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, colorScheme: scheme });
+    const ctx = await browser.newContext({ viewport: { width, height: 900 }, colorScheme: scheme });
     await ctx.addInitScript((s) => { try { localStorage.setItem("theme", s); } catch {} }, scheme);
     const page = await ctx.newPage();
     await page.goto("http://127.0.0.1:3000" + route, { waitUntil: "networkidle" });
@@ -135,27 +204,20 @@ for (const [route, selector, label] of CASES) {
     if (!found) { await ctx.close(); continue; }
     await handle.evaluate((el) => el.scrollIntoView({ block: "center" }));
     await page.waitForTimeout(350);
-    const box = await handle.evaluate((el) => el.getBoundingClientRect().toJSON());
     const target = { evaluate: (fn) => handle.evaluate(fn) };
     const style = await target.evaluate((el) => {
       const s = getComputedStyle(el);
       return { color: s.color, size: parseFloat(s.fontSize), weight: Number(s.fontWeight) };
     });
-    // A background-only pixel: 6px left of the box, vertically centred.
-    const sampleX = Math.max(0, box.x - 6);
-    const sampleY = box.y + Math.min(box.height / 2, 20);
-    const shot = await page.screenshot({
-      clip: { x: sampleX, y: sampleY, width: 1, height: 1 },
-    });
-    const { pixels, channels } = decodePng(shot);
-    const bg = [pixels[0], pixels[1], pixels[2]];
+    const bg = await lightestGlyphBackdrop(page, handle);
+    if (!bg) { await ctx.close(); continue; }
     const fg = parseColor(style.color);
     const textPx = composite(fg.rgb, fg.alpha, bg);
     const r = ratio(textPx, bg);
     const large = style.size >= 24 || (style.size >= 18.66 && style.weight >= 700);
     const need = large ? 3 : 4.5;
     console.log(
-      `${scheme.padEnd(5)} ${route.padEnd(12)} ${r.toFixed(2).padStart(6)}:1 ${r >= need ? "PASS" : "FAIL"} (needs ${need}) ${label} — ${style.size}px/${style.weight} fg ${style.color} on rgb(${bg.join(",")})`,
+      `${scheme.padEnd(5)} ${route.padEnd(12)} ${String(width).padEnd(5)} ${r.toFixed(2).padStart(6)}:1 ${r >= need ? "PASS" : "FAIL"} (needs ${need}) ${label} — ${style.size}px/${style.weight} fg ${style.color} on rgb(${bg.join(",")})`,
     );
     await ctx.close();
   }

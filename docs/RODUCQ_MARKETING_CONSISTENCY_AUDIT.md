@@ -174,7 +174,7 @@ pricing specification documents the 1024 band as 34px
 | I4 | `/pricing` keeps its warm orange-red accent, its 54px/400 display step and its three-plan grid | The approved pricing specification (`docs/RODUCQ_PRICING_PAGE.md`), not a Forma reproduction |
 | I5 | `/about` and `/vs` keep their pre-redesign body layout | Documented follow-up scope (`docs/RODUCQ_LANDING_DESIGN.md`); re-skinning them is not a consistency fix |
 | I6 | The phone menu offers the three-way Light/Dark/System control | A product decision recorded in the header docs; the desktop icon toggle is the reference's single-button shape |
-| I7 | The 60%-white stage note and the `#c084fc` end of the gradient headline | Both are measured reference values; their contrast is reported in §8 rather than silently re-coloured |
+| I7 | The 60%-white stage note and the `#c084fc` end of the gradient headline | Both were measured reference values that failed WCAG AA; they are the two deliberate re-colours recorded in §7.2 (plus the stage body copy and 11px disclosure found in the same pass), not silent drift |
 
 ### Unverified
 
@@ -378,10 +378,10 @@ scroll pass, on 8 routes × 3 widths (320/768/1440) × 2 schemes = **48 scans**.
 
 | | Before | After |
 | --- | --- | --- |
-| Scans | 48 (8 routes × 3 widths × 2 schemes) | 54 (48 + 6 `vs/notion` spot checks) |
+| Scans | 48 (8 routes × 3 widths × 2 schemes) | 48 (same grid, plus 6 `vs/notion` spot checks in the earlier pass) |
 | Violations | **1 rule, 8 nodes, on all 6 `/changelog` scans** (`label-content-name-mismatch`, serious) | **0** |
-| Passing rule checks | — | 2,262 |
-| Incomplete, all `color-contrast` | 628 nodes | 634 nodes (unchanged per route — see §7.2) |
+| Passing rule checks | — | 1,992 |
+| Incomplete, all `color-contrast` | 628 nodes | 628 nodes (the same set — see §7.2) |
 
 The violation is fixed at source:
 `aria-label={`${entry.sourceLabel} — verify ${entry.title} on GitHub`}` — the
@@ -391,51 +391,75 @@ sentence stays readable.
 ### 7.2 Manual contrast inspection of the incomplete set
 
 axe cannot resolve text over a gradient, an image or a decorative overlay.
-`scripts/sample-marketing-contrast.mjs` samples the **rendered pixel** beside
-each text box, composites the computed colour (including alpha) over it and
-computes the WCAG 2.x ratio. Full output:
-`docs/evidence/marketing-consistency/manual-contrast.txt` (37 checks).
+`scripts/sample-marketing-contrast.mjs` measures the **rendered pixel under the
+glyphs**: each element box is captured twice, once as rendered and once with its
+text made transparent, so every pixel that changes is a glyph pixel and the
+second pass supplies the exact backdrop it was painted on. The lightest of those
+is the worst case; the computed text colour (including its alpha) is composited
+over it and the WCAG 2.x ratio printed. 18 cases × 2 schemes plus the
+gradient-stop sweep. Full output:
+`docs/evidence/marketing-consistency/manual-contrast.txt` (**45 checks, 0
+failures**).
+
+Sampling *beside* the box — the method the first pass used — misses a gradient
+that crosses the box, and that is how the two failures below were first
+under-reported: the 768px stage body reads **5.02:1** from a pixel 6px left of
+it and **3.58:1** under its last glyph, which sits on the gradient's bright
+corner.
+
+#### After the fixes
 
 | Surface | Ratio | Needs | Result |
 | --- | --- | --- | --- |
 | Home hero note (12px, `--lm-muted` on card) | 5.01 | 4.5 | PASS |
-| Home closing CTA headline (64px white on gradient) | 10.66 | 3 | PASS |
-| Home closing CTA body (19px, `#efebff`) | 7.32 | 4.5 | PASS |
-| Dark pricing card title / body | 15.68 / 9.88 | 4.5 | PASS |
-| Works-with chip inside the purple frame (10px) | 4.71 | 4.5 | PASS |
-| `/solutions` stage headline (36px white) | 10.51 | 3 | PASS |
-| `/solutions` stage body (16.5px, 74% white) | 6.21 | 4.5 | PASS |
-| `/features`, `/integrations`, `/changelog` stage headline | 10.54–10.58 | 3 | PASS |
-| `/features`, `/changelog` stage body (19px, 76% white) | 6.04–6.15 | 4.5 | PASS |
+| Home closing CTA headline (64px white on gradient) | 8.25 | 3 | PASS |
+| Home closing CTA body (19px, `#efebff`) | 6.33 | 4.5 | PASS |
+| Dark pricing card title / body | 15.62 / 9.88 | 4.5 | PASS |
+| Works-with chip inside the purple frame (10px) | 5.01 | 4.5 | PASS |
+| `/solutions` stage headline (36px white) | 7.23 | 3 | PASS |
+| `/solutions` stage body (16.5px, 94% white) | 6.83 | 4.5 | PASS |
+| `/solutions` stage body at 768px | 6.12 | 4.5 | PASS |
+| `/solutions` stage note (14px, 76% white) | 4.57 | 4.5 | PASS |
+| `/features`, `/integrations`, `/changelog` stage headline | 8.72–8.75 | 3 | PASS |
+| `/features`, `/changelog` stage body (19px, 94% white) | 6.78–6.97 | 4.5 | PASS |
+| `/changelog` stage body at 768px (16px, 94% white) | 4.59 | 4.5 | PASS |
+| `/changelog`, `/integrations` mock disclosure at 320px (11px, 94% white) | 4.57 | 4.5 | PASS |
 | Gradient headline, first stop `#6246ea` | 5.86 | 3 | PASS |
 | Gradient headline, middle stop `#8b5cf6` | 4.23 | 3 | PASS |
-| **Gradient headline, last stop `#c084fc`** | **2.64** | 3 | **FAIL** |
+| Gradient headline, last stop `#a855fb` | 3.92 | 3 | PASS |
 | Soft gradient on the stage (216/234/246 lavender) | 6.50–7.12 | 3 | PASS |
-| **Stage note, 60% white on the gradient** | **3.56** | 4.5 | **FAIL** |
 
-Two measured failures, both inherited from the reference recreation and both
-inside the approved design:
+#### The measured failures and what was applied
 
-1. The last third of every gradient headline (`/`, `/features`, `/solutions`,
-   `/integrations`, `/changelog` heroes) paints `#c084fc`, which reaches only
-   **2.64:1** on white — below the 3:1 large-text bar, though the headline is
-   67.2px/600 so the bar that applies is 3:1, not 4.5:1.
-2. The closing-stage note (`--lm-cta-faint`, 60% white, 14px) measures
-   **3.56:1** where it sits on the lighter part of the stage gradient.
+Both were inherited from the reference recreation and both were fixed by
+changing the **text**, never the measured gradient:
 
-Both are recorded as **[RECOMMENDATION]**, not applied: changing a measured
-reference colour or the approved closing-stage copy weight is a design decision,
-not a consistency fix. The smallest candidate changes, if approved, are:
+1. **Gradient headline, last stop.** `#c084fc` read **2.64:1** on the white
+   card and 2.48:1 on the canvas wash, under the 3:1 large-text floor that
+   applies to the 67.2px/600 headline. The stop is now **`#a855fb`**:
+   **3.92:1** on white, 3.68:1 on the canvas, 3.43:1 on the alt wash. It is
+   the smallest step that clears all three planes while keeping the `0xfb`
+   blue channel the other two stops share (`#6246ea`, `#8b5cf6`). Darker
+   candidates that clear white only — `#b772fc` (3.08), `#b670fc` (3.13),
+   `#b36afb` (3.30) — still fail on the canvas wash at 2.69–2.88:1.
+2. **On-stage white steps.** Measured under the glyphs, the documented 14px
+   note was the *best* case at **3.46–4.57:1**; the worse surfaces on the same
+   gradient are the 16px body copy (**3.58:1** at 768px) and the 11px mock
+   disclosure (**2.82:1** at 320px). Applied:
+   * `--lm-cta-faint` 60% → **76%** white: the smallest step that clears every
+     14px note backdrop (4.57:1 at the worst one) and the value the stage body
+     already used, so the note stays one step below the headline;
+   * a scoped **94%** rule (`--lm-cta-faint`'s tokens keep their measured
+     values) for the stage body copy and the 11px disclosure — 4.57:1 at the
+     worst disclosure backdrop, 4.56:1 at the worst body backdrop. `/`'s
+     closing-CTA card is untouched: it paints opaque `#efebff` and measures
+     6.0–7.8:1.
 
-* darken the gradient's final stop from `#c084fc` to `#b06cf0` (3.36:1 — the
-  smallest shift that clears 3:1; `#a855f7` gives 3.96:1 and `#9d4edd` 4.60:1
-  if a stricter bar is wanted);
-* lift `--lm-cta-faint` from 60% to 74% white — the step the stage body below
-  it already uses, which measures **4.58:1** at the same sampled point (76%
-  gives 4.75:1, 80% gives 5.05:1).
-
-Computed on the same sampled background (`rgb(97,66,191)`), so these are
-like-for-like replacements for the two failing values.
+Not applied: retuning the stage gradient. Darkening its final stop from
+`#7658ec` to `#5c3dc4` lifts the worst 11px backdrop only from 2.82:1 to
+4.17:1 at 76% white, so a gradient change would have to be large and would
+move a measured reference value; the text steps reach AA with the gradient
+intact.
 
 ### 7.3 Everything else in the AA checklist
 
@@ -522,12 +546,16 @@ marketing-surface or test files).
 | 10 | `tests/components/{changelog,features,integrations}-page.test.ts`, `forma-phase-f.test.ts`, `vs-comparisons.test.ts` | Repointed the assertions that encoded the removed per-route gate; no assertion was deleted without a replacement for the same guarantee | V1–V5 |
 | 11 | `scripts/verify-marketing-consistency.mjs` (new) | The four-phase evidence harness used for every number in this doc | — |
 | 12 | `scripts/check-marketing-utilities.mjs` (new) | Fails if any `lm-*` utility in the marketing markup has no compiled rule | V6 |
-| 13 | `scripts/sample-marketing-contrast.mjs` (new) | Rendered-pixel contrast sampling for the incomplete axe set | §7.2 |
+| 13 | `scripts/sample-marketing-contrast.mjs` (new) | Rendered-pixel contrast sampling for the incomplete axe set — samples the backdrop *under the glyphs* (text made transparent, box captured twice) so a gradient crossing the box cannot be under-reported | §7.2 |
 | 14 | `docs/evidence/marketing-consistency/**` (new) | Raw baseline and final evidence | — |
+| 15 | `app/(marketing)/landing.css` | The two contrast fixes: `.lm-text-gradient` last stop `#c084fc` → `#a855fb`; `--lm-cta-faint` 60% → 76% white; one scoped 94% rule for the stage body copy and the 11px mock disclosure (the tokens keep their measured values) | §7.2 |
+| 16 | `components/marketing/landing/changelog/ChangelogClosingCta.tsx`, `.../integrations/IntegrationsClosingCta.tsx` | The two mock disclosures carry the `lm-stage-disclosure` class that the 94% rule targets | §7.2 |
+| 17 | `tests/components/marketing-contrast.test.ts` (new) | 8 regression tests: the shipped values, the WCAG arithmetic behind them, and the measured worst-case backdrops that sized them | §7.2 |
 
 Not changed, deliberately: every page body/section component, all content
-modules, the footer, `landing.css`'s existing values, every `Reveal`/motion
-constant, all tokens' existing values, the authenticated app, auth, billing.
+modules, the footer, the stage gradients and every measured colour or motion
+constant other than the two contrast fixes in §7.2, the authenticated app,
+auth, billing.
 
 ### Verification of the changes
 
@@ -581,11 +609,15 @@ compatibility change.
   installed in this workspace.
 - **[UNVERIFIED] U6** — Firefox and WebKit were not exercised; every browser
   number in this document is Chromium 153.
-- **[RECOMMENDATION]** — the two measured contrast failures in §7.2.
+- **[APPLIED]** — the measured contrast failures in §7.2. The two documented
+  ones (gradient last stop, `--lm-cta-faint`) were fixed, and re-measuring under
+  the glyphs exposed a third on the same gradient (the stage body copy at
+  768–1024px) which is fixed by the same 94% step. No further contrast
+  shortfall is known on the eight audited routes.
 - **[RECOMMENDATION]** — the `next` critical advisory in §11.
 - The reference site remains unreachable from this sandbox (egress allowlist),
   so no new Forma capture was made; all reference values are the existing
   measured ones from `docs/FORMA_*_REFERENCE.md`.
 - This document does **not** claim pixel-perfect fidelity. Where evidence is
-  incomplete it is marked, and the two known contrast shortfalls are stated
-  rather than papered over.
+  incomplete it is marked, and each contrast fix is recorded with the
+  measurement that sized it rather than asserted.

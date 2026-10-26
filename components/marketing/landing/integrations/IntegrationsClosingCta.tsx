@@ -127,7 +127,7 @@ export function IntegrationsClosingCta() {
               </div>
               {/* The disclosure sits with the card, not inside the
                   aria-hidden box, so assistive tech reads it too. */}
-              <p className="mt-3 border-t border-lm-cta-track pt-2.5 text-lm-chip text-lm-cta-faint">
+              <p className="lm-stage-disclosure mt-3 border-t border-lm-cta-track pt-2.5 text-lm-chip text-lm-cta-faint">
                 {MOCK_DISCLOSURE}
               </p>
             </div>
