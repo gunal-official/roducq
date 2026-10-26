@@ -65,6 +65,15 @@ const config = {
         // /solutions: measured on-stage eyebrow (#cdb8ff) and the
         // getting-started checklist's muted row ink (#655f78).
         "cta-eyebrow": "var(--lm-cta-eyebrow)",
+        // Stage foot and rail fills. The custom properties were declared
+        // with the /solutions stage work but their utility mappings were
+        // missing, so `text-lm-cta-faint`, `bg-lm-cta-track` and
+        // `bg-lm-cta-fill` compiled to nothing; /features' six-step stage
+        // needs the same measured 60%-white label, 18%-white track and
+        // white fill, so the mappings now exist for both pages.
+        "cta-faint": "var(--lm-cta-faint)",
+        "cta-track": "var(--lm-cta-track)",
+        "cta-fill": "var(--lm-cta-fill)",
         "mock-muted": "var(--lm-mock-muted)",
         // /solutions: the measured miniature fills.
         "mock-row-active": "var(--lm-mock-row-active)",
