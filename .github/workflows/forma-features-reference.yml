@@ -1,0 +1,94 @@
+# Forma /features reference capture — measured evidence for the /features
+# recreation (product/features page: DOM structure, computed CSS, raw SVG
+# markup, and runtime animation behavior).
+#
+# WHY THIS WORKFLOW EXISTS. The repository's development sandbox has an
+# egress allowlist that blocks `forma-visuvate.framer.website` (and every
+# other third-party host), so the reference cannot be measured in-process.
+# A GitHub-hosted runner can reach it, so this workflow runs the same
+# discipline as `forma-solutions-reference.yml`: a real Chromium
+# (playwright-core) on the live page, at the seven milestone widths in both
+# colour schemes, with instrumentation installed BEFORE the page's first
+# script (WAAPI first-seen recorder, Element.prototype.animate wrapper,
+# IntersectionObserver wrapper, MutationObserver, PerformanceObserver,
+# scroll sampler) plus raw SVG markup dumps.
+#
+# IT IS READ-ONLY WITH RESPECT TO THE REPOSITORY'S CODE. It never modifies
+# a source file, never deploys, and never touches any payment, billing or
+# database path. The only write it performs is to the dedicated
+# `arena/forma-features-capture` branch, which exists so the measured
+# output survives as a fetchable artefact (the same convention the earlier
+# capture workflows established).
+name: forma-features-reference
+
+on:
+  workflow_dispatch:
+    inputs:
+      reference:
+        description: "Features page to measure"
+        required: false
+        default: "https://forma-visuvate.framer.website/features"
+  # TEMPORARY — this trigger exists only so the capture can run from this
+  # development branch before the workflow reaches the default branch
+  # (GitHub will not dispatch a workflow that is not on the default branch).
+  # It is removed before the pull request: the merged workflow is
+  # dispatch-only, exactly like forma-reference.yml.
+  push:
+    branches:
+      - arena/e0c5626f-roducq
+    paths:
+      - ".github/workflows/forma-features-reference.yml"
+      - "scripts/capture-features-reference.mjs"
+
+permissions:
+  contents: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ">=22.18.0"
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright-core install --with-deps chromium
+
+      - name: Capture the reference /features page
+        env:
+          # `inputs` is only populated for workflow_dispatch; a push-triggered
+          # run must fall back to the same default rather than navigate to "".
+          REFERENCE: ${{ inputs.reference || 'https://forma-visuvate.framer.website/features' }}
+        run: |
+          node scripts/capture-features-reference.mjs \
+            --target forma-features \
+            --base "$REFERENCE" \
+            --out docs/screenshots/forma-features-reference
+
+      - name: Publish the capture to the capture branch
+        if: always()
+        run: |
+          git config user.name "Arena Agent"
+          git config user.email "agent@arena.ai"
+          git checkout --orphan arena/forma-features-capture
+          git rm -rf --quiet . || true
+          mkdir -p docs/screenshots/forma-features-reference
+          git add -f docs/screenshots/forma-features-reference
+          git commit -q -m "capture: measured /features reference evidence"
+          git push --force origin arena/forma-features-capture
+
+      - name: Upload the capture
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: forma-features-capture
+          path: docs/screenshots/forma-features-reference
+          if-no-files-found: warn
+          retention-days: 14
