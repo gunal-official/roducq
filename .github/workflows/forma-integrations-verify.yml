@@ -30,6 +30,7 @@ on:
       - arena/6b9ca722-roducq
     paths:
       - ".github/workflows/forma-integrations-verify.yml"
+      - "scripts/verify-integrations-page.mjs"
 
 permissions:
   # The report is published to the evidence branch, like the reference

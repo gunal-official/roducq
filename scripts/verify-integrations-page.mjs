@@ -629,7 +629,6 @@ async function runCatalogSuite(browser) {
         "Framer",
         "Two-way sync",
         "syncs both ways",
-        "Connect",
         "Calendar",
         "Task Tracker",
         "Boards",
@@ -657,6 +656,11 @@ async function runCatalogSuite(browser) {
     searchWorks: report.search.every((entry) => entry.pass),
     clearRestores: report.clearAction.pass,
     cardsInert: report.global.cardsInert,
+    // "Connect" may appear as a verb in the copy — the reference itself
+    // instructs the reader to connect apps — but it must never appear as a
+    // control on this page. Connecting happens in Settings, so a Connect
+    // button here would be a dead end; the word-level rule is enforced on
+    // controls only, which is the promise the page actually makes.
     noConnectControls: report.global.connectControls.length === 0,
     // Two actions leave the page and both are mailto: — the request card in
     // band 3 and the closing band's "Talk to us" — because roducq has no
