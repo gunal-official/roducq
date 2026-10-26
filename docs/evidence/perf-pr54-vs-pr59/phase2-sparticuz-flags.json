@@ -1,0 +1,1087 @@
+{
+  "startedAt": "2026-10-25T23:46:21.524Z",
+  "finishedAt": "2026-10-25T23:48:40.164Z",
+  "lighthouseVersion": "13.5.0",
+  "chromePath": "/tmp/chromium",
+  "flagMode": "sparticuz",
+  "launchFlags": [
+    "--headless=new",
+    "--no-sandbox",
+    "--disable-setuid-sandbox",
+    "--disable-dev-shm-usage",
+    "--disable-gpu",
+    "--font-render-hinting=none",
+    "--no-first-run",
+    "--no-default-browser-check",
+    "--disable-extensions",
+    "--disable-background-timer-throttling",
+    "--disable-backgrounding-occluded-windows",
+    "--disable-renderer-backgrounding",
+    "--disable-features=Translate,BackForwardCache",
+    "--single-process",
+    "--no-zygote",
+    "--in-process-gpu",
+    "--use-gl=angle",
+    "--use-angle=swiftshader",
+    "--enable-unsafe-swiftshader",
+    "--ignore-gpu-blocklist",
+    "--disable-web-security",
+    "--disable-site-isolation-trials",
+    "--disable-features=AudioServiceOutOfProcess,IsolateOrigins,site-per-process,Translate,BackForwardCache"
+  ],
+  "runsPerCell": 3,
+  "builds": [
+    {
+      "label": "A",
+      "tree": "/tmp/perf/base",
+      "url": "http://127.0.0.1:3101"
+    },
+    {
+      "label": "B",
+      "tree": "/tmp/perf/head",
+      "url": "http://127.0.0.1:3102"
+    }
+  ],
+  "routes": [
+    "/"
+  ],
+  "profiles": {
+    "pr54-unthrottled": {
+      "formFactor": "mobile",
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "throttlingMethod": "provided",
+      "throttling": {
+        "rttMs": 0,
+        "throughputKbps": 0,
+        "requestLatencyMs": 0,
+        "downloadThroughputKbps": 0,
+        "uploadThroughputKbps": 0,
+        "cpuSlowdownMultiplier": 1
+      }
+    },
+    "std-mobile": {
+      "formFactor": "mobile",
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "throttlingMethod": "simulate",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1471.36,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      }
+    }
+  },
+  "calibration": {
+    "hostCpuCalibrationMs": [
+      389.80406,
+      391.731127,
+      414.573678
+    ],
+    "hostCpuCalibrationMedianMs": 391.731127
+  },
+  "summary": [
+    {
+      "route": "/",
+      "profile": "pr54-unthrottled",
+      "build": "A",
+      "runs": 3,
+      "score": [
+        0.98
+      ],
+      "median": {
+        "perfScore": 98,
+        "fcpMs": 214.6,
+        "lcpMs": 214.6,
+        "speedIndexMs": 395,
+        "tbtMs": 0,
+        "cls": 0,
+        "ttiMs": 214.6,
+        "mainThreadWorkMs": 11229,
+        "bootupMs": 0,
+        "totalByteWeight": 361696
+      },
+      "spread": {
+        "perfScore": {
+          "min": 98,
+          "max": 98
+        },
+        "lcpMs": {
+          "min": 207.7,
+          "max": 226.5
+        },
+        "tbtMs": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "route": "/",
+      "profile": "pr54-unthrottled",
+      "build": "B",
+      "runs": 3,
+      "score": [],
+      "median": {
+        "perfScore": 0,
+        "fcpMs": 213,
+        "lcpMs": 213,
+        "speedIndexMs": null,
+        "tbtMs": 0,
+        "cls": 0,
+        "ttiMs": 213,
+        "mainThreadWorkMs": 11223.7,
+        "bootupMs": 0,
+        "totalByteWeight": 364812
+      },
+      "spread": {
+        "perfScore": {
+          "min": 0,
+          "max": 0
+        },
+        "lcpMs": {
+          "min": 200.2,
+          "max": 227.1
+        },
+        "tbtMs": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "route": "/",
+      "profile": "std-mobile",
+      "build": "A",
+      "runs": 3,
+      "score": [],
+      "median": {
+        "perfScore": 0,
+        "fcpMs": 1061.9,
+        "lcpMs": 2867.9,
+        "speedIndexMs": null,
+        "tbtMs": 0,
+        "cls": 0,
+        "ttiMs": 2867.9,
+        "mainThreadWorkMs": 10757.1,
+        "bootupMs": 0,
+        "totalByteWeight": 361696
+      },
+      "spread": {
+        "perfScore": {
+          "min": 0,
+          "max": 0
+        },
+        "lcpMs": {
+          "min": 2864.1,
+          "max": 2870.7
+        },
+        "tbtMs": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "route": "/",
+      "profile": "std-mobile",
+      "build": "B",
+      "runs": 3,
+      "score": [],
+      "median": {
+        "perfScore": 0,
+        "fcpMs": 1061.4,
+        "lcpMs": 2867,
+        "speedIndexMs": null,
+        "tbtMs": 0,
+        "cls": 0,
+        "ttiMs": 2867,
+        "mainThreadWorkMs": 10622.7,
+        "bootupMs": 0,
+        "totalByteWeight": 364812
+      },
+      "spread": {
+        "perfScore": {
+          "min": 0,
+          "max": 0
+        },
+        "lcpMs": {
+          "min": 2864,
+          "max": 2875.8
+        },
+        "tbtMs": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    }
+  ],
+  "failures": [],
+  "runs": [
+    {
+      "build": "A",
+      "tree": "/tmp/perf/base",
+      "route": "/",
+      "profile": "pr54-unthrottled",
+      "url": "http://127.0.0.1:3101/",
+      "fetchTime": "2026-10-25T23:46:24.836Z",
+      "status": "ok",
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+      "requestedConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "provided",
+        "throttling": {
+          "rttMs": 0,
+          "throughputKbps": 0,
+          "requestLatencyMs": 0,
+          "downloadThroughputKbps": 0,
+          "uploadThroughputKbps": 0,
+          "cpuSlowdownMultiplier": 1
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        }
+      },
+      "effectiveConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "provided",
+        "throttling": {
+          "rttMs": 0,
+          "throughputKbps": 0,
+          "requestLatencyMs": 0,
+          "downloadThroughputKbps": 0,
+          "uploadThroughputKbps": 0,
+          "cpuSlowdownMultiplier": 1
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36"
+      },
+      "perfScore": null,
+      "metrics": {
+        "fcpMs": 226.489,
+        "lcpMs": 226.489,
+        "speedIndexMs": null,
+        "tbtMs": 0,
+        "cls": 0,
+        "ttiMs": 226.489
+      },
+      "diagnostics": {
+        "mainThreadWorkMs": 11191.106000000022,
+        "bootupMs": 0,
+        "scriptEvaluationMs": 0,
+        "totalByteWeight": 361696,
+        "domSize": null,
+        "serverResponseMs": null,
+        "requestCount": 26,
+        "renderBlockingCount": null,
+        "unusedJsBytes": 63712
+      },
+      "lcpElement": null
+    },
+    {
+      "build": "B",
+      "tree": "/tmp/perf/head",
+      "route": "/",
+      "profile": "pr54-unthrottled",
+      "url": "http://127.0.0.1:3102/",
+      "fetchTime": "2026-10-25T23:46:40.628Z",
+      "status": "ok",
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+      "requestedConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "provided",
+        "throttling": {
+          "rttMs": 0,
+          "throughputKbps": 0,
+          "requestLatencyMs": 0,
+          "downloadThroughputKbps": 0,
+          "uploadThroughputKbps": 0,
+          "cpuSlowdownMultiplier": 1
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        }
+      },
+      "effectiveConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "provided",
+        "throttling": {
+          "rttMs": 0,
+          "throughputKbps": 0,
+          "requestLatencyMs": 0,
+          "downloadThroughputKbps": 0,
+          "uploadThroughputKbps": 0,
+          "cpuSlowdownMultiplier": 1
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36"
+      },
+      "perfScore": null,
+      "metrics": {
+        "fcpMs": 213.036,
+        "lcpMs": 213.036,
+        "speedIndexMs": null,
+        "tbtMs": 0,
+        "cls": 0,
+        "ttiMs": 213.036
+      },
+      "diagnostics": {
+        "mainThreadWorkMs": 11230.664999999968,
+        "bootupMs": 0,
+        "scriptEvaluationMs": 0,
+        "totalByteWeight": 364812,
+        "domSize": null,
+        "serverResponseMs": null,
+        "requestCount": 26,
+        "renderBlockingCount": null,
+        "unusedJsBytes": 63712
+      },
+      "lcpElement": null
+    },
+    {
+      "build": "B",
+      "tree": "/tmp/perf/head",
+      "route": "/",
+      "profile": "pr54-unthrottled",
+      "url": "http://127.0.0.1:3102/",
+      "fetchTime": "2026-10-25T23:46:56.337Z",
+      "status": "ok",
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+      "requestedConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "provided",
+        "throttling": {
+          "rttMs": 0,
+          "throughputKbps": 0,
+          "requestLatencyMs": 0,
+          "downloadThroughputKbps": 0,
+          "uploadThroughputKbps": 0,
+          "cpuSlowdownMultiplier": 1
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        }
+      },
+      "effectiveConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "provided",
+        "throttling": {
+          "rttMs": 0,
+          "throughputKbps": 0,
+          "requestLatencyMs": 0,
+          "downloadThroughputKbps": 0,
+          "uploadThroughputKbps": 0,
+          "cpuSlowdownMultiplier": 1
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36"
+      },
+      "perfScore": null,
+      "metrics": {
+        "fcpMs": 227.063,
+        "lcpMs": 227.063,
+        "speedIndexMs": null,
+        "tbtMs": 0,
+        "cls": 0,
+        "ttiMs": 227.063
+      },
+      "diagnostics": {
+        "mainThreadWorkMs": 11180.592999999955,
+        "bootupMs": 0,
+        "scriptEvaluationMs": 0,
+        "totalByteWeight": 364812,
+        "domSize": null,
+        "serverResponseMs": null,
+        "requestCount": 26,
+        "renderBlockingCount": null,
+        "unusedJsBytes": 63712
+      },
+      "lcpElement": null
+    },
+    {
+      "build": "A",
+      "tree": "/tmp/perf/base",
+      "route": "/",
+      "profile": "pr54-unthrottled",
+      "url": "http://127.0.0.1:3101/",
+      "fetchTime": "2026-10-25T23:47:12.013Z",
+      "status": "ok",
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+      "requestedConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "provided",
+        "throttling": {
+          "rttMs": 0,
+          "throughputKbps": 0,
+          "requestLatencyMs": 0,
+          "downloadThroughputKbps": 0,
+          "uploadThroughputKbps": 0,
+          "cpuSlowdownMultiplier": 1
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        }
+      },
+      "effectiveConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "provided",
+        "throttling": {
+          "rttMs": 0,
+          "throughputKbps": 0,
+          "requestLatencyMs": 0,
+          "downloadThroughputKbps": 0,
+          "uploadThroughputKbps": 0,
+          "cpuSlowdownMultiplier": 1
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36"
+      },
+      "perfScore": 0.98,
+      "metrics": {
+        "fcpMs": 207.65,
+        "lcpMs": 207.65,
+        "speedIndexMs": 395,
+        "tbtMs": 0,
+        "cls": 0.08812473332752621,
+        "ttiMs": 207.65
+      },
+      "diagnostics": {
+        "mainThreadWorkMs": 11317.60000000003,
+        "bootupMs": 0,
+        "scriptEvaluationMs": 0,
+        "totalByteWeight": 361696,
+        "domSize": null,
+        "serverResponseMs": 6,
+        "requestCount": 26,
+        "renderBlockingCount": null,
+        "unusedJsBytes": 63712
+      },
+      "lcpElement": null
+    },
+    {
+      "build": "A",
+      "tree": "/tmp/perf/base",
+      "route": "/",
+      "profile": "pr54-unthrottled",
+      "url": "http://127.0.0.1:3101/",
+      "fetchTime": "2026-10-25T23:47:28.244Z",
+      "status": "ok",
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+      "requestedConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "provided",
+        "throttling": {
+          "rttMs": 0,
+          "throughputKbps": 0,
+          "requestLatencyMs": 0,
+          "downloadThroughputKbps": 0,
+          "uploadThroughputKbps": 0,
+          "cpuSlowdownMultiplier": 1
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        }
+      },
+      "effectiveConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "provided",
+        "throttling": {
+          "rttMs": 0,
+          "throughputKbps": 0,
+          "requestLatencyMs": 0,
+          "downloadThroughputKbps": 0,
+          "uploadThroughputKbps": 0,
+          "cpuSlowdownMultiplier": 1
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36"
+      },
+      "perfScore": null,
+      "metrics": {
+        "fcpMs": 214.618,
+        "lcpMs": 214.618,
+        "speedIndexMs": null,
+        "tbtMs": 0,
+        "cls": 0,
+        "ttiMs": 214.618
+      },
+      "diagnostics": {
+        "mainThreadWorkMs": 11229.039999999986,
+        "bootupMs": 0,
+        "scriptEvaluationMs": 0,
+        "totalByteWeight": 361696,
+        "domSize": null,
+        "serverResponseMs": null,
+        "requestCount": 26,
+        "renderBlockingCount": null,
+        "unusedJsBytes": 63712
+      },
+      "lcpElement": null
+    },
+    {
+      "build": "B",
+      "tree": "/tmp/perf/head",
+      "route": "/",
+      "profile": "pr54-unthrottled",
+      "url": "http://127.0.0.1:3102/",
+      "fetchTime": "2026-10-25T23:47:43.934Z",
+      "status": "ok",
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+      "requestedConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "provided",
+        "throttling": {
+          "rttMs": 0,
+          "throughputKbps": 0,
+          "requestLatencyMs": 0,
+          "downloadThroughputKbps": 0,
+          "uploadThroughputKbps": 0,
+          "cpuSlowdownMultiplier": 1
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        }
+      },
+      "effectiveConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "provided",
+        "throttling": {
+          "rttMs": 0,
+          "throughputKbps": 0,
+          "requestLatencyMs": 0,
+          "downloadThroughputKbps": 0,
+          "uploadThroughputKbps": 0,
+          "cpuSlowdownMultiplier": 1
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36"
+      },
+      "perfScore": null,
+      "metrics": {
+        "fcpMs": 200.154,
+        "lcpMs": 200.154,
+        "speedIndexMs": null,
+        "tbtMs": 0,
+        "cls": 0,
+        "ttiMs": 200.154
+      },
+      "diagnostics": {
+        "mainThreadWorkMs": 11223.650999999983,
+        "bootupMs": 0,
+        "scriptEvaluationMs": 0,
+        "totalByteWeight": 364812,
+        "domSize": null,
+        "serverResponseMs": null,
+        "requestCount": 26,
+        "renderBlockingCount": null,
+        "unusedJsBytes": 63712
+      },
+      "lcpElement": null
+    },
+    {
+      "build": "A",
+      "tree": "/tmp/perf/base",
+      "route": "/",
+      "profile": "std-mobile",
+      "url": "http://127.0.0.1:3101/",
+      "fetchTime": "2026-10-25T23:47:59.610Z",
+      "status": "ok",
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+      "requestedConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1471.36,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        }
+      },
+      "effectiveConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1471.36,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36"
+      },
+      "perfScore": null,
+      "metrics": {
+        "fcpMs": 1061.91,
+        "lcpMs": 2867.865,
+        "speedIndexMs": null,
+        "tbtMs": 0,
+        "cls": 0,
+        "ttiMs": 2867.865
+      },
+      "diagnostics": {
+        "mainThreadWorkMs": 10757.10800000001,
+        "bootupMs": 0,
+        "scriptEvaluationMs": 0,
+        "totalByteWeight": 361696,
+        "domSize": null,
+        "serverResponseMs": null,
+        "requestCount": 26,
+        "renderBlockingCount": null,
+        "unusedJsBytes": 63712
+      },
+      "lcpElement": null
+    },
+    {
+      "build": "B",
+      "tree": "/tmp/perf/head",
+      "route": "/",
+      "profile": "std-mobile",
+      "url": "http://127.0.0.1:3102/",
+      "fetchTime": "2026-10-25T23:48:06.592Z",
+      "status": "ok",
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+      "requestedConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1471.36,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        }
+      },
+      "effectiveConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1471.36,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36"
+      },
+      "perfScore": null,
+      "metrics": {
+        "fcpMs": 1061.356,
+        "lcpMs": 2867.034,
+        "speedIndexMs": null,
+        "tbtMs": 0,
+        "cls": 0,
+        "ttiMs": 2867.0340000000006
+      },
+      "diagnostics": {
+        "mainThreadWorkMs": 10666.392000000042,
+        "bootupMs": 0,
+        "scriptEvaluationMs": 0,
+        "totalByteWeight": 364812,
+        "domSize": null,
+        "serverResponseMs": null,
+        "requestCount": 26,
+        "renderBlockingCount": null,
+        "unusedJsBytes": 63712
+      },
+      "lcpElement": null
+    },
+    {
+      "build": "B",
+      "tree": "/tmp/perf/head",
+      "route": "/",
+      "profile": "std-mobile",
+      "url": "http://127.0.0.1:3102/",
+      "fetchTime": "2026-10-25T23:48:13.696Z",
+      "status": "ok",
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+      "requestedConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1471.36,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        }
+      },
+      "effectiveConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1471.36,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36"
+      },
+      "perfScore": null,
+      "metrics": {
+        "fcpMs": 1067.184,
+        "lcpMs": 2875.776,
+        "speedIndexMs": null,
+        "tbtMs": 0,
+        "cls": 0,
+        "ttiMs": 2875.776
+      },
+      "diagnostics": {
+        "mainThreadWorkMs": 10559.636000000035,
+        "bootupMs": 0,
+        "scriptEvaluationMs": 0,
+        "totalByteWeight": 364812,
+        "domSize": null,
+        "serverResponseMs": null,
+        "requestCount": 26,
+        "renderBlockingCount": null,
+        "unusedJsBytes": 63712
+      },
+      "lcpElement": null
+    },
+    {
+      "build": "A",
+      "tree": "/tmp/perf/base",
+      "route": "/",
+      "profile": "std-mobile",
+      "url": "http://127.0.0.1:3101/",
+      "fetchTime": "2026-10-25T23:48:20.756Z",
+      "status": "ok",
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+      "requestedConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1471.36,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        }
+      },
+      "effectiveConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1471.36,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36"
+      },
+      "perfScore": null,
+      "metrics": {
+        "fcpMs": 1059.422,
+        "lcpMs": 2864.1330000000007,
+        "speedIndexMs": null,
+        "tbtMs": 0,
+        "cls": 0,
+        "ttiMs": 2864.1330000000007
+      },
+      "diagnostics": {
+        "mainThreadWorkMs": 10901.176000000038,
+        "bootupMs": 0,
+        "scriptEvaluationMs": 0,
+        "totalByteWeight": 361696,
+        "domSize": null,
+        "serverResponseMs": null,
+        "requestCount": 26,
+        "renderBlockingCount": null,
+        "unusedJsBytes": 63712
+      },
+      "lcpElement": null
+    },
+    {
+      "build": "A",
+      "tree": "/tmp/perf/base",
+      "route": "/",
+      "profile": "std-mobile",
+      "url": "http://127.0.0.1:3101/",
+      "fetchTime": "2026-10-25T23:48:27.827Z",
+      "status": "ok",
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+      "requestedConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1471.36,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        }
+      },
+      "effectiveConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1471.36,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36"
+      },
+      "perfScore": null,
+      "metrics": {
+        "fcpMs": 1063.802,
+        "lcpMs": 2870.7029999999995,
+        "speedIndexMs": null,
+        "tbtMs": 0,
+        "cls": 0,
+        "ttiMs": 2870.7029999999995
+      },
+      "diagnostics": {
+        "mainThreadWorkMs": 10738.660000000018,
+        "bootupMs": 0,
+        "scriptEvaluationMs": 0,
+        "totalByteWeight": 361696,
+        "domSize": null,
+        "serverResponseMs": null,
+        "requestCount": 26,
+        "renderBlockingCount": null,
+        "unusedJsBytes": 63712
+      },
+      "lcpElement": null
+    },
+    {
+      "build": "B",
+      "tree": "/tmp/perf/head",
+      "route": "/",
+      "profile": "std-mobile",
+      "url": "http://127.0.0.1:3102/",
+      "fetchTime": "2026-10-25T23:48:34.853Z",
+      "status": "ok",
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+      "requestedConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1471.36,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        }
+      },
+      "effectiveConfig": {
+        "formFactor": "mobile",
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1471.36,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        },
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36"
+      },
+      "perfScore": null,
+      "metrics": {
+        "fcpMs": 1059.314,
+        "lcpMs": 2863.971,
+        "speedIndexMs": null,
+        "tbtMs": 0,
+        "cls": 0,
+        "ttiMs": 2863.971
+      },
+      "diagnostics": {
+        "mainThreadWorkMs": 10622.684000000032,
+        "bootupMs": 0,
+        "scriptEvaluationMs": 0,
+        "totalByteWeight": 364812,
+        "domSize": null,
+        "serverResponseMs": null,
+        "requestCount": 26,
+        "renderBlockingCount": null,
+        "unusedJsBytes": 63712
+      },
+      "lcpElement": null
+    }
+  ]
+}
