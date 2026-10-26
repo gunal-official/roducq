@@ -54,8 +54,10 @@ moderate.
   GHSA-rj75-hqrm-r3gf. It is reported against `postcss-selector-parser@6.1.5`
   (build-time only, via Tailwind CSS 3) and against the packages that depend
   on it: `postcss-nested`, `tailwindcss` and `tailwindcss-animate`.
-  - 6.1.5 is the upstream-patched 6.x release; the advisory's affected range
-    has not been updated to say so yet.
+  - 6.1.5 is the upstream-patched 6.x release; this was verified against the
+    official fix and the installed package (§12.1 of the audit document). The
+    advisory's affected range has not been updated to say so yet. The package
+    maintainer's correction is pending as github/advisory-database#10456.
   - Re-run `npm audit` when it is. Clearing the warning sooner would need a
     Tailwind CSS 4 migration or `npm audit fix --force`, both out of scope.
 - **Now patched:** `next@16.4.3` (GHSA-2464, GHSA-673q, GHSA-p3m5 and the

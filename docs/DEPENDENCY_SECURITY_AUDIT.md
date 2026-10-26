@@ -10,6 +10,12 @@
 >   not caught up with the upstream fix (§10.3).
 > - No application code, configuration, test, payment logic, database schema
 >   or migration changed.
+> - **Final security checks (§12):**
+>   - GHSA-rj75 is genuinely patched in the installed
+>     `postcss-selector-parser@6.1.5`; the official range correction is
+>     pending in github/advisory-database#10456.
+>   - The rollback target `next@16.4.1` fixes every critical and high
+>     advisory, and a next-only rollback was rehearsed end to end.
 
 | Phase | Scope | Status |
 | --- | --- | --- |
@@ -42,6 +48,7 @@
 | 13 | Payment and auth safeguard verification | §10.6 |
 | 14 | Known limitations | §9 |
 | 15 | Rollback instructions | §11 |
+| — | Final security checks: GHSA-rj75 and the `next@16.4.1` rollback target | §12 |
 
 Audit date: **2026-10-26** (UTC). All advisory data was read from the GitHub
 Advisory Database (`gh api /advisories/<GHSA>`), the vendor repository
@@ -345,8 +352,9 @@ billing/Razorpay, auth and Supabase code, migrations.
 **Why 16.4.3 rather than 16.4.1:** both clear every advisory and both passed
 the same dry-run (§8.4). 16.4.2/16.4.3 add only backported bug fixes on the
 same LTS line — no features and no new advisories — including
-Turbopack-stability fixes and a `proxy.ts` start-up fix relevant to Roducq's
-`proxy.ts`. If the strictest "minimum safe version" reading is preferred,
+Turbopack-stability fixes and a `proxy.ts` cold-start optimisation (the proxy
+no longer loads the app-page runtime; not a correctness fix, see §12.2). If
+the strictest "minimum safe version" reading is preferred,
 **16.4.1** is a drop-in alternative (`npm install next@16.4.1`).
 
 ### 8.2 Expected vulnerability reduction (measured in the dry-run)
@@ -448,6 +456,8 @@ pixel-identical between the two builds (§10.7).
   Rollback* to deployment `7328221703` (commit `85f94da`).
 - **Caveat:** rolling back re-exposes GHSA-p3m5 (reachable) and both
   critical advisories. Prefer rolling forward, e.g. 16.4.3 → 16.4.1.
+
+*Superseded by §11, which was re-verified in the final checks (§12.2).*
 
 ---
 
@@ -602,8 +612,13 @@ four remaining entries.
 - **Not removable within scope.** The options are a Tailwind CSS 4 migration
   (an unreviewed major), an `overrides` entry forcing 7.x under Tailwind 3 (an
   unsupported combination), or `npm audit fix --force` (prohibited).
-- **Next step:** re-run `npm audit` after GitHub updates the affected range.
-  No further code change is expected.
+- **Verified (§12.1):** the installed copy matches the signed registry
+  tarball, contains the same code change as the official 7.1.6 fix, and no
+  longer reproduces the advisory's proof of concept.
+- **Correction pending:** on 2026-10-20 the package maintainer filed
+  github/advisory-database#10456 to add 6.1.5 as the patched 6.x version.
+  Re-run `npm audit` once GitHub applies it. No further code change is
+  expected.
 
 This branch does **not** claim the dependency tree is vulnerability-free.
 
@@ -981,6 +996,8 @@ Median, with (min–max). A = baseline 16.3.6, B = updated 16.4.3:
 | `marketing-browser-ab.json` | §10.7 a–c: shell, axe and motion summaries with the per-row diff; supplement; rendered equivalence |
 | `responsive-harness-ab.json` | §10.7 d: `verify:responsive`, baseline vs updated |
 | `lcp-ab.json`, `lighthouse-ab.json` | §10.8 |
+| `ghsa-rj75-verification.json` | §12.1: official advisory record, upstream fix comparison, artifact verification, proof of concept, pending correction |
+| `next-16.4.1-rollback-verification.json` | §12.2: advisory evaluation per version, rollback rehearsal, gates, runtime proxy checks |
 
 The ad-hoc scripts (auth flows, mail check, supplement, equivalence, LCP merge)
 lived under `/tmp` and are deliberately **not** committed; this task's diff is
@@ -993,36 +1010,134 @@ section above. The repository scripts are reproducible as-is:
 
 ## 11. Rollback instructions
 
-The dependency change lives entirely in `package.json` and
-`package-lock.json`, in one commit, so it reverts cleanly.
+Re-verified in the final checks (§12.2). The rule is: **never go below
+`next@16.4.1`**. Every 16.x release up to 16.4.0 is affected by both critical
+advisories (GHSA-2464, GHSA-673q) and by GHSA-p3m5, which is reachable in
+Roducq.
 
 **Before merge.** Close the pull request. `main` is untouched.
 
-**After merge, code.**
-- Run `git revert 973fe84` on `main` (the dependency commit) and open a PR, or
-- restore both files from the baseline:
+**If 16.4.3 misbehaves after merge — preferred: roll back `next` only.**
 
-  ```bash
-  git checkout 85f94da -- package.json package-lock.json
-  npm ci
-  ```
+```bash
+npm install next@16.4.1
+```
 
-  Then confirm: `npm test` shows 1243/1243, `npm run build` succeeds, and
-  `npm audit` reports 11 again. The documentation can stay.
+- **Rehearsed** on a copy of this branch. Only `next`, `@next/env` and the
+  eight `@next/swc-*` binaries change (10 lockfile entries); `sharp` 0.35.5 and
+  every other fix stay in place.
+- **Result:**
+  - `npm audit` stays at 0 critical / 0 high (4 moderate, GHSA-rj75).
+  - Tests 1243/1243; `tsc` and lint clean.
+  - Build 45/45, with an identical route table.
+  - 37/37 runtime proxy checks, identical to 16.4.3.
+- **Intermediate option:** `16.4.2` (also 0 advisories), if the regression
+  comes from 16.4.3's backports. It was not rehearsed, so run the same gates
+  first.
+- **Pinning:** to stop a later `npm install` from floating back to the release
+  you are avoiding, pin exactly (`npm install --save-exact next@16.4.1`).
+  Remove the pin once the regression is fixed upstream, because an exact pin
+  also blocks future security patches.
 
-**After an operator deploy, production.**
-- Use Vercel *Instant Rollback* to the previous production deployment. Before
-  this change that was `7328221703`, commit `85f94da`.
-- Then revert on `main`, so the next deploy does not reintroduce the change.
+**After an operator deploy (production).**
+- Do **not** use Vercel *Instant Rollback* to deployment `7328221703`, or to
+  any other deployment built from `85f94da`. Those run `next@16.3.6` and
+  re-expose both critical advisories. Ship the 16.4.1 change through a normal
+  PR and deploy instead.
+- Instant Rollback is acceptable only as a short emergency measure, for
+  example while the site is down. If you use it, deploy the 16.4.1 fix
+  immediately afterwards.
 
-**Prefer rolling forward.** Rolling back re-exposes both critical advisories
-(GHSA-2464, GHSA-673q) and the reachable high one (GHSA-p3m5). If 16.4.3
-itself misbehaves, `npm install next@16.4.1` is the minimum safe version, and
-its dry-run passed the same gates (§8.4).
+**Full rollback (not recommended).**
+- `git revert 973fe84`, or
+  `git checkout 85f94da -- package.json package-lock.json && npm ci`, restores
+  all 11 vulnerable packages (1 critical, 3 high).
+- Use it only as an explicit, time-boxed risk acceptance.
+- Afterwards, confirm: `npm test` shows 1243/1243, `npm run build` succeeds,
+  and `npm audit` reports 11.
 
-**Partial rollback.**
+**Partial rollback of a transitive fix.**
 - Each transitive fix can be undone on its own with
   `npm install <pkg>@<old version>`. Each one reintroduces only that package's
   advisories (§10.1).
 - `nodemailer` 10.1.4 → 10.0.10 reintroduces 3 moderate advisories, and also
   needs `smtp-server` 3.19.13.
+
+## 12. Final security checks (2026-10-26)
+
+Two follow-up checks were requested after the PR opened. No dependency was
+changed, and every experiment ran in throwaway copies under `/tmp`.
+
+### 12.1 GHSA-rj75: is the installed `postcss-selector-parser@6.1.5` genuinely patched?
+
+**Answer: yes, in code and in behaviour. The official advisory record has not
+caught up yet.**
+
+| Evidence | Finding |
+| --- | --- |
+| Official advisory (GHSA-rj75-hqrm-r3gf / CVE-2026-104844, medium, CVSS 5.9) | Affected `< 7.1.6`; first patched in 7.1.6. Last updated 2026-10-05, two weeks **before** 6.1.5 existed. Its OSV record in `github/advisory-database` has a single range (introduced 0, fixed 7.1.6) and has never been edited. |
+| Upstream release | 6.1.5 (2026-10-19), published by the maintainer: "fix … (GHSA-rj75-hqrm-r3gf) backported from 7.1.6 … **6.1.5 is the patched version for the 6.x line**." It is published under the `legacy-v6` npm dist-tag. |
+| Code | The backport commit `70b0779c` (PR #346, merged by the maintainer into `6.x.x`) was compared with the official fix `62b19179`. After normalising quotes, whitespace and comments, their 12 changed code lines in `src/parser.js` are **identical**. They cover all three passes the advisory names: `uniqs()`, the Sass-interpolation filter, and the `indices.forEach` membership tests. |
+| Installed artifact | One copy (under `tailwindcss` 3.4.19, deduplicated under `postcss-nested`). The lockfile integrity equals the registry's, and both npm registry ECDSA signatures over it verify. A fresh tarball hashes to the same sha512, and the installed directory is byte-identical to it (37 files). The registry's `gitHead` is `d90b6e38`, the 6.1.5 release commit, whose parent is the backport. The compiled `dist/parser.js` contains the three `Set`-based fixes, while 6.1.4's still has the `indexOf` scans. No npm provenance attestation was published for 6.1.5. |
+| Proof of concept | Upstream's own regression-test method: the hostile-vs-benign parse-time ratio at N = 60,000, where healthy is < 2 (table below). The advisory's 400 KB headline payload takes **40.7 s** on 6.1.4 vs **256 ms** on the installed 6.1.5 (245 ms on 7.1.6). |
+| Behaviour | All 1,539 distinct selectors in this repository's Tailwind output parse to identical ASTs and output on 6.1.4 and 6.1.5. |
+| Reachability in Roducq | The advisory says: "Ordinary build-time use on trusted sources is not affected." Roducq parses only its own CSS, at build time. |
+
+| Build | `.a` ratio | `#a` ratio | `#{a}` ratio | Upstream threshold (< 2) |
+| --- | --- | --- | --- | --- |
+| 6.1.4 (vulnerable) | 18.48 | 17.75 | 9.17 | fail |
+| **6.1.5 (installed)** | **0.36** | **0.24** | **0.06** | **pass** |
+| 7.1.5 (vulnerable) | 15.38 | 17.96 | 8.14 | fail |
+| 7.1.6 (official fix) | 0.25 | 0.20 | 0.06 | pass |
+
+Hostile-payload parse times at N = 60,000:
+- 6.1.4: about 3.6 s for classes and ids, 1.8 s for interpolations.
+- Installed 6.1.5: 73 ms, 47 ms and 13 ms.
+
+All four builds pass upstream's correctness assertions.
+
+**Why `npm audit` still flags it.** `npm audit` reads the GitHub advisory
+range, and that range predates the backport.
+- **The correction:** on 2026-10-20 the package maintainer filed
+  **github/advisory-database#10456** to split the range into `0 → 6.1.5` and
+  `7.0.0 → 7.1.6`. The maintainer (@MoOx) authored the original fix and
+  published both releases. The PR is open, awaiting GitHub's review.
+- **Duplicates:** three duplicate community PRs exist. #10457 is open.
+  #10481 and #10676 were closed by their own authors after the maintainer
+  asked them to close the duplicates; GitHub did not reject them.
+- **After it is applied:** this advisory should drop out of `npm audit` for
+  this tree. Re-run it then.
+
+Evidence: `ghsa-rj75-verification.json`.
+
+### 12.2 Is `next@16.4.1` a safe rollback target?
+
+**Answer: yes. It fixes every relevant critical and high advisory, and a
+next-only rollback was rehearsed end to end.**
+
+| Evidence | Finding |
+| --- | --- |
+| GitHub Advisory Database | All 77 advisories that list `next` (none withdrawn), with ranges evaluated using npm's `semver`. 16.3.6 is affected by 10 (2 critical, 2 high); **16.4.1, 16.4.2 and 16.4.3 by none**. The API's own `affects=next@<version>` filter agrees (10 / 0 / 0). |
+| Critical and high on 16.x | GHSA-673q-mjm6-r5xr and GHSA-2464-fhr4-w9xw (critical) and GHSA-p3m5-59mp-jv5r (high) affect `>= 16.0.0, <= 16.4.0` and are patched in **16.4.1**. GHSA-cjq9-62q9-8jv4 (high) affects `< 16.3.8`. |
+| Release notes | v16.4.1 is the security release for exactly those three advisories. v16.4.2 and v16.4.3 are bug-fix backports with no advisories, so 16.4.1 misses no security fix. |
+| Transitive | `next@16.4.1` requires `sharp ^0.35.5`, as 16.4.3 does (16.3.6 allowed `^0.35.4`). So a rollback cannot fall back to sharp 0.35.4 (GHSA-wq5f, high). Its other dependencies are identical to 16.4.3's, and it vendors the **same** React build (`19.3.0-canary-278794d7-20261002`). |
+| Rehearsal (copy of PR head `90053fe`, then `npm install next@16.4.1`) | `package.json`: only `next` changes, to `^16.4.1`. Lockfile: 10 entries change (`next`, `@next/env`, 8 × `@next/swc-*`), 0 added, 0 removed. Kept: sharp 0.35.5, nodemailer 10.1.4, zod 4.6.7, source-map-js 1.2.2, fast-uri 3.1.9, postcss-selector-parser 6.1.5. `npm audit`: **0 critical, 0 high**, 4 moderate (GHSA-rj75), identical to this PR. |
+| Gates on the rehearsal | `npm test` 1243/1243 (0 skipped), `tsc` clean, lint clean, build ✓ 45/45. The route table is identical to 16.4.3's. |
+| Runtime (`proxy.ts`), 16.4.1 vs 16.4.3 | 37/37 checks on each, identical details, no unexpected server errors. Signed out: 13 protected routes → 307 `/login`, and 13 public routes → 200. With a session, which the proxy verified against the Supabase stub: the auth pages redirect to `/intake`, and `/` is rewritten into the app. The `/share/*` rate limiter returns 429 on request 31. Security headers are present, and the image-optimiser probes are unchanged. |
+
+**Correction to §8.1.** The 16.4.3 `proxy.ts` change (#100423, a backport of
+#100384) is a cold-start optimisation, not a correctness fix.
+- It stops the proxy loading the 688 KB app-page runtime. On a minimal proxy
+  the cold path goes from 53.8 ms to 39.1 ms.
+- 16.4.1 runs Roducq's proxy correctly, as the runtime checks above show.
+
+**Unsafe "rollbacks".** Each of these returns to `next@16.3.6` and re-exposes
+both critical advisories and the reachable high one:
+- anything below 16.4.1 on the 16.x line;
+- `git revert 973fe84`;
+- restoring `85f94da`'s package files;
+- Vercel Instant Rollback to a deployment built from `85f94da`.
+
+§11 now lists the safe procedure first.
+
+Evidence: `next-16.4.1-rollback-verification.json`.
