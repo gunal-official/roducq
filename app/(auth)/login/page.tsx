@@ -10,6 +10,8 @@ import { AuthField } from "@/components/auth/AuthField";
 import { ConfigNotice } from "@/components/auth/ConfigNotice";
 import { GoogleSignInButton, OAuthDivider } from "@/components/auth/GoogleSignInButton";
 import { Button } from "@/components/ui/button";
+import { safeSameOriginPath } from "@/lib/auth/redirects";
+import { getSiteUrl } from "@/lib/site";
 import { createClient } from "@/lib/supabase/client";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 
@@ -34,12 +36,8 @@ function LoginForm() {
   const configured = isSupabaseConfigured();
 
   // Where to land after login — used by the /invite flow (Step 15).
-  // Open-redirect guard: same-site absolute paths only, never "//host".
-  const nextParam = searchParams.get("next");
-  const next =
-    nextParam && nextParam.startsWith("/") && !nextParam.startsWith("//")
-      ? nextParam
-      : "/intake";
+  // Validate against deployment-configured origin, never a request Host value.
+  const next = safeSameOriginPath(searchParams.get("next"), getSiteUrl(), "/intake");
 
   // If we got here from an invite link, keep the token on the way to
   // signup so a brand-new invitee doesn't lose it.

@@ -7,26 +7,7 @@ import {
   rateLimitExceeded,
 } from "@/lib/rate-limit";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
-
-/**
- * Authenticated app sections (URL prefixes). Route groups like (app) don't
- * exist at the URL level, so the protected surface is enumerated here.
- * /onboarding requires a session too.
- */
-const APP_PREFIXES = [
-  "/intake",
-  "/briefs",
-  "/proposals",
-  "/plans",
-  "/updates",
-  "/invoices", // app route — note the S; the PUBLIC form lives at /invoice/<token>
-  "/time",
-  "/contracts",
-  "/reports",
-  "/settings",
-  "/onboarding",
-  "/dashboard", // the Pipeline dashboard (served at / via the rewrite below)
-];
+import { isAppPath } from "@/lib/supabase/protected-routes";
 
 /** Auth pages an already-signed-in user should be bounced away from. */
 /**
@@ -36,12 +17,6 @@ const APP_PREFIXES = [
  * require recovery proof, so a normal session gains nothing there.
  */
 const AUTH_PAGES = ["/login", "/signup", "/forgot-password"];
-
-function isAppPath(pathname: string): boolean {
-  return APP_PREFIXES.some(
-    (p) => pathname === p || pathname.startsWith(`${p}/`)
-  );
-}
 
 function isAuthPage(pathname: string): boolean {
   return AUTH_PAGES.some((p) => pathname === p);

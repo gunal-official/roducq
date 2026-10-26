@@ -2,10 +2,16 @@ import { NextResponse } from "next/server";
 
 import { parseRecoveryLinkError } from "@/lib/auth/password-recovery";
 import {
+  isTrustedAppRequestOrigin,
+  safeSameOriginPath,
+  trustedAppOriginForRequest,
+} from "@/lib/auth/redirects";
+import {
   RECOVERY_COOKIE,
   createRecoveryGrantValue,
   recoveryCookieOptions,
 } from "@/lib/auth/recovery-grant";
+import { getSiteUrl } from "@/lib/site";
 import { createClient } from "@/lib/supabase/server";
 
 /**
@@ -23,42 +29,73 @@ import { createClient } from "@/lib/supabase/server";
  * appends error/error_code instead of a code) land on /reset-password
  * with a generic expired flag; no code or token is ever logged.
  *
- * `next` is the same-site landing path the caller wants after a
- * successful exchange; it is re-validated here (defense in depth — the
- * query string is attacker-controlled even though every caller already
- * guards it before building the redirect URL). A recovery request always
- * lands on /reset-password regardless of `next`.
+ * `next` is the same-origin landing path the caller wants after a
+ * successful exchange. It is validated against a deployment-configured
+ * origin; request Host is only accepted when it matches a configured
+ * application origin. A recovery request always lands on /reset-password
+ * regardless of `next`.
  */
 
 export const dynamic = "force-dynamic";
 
-function safeNext(next: string | null): string {
-  return next && next.startsWith("/") && !next.startsWith("//") && !next.includes("\\") ? next : "/dashboard";
+function callbackRedirect(
+  origin: string,
+  pathname: string,
+  error?: "oauth" | "expired" | "invalid"
+) {
+  const destination = new URL(pathname, origin);
+  if (error) destination.searchParams.set("error", error);
+  return NextResponse.redirect(destination);
 }
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
-  const origin = url.origin;
+  // request.url may reflect a client-controlled Host header. The helper only
+  // accepts its origin when it matches deployment-controlled configuration.
+  const configuredOrigins = [
+    process.env.NEXT_PUBLIC_SITE_URL,
+    process.env.VERCEL_PROJECT_PRODUCTION_URL,
+    process.env.VERCEL_URL,
+  ];
+  const fallbackOrigin = getSiteUrl();
+  const origin = trustedAppOriginForRequest(
+    request.url,
+    configuredOrigins,
+    fallbackOrigin
+  );
   const isRecovery = url.searchParams.get("recovery") === "1";
-  const next = isRecovery ? "/reset-password" : safeNext(url.searchParams.get("next"));
+  if (
+    !isTrustedAppRequestOrigin(request.url, configuredOrigins, fallbackOrigin)
+  ) {
+    return isRecovery
+      ? callbackRedirect(origin, "/reset-password", "invalid")
+      : callbackRedirect(origin, "/login", "oauth");
+  }
+
+  // Recovery routing has priority over the untrusted `next` query parameter.
+  const next = isRecovery
+    ? "/reset-password"
+    : safeSameOriginPath(url.searchParams.get("next"), origin, "/dashboard");
 
   // The provider's own cancel/deny path, and expired/used recovery links,
   // land here without a code.
   if (url.searchParams.get("error") || url.searchParams.get("error_code")) {
     if (isRecovery || parseRecoveryLinkError({ search: url.search })) {
       const kind = parseRecoveryLinkError({ search: url.search }) ?? "invalid";
-      return NextResponse.redirect(
-        `${origin}/reset-password?error=${kind === "expired" ? "expired" : "invalid"}`
+      return callbackRedirect(
+        origin,
+        "/reset-password",
+        kind === "expired" ? "expired" : "invalid"
       );
     }
-    return NextResponse.redirect(`${origin}/login?error=oauth`);
+    return callbackRedirect(origin, "/login", "oauth");
   }
 
   const code = url.searchParams.get("code");
   if (!code) {
     return isRecovery
-      ? NextResponse.redirect(`${origin}/reset-password?error=invalid`)
-      : NextResponse.redirect(`${origin}/login?error=oauth`);
+      ? callbackRedirect(origin, "/reset-password", "invalid")
+      : callbackRedirect(origin, "/login", "oauth");
   }
 
   const supabase = await createClient();
@@ -66,11 +103,11 @@ export async function GET(request: Request) {
 
   if (error) {
     return isRecovery
-      ? NextResponse.redirect(`${origin}/reset-password?error=expired`)
-      : NextResponse.redirect(`${origin}/login?error=oauth`);
+      ? callbackRedirect(origin, "/reset-password", "expired")
+      : callbackRedirect(origin, "/login", "oauth");
   }
 
-  const response = NextResponse.redirect(`${origin}${next}`);
+  const response = NextResponse.redirect(new URL(next, origin));
 
   // Bind the grant to this exact recovery session (see recovery-grant.ts).
   if (isRecovery && data.session?.access_token) {
@@ -79,7 +116,7 @@ export async function GET(request: Request) {
       createRecoveryGrantValue(data.session.access_token),
       {
         ...recoveryCookieOptions,
-        secure: url.protocol === "https:",
+        secure: new URL(origin).protocol === "https:",
       }
     );
   }
