@@ -1647,9 +1647,97 @@ async function deepCatalogPass(page) {
       return candidate || card.chain[card.chain.length - 1] || null;
     };
 
+    // The three bands after the catalog (how-connecting-works, request,
+    // closing CTA) are measured as bounded trees: a depth-4 walk with text,
+    // box and a style subset per node. That is what lets the audit quote a
+    // step card's radius or the form row's gap as a measured value.
+    const bandTrees = {};
+    const bands = [...document.querySelectorAll("section")];
+    for (let i = 2; i <= 4 && i < bands.length; i += 1) {
+      const root = bands[i];
+      const nodes = [];
+      const walk = (el, depth, parent) => {
+        if (nodes.length >= 160 || depth > 5) return;
+        const own = [...el.childNodes]
+          .filter((n) => n.nodeType === 3)
+          .map((n) => n.textContent.replace(/\s+/g, " ").trim())
+          .filter(Boolean)
+          .join(" ");
+        const index = nodes.length;
+        nodes.push({
+          index,
+          parent,
+          depth,
+          tag: el.tagName.toLowerCase(),
+          id: el.id || null,
+          text: own.slice(0, 90),
+          box: boxOf(el),
+          style: (() => {
+            const cs = getComputedStyle(el);
+            return {
+              display: cs.display,
+              gridTemplateColumns: cs.gridTemplateColumns,
+              gap: cs.gap,
+              padding: `${cs.paddingTop} ${cs.paddingRight} ${cs.paddingBottom} ${cs.paddingLeft}`,
+              marginTop: cs.marginTop,
+              fontSize: cs.fontSize,
+              fontWeight: cs.fontWeight,
+              lineHeight: cs.lineHeight,
+              letterSpacing: cs.letterSpacing,
+              color: cs.color,
+              backgroundColor: cs.backgroundColor,
+              borderRadius: cs.borderRadius,
+              borderTopWidth: cs.borderTopWidth,
+              borderTopColor: cs.borderTopColor,
+              boxShadow: cs.boxShadow,
+              flexDirection: cs.flexDirection,
+              alignItems: cs.alignItems,
+            };
+          })(),
+        });
+        for (const child of el.children) {
+          walk(child, depth + 1, index);
+          if (nodes.length >= 160) break;
+        }
+      };
+      walk(root, 0, null);
+      bandTrees[`section${i}`] = { id: root.id || null, box: boxOf(root), nodes };
+    }
+
+    // A card's inner composition: icon tile, title, description, arrow.
+    const cardInner = (() => {
+      const card = cards[0];
+      if (!card) return null;
+      const button = card.chain.find((c) => c.tag === "button");
+      if (!button) return null;
+      const el = [...document.querySelectorAll("button")].find(
+        (b) => Math.round(boxOf(b).w) === Math.round(button.box.w) && Math.abs(boxOf(b).y - button.box.y) < 2,
+      );
+      if (!el) return null;
+      return [...el.querySelectorAll("*")].slice(0, 40).map((node) => {
+        const cs = getComputedStyle(node);
+        return {
+          tag: node.tagName.toLowerCase(),
+          text: textOf(node).slice(0, 80),
+          box: boxOf(node),
+          fontSize: cs.fontSize,
+          fontWeight: cs.fontWeight,
+          color: cs.color,
+          backgroundColor: cs.backgroundColor,
+          border: `${cs.borderTopWidth} ${cs.borderTopColor}`,
+          radius: cs.borderRadius,
+          padding: cs.paddingTop,
+          gap: cs.gap,
+          display: cs.display,
+        };
+      });
+    })();
+
     return {
       heroParts,
       heroSubtree,
+      bandTrees,
+      cardInner,
       catalogBox: catalog ? boxOf(catalog) : null,
       catalogSubtree: catalog ? catalog.outerHTML.slice(0, 6000) : null,
       tabs,
@@ -1674,6 +1762,9 @@ async function deepCatalogPass(page) {
         .map((el) => textOf(el))
         .find((t) => /^\d+\s+integrations?$/i.test(t)) || null;
       const titles = [...catalog.querySelectorAll("h3")].map(textOf).filter(Boolean);
+      const empty = [...catalog.querySelectorAll("p, span, div")]
+        .map((el) => textOf(el))
+        .find((t) => /no integrations? match|no results|nothing matches/i.test(t)) || null;
       const activeTab = [...catalog.querySelectorAll("button, [role='tab'], a[href]")]
         .filter((el) => {
           const cs = getComputedStyle(el);
@@ -1681,7 +1772,7 @@ async function deepCatalogPass(page) {
         })
         .map((el) => ({ text: textOf(el), color: getComputedStyle(el).color, bg: getComputedStyle(el).backgroundColor }))
         .slice(0, 12);
-      return { count, titles, activeTab };
+      return { count, titles, empty, activeTab };
     });
 
   const behaviours = { initial: await readState(), tabClicks: [], search: [], cardClick: null };
@@ -1725,7 +1816,7 @@ async function deepCatalogPass(page) {
   // ── behaviour: search ──────────────────────────────────────────────────
   const searchHandle = await page.$('input[placeholder*="earch" i]');
   if (searchHandle) {
-    for (const term of ["slack", "notion", "zzzz"]) {
+    for (const term of ["chat", "email", "docs", "slack", "zzzz"]) {
       await searchHandle.click({ clickCount: 3 }).catch(() => {});
       await searchHandle.fill(term).catch(() => {});
       await page.waitForTimeout(500);
@@ -1784,6 +1875,27 @@ async function catalogHoverProbe(page, titleHint) {
     node.scrollIntoView({ block: "center", behavior: "instant" });
     window.__hoverTarget = node;
     const r = node.getBoundingClientRect();
+    // The hover state may live on an ANCESTOR of the node the subtree
+    // snapshot covers (Framer often puts the border/shadow on the button and
+    // the colour change on a wrapper), so record the chain's own style too.
+    const chain = [];
+    let up = node;
+    for (let i = 0; i < 4 && up; i += 1) {
+      const cs = getComputedStyle(up);
+      chain.push({
+        level: i,
+        tag: up.tagName.toLowerCase(),
+        border: cs.borderTopWidth + " " + cs.borderTopStyle + " " + cs.borderTopColor,
+        background: cs.backgroundColor,
+        shadow: cs.boxShadow,
+        radius: cs.borderRadius,
+        transform: cs.transform,
+        opacity: cs.opacity,
+        color: cs.color,
+        transition: cs.transitionProperty + " " + cs.transitionDuration,
+      });
+      up = up.parentElement;
+    }
     return {
       x: Math.round(r.x + r.width / 2),
       y: Math.round(r.y + r.height / 2),
@@ -1791,6 +1903,7 @@ async function catalogHoverProbe(page, titleHint) {
       h: Math.round(r.height),
       title: textOf(h3),
       html: node.outerHTML.slice(0, 3000),
+      chainBefore: chain,
     };
   }, titleHint);
   if (!prepared) return { found: false };
@@ -1803,6 +1916,27 @@ async function catalogHoverProbe(page, titleHint) {
   const after = await page.evaluate(snapshotCardSurface);
   await page.waitForTimeout(600);
   const settled = await page.evaluate(snapshotCardSurface);
+  const chainAfter = await page.evaluate(() => {
+    const out = [];
+    let up = window.__hoverTarget;
+    for (let i = 0; i < 4 && up; i += 1) {
+      const cs = getComputedStyle(up);
+      out.push({
+        level: i,
+        tag: up.tagName.toLowerCase(),
+        border: cs.borderTopWidth + " " + cs.borderTopStyle + " " + cs.borderTopColor,
+        background: cs.backgroundColor,
+        shadow: cs.boxShadow,
+        radius: cs.borderRadius,
+        transform: cs.transform,
+        opacity: cs.opacity,
+        color: cs.color,
+        transition: cs.transitionProperty + " " + cs.transitionDuration,
+      });
+      up = up.parentElement;
+    }
+    return out;
+  });
 
   const diff = (a, b) => {
     const out = [];
@@ -1834,6 +1968,8 @@ async function catalogHoverProbe(page, titleHint) {
     title: prepared.title,
     box: { w: prepared.w, h: prepared.h },
     html: prepared.html,
+    chainBefore: prepared.chainBefore,
+    chainAfter: prepared.chainAfter,
     nodesCompared: (before || []).length,
     hoverChanges: diff(before, after),
     settledChanges: diff(before, settled),
@@ -1893,7 +2029,7 @@ async function capture(page, vp, theme, report) {
   // byte-identical control counts), and the extra passes cost a page-load
   // each. Geometry, hover and filter behaviour are measured for real here.
   let deep = null;
-  if (theme === "light") {
+  if (theme === "light" && (vp.w === 1440 || vp.w === 390)) {
     try {
       deep = await deepCatalogPass(page);
       const firstTitle = deep.headings[0] ? deep.headings[0].text : null;
@@ -1981,7 +2117,8 @@ async function capture(page, vp, theme, report) {
           searchCounts: deep.behaviours.search.map((t) => ({
             term: t.term,
             count: t.state ? t.state.count : null,
-            titles: t.state ? t.state.titles.length : null,
+            empty: t.state ? t.state.empty : null,
+            titles: t.state ? t.state.titles : null,
           })),
           cardClickChanges: deep.behaviours.cardClick
             ? {
