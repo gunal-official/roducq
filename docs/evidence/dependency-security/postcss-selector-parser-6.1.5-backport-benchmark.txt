@@ -1,0 +1,8 @@
+v6.1.4  n=  5000  bytes= 10000  parse=     44.4 ms  roundtrip=true
+v6.1.4  n= 10000  bytes= 20000  parse=    115.6 ms  roundtrip=true
+v6.1.4  n= 20000  bytes= 40000  parse=    474.2 ms  roundtrip=true
+v6.1.4  n= 40000  bytes= 80000  parse=   1667.2 ms  roundtrip=true
+v6.1.5  n=  5000  bytes= 10000  parse=     22.0 ms  roundtrip=true
+v6.1.5  n= 10000  bytes= 20000  parse=     15.9 ms  roundtrip=true
+v6.1.5  n= 20000  bytes= 40000  parse=     23.5 ms  roundtrip=true
+v6.1.5  n= 40000  bytes= 80000  parse=     53.2 ms  roundtrip=true
