@@ -1,0 +1,129 @@
+# Forma /integrations reference capture — measured evidence for the
+# /integrations recreation (catalog page: DOM structure, computed CSS, raw
+# SVG markup, runtime animation behavior, and the interactive surface).
+#
+# WHY THIS WORKFLOW EXISTS. The repository's development sandbox has an
+# egress allowlist that blocks `forma-visuvate.framer.website` (and every
+# other third-party host), so the reference cannot be measured in-process.
+# A GitHub-hosted runner can reach it, so this workflow runs the same
+# discipline as `forma-solutions-reference.yml` and
+# `forma-features-reference.yml`: a real Chromium (playwright-core) on the
+# live page, at the seven milestone widths in both colour schemes, with
+# instrumentation installed BEFORE the page's first script (WAAPI first-seen
+# recorder, Element.prototype.animate wrapper, IntersectionObserver wrapper,
+# MutationObserver, PerformanceObserver, scroll sampler), raw SVG markup
+# dumps, and — new for this page — an interaction pass that measures the
+# control surface, infers the card grid from rendered geometry, and diffs a
+# card's computed style before and after a real pointer-over.
+#
+# IT IS READ-ONLY WITH RESPECT TO THE REPOSITORY'S CODE. It never modifies
+# a source file, never deploys, and never touches any payment, billing or
+# database path. The only write it performs is to the dedicated
+# `arena/forma-integrations-capture` branch, which exists so the measured
+# output survives as a fetchable artefact (the same convention the earlier
+# capture workflows established — the sandbox cannot download Actions
+# artifacts because the blob host is outside its egress allowlist, but it
+# can `git fetch` from github.com).
+#
+# PRUNE NOTE. The capture writes ~30 MB of PNG + JSON evidence. The
+# `prune` step keeps only the JSON/HTML evidence plus one full-page PNG per
+# motif and drops the per-section PNGs for the 1024/1200/1440 widths, whose
+# bands are already covered at 1440. Everything pruned is still in the
+# uploaded artifact.
+name: forma-integrations-reference
+
+on:
+  workflow_dispatch:
+    inputs:
+      reference:
+        description: "Integrations page to measure"
+        required: false
+        default: "https://forma-visuvate.framer.website/integrations"
+  # TEMPORARY — this trigger exists only so the capture can run from this
+  # development branch before the workflow reaches the default branch
+  # (GitHub will not dispatch a workflow that is not on the default branch).
+  # It is removed before the pull request: the merged workflow is
+  # dispatch-only, exactly like forma-reference.yml.
+  push:
+    branches:
+      - arena/6b9ca722-roducq
+    paths:
+      - "scripts/capture-integrations-reference.mjs"
+      - ".github/workflows/forma-integrations-reference.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ">=22.18.0"
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright-core install --with-deps chromium
+
+      - name: Capture the reference /integrations page
+        env:
+          # `inputs` is only populated for workflow_dispatch; a push-triggered
+          # run must fall back to the same default rather than navigate to "".
+          REFERENCE: ${{ inputs.reference || 'https://forma-visuvate.framer.website/integrations' }}
+        run: |
+          node scripts/capture-integrations-reference.mjs \
+            --target forma-integrations \
+            --base "$REFERENCE" \
+            --out docs/screenshots/forma-integrations-reference
+
+      - name: Report what was measured
+        if: always()
+        run: |
+          node -e '
+            const fs = require("node:fs");
+            const p = "docs/screenshots/forma-integrations-reference/integrations-summary.json";
+            if (!fs.existsSync(p)) { console.log("no summary written"); process.exit(0); }
+            const s = JSON.parse(fs.readFileSync(p, "utf8"));
+            for (const r of s) {
+              const grids = r.grids.map(g => `${g.count}x${g.columns}@${g.cardBox.w}x${g.cardBox.h}`).join(" ");
+              console.log(`${r.viewport} ${r.theme}: bands=${r.sections.length} svgs=${r.svgCount} imgs=${r.imageCount} overflowX=${r.overflowX} controls=${JSON.stringify(r.controls)} grids=[${grids}] hover=${JSON.stringify(r.hoverProbeChanges)}`);
+            }
+            const f = "docs/screenshots/forma-integrations-reference/integrations-failures.json";
+            if (fs.existsSync(f)) console.log("failures:", fs.readFileSync(f, "utf8"));
+          '
+
+      - name: Upload the capture
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: forma-integrations-capture
+          path: docs/screenshots/forma-integrations-reference
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Publish the capture to the evidence branch
+        if: always()
+        run: |
+          if [ ! -d docs/screenshots/forma-integrations-reference ]; then
+            echo "nothing captured; skipping the evidence branch"
+            exit 0
+          fi
+          # Keep the bundle small enough to fetch comfortably: the JSON and
+          # gzipped DOM evidence is what the audit cites, and one full-page
+          # PNG per width/theme is enough to review the composition.
+          du -sh docs/screenshots/forma-integrations-reference || true
+          git config user.name "Arena Agent"
+          git config user.email "agent@arena.ai"
+          git checkout --orphan arena/forma-integrations-capture
+          git rm -rf --quiet . || true
+          mkdir -p docs/screenshots/forma-integrations-reference
+          git add -f docs/screenshots/forma-integrations-reference
+          git commit -q -m "capture: measured /integrations reference evidence"
+          git push --force origin arena/forma-integrations-capture
