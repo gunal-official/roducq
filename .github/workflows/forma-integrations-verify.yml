@@ -14,9 +14,6 @@
 # of this branch, exactly like the /solutions and /features
 # verifications before it.
 #
-# Re-run marker: 2 (the home control's CLS flaked once; the tool cannot
-# re-run a push-triggered run, so the trigger is re-armed instead).
-#
 # IT IS READ-ONLY WITH RESPECT TO THE REPOSITORY'S CODE. It builds,
 # serves and probes; it never modifies a source file, never deploys, and
 # never touches any payment, billing or database path.
@@ -24,16 +21,6 @@ name: forma-integrations-verify
 
 on:
   workflow_dispatch:
-  # TEMPORARY. GitHub only dispatches workflows that exist on the default
-  # branch, so this trigger exists to run the suite from this development
-  # branch. It is removed before the pull request: the merged workflow is
-  # dispatch-only, exactly like forma-features-verify.yml.
-  push:
-    branches:
-      - arena/6b9ca722-roducq
-    paths:
-      - ".github/workflows/forma-integrations-verify.yml"
-      - "scripts/verify-integrations-page.mjs"
 
 permissions:
   # The report is published to the evidence branch, like the reference
