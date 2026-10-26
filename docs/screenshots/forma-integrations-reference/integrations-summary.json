@@ -1,0 +1,3930 @@
+[
+  {
+    "viewport": "1440x900",
+    "label": "desktop",
+    "theme": "light",
+    "url": "https://forma-visuvate.framer.website/integrations",
+    "title": "Forma Integrations — Email, chat, calendar, code, and more",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "IntegrationsConnect the appsyour team already usesMessages, calendar events, fil",
+        "box": {
+          "x": 100,
+          "y": 69.7,
+          "w": 1240,
+          "h": 422.58
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "AllCommunicationCalendar & meetingsDocs & filesPlanning & developmentDesign12 in",
+        "box": {
+          "x": 0,
+          "y": 492.28,
+          "w": 1440,
+          "h": 986.81
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "How connecting worksThree steps, no admin setupAnyone with access to an app can ",
+        "box": {
+          "x": 0,
+          "y": 1479.09,
+          "w": 1440,
+          "h": 516.06
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": "request",
+        "text": "Request an integrationMissing an app you rely on?We use requests to decide which",
+        "box": {
+          "x": 0,
+          "y": 1995.16,
+          "w": 1440,
+          "h": 593.77
+        }
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 2588.92,
+          "w": 1440,
+          "h": 750.83
+        }
+      },
+      {
+        "index": 5,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 3339.75,
+          "w": 1440,
+          "h": 703.86
+        }
+      }
+    ],
+    "headingCount": 22,
+    "svgCount": 46,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 889,
+    "outlineTruncated": false,
+    "trackedStyles": 534,
+    "keyframes": 1,
+    "waapiSeen": 26,
+    "animateCalls": 27,
+    "ioCreated": 2,
+    "mutations": 4116,
+    "perfEntries": 7,
+    "liveAnimations": 0,
+    "overflowX": 0,
+    "consoleErrors": [],
+    "controls": {
+      "buttons": 20,
+      "inputs": 4,
+      "links": 24,
+      "tabs": 0
+    },
+    "gridCandidates": 11,
+    "grids": [
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(2)",
+        "childTag": "section",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          0,
+          0.01
+        ],
+        "cardBox": {
+          "x": 0,
+          "y": 492.28,
+          "w": 1440,
+          "h": 986.81
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(1)"
+        }
+      },
+      {
+        "container": "#b37k14 > div > section > div",
+        "childTag": "div",
+        "count": 3,
+        "columns": 3,
+        "rows": 1,
+        "columnGaps": [
+          -1240,
+          -1168
+        ],
+        "rowGaps": [],
+        "cardBox": {
+          "x": 100,
+          "y": 2708.92,
+          "w": 1240,
+          "h": 534.83
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#b37k14 > div > section"
+        }
+      },
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer > div",
+        "childTag": "div",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          0,
+          0
+        ],
+        "cardBox": {
+          "x": 100,
+          "y": 3459.75,
+          "w": 1240,
+          "h": 308.16
+        },
+        "band": {
+          "tag": "footer",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer"
+        }
+      },
+      {
+        "container": "div:nth-of-type(5) > div > footer > div > div:nth-of-type(1) > div:nth-of-type(2)",
+        "childTag": "nav",
+        "count": 4,
+        "columns": 4,
+        "rows": 1,
+        "columnGaps": [
+          40,
+          40.01
+        ],
+        "rowGaps": [],
+        "cardBox": {
+          "x": 456.63,
+          "y": 3459.75,
+          "w": 190.84,
+          "h": 219.16
+        },
+        "band": {
+          "tag": "footer",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer"
+        }
+      },
+      {
+        "container": "#request > div > form",
+        "childTag": "label",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          16,
+          16
+        ],
+        "cardBox": {
+          "x": 781,
+          "y": 2144.16,
+          "w": 530,
+          "h": 76.92
+        },
+        "band": {
+          "tag": "section",
+          "id": "request",
+          "path": "#request"
+        }
+      },
+      {
+        "container": "div > section > div > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(5)",
+        "childTag": "div",
+        "count": 5,
+        "columns": 2,
+        "rows": 4,
+        "columnGaps": [
+          -418.72
+        ],
+        "rowGaps": [
+          0,
+          0,
+          47.25
+        ],
+        "cardBox": {
+          "x": 825.28,
+          "y": 2910.5,
+          "w": 418.72,
+          "h": 49.25
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#b37k14 > div > section"
+        }
+      }
+    ],
+    "catalog": {
+      "cardCount": 12,
+      "tabs": [
+        "All",
+        "Communication",
+        "Calendar & meetings",
+        "Docs & files",
+        "Planning & development",
+        "Design"
+      ],
+      "count": "12 integrations",
+      "firstCard": {
+        "title": "Email",
+        "description": "Turn an email into a task with the thread attached.",
+        "chain": [
+          {
+            "level": 1,
+            "tag": "div",
+            "box": {
+              "x": 183,
+              "y": 673.91,
+              "w": 278,
+              "h": 25.5
+            },
+            "radius": "0px",
+            "border": "0px rgb(0, 0, 0)",
+            "bg": "rgba(0, 0, 0, 0)",
+            "pad": "0px"
+          },
+          {
+            "level": 2,
+            "tag": "div",
+            "box": {
+              "x": 183,
+              "y": 673.91,
+              "w": 278,
+              "h": 78
+            },
+            "radius": "0px",
+            "border": "0px rgb(0, 0, 0)",
+            "bg": "rgba(0, 0, 0, 0)",
+            "pad": "0px"
+          },
+          {
+            "level": 3,
+            "tag": "div",
+            "box": {
+              "x": 125,
+              "y": 673.91,
+              "w": 354,
+              "h": 78
+            },
+            "radius": "0px",
+            "border": "0px rgb(0, 0, 0)",
+            "bg": "rgba(0, 0, 0, 0)",
+            "pad": "0px"
+          },
+          {
+            "level": 4,
+            "tag": "button",
+            "box": {
+              "x": 100,
+              "y": 648.91,
+              "w": 404,
+              "h": 192.05
+            },
+            "radius": "14px",
+            "border": "0px rgb(0, 0, 0)",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "25px"
+          },
+          {
+            "level": 5,
+            "tag": "div",
+            "box": {
+              "x": 100,
+              "y": 648.91,
+              "w": 404,
+              "h": 192.05
+            },
+            "radius": "0px",
+            "border": "0px rgb(0, 0, 0)",
+            "bg": "rgba(0, 0, 0, 0)",
+            "pad": "0px"
+          }
+        ]
+      },
+      "tabClickCounts": [
+        {
+          "tab": "All",
+          "count": "12 integrations",
+          "titles": 12
+        },
+        {
+          "tab": "Communication",
+          "count": "12 integrations",
+          "titles": 12
+        },
+        {
+          "tab": "Calendar & meetings",
+          "count": "12 integrations",
+          "titles": 12
+        },
+        {
+          "tab": "Docs & files",
+          "count": "12 integrations",
+          "titles": 12
+        },
+        {
+          "tab": "Planning & development",
+          "count": "12 integrations",
+          "titles": 12
+        },
+        {
+          "tab": "Design",
+          "count": "12 integrations",
+          "titles": 12
+        }
+      ],
+      "searchCounts": [
+        {
+          "term": "chat",
+          "count": "2 integrations",
+          "empty": null,
+          "titles": [
+            "Chat",
+            "Team Chat"
+          ]
+        },
+        {
+          "term": "email",
+          "count": "1 integration",
+          "empty": null,
+          "titles": [
+            "Email"
+          ]
+        },
+        {
+          "term": "docs",
+          "count": "3 integrations",
+          "empty": null,
+          "titles": [
+            "Docs",
+            "Cloud Drive",
+            "File Storage"
+          ]
+        },
+        {
+          "term": "slack",
+          "count": null,
+          "empty": "AllCommunicationCalendar & meetingsDocs & filesPlanning & developmentDesignNo integrations match your searchTell us which app you use and we will let you know if we add it.Request an integration",
+          "titles": [
+            "No integrations match your search"
+          ]
+        },
+        {
+          "term": "zzzz",
+          "count": null,
+          "empty": "AllCommunicationCalendar & meetingsDocs & filesPlanning & developmentDesignNo integrations match your searchTell us which app you use and we will let you know if we add it.Request an integration",
+          "titles": [
+            "No integrations match your search"
+          ]
+        }
+      ],
+      "cardClickChanges": {
+        "urlChanged": false,
+        "dialogsBefore": 0,
+        "dialogsAfter": 0
+      },
+      "hoverChanges": 0,
+      "hoverSettledChanges": 0
+    }
+  },
+  {
+    "viewport": "1440x900",
+    "label": "desktop",
+    "theme": "dark",
+    "url": "https://forma-visuvate.framer.website/integrations",
+    "title": "Forma Integrations — Email, chat, calendar, code, and more",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "IntegrationsConnect the appsyour team already usesMessages, calendar events, fil",
+        "box": {
+          "x": 100,
+          "y": 69.7,
+          "w": 1240,
+          "h": 422.58
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "AllCommunicationCalendar & meetingsDocs & filesPlanning & developmentDesign12 in",
+        "box": {
+          "x": 0,
+          "y": 492.28,
+          "w": 1440,
+          "h": 986.81
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "How connecting worksThree steps, no admin setupAnyone with access to an app can ",
+        "box": {
+          "x": 0,
+          "y": 1479.09,
+          "w": 1440,
+          "h": 516.06
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": "request",
+        "text": "Request an integrationMissing an app you rely on?We use requests to decide which",
+        "box": {
+          "x": 0,
+          "y": 1995.16,
+          "w": 1440,
+          "h": 593.77
+        }
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 2588.92,
+          "w": 1440,
+          "h": 750.83
+        }
+      },
+      {
+        "index": 5,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 3339.75,
+          "w": 1440,
+          "h": 703.86
+        }
+      }
+    ],
+    "headingCount": 22,
+    "svgCount": 46,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 889,
+    "outlineTruncated": false,
+    "trackedStyles": 534,
+    "keyframes": 1,
+    "waapiSeen": 39,
+    "animateCalls": 27,
+    "ioCreated": 2,
+    "mutations": 4116,
+    "perfEntries": 7,
+    "liveAnimations": 0,
+    "overflowX": 0,
+    "consoleErrors": [],
+    "controls": {
+      "buttons": 20,
+      "inputs": 4,
+      "links": 24,
+      "tabs": 0
+    },
+    "gridCandidates": 11,
+    "grids": [
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(2)",
+        "childTag": "section",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          0,
+          0.01
+        ],
+        "cardBox": {
+          "x": 0,
+          "y": 492.28,
+          "w": 1440,
+          "h": 986.81
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(1)"
+        }
+      },
+      {
+        "container": "#b37k14 > div > section > div",
+        "childTag": "div",
+        "count": 3,
+        "columns": 3,
+        "rows": 1,
+        "columnGaps": [
+          -1240,
+          -1168
+        ],
+        "rowGaps": [],
+        "cardBox": {
+          "x": 100,
+          "y": 2708.92,
+          "w": 1240,
+          "h": 534.83
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#b37k14 > div > section"
+        }
+      },
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer > div",
+        "childTag": "div",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          0,
+          0
+        ],
+        "cardBox": {
+          "x": 100,
+          "y": 3459.75,
+          "w": 1240,
+          "h": 308.16
+        },
+        "band": {
+          "tag": "footer",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer"
+        }
+      },
+      {
+        "container": "div:nth-of-type(5) > div > footer > div > div:nth-of-type(1) > div:nth-of-type(2)",
+        "childTag": "nav",
+        "count": 4,
+        "columns": 4,
+        "rows": 1,
+        "columnGaps": [
+          40,
+          40.01
+        ],
+        "rowGaps": [],
+        "cardBox": {
+          "x": 456.63,
+          "y": 3459.75,
+          "w": 190.84,
+          "h": 219.16
+        },
+        "band": {
+          "tag": "footer",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer"
+        }
+      },
+      {
+        "container": "#request > div > form",
+        "childTag": "label",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          16,
+          16
+        ],
+        "cardBox": {
+          "x": 781,
+          "y": 2144.16,
+          "w": 530,
+          "h": 76.92
+        },
+        "band": {
+          "tag": "section",
+          "id": "request",
+          "path": "#request"
+        }
+      },
+      {
+        "container": "div > section > div > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(5)",
+        "childTag": "div",
+        "count": 5,
+        "columns": 2,
+        "rows": 4,
+        "columnGaps": [
+          -418.72
+        ],
+        "rowGaps": [
+          0,
+          0,
+          47.25
+        ],
+        "cardBox": {
+          "x": 825.28,
+          "y": 2910.5,
+          "w": 418.72,
+          "h": 49.25
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#b37k14 > div > section"
+        }
+      }
+    ],
+    "catalog": {
+      "error": "not run"
+    }
+  },
+  {
+    "viewport": "1200x900",
+    "label": "desktop-1200",
+    "theme": "light",
+    "url": "https://forma-visuvate.framer.website/integrations",
+    "title": "Forma Integrations — Email, chat, calendar, code, and more",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "IntegrationsConnect the appsyour team already usesMessages, calendar events, fil",
+        "box": {
+          "x": 48,
+          "y": 69.7,
+          "w": 1104,
+          "h": 422.58
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "AllCommunicationCalendar & meetingsDocs & filesPlanning & developmentDesign12 in",
+        "box": {
+          "x": 0,
+          "y": 492.28,
+          "w": 1200,
+          "h": 986.81
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "How connecting worksThree steps, no admin setupAnyone with access to an app can ",
+        "box": {
+          "x": 0,
+          "y": 1479.09,
+          "w": 1200,
+          "h": 540.81
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": "request",
+        "text": "Request an integrationMissing an app you rely on?We use requests to decide which",
+        "box": {
+          "x": 0,
+          "y": 2019.91,
+          "w": 1200,
+          "h": 593.77
+        }
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 2613.67,
+          "w": 1200,
+          "h": 816.92
+        }
+      },
+      {
+        "index": 5,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 3430.59,
+          "w": 1200,
+          "h": 703.86
+        }
+      }
+    ],
+    "headingCount": 22,
+    "svgCount": 46,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 889,
+    "outlineTruncated": false,
+    "trackedStyles": 534,
+    "keyframes": 1,
+    "waapiSeen": 27,
+    "animateCalls": 27,
+    "ioCreated": 2,
+    "mutations": 4119,
+    "perfEntries": 7,
+    "liveAnimations": 0,
+    "overflowX": 0,
+    "consoleErrors": [],
+    "controls": {
+      "buttons": 20,
+      "inputs": 4,
+      "links": 24,
+      "tabs": 0
+    },
+    "gridCandidates": 10,
+    "grids": [
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(2)",
+        "childTag": "section",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          0,
+          0.01
+        ],
+        "cardBox": {
+          "x": 0,
+          "y": 492.28,
+          "w": 1200,
+          "h": 986.81
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(1)"
+        }
+      },
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer > div",
+        "childTag": "div",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          0,
+          0
+        ],
+        "cardBox": {
+          "x": 48,
+          "y": 3550.59,
+          "w": 1104,
+          "h": 308.16
+        },
+        "band": {
+          "tag": "footer",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer"
+        }
+      },
+      {
+        "container": "div:nth-of-type(5) > div > footer > div > div:nth-of-type(1) > div:nth-of-type(2)",
+        "childTag": "nav",
+        "count": 4,
+        "columns": 4,
+        "rows": 1,
+        "columnGaps": [
+          40,
+          40.01
+        ],
+        "rowGaps": [],
+        "cardBox": {
+          "x": 368.73,
+          "y": 3550.59,
+          "w": 165.81,
+          "h": 219.16
+        },
+        "band": {
+          "tag": "footer",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer"
+        }
+      },
+      {
+        "container": "#request > div > form",
+        "childTag": "label",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          16,
+          16
+        ],
+        "cardBox": {
+          "x": 661,
+          "y": 2168.91,
+          "w": 462,
+          "h": 76.92
+        },
+        "band": {
+          "tag": "section",
+          "id": "request",
+          "path": "#request"
+        }
+      },
+      {
+        "container": "div > section > div > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(5)",
+        "childTag": "div",
+        "count": 5,
+        "columns": 2,
+        "rows": 4,
+        "columnGaps": [
+          -360.84
+        ],
+        "rowGaps": [
+          0,
+          0,
+          47.25
+        ],
+        "cardBox": {
+          "x": 695.16,
+          "y": 2968.3,
+          "w": 360.84,
+          "h": 49.25
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#b37k14 > div > section"
+        }
+      },
+      {
+        "container": "#b37k14 > div > section > div > div:nth-of-type(3) > div:nth-of-type(2)",
+        "childTag": "div",
+        "count": 5,
+        "columns": 2,
+        "rows": 3,
+        "columnGaps": [
+          -360.84
+        ],
+        "rowGaps": [
+          0.01,
+          0
+        ],
+        "cardBox": {
+          "x": 695.16,
+          "y": 2913.95,
+          "w": 360.84,
+          "h": 26.34
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(2)"
+        }
+      }
+    ],
+    "catalog": {
+      "error": "not run"
+    }
+  },
+  {
+    "viewport": "1200x900",
+    "label": "desktop-1200",
+    "theme": "dark",
+    "url": "https://forma-visuvate.framer.website/integrations",
+    "title": "Forma Integrations — Email, chat, calendar, code, and more",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "IntegrationsConnect the appsyour team already usesMessages, calendar events, fil",
+        "box": {
+          "x": 48,
+          "y": 69.7,
+          "w": 1104,
+          "h": 422.58
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "AllCommunicationCalendar & meetingsDocs & filesPlanning & developmentDesign12 in",
+        "box": {
+          "x": 0,
+          "y": 492.28,
+          "w": 1200,
+          "h": 986.81
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "How connecting worksThree steps, no admin setupAnyone with access to an app can ",
+        "box": {
+          "x": 0,
+          "y": 1479.09,
+          "w": 1200,
+          "h": 540.81
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": "request",
+        "text": "Request an integrationMissing an app you rely on?We use requests to decide which",
+        "box": {
+          "x": 0,
+          "y": 2019.91,
+          "w": 1200,
+          "h": 593.77
+        }
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 2613.67,
+          "w": 1200,
+          "h": 816.92
+        }
+      },
+      {
+        "index": 5,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 3430.59,
+          "w": 1200,
+          "h": 703.86
+        }
+      }
+    ],
+    "headingCount": 22,
+    "svgCount": 46,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 889,
+    "outlineTruncated": false,
+    "trackedStyles": 534,
+    "keyframes": 1,
+    "waapiSeen": 39,
+    "animateCalls": 27,
+    "ioCreated": 2,
+    "mutations": 1471,
+    "perfEntries": 8,
+    "liveAnimations": 0,
+    "overflowX": 0,
+    "consoleErrors": [],
+    "controls": {
+      "buttons": 20,
+      "inputs": 4,
+      "links": 24,
+      "tabs": 0
+    },
+    "gridCandidates": 10,
+    "grids": [
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(2)",
+        "childTag": "section",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          0,
+          0.01
+        ],
+        "cardBox": {
+          "x": 0,
+          "y": 492.28,
+          "w": 1200,
+          "h": 986.81
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(1)"
+        }
+      },
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer > div",
+        "childTag": "div",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          0,
+          0
+        ],
+        "cardBox": {
+          "x": 48,
+          "y": 3550.59,
+          "w": 1104,
+          "h": 308.16
+        },
+        "band": {
+          "tag": "footer",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer"
+        }
+      },
+      {
+        "container": "div:nth-of-type(5) > div > footer > div > div:nth-of-type(1) > div:nth-of-type(2)",
+        "childTag": "nav",
+        "count": 4,
+        "columns": 4,
+        "rows": 1,
+        "columnGaps": [
+          40,
+          40.01
+        ],
+        "rowGaps": [],
+        "cardBox": {
+          "x": 368.73,
+          "y": 3550.59,
+          "w": 165.81,
+          "h": 219.16
+        },
+        "band": {
+          "tag": "footer",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer"
+        }
+      },
+      {
+        "container": "#request > div > form",
+        "childTag": "label",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          16,
+          16
+        ],
+        "cardBox": {
+          "x": 661,
+          "y": 2168.91,
+          "w": 462,
+          "h": 76.92
+        },
+        "band": {
+          "tag": "section",
+          "id": "request",
+          "path": "#request"
+        }
+      },
+      {
+        "container": "div > section > div > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(5)",
+        "childTag": "div",
+        "count": 5,
+        "columns": 2,
+        "rows": 4,
+        "columnGaps": [
+          -360.84
+        ],
+        "rowGaps": [
+          0,
+          0,
+          47.25
+        ],
+        "cardBox": {
+          "x": 695.16,
+          "y": 2968.3,
+          "w": 360.84,
+          "h": 49.25
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#b37k14 > div > section"
+        }
+      },
+      {
+        "container": "#b37k14 > div > section > div > div:nth-of-type(3) > div:nth-of-type(2)",
+        "childTag": "div",
+        "count": 5,
+        "columns": 2,
+        "rows": 3,
+        "columnGaps": [
+          -360.84
+        ],
+        "rowGaps": [
+          0.01,
+          0
+        ],
+        "cardBox": {
+          "x": 695.16,
+          "y": 2913.95,
+          "w": 360.84,
+          "h": 26.34
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(2)"
+        }
+      }
+    ],
+    "catalog": {
+      "error": "not run"
+    }
+  },
+  {
+    "viewport": "1024x768",
+    "label": "laptop",
+    "theme": "light",
+    "url": "https://forma-visuvate.framer.website/integrations",
+    "title": "Forma Integrations — Email, chat, calendar, code, and more",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "IntegrationsConnect the appsyour team already usesMessages, calendar events, fil",
+        "box": {
+          "x": 42,
+          "y": 69.7,
+          "w": 940,
+          "h": 331.77
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "AllCommunicationCalendar & meetingsDocs & filesPlanning & developmentDesign12 in",
+        "box": {
+          "x": 0,
+          "y": 401.47,
+          "w": 1024,
+          "h": 1090.47
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "How connecting worksThree steps, no admin setupAnyone with access to an app can ",
+        "box": {
+          "x": 0,
+          "y": 1491.94,
+          "w": 1024,
+          "h": 708.5
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": "request",
+        "text": "Request an integrationMissing an app you rely on?We use requests to decide which",
+        "box": {
+          "x": 0,
+          "y": 2200.44,
+          "w": 1024,
+          "h": 716.58
+        }
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 2917.02,
+          "w": 1024,
+          "h": 906.16
+        }
+      },
+      {
+        "index": 5,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 3823.17,
+          "w": 1024,
+          "h": 810.16
+        }
+      }
+    ],
+    "headingCount": 22,
+    "svgCount": 46,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 889,
+    "outlineTruncated": false,
+    "trackedStyles": 534,
+    "keyframes": 1,
+    "waapiSeen": 26,
+    "animateCalls": 27,
+    "ioCreated": 2,
+    "mutations": 1473,
+    "perfEntries": 7,
+    "liveAnimations": 0,
+    "overflowX": 0,
+    "consoleErrors": [],
+    "controls": {
+      "buttons": 20,
+      "inputs": 4,
+      "links": 24,
+      "tabs": 0
+    },
+    "gridCandidates": 11,
+    "grids": [
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(2)",
+        "childTag": "section",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          0,
+          0
+        ],
+        "cardBox": {
+          "x": 0,
+          "y": 401.47,
+          "w": 1024,
+          "h": 1090.47
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(1)"
+        }
+      },
+      {
+        "container": "#b37k14 > div > section > div",
+        "childTag": "div",
+        "count": 3,
+        "columns": 3,
+        "rows": 1,
+        "columnGaps": [
+          -940,
+          -891.41
+        ],
+        "rowGaps": [],
+        "cardBox": {
+          "x": 42,
+          "y": 2997.02,
+          "w": 940,
+          "h": 746.16
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#b37k14 > div > section"
+        }
+      },
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer > div",
+        "childTag": "div",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          0.01,
+          0
+        ],
+        "cardBox": {
+          "x": 24,
+          "y": 3919.17,
+          "w": 976,
+          "h": 498.45
+        },
+        "band": {
+          "tag": "footer",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer"
+        }
+      },
+      {
+        "container": "#request > div > form",
+        "childTag": "label",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          16,
+          16
+        ],
+        "cardBox": {
+          "x": 71,
+          "y": 2472.25,
+          "w": 882,
+          "h": 76.92
+        },
+        "band": {
+          "tag": "section",
+          "id": "request",
+          "path": "#request"
+        }
+      },
+      {
+        "container": "div:nth-of-type(5) > div > footer > div > div:nth-of-type(1) > div:nth-of-type(2)",
+        "childTag": "nav",
+        "count": 4,
+        "columns": 4,
+        "rows": 1,
+        "columnGaps": [
+          24
+        ],
+        "rowGaps": [],
+        "cardBox": {
+          "x": 24,
+          "y": 4118.47,
+          "w": 226,
+          "h": 219.16
+        },
+        "band": {
+          "tag": "footer",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer"
+        }
+      },
+      {
+        "container": "section:nth-of-type(2) > div > div:nth-of-type(3) > div:nth-of-type(1) > div > div",
+        "childTag": "div",
+        "count": 5,
+        "columns": 1,
+        "rows": 5,
+        "columnGaps": [],
+        "rowGaps": [
+          0,
+          0,
+          -0.01,
+          0
+        ],
+        "cardBox": {
+          "x": 71,
+          "y": 1742.33,
+          "w": 882,
+          "h": 24.8
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(2)"
+        }
+      }
+    ],
+    "catalog": {
+      "error": "not run"
+    }
+  },
+  {
+    "viewport": "1024x768",
+    "label": "laptop",
+    "theme": "dark",
+    "url": "https://forma-visuvate.framer.website/integrations",
+    "title": "Forma Integrations — Email, chat, calendar, code, and more",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "IntegrationsConnect the appsyour team already usesMessages, calendar events, fil",
+        "box": {
+          "x": 42,
+          "y": 69.7,
+          "w": 940,
+          "h": 331.77
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "AllCommunicationCalendar & meetingsDocs & filesPlanning & developmentDesign12 in",
+        "box": {
+          "x": 0,
+          "y": 401.47,
+          "w": 1024,
+          "h": 1090.47
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "How connecting worksThree steps, no admin setupAnyone with access to an app can ",
+        "box": {
+          "x": 0,
+          "y": 1491.94,
+          "w": 1024,
+          "h": 708.5
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": "request",
+        "text": "Request an integrationMissing an app you rely on?We use requests to decide which",
+        "box": {
+          "x": 0,
+          "y": 2200.44,
+          "w": 1024,
+          "h": 716.58
+        }
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 2917.02,
+          "w": 1024,
+          "h": 906.16
+        }
+      },
+      {
+        "index": 5,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 3823.17,
+          "w": 1024,
+          "h": 810.16
+        }
+      }
+    ],
+    "headingCount": 22,
+    "svgCount": 46,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 889,
+    "outlineTruncated": false,
+    "trackedStyles": 534,
+    "keyframes": 1,
+    "waapiSeen": 40,
+    "animateCalls": 27,
+    "ioCreated": 2,
+    "mutations": 1467,
+    "perfEntries": 7,
+    "liveAnimations": 0,
+    "overflowX": 0,
+    "consoleErrors": [],
+    "controls": {
+      "buttons": 20,
+      "inputs": 4,
+      "links": 24,
+      "tabs": 0
+    },
+    "gridCandidates": 11,
+    "grids": [
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(2)",
+        "childTag": "section",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          0,
+          0
+        ],
+        "cardBox": {
+          "x": 0,
+          "y": 401.47,
+          "w": 1024,
+          "h": 1090.47
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(1)"
+        }
+      },
+      {
+        "container": "#b37k14 > div > section > div",
+        "childTag": "div",
+        "count": 3,
+        "columns": 3,
+        "rows": 1,
+        "columnGaps": [
+          -940,
+          -891.41
+        ],
+        "rowGaps": [],
+        "cardBox": {
+          "x": 42,
+          "y": 2997.02,
+          "w": 940,
+          "h": 746.16
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#b37k14 > div > section"
+        }
+      },
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer > div",
+        "childTag": "div",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          0.01,
+          0
+        ],
+        "cardBox": {
+          "x": 24,
+          "y": 3919.17,
+          "w": 976,
+          "h": 498.45
+        },
+        "band": {
+          "tag": "footer",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer"
+        }
+      },
+      {
+        "container": "#request > div > form",
+        "childTag": "label",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          16,
+          16
+        ],
+        "cardBox": {
+          "x": 71,
+          "y": 2472.25,
+          "w": 882,
+          "h": 76.92
+        },
+        "band": {
+          "tag": "section",
+          "id": "request",
+          "path": "#request"
+        }
+      },
+      {
+        "container": "div:nth-of-type(5) > div > footer > div > div:nth-of-type(1) > div:nth-of-type(2)",
+        "childTag": "nav",
+        "count": 4,
+        "columns": 4,
+        "rows": 1,
+        "columnGaps": [
+          24
+        ],
+        "rowGaps": [],
+        "cardBox": {
+          "x": 24,
+          "y": 4118.47,
+          "w": 226,
+          "h": 219.16
+        },
+        "band": {
+          "tag": "footer",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer"
+        }
+      },
+      {
+        "container": "section:nth-of-type(2) > div > div:nth-of-type(3) > div:nth-of-type(1) > div > div",
+        "childTag": "div",
+        "count": 5,
+        "columns": 1,
+        "rows": 5,
+        "columnGaps": [],
+        "rowGaps": [
+          0,
+          0,
+          -0.01,
+          0
+        ],
+        "cardBox": {
+          "x": 71,
+          "y": 1742.33,
+          "w": 882,
+          "h": 24.8
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(2)"
+        }
+      }
+    ],
+    "catalog": {
+      "error": "not run"
+    }
+  },
+  {
+    "viewport": "768x1024",
+    "label": "tablet",
+    "theme": "light",
+    "url": "https://forma-visuvate.framer.website/integrations",
+    "title": "Forma Integrations — Email, chat, calendar, code, and more",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "IntegrationsConnect the appsyour team already usesMessages, calendar events, fil",
+        "box": {
+          "x": 16,
+          "y": 65.7,
+          "w": 736,
+          "h": 303.02
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "AllCommunicationCalendar & meetingsDocs & filesPlanning & developmentDesign12 in",
+        "box": {
+          "x": 0,
+          "y": 368.72,
+          "w": 768,
+          "h": 2096.45
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "How connecting worksThree steps, no admin setupAnyone with access to an app can ",
+        "box": {
+          "x": 0,
+          "y": 2465.17,
+          "w": 768,
+          "h": 693.3
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": "request",
+        "text": "Request an integrationMissing an app you rely on?We use requests to decide which",
+        "box": {
+          "x": 0,
+          "y": 3158.47,
+          "w": 768,
+          "h": 692.58
+        }
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 3851.05,
+          "w": 768,
+          "h": 827.52
+        }
+      },
+      {
+        "index": 5,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 4678.56,
+          "w": 768,
+          "h": 745.39
+        }
+      }
+    ],
+    "headingCount": 22,
+    "svgCount": 46,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 866,
+    "outlineTruncated": false,
+    "trackedStyles": 524,
+    "keyframes": 1,
+    "waapiSeen": 26,
+    "animateCalls": 27,
+    "ioCreated": 2,
+    "mutations": 4057,
+    "perfEntries": 6,
+    "liveAnimations": 0,
+    "overflowX": 0,
+    "consoleErrors": [],
+    "controls": {
+      "buttons": 20,
+      "inputs": 4,
+      "links": 19,
+      "tabs": 0
+    },
+    "gridCandidates": 12,
+    "grids": [
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(2)",
+        "childTag": "section",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          0,
+          0
+        ],
+        "cardBox": {
+          "x": 0,
+          "y": 368.72,
+          "w": 768,
+          "h": 2096.45
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(1)"
+        }
+      },
+      {
+        "container": "#b37k14 > div > section > div",
+        "childTag": "div",
+        "count": 3,
+        "columns": 3,
+        "rows": 1,
+        "columnGaps": [
+          -736,
+          -716
+        ],
+        "rowGaps": [],
+        "cardBox": {
+          "x": 16,
+          "y": 3911.05,
+          "w": 736,
+          "h": 703.52
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#b37k14 > div > section"
+        }
+      },
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer > div",
+        "childTag": "div",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          0.01,
+          -0.01
+        ],
+        "cardBox": {
+          "x": 16,
+          "y": 4734.56,
+          "w": 736,
+          "h": 531.23
+        },
+        "band": {
+          "tag": "footer",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer"
+        }
+      },
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(1) > div > div:nth-of-type(2)",
+        "childTag": "div",
+        "count": 13,
+        "columns": 1,
+        "rows": 13,
+        "columnGaps": [],
+        "rowGaps": [
+          14,
+          14,
+          14,
+          14.01,
+          14,
+          14.01,
+          14,
+          14,
+          14.01,
+          14,
+          14,
+          14.01
+        ],
+        "cardBox": {
+          "x": 16,
+          "y": 516.13,
+          "w": 736,
+          "h": 40.92
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(1)"
+        }
+      },
+      {
+        "container": "div:nth-of-type(5) > div > footer > div > div:nth-of-type(1) > div:nth-of-type(2)",
+        "childTag": "nav",
+        "count": 4,
+        "columns": 2,
+        "rows": 2,
+        "columnGaps": [
+          20
+        ],
+        "rowGaps": [
+          32
+        ],
+        "cardBox": {
+          "x": 16,
+          "y": 4916.36,
+          "w": 358,
+          "h": 162.8
+        },
+        "band": {
+          "tag": "footer",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer"
+        }
+      },
+      {
+        "container": "#request > div > form",
+        "childTag": "label",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          16,
+          16.01
+        ],
+        "cardBox": {
+          "x": 37,
+          "y": 3414.28,
+          "w": 694,
+          "h": 76.92
+        },
+        "band": {
+          "tag": "section",
+          "id": "request",
+          "path": "#request"
+        }
+      }
+    ],
+    "catalog": {
+      "error": "not run"
+    }
+  },
+  {
+    "viewport": "768x1024",
+    "label": "tablet",
+    "theme": "dark",
+    "url": "https://forma-visuvate.framer.website/integrations",
+    "title": "Forma Integrations — Email, chat, calendar, code, and more",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "IntegrationsConnect the appsyour team already usesMessages, calendar events, fil",
+        "box": {
+          "x": 16,
+          "y": 65.7,
+          "w": 736,
+          "h": 303.02
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "AllCommunicationCalendar & meetingsDocs & filesPlanning & developmentDesign12 in",
+        "box": {
+          "x": 0,
+          "y": 368.72,
+          "w": 768,
+          "h": 2096.45
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "How connecting worksThree steps, no admin setupAnyone with access to an app can ",
+        "box": {
+          "x": 0,
+          "y": 2465.17,
+          "w": 768,
+          "h": 693.3
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": "request",
+        "text": "Request an integrationMissing an app you rely on?We use requests to decide which",
+        "box": {
+          "x": 0,
+          "y": 3158.47,
+          "w": 768,
+          "h": 692.58
+        }
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 3851.05,
+          "w": 768,
+          "h": 827.52
+        }
+      },
+      {
+        "index": 5,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 4678.56,
+          "w": 768,
+          "h": 745.39
+        }
+      }
+    ],
+    "headingCount": 22,
+    "svgCount": 46,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 866,
+    "outlineTruncated": false,
+    "trackedStyles": 524,
+    "keyframes": 1,
+    "waapiSeen": 40,
+    "animateCalls": 27,
+    "ioCreated": 2,
+    "mutations": 4057,
+    "perfEntries": 8,
+    "liveAnimations": 0,
+    "overflowX": 0,
+    "consoleErrors": [],
+    "controls": {
+      "buttons": 20,
+      "inputs": 4,
+      "links": 19,
+      "tabs": 0
+    },
+    "gridCandidates": 12,
+    "grids": [
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(2)",
+        "childTag": "section",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          0,
+          0
+        ],
+        "cardBox": {
+          "x": 0,
+          "y": 368.72,
+          "w": 768,
+          "h": 2096.45
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(1)"
+        }
+      },
+      {
+        "container": "#b37k14 > div > section > div",
+        "childTag": "div",
+        "count": 3,
+        "columns": 3,
+        "rows": 1,
+        "columnGaps": [
+          -736,
+          -716
+        ],
+        "rowGaps": [],
+        "cardBox": {
+          "x": 16,
+          "y": 3911.05,
+          "w": 736,
+          "h": 703.52
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#b37k14 > div > section"
+        }
+      },
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer > div",
+        "childTag": "div",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          0.01,
+          -0.01
+        ],
+        "cardBox": {
+          "x": 16,
+          "y": 4734.56,
+          "w": 736,
+          "h": 531.23
+        },
+        "band": {
+          "tag": "footer",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer"
+        }
+      },
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(1) > div > div:nth-of-type(2)",
+        "childTag": "div",
+        "count": 13,
+        "columns": 1,
+        "rows": 13,
+        "columnGaps": [],
+        "rowGaps": [
+          14,
+          14,
+          14,
+          14.01,
+          14,
+          14.01,
+          14,
+          14,
+          14.01,
+          14,
+          14,
+          14.01
+        ],
+        "cardBox": {
+          "x": 16,
+          "y": 516.13,
+          "w": 736,
+          "h": 40.92
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(1)"
+        }
+      },
+      {
+        "container": "div:nth-of-type(5) > div > footer > div > div:nth-of-type(1) > div:nth-of-type(2)",
+        "childTag": "nav",
+        "count": 4,
+        "columns": 2,
+        "rows": 2,
+        "columnGaps": [
+          20
+        ],
+        "rowGaps": [
+          32
+        ],
+        "cardBox": {
+          "x": 16,
+          "y": 4916.36,
+          "w": 358,
+          "h": 162.8
+        },
+        "band": {
+          "tag": "footer",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer"
+        }
+      },
+      {
+        "container": "#request > div > form",
+        "childTag": "label",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          16,
+          16.01
+        ],
+        "cardBox": {
+          "x": 37,
+          "y": 3414.28,
+          "w": 694,
+          "h": 76.92
+        },
+        "band": {
+          "tag": "section",
+          "id": "request",
+          "path": "#request"
+        }
+      }
+    ],
+    "catalog": {
+      "error": "not run"
+    }
+  },
+  {
+    "viewport": "390x844",
+    "label": "mobile",
+    "theme": "light",
+    "url": "https://forma-visuvate.framer.website/integrations",
+    "title": "Forma Integrations — Email, chat, calendar, code, and more",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "IntegrationsConnect the appsyour team already usesMessages, calendar events, fil",
+        "box": {
+          "x": 16,
+          "y": 65.7,
+          "w": 358,
+          "h": 375.13
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "AllCommunicationCalendar & meetingsDocs & filesPlanning & developmentDesign12 in",
+        "box": {
+          "x": 0,
+          "y": 440.83,
+          "w": 390,
+          "h": 2329.33
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "How connecting worksThree steps, no admin setupAnyone with access to an app can ",
+        "box": {
+          "x": 0,
+          "y": 2770.16,
+          "w": 390,
+          "h": 852.25
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": "request",
+        "text": "Request an integrationMissing an app you rely on?We use requests to decide which",
+        "box": {
+          "x": 0,
+          "y": 3622.41,
+          "w": 390,
+          "h": 727.78
+        }
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 4350.19,
+          "w": 390,
+          "h": 958.7
+        }
+      },
+      {
+        "index": 5,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 5308.89,
+          "w": 390,
+          "h": 745.39
+        }
+      }
+    ],
+    "headingCount": 22,
+    "svgCount": 46,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 866,
+    "outlineTruncated": false,
+    "trackedStyles": 524,
+    "keyframes": 1,
+    "waapiSeen": 26,
+    "animateCalls": 27,
+    "ioCreated": 2,
+    "mutations": 1409,
+    "perfEntries": 7,
+    "liveAnimations": 0,
+    "overflowX": 0,
+    "consoleErrors": [],
+    "controls": {
+      "buttons": 20,
+      "inputs": 4,
+      "links": 19,
+      "tabs": 0
+    },
+    "gridCandidates": 13,
+    "grids": [
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(2)",
+        "childTag": "section",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          0,
+          0
+        ],
+        "cardBox": {
+          "x": 0,
+          "y": 440.83,
+          "w": 390,
+          "h": 2329.33
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(1)"
+        }
+      },
+      {
+        "container": "#b37k14 > div > section > div",
+        "childTag": "div",
+        "count": 3,
+        "columns": 3,
+        "rows": 1,
+        "columnGaps": [
+          -358,
+          -338
+        ],
+        "rowGaps": [],
+        "cardBox": {
+          "x": 16,
+          "y": 4410.19,
+          "w": 358,
+          "h": 834.7
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#b37k14 > div > section"
+        }
+      },
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer > div",
+        "childTag": "div",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          0.01,
+          -0.01
+        ],
+        "cardBox": {
+          "x": 16,
+          "y": 5364.89,
+          "w": 358,
+          "h": 531.23
+        },
+        "band": {
+          "tag": "footer",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer"
+        }
+      },
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(1) > div > div:nth-of-type(2)",
+        "childTag": "div",
+        "count": 13,
+        "columns": 2,
+        "rows": 12,
+        "columnGaps": [
+          -358
+        ],
+        "rowGaps": [
+          192.14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14.01,
+          14,
+          14,
+          14
+        ],
+        "cardBox": {
+          "x": 16,
+          "y": 633.94,
+          "w": 358,
+          "h": 40.92
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(1)"
+        }
+      },
+      {
+        "container": "div:nth-of-type(5) > div > footer > div > div:nth-of-type(1) > div:nth-of-type(2)",
+        "childTag": "nav",
+        "count": 4,
+        "columns": 2,
+        "rows": 2,
+        "columnGaps": [
+          20
+        ],
+        "rowGaps": [
+          31.99
+        ],
+        "cardBox": {
+          "x": 16,
+          "y": 5546.69,
+          "w": 169,
+          "h": 162.8
+        },
+        "band": {
+          "tag": "footer",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer"
+        }
+      },
+      {
+        "container": "#request > div > form",
+        "childTag": "label",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          16,
+          16.01
+        ],
+        "cardBox": {
+          "x": 37,
+          "y": 3913.42,
+          "w": 316,
+          "h": 76.92
+        },
+        "band": {
+          "tag": "section",
+          "id": "request",
+          "path": "#request"
+        }
+      }
+    ],
+    "catalog": {
+      "cardCount": 12,
+      "tabs": [
+        "All",
+        "Communication",
+        "Calendar & meetings",
+        "Docs & files",
+        "Planning & development",
+        "Design"
+      ],
+      "count": "12 integrations",
+      "firstCard": {
+        "title": "Email",
+        "description": "Turn an email into a task with the thread attached.",
+        "chain": [
+          {
+            "level": 1,
+            "tag": "div",
+            "box": {
+              "x": 76,
+              "y": 706.86,
+              "w": 262,
+              "h": 21
+            },
+            "radius": "0px",
+            "border": "0px rgb(0, 0, 0)",
+            "bg": "rgba(0, 0, 0, 0)",
+            "pad": "0px"
+          },
+          {
+            "level": 2,
+            "tag": "div",
+            "box": {
+              "x": 76,
+              "y": 706.86,
+              "w": 262,
+              "h": 67.09
+            },
+            "radius": "0px",
+            "border": "0px rgb(0, 0, 0)",
+            "bg": "rgba(0, 0, 0, 0)",
+            "pad": "0px"
+          },
+          {
+            "level": 3,
+            "tag": "div",
+            "box": {
+              "x": 34,
+              "y": 706.86,
+              "w": 322,
+              "h": 67.09
+            },
+            "radius": "0px",
+            "border": "0px rgb(0, 0, 0)",
+            "bg": "rgba(0, 0, 0, 0)",
+            "pad": "0px"
+          },
+          {
+            "level": 4,
+            "tag": "button",
+            "box": {
+              "x": 16,
+              "y": 688.86,
+              "w": 358,
+              "h": 164.14
+            },
+            "radius": "14px",
+            "border": "0px rgb(0, 0, 0)",
+            "bg": "rgb(255, 255, 255)",
+            "pad": "18px"
+          },
+          {
+            "level": 5,
+            "tag": "div",
+            "box": {
+              "x": 16,
+              "y": 688.86,
+              "w": 358,
+              "h": 164.14
+            },
+            "radius": "0px",
+            "border": "0px rgb(0, 0, 0)",
+            "bg": "rgba(0, 0, 0, 0)",
+            "pad": "0px"
+          }
+        ]
+      },
+      "tabClickCounts": [
+        {
+          "tab": "All",
+          "count": "12 integrations",
+          "titles": 12
+        },
+        {
+          "tab": "Communication",
+          "count": "12 integrations",
+          "titles": 12
+        },
+        {
+          "tab": "Calendar & meetings",
+          "count": "12 integrations",
+          "titles": 12
+        },
+        {
+          "tab": "Docs & files",
+          "count": "12 integrations",
+          "titles": 12
+        },
+        {
+          "tab": "Planning & development",
+          "count": "12 integrations",
+          "titles": 12
+        },
+        {
+          "tab": "Design",
+          "count": "12 integrations",
+          "titles": 12
+        }
+      ],
+      "searchCounts": [
+        {
+          "term": "chat",
+          "count": "2 integrations",
+          "empty": null,
+          "titles": [
+            "Chat",
+            "Team Chat"
+          ]
+        },
+        {
+          "term": "email",
+          "count": "1 integration",
+          "empty": null,
+          "titles": [
+            "Email"
+          ]
+        },
+        {
+          "term": "docs",
+          "count": "3 integrations",
+          "empty": null,
+          "titles": [
+            "Docs",
+            "Cloud Drive",
+            "File Storage"
+          ]
+        },
+        {
+          "term": "slack",
+          "count": null,
+          "empty": "AllCommunicationCalendar & meetingsDocs & filesPlanning & developmentDesignNo integrations match your searchTell us which app you use and we will let you know if we add it.Request an integration",
+          "titles": [
+            "No integrations match your search"
+          ]
+        },
+        {
+          "term": "zzzz",
+          "count": null,
+          "empty": "AllCommunicationCalendar & meetingsDocs & filesPlanning & developmentDesignNo integrations match your searchTell us which app you use and we will let you know if we add it.Request an integration",
+          "titles": [
+            "No integrations match your search"
+          ]
+        }
+      ],
+      "cardClickChanges": {
+        "urlChanged": false,
+        "dialogsBefore": 0,
+        "dialogsAfter": 0
+      },
+      "hoverChanges": 0,
+      "hoverSettledChanges": 0
+    }
+  },
+  {
+    "viewport": "390x844",
+    "label": "mobile",
+    "theme": "dark",
+    "url": "https://forma-visuvate.framer.website/integrations",
+    "title": "Forma Integrations — Email, chat, calendar, code, and more",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "IntegrationsConnect the appsyour team already usesMessages, calendar events, fil",
+        "box": {
+          "x": 16,
+          "y": 65.7,
+          "w": 358,
+          "h": 375.13
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "AllCommunicationCalendar & meetingsDocs & filesPlanning & developmentDesign12 in",
+        "box": {
+          "x": 0,
+          "y": 440.83,
+          "w": 390,
+          "h": 2329.33
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "How connecting worksThree steps, no admin setupAnyone with access to an app can ",
+        "box": {
+          "x": 0,
+          "y": 2770.16,
+          "w": 390,
+          "h": 852.25
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": "request",
+        "text": "Request an integrationMissing an app you rely on?We use requests to decide which",
+        "box": {
+          "x": 0,
+          "y": 3622.41,
+          "w": 390,
+          "h": 727.78
+        }
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 4350.19,
+          "w": 390,
+          "h": 958.7
+        }
+      },
+      {
+        "index": 5,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 5308.89,
+          "w": 390,
+          "h": 745.39
+        }
+      }
+    ],
+    "headingCount": 22,
+    "svgCount": 46,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 866,
+    "outlineTruncated": false,
+    "trackedStyles": 524,
+    "keyframes": 1,
+    "waapiSeen": 39,
+    "animateCalls": 27,
+    "ioCreated": 2,
+    "mutations": 1415,
+    "perfEntries": 7,
+    "liveAnimations": 0,
+    "overflowX": 0,
+    "consoleErrors": [],
+    "controls": {
+      "buttons": 20,
+      "inputs": 4,
+      "links": 19,
+      "tabs": 0
+    },
+    "gridCandidates": 13,
+    "grids": [
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(2)",
+        "childTag": "section",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          0,
+          0
+        ],
+        "cardBox": {
+          "x": 0,
+          "y": 440.83,
+          "w": 390,
+          "h": 2329.33
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(1)"
+        }
+      },
+      {
+        "container": "#b37k14 > div > section > div",
+        "childTag": "div",
+        "count": 3,
+        "columns": 3,
+        "rows": 1,
+        "columnGaps": [
+          -358,
+          -338
+        ],
+        "rowGaps": [],
+        "cardBox": {
+          "x": 16,
+          "y": 4410.19,
+          "w": 358,
+          "h": 834.7
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#b37k14 > div > section"
+        }
+      },
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer > div",
+        "childTag": "div",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          0.01,
+          -0.01
+        ],
+        "cardBox": {
+          "x": 16,
+          "y": 5364.89,
+          "w": 358,
+          "h": 531.23
+        },
+        "band": {
+          "tag": "footer",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer"
+        }
+      },
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(1) > div > div:nth-of-type(2)",
+        "childTag": "div",
+        "count": 13,
+        "columns": 2,
+        "rows": 12,
+        "columnGaps": [
+          -358
+        ],
+        "rowGaps": [
+          192.14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14.01,
+          14,
+          14,
+          14
+        ],
+        "cardBox": {
+          "x": 16,
+          "y": 633.94,
+          "w": 358,
+          "h": 40.92
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(1)"
+        }
+      },
+      {
+        "container": "div:nth-of-type(5) > div > footer > div > div:nth-of-type(1) > div:nth-of-type(2)",
+        "childTag": "nav",
+        "count": 4,
+        "columns": 2,
+        "rows": 2,
+        "columnGaps": [
+          20
+        ],
+        "rowGaps": [
+          31.99
+        ],
+        "cardBox": {
+          "x": 16,
+          "y": 5546.69,
+          "w": 169,
+          "h": 162.8
+        },
+        "band": {
+          "tag": "footer",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer"
+        }
+      },
+      {
+        "container": "#request > div > form",
+        "childTag": "label",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          16,
+          16.01
+        ],
+        "cardBox": {
+          "x": 37,
+          "y": 3913.42,
+          "w": 316,
+          "h": 76.92
+        },
+        "band": {
+          "tag": "section",
+          "id": "request",
+          "path": "#request"
+        }
+      }
+    ],
+    "catalog": {
+      "error": "not run"
+    }
+  },
+  {
+    "viewport": "375x812",
+    "label": "mobile-small",
+    "theme": "light",
+    "url": "https://forma-visuvate.framer.website/integrations",
+    "title": "Forma Integrations — Email, chat, calendar, code, and more",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "IntegrationsConnect the appsyour team already usesMessages, calendar events, fil",
+        "box": {
+          "x": 16,
+          "y": 65.7,
+          "w": 343,
+          "h": 420
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "AllCommunicationCalendar & meetingsDocs & filesPlanning & developmentDesign12 in",
+        "box": {
+          "x": 0,
+          "y": 485.7,
+          "w": 375,
+          "h": 2329.33
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "How connecting worksThree steps, no admin setupAnyone with access to an app can ",
+        "box": {
+          "x": 0,
+          "y": 2815.03,
+          "w": 375,
+          "h": 852.25
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": "request",
+        "text": "Request an integrationMissing an app you rely on?We use requests to decide which",
+        "box": {
+          "x": 0,
+          "y": 3667.28,
+          "w": 375,
+          "h": 727.78
+        }
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 4395.06,
+          "w": 375,
+          "h": 958.7
+        }
+      },
+      {
+        "index": 5,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 5353.77,
+          "w": 375,
+          "h": 768.64
+        }
+      }
+    ],
+    "headingCount": 22,
+    "svgCount": 46,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 866,
+    "outlineTruncated": false,
+    "trackedStyles": 524,
+    "keyframes": 1,
+    "waapiSeen": 26,
+    "animateCalls": 27,
+    "ioCreated": 2,
+    "mutations": 1414,
+    "perfEntries": 8,
+    "liveAnimations": 0,
+    "overflowX": 0,
+    "consoleErrors": [],
+    "controls": {
+      "buttons": 20,
+      "inputs": 4,
+      "links": 19,
+      "tabs": 0
+    },
+    "gridCandidates": 13,
+    "grids": [
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(2)",
+        "childTag": "section",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          0,
+          0
+        ],
+        "cardBox": {
+          "x": 0,
+          "y": 485.7,
+          "w": 375,
+          "h": 2329.33
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(1)"
+        }
+      },
+      {
+        "container": "#b37k14 > div > section > div",
+        "childTag": "div",
+        "count": 3,
+        "columns": 3,
+        "rows": 1,
+        "columnGaps": [
+          -343,
+          -323
+        ],
+        "rowGaps": [],
+        "cardBox": {
+          "x": 16,
+          "y": 4455.06,
+          "w": 343,
+          "h": 834.7
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#b37k14 > div > section"
+        }
+      },
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer > div",
+        "childTag": "div",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          0,
+          0
+        ],
+        "cardBox": {
+          "x": 16,
+          "y": 5409.77,
+          "w": 343,
+          "h": 554.48
+        },
+        "band": {
+          "tag": "footer",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer"
+        }
+      },
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(1) > div > div:nth-of-type(2)",
+        "childTag": "div",
+        "count": 13,
+        "columns": 2,
+        "rows": 12,
+        "columnGaps": [
+          -343
+        ],
+        "rowGaps": [
+          192.15,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14.01,
+          14,
+          14
+        ],
+        "cardBox": {
+          "x": 16,
+          "y": 678.81,
+          "w": 343,
+          "h": 40.92
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(1)"
+        }
+      },
+      {
+        "container": "div:nth-of-type(5) > div > footer > div > div:nth-of-type(1) > div:nth-of-type(2)",
+        "childTag": "nav",
+        "count": 4,
+        "columns": 2,
+        "rows": 2,
+        "columnGaps": [
+          20
+        ],
+        "rowGaps": [
+          32
+        ],
+        "cardBox": {
+          "x": 16,
+          "y": 5614.81,
+          "w": 161.5,
+          "h": 162.8
+        },
+        "band": {
+          "tag": "footer",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer"
+        }
+      },
+      {
+        "container": "#request > div > form",
+        "childTag": "label",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          16,
+          16
+        ],
+        "cardBox": {
+          "x": 37,
+          "y": 3958.3,
+          "w": 301,
+          "h": 76.92
+        },
+        "band": {
+          "tag": "section",
+          "id": "request",
+          "path": "#request"
+        }
+      }
+    ],
+    "catalog": {
+      "error": "not run"
+    }
+  },
+  {
+    "viewport": "375x812",
+    "label": "mobile-small",
+    "theme": "dark",
+    "url": "https://forma-visuvate.framer.website/integrations",
+    "title": "Forma Integrations — Email, chat, calendar, code, and more",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "IntegrationsConnect the appsyour team already usesMessages, calendar events, fil",
+        "box": {
+          "x": 16,
+          "y": 65.7,
+          "w": 343,
+          "h": 420
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "AllCommunicationCalendar & meetingsDocs & filesPlanning & developmentDesign12 in",
+        "box": {
+          "x": 0,
+          "y": 485.7,
+          "w": 375,
+          "h": 2329.33
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "How connecting worksThree steps, no admin setupAnyone with access to an app can ",
+        "box": {
+          "x": 0,
+          "y": 2815.03,
+          "w": 375,
+          "h": 852.25
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": "request",
+        "text": "Request an integrationMissing an app you rely on?We use requests to decide which",
+        "box": {
+          "x": 0,
+          "y": 3667.28,
+          "w": 375,
+          "h": 727.78
+        }
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 4395.06,
+          "w": 375,
+          "h": 958.7
+        }
+      },
+      {
+        "index": 5,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 5353.77,
+          "w": 375,
+          "h": 768.64
+        }
+      }
+    ],
+    "headingCount": 22,
+    "svgCount": 46,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 866,
+    "outlineTruncated": false,
+    "trackedStyles": 524,
+    "keyframes": 1,
+    "waapiSeen": 39,
+    "animateCalls": 27,
+    "ioCreated": 2,
+    "mutations": 1418,
+    "perfEntries": 7,
+    "liveAnimations": 0,
+    "overflowX": 0,
+    "consoleErrors": [],
+    "controls": {
+      "buttons": 20,
+      "inputs": 4,
+      "links": 19,
+      "tabs": 0
+    },
+    "gridCandidates": 13,
+    "grids": [
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(2)",
+        "childTag": "section",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          0,
+          0
+        ],
+        "cardBox": {
+          "x": 0,
+          "y": 485.7,
+          "w": 375,
+          "h": 2329.33
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(1)"
+        }
+      },
+      {
+        "container": "#b37k14 > div > section > div",
+        "childTag": "div",
+        "count": 3,
+        "columns": 3,
+        "rows": 1,
+        "columnGaps": [
+          -343,
+          -323
+        ],
+        "rowGaps": [],
+        "cardBox": {
+          "x": 16,
+          "y": 4455.06,
+          "w": 343,
+          "h": 834.7
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#b37k14 > div > section"
+        }
+      },
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer > div",
+        "childTag": "div",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          0,
+          0
+        ],
+        "cardBox": {
+          "x": 16,
+          "y": 5409.77,
+          "w": 343,
+          "h": 554.48
+        },
+        "band": {
+          "tag": "footer",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer"
+        }
+      },
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(1) > div > div:nth-of-type(2)",
+        "childTag": "div",
+        "count": 13,
+        "columns": 2,
+        "rows": 12,
+        "columnGaps": [
+          -343
+        ],
+        "rowGaps": [
+          192.15,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14.01,
+          14,
+          14
+        ],
+        "cardBox": {
+          "x": 16,
+          "y": 678.81,
+          "w": 343,
+          "h": 40.92
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(1)"
+        }
+      },
+      {
+        "container": "div:nth-of-type(5) > div > footer > div > div:nth-of-type(1) > div:nth-of-type(2)",
+        "childTag": "nav",
+        "count": 4,
+        "columns": 2,
+        "rows": 2,
+        "columnGaps": [
+          20
+        ],
+        "rowGaps": [
+          32
+        ],
+        "cardBox": {
+          "x": 16,
+          "y": 5614.81,
+          "w": 161.5,
+          "h": 162.8
+        },
+        "band": {
+          "tag": "footer",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer"
+        }
+      },
+      {
+        "container": "#request > div > form",
+        "childTag": "label",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          16,
+          16
+        ],
+        "cardBox": {
+          "x": 37,
+          "y": 3958.3,
+          "w": 301,
+          "h": 76.92
+        },
+        "band": {
+          "tag": "section",
+          "id": "request",
+          "path": "#request"
+        }
+      }
+    ],
+    "catalog": {
+      "error": "not run"
+    }
+  },
+  {
+    "viewport": "320x700",
+    "label": "mobile-narrow",
+    "theme": "light",
+    "url": "https://forma-visuvate.framer.website/integrations",
+    "title": "Forma Integrations — Email, chat, calendar, code, and more",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "IntegrationsConnect the appsyour team already usesMessages, calendar events, fil",
+        "box": {
+          "x": 16,
+          "y": 65.7,
+          "w": 288,
+          "h": 447.23
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "AllCommunicationCalendar & meetingsDocs & filesPlanning & developmentDesign12 in",
+        "box": {
+          "x": 0,
+          "y": 512.94,
+          "w": 320,
+          "h": 2391.72
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "How connecting worksThree steps, no admin setupAnyone with access to an app can ",
+        "box": {
+          "x": 0,
+          "y": 2904.66,
+          "w": 320,
+          "h": 877
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": "request",
+        "text": "Request an integrationMissing an app you rely on?We use requests to decide which",
+        "box": {
+          "x": 0,
+          "y": 3781.66,
+          "w": 320,
+          "h": 727.78
+        }
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 4509.44,
+          "w": 320,
+          "h": 1045.52
+        }
+      },
+      {
+        "index": 5,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 5554.95,
+          "w": 320,
+          "h": 798.8
+        }
+      }
+    ],
+    "headingCount": 22,
+    "svgCount": 46,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 866,
+    "outlineTruncated": false,
+    "trackedStyles": 524,
+    "keyframes": 1,
+    "waapiSeen": 26,
+    "animateCalls": 27,
+    "ioCreated": 2,
+    "mutations": 1410,
+    "perfEntries": 8,
+    "liveAnimations": 0,
+    "overflowX": 0,
+    "consoleErrors": [],
+    "controls": {
+      "buttons": 20,
+      "inputs": 4,
+      "links": 19,
+      "tabs": 0
+    },
+    "gridCandidates": 13,
+    "grids": [
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(2)",
+        "childTag": "section",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          0,
+          0
+        ],
+        "cardBox": {
+          "x": 0,
+          "y": 512.94,
+          "w": 320,
+          "h": 2391.72
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(1)"
+        }
+      },
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer > div",
+        "childTag": "div",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          0.01,
+          0
+        ],
+        "cardBox": {
+          "x": 16,
+          "y": 5610.95,
+          "w": 288,
+          "h": 554.48
+        },
+        "band": {
+          "tag": "footer",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer"
+        }
+      },
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(1) > div > div:nth-of-type(2)",
+        "childTag": "div",
+        "count": 13,
+        "columns": 2,
+        "rows": 12,
+        "columnGaps": [
+          -288
+        ],
+        "rowGaps": [
+          192.14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14.01,
+          14
+        ],
+        "cardBox": {
+          "x": 16,
+          "y": 706.05,
+          "w": 288,
+          "h": 40.92
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(1)"
+        }
+      },
+      {
+        "container": "div:nth-of-type(5) > div > footer > div > div:nth-of-type(1) > div:nth-of-type(2)",
+        "childTag": "nav",
+        "count": 4,
+        "columns": 2,
+        "rows": 2,
+        "columnGaps": [
+          20
+        ],
+        "rowGaps": [
+          32
+        ],
+        "cardBox": {
+          "x": 16,
+          "y": 5816,
+          "w": 134,
+          "h": 162.8
+        },
+        "band": {
+          "tag": "footer",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer"
+        }
+      },
+      {
+        "container": "div > section > div > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(5)",
+        "childTag": "div",
+        "count": 5,
+        "columns": 2,
+        "rows": 4,
+        "columnGaps": [
+          -212
+        ],
+        "rowGaps": [
+          0,
+          -0.01,
+          67.41
+        ],
+        "cardBox": {
+          "x": 54,
+          "y": 5172.03,
+          "w": 212,
+          "h": 69.41
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#b37k14 > div > section"
+        }
+      },
+      {
+        "container": "#request > div > form",
+        "childTag": "label",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          16,
+          16.01
+        ],
+        "cardBox": {
+          "x": 37,
+          "y": 4072.67,
+          "w": 246,
+          "h": 76.92
+        },
+        "band": {
+          "tag": "section",
+          "id": "request",
+          "path": "#request"
+        }
+      }
+    ],
+    "catalog": {
+      "error": "not run"
+    }
+  },
+  {
+    "viewport": "320x700",
+    "label": "mobile-narrow",
+    "theme": "dark",
+    "url": "https://forma-visuvate.framer.website/integrations",
+    "title": "Forma Integrations — Email, chat, calendar, code, and more",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "id": null,
+        "text": "IntegrationsConnect the appsyour team already usesMessages, calendar events, fil",
+        "box": {
+          "x": 16,
+          "y": 65.7,
+          "w": 288,
+          "h": 447.23
+        }
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "AllCommunicationCalendar & meetingsDocs & filesPlanning & developmentDesign12 in",
+        "box": {
+          "x": 0,
+          "y": 512.94,
+          "w": 320,
+          "h": 2391.72
+        }
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "How connecting worksThree steps, no admin setupAnyone with access to an app can ",
+        "box": {
+          "x": 0,
+          "y": 2904.66,
+          "w": 320,
+          "h": 877
+        }
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": "request",
+        "text": "Request an integrationMissing an app you rely on?We use requests to decide which",
+        "box": {
+          "x": 0,
+          "y": 3781.66,
+          "w": 320,
+          "h": 727.78
+        }
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 4509.44,
+          "w": 320,
+          "h": 1045.52
+        }
+      },
+      {
+        "index": 5,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 5554.95,
+          "w": 320,
+          "h": 798.8
+        }
+      }
+    ],
+    "headingCount": 22,
+    "svgCount": 46,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "outlineNodes": 866,
+    "outlineTruncated": false,
+    "trackedStyles": 524,
+    "keyframes": 1,
+    "waapiSeen": 39,
+    "animateCalls": 27,
+    "ioCreated": 2,
+    "mutations": 4063,
+    "perfEntries": 8,
+    "liveAnimations": 0,
+    "overflowX": 0,
+    "consoleErrors": [],
+    "controls": {
+      "buttons": 20,
+      "inputs": 4,
+      "links": 19,
+      "tabs": 0
+    },
+    "gridCandidates": 13,
+    "grids": [
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(2)",
+        "childTag": "section",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          0,
+          0
+        ],
+        "cardBox": {
+          "x": 0,
+          "y": 512.94,
+          "w": 320,
+          "h": 2391.72
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(1)"
+        }
+      },
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer > div",
+        "childTag": "div",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          0.01,
+          0
+        ],
+        "cardBox": {
+          "x": 16,
+          "y": 5610.95,
+          "w": 288,
+          "h": 554.48
+        },
+        "band": {
+          "tag": "footer",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer"
+        }
+      },
+      {
+        "container": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(1) > div > div:nth-of-type(2)",
+        "childTag": "div",
+        "count": 13,
+        "columns": 2,
+        "rows": 12,
+        "columnGaps": [
+          -288
+        ],
+        "rowGaps": [
+          192.14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14.01,
+          14
+        ],
+        "cardBox": {
+          "x": 16,
+          "y": 706.05,
+          "w": 288,
+          "h": 40.92
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(2) > section:nth-of-type(1)"
+        }
+      },
+      {
+        "container": "div:nth-of-type(5) > div > footer > div > div:nth-of-type(1) > div:nth-of-type(2)",
+        "childTag": "nav",
+        "count": 4,
+        "columns": 2,
+        "rows": 2,
+        "columnGaps": [
+          20
+        ],
+        "rowGaps": [
+          32
+        ],
+        "cardBox": {
+          "x": 16,
+          "y": 5816,
+          "w": 134,
+          "h": 162.8
+        },
+        "band": {
+          "tag": "footer",
+          "id": null,
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(5) > div > footer"
+        }
+      },
+      {
+        "container": "div > section > div > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(5)",
+        "childTag": "div",
+        "count": 5,
+        "columns": 2,
+        "rows": 4,
+        "columnGaps": [
+          -212
+        ],
+        "rowGaps": [
+          0,
+          -0.01,
+          67.41
+        ],
+        "cardBox": {
+          "x": 54,
+          "y": 5172.03,
+          "w": 212,
+          "h": 69.41
+        },
+        "band": {
+          "tag": "section",
+          "id": null,
+          "path": "#b37k14 > div > section"
+        }
+      },
+      {
+        "container": "#request > div > form",
+        "childTag": "label",
+        "count": 3,
+        "columns": 1,
+        "rows": 3,
+        "columnGaps": [],
+        "rowGaps": [
+          16,
+          16.01
+        ],
+        "cardBox": {
+          "x": 37,
+          "y": 4072.67,
+          "w": 246,
+          "h": 76.92
+        },
+        "band": {
+          "tag": "section",
+          "id": "request",
+          "path": "#request"
+        }
+      }
+    ],
+    "catalog": {
+      "error": "not run"
+    }
+  }
+]
