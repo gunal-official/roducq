@@ -107,17 +107,16 @@ function AutomationMock() {
             </p>
             <div className="mt-1.5 flex flex-wrap gap-1.5">
               {row.cells.map((cell, index) => (
-                <span key={cell}>
-                  <span
-                    className={cn(
-                      "rounded-lm-pill px-2.5 py-1 text-lm-12",
-                      index === row.cells.length - 1
-                        ? "bg-lm-surface-accent font-lm-semibold text-lm-ink-accent"
-                        : "bg-lm-canvas-alt text-lm-muted-slate",
-                    )}
-                  >
-                    {cell}
-                  </span>
+                <span
+                  key={cell}
+                  className={cn(
+                    "rounded-lm-pill px-2.5 py-1 text-lm-12",
+                    index === row.cells.length - 1
+                      ? "bg-lm-surface-accent font-lm-semibold text-lm-ink-accent"
+                      : "bg-lm-canvas-alt text-lm-muted-slate",
+                  )}
+                >
+                  {cell}
                 </span>
               ))}
             </div>

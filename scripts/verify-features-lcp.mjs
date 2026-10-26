@@ -272,8 +272,16 @@ async function runOverflowSweep(browser, target) {
             scrollWidth: el.scrollWidth,
             clientWidth: el.clientWidth,
           }))
-          // The chip strip is allowed to be its own scroll container.
-          .filter((el) => !el.className.includes("overflow-x-auto"))
+          // Only elements whose painted box actually crosses the viewport
+          // count: truncated text and sr-only clips have a large inner
+          // scrollWidth by design but never cause page overflow. The
+          // measured audit criterion is document overflowX === 0; this
+          // list names the element that would break it, if any.
+          .filter((el) => {
+            if (el.closest(".sr-only")) return false;
+            const rect = el.getBoundingClientRect();
+            return rect.right > document.documentElement.clientWidth + 1;
+          })
           .slice(0, 10);
       });
       results.push({
@@ -320,9 +328,23 @@ async function runAxe(browser, target) {
       impact: violation.impact,
       nodes: violation.nodes.length,
       help: violation.help,
+      // Name the exact failing elements (with the contrast data axe
+      // computed) so a failure is actionable without a local browser.
+      details: violation.nodes.slice(0, 12).map((node) => ({
+        target: node.target.join(" "),
+        html: node.html.slice(0, 160),
+        contrast: (
+          node.all
+            .concat(node.any, node.none)
+            .find((check) => check.data && check.data.contrastRatio) || {}
+        ).data || null,
+      })),
     })),
     passes: report.passes.length,
-    incomplete: report.incomplete.length,
+    incomplete: report.incomplete.map((rule) => ({
+      id: rule.id,
+      nodes: rule.nodes.map((node) => node.target.join(" ")).slice(0, 6),
+    })),
   };
 }
 
