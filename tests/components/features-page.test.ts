@@ -594,12 +594,14 @@ describe("Features page (shared header extension)", () => {
         'const features = pathname === "/features" || pathname.startsWith("/features/");',
       ),
     );
-    // The gate widened when /integrations shipped: it is still ONE
-    // boolean built from three pathname predicates, the two clauses
+    // The gate widened as /integrations and /changelog shipped: it is
+    // still ONE boolean built from pathname predicates, and the clauses
     // asserted above survive verbatim, so /solutions and /features
     // render exactly what they rendered before.
     assert.ok(
-      HEADER.includes("const showcase = solutions || features || integrations;"),
+      HEADER.includes(
+        "const showcase = solutions || features || integrations || changelog;",
+      ),
     );
     // The default nav (and its /vs Compare link) is untouched, so /,
     // /about, /pricing and /vs keep their original header.

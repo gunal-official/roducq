@@ -78,6 +78,11 @@ const config = {
         // /solutions: the measured miniature fills.
         "mock-row-active": "var(--lm-mock-row-active)",
         "mock-rail": "var(--lm-mock-rail)",
+        // /changelog: measured rule hairline and badge surfaces/inks.
+        "changelog-rule": "var(--lm-changelog-rule)",
+        "changelog-amber-surface": "var(--lm-changelog-amber-surface)",
+        "changelog-amber-ink": "var(--lm-changelog-amber-ink)",
+        "changelog-fixed-ink": "var(--lm-changelog-fixed-ink)",
         },
         // Explicit Forma palette for new work, alongside semantic aliases
         // retained for every existing app component and shadcn-style API.
@@ -311,6 +316,9 @@ const config = {
         "lm-40-8": ["var(--lm-size-40-8)", { lineHeight: "1.1" }],
         "lm-13-5": ["var(--lm-size-13-5)", { lineHeight: "1.55" }],
         "lm-12-5": ["var(--lm-size-12-5)", { lineHeight: "1.5" }],
+        // /changelog entry <h2> steps (28.8px >=1200, 24px <1200, lh 1.1).
+        "lm-28-8": ["var(--lm-size-28-8)", { lineHeight: "1.1" }],
+        "lm-24": ["var(--lm-size-24)", { lineHeight: "1.1" }],
         "lm-67": ["var(--lm-size-67)", { lineHeight: "1.02" }],
         "lm-72": ["var(--lm-size-72)", { lineHeight: "1.02" }],
       },
@@ -322,6 +330,7 @@ const config = {
       spacing: {
         0.75: "3px",
         1.25: "5px",
+        2.25: "9px",
         3.25: "13px",
         3.75: "15px",
         4.5: "18px",
@@ -334,15 +343,21 @@ const config = {
            (`py-13`, `md:py-22`, `lg:py-30`) and the header height (`md:h-18`)
            compile to nothing — a class that silently vanishes is the failure
            mode content.ts's "no dynamic classes" rule exists to prevent. */
+        11.25: "45px",
         13: "52px",
+        15: "60px",
         18: "72px",
         22: "88px",
+        23: "92px",
+        27.5: "110px",
         30: "120px",
+        52.5: "210px",
       },
       maxWidth: {
         /* One container for every marketing band; the hero copy column and
            the pricing grid narrow themselves inside it. */
         "lm-container": "var(--lm-container)",
+        "lm-changelog": "980px",
         "lm-measure": "620px",
         /* Measured on the reference: a section's supporting paragraph is
            500px wide, and the hero's is 640px. */

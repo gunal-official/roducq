@@ -26,14 +26,6 @@ on:
         description: "Changelog page to measure"
         required: false
         default: "https://forma-visuvate.framer.website/changelog"
-  # TEMPORARY — removed before the pull request so the merged workflow stays
-  # dispatch-only, matching `forma-integrations-reference.yml`.
-  push:
-    branches:
-      - arena/d1b4526c-roducq
-    paths:
-      - "scripts/capture-changelog-reference.mjs"
-      - ".github/workflows/forma-changelog-reference.yml"
 
 permissions:
   contents: write

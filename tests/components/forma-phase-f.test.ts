@@ -25,12 +25,11 @@ function sourceFiles(dir: string): string[] {
 describe("Forma F — inventory and honest browser evidence", () => {
   it("inventories every actual App Router page and handler, without imagined features", () => {
     const inventory = discoverRoutes(ROOT);
-    // 36 pages: the marketing surface grew again from /integrations
-    // (Forma-referenced catalog page, 2026-10-26), after /features
-    // (Forma-referenced feature showcase, 2026-10-26) and /solutions
-    // (Forma-referenced practice showcase, 2026-10-18). The handler
-    // count is unchanged: /integrations adds no API route.
-    assert.equal(inventory.filter((route) => route.kind === "page").length, 36);
+    // 37 pages: the marketing surface grew with /changelog
+    // (Forma-referenced release history page, 2026-10-26), after
+    // /integrations, /features and /solutions. The handler count is
+    // unchanged: /changelog adds no API route.
+    assert.equal(inventory.filter((route) => route.kind === "page").length, 37);
     assert.equal(inventory.filter((route) => route.kind === "handler").length, 18);
     for (const absent of ["/privacy", "/terms"]) assert.ok(!inventory.some((route) => route.pattern === absent));
     for (const present of ["/forgot-password", "/reset-password", "/dashboard", "/proposals/[id]/versions/[versionId]", "/share/[token]", "/invoice/[token]", "/invite/[token]"]) assert.ok(inventory.some((route) => route.pattern === present));

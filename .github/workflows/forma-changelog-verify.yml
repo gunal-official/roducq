@@ -1,0 +1,77 @@
+name: forma-changelog-verify
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - arena/d1b4526c-roducq
+
+permissions:
+  contents: write
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ">=22.18.0"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run unit tests, typecheck, and lint
+        run: |
+          npm test
+          npx tsc --noEmit
+          npm run lint
+
+      - name: Install Chromium
+        run: npx playwright-core install --with-deps chromium
+
+      - name: Build and serve production app
+        run: |
+          npm run build
+          npx next start -p 3100 -H 0.0.0.0 &
+          for i in $(seq 1 30); do
+            curl -sf http://localhost:3100/changelog >/dev/null && break
+            sleep 1
+          done
+          curl -sf http://localhost:3100/changelog >/dev/null || exit 1
+
+      - name: Run /changelog + / real-browser verification suite
+        env:
+          BASE_URL: http://localhost:3100
+          OUTPUT: changelog-verification.json
+          SHOTS_DIR: changelog-verify-shots
+        run: |
+          node scripts/verify-changelog-page.mjs
+
+      - name: Publish verification report and rendered screenshots to capture branch
+        if: always()
+        run: |
+          git config user.name "Arena Agent"
+          git config user.email "agent@arena.ai"
+          git fetch --force origin arena/forma-changelog-capture
+          git checkout -B arena/forma-changelog-capture origin/arena/forma-changelog-capture
+          mkdir -p docs/screenshots/forma-changelog-reference/verify
+          cp changelog-verification.json docs/screenshots/forma-changelog-reference/changelog-verification.json || true
+          cp changelog-verify-shots/*.png docs/screenshots/forma-changelog-reference/verify/ || true
+          git add -f docs/screenshots/forma-changelog-reference/changelog-verification.json docs/screenshots/forma-changelog-reference/verify/
+          git commit -q -m "verify: /changelog real-browser report $(date -u +%Y-%m-%dT%H:%M:%SZ)" || echo "no changes to commit"
+          git push --force origin HEAD:arena/forma-changelog-capture
+
+      - name: Upload verification artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: forma-changelog-verification
+          path: |
+            changelog-verification.json
+            changelog-verify-shots/*.png
+          if-no-files-found: warn
+          retention-days: 14

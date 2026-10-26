@@ -570,6 +570,7 @@ export const FOOTER = {
         { href: "/about", label: "About" },
         { href: "/pricing", label: "Pricing" },
         { href: "/vs", label: "Compare" },
+        { href: "/changelog", label: "Changelog" },
       ],
     },
     {
