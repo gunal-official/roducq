@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-26T03:27:37.097Z",
+  "capturedAt": "2026-10-26T03:31:25.921Z",
   "routes": {
     "/integrations": {
       "page": "http://localhost:3100/integrations",
@@ -7,7 +7,7 @@
         "A-mobile-unthrottled": [
           {
             "run": 1,
-            "lcp": 88,
+            "lcp": 100,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
@@ -15,8 +15,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 88,
-            "fcp": 88,
+            "firstPaint": 100,
+            "fcp": 100,
             "heroOpacities": [
               "1",
               "1",
@@ -32,7 +32,7 @@
           },
           {
             "run": 2,
-            "lcp": 60,
+            "lcp": 56,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
@@ -40,8 +40,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 60,
-            "fcp": 60,
+            "firstPaint": 44,
+            "fcp": 56,
             "heroOpacities": [
               "1",
               "1",
@@ -57,7 +57,7 @@
           },
           {
             "run": 3,
-            "lcp": 60,
+            "lcp": 88,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
@@ -65,8 +65,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 60,
-            "fcp": 60,
+            "firstPaint": 88,
+            "fcp": 88,
             "heroOpacities": [
               "1",
               "1",
@@ -109,7 +109,7 @@
           },
           {
             "run": 2,
-            "lcp": 148,
+            "lcp": 124,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
@@ -117,8 +117,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 148,
-            "fcp": 148,
+            "firstPaint": 124,
+            "fcp": 124,
             "heroOpacities": [
               "1",
               "1",
@@ -134,7 +134,7 @@
           },
           {
             "run": 3,
-            "lcp": 148,
+            "lcp": 132,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
@@ -142,8 +142,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 148,
-            "fcp": 148,
+            "firstPaint": 132,
+            "fcp": 132,
             "heroOpacities": [
               "1",
               "1",
@@ -161,7 +161,7 @@
         "C-desktop": [
           {
             "run": 1,
-            "lcp": 124,
+            "lcp": 72,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
@@ -169,8 +169,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 40,
-            "fcp": 124,
+            "firstPaint": 72,
+            "fcp": 72,
             "heroOpacities": [
               "1",
               "1",
@@ -211,7 +211,7 @@
           },
           {
             "run": 3,
-            "lcp": 72,
+            "lcp": 64,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
@@ -219,8 +219,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 32,
-            "fcp": 72,
+            "firstPaint": 64,
+            "fcp": 64,
             "heroOpacities": [
               "1",
               "1",
@@ -238,7 +238,7 @@
         "D-mobile-reduced-motion": [
           {
             "run": 1,
-            "lcp": 80,
+            "lcp": 76,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
@@ -246,8 +246,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 36,
-            "fcp": 80,
+            "firstPaint": 76,
+            "fcp": 76,
             "heroOpacities": [
               "1",
               "1",
@@ -267,7 +267,7 @@
           },
           {
             "run": 2,
-            "lcp": 56,
+            "lcp": 60,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-8 w-full max-w-[640px] text-lm-16-5 text-lm-muted-slate min-[1024px]:text-lm-19 min-[1024px]:leading-[1.65]",
@@ -275,8 +275,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 56,
-            "fcp": 56,
+            "firstPaint": 32,
+            "fcp": 60,
             "heroOpacities": [
               "1",
               "1",
@@ -717,11 +717,11 @@
       "summary": {
         "lcpMedians": {
           "A-mobile-unthrottled": {
-            "lcpMedian": 60,
+            "lcpMedian": 88,
             "lcpRuns": [
-              88,
-              60,
-              60
+              100,
+              56,
+              88
             ],
             "clsRuns": [
               0,
@@ -735,11 +735,11 @@
             }
           },
           "B-mobile-cpu-4x": {
-            "lcpMedian": 148,
+            "lcpMedian": 132,
             "lcpRuns": [
               140,
-              148,
-              148
+              124,
+              132
             ],
             "clsRuns": [
               0,
@@ -753,11 +753,11 @@
             }
           },
           "C-desktop": {
-            "lcpMedian": 72,
+            "lcpMedian": 64,
             "lcpRuns": [
-              124,
+              72,
               64,
-              72
+              64
             ],
             "clsRuns": [
               0,
@@ -773,8 +773,8 @@
           "D-mobile-reduced-motion": {
             "lcpMedian": 64,
             "lcpRuns": [
-              80,
-              56,
+              76,
+              60,
               64
             ],
             "clsRuns": [
@@ -811,6 +811,32 @@
         "A-mobile-unthrottled": [
           {
             "run": 1,
+            "lcp": 104,
+            "lcpElement": {
+              "tag": "P",
+              "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "firstPaint": 104,
+            "fcp": 104,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "swapTrail": [],
+            "panelCheckable": false,
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          },
+          {
+            "run": 2,
             "lcp": 88,
             "lcpElement": {
               "tag": "P",
@@ -836,34 +862,8 @@
             "reducedMotionStyle": null
           },
           {
-            "run": 2,
-            "lcp": 128,
-            "lcpElement": {
-              "tag": "P",
-              "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
-              "text": "roducq keeps your client intake, briefs, proposals, plans an"
-            },
-            "lcpCandidates": 1,
-            "cls": 0,
-            "firstPaint": 128,
-            "fcp": 128,
-            "heroOpacities": [
-              "1",
-              "1",
-              "1",
-              "1",
-              "1",
-              "1"
-            ],
-            "swapTrail": [],
-            "panelCheckable": false,
-            "consoleErrors": [],
-            "reducedMotionActive": null,
-            "reducedMotionStyle": null
-          },
-          {
             "run": 3,
-            "lcp": 88,
+            "lcp": 104,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
@@ -871,8 +871,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 88,
-            "fcp": 88,
+            "firstPaint": 104,
+            "fcp": 104,
             "heroOpacities": [
               "1",
               "1",
@@ -898,7 +898,7 @@
               "text": "roducq keeps your client intake, briefs, proposals, plans an"
             },
             "lcpCandidates": 1,
-            "cls": 0.1341,
+            "cls": 0,
             "firstPaint": 164,
             "fcp": 164,
             "heroOpacities": [
@@ -917,7 +917,7 @@
           },
           {
             "run": 2,
-            "lcp": 152,
+            "lcp": 156,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
@@ -925,8 +925,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 152,
-            "fcp": 152,
+            "firstPaint": 156,
+            "fcp": 156,
             "heroOpacities": [
               "1",
               "1",
@@ -943,7 +943,7 @@
           },
           {
             "run": 3,
-            "lcp": 168,
+            "lcp": 200,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
@@ -951,8 +951,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 168,
-            "fcp": 168,
+            "firstPaint": 200,
+            "fcp": 200,
             "heroOpacities": [
               "1",
               "1",
@@ -971,32 +971,6 @@
         "C-desktop": [
           {
             "run": 1,
-            "lcp": 148,
-            "lcpElement": {
-              "tag": "P",
-              "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
-              "text": "roducq keeps your client intake, briefs, proposals, plans an"
-            },
-            "lcpCandidates": 1,
-            "cls": 0,
-            "firstPaint": 148,
-            "fcp": 148,
-            "heroOpacities": [
-              "1",
-              "1",
-              "1",
-              "1",
-              "1",
-              "1"
-            ],
-            "swapTrail": [],
-            "panelCheckable": false,
-            "consoleErrors": [],
-            "reducedMotionActive": null,
-            "reducedMotionStyle": null
-          },
-          {
-            "run": 2,
             "lcp": 144,
             "lcpElement": {
               "tag": "P",
@@ -1022,7 +996,7 @@
             "reducedMotionStyle": null
           },
           {
-            "run": 3,
+            "run": 2,
             "lcp": 132,
             "lcpElement": {
               "tag": "P",
@@ -1046,12 +1020,10 @@
             "consoleErrors": [],
             "reducedMotionActive": null,
             "reducedMotionStyle": null
-          }
-        ],
-        "D-mobile-reduced-motion": [
+          },
           {
-            "run": 1,
-            "lcp": 100,
+            "run": 3,
+            "lcp": 128,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
@@ -1060,7 +1032,35 @@
             "lcpCandidates": 1,
             "cls": 0,
             "firstPaint": 36,
-            "fcp": 100,
+            "fcp": 128,
+            "heroOpacities": [
+              "1",
+              "1",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            "swapTrail": [],
+            "panelCheckable": false,
+            "consoleErrors": [],
+            "reducedMotionActive": null,
+            "reducedMotionStyle": null
+          }
+        ],
+        "D-mobile-reduced-motion": [
+          {
+            "run": 1,
+            "lcp": 92,
+            "lcpElement": {
+              "tag": "P",
+              "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "roducq keeps your client intake, briefs, proposals, plans an"
+            },
+            "lcpCandidates": 1,
+            "cls": 0,
+            "firstPaint": 32,
+            "fcp": 92,
             "heroOpacities": [
               "1",
               "1",
@@ -1081,7 +1081,7 @@
           },
           {
             "run": 2,
-            "lcp": 140,
+            "lcp": 124,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
@@ -1089,8 +1089,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 140,
-            "fcp": 140,
+            "firstPaint": 124,
+            "fcp": 124,
             "heroOpacities": [
               "1",
               "1",
@@ -1111,7 +1111,7 @@
           },
           {
             "run": 3,
-            "lcp": 100,
+            "lcp": 92,
             "lcpElement": {
               "tag": "P",
               "path": "P.lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
@@ -1119,8 +1119,8 @@
             },
             "lcpCandidates": 1,
             "cls": 0,
-            "firstPaint": 32,
-            "fcp": 100,
+            "firstPaint": 36,
+            "fcp": 92,
             "heroOpacities": [
               "1",
               "1",
@@ -1258,18 +1258,18 @@
         "reducedMotionActiveInD": true,
         "reducedMotionDisablesEntrance": true,
         "noHorizontalOverflow": true,
-        "clsBelow01": false,
+        "clsBelow01": true,
         "axeZeroViolations": true,
         "noJsVisibility": true
       },
       "summary": {
         "lcpMedians": {
           "A-mobile-unthrottled": {
-            "lcpMedian": 88,
+            "lcpMedian": 104,
             "lcpRuns": [
+              104,
               88,
-              128,
-              88
+              104
             ],
             "clsRuns": [
               0,
@@ -1286,11 +1286,11 @@
             "lcpMedian": 164,
             "lcpRuns": [
               164,
-              152,
-              168
+              156,
+              200
             ],
             "clsRuns": [
-              0.1341,
+              0,
               0,
               0
             ],
@@ -1301,11 +1301,11 @@
             }
           },
           "C-desktop": {
-            "lcpMedian": 144,
+            "lcpMedian": 132,
             "lcpRuns": [
-              148,
               144,
-              132
+              132,
+              128
             ],
             "clsRuns": [
               0,
@@ -1319,11 +1319,11 @@
             }
           },
           "D-mobile-reduced-motion": {
-            "lcpMedian": 100,
+            "lcpMedian": 92,
             "lcpRuns": [
-              100,
-              140,
-              100
+              92,
+              124,
+              92
             ],
             "clsRuns": [
               0,
@@ -1345,7 +1345,7 @@
           "reducedMotionActiveInD": true,
           "reducedMotionDisablesEntrance": true,
           "noHorizontalOverflow": true,
-          "clsBelow01": false,
+          "clsBelow01": true,
           "axeZeroViolations": true,
           "noJsVisibility": true
         }
@@ -1358,6 +1358,6 @@
   },
   "verdict": {
     "/integrations": true,
-    "/": false
+    "/": true
   }
 }
