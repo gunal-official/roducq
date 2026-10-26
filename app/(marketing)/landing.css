@@ -1124,6 +1124,21 @@
   --lm-size-13-5: 13.5px;
   --lm-size-12-5: 12.5px;
   --lm-radius-step: 18px;
+
+  /* ── /changelog steps & badge surfaces ───────────────────────────────
+     MEASURED on live forma-visuvate.framer.website/changelog
+     (docs/FORMA_CHANGELOG_REFERENCE.md §§4, 5, 9):
+       28.8px  entry <h2> at >= 1200px (line-height 31.68px = 1.1)
+       24px    entry <h2> below 1200px (line-height 26.4px = 1.1)
+       #eae6f1 1px article top hairline & idle filter pill border
+       #fdf3e2 / #8a5200  IMPROVED pill surface & ink (5.81:1 light AA)
+       #11703a            FIXED pill ink on --lm-mint (5.56:1 light AA) */
+  --lm-size-28-8: 28.8px;
+  --lm-size-24: 24px;
+  --lm-changelog-rule: #eae6f1;
+  --lm-changelog-amber-surface: #fdf3e2;
+  --lm-changelog-amber-ink: #8a5200;
+  --lm-changelog-fixed-ink: #11703a;
 }
 
 .dark .rdq-marketing {
@@ -1145,6 +1160,13 @@
      the band's muted copy (about 14:1 on that card). Scoped to the dark
      theme; light values are unchanged. */
   --lm-cta-button-ink: #efebff;
+  /* /changelog dark tokens from the reference stylesheet's dark block
+     (docs/FORMA_CHANGELOG_REFERENCE.md §5.1 & §9; IMPROVED 9.83:1 AA,
+     FIXED 8.86:1+ AA). */
+  --lm-changelog-rule: #261f33;
+  --lm-changelog-amber-surface: #2b1f0b;
+  --lm-changelog-amber-ink: #f5c26b;
+  --lm-changelog-fixed-ink: #6ee7a0;
 }
 
 /* ── Headline word dissolve ──────────────────────────────────── */
@@ -1227,6 +1249,28 @@
   margin-inline: auto;
   animation: lm-hero-mask var(--lm-motion-display) var(--lm-ease-display) both;
   animation-delay: var(--lm-hero-delay, 350ms);
+}
+
+/* MEASURED (/changelog hero): at >= 768px the dark words and gradient
+   phrase sit on ONE inline line ("What's new in Forma" -> "What's new
+   in roducq"), wrapping to two centered lines on narrow phones below
+   768px. Keeps the exact 0.14em descender padding/negative-margin so
+   the "q" tail in "roducq" retains its gradient fill. */
+.lm-hero-accent-inline {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.14em;
+  margin: -0.14em auto;
+  animation: lm-hero-mask var(--lm-motion-display) var(--lm-ease-display) both;
+  animation-delay: var(--lm-hero-delay, 350ms);
+}
+
+@media (min-width: 768px) {
+  .lm-hero-accent-inline {
+    display: inline-block;
+    margin: -0.14em;
+  }
 }
 
 /* Category headlines sit below the fold, so their words wait,
@@ -1434,6 +1478,14 @@
    Reveal fired (about 300ms after load, observed in Chromium). Restate
    the resolved state here so reduced-motion readers never see it. */
 @media (prefers-reduced-motion: reduce) {
+  .lm-hero-word,
+  .lm-hero-accent,
+  .lm-hero-accent-inline {
+    animation: none;
+    clip-path: none;
+    transform: none;
+  }
+
   .lm-js .lm-reveal .lm-word-blur > span,
   .lm-js .lm-reveal[data-visible="true"] .lm-word-blur > span {
     opacity: 1;

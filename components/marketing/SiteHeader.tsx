@@ -54,19 +54,20 @@ const NAV = [
   { href: "/about", label: "About" },
   { href: "/pricing", label: "Pricing" },
   { href: "/vs", label: "Compare" },
+  { href: "/changelog", label: "Changelog" },
 ];
 
 /**
  * The Forma reference's route list, mapped onto roducq's real destinations.
- * `hash` targets a section on the home page. Forma's "Changelog" is omitted:
- * roducq serves no public changelog route, and /updates is the signed-in
- * client-updates app, not a marketing page.
+ * `hash` targets a section on the home page, while `/solutions`, `/pricing`
+ * and `/changelog` resolve directly to their dedicated marketing routes.
  */
 const SOLUTIONS_NAV: { href: string; label: string; hash?: string }[] = [
   { href: "/", label: "Features", hash: "features" },
   { href: "/solutions", label: "Solutions" },
   { href: "/", label: "Integrations", hash: "integrations" },
   { href: "/pricing", label: "Pricing" },
+  { href: "/changelog", label: "Changelog" },
 ];
 
 export function SiteHeader() {
@@ -89,7 +90,13 @@ export function SiteHeader() {
   // /features renders today, and /, /about, /pricing and /vs do not move.
   const integrations =
     pathname === "/integrations" || pathname.startsWith("/integrations/");
-  const showcase = solutions || features || integrations;
+  // /changelog joins the same showcase page family (measured against
+  // forma-visuvate.framer.website/changelog — docs/FORMA_CHANGELOG_REFERENCE.md),
+  // reusing the identical opaque card chrome while keeping the locked nav-data
+  // ternary on the next line untouched.
+  const changelog =
+    pathname === "/changelog" || pathname.startsWith("/changelog/");
+  const showcase = solutions || features || integrations || changelog;
   const items = solutions ? SOLUTIONS_NAV : NAV;
 
   // A phone menu left open while the window grows past the desktop band

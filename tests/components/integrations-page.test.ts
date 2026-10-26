@@ -673,7 +673,9 @@ describe("Integrations page (shared header extension)", () => {
       ),
     );
     assert.ok(
-      HEADER.includes("const showcase = solutions || features || integrations;"),
+      HEADER.includes(
+        "const showcase = solutions || features || integrations || changelog;",
+      ),
     );
     // The three earlier gate inputs survive verbatim.
     assert.ok(HEADER.includes("const solutions ="));
