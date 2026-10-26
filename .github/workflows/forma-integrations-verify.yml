@@ -14,6 +14,9 @@
 # of this branch, exactly like the /solutions and /features
 # verifications before it.
 #
+# Re-run marker: 2 (the home control's CLS flaked once; the tool cannot
+# re-run a push-triggered run, so the trigger is re-armed instead).
+#
 # IT IS READ-ONLY WITH RESPECT TO THE REPOSITORY'S CODE. It builds,
 # serves and probes; it never modifies a source file, never deploys, and
 # never touches any payment, billing or database path.
