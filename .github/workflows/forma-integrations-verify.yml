@@ -21,6 +21,15 @@ name: forma-integrations-verify
 
 on:
   workflow_dispatch:
+  # TEMPORARY. GitHub only dispatches workflows that exist on the default
+  # branch, so this trigger exists to run the suite from this development
+  # branch. It is removed before the pull request: the merged workflow is
+  # dispatch-only, exactly like forma-features-verify.yml.
+  push:
+    branches:
+      - arena/6b9ca722-roducq
+    paths:
+      - ".github/workflows/forma-integrations-verify.yml"
 
 permissions:
   # The report is published to the evidence branch, like the reference
