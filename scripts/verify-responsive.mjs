@@ -114,6 +114,7 @@ const PAGES = [
   { slug: "marketing-about", url: "/about", auth: false },
   { slug: "marketing-solutions", url: "/solutions", auth: false },
   { slug: "marketing-features", url: "/features", auth: false },
+  { slug: "marketing-integrations", url: "/integrations", auth: false },
   { slug: "marketing-pricing", url: "/pricing", auth: false },
   { slug: "marketing-vs-notion", url: "/vs/notion", auth: false },
   { slug: "marketing-vs", url: "/vs", auth: false },

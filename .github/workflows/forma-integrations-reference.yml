@@ -39,18 +39,6 @@ on:
         description: "Integrations page to measure"
         required: false
         default: "https://forma-visuvate.framer.website/integrations"
-  # TEMPORARY — this trigger exists only so the capture can run from this
-  # development branch before the workflow reaches the default branch
-  # (GitHub will not dispatch a workflow that is not on the default branch).
-  # It is removed before the pull request: the merged workflow is
-  # dispatch-only, exactly like forma-reference.yml.
-  push:
-    branches:
-      - arena/6b9ca722-roducq
-    paths:
-      - "scripts/capture-integrations-reference.mjs"
-      - ".github/workflows/forma-integrations-reference.yml"
-
 permissions:
   contents: write
 

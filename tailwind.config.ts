@@ -202,6 +202,7 @@ const config = {
         "lm-frame": "var(--lm-radius-frame)",
         "lm-pill": "var(--lm-radius-pill)",
         "lm-dot": "var(--lm-radius-dot)",
+        "lm-step": "var(--lm-radius-step)",
         "lm-stage": "var(--lm-radius-stage)",
         // /solutions: the sticky miniature stage and the plan band
         // measure 24px, not the closing CTA's 28px.
@@ -304,6 +305,12 @@ const config = {
         // 16.5px / 27.23px at both 768 and 390, so the measured step is
         // 16.5 rather than the nearest integer token.
         "lm-16-5": ["var(--lm-size-16-5)", { lineHeight: "1.65" }],
+        // /integrations steps (see the token block in landing.css). Added as
+        // NEW keys only: no existing utility changes meaning.
+        "lm-45-4": ["var(--lm-size-45-4)", { lineHeight: "1.02" }],
+        "lm-40-8": ["var(--lm-size-40-8)", { lineHeight: "1.1" }],
+        "lm-13-5": ["var(--lm-size-13-5)", { lineHeight: "1.55" }],
+        "lm-12-5": ["var(--lm-size-12-5)", { lineHeight: "1.5" }],
         "lm-67": ["var(--lm-size-67)", { lineHeight: "1.02" }],
         "lm-72": ["var(--lm-size-72)", { lineHeight: "1.02" }],
       },
