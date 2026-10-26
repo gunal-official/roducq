@@ -1,0 +1,848 @@
+[
+  {
+    "viewport": "1440x900",
+    "state": {
+      "matchesReduced": true,
+      "h1Opacity": "1",
+      "h1Spans": [
+        {
+          "text": "What’s",
+          "opacity": "1",
+          "filter": "blur(0px)",
+          "transform": "none"
+        },
+        {
+          "text": "new",
+          "opacity": "1",
+          "filter": "blur(0px)",
+          "transform": "none"
+        }
+      ],
+      "h2Visible": 8,
+      "h2Total": 8
+    },
+    "waapiCount": 14,
+    "animateCallCount": 15,
+    "sampleAnimateCalls": [
+      {
+        "at": 209,
+        "scrollY": 0,
+        "innerHeight": 900,
+        "target": {
+          "tag": "div",
+          "path": "div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div > section > div:nth-of-type(1)",
+          "text": "Changelog",
+          "inSvg": false,
+          "svgIndex": null
+        },
+        "keyframes": {
+          "opacity": [
+            0.001,
+            0.001
+          ]
+        },
+        "options": {
+          "delay": 0,
+          "duration": 10000,
+          "easing": "linear",
+          "fill": "both",
+          "iterations": 1,
+          "direction": "normal"
+        },
+        "rect": {
+          "top": 178,
+          "left": 100,
+          "yDoc": 178,
+          "width": 1240,
+          "height": 17
+        }
+      },
+      {
+        "at": 213,
+        "scrollY": 0,
+        "innerHeight": 900,
+        "target": {
+          "tag": "div",
+          "path": "div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div > section > div:nth-of-type(1)",
+          "text": "Changelog",
+          "inSvg": false,
+          "svgIndex": null
+        },
+        "keyframes": {
+          "opacity": [
+            0.001,
+            1
+          ]
+        },
+        "options": {
+          "delay": 0,
+          "duration": 800,
+          "easing": "cubic-bezier(0.2, 0.7, 0.2, 1)",
+          "fill": "both",
+          "iterations": 1,
+          "direction": "normal"
+        },
+        "rect": {
+          "top": 178,
+          "left": 100,
+          "yDoc": 178,
+          "width": 1240,
+          "height": 17
+        }
+      },
+      {
+        "at": 213,
+        "scrollY": 0,
+        "innerHeight": 900,
+        "target": {
+          "tag": "div",
+          "path": "div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div > section > div:nth-of-type(1)",
+          "text": "Changelog",
+          "inSvg": false,
+          "svgIndex": null
+        },
+        "keyframes": {
+          "transform": [
+            "translateY(16px)",
+            "none"
+          ]
+        },
+        "options": {
+          "delay": 0,
+          "duration": 800,
+          "easing": "cubic-bezier(0.2, 0.7, 0.2, 1)",
+          "fill": "both",
+          "iterations": 1,
+          "direction": "normal"
+        },
+        "rect": {
+          "top": 178,
+          "left": 100,
+          "yDoc": 178,
+          "width": 1240,
+          "height": 17
+        }
+      },
+      {
+        "at": 213,
+        "scrollY": 0,
+        "innerHeight": 900,
+        "target": {
+          "tag": "div",
+          "path": "div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div > section > div:nth-of-type(3) > div:nth-of-type(2)",
+          "text": "in Forma",
+          "inSvg": false,
+          "svgIndex": null
+        },
+        "keyframes": {
+          "opacity": [
+            0.001,
+            1
+          ]
+        },
+        "options": {
+          "delay": 350,
+          "duration": 900,
+          "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+          "fill": "both",
+          "iterations": 1,
+          "direction": "normal"
+        },
+        "rect": {
+          "top": 217,
+          "left": 772,
+          "yDoc": 217,
+          "width": 255,
+          "height": 69
+        }
+      },
+      {
+        "at": 214,
+        "scrollY": 0,
+        "innerHeight": 900,
+        "target": {
+          "tag": "div",
+          "path": "div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div > section > div:nth-of-type(3) > div:nth-of-type(2)",
+          "text": "in Forma",
+          "inSvg": false,
+          "svgIndex": null
+        },
+        "keyframes": {
+          "transform": [
+            "translateY(28px)",
+            "none"
+          ]
+        },
+        "options": {
+          "delay": 350,
+          "duration": 900,
+          "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+          "fill": "both",
+          "iterations": 1,
+          "direction": "normal"
+        },
+        "rect": {
+          "top": 217,
+          "left": 772,
+          "yDoc": 217,
+          "width": 255,
+          "height": 69
+        }
+      },
+      {
+        "at": 214,
+        "scrollY": 0,
+        "innerHeight": 900,
+        "target": {
+          "tag": "div",
+          "path": "div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div > section > div:nth-of-type(5)",
+          "text": "New features, improvements, and fixes, most recent first.",
+          "inSvg": false,
+          "svgIndex": null
+        },
+        "keyframes": {
+          "opacity": [
+            0.001,
+            1
+          ]
+        },
+        "options": {
+          "delay": 450,
+          "duration": 800,
+          "easing": "cubic-bezier(0.2, 0.7, 0.2, 1)",
+          "fill": "both",
+          "iterations": 1,
+          "direction": "normal"
+        },
+        "rect": {
+          "top": 305,
+          "left": 400,
+          "yDoc": 305,
+          "width": 640,
+          "height": 31
+        }
+      },
+      {
+        "at": 214,
+        "scrollY": 0,
+        "innerHeight": 900,
+        "target": {
+          "tag": "div",
+          "path": "div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div > section > div:nth-of-type(5)",
+          "text": "New features, improvements, and fixes, most recent first.",
+          "inSvg": false,
+          "svgIndex": null
+        },
+        "keyframes": {
+          "transform": [
+            "translateY(16px)",
+            "none"
+          ]
+        },
+        "options": {
+          "delay": 450,
+          "duration": 800,
+          "easing": "cubic-bezier(0.2, 0.7, 0.2, 1)",
+          "fill": "both",
+          "iterations": 1,
+          "direction": "normal"
+        },
+        "rect": {
+          "top": 305,
+          "left": 400,
+          "yDoc": 305,
+          "width": 640,
+          "height": 31
+        }
+      },
+      {
+        "at": 360,
+        "scrollY": 0,
+        "innerHeight": 900,
+        "target": {
+          "tag": "span",
+          "path": "div > div > section > div:nth-of-type(3) > div:nth-of-type(1) > h1 > span:nth-of-type(1)",
+          "text": "What’s",
+          "inSvg": false,
+          "svgIndex": null
+        },
+        "keyframes": {
+          "filter": [
+            "blur(10px)",
+            "blur(0px)"
+          ]
+        },
+        "options": {
+          "delay": 50,
+          "duration": 900,
+          "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+          "fill": "both",
+          "iterations": 1,
+          "direction": "normal"
+        },
+        "rect": {
+          "top": 217,
+          "left": 414,
+          "yDoc": 217,
+          "width": 209,
+          "height": 69
+        }
+      },
+      {
+        "at": 360,
+        "scrollY": 0,
+        "innerHeight": 900,
+        "target": {
+          "tag": "span",
+          "path": "div > div > section > div:nth-of-type(3) > div:nth-of-type(1) > h1 > span:nth-of-type(1)",
+          "text": "What’s",
+          "inSvg": false,
+          "svgIndex": null
+        },
+        "keyframes": {
+          "opacity": [
+            0.001,
+            1
+          ]
+        },
+        "options": {
+          "delay": 50,
+          "duration": 900,
+          "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+          "fill": "both",
+          "iterations": 1,
+          "direction": "normal"
+        },
+        "rect": {
+          "top": 217,
+          "left": 414,
+          "yDoc": 217,
+          "width": 209,
+          "height": 69
+        }
+      },
+      {
+        "at": 361,
+        "scrollY": 0,
+        "innerHeight": 900,
+        "target": {
+          "tag": "span",
+          "path": "div > div > section > div:nth-of-type(3) > div:nth-of-type(1) > h1 > span:nth-of-type(2)",
+          "text": "new",
+          "inSvg": false,
+          "svgIndex": null
+        },
+        "keyframes": {
+          "filter": [
+            "blur(10px)",
+            "blur(0px)"
+          ]
+        },
+        "options": {
+          "delay": 100,
+          "duration": 900,
+          "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+          "fill": "both",
+          "iterations": 1,
+          "direction": "normal"
+        },
+        "rect": {
+          "top": 217,
+          "left": 634,
+          "yDoc": 217,
+          "width": 127,
+          "height": 69
+        }
+      },
+      {
+        "at": 361,
+        "scrollY": 0,
+        "innerHeight": 900,
+        "target": {
+          "tag": "span",
+          "path": "div > div > section > div:nth-of-type(3) > div:nth-of-type(1) > h1 > span:nth-of-type(2)",
+          "text": "new",
+          "inSvg": false,
+          "svgIndex": null
+        },
+        "keyframes": {
+          "opacity": [
+            0.001,
+            1
+          ]
+        },
+        "options": {
+          "delay": 100,
+          "duration": 900,
+          "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+          "fill": "both",
+          "iterations": 1,
+          "direction": "normal"
+        },
+        "rect": {
+          "top": 217,
+          "left": 634,
+          "yDoc": 217,
+          "width": 127,
+          "height": 69
+        }
+      },
+      {
+        "at": 4006,
+        "scrollY": 495,
+        "innerHeight": 900,
+        "target": {
+          "tag": "div",
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(1) > div > header > div:nth-of-type(1) > div",
+          "text": "",
+          "inSvg": false,
+          "svgIndex": null
+        },
+        "keyframes": {
+          "opacity": [
+            0,
+            1
+          ]
+        },
+        "options": {
+          "delay": 0,
+          "duration": 350,
+          "easing": "cubic-bezier(0.2, 0.7, 0.2, 1)",
+          "fill": "both",
+          "iterations": 1,
+          "direction": "normal"
+        },
+        "rect": {
+          "top": 0,
+          "left": 0,
+          "yDoc": 495,
+          "width": 1440,
+          "height": 70
+        }
+      }
+    ]
+  },
+  {
+    "viewport": "390x844",
+    "state": {
+      "matchesReduced": true,
+      "h1Opacity": "1",
+      "h1Spans": [
+        {
+          "text": "What’s",
+          "opacity": "1",
+          "filter": "blur(0px)",
+          "transform": "none"
+        },
+        {
+          "text": "new",
+          "opacity": "1",
+          "filter": "blur(0px)",
+          "transform": "none"
+        }
+      ],
+      "h2Visible": 8,
+      "h2Total": 8
+    },
+    "waapiCount": 15,
+    "animateCallCount": 15,
+    "sampleAnimateCalls": [
+      {
+        "at": 204,
+        "scrollY": 0,
+        "innerHeight": 844,
+        "target": {
+          "tag": "div",
+          "path": "div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div > section > div:nth-of-type(1)",
+          "text": "Changelog",
+          "inSvg": false,
+          "svgIndex": null
+        },
+        "keyframes": {
+          "opacity": [
+            0.001,
+            0.001
+          ]
+        },
+        "options": {
+          "delay": 0,
+          "duration": 10000,
+          "easing": "linear",
+          "fill": "both",
+          "iterations": 1,
+          "direction": "normal"
+        },
+        "rect": {
+          "top": 0,
+          "left": 0,
+          "yDoc": 0,
+          "width": 0,
+          "height": 0
+        }
+      },
+      {
+        "at": 207,
+        "scrollY": 0,
+        "innerHeight": 844,
+        "target": {
+          "tag": "div",
+          "path": "div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div > section > div:nth-of-type(1)",
+          "text": "Changelog",
+          "inSvg": false,
+          "svgIndex": null
+        },
+        "keyframes": {
+          "opacity": [
+            0.001,
+            1
+          ]
+        },
+        "options": {
+          "delay": 0,
+          "duration": 800,
+          "easing": "cubic-bezier(0.2, 0.7, 0.2, 1)",
+          "fill": "both",
+          "iterations": 1,
+          "direction": "normal"
+        },
+        "rect": {
+          "top": 0,
+          "left": 0,
+          "yDoc": 0,
+          "width": 0,
+          "height": 0
+        }
+      },
+      {
+        "at": 207,
+        "scrollY": 0,
+        "innerHeight": 844,
+        "target": {
+          "tag": "div",
+          "path": "div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div > section > div:nth-of-type(1)",
+          "text": "Changelog",
+          "inSvg": false,
+          "svgIndex": null
+        },
+        "keyframes": {
+          "transform": [
+            "translateY(16px)",
+            "none"
+          ]
+        },
+        "options": {
+          "delay": 0,
+          "duration": 800,
+          "easing": "cubic-bezier(0.2, 0.7, 0.2, 1)",
+          "fill": "both",
+          "iterations": 1,
+          "direction": "normal"
+        },
+        "rect": {
+          "top": 0,
+          "left": 0,
+          "yDoc": 0,
+          "width": 0,
+          "height": 0
+        }
+      },
+      {
+        "at": 207,
+        "scrollY": 0,
+        "innerHeight": 844,
+        "target": {
+          "tag": "div",
+          "path": "div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div > section > div:nth-of-type(3) > div:nth-of-type(2)",
+          "text": "in Forma",
+          "inSvg": false,
+          "svgIndex": null
+        },
+        "keyframes": {
+          "opacity": [
+            0.001,
+            1
+          ]
+        },
+        "options": {
+          "delay": 350,
+          "duration": 900,
+          "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+          "fill": "both",
+          "iterations": 1,
+          "direction": "normal"
+        },
+        "rect": {
+          "top": 0,
+          "left": 0,
+          "yDoc": 0,
+          "width": 0,
+          "height": 0
+        }
+      },
+      {
+        "at": 207,
+        "scrollY": 0,
+        "innerHeight": 844,
+        "target": {
+          "tag": "div",
+          "path": "div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div > section > div:nth-of-type(3) > div:nth-of-type(2)",
+          "text": "in Forma",
+          "inSvg": false,
+          "svgIndex": null
+        },
+        "keyframes": {
+          "transform": [
+            "translateY(28px)",
+            "none"
+          ]
+        },
+        "options": {
+          "delay": 350,
+          "duration": 900,
+          "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+          "fill": "both",
+          "iterations": 1,
+          "direction": "normal"
+        },
+        "rect": {
+          "top": 0,
+          "left": 0,
+          "yDoc": 0,
+          "width": 0,
+          "height": 0
+        }
+      },
+      {
+        "at": 207,
+        "scrollY": 0,
+        "innerHeight": 844,
+        "target": {
+          "tag": "div",
+          "path": "div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div > section > div:nth-of-type(5)",
+          "text": "New features, improvements, and fixes, most recent first.",
+          "inSvg": false,
+          "svgIndex": null
+        },
+        "keyframes": {
+          "opacity": [
+            0.001,
+            1
+          ]
+        },
+        "options": {
+          "delay": 450,
+          "duration": 800,
+          "easing": "cubic-bezier(0.2, 0.7, 0.2, 1)",
+          "fill": "both",
+          "iterations": 1,
+          "direction": "normal"
+        },
+        "rect": {
+          "top": 0,
+          "left": 0,
+          "yDoc": 0,
+          "width": 0,
+          "height": 0
+        }
+      },
+      {
+        "at": 207,
+        "scrollY": 0,
+        "innerHeight": 844,
+        "target": {
+          "tag": "div",
+          "path": "div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div > section > div:nth-of-type(5)",
+          "text": "New features, improvements, and fixes, most recent first.",
+          "inSvg": false,
+          "svgIndex": null
+        },
+        "keyframes": {
+          "transform": [
+            "translateY(16px)",
+            "none"
+          ]
+        },
+        "options": {
+          "delay": 450,
+          "duration": 800,
+          "easing": "cubic-bezier(0.2, 0.7, 0.2, 1)",
+          "fill": "both",
+          "iterations": 1,
+          "direction": "normal"
+        },
+        "rect": {
+          "top": 0,
+          "left": 0,
+          "yDoc": 0,
+          "width": 0,
+          "height": 0
+        }
+      },
+      {
+        "at": 364,
+        "scrollY": 0,
+        "innerHeight": 844,
+        "target": {
+          "tag": "span",
+          "path": "div > div > section > div:nth-of-type(3) > div:nth-of-type(1) > h1 > span:nth-of-type(1)",
+          "text": "What’s",
+          "inSvg": false,
+          "svgIndex": null
+        },
+        "keyframes": {
+          "filter": [
+            "blur(10px)",
+            "blur(0px)"
+          ]
+        },
+        "options": {
+          "delay": 50,
+          "duration": 900,
+          "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+          "fill": "both",
+          "iterations": 1,
+          "direction": "normal"
+        },
+        "rect": {
+          "top": 177,
+          "left": 81,
+          "yDoc": 177,
+          "width": 137,
+          "height": 45
+        }
+      },
+      {
+        "at": 364,
+        "scrollY": 0,
+        "innerHeight": 844,
+        "target": {
+          "tag": "span",
+          "path": "div > div > section > div:nth-of-type(3) > div:nth-of-type(1) > h1 > span:nth-of-type(1)",
+          "text": "What’s",
+          "inSvg": false,
+          "svgIndex": null
+        },
+        "keyframes": {
+          "opacity": [
+            0.001,
+            1
+          ]
+        },
+        "options": {
+          "delay": 50,
+          "duration": 900,
+          "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+          "fill": "both",
+          "iterations": 1,
+          "direction": "normal"
+        },
+        "rect": {
+          "top": 177,
+          "left": 81,
+          "yDoc": 177,
+          "width": 137,
+          "height": 45
+        }
+      },
+      {
+        "at": 364,
+        "scrollY": 0,
+        "innerHeight": 844,
+        "target": {
+          "tag": "span",
+          "path": "div > div > section > div:nth-of-type(3) > div:nth-of-type(1) > h1 > span:nth-of-type(2)",
+          "text": "new",
+          "inSvg": false,
+          "svgIndex": null
+        },
+        "keyframes": {
+          "filter": [
+            "blur(10px)",
+            "blur(0px)"
+          ]
+        },
+        "options": {
+          "delay": 100,
+          "duration": 900,
+          "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+          "fill": "both",
+          "iterations": 1,
+          "direction": "normal"
+        },
+        "rect": {
+          "top": 177,
+          "left": 226,
+          "yDoc": 177,
+          "width": 83,
+          "height": 45
+        }
+      },
+      {
+        "at": 364,
+        "scrollY": 0,
+        "innerHeight": 844,
+        "target": {
+          "tag": "span",
+          "path": "div > div > section > div:nth-of-type(3) > div:nth-of-type(1) > h1 > span:nth-of-type(2)",
+          "text": "new",
+          "inSvg": false,
+          "svgIndex": null
+        },
+        "keyframes": {
+          "opacity": [
+            0.001,
+            1
+          ]
+        },
+        "options": {
+          "delay": 100,
+          "duration": 900,
+          "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+          "fill": "both",
+          "iterations": 1,
+          "direction": "normal"
+        },
+        "rect": {
+          "top": 177,
+          "left": 226,
+          "yDoc": 177,
+          "width": 83,
+          "height": 45
+        }
+      },
+      {
+        "at": 4004,
+        "scrollY": 464,
+        "innerHeight": 844,
+        "target": {
+          "tag": "div",
+          "path": "#main > div:nth-of-type(1) > div:nth-of-type(1) > div > header > div:nth-of-type(1) > div",
+          "text": "",
+          "inSvg": false,
+          "svgIndex": null
+        },
+        "keyframes": {
+          "opacity": [
+            0,
+            1
+          ]
+        },
+        "options": {
+          "delay": 0,
+          "duration": 350,
+          "easing": "cubic-bezier(0.2, 0.7, 0.2, 1)",
+          "fill": "both",
+          "iterations": 1,
+          "direction": "normal"
+        },
+        "rect": {
+          "top": 0,
+          "left": 0,
+          "yDoc": 464,
+          "width": 390,
+          "height": 66
+        }
+      }
+    ]
+  }
+]

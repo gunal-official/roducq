@@ -1,0 +1,1573 @@
+[
+  {
+    "viewport": "1440x900",
+    "label": "desktop",
+    "theme": "light",
+    "url": "https://forma-visuvate.framer.website/changelog",
+    "title": "Changelog — New features and fixes in Forma",
+    "document": {
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "scrollHeight": 4375,
+      "overflowX": 0,
+      "bodyBg": "rgb(255, 255, 255)",
+      "bodyFont": "sans-serif"
+    },
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "id": null,
+        "text": "fforma.FeaturesSolutionsIntegrationsPricingChangelog.vv-toggle-rb:focus-visible{",
+        "box": {
+          "x": 0,
+          "y": 0,
+          "w": 1440,
+          "h": 69.7
+        },
+        "paddingTop": 0,
+        "paddingBottom": 0,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "ChangelogWhat’s newin FormaNew features, improvements, and fixes, most recent fi",
+        "box": {
+          "x": 100,
+          "y": 69.7,
+          "w": 1240,
+          "h": 322.69
+        },
+        "paddingTop": 92,
+        "paddingBottom": 72,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "All updatesNewImprovedFixedSeptember 9, 2026Version 2.3NewFocus time, across you",
+        "box": {
+          "x": 0,
+          "y": 392.39,
+          "w": 1440,
+          "h": 2527.78
+        },
+        "paddingTop": 0,
+        "paddingBottom": 40,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 2920.17,
+          "w": 1440,
+          "h": 750.83
+        },
+        "paddingTop": 120,
+        "paddingBottom": 96,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 3671,
+          "w": 1440,
+          "h": 703.86
+        },
+        "paddingTop": 120,
+        "paddingBottom": 0,
+        "bg": "rgb(255, 255, 255)"
+      }
+    ],
+    "headingCount": 13,
+    "svgCount": 10,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "waapiSeen": 14,
+    "animateCalls": 15,
+    "ioCreated": 1,
+    "overflowX": 0,
+    "consoleErrors": [],
+    "changelog": {
+      "entryCount": 8,
+      "filterChips": [
+        "All updates"
+      ],
+      "badgeLabels": [
+        "New",
+        "Improved",
+        "Fixed",
+        "Beta"
+      ],
+      "decorCount": 17,
+      "stickyCount": 8,
+      "paginationCount": 0,
+      "filterClicks": [
+        {
+          "chip": "All updates",
+          "visibleCount": 8
+        }
+      ],
+      "cardHoverChanges": 0,
+      "chipHoverChanges": 5
+    }
+  },
+  {
+    "viewport": "1440x900",
+    "label": "desktop",
+    "theme": "dark",
+    "url": "https://forma-visuvate.framer.website/changelog",
+    "title": "Changelog — New features and fixes in Forma",
+    "document": {
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "scrollHeight": 4375,
+      "overflowX": 0,
+      "bodyBg": "rgb(255, 255, 255)",
+      "bodyFont": "sans-serif"
+    },
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "id": null,
+        "text": "fforma.FeaturesSolutionsIntegrationsPricingChangelog.vv-toggle-rc:focus-visible{",
+        "box": {
+          "x": 0,
+          "y": 0,
+          "w": 1440,
+          "h": 69.7
+        },
+        "paddingTop": 0,
+        "paddingBottom": 0,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "ChangelogWhat’s newin FormaNew features, improvements, and fixes, most recent fi",
+        "box": {
+          "x": 100,
+          "y": 69.7,
+          "w": 1240,
+          "h": 322.69
+        },
+        "paddingTop": 92,
+        "paddingBottom": 72,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "All updatesNewImprovedFixedSeptember 9, 2026Version 2.3NewFocus time, across you",
+        "box": {
+          "x": 0,
+          "y": 392.39,
+          "w": 1440,
+          "h": 2527.78
+        },
+        "paddingTop": 0,
+        "paddingBottom": 40,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 2920.17,
+          "w": 1440,
+          "h": 750.83
+        },
+        "paddingTop": 120,
+        "paddingBottom": 96,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 3671,
+          "w": 1440,
+          "h": 703.86
+        },
+        "paddingTop": 120,
+        "paddingBottom": 0,
+        "bg": "rgb(255, 255, 255)"
+      }
+    ],
+    "headingCount": 13,
+    "svgCount": 10,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "waapiSeen": 27,
+    "animateCalls": 15,
+    "ioCreated": 1,
+    "overflowX": 0,
+    "consoleErrors": [],
+    "changelog": null
+  },
+  {
+    "viewport": "1200x900",
+    "label": "desktop-1200",
+    "theme": "light",
+    "url": "https://forma-visuvate.framer.website/changelog",
+    "title": "Changelog — New features and fixes in Forma",
+    "document": {
+      "scrollWidth": 1200,
+      "clientWidth": 1200,
+      "scrollHeight": 4441,
+      "overflowX": 0,
+      "bodyBg": "rgb(255, 255, 255)",
+      "bodyFont": "sans-serif"
+    },
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "id": null,
+        "text": "fforma.FeaturesSolutionsIntegrationsPricingChangelog.vv-toggle-rc:focus-visible{",
+        "box": {
+          "x": 0,
+          "y": 0,
+          "w": 1200,
+          "h": 69.7
+        },
+        "paddingTop": 0,
+        "paddingBottom": 0,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "ChangelogWhat’s newin FormaNew features, improvements, and fixes, most recent fi",
+        "box": {
+          "x": 48,
+          "y": 69.7,
+          "w": 1104,
+          "h": 322.69
+        },
+        "paddingTop": 92,
+        "paddingBottom": 72,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "All updatesNewImprovedFixedSeptember 9, 2026Version 2.3NewFocus time, across you",
+        "box": {
+          "x": 0,
+          "y": 392.39,
+          "w": 1200,
+          "h": 2527.78
+        },
+        "paddingTop": 0,
+        "paddingBottom": 40,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 2920.17,
+          "w": 1200,
+          "h": 816.92
+        },
+        "paddingTop": 120,
+        "paddingBottom": 96,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 3737.09,
+          "w": 1200,
+          "h": 703.86
+        },
+        "paddingTop": 120,
+        "paddingBottom": 0,
+        "bg": "rgb(255, 255, 255)"
+      }
+    ],
+    "headingCount": 13,
+    "svgCount": 10,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "waapiSeen": 14,
+    "animateCalls": 15,
+    "ioCreated": 1,
+    "overflowX": 0,
+    "consoleErrors": [],
+    "changelog": {
+      "entryCount": 8,
+      "filterChips": [
+        "All updates"
+      ],
+      "badgeLabels": [
+        "New",
+        "Improved",
+        "Fixed",
+        "Beta"
+      ],
+      "decorCount": 17,
+      "stickyCount": 8,
+      "paginationCount": 0,
+      "filterClicks": null,
+      "cardHoverChanges": null,
+      "chipHoverChanges": null
+    }
+  },
+  {
+    "viewport": "1200x900",
+    "label": "desktop-1200",
+    "theme": "dark",
+    "url": "https://forma-visuvate.framer.website/changelog",
+    "title": "Changelog — New features and fixes in Forma",
+    "document": {
+      "scrollWidth": 1200,
+      "clientWidth": 1200,
+      "scrollHeight": 4441,
+      "overflowX": 0,
+      "bodyBg": "rgb(255, 255, 255)",
+      "bodyFont": "sans-serif"
+    },
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "id": null,
+        "text": "fforma.FeaturesSolutionsIntegrationsPricingChangelog.vv-toggle-rc:focus-visible{",
+        "box": {
+          "x": 0,
+          "y": 0,
+          "w": 1200,
+          "h": 69.7
+        },
+        "paddingTop": 0,
+        "paddingBottom": 0,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "ChangelogWhat’s newin FormaNew features, improvements, and fixes, most recent fi",
+        "box": {
+          "x": 48,
+          "y": 69.7,
+          "w": 1104,
+          "h": 322.69
+        },
+        "paddingTop": 92,
+        "paddingBottom": 72,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "All updatesNewImprovedFixedSeptember 9, 2026Version 2.3NewFocus time, across you",
+        "box": {
+          "x": 0,
+          "y": 392.39,
+          "w": 1200,
+          "h": 2527.78
+        },
+        "paddingTop": 0,
+        "paddingBottom": 40,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 2920.17,
+          "w": 1200,
+          "h": 816.92
+        },
+        "paddingTop": 120,
+        "paddingBottom": 96,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 3737.09,
+          "w": 1200,
+          "h": 703.86
+        },
+        "paddingTop": 120,
+        "paddingBottom": 0,
+        "bg": "rgb(255, 255, 255)"
+      }
+    ],
+    "headingCount": 13,
+    "svgCount": 10,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "waapiSeen": 27,
+    "animateCalls": 15,
+    "ioCreated": 1,
+    "overflowX": 0,
+    "consoleErrors": [],
+    "changelog": null
+  },
+  {
+    "viewport": "1024x768",
+    "label": "laptop",
+    "theme": "light",
+    "url": "https://forma-visuvate.framer.website/changelog",
+    "title": "Changelog — New features and fixes in Forma",
+    "document": {
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "scrollHeight": 5024,
+      "overflowX": 0,
+      "bodyBg": "rgb(255, 255, 255)",
+      "bodyFont": "sans-serif"
+    },
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "id": null,
+        "text": "fforma.FeaturesSolutionsIntegrationsPricingChangelog.vv-toggle-rd:focus-visible{",
+        "box": {
+          "x": 0,
+          "y": 0,
+          "w": 1024,
+          "h": 69.7
+        },
+        "paddingTop": 0,
+        "paddingBottom": 0,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "ChangelogWhat’s newin FormaNew features, improvements, and fixes, most recent fi",
+        "box": {
+          "x": 42,
+          "y": 69.7,
+          "w": 940,
+          "h": 300.42
+        },
+        "paddingTop": 92,
+        "paddingBottom": 72,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "All updatesNewImprovedFixedSeptember 9, 2026Version 2.3NewFocus time, across you",
+        "box": {
+          "x": 0,
+          "y": 370.13,
+          "w": 1024,
+          "h": 2937.86
+        },
+        "paddingTop": 0,
+        "paddingBottom": 40,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 3307.98,
+          "w": 1024,
+          "h": 906.16
+        },
+        "paddingTop": 80,
+        "paddingBottom": 80,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 4214.14,
+          "w": 1024,
+          "h": 810.16
+        },
+        "paddingTop": 96,
+        "paddingBottom": 0,
+        "bg": "rgb(255, 255, 255)"
+      }
+    ],
+    "headingCount": 13,
+    "svgCount": 10,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "waapiSeen": 14,
+    "animateCalls": 15,
+    "ioCreated": 1,
+    "overflowX": 0,
+    "consoleErrors": [],
+    "changelog": {
+      "entryCount": 8,
+      "filterChips": [
+        "All updates"
+      ],
+      "badgeLabels": [
+        "New",
+        "Improved",
+        "Fixed",
+        "Beta"
+      ],
+      "decorCount": 17,
+      "stickyCount": 0,
+      "paginationCount": 0,
+      "filterClicks": null,
+      "cardHoverChanges": null,
+      "chipHoverChanges": null
+    }
+  },
+  {
+    "viewport": "1024x768",
+    "label": "laptop",
+    "theme": "dark",
+    "url": "https://forma-visuvate.framer.website/changelog",
+    "title": "Changelog — New features and fixes in Forma",
+    "document": {
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "scrollHeight": 5024,
+      "overflowX": 0,
+      "bodyBg": "rgb(255, 255, 255)",
+      "bodyFont": "sans-serif"
+    },
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "id": null,
+        "text": "fforma.FeaturesSolutionsIntegrationsPricingChangelog.vv-toggle-rc:focus-visible{",
+        "box": {
+          "x": 0,
+          "y": 0,
+          "w": 1024,
+          "h": 69.7
+        },
+        "paddingTop": 0,
+        "paddingBottom": 0,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "ChangelogWhat’s newin FormaNew features, improvements, and fixes, most recent fi",
+        "box": {
+          "x": 42,
+          "y": 69.7,
+          "w": 940,
+          "h": 300.42
+        },
+        "paddingTop": 92,
+        "paddingBottom": 72,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "All updatesNewImprovedFixedSeptember 9, 2026Version 2.3NewFocus time, across you",
+        "box": {
+          "x": 0,
+          "y": 370.13,
+          "w": 1024,
+          "h": 2937.86
+        },
+        "paddingTop": 0,
+        "paddingBottom": 40,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 3307.98,
+          "w": 1024,
+          "h": 906.16
+        },
+        "paddingTop": 80,
+        "paddingBottom": 80,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 4214.14,
+          "w": 1024,
+          "h": 810.16
+        },
+        "paddingTop": 96,
+        "paddingBottom": 0,
+        "bg": "rgb(255, 255, 255)"
+      }
+    ],
+    "headingCount": 13,
+    "svgCount": 10,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "waapiSeen": 27,
+    "animateCalls": 15,
+    "ioCreated": 1,
+    "overflowX": 0,
+    "consoleErrors": [],
+    "changelog": null
+  },
+  {
+    "viewport": "768x1024",
+    "label": "tablet",
+    "theme": "light",
+    "url": "https://forma-visuvate.framer.website/changelog",
+    "title": "Changelog — New features and fixes in Forma",
+    "document": {
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "scrollHeight": 4835,
+      "overflowX": 0,
+      "bodyBg": "rgb(255, 255, 255)",
+      "bodyFont": "sans-serif"
+    },
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "id": null,
+        "text": "fforma..vv-toggle-r9:focus-visible{outline:2px solid var(--token-a02920e8-7732-4",
+        "box": {
+          "x": 0,
+          "y": 0,
+          "w": 768,
+          "h": 65.7
+        },
+        "paddingTop": 0,
+        "paddingBottom": 0,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "ChangelogWhat’s newin FormaNew features, improvements, and fixes, most recent fi",
+        "box": {
+          "x": 16,
+          "y": 65.7,
+          "w": 736,
+          "h": 230.91
+        },
+        "paddingTop": 56,
+        "paddingBottom": 44,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "All updatesNewImprovedFixedSeptember 9, 2026Version 2.3NewFocus time, across you",
+        "box": {
+          "x": 0,
+          "y": 296.61,
+          "w": 768,
+          "h": 2965.91
+        },
+        "paddingTop": 0,
+        "paddingBottom": 40,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 3262.52,
+          "w": 768,
+          "h": 827.52
+        },
+        "paddingTop": 60,
+        "paddingBottom": 64,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 4090.03,
+          "w": 768,
+          "h": 745.39
+        },
+        "paddingTop": 56,
+        "paddingBottom": 0,
+        "bg": "rgb(255, 255, 255)"
+      }
+    ],
+    "headingCount": 13,
+    "svgCount": 10,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "waapiSeen": 15,
+    "animateCalls": 15,
+    "ioCreated": 1,
+    "overflowX": 0,
+    "consoleErrors": [],
+    "changelog": {
+      "entryCount": 8,
+      "filterChips": [
+        "All updates"
+      ],
+      "badgeLabels": [
+        "New",
+        "Improved",
+        "Fixed",
+        "Beta"
+      ],
+      "decorCount": 17,
+      "stickyCount": 0,
+      "paginationCount": 0,
+      "filterClicks": null,
+      "cardHoverChanges": null,
+      "chipHoverChanges": null
+    }
+  },
+  {
+    "viewport": "768x1024",
+    "label": "tablet",
+    "theme": "dark",
+    "url": "https://forma-visuvate.framer.website/changelog",
+    "title": "Changelog — New features and fixes in Forma",
+    "document": {
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "scrollHeight": 4835,
+      "overflowX": 0,
+      "bodyBg": "rgb(255, 255, 255)",
+      "bodyFont": "sans-serif"
+    },
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "id": null,
+        "text": "fforma..vv-toggle-r8:focus-visible{outline:2px solid var(--token-a02920e8-7732-4",
+        "box": {
+          "x": 0,
+          "y": 0,
+          "w": 768,
+          "h": 65.7
+        },
+        "paddingTop": 0,
+        "paddingBottom": 0,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "ChangelogWhat’s newin FormaNew features, improvements, and fixes, most recent fi",
+        "box": {
+          "x": 16,
+          "y": 65.7,
+          "w": 736,
+          "h": 230.91
+        },
+        "paddingTop": 56,
+        "paddingBottom": 44,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "All updatesNewImprovedFixedSeptember 9, 2026Version 2.3NewFocus time, across you",
+        "box": {
+          "x": 0,
+          "y": 296.61,
+          "w": 768,
+          "h": 2965.91
+        },
+        "paddingTop": 0,
+        "paddingBottom": 40,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 3262.52,
+          "w": 768,
+          "h": 827.52
+        },
+        "paddingTop": 60,
+        "paddingBottom": 64,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 4090.03,
+          "w": 768,
+          "h": 745.39
+        },
+        "paddingTop": 56,
+        "paddingBottom": 0,
+        "bg": "rgb(255, 255, 255)"
+      }
+    ],
+    "headingCount": 13,
+    "svgCount": 10,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "waapiSeen": 28,
+    "animateCalls": 15,
+    "ioCreated": 1,
+    "overflowX": 0,
+    "consoleErrors": [],
+    "changelog": null
+  },
+  {
+    "viewport": "390x844",
+    "label": "mobile",
+    "theme": "light",
+    "url": "https://forma-visuvate.framer.website/changelog",
+    "title": "Changelog — New features and fixes in Forma",
+    "document": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "scrollHeight": 5828,
+      "overflowX": 0,
+      "bodyBg": "rgb(255, 255, 255)",
+      "bodyFont": "sans-serif"
+    },
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "id": null,
+        "text": "fforma..vv-toggle-r8:focus-visible{outline:2px solid var(--token-a02920e8-7732-4",
+        "box": {
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 65.7
+        },
+        "paddingTop": 0,
+        "paddingBottom": 0,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "ChangelogWhat’s newin FormaNew features, improvements, and fixes, most recent fi",
+        "box": {
+          "x": 16,
+          "y": 65.7,
+          "w": 358,
+          "h": 303.02
+        },
+        "paddingTop": 56,
+        "paddingBottom": 44,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "All updatesNewImprovedFixedSeptember 9, 2026Version 2.3NewFocus time, across you",
+        "box": {
+          "x": 0,
+          "y": 368.72,
+          "w": 390,
+          "h": 3755.28
+        },
+        "paddingTop": 0,
+        "paddingBottom": 40,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 4124,
+          "w": 390,
+          "h": 958.7
+        },
+        "paddingTop": 60,
+        "paddingBottom": 64,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 5082.7,
+          "w": 390,
+          "h": 745.39
+        },
+        "paddingTop": 56,
+        "paddingBottom": 0,
+        "bg": "rgb(255, 255, 255)"
+      }
+    ],
+    "headingCount": 13,
+    "svgCount": 10,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "waapiSeen": 14,
+    "animateCalls": 15,
+    "ioCreated": 1,
+    "overflowX": 0,
+    "consoleErrors": [],
+    "changelog": {
+      "entryCount": 8,
+      "filterChips": [
+        "All updates"
+      ],
+      "badgeLabels": [
+        "New",
+        "Improved",
+        "Fixed",
+        "Beta"
+      ],
+      "decorCount": 17,
+      "stickyCount": 0,
+      "paginationCount": 0,
+      "filterClicks": [
+        {
+          "chip": "All updates",
+          "visibleCount": 8
+        }
+      ],
+      "cardHoverChanges": 0,
+      "chipHoverChanges": 5
+    }
+  },
+  {
+    "viewport": "390x844",
+    "label": "mobile",
+    "theme": "dark",
+    "url": "https://forma-visuvate.framer.website/changelog",
+    "title": "Changelog — New features and fixes in Forma",
+    "document": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "scrollHeight": 5828,
+      "overflowX": 0,
+      "bodyBg": "rgb(255, 255, 255)",
+      "bodyFont": "sans-serif"
+    },
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "id": null,
+        "text": "fforma..vv-toggle-r8:focus-visible{outline:2px solid var(--token-a02920e8-7732-4",
+        "box": {
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 65.7
+        },
+        "paddingTop": 0,
+        "paddingBottom": 0,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "ChangelogWhat’s newin FormaNew features, improvements, and fixes, most recent fi",
+        "box": {
+          "x": 16,
+          "y": 65.7,
+          "w": 358,
+          "h": 303.02
+        },
+        "paddingTop": 56,
+        "paddingBottom": 44,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "All updatesNewImprovedFixedSeptember 9, 2026Version 2.3NewFocus time, across you",
+        "box": {
+          "x": 0,
+          "y": 368.72,
+          "w": 390,
+          "h": 3755.28
+        },
+        "paddingTop": 0,
+        "paddingBottom": 40,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 4124,
+          "w": 390,
+          "h": 958.7
+        },
+        "paddingTop": 60,
+        "paddingBottom": 64,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 5082.7,
+          "w": 390,
+          "h": 745.39
+        },
+        "paddingTop": 56,
+        "paddingBottom": 0,
+        "bg": "rgb(255, 255, 255)"
+      }
+    ],
+    "headingCount": 13,
+    "svgCount": 10,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "waapiSeen": 27,
+    "animateCalls": 15,
+    "ioCreated": 1,
+    "overflowX": 0,
+    "consoleErrors": [],
+    "changelog": null
+  },
+  {
+    "viewport": "375x812",
+    "label": "mobile-small",
+    "theme": "light",
+    "url": "https://forma-visuvate.framer.website/changelog",
+    "title": "Changelog — New features and fixes in Forma",
+    "document": {
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "scrollHeight": 5975,
+      "overflowX": 0,
+      "bodyBg": "rgb(255, 255, 255)",
+      "bodyFont": "sans-serif"
+    },
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "id": null,
+        "text": "fforma..vv-toggle-r7:focus-visible{outline:2px solid var(--token-a02920e8-7732-4",
+        "box": {
+          "x": 0,
+          "y": 0,
+          "w": 375,
+          "h": 65.7
+        },
+        "paddingTop": 0,
+        "paddingBottom": 0,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "ChangelogWhat’s newin FormaNew features, improvements, and fixes, most recent fi",
+        "box": {
+          "x": 16,
+          "y": 65.7,
+          "w": 343,
+          "h": 303.02
+        },
+        "paddingTop": 56,
+        "paddingBottom": 44,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "All updatesNewImprovedFixedSeptember 9, 2026Version 2.3NewFocus time, across you",
+        "box": {
+          "x": 0,
+          "y": 368.72,
+          "w": 375,
+          "h": 3878.63
+        },
+        "paddingTop": 0,
+        "paddingBottom": 40,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 4247.34,
+          "w": 375,
+          "h": 958.7
+        },
+        "paddingTop": 60,
+        "paddingBottom": 64,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 5206.05,
+          "w": 375,
+          "h": 768.64
+        },
+        "paddingTop": 56,
+        "paddingBottom": 0,
+        "bg": "rgb(255, 255, 255)"
+      }
+    ],
+    "headingCount": 13,
+    "svgCount": 10,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "waapiSeen": 14,
+    "animateCalls": 15,
+    "ioCreated": 1,
+    "overflowX": 0,
+    "consoleErrors": [],
+    "changelog": {
+      "entryCount": 8,
+      "filterChips": [
+        "All updates"
+      ],
+      "badgeLabels": [
+        "New",
+        "Improved",
+        "Fixed",
+        "Beta"
+      ],
+      "decorCount": 17,
+      "stickyCount": 0,
+      "paginationCount": 0,
+      "filterClicks": null,
+      "cardHoverChanges": null,
+      "chipHoverChanges": null
+    }
+  },
+  {
+    "viewport": "375x812",
+    "label": "mobile-small",
+    "theme": "dark",
+    "url": "https://forma-visuvate.framer.website/changelog",
+    "title": "Changelog — New features and fixes in Forma",
+    "document": {
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "scrollHeight": 5975,
+      "overflowX": 0,
+      "bodyBg": "rgb(255, 255, 255)",
+      "bodyFont": "sans-serif"
+    },
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "id": null,
+        "text": "fforma..vv-toggle-r8:focus-visible{outline:2px solid var(--token-a02920e8-7732-4",
+        "box": {
+          "x": 0,
+          "y": 0,
+          "w": 375,
+          "h": 65.7
+        },
+        "paddingTop": 0,
+        "paddingBottom": 0,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "ChangelogWhat’s newin FormaNew features, improvements, and fixes, most recent fi",
+        "box": {
+          "x": 16,
+          "y": 65.7,
+          "w": 343,
+          "h": 303.02
+        },
+        "paddingTop": 56,
+        "paddingBottom": 44,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "All updatesNewImprovedFixedSeptember 9, 2026Version 2.3NewFocus time, across you",
+        "box": {
+          "x": 0,
+          "y": 368.72,
+          "w": 375,
+          "h": 3878.63
+        },
+        "paddingTop": 0,
+        "paddingBottom": 40,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 4247.34,
+          "w": 375,
+          "h": 958.7
+        },
+        "paddingTop": 60,
+        "paddingBottom": 64,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 5206.05,
+          "w": 375,
+          "h": 768.64
+        },
+        "paddingTop": 56,
+        "paddingBottom": 0,
+        "bg": "rgb(255, 255, 255)"
+      }
+    ],
+    "headingCount": 13,
+    "svgCount": 10,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "waapiSeen": 27,
+    "animateCalls": 15,
+    "ioCreated": 1,
+    "overflowX": 0,
+    "consoleErrors": [],
+    "changelog": null
+  },
+  {
+    "viewport": "320x700",
+    "label": "mobile-narrow",
+    "theme": "light",
+    "url": "https://forma-visuvate.framer.website/changelog",
+    "title": "Changelog — New features and fixes in Forma",
+    "document": {
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "scrollHeight": 6410,
+      "overflowX": 0,
+      "bodyBg": "rgb(255, 255, 255)",
+      "bodyFont": "sans-serif"
+    },
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "id": null,
+        "text": "fforma..vv-toggle-r9:focus-visible{outline:2px solid var(--token-a02920e8-7732-4",
+        "box": {
+          "x": 0,
+          "y": 0,
+          "w": 320,
+          "h": 65.7
+        },
+        "paddingTop": 0,
+        "paddingBottom": 0,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "ChangelogWhat’s newin FormaNew features, improvements, and fixes, most recent fi",
+        "box": {
+          "x": 16,
+          "y": 65.7,
+          "w": 288,
+          "h": 303.02
+        },
+        "paddingTop": 56,
+        "paddingBottom": 44,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "All updatesNewImprovedFixedSeptember 9, 2026Version 2.3NewFocus time, across you",
+        "box": {
+          "x": 0,
+          "y": 368.72,
+          "w": 320,
+          "h": 4197.27
+        },
+        "paddingTop": 0,
+        "paddingBottom": 40,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 4565.98,
+          "w": 320,
+          "h": 1045.52
+        },
+        "paddingTop": 60,
+        "paddingBottom": 64,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 5611.5,
+          "w": 320,
+          "h": 798.8
+        },
+        "paddingTop": 56,
+        "paddingBottom": 0,
+        "bg": "rgb(255, 255, 255)"
+      }
+    ],
+    "headingCount": 13,
+    "svgCount": 10,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "waapiSeen": 14,
+    "animateCalls": 15,
+    "ioCreated": 1,
+    "overflowX": 0,
+    "consoleErrors": [],
+    "changelog": {
+      "entryCount": 8,
+      "filterChips": [
+        "All updates"
+      ],
+      "badgeLabels": [
+        "New",
+        "Improved",
+        "Fixed",
+        "Beta"
+      ],
+      "decorCount": 17,
+      "stickyCount": 0,
+      "paginationCount": 0,
+      "filterClicks": null,
+      "cardHoverChanges": null,
+      "chipHoverChanges": null
+    }
+  },
+  {
+    "viewport": "320x700",
+    "label": "mobile-narrow",
+    "theme": "dark",
+    "url": "https://forma-visuvate.framer.website/changelog",
+    "title": "Changelog — New features and fixes in Forma",
+    "document": {
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "scrollHeight": 6410,
+      "overflowX": 0,
+      "bodyBg": "rgb(255, 255, 255)",
+      "bodyFont": "sans-serif"
+    },
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "id": null,
+        "text": "fforma..vv-toggle-r9:focus-visible{outline:2px solid var(--token-a02920e8-7732-4",
+        "box": {
+          "x": 0,
+          "y": 0,
+          "w": 320,
+          "h": 65.7
+        },
+        "paddingTop": 0,
+        "paddingBottom": 0,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "id": null,
+        "text": "ChangelogWhat’s newin FormaNew features, improvements, and fixes, most recent fi",
+        "box": {
+          "x": 16,
+          "y": 65.7,
+          "w": 288,
+          "h": 303.02
+        },
+        "paddingTop": 56,
+        "paddingBottom": 44,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "id": null,
+        "text": "All updatesNewImprovedFixedSeptember 9, 2026Version 2.3NewFocus time, across you",
+        "box": {
+          "x": 0,
+          "y": 368.72,
+          "w": 320,
+          "h": 4197.27
+        },
+        "paddingTop": 0,
+        "paddingBottom": 40,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "id": null,
+        "text": "TryFormawithyourownprojectsStart on the free plan, import a board, and see how m",
+        "box": {
+          "x": 0,
+          "y": 4565.98,
+          "w": 320,
+          "h": 1045.52
+        },
+        "paddingTop": 60,
+        "paddingBottom": 64,
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "id": null,
+        "text": "fforma.Tasks, calendar, and automations in one workspace, connected to the apps ",
+        "box": {
+          "x": 0,
+          "y": 5611.5,
+          "w": 320,
+          "h": 798.8
+        },
+        "paddingTop": 56,
+        "paddingBottom": 0,
+        "bg": "rgb(255, 255, 255)"
+      }
+    ],
+    "headingCount": 13,
+    "svgCount": 10,
+    "canvasCount": 0,
+    "imageCount": 0,
+    "videoCount": 0,
+    "waapiSeen": 27,
+    "animateCalls": 15,
+    "ioCreated": 1,
+    "overflowX": 0,
+    "consoleErrors": [],
+    "changelog": null
+  }
+]

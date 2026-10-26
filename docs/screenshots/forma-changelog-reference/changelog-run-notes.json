@@ -1,0 +1,55 @@
+{
+  "target": "forma-changelog",
+  "base": "https://forma-visuvate.framer.website/changelog",
+  "startedAt": "2026-10-26T03:51:38.616Z",
+  "browserVersion": "153.0.8010.12",
+  "viewports": [
+    {
+      "w": 1440,
+      "h": 900,
+      "name": "1440x900",
+      "label": "desktop"
+    },
+    {
+      "w": 1200,
+      "h": 900,
+      "name": "1200x900",
+      "label": "desktop-1200"
+    },
+    {
+      "w": 1024,
+      "h": 768,
+      "name": "1024x768",
+      "label": "laptop"
+    },
+    {
+      "w": 768,
+      "h": 1024,
+      "name": "768x1024",
+      "label": "tablet"
+    },
+    {
+      "w": 390,
+      "h": 844,
+      "name": "390x844",
+      "label": "mobile"
+    },
+    {
+      "w": 375,
+      "h": 812,
+      "name": "375x812",
+      "label": "mobile-small"
+    },
+    {
+      "w": 320,
+      "h": 700,
+      "name": "320x700",
+      "label": "mobile-narrow"
+    }
+  ],
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "finishedAt": "2026-10-26T03:54:27.205Z"
+}
