@@ -99,9 +99,11 @@ describe("/vs pages (source contract)", () => {
     // from FOOTER.columns.
     const header = read("components/marketing/SiteHeader.tsx");
     assert.match(header, /\{ href: "\/vs", label: "Compare" \}/);
-    // PR #56 added a /solutions-only nav (SOLUTIONS_NAV) selected by pathname;
-    // every other route still renders NAV, which carries the /vs link.
-    assert.match(header, /const items = solutions \? SOLUTIONS_NAV : NAV;/);
+    // The /solutions-only SOLUTIONS_NAV and its pathname ternary were
+    // removed by the site-wide consistency pass: there is now a single NAV
+    // rendered by every marketing route, and it carries the /vs link.
+    assert.match(header, /const items = NAV;/);
+    assert.ok(!header.includes("SOLUTIONS_NAV"));
     assert.match(header, /items\.map/);
     const footer = read("components/marketing/SiteFooter.tsx");
     assert.match(footer, /FOOTER\.columns\.map/);

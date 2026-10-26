@@ -92,7 +92,7 @@ export function ChangelogClosingCta() {
                 <ChecklistRows items={CHANGELOG_CHECKLIST} variant="card" />
               </div>
 
-              <p className="mt-3 border-t border-lm-cta-track pt-2.5 text-lm-chip text-lm-cta-faint">
+              <p className="lm-stage-disclosure mt-3 border-t border-lm-cta-track pt-2.5 text-lm-chip text-lm-cta-faint">
                 {MOCK_DISCLOSURE}
               </p>
             </div>

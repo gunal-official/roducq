@@ -60,21 +60,58 @@ export default function PricingPage() {
       className="py-13 md:py-22 lg:py-30"
     >
       <div className="lm-shell">
-        {/* Pricing Header: Eyebrow + Main Heading + Description */}
-        <Reveal as="div" className="mx-auto max-w-2xl text-center">
-          <p className="lm-pricing-eyebrow text-lm-13 font-semibold uppercase tracking-lm-eyebrow sm:text-lm-14">
+        {/* Pricing Header: Eyebrow + Main Heading + Description.
+
+            THE LCP RULE (PR #53), APPLIED. This block used to sit inside
+            <Reveal>, whose hidden state is real CSS: the marketing layout
+            adds `.lm-js` before first paint, and `.lm-js .lm-reveal` sets
+            opacity 0 until Motion hydrates. The h1 here is this route's LCP
+            element (measured, docs/RODUCQ_MARKETING_CONSISTENCY_AUDIT.md
+            §7), so the first thing a slow connection painted was an
+            invisible headline — exactly the pattern PR #53 forbids. The
+            hero now uses the shared `.lm-hero-in` ladder the homepage and
+            the /solutions, /features, /integrations and /changelog heroes
+            already use: opacity stays 1 in every keyframe and only the
+            clip-path band and a small rise travel, so the headline is laid
+            out and painted on the first frame, with or without JavaScript
+            and under prefers-reduced-motion. */}
+        <div className="mx-auto max-w-2xl text-center">
+          <p
+            className="lm-pricing-eyebrow lm-hero-in text-lm-13 font-semibold uppercase tracking-lm-eyebrow sm:text-lm-14"
+            style={
+              {
+                "--lm-hero-delay": "0ms",
+                "--lm-hero-duration": "800ms",
+              } as React.CSSProperties
+            }
+          >
             {HERO.eyebrow}
           </p>
           <h1
             id="pricing-page-heading"
-            className="mt-3 font-display text-lm-32 font-normal leading-lm-heading tracking-lm-display text-lm-ink md:text-lm-34 lg:text-lm-54"
+            style={
+              {
+                "--lm-hero-delay": "80ms",
+                "--lm-hero-duration": "900ms",
+                "--lm-hero-rise": "16px",
+              } as React.CSSProperties
+            }
+            className="lm-hero-in mt-3 font-display text-lm-32 font-normal leading-lm-heading tracking-lm-display text-lm-ink md:text-lm-34 min-[1200px]:text-lm-54"
           >
             {HERO.title}
           </h1>
-          <p className="mx-auto mt-4 max-w-xl text-lm-14 leading-lm-body text-lm-ink-soft lg:text-lm-18">
+          <p
+            style={
+              {
+                "--lm-hero-delay": "450ms",
+                "--lm-hero-duration": "800ms",
+              } as React.CSSProperties
+            }
+            className="lm-hero-in mx-auto mt-4 max-w-xl text-lm-14 leading-lm-body text-lm-ink-soft min-[1200px]:text-lm-18"
+          >
             {HERO.subtitle}
           </p>
-        </Reveal>
+        </div>
 
         {/* Optional Launch Offer Banner (from getPricingOffer() in lib/razorpay.ts) */}
         {offer ? (

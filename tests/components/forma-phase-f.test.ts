@@ -111,7 +111,10 @@ describe("Forma F — inventory and honest browser evidence", () => {
 describe("Forma F — marketing responsiveness and semantics", () => {
   it("shows the complete header row only at the desktop breakpoint", () => {
     const header = read("components/marketing/SiteHeader.tsx");
-    assert.match(header, /hidden items-center[^\n]*lg:flex/);
+    // The full row is hidden below lg and becomes a flex row at lg. (The
+    // consistency pass reordered the nav's class list, so the two tokens are
+    // no longer adjacent; the contract is unchanged.)
+    assert.match(header, /hidden[^\n]*lg:flex/);
     assert.match(header, /Dialog\.Trigger asChild/);
     assert.match(header, /Dialog\.Content/);
     assert.match(header, /Dialog\.Title/);

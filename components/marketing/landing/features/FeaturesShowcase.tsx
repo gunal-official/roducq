@@ -132,7 +132,7 @@ function FeatureArticleBlock({
         {feature.link ? (
           <Link
             href={feature.link.href}
-            className="group mt-5 inline-flex w-fit items-center gap-1.5 text-lm-15 font-lm-medium text-lm-ink-accent transition-colors duration-200 hover:text-lm-accent-strong"
+            className="group mt-5 inline-flex min-h-11 w-fit items-center gap-1.5 text-lm-15 font-lm-medium text-lm-ink-accent transition-colors duration-200 hover:text-lm-accent-strong"
           >
             {feature.link.label}
             <ArrowRight

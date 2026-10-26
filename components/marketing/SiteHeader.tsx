@@ -11,93 +11,89 @@ import { ThemeIconToggle, ThemeToggle } from "@/components/theme-toggle";
 import { clsx as cn } from "clsx";
 
 /**
- * Marketing header — the reference's chrome, on roducq's routes.
+ * Marketing header — ONE header for the whole marketing route group.
  *
- * COMPOSITION. Mark + wordmark on the left, the route list beside it, and
- * the two funnel actions pinned right. It sticks, sits on a translucent
- * wash of the landing canvas, and closes with the same brand hairline the
- * cards use — no solid block, no drop shadow, which is what keeps the hero
- * reading as one continuous surface under it.
+ * WHAT IT IS. The approved /solutions header, measured on the reference
+ * (docs/FORMA_SOLUTIONS_REFERENCE.md §9 and the capture DOM): an opaque card
+ * plane with no hairline, the rod mark and wordmark at the display size, the
+ * route list centred in the viewport with an active-page underline, one icon
+ * theme button and the purple "Get started" action pinned right.
  *
- * PROPORTIONS. 64px tall, 1200px container, 20/32/40px gutters — the same
- * `--lm-*` layout tokens every band uses, so the header's content lines up
- * with the hero's instead of sitting on its own grid.
+ * WHY THERE IS NO PER-ROUTE VARIANT ANY MORE. Until this pass the component
+ * switched two chromes on pathname: /solutions, /features, /integrations and
+ * /changelog rendered the reference plane, while /, /about, /pricing and /vs
+ * kept a pre-redesign wash bar with a three-button theme group and a
+ * "Log in / Start free" pair. That split was introduced to keep each page
+ * milestone surgical, not because the two chromes were each measured — and
+ * the site-wide consistency pass (docs/RODUCQ_MARKETING_CONSISTENCY_AUDIT.md)
+ * made it a defect: the same marketing shell changed appearance and
+ * destination list from one route to the next, and /features, /integrations
+ * and /changelog rendered the reference chrome over the old four-item list,
+ * so those three pages had no link to Features, Solutions or Integrations and
+ * no active item at all.
  *
- * ONE NAV MODEL AT EVERY WIDTH. The complete row only appears when it fits;
- * below the desktop band the same destinations move into a real modal
- * dialog, with focus trapping, Escape, background isolation and focus
- * return handled by Radix. Duplicating the list into a second component is
- * how a nav ends up shipping a route on desktop that the phone menu forgot.
+ * So the pathname gate is gone. Every marketing route renders exactly this
+ * header; the route list lives in one constant; the active state is the only
+ * thing that varies. The destinations are roducq's, not the reference's —
+ * About and Compare are appended to the reference's five (see NAV below).
  *
- * ROUTES ARE THE REAL ONES. /about, /pricing and /vs exist under
- * app/(marketing); /login and /signup exist under app/(auth). Nothing here
- * points at a page the router does not serve (asserted by
- * tests/components/home.test.ts).
+ * PROPORTIONS. 64px tall on phones, 72px from the md band, the shared
+ * `--lm-container` shell and the same `--lm-*` gutters every band uses, so the
+ * header's content lines up with the hero's instead of sitting on its own
+ * grid.
  *
- * SOLUTIONS VARIANT. `/solutions` is matched against the Forma reference's
- * header (measured in docs/FORMA_SOLUTIONS_REFERENCE.md §9 and the capture
- * DOM): white bar with no hairline, the route list centred in the viewport,
- * a single icon theme button, and a purple "Get started" action. Every other
- * marketing page keeps the header it has always had; the variant is switched
- * on pathname here so the shared component stays the one place the header
- * lives.
+ * ONE NAV MODEL AT EVERY WIDTH. The complete row appears from 1024px; below
+ * that the same destinations move into a real modal dialog, with focus
+ * trapping, Escape, background isolation and focus return handled by Radix.
+ * Duplicating the list into a second component is how a nav ends up shipping a
+ * route on desktop that the phone menu forgot.
  *
- * FEATURES EXTENSION. `/features` recreates the same reference family and
- * renders that same white chrome: a second pathname boolean (`features`)
- * feeds the `showcase` gate every visual branch below reads. The nav-data
- * ternary on the next lines is deliberately untouched — an assertion in
- * tests/components/vs-comparisons.test.ts locks its exact form — so only the
- * two showcase routes change appearance, and /, /about, /pricing and /vs
- * keep their original header.
+ * ROUTES ARE THE REAL ONES. /features, /solutions, /integrations, /pricing,
+ * /changelog, /about and /vs all exist under app/(marketing); /login and
+ * /signup exist under app/(auth). Nothing here points at a page the router
+ * does not serve (asserted by tests/components/home.test.ts).
+ *
+ * THE 1024–1199 BAND. Seven destinations do not fit at the reference's 12px
+ * link padding on a 1024px viewport: measured in Chromium the row is 627px
+ * wide there, the centred column leaves 599px between the wordmark and the
+ * actions, and the row ended ~2.5px inside the theme button. The reference never rendered that band
+ * (its tablet preset stops at 1199 and the capture skipped 1024 —
+ * docs/FORMA_SOLUTIONS_REFERENCE.md §9.5), so the row tightens to 10px of
+ * horizontal padding below 1200px and holds the measured 12px from 1200px up.
+ * That keeps the five measured steps and every destination visible rather
+ * than collapsing the nav into the menu on tablets.
+ */
+/**
+ * ONE ROUTE LIST, THE REFERENCE'S ORDER, RODUCQ'S ROUTES.
+ *
+ * The first five entries are the reference header's route list, measured on
+ * the live site (docs/FORMA_SOLUTIONS_REFERENCE.md §9, the capture DOM):
+ * Features, Solutions, Integrations, Pricing, Changelog. The reference
+ * publishes the first and third as in-page anchors because those pages do not
+ * exist there; roducq ships both as real routes, so the header points at
+ * `/features` and `/integrations` and each page can light its own item.
+ *
+ * About and Compare follow, because both are real, working destinations that
+ * the marketing shell has always exposed. Dropping them to make the header
+ * byte-identical to the reference's five would have removed two shipped
+ * routes from the primary navigation, so they are appended instead — the
+ * only product-driven difference, recorded in
+ * docs/RODUCQ_MARKETING_CONSISTENCY_AUDIT.md §4.
  */
 const NAV = [
-  { href: "/about", label: "About" },
-  { href: "/pricing", label: "Pricing" },
-  { href: "/vs", label: "Compare" },
-  { href: "/changelog", label: "Changelog" },
-];
-
-/**
- * The Forma reference's route list, mapped onto roducq's real destinations.
- * `hash` targets a section on the home page, while `/solutions`, `/pricing`
- * and `/changelog` resolve directly to their dedicated marketing routes.
- */
-const SOLUTIONS_NAV: { href: string; label: string; hash?: string }[] = [
-  { href: "/", label: "Features", hash: "features" },
+  { href: "/features", label: "Features" },
   { href: "/solutions", label: "Solutions" },
-  { href: "/", label: "Integrations", hash: "integrations" },
+  { href: "/integrations", label: "Integrations" },
   { href: "/pricing", label: "Pricing" },
   { href: "/changelog", label: "Changelog" },
+  { href: "/about", label: "About" },
+  { href: "/vs", label: "Compare" },
 ];
 
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const solutions = pathname === "/solutions" || pathname.startsWith("/solutions/");
-  // /features recreates the same reference page family, so it reuses the
-  // white showcase chrome below. The nav-DATA selection stays on the
-  // `solutions` ternary exactly as it was (a test locks that line);
-  // `showcase` only drives the visual variant, so /, /about, /pricing and
-  // /vs render byte-identical headers and /solutions is unchanged.
-  const features = pathname === "/features" || pathname.startsWith("/features/");
-  // /integrations joins the same reference page family (measured against
-  // forma-visuvate.framer.website/integrations — docs/FORMA_INTEGRATIONS_REFERENCE.md),
-  // so it renders the identical white showcase chrome. This is the smallest
-  // possible extension: one pathname boolean feeds the `showcase` gate every
-  // visual branch below already reads, and the nav-data ternary on the next
-  // line is deliberately untouched — tests/components/vs-comparisons.test.ts
-  // locks its exact form. /integrations therefore keeps the same route list
-  // /features renders today, and /, /about, /pricing and /vs do not move.
-  const integrations =
-    pathname === "/integrations" || pathname.startsWith("/integrations/");
-  // /changelog joins the same showcase page family (measured against
-  // forma-visuvate.framer.website/changelog — docs/FORMA_CHANGELOG_REFERENCE.md),
-  // reusing the identical opaque card chrome while keeping the locked nav-data
-  // ternary on the next line untouched.
-  const changelog =
-    pathname === "/changelog" || pathname.startsWith("/changelog/");
-  const showcase = solutions || features || integrations || changelog;
-  const items = solutions ? SOLUTIONS_NAV : NAV;
+  const items = NAV;
 
   // A phone menu left open while the window grows past the desktop band
   // would leave a modal over a nav that is already visible.
@@ -113,132 +109,75 @@ export function SiteHeader() {
 
   const active = (href: string) =>
     pathname === href || pathname.startsWith(`${href}/`);
-  const hrefOf = (item: { href: string; hash?: string }) =>
-    item.hash ? `${item.href}#${item.hash}` : item.href;
 
   return (
-    <header
-      className={cn(
-        "lm-header sticky top-0 z-40 backdrop-blur-md",
-        showcase
-          ? "bg-lm-card"
-          : "border-b border-lm-border-soft bg-lm-header-wash"
-      )}
-    >
-      <div
-        className={cn(
-          "lm-shell flex h-16 items-center gap-3 md:h-18",
-          showcase && "relative"
-        )}
-      >
+    <header className="lm-header sticky top-0 z-40 bg-lm-card backdrop-blur-md">
+      <div className="lm-shell relative flex h-16 items-center gap-3 md:h-18">
         <Link
           href="/"
           aria-label="roducq home"
           className="inline-flex min-h-11 shrink-0 items-center gap-2"
         >
-          <RoduMark size={showcase ? 30 : 28} />
+          <RoduMark size={30} />
           {/* The shared wordmark, re-toned to the landing ink. `cn` inside
               Wordmark resolves the conflicts, so the landing size and colour
               win without the app's own lockup changing anywhere else. */}
-          <Wordmark
-            className={cn(
-              "font-lm-bold text-lm-ink",
-              showcase
-                ? "text-lm-22 tracking-[-0.06em] md:text-lm-28"
-                : "text-lm-18 tracking-[-0.02em]"
-            )}
-          />
+          <Wordmark className="font-lm-bold text-lm-22 tracking-[-0.06em] text-lm-ink md:text-lm-28" />
         </Link>
 
         <nav
           aria-label="Main navigation"
-          className={cn(
-            "hidden items-center lg:flex",
-            showcase
-              ? "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 gap-0.5"
-              : "ml-3.5 gap-1"
-          )}
+          className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-0.5 lg:flex"
         >
           {items.map((item) => (
             <Link
-              key={item.label}
-              href={hrefOf(item)}
+              key={item.href}
+              href={item.href}
               aria-current={active(item.href) ? "page" : undefined}
               className={cn(
-                "group relative inline-flex min-h-11 min-w-11 items-center rounded-lm-control transition-colors duration-200 ease-lm-nav",
-                showcase
-                  ? "px-3 text-lm-15 font-lm-regular"
-                  : "px-3.5 text-lm-15",
-                showcase && active(item.href)
+                // The measured 12px padding returns at 1200px, the
+                // reference's own desktop boundary; the 1024–1199 band it
+                // never rendered holds 10px so all seven destinations fit.
+                "group relative inline-flex min-h-11 min-w-11 items-center rounded-lm-control px-2.5 text-lm-15 font-lm-regular transition-colors duration-200 ease-lm-nav min-[1200px]:px-3",
+                active(item.href)
                   ? "text-lm-ink"
-                  : showcase
-                    ? "text-lm-muted-slate hover:text-lm-ink"
-                    : active(item.href)
-                      ? "font-lm-semibold text-lm-ink-accent"
-                      : "font-lm-regular text-lm-muted-readable hover:bg-lm-surface-accent hover:text-lm-ink"
+                  : "text-lm-muted-slate hover:text-lm-ink",
               )}
             >
               {item.label}
-              {showcase ? (
-                <span
-                  aria-hidden="true"
-                  className={cn(
-                    "absolute inset-x-3 bottom-2 h-0.5 origin-left rounded-full bg-lm-ink transition-transform duration-200 ease-lm-nav motion-reduce:transition-none",
-                    active(item.href)
-                      ? "scale-x-100"
-                      : "scale-x-0 group-hover:scale-x-100"
-                  )}
-                />
-              ) : null}
+              <span
+                aria-hidden="true"
+                className={cn(
+                  "absolute inset-x-2.5 bottom-2 h-0.5 origin-left rounded-full bg-lm-ink transition-transform duration-200 ease-lm-nav motion-reduce:transition-none min-[1200px]:inset-x-3",
+                  active(item.href)
+                    ? "scale-x-100"
+                    : "scale-x-0 group-hover:scale-x-100",
+                )}
+              />
             </Link>
           ))}
         </nav>
 
         <div className="ml-auto flex shrink-0 items-center gap-2">
-          {showcase ? (
-            <>
-              <div className="hidden min-[360px]:block">
-                <ThemeIconToggle />
-              </div>
-              <Link
-                href="/signup"
-                className="inline-flex h-11 items-center rounded-lm-button bg-lm-accent-strong px-4 text-lm-14 font-lm-semibold text-lm-on-accent transition-colors duration-200 hover:bg-lm-ink-accent"
-              >
-                Get started
-              </Link>
-            </>
-          ) : (
-            <>
-              <div className="hidden lg:block">
-                <ThemeToggle />
-              </div>
-
-              <Link
-                href="/login"
-                className="hidden min-h-11 items-center rounded-lm-control px-3.5 text-lm-14 font-lm-regular text-lm-ink transition-colors duration-200 hover:bg-lm-surface-accent hover:text-lm-ink-accent sm:inline-flex"
-              >
-                Log in
-              </Link>
-
-              <Link
-                href="/signup"
-                className="hidden h-11 items-center rounded-lm-button bg-lm-accent px-5 text-lm-14 font-lm-regular text-lm-on-accent shadow-lm-sm transition-colors duration-200 hover:bg-lm-accent-strong sm:inline-flex"
-              >
-                Start free
-              </Link>
-            </>
-          )}
+          <div className="hidden min-[360px]:block">
+            <ThemeIconToggle />
+          </div>
+          <Link
+            href="/signup"
+            className="inline-flex h-11 items-center rounded-lm-button bg-lm-accent-strong px-4 text-lm-14 font-lm-semibold text-lm-on-accent transition-colors duration-200 hover:bg-lm-ink-accent"
+          >
+            Get started
+          </Link>
 
           <Dialog.Root open={open} onOpenChange={setOpen}>
             <Dialog.Trigger asChild>
               <button
                 type="button"
                 aria-label="Open menu"
-                className={cn(
-                  "flex min-h-11 min-w-11 items-center justify-center rounded-lm-control text-lm-ink transition-colors duration-200 hover:bg-lm-surface-accent lg:hidden",
-                  showcase &&
-                    "min-h-10 min-w-10 rounded-lm-button border border-lm-surface-muted bg-lm-card shadow-lm-sm hover:bg-lm-card"
-                )}
+                // 44×44: the marketing surface's own touch-target floor (the
+                // audit measured a 40px square here and brought it up to the
+                // same minimum every other control carries).
+                className="flex min-h-11 min-w-11 items-center justify-center rounded-lm-button border border-lm-surface-muted bg-lm-card text-lm-ink shadow-lm-sm transition-colors duration-200 hover:bg-lm-card lg:hidden"
               >
                 <Menu className="h-5 w-5" aria-hidden="true" />
               </button>
@@ -285,7 +224,7 @@ export function SiteHeader() {
                   {items.map((item) => (
                     <Link
                       key={item.label}
-                      href={hrefOf(item)}
+                      href={item.href}
                       aria-current={active(item.href) ? "page" : undefined}
                       onClick={() => setOpen(false)}
                       className="flex min-h-12 items-center justify-between gap-3 rounded-lm-row bg-lm-canvas-alt px-4 text-lm-14 font-lm-semibold text-lm-ink transition-colors hover:bg-lm-surface-accent hover:text-lm-ink-accent aria-[current=page]:bg-lm-surface-accent aria-[current=page]:text-lm-ink-accent"

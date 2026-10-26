@@ -1,0 +1,963 @@
+{
+  "capturedAt": "2026-10-26T09:06:19.168Z",
+  "baseUrl": "http://127.0.0.1:3000",
+  "routes": [
+    "/",
+    "/features",
+    "/solutions",
+    "/integrations",
+    "/pricing",
+    "/changelog",
+    "/about",
+    "/vs"
+  ],
+  "widths": [
+    320,
+    375,
+    390,
+    768,
+    1024,
+    1200,
+    1440
+  ],
+  "runs": 3,
+  "phases": [
+    "axe"
+  ],
+  "tools": {
+    "chromium": "153.0.8010.0",
+    "axeCore": true
+  },
+  "axe": [
+    {
+      "route": "/",
+      "width": 320,
+      "scheme": "light",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 42,
+          "targets": [
+            ".min-h-9 > .text-lm-ink.text-lm-12.font-lm-semibold",
+            ".min-h-9 > .text-lm-muted-readable.text-lm-12",
+            ".gap-1.hover\\:text-lm-accent-strong[href$=\"pricing\"]"
+          ]
+        }
+      ],
+      "passes": 42
+    },
+    {
+      "route": "/",
+      "width": 320,
+      "scheme": "dark",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 42,
+          "targets": [
+            ".min-h-9 > .text-lm-ink.text-lm-12.font-lm-semibold",
+            ".min-h-9 > .text-lm-muted-readable.text-lm-12",
+            ".gap-1.hover\\:text-lm-accent-strong[href$=\"pricing\"]"
+          ]
+        }
+      ],
+      "passes": 42
+    },
+    {
+      "route": "/",
+      "width": 768,
+      "scheme": "light",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 43,
+          "targets": [
+            ".min-h-9 > .text-lm-ink.text-lm-12.font-lm-semibold",
+            ".min-h-9 > .text-lm-muted-readable.text-lm-12",
+            "h1 > .lm-line:nth-child(1) > span"
+          ]
+        }
+      ],
+      "passes": 42
+    },
+    {
+      "route": "/",
+      "width": 768,
+      "scheme": "dark",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 41,
+          "targets": [
+            ".min-h-9 > .text-lm-ink.text-lm-12.font-lm-semibold",
+            ".min-h-9 > .text-lm-muted-readable.text-lm-12",
+            "h1 > .lm-line:nth-child(1) > span"
+          ]
+        }
+      ],
+      "passes": 42
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "scheme": "light",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 43,
+          "targets": [
+            "h1 > .lm-line:nth-child(1) > span",
+            "h1 > .lm-line:nth-child(2) > span",
+            "span > .text-lm-ink-accent"
+          ]
+        }
+      ],
+      "passes": 42
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "scheme": "dark",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 41,
+          "targets": [
+            "h1 > .lm-line:nth-child(1) > span",
+            "h1 > .lm-line:nth-child(2) > span",
+            "span > .text-lm-ink-accent"
+          ]
+        }
+      ],
+      "passes": 42
+    },
+    {
+      "route": "/features",
+      "width": 320,
+      "scheme": "light",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 20,
+          "targets": [
+            ".lm-hero-accent",
+            "a[href$=\"#cadence\"] > .font-lm-bold.text-lm-chip.text-lm-ink-accent",
+            "a[href$=\"#cadence\"] > .whitespace-nowrap.font-lm-regular.text-lm-14"
+          ]
+        }
+      ],
+      "passes": 42
+    },
+    {
+      "route": "/features",
+      "width": 320,
+      "scheme": "dark",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 20,
+          "targets": [
+            ".lm-hero-accent",
+            "a[href$=\"#cadence\"] > .font-lm-bold.text-lm-chip.text-lm-ink-accent",
+            "a[href$=\"#cadence\"] > .whitespace-nowrap.font-lm-regular.text-lm-14"
+          ]
+        }
+      ],
+      "passes": 42
+    },
+    {
+      "route": "/features",
+      "width": 768,
+      "scheme": "light",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 13,
+          "targets": [
+            ".lm-hero-accent",
+            "a[href$=\"#collaboration\"] > .whitespace-nowrap.font-lm-regular.text-lm-14",
+            ".tracking-\\[-0\\.035em\\] > span:nth-child(1)"
+          ]
+        }
+      ],
+      "passes": 42
+    },
+    {
+      "route": "/features",
+      "width": 768,
+      "scheme": "dark",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 13,
+          "targets": [
+            ".lm-hero-accent",
+            "a[href$=\"#collaboration\"] > .whitespace-nowrap.font-lm-regular.text-lm-14",
+            ".tracking-\\[-0\\.035em\\] > span:nth-child(1)"
+          ]
+        }
+      ],
+      "passes": 42
+    },
+    {
+      "route": "/features",
+      "width": 1440,
+      "scheme": "light",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 14,
+          "targets": [
+            ".lm-hero-accent",
+            ".items-baseline > .text-lm-cta-ink.font-lm-semibold",
+            ".items-baseline > .text-lm-cta-faint"
+          ]
+        }
+      ],
+      "passes": 41
+    },
+    {
+      "route": "/features",
+      "width": 1440,
+      "scheme": "dark",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 14,
+          "targets": [
+            ".lm-hero-accent",
+            ".items-baseline > .text-lm-cta-ink.font-lm-semibold",
+            ".items-baseline > .text-lm-cta-faint"
+          ]
+        }
+      ],
+      "passes": 41
+    },
+    {
+      "route": "/solutions",
+      "width": 320,
+      "scheme": "light",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 20,
+          "targets": [
+            ".lm-hero-accent",
+            "a[href$=\"#agencies\"] > .text-lm-ink-accent.font-lm-bold.text-lm-chip",
+            "a[href$=\"#agencies\"] > .font-lm-regular.text-lm-14.text-lm-muted-slate"
+          ]
+        }
+      ],
+      "passes": 42
+    },
+    {
+      "route": "/solutions",
+      "width": 320,
+      "scheme": "dark",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 20,
+          "targets": [
+            ".lm-hero-accent",
+            "a[href$=\"#agencies\"] > .text-lm-ink-accent.font-lm-bold.text-lm-chip",
+            "a[href$=\"#agencies\"] > .font-lm-regular.text-lm-14.text-lm-muted-slate"
+          ]
+        }
+      ],
+      "passes": 42
+    },
+    {
+      "route": "/solutions",
+      "width": 768,
+      "scheme": "light",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 16,
+          "targets": [
+            ".lm-hero-accent",
+            ".text-lm-cta-eyebrow",
+            ".mt-\\[14px\\]"
+          ]
+        }
+      ],
+      "passes": 41
+    },
+    {
+      "route": "/solutions",
+      "width": 768,
+      "scheme": "dark",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 16,
+          "targets": [
+            ".lm-hero-accent",
+            ".text-lm-cta-eyebrow",
+            ".mt-\\[14px\\]"
+          ]
+        }
+      ],
+      "passes": 41
+    },
+    {
+      "route": "/solutions",
+      "width": 1440,
+      "scheme": "light",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 18,
+          "targets": [
+            ".lm-hero-accent",
+            ".items-baseline > .text-lm-cta-ink.font-lm-semibold",
+            ".items-baseline > .text-lm-cta-faint"
+          ]
+        }
+      ],
+      "passes": 41
+    },
+    {
+      "route": "/solutions",
+      "width": 1440,
+      "scheme": "dark",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 18,
+          "targets": [
+            ".lm-hero-accent",
+            ".items-baseline > .text-lm-cta-ink.font-lm-semibold",
+            ".items-baseline > .text-lm-cta-faint"
+          ]
+        }
+      ],
+      "passes": 41
+    },
+    {
+      "route": "/integrations",
+      "width": 320,
+      "scheme": "light",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 13,
+          "targets": [
+            ".lm-hero-accent",
+            ".tracking-\\[-0\\.035em\\] > span:nth-child(1)",
+            ".tracking-\\[-0\\.035em\\] > span:nth-child(2)"
+          ]
+        }
+      ],
+      "passes": 45
+    },
+    {
+      "route": "/integrations",
+      "width": 320,
+      "scheme": "dark",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 13,
+          "targets": [
+            ".lm-hero-accent",
+            ".tracking-\\[-0\\.035em\\] > span:nth-child(1)",
+            ".tracking-\\[-0\\.035em\\] > span:nth-child(2)"
+          ]
+        }
+      ],
+      "passes": 45
+    },
+    {
+      "route": "/integrations",
+      "width": 768,
+      "scheme": "light",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 13,
+          "targets": [
+            ".lm-hero-accent",
+            ".tracking-\\[-0\\.035em\\] > span:nth-child(1)",
+            ".tracking-\\[-0\\.035em\\] > span:nth-child(2)"
+          ]
+        }
+      ],
+      "passes": 45
+    },
+    {
+      "route": "/integrations",
+      "width": 768,
+      "scheme": "dark",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 13,
+          "targets": [
+            ".lm-hero-accent",
+            ".tracking-\\[-0\\.035em\\] > span:nth-child(1)",
+            ".tracking-\\[-0\\.035em\\] > span:nth-child(2)"
+          ]
+        }
+      ],
+      "passes": 45
+    },
+    {
+      "route": "/integrations",
+      "width": 1440,
+      "scheme": "light",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 13,
+          "targets": [
+            ".lm-hero-accent",
+            ".tracking-\\[-0\\.035em\\] > span:nth-child(1)",
+            ".tracking-\\[-0\\.035em\\] > span:nth-child(2)"
+          ]
+        }
+      ],
+      "passes": 45
+    },
+    {
+      "route": "/integrations",
+      "width": 1440,
+      "scheme": "dark",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 13,
+          "targets": [
+            ".lm-hero-accent",
+            ".tracking-\\[-0\\.035em\\] > span:nth-child(1)",
+            ".tracking-\\[-0\\.035em\\] > span:nth-child(2)"
+          ]
+        }
+      ],
+      "passes": 45
+    },
+    {
+      "route": "/pricing",
+      "width": 320,
+      "scheme": "light",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 2,
+          "targets": [
+            ".lm-pricing-save-badge",
+            "text"
+          ]
+        }
+      ],
+      "passes": 41
+    },
+    {
+      "route": "/pricing",
+      "width": 320,
+      "scheme": "dark",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 2,
+          "targets": [
+            ".lm-pricing-save-badge",
+            "text"
+          ]
+        }
+      ],
+      "passes": 41
+    },
+    {
+      "route": "/pricing",
+      "width": 768,
+      "scheme": "light",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 2,
+          "targets": [
+            ".lm-pricing-save-badge",
+            "text"
+          ]
+        }
+      ],
+      "passes": 41
+    },
+    {
+      "route": "/pricing",
+      "width": 768,
+      "scheme": "dark",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 2,
+          "targets": [
+            ".lm-pricing-save-badge",
+            "text"
+          ]
+        }
+      ],
+      "passes": 41
+    },
+    {
+      "route": "/pricing",
+      "width": 1440,
+      "scheme": "light",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 2,
+          "targets": [
+            ".lm-pricing-save-badge",
+            "text"
+          ]
+        }
+      ],
+      "passes": 41
+    },
+    {
+      "route": "/pricing",
+      "width": 1440,
+      "scheme": "dark",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 2,
+          "targets": [
+            ".lm-pricing-save-badge",
+            "text"
+          ]
+        }
+      ],
+      "passes": 41
+    },
+    {
+      "route": "/changelog",
+      "width": 320,
+      "scheme": "light",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 12,
+          "targets": [
+            ".lm-hero-accent-inline",
+            ".tracking-\\[-0\\.035em\\] > span:nth-child(1)",
+            ".tracking-\\[-0\\.035em\\] > span:nth-child(2)"
+          ]
+        }
+      ],
+      "passes": 41
+    },
+    {
+      "route": "/changelog",
+      "width": 320,
+      "scheme": "dark",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 12,
+          "targets": [
+            ".lm-hero-accent-inline",
+            ".tracking-\\[-0\\.035em\\] > span:nth-child(1)",
+            ".tracking-\\[-0\\.035em\\] > span:nth-child(2)"
+          ]
+        }
+      ],
+      "passes": 41
+    },
+    {
+      "route": "/changelog",
+      "width": 768,
+      "scheme": "light",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 12,
+          "targets": [
+            ".lm-hero-accent-inline",
+            ".tracking-\\[-0\\.035em\\] > span:nth-child(1)",
+            ".tracking-\\[-0\\.035em\\] > span:nth-child(2)"
+          ]
+        }
+      ],
+      "passes": 41
+    },
+    {
+      "route": "/changelog",
+      "width": 768,
+      "scheme": "dark",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 12,
+          "targets": [
+            ".lm-hero-accent-inline",
+            ".tracking-\\[-0\\.035em\\] > span:nth-child(1)",
+            ".tracking-\\[-0\\.035em\\] > span:nth-child(2)"
+          ]
+        }
+      ],
+      "passes": 41
+    },
+    {
+      "route": "/changelog",
+      "width": 1440,
+      "scheme": "light",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 12,
+          "targets": [
+            ".lm-hero-accent-inline",
+            ".tracking-\\[-0\\.035em\\] > span:nth-child(1)",
+            ".tracking-\\[-0\\.035em\\] > span:nth-child(2)"
+          ]
+        }
+      ],
+      "passes": 41
+    },
+    {
+      "route": "/changelog",
+      "width": 1440,
+      "scheme": "dark",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 12,
+          "targets": [
+            ".lm-hero-accent-inline",
+            ".tracking-\\[-0\\.035em\\] > span:nth-child(1)",
+            ".tracking-\\[-0\\.035em\\] > span:nth-child(2)"
+          ]
+        }
+      ],
+      "passes": 41
+    },
+    {
+      "route": "/about",
+      "width": 320,
+      "scheme": "light",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 1,
+          "targets": [
+            "text"
+          ]
+        }
+      ],
+      "passes": 40
+    },
+    {
+      "route": "/about",
+      "width": 320,
+      "scheme": "dark",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 1,
+          "targets": [
+            "text"
+          ]
+        }
+      ],
+      "passes": 40
+    },
+    {
+      "route": "/about",
+      "width": 768,
+      "scheme": "light",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 1,
+          "targets": [
+            "text"
+          ]
+        }
+      ],
+      "passes": 40
+    },
+    {
+      "route": "/about",
+      "width": 768,
+      "scheme": "dark",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 1,
+          "targets": [
+            "text"
+          ]
+        }
+      ],
+      "passes": 40
+    },
+    {
+      "route": "/about",
+      "width": 1440,
+      "scheme": "light",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 1,
+          "targets": [
+            "text"
+          ]
+        }
+      ],
+      "passes": 40
+    },
+    {
+      "route": "/about",
+      "width": 1440,
+      "scheme": "dark",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 1,
+          "targets": [
+            "text"
+          ]
+        }
+      ],
+      "passes": 40
+    },
+    {
+      "route": "/vs",
+      "width": 320,
+      "scheme": "light",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 1,
+          "targets": [
+            "text"
+          ]
+        }
+      ],
+      "passes": 40
+    },
+    {
+      "route": "/vs",
+      "width": 320,
+      "scheme": "dark",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 1,
+          "targets": [
+            "text"
+          ]
+        }
+      ],
+      "passes": 40
+    },
+    {
+      "route": "/vs",
+      "width": 768,
+      "scheme": "light",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 1,
+          "targets": [
+            "text"
+          ]
+        }
+      ],
+      "passes": 40
+    },
+    {
+      "route": "/vs",
+      "width": 768,
+      "scheme": "dark",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 1,
+          "targets": [
+            "text"
+          ]
+        }
+      ],
+      "passes": 40
+    },
+    {
+      "route": "/vs",
+      "width": 1440,
+      "scheme": "light",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 1,
+          "targets": [
+            "text"
+          ]
+        }
+      ],
+      "passes": 40
+    },
+    {
+      "route": "/vs",
+      "width": 1440,
+      "scheme": "dark",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 1,
+          "targets": [
+            "text"
+          ]
+        }
+      ],
+      "passes": 40
+    }
+  ]
+}

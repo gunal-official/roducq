@@ -65,6 +65,12 @@ const config = {
         // /solutions: measured on-stage eyebrow (#cdb8ff) and the
         // getting-started checklist's muted row ink (#655f78).
         "cta-eyebrow": "var(--lm-cta-eyebrow)",
+        // The numbered category strip's floating pill fill, measured on the
+        // reference at rgba(255,255,255,0.72). The custom property shipped
+        // with the /solutions strip but had no utility mapping, so
+        // `bg-lm-chip-wash` compiled to nothing and the sticky strip painted
+        // transparent on /solutions and /features.
+        "chip-wash": "var(--lm-chip-wash)",
         // Stage foot and rail fills. The custom properties were declared
         // with the /solutions stage work but their utility mappings were
         // missing, so `text-lm-cta-faint`, `bg-lm-cta-track` and
@@ -281,6 +287,10 @@ const config = {
         "lm-21": ["var(--lm-size-21)", { lineHeight: "1.35" }],
         "lm-22": ["var(--lm-size-22)", { lineHeight: "1.3" }],
         "lm-23": ["var(--lm-size-23)", { lineHeight: "1.4" }],
+        // 26px: the statistic numerals inside the homepage workspace
+        // preview. Declared by the class name since the redesign; the step
+        // (and this mapping) were missing, so it compiled to nothing.
+        "lm-26": ["var(--lm-size-26)", { lineHeight: "1.1" }],
         "lm-28": ["var(--lm-size-28)", { lineHeight: "1.1" }],
         "lm-30": ["var(--lm-size-30)", { lineHeight: "1.1" }],
         "lm-32": ["var(--lm-size-32)", { lineHeight: "1.1" }],
@@ -321,6 +331,27 @@ const config = {
         "lm-24": ["var(--lm-size-24)", { lineHeight: "1.1" }],
         "lm-67": ["var(--lm-size-67)", { lineHeight: "1.02" }],
         "lm-72": ["var(--lm-size-72)", { lineHeight: "1.02" }],
+      },
+      /* ── Marketing landing tracking & leading ─────────────────────────
+         The /pricing page has always asked for `tracking-lm-display`,
+         `tracking-lm-eyebrow`, `tracking-lm-label`, `tracking-lm-title`,
+         `tracking-lm-price`, `leading-lm-body`, `leading-lm-heading` and
+         `leading-lm-normal`. Neither namespace existed here, so all eight
+         utilities compiled to no rule at all and the page rendered with
+         `letter-spacing: normal` and inherited leading — measured in
+         Chromium, recorded in docs/RODUCQ_MARKETING_CONSISTENCY_AUDIT.md.
+
+         Only the two documented tracking values (display −0.03em, eyebrow
+         0.14em) are measured; label / title / price take the closest
+         values already in use elsewhere in the marketing corpus and are
+         labelled [INFERRED] in that document. Adding these keys can only
+         affect the classes that are already in the markup. */
+      letterSpacing: {
+        "lm-display": "var(--lm-tracking-display)",
+        "lm-eyebrow": "var(--lm-tracking-eyebrow)",
+        "lm-label": "var(--lm-tracking-label)",
+        "lm-title": "var(--lm-tracking-title)",
+        "lm-price": "var(--lm-tracking-price)",
       },
       /* ── Marketing landing spacing ─────────────────────────────────────
          Tailwind's default 4px grid already covers 1/2/4/6/8/10/12/14/16/
@@ -377,6 +408,13 @@ const config = {
         "lm-label": "1.2",
         "lm-step": "1.15",
         "lm-card": "1.35",
+        /* The /pricing page asks for these three and neither the tokens nor
+           the mappings existed, so `leading-lm-body`, `leading-lm-heading`
+           and `leading-lm-normal` compiled to nothing. See the letterSpacing
+           block above and docs/RODUCQ_MARKETING_CONSISTENCY_AUDIT.md §5. */
+        "lm-body": "var(--lm-leading-body)",
+        "lm-heading": "var(--lm-leading-heading)",
+        "lm-normal": "var(--lm-leading-normal)",
       },
       fontWeight: {
         "lm-regular": "400",

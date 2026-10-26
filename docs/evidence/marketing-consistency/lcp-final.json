@@ -1,0 +1,1661 @@
+{
+ "capturedAt": "2026-10-26T09:12:14.233Z",
+ "chromium": "153.0.8010.0",
+ "runsPerScenario": 3,
+ "scenarios": [
+  "A mobile 412x823 @1.75 DPR unthrottled",
+  "B mobile 4x CPU",
+  "C desktop 1440x900",
+  "D mobile prefers-reduced-motion"
+ ],
+ "routes": {
+  "/": {
+   "A-mobile-unthrottled": {
+    "median": 192,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 172,
+      "lcpSize": 38352,
+      "lcpElement": "p.lm-hero-in.mt-5.5",
+      "lcpText": "roducq keeps your client intake, briefs,",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 172,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 216,
+      "lcpSize": 38352,
+      "lcpElement": "p.lm-hero-in.mt-5.5",
+      "lcpText": "roducq keeps your client intake, briefs,",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 216,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 192,
+      "lcpSize": 38352,
+      "lcpElement": "p.lm-hero-in.mt-5.5",
+      "lcpText": "roducq keeps your client intake, briefs,",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 192,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "B-mobile-cpu-4x": {
+    "median": 384,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 384,
+      "lcpSize": 38352,
+      "lcpElement": "p.lm-hero-in.mt-5.5",
+      "lcpText": "roducq keeps your client intake, briefs,",
+      "lcpCandidates": 1,
+      "cls": 0.136,
+      "fcp": 384,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 472,
+      "lcpSize": 38352,
+      "lcpElement": "p.lm-hero-in.mt-5.5",
+      "lcpText": "roducq keeps your client intake, briefs,",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 472,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 312,
+      "lcpSize": 38352,
+      "lcpElement": "p.lm-hero-in.mt-5.5",
+      "lcpText": "roducq keeps your client intake, briefs,",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 312,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "C-desktop": {
+    "median": 292,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 292,
+      "lcpSize": 51460,
+      "lcpElement": "p.lm-hero-in.mt-5.5",
+      "lcpText": "roducq keeps your client intake, briefs,",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 292,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 276,
+      "lcpSize": 51460,
+      "lcpElement": "p.lm-hero-in.mt-5.5",
+      "lcpText": "roducq keeps your client intake, briefs,",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 276,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 364,
+      "lcpSize": 51460,
+      "lcpElement": "p.lm-hero-in.mt-5.5",
+      "lcpText": "roducq keeps your client intake, briefs,",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 364,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "D-mobile-reduced-motion": {
+    "median": 244,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 244,
+      "lcpSize": 38352,
+      "lcpElement": "p.lm-hero-in.mt-5.5",
+      "lcpText": "roducq keeps your client intake, briefs,",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 244,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 212,
+      "lcpSize": 38352,
+      "lcpElement": "p.lm-hero-in.mt-5.5",
+      "lcpText": "roducq keeps your client intake, briefs,",
+      "lcpCandidates": 1,
+      "cls": 0.2955,
+      "fcp": 212,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 244,
+      "lcpSize": 38352,
+      "lcpElement": "p.lm-hero-in.mt-5.5",
+      "lcpText": "roducq keeps your client intake, briefs,",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 244,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   }
+  },
+  "/features": {
+   "A-mobile-unthrottled": {
+    "median": 124,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 124,
+      "lcpSize": 48312,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "roducq brings client intake, briefs, pro",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 124,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 124,
+      "lcpSize": 48312,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "roducq brings client intake, briefs, pro",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 124,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 124,
+      "lcpSize": 48312,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "roducq brings client intake, briefs, pro",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 124,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "B-mobile-cpu-4x": {
+    "median": 244,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 244,
+      "lcpSize": 48312,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "roducq brings client intake, briefs, pro",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 244,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 288,
+      "lcpSize": 48312,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "roducq brings client intake, briefs, pro",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 288,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 224,
+      "lcpSize": 48312,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "roducq brings client intake, briefs, pro",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 224,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "C-desktop": {
+    "median": 136,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 132,
+      "lcpSize": 56871,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "roducq brings client intake, briefs, pro",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 132,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 136,
+      "lcpSize": 56871,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "roducq brings client intake, briefs, pro",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 136,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 184,
+      "lcpSize": 56871,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "roducq brings client intake, briefs, pro",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 184,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "D-mobile-reduced-motion": {
+    "median": 124,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 128,
+      "lcpSize": 48312,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "roducq brings client intake, briefs, pro",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 128,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 124,
+      "lcpSize": 48312,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "roducq brings client intake, briefs, pro",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 124,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 124,
+      "lcpSize": 48312,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "roducq brings client intake, briefs, pro",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 124,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   }
+  },
+  "/solutions": {
+   "A-mobile-unthrottled": {
+    "median": 148,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 116,
+      "lcpSize": 28548,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "From a solo engagement to a shared clien",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 116,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 148,
+      "lcpSize": 28548,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "From a solo engagement to a shared clien",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 148,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 152,
+      "lcpSize": 28548,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "From a solo engagement to a shared clien",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 152,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "B-mobile-cpu-4x": {
+    "median": 264,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 264,
+      "lcpSize": 28548,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "From a solo engagement to a shared clien",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 264,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 268,
+      "lcpSize": 28548,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "From a solo engagement to a shared clien",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 268,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 212,
+      "lcpSize": 28548,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "From a solo engagement to a shared clien",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 212,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "C-desktop": {
+    "median": 140,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 156,
+      "lcpSize": 34656,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "From a solo engagement to a shared clien",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 156,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 140,
+      "lcpSize": 34656,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "From a solo engagement to a shared clien",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 140,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 132,
+      "lcpSize": 34656,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "From a solo engagement to a shared clien",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 132,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "D-mobile-reduced-motion": {
+    "median": 128,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 128,
+      "lcpSize": 28548,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "From a solo engagement to a shared clien",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 128,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 100,
+      "lcpSize": 28548,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "From a solo engagement to a shared clien",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 100,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 136,
+      "lcpSize": 28548,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "From a solo engagement to a shared clien",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 136,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   }
+  },
+  "/integrations": {
+   "A-mobile-unthrottled": {
+    "median": 116,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 124,
+      "lcpSize": 27797,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Slack, Notion and a connected mailbox fe",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 124,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 116,
+      "lcpSize": 27797,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Slack, Notion and a connected mailbox fe",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 116,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 116,
+      "lcpSize": 27797,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Slack, Notion and a connected mailbox fe",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 116,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "B-mobile-cpu-4x": {
+    "median": 252,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 252,
+      "lcpSize": 27797,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Slack, Notion and a connected mailbox fe",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 252,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 316,
+      "lcpSize": 27797,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Slack, Notion and a connected mailbox fe",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 316,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 244,
+      "lcpSize": 27797,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Slack, Notion and a connected mailbox fe",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 244,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "C-desktop": {
+    "median": 132,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 124,
+      "lcpSize": 36138,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Slack, Notion and a connected mailbox fe",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 124,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 132,
+      "lcpSize": 36138,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Slack, Notion and a connected mailbox fe",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 132,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 164,
+      "lcpSize": 36138,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Slack, Notion and a connected mailbox fe",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 164,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "D-mobile-reduced-motion": {
+    "median": 124,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 116,
+      "lcpSize": 27797,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Slack, Notion and a connected mailbox fe",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 116,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 168,
+      "lcpSize": 27797,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Slack, Notion and a connected mailbox fe",
+      "lcpCandidates": 2,
+      "cls": 0,
+      "fcp": 100,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 124,
+      "lcpSize": 27797,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Slack, Notion and a connected mailbox fe",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 124,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   }
+  },
+  "/pricing": {
+   "A-mobile-unthrottled": {
+    "median": 116,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 116,
+      "lcpSize": 27650,
+      "lcpElement": "h1.lm-hero-in.mt-3",
+      "lcpText": "Plans that scale with how your team work",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 116,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 104,
+      "lcpSize": 27650,
+      "lcpElement": "h1.lm-hero-in.mt-3",
+      "lcpText": "Plans that scale with how your team work",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 104,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 120,
+      "lcpSize": 27650,
+      "lcpElement": "h1.lm-hero-in.mt-3",
+      "lcpText": "Plans that scale with how your team work",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 120,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "B-mobile-cpu-4x": {
+    "median": 260,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 260,
+      "lcpSize": 27650,
+      "lcpElement": "h1.lm-hero-in.mt-3",
+      "lcpText": "Plans that scale with how your team work",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 260,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 372,
+      "lcpSize": 27650,
+      "lcpElement": "h1.lm-hero-in.mt-3",
+      "lcpText": "Plans that scale with how your team work",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 372,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 244,
+      "lcpSize": 27650,
+      "lcpElement": "h1.lm-hero-in.mt-3",
+      "lcpText": "Plans that scale with how your team work",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 244,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "C-desktop": {
+    "median": 124,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 120,
+      "lcpSize": 78603,
+      "lcpElement": "h1.lm-hero-in.mt-3",
+      "lcpText": "Plans that scale with how your team work",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 120,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 128,
+      "lcpSize": 78603,
+      "lcpElement": "h1.lm-hero-in.mt-3",
+      "lcpText": "Plans that scale with how your team work",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 128,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 124,
+      "lcpSize": 78603,
+      "lcpElement": "h1.lm-hero-in.mt-3",
+      "lcpText": "Plans that scale with how your team work",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 124,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "D-mobile-reduced-motion": {
+    "median": 112,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 112,
+      "lcpSize": 27650,
+      "lcpElement": "h1.lm-hero-in.mt-3",
+      "lcpText": "Plans that scale with how your team work",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 112,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 96,
+      "lcpSize": 27650,
+      "lcpElement": "h1.lm-hero-in.mt-3",
+      "lcpText": "Plans that scale with how your team work",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 96,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 116,
+      "lcpSize": 27650,
+      "lcpElement": "h1.lm-hero-in.mt-3",
+      "lcpText": "Plans that scale with how your team work",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 116,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   }
+  },
+  "/changelog": {
+   "A-mobile-unthrottled": {
+    "median": 100,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 84,
+      "lcpSize": 28798,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Verified product updates, interface impr",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 84,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 100,
+      "lcpSize": 28798,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Verified product updates, interface impr",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 100,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 100,
+      "lcpSize": 28798,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Verified product updates, interface impr",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 100,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "B-mobile-cpu-4x": {
+    "median": 236,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 224,
+      "lcpSize": 28798,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Verified product updates, interface impr",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 224,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 240,
+      "lcpSize": 28798,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Verified product updates, interface impr",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 240,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 236,
+      "lcpSize": 28798,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Verified product updates, interface impr",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 236,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "C-desktop": {
+    "median": 120,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 152,
+      "lcpSize": 36006,
+      "lcpElement": "p.mt-3.text-lm-16-5",
+      "lcpText": "Published /integrations with a searchabl",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 152,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 108,
+      "lcpSize": 36006,
+      "lcpElement": "p.mt-3.text-lm-16-5",
+      "lcpText": "Published /integrations with a searchabl",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 108,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 120,
+      "lcpSize": 36006,
+      "lcpElement": "p.mt-3.text-lm-16-5",
+      "lcpText": "Published /integrations with a searchabl",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 120,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "D-mobile-reduced-motion": {
+    "median": 112,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 112,
+      "lcpSize": 28798,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Verified product updates, interface impr",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 112,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 100,
+      "lcpSize": 28798,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Verified product updates, interface impr",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 100,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 144,
+      "lcpSize": 28798,
+      "lcpElement": "p.lm-hero-in.mt-8",
+      "lcpText": "Verified product updates, interface impr",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 144,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   }
+  },
+  "/about": {
+   "A-mobile-unthrottled": {
+    "median": 112,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 96,
+      "lcpSize": 48944,
+      "lcpElement": "p.mt-4.max-w-xl",
+      "lcpText": "Client work starts as scattered communic",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 96,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 112,
+      "lcpSize": 48944,
+      "lcpElement": "p.mt-4.max-w-xl",
+      "lcpText": "Client work starts as scattered communic",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 112,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 112,
+      "lcpSize": 48944,
+      "lcpElement": "p.mt-4.max-w-xl",
+      "lcpText": "Client work starts as scattered communic",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 112,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "B-mobile-cpu-4x": {
+    "median": 228,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 228,
+      "lcpSize": 48944,
+      "lcpElement": "p.mt-4.max-w-xl",
+      "lcpText": "Client work starts as scattered communic",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 228,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 228,
+      "lcpSize": 48944,
+      "lcpElement": "p.mt-4.max-w-xl",
+      "lcpText": "Client work starts as scattered communic",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 228,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 252,
+      "lcpSize": 48944,
+      "lcpElement": "p.mt-4.max-w-xl",
+      "lcpText": "Client work starts as scattered communic",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 252,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "C-desktop": {
+    "median": 120,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 120,
+      "lcpSize": 65608,
+      "lcpElement": "p.mt-4.max-w-xl",
+      "lcpText": "Client work starts as scattered communic",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 120,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 112,
+      "lcpSize": 65608,
+      "lcpElement": "p.mt-4.max-w-xl",
+      "lcpText": "Client work starts as scattered communic",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 112,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 136,
+      "lcpSize": 65608,
+      "lcpElement": "p.mt-4.max-w-xl",
+      "lcpText": "Client work starts as scattered communic",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 136,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "D-mobile-reduced-motion": {
+    "median": 104,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 104,
+      "lcpSize": 48944,
+      "lcpElement": "p.mt-4.max-w-xl",
+      "lcpText": "Client work starts as scattered communic",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 104,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 116,
+      "lcpSize": 48944,
+      "lcpElement": "p.mt-4.max-w-xl",
+      "lcpText": "Client work starts as scattered communic",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 116,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 104,
+      "lcpSize": 48944,
+      "lcpElement": "p.mt-4.max-w-xl",
+      "lcpText": "Client work starts as scattered communic",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 104,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   }
+  },
+  "/vs": {
+   "A-mobile-unthrottled": {
+    "median": 108,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 108,
+      "lcpSize": 50362,
+      "lcpElement": "p.mt-8.rounded-md",
+      "lcpText": "Limits of these comparisons. How to read",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 108,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 108,
+      "lcpSize": 50362,
+      "lcpElement": "p.mt-8.rounded-md",
+      "lcpText": "Limits of these comparisons. How to read",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 108,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 104,
+      "lcpSize": 50362,
+      "lcpElement": "p.mt-8.rounded-md",
+      "lcpText": "Limits of these comparisons. How to read",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 104,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "B-mobile-cpu-4x": {
+    "median": 216,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 212,
+      "lcpSize": 50362,
+      "lcpElement": "p.mt-8.rounded-md",
+      "lcpText": "Limits of these comparisons. How to read",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 212,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 236,
+      "lcpSize": 50362,
+      "lcpElement": "p.mt-8.rounded-md",
+      "lcpText": "Limits of these comparisons. How to read",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 236,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 216,
+      "lcpSize": 50362,
+      "lcpElement": "p.mt-8.rounded-md",
+      "lcpText": "Limits of these comparisons. How to read",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 216,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "C-desktop": {
+    "median": 136,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 136,
+      "lcpSize": 64624,
+      "lcpElement": "p.mt-8.rounded-md",
+      "lcpText": "Limits of these comparisons. How to read",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 136,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 132,
+      "lcpSize": 64624,
+      "lcpElement": "p.mt-8.rounded-md",
+      "lcpText": "Limits of these comparisons. How to read",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 132,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 164,
+      "lcpSize": 64624,
+      "lcpElement": "p.mt-8.rounded-md",
+      "lcpText": "Limits of these comparisons. How to read",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 164,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   },
+   "D-mobile-reduced-motion": {
+    "median": 108,
+    "under2500": true,
+    "runs": [
+     {
+      "lcp": 140,
+      "lcpSize": 50362,
+      "lcpElement": "p.mt-8.rounded-md",
+      "lcpText": "Limits of these comparisons. How to read",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 140,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 96,
+      "lcpSize": 50362,
+      "lcpElement": "p.mt-8.rounded-md",
+      "lcpText": "Limits of these comparisons. How to read",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 96,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     },
+     {
+      "lcp": 108,
+      "lcpSize": 50362,
+      "lcpElement": "p.mt-8.rounded-md",
+      "lcpText": "Limits of these comparisons. How to read",
+      "lcpCandidates": 1,
+      "cls": 0,
+      "fcp": 108,
+      "heroEarly": {
+       "opacity": "1",
+       "visibility": "visible",
+       "filter": "none"
+      },
+      "pageErrors": 0
+     }
+    ]
+   }
+  }
+ }
+}

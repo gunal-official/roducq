@@ -76,7 +76,7 @@ export function FinalCta() {
             {/* Right column: miniature product onboarding checklist illustration */}
             <div
               aria-hidden="true"
-              className="flex min-w-0 flex-col rounded-lm-card border border-lm-border-hairline bg-lm-card p-5 shadow-lm-lg sm:p-6"
+              className="flex min-w-0 flex-col rounded-lm-card border border-lm-hairline bg-lm-card p-5 shadow-lm-lg sm:p-6"
             >
               <div className="flex items-center justify-between gap-3">
                 <p className="text-lm-14 font-lm-bold text-lm-ink">

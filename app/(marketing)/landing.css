@@ -148,6 +148,12 @@
   --lm-size-21: 21px;
   --lm-size-22: 22px;
   --lm-size-23: 23px;
+  /* 26px: the statistic numerals inside the homepage workspace preview
+     (WorkspacePreview.tsx carries `text-lm-26` since the 2026-10-17
+     redesign). The step was requested by that markup but never declared,
+     so the utilities compiled to nothing and the numbers inherited 16px.
+     The consisistency audit declares it at the value the class names. */
+  --lm-size-26: 26px;
   --lm-size-28: 28px;
   --lm-size-32: 32px;
   --lm-size-34: 34px;
@@ -169,6 +175,25 @@
   --lm-leading-snug: 1.2;
   --lm-leading-normal: 1.5;
   --lm-leading-relaxed: 1.65;
+  /* The /pricing subtitle's measured body leading (1.65 at 18px, see
+     docs/RODUCQ_PRICING_PAGE.md §2). The page has always asked for
+     `leading-lm-body`; the token and its Tailwind mapping were missing, so
+     the utility silently did nothing. */
+  --lm-leading-body: 1.65;
+
+  /* ── Tracking ────────────────────────────────────────────────────────
+     Letterspacing the marketing pages name explicitly. `display` and
+     `eyebrow` are the two documented values (docs/RODUCQ_PRICING_PAGE.md
+     §2: the /pricing h1 is −0.03em at 54px and its eyebrow 0.14em). The
+     other three steps are the closest values already used elsewhere in
+     the marketing corpus, recorded here so `tracking-lm-*` resolves
+     instead of compiling to nothing — see the audit doc's [INFERRED]
+     rows before changing them. */
+  --lm-tracking-display: -0.03em;
+  --lm-tracking-eyebrow: 0.14em;
+  --lm-tracking-label: 0.14em;
+  --lm-tracking-title: -0.02em;
+  --lm-tracking-price: -0.03em;
 
   /* ── Radii ─────────────────────────────────────────────────────────── */
   --lm-radius-hair: 2px;
@@ -1087,7 +1112,14 @@
   /* MEASURED: the getting-started checklist's Done/Later rows read
      rgb(101, 95, 120) at 12px / 18.6px, weight 400. */
   --lm-mock-muted: #655f78;
-  --lm-cta-faint: rgba(255, 255, 255, 0.6);
+  /* CONTRAST FIX (WCAG 2.2 AA, 1.4.3): the reference paints this step at
+     60% white, which reads 3.46:1 on the lightest part of the stage
+     gradient a 14px note actually sits on (rgb(99,68,197)) — below the
+     4.5:1 small-text floor. 76% is the smallest step that clears it
+     (4.57:1) and it is the value the stage already uses for body copy,
+     so the note stays one visible step below the white headline. The
+     11px mock disclosure needs more; see `.lm-stage-disclosure`. */
+  --lm-cta-faint: rgba(255, 255, 255, 0.76);
   --lm-cta-track: rgba(255, 255, 255, 0.18);
   --lm-cta-fill: #ffffff; /* measured 121px fill on the 486px track */
   /* MEASURED: the filled stage button's label is #2a1570, not the
@@ -1298,7 +1330,13 @@
     90deg,
     var(--lm-accent) 0%,
     #8b5cf6 50%,
-    #c084fc 100%
+    /* CONTRAST FIX (WCAG 2.2 AA, 1.4.3 on non-text-adjacent large type):
+       the reference's final stop #c084fc reads 2.64:1 on the white card
+       and 2.48:1 on the canvas wash, under the 3:1 large-text floor.
+       #a855fb is the smallest step that clears it on both planes while
+       keeping the 0xfb blue channel the other two stops share
+       (3.92:1 white / 3.68:1 canvas / 3.43:1 alt wash). */
+    #a855fb 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
@@ -1327,7 +1365,9 @@
      than on the shared token, so only the two /solutions stages move. */
   --lm-cta-wash: rgba(255, 255, 255, 0.08);
   /* MEASURED: the stage's body copy is 76% white, not the shell's
-     opaque #efebff. Scoped here so FinalCta keeps the shared value. */
+     opaque #efebff. Scoped here so FinalCta keeps the shared value.
+     Rendered at 94% by the contrast block near `.lm-stage-disclosure`;
+     this declaration keeps the measured reference step. */
   --lm-cta-muted: rgba(255, 255, 255, 0.76);
 
   background:
@@ -1355,7 +1395,31 @@
    rules land on the same element at equal specificity — the later
    declaration wins, and this one must. */
 .lm-plan-stage {
+  /* Measured reference step; rendered at 94% by the same contrast
+     block, which covers the plan band too — it shares the stage. */
   --lm-cta-muted: rgba(255, 255, 255, 0.74);
+}
+
+/* ── Contrast fixes on the stage gradient (WCAG 2.2 AA, 1.4.3) ──
+   The stage's bright top-right corner — the radial
+   rgba(205, 180, 255, 0.55) over the linear stop #7658ec — is lighter
+   than the reference's white-alpha copy steps assumed. Sampling the
+   rendered pixel *under the glyphs* (text made transparent, backdrop
+   screenshot, glyph pixels kept) across 4 routes x 5 widths gives:
+     16px body copy ............ 3.58:1 at 768px (needs 4.5)
+     11px mock disclosure ...... 2.82:1 at 320px (needs 4.5)
+     14px stage note ........... 4.57:1 at 76% (smallest passing step)
+   94% white is the smallest step that clears the corner for both the
+   body copy and the disclosure (5.3:1 and 4.57:1), and it is scoped to
+   the stage so `/`'s closing-CTA card keeps its opaque #efebff and the
+   14px notes keep the shared step instead of every label on the stage
+   going near-solid. The measured reference steps stay on the tokens
+   above; these rules outrank the `text-lm-cta-*` utilities because
+   landing.css is emitted after the Tailwind utility layer (and the
+   two-class selectors win on specificity regardless). */
+.lm-stage-disclosure,
+.lm-solutions-stage .text-lm-cta-muted {
+  color: rgba(255, 255, 255, 0.94);
 }
 
 /* ── Miniature product surfaces ────────────────────────────────
