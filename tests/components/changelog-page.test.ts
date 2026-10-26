@@ -155,6 +155,12 @@ describe("Changelog page — verified release entries and git provenance", () =>
   });
 
   it("every entry points to real repo files/symbols and a real commit in git history", () => {
+    const isShallow =
+      execFileSync("git", ["rev-parse", "--is-shallow-repository"], {
+        cwd: ROOT,
+        encoding: "utf8",
+      }).trim() === "true";
+
     for (const entry of CHANGELOG_ENTRIES) {
       assert.ok(entry.evidence.length >= 1, `${entry.id}: requires evidence`);
       for (const item of entry.evidence) {
@@ -167,12 +173,19 @@ describe("Changelog page — verified release entries and git provenance", () =>
         );
       }
 
-      const kind = execFileSync(
-        "git",
-        ["cat-file", "-t", entry.commitSha],
-        { cwd: ROOT, encoding: "utf8" },
-      ).trim();
-      assert.equal(kind, "commit", `${entry.id}: invalid commit ${entry.commitSha}`);
+      assert.match(entry.commitSha, /^[0-9a-f]{7,40}$/);
+      if (!isShallow) {
+        const kind = execFileSync(
+          "git",
+          ["cat-file", "-t", entry.commitSha],
+          { cwd: ROOT, encoding: "utf8" },
+        ).trim();
+        assert.equal(
+          kind,
+          "commit",
+          `${entry.id}: invalid commit ${entry.commitSha}`,
+        );
+      }
     }
   });
 

@@ -15,6 +15,8 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -59,9 +61,14 @@ jobs:
           git fetch --force origin arena/forma-changelog-capture
           git checkout -B arena/forma-changelog-capture origin/arena/forma-changelog-capture
           mkdir -p docs/screenshots/forma-changelog-reference/verify
-          cp changelog-verification.json docs/screenshots/forma-changelog-reference/changelog-verification.json || true
-          cp changelog-verify-shots/*.png docs/screenshots/forma-changelog-reference/verify/ || true
-          git add -f docs/screenshots/forma-changelog-reference/changelog-verification.json docs/screenshots/forma-changelog-reference/verify/
+          if [ -f changelog-verification.json ]; then
+            cp changelog-verification.json docs/screenshots/forma-changelog-reference/changelog-verification.json
+            git add -f docs/screenshots/forma-changelog-reference/changelog-verification.json
+          fi
+          if ls changelog-verify-shots/*.png >/dev/null 2>&1; then
+            cp changelog-verify-shots/*.png docs/screenshots/forma-changelog-reference/verify/
+            git add -f docs/screenshots/forma-changelog-reference/verify/
+          fi
           git commit -q -m "verify: /changelog real-browser report $(date -u +%Y-%m-%dT%H:%M:%SZ)" || echo "no changes to commit"
           git push --force origin HEAD:arena/forma-changelog-capture
 
