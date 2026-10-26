@@ -41,6 +41,14 @@ import { clsx as cn } from "clsx";
  * marketing page keeps the header it has always had; the variant is switched
  * on pathname here so the shared component stays the one place the header
  * lives.
+ *
+ * FEATURES EXTENSION. `/features` recreates the same reference family and
+ * renders that same white chrome: a second pathname boolean (`features`)
+ * feeds the `showcase` gate every visual branch below reads. The nav-data
+ * ternary on the next lines is deliberately untouched — an assertion in
+ * tests/components/vs-comparisons.test.ts locks its exact form — so only the
+ * two showcase routes change appearance, and /, /about, /pricing and /vs
+ * keep their original header.
  */
 const NAV = [
   { href: "/about", label: "About" },
@@ -65,6 +73,13 @@ export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const solutions = pathname === "/solutions" || pathname.startsWith("/solutions/");
+  // /features recreates the same reference page family, so it reuses the
+  // white showcase chrome below. The nav-DATA selection stays on the
+  // `solutions` ternary exactly as it was (a test locks that line);
+  // `showcase` only drives the visual variant, so /, /about, /pricing and
+  // /vs render byte-identical headers and /solutions is unchanged.
+  const features = pathname === "/features" || pathname.startsWith("/features/");
+  const showcase = solutions || features;
   const items = solutions ? SOLUTIONS_NAV : NAV;
 
   // A phone menu left open while the window grows past the desktop band
@@ -88,7 +103,7 @@ export function SiteHeader() {
     <header
       className={cn(
         "lm-header sticky top-0 z-40 backdrop-blur-md",
-        solutions
+        showcase
           ? "bg-lm-card"
           : "border-b border-lm-border-soft bg-lm-header-wash"
       )}
@@ -96,7 +111,7 @@ export function SiteHeader() {
       <div
         className={cn(
           "lm-shell flex h-16 items-center gap-3 md:h-18",
-          solutions && "relative"
+          showcase && "relative"
         )}
       >
         <Link
@@ -104,14 +119,14 @@ export function SiteHeader() {
           aria-label="roducq home"
           className="inline-flex min-h-11 shrink-0 items-center gap-2"
         >
-          <RoduMark size={solutions ? 30 : 28} />
+          <RoduMark size={showcase ? 30 : 28} />
           {/* The shared wordmark, re-toned to the landing ink. `cn` inside
               Wordmark resolves the conflicts, so the landing size and colour
               win without the app's own lockup changing anywhere else. */}
           <Wordmark
             className={cn(
               "font-lm-bold text-lm-ink",
-              solutions
+              showcase
                 ? "text-lm-22 tracking-[-0.06em] md:text-lm-28"
                 : "text-lm-18 tracking-[-0.02em]"
             )}
@@ -122,7 +137,7 @@ export function SiteHeader() {
           aria-label="Main navigation"
           className={cn(
             "hidden items-center lg:flex",
-            solutions
+            showcase
               ? "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 gap-0.5"
               : "ml-3.5 gap-1"
           )}
@@ -134,12 +149,12 @@ export function SiteHeader() {
               aria-current={active(item.href) ? "page" : undefined}
               className={cn(
                 "group relative inline-flex min-h-11 min-w-11 items-center rounded-lm-control transition-colors duration-200 ease-lm-nav",
-                solutions
+                showcase
                   ? "px-3 text-lm-15 font-lm-regular"
                   : "px-3.5 text-lm-15",
-                solutions && active(item.href)
+                showcase && active(item.href)
                   ? "text-lm-ink"
-                  : solutions
+                  : showcase
                     ? "text-lm-muted-slate hover:text-lm-ink"
                     : active(item.href)
                       ? "font-lm-semibold text-lm-ink-accent"
@@ -147,7 +162,7 @@ export function SiteHeader() {
               )}
             >
               {item.label}
-              {solutions ? (
+              {showcase ? (
                 <span
                   aria-hidden="true"
                   className={cn(
@@ -163,7 +178,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="ml-auto flex shrink-0 items-center gap-2">
-          {solutions ? (
+          {showcase ? (
             <>
               <div className="hidden min-[360px]:block">
                 <ThemeIconToggle />
@@ -204,7 +219,7 @@ export function SiteHeader() {
                 aria-label="Open menu"
                 className={cn(
                   "flex min-h-11 min-w-11 items-center justify-center rounded-lm-control text-lm-ink transition-colors duration-200 hover:bg-lm-surface-accent lg:hidden",
-                  solutions &&
+                  showcase &&
                     "min-h-10 min-w-10 rounded-lm-button border border-lm-surface-muted bg-lm-card shadow-lm-sm hover:bg-lm-card"
                 )}
               >
