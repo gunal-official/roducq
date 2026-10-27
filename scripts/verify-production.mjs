@@ -36,9 +36,9 @@ function note(message) {
   notes.push(message);
 }
 
-async function get(path, { redirect = "follow" } = {}) {
+async function get(path, { redirect = "follow", headers } = {}) {
   const started = performance.now();
-  const res = await fetch(`${BASE}${path}`, { redirect });
+  const res = await fetch(`${BASE}${path}`, { redirect, headers });
   const ttfb = performance.now() - started;
   const body = await res.text();
   return { res, body, ttfb, total: performance.now() - started };
@@ -111,6 +111,44 @@ async function main() {
     check((h.get("content-security-policy") || "").includes("default-src 'self'"), "CSP header");
     check(h.get("x-powered-by") === null, "X-Powered-By absent", `got ${h.get("x-powered-by")}`);
   }
+
+  // ── Protected route and public-route boundaries ─────────────────────
+  {
+    const { res } = await get("/search", { redirect: "manual" });
+    const location = res.headers.get("location");
+    check(res.status === 307, "/search requires authentication", `got ${res.status}`);
+    check(
+      Boolean(location) && new URL(location, BASE).pathname === "/login",
+      "/search redirects to /login",
+      `got ${location}`
+    );
+
+    for (const path of ["/", "/pricing", "/share/not-a-uuid", "/invoice/not-a-uuid"]) {
+      const { res: publicResponse } = await get(path, { redirect: "manual" });
+      check(publicResponse.status === 200, `${path} remains public`, `got ${publicResponse.status}`);
+      check(
+        !publicResponse.headers.has("location"),
+        `${path} is not redirected by the auth guard`,
+        `got ${publicResponse.headers.get("location")}`
+      );
+    }
+
+    const { res: lookalike } = await get("/searching", { redirect: "manual" });
+    check(lookalike.status === 404, "/search prefix has an exact path boundary", `got ${lookalike.status}`);
+
+    const { res: callback } = await get(
+      "/auth/callback?code=smoke-test-code&next=%2F%5C%5Cattacker.example",
+      { redirect: "manual", headers: { host: "attacker.example" } }
+    );
+    const callbackLocation = callback.headers.get("location");
+    check(callback.status === 307 && Boolean(callbackLocation), "callback returns a safe redirect");
+    if (callbackLocation) {
+      const callbackTarget = new URL(callbackLocation, BASE);
+      check(callbackTarget.hostname !== "attacker.example", "callback never trusts request Host", callbackLocation);
+      check(callbackTarget.pathname === "/login", "callback error returns to login", callbackLocation);
+    }
+  }
+  note("/search redirects to /login; marketing and public token routes remain public; callback Host is allowlisted");
 
   // ── Landing link crawl ──────────────────────────────────────────────
   const hrefs = [...new Set([...landingHtml.matchAll(/href="([^"]+)"/g)].map((m) => m[1]))]

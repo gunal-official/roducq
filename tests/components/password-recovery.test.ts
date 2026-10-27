@@ -94,8 +94,20 @@ describe("password recovery routes", () => {
     const cb = read(CALLBACK);
     assert.match(cb, /recovery.*===.*"1"|"recovery"\) === "1"/);
     assert.match(cb, /createRecoveryGrantValue/);
-    assert.match(cb, /\/reset-password\?error=/);
+    assert.match(cb, /\/reset-password/);
     assert.match(cb, /exchangeCodeForSession/);
+  });
+
+  it("login and callback use the shared trusted-origin redirect validator", () => {
+    const login = read("app/(auth)/login/page.tsx");
+    const cb = read(CALLBACK);
+    assert.match(login, /safeSameOriginPath\(searchParams\.get\("next"\), getSiteUrl\(\)/);
+    assert.match(login, /router\.replace\(next\)/);
+    assert.match(cb, /trustedAppOriginForRequest/);
+    assert.match(cb, /safeSameOriginPath\(url\.searchParams\.get\("next"\), origin/);
+    assert.match(cb, /isRecovery\s*\?\s*"\/reset-password"/);
+    assert.match(cb, /process\.env\.NEXT_PUBLIC_SITE_URL/);
+    assert.doesNotMatch(cb, /const origin = url\.origin/);
   });
 
   it("middleware never bounces a recovery session off /reset-password", () => {
