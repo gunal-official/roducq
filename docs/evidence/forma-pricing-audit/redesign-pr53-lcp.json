@@ -1,0 +1,251 @@
+{
+  "capturedAt": "2026-10-27T15:57:04.169Z",
+  "baseUrl": "http://127.0.0.1:3000",
+  "routes": [
+    "/pricing"
+  ],
+  "widths": [
+    320,
+    375,
+    390,
+    768,
+    1024,
+    1200,
+    1440
+  ],
+  "runs": 3,
+  "phases": [
+    "lcp",
+    "motion"
+  ],
+  "tools": {
+    "chromium": "153.0.8010.0",
+    "axeCore": true
+  },
+  "lcp": {
+    "/pricing": {
+      "A-mobile-unthrottled": {
+        "runs": [
+          {
+            "lcp": 116,
+            "lcpSize": 27566,
+            "lcpElement": "p.rp-hero-description.lm-hero-in",
+            "lcpText": "Bring client conversations, briefs, prop",
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 116,
+            "heroEarly": {
+              "opacity": "1",
+              "visibility": "visible",
+              "filter": "none"
+            },
+            "pageErrors": 0
+          },
+          {
+            "lcp": 112,
+            "lcpSize": 27566,
+            "lcpElement": "p.rp-hero-description.lm-hero-in",
+            "lcpText": "Bring client conversations, briefs, prop",
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 112,
+            "heroEarly": {
+              "opacity": "1",
+              "visibility": "visible",
+              "filter": "none"
+            },
+            "pageErrors": 0
+          },
+          {
+            "lcp": 132,
+            "lcpSize": 27566,
+            "lcpElement": "p.rp-hero-description.lm-hero-in",
+            "lcpText": "Bring client conversations, briefs, prop",
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 132,
+            "heroEarly": {
+              "opacity": "1",
+              "visibility": "visible",
+              "filter": "none"
+            },
+            "pageErrors": 0
+          }
+        ],
+        "median": 116,
+        "under2500": true
+      },
+      "B-mobile-cpu-4x": {
+        "runs": [
+          {
+            "lcp": 256,
+            "lcpSize": 27566,
+            "lcpElement": "p.rp-hero-description.lm-hero-in",
+            "lcpText": "Bring client conversations, briefs, prop",
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 256,
+            "heroEarly": {
+              "opacity": "1",
+              "visibility": "visible",
+              "filter": "none"
+            },
+            "pageErrors": 0
+          },
+          {
+            "lcp": 256,
+            "lcpSize": 27566,
+            "lcpElement": "p.rp-hero-description.lm-hero-in",
+            "lcpText": "Bring client conversations, briefs, prop",
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 256,
+            "heroEarly": {
+              "opacity": "1",
+              "visibility": "visible",
+              "filter": "none"
+            },
+            "pageErrors": 0
+          },
+          {
+            "lcp": 268,
+            "lcpSize": 27566,
+            "lcpElement": "p.rp-hero-description.lm-hero-in",
+            "lcpText": "Bring client conversations, briefs, prop",
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 268,
+            "heroEarly": {
+              "opacity": "1",
+              "visibility": "visible",
+              "filter": "none"
+            },
+            "pageErrors": 0
+          }
+        ],
+        "median": 256,
+        "under2500": true
+      },
+      "C-desktop": {
+        "runs": [
+          {
+            "lcp": 132,
+            "lcpSize": 54096,
+            "lcpElement": "h1.rp-hero-title.lm-hero-in",
+            "lcpText": "Plans for client work.",
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 132,
+            "heroEarly": {
+              "opacity": "1",
+              "visibility": "visible",
+              "filter": "none"
+            },
+            "pageErrors": 0
+          },
+          {
+            "lcp": 132,
+            "lcpSize": 54096,
+            "lcpElement": "h1.rp-hero-title.lm-hero-in",
+            "lcpText": "Plans for client work.",
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 132,
+            "heroEarly": {
+              "opacity": "1",
+              "visibility": "visible",
+              "filter": "none"
+            },
+            "pageErrors": 0
+          },
+          {
+            "lcp": 140,
+            "lcpSize": 54096,
+            "lcpElement": "h1.rp-hero-title.lm-hero-in",
+            "lcpText": "Plans for client work.",
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 140,
+            "heroEarly": {
+              "opacity": "1",
+              "visibility": "visible",
+              "filter": "none"
+            },
+            "pageErrors": 0
+          }
+        ],
+        "median": 132,
+        "under2500": true
+      },
+      "D-mobile-reduced-motion": {
+        "runs": [
+          {
+            "lcp": 124,
+            "lcpSize": 27566,
+            "lcpElement": "p.rp-hero-description.lm-hero-in",
+            "lcpText": "Bring client conversations, briefs, prop",
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 124,
+            "heroEarly": {
+              "opacity": "1",
+              "visibility": "visible",
+              "filter": "none"
+            },
+            "pageErrors": 0
+          },
+          {
+            "lcp": 140,
+            "lcpSize": 27566,
+            "lcpElement": "p.rp-hero-description.lm-hero-in",
+            "lcpText": "Bring client conversations, briefs, prop",
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 140,
+            "heroEarly": {
+              "opacity": "1",
+              "visibility": "visible",
+              "filter": "none"
+            },
+            "pageErrors": 0
+          },
+          {
+            "lcp": 120,
+            "lcpSize": 27566,
+            "lcpElement": "p.rp-hero-description.lm-hero-in",
+            "lcpText": "Bring client conversations, briefs, prop",
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 120,
+            "heroEarly": {
+              "opacity": "1",
+              "visibility": "visible",
+              "filter": "none"
+            },
+            "pageErrors": 0
+          }
+        ],
+        "median": 124,
+        "under2500": true
+      }
+    }
+  },
+  "motion": {
+    "reducedMotion": {
+      "/pricing": {
+        "running": 0,
+        "runningNames": [],
+        "hiddenBands": 0
+      }
+    },
+    "noJavaScript": {
+      "/pricing": {
+        "h1": "Plans for client work.",
+        "h2Count": 7,
+        "sections": 5,
+        "zeroOpacity": [],
+        "textLength": 4318
+      }
+    }
+  }
+}

@@ -1,0 +1,1073 @@
+{
+  "measuredAt": "2026-10-27T05:21:57.276Z",
+  "browser": "153.0.8010.0",
+  "target": "local production build /pricing, missing billing config",
+  "checks": [
+    {
+      "viewport": "320x700",
+      "colorScheme": "light",
+      "status": 200,
+      "overflow": 0,
+      "documentWidth": 320,
+      "documentScrollWidth": 320,
+      "h1Text": "Plans that scale with how your team works.",
+      "h1": {
+        "x": 16,
+        "y": 271.1,
+        "width": 288,
+        "height": 105.6
+      },
+      "h1Font": {
+        "size": "32px",
+        "weight": "400",
+        "lineHeight": "35.2px"
+      },
+      "cards": [
+        {
+          "tier": "starter",
+          "x": 16,
+          "y": 596,
+          "width": 288,
+          "height": 559.3
+        },
+        {
+          "tier": "team",
+          "x": 16,
+          "y": 1179.3,
+          "width": 288,
+          "height": 716.5
+        },
+        {
+          "tier": "studio",
+          "x": 16,
+          "y": 1919.8,
+          "width": 288,
+          "height": 580.3
+        }
+      ],
+      "featureTableCount": 0,
+      "detailsCount": 0,
+      "annualControlPresent": true,
+      "smallVisibleControls": [
+        {
+          "tag": "A",
+          "label": "Skip to content",
+          "href": "#main",
+          "x": -1,
+          "y": -1,
+          "width": 1,
+          "height": 44
+        }
+      ],
+      "axeViolations": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "375x812",
+      "colorScheme": "light",
+      "status": 200,
+      "overflow": 0,
+      "documentWidth": 375,
+      "documentScrollWidth": 375,
+      "h1Text": "Plans that scale with how your team works.",
+      "h1": {
+        "x": 16,
+        "y": 253.1,
+        "width": 343,
+        "height": 70.4
+      },
+      "h1Font": {
+        "size": "32px",
+        "weight": "400",
+        "lineHeight": "35.2px"
+      },
+      "cards": [
+        {
+          "tier": "starter",
+          "x": 16,
+          "y": 519.7,
+          "width": 343,
+          "height": 520.3
+        },
+        {
+          "tier": "team",
+          "x": 16,
+          "y": 1064,
+          "width": 343,
+          "height": 674.3
+        },
+        {
+          "tier": "studio",
+          "x": 16,
+          "y": 1762.4,
+          "width": 343,
+          "height": 560.8
+        }
+      ],
+      "featureTableCount": 0,
+      "detailsCount": 0,
+      "annualControlPresent": true,
+      "smallVisibleControls": [
+        {
+          "tag": "A",
+          "label": "Skip to content",
+          "href": "#main",
+          "x": -1,
+          "y": -1,
+          "width": 1,
+          "height": 44
+        }
+      ],
+      "axeViolations": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "390x844",
+      "colorScheme": "light",
+      "status": 200,
+      "overflow": 0,
+      "documentWidth": 390,
+      "documentScrollWidth": 390,
+      "h1Text": "Plans that scale with how your team works.",
+      "h1": {
+        "x": 16,
+        "y": 253.1,
+        "width": 358,
+        "height": 70.4
+      },
+      "h1Font": {
+        "size": "32px",
+        "weight": "400",
+        "lineHeight": "35.2px"
+      },
+      "cards": [
+        {
+          "tier": "starter",
+          "x": 16,
+          "y": 519.7,
+          "width": 358,
+          "height": 520.3
+        },
+        {
+          "tier": "team",
+          "x": 16,
+          "y": 1064,
+          "width": 358,
+          "height": 674.3
+        },
+        {
+          "tier": "studio",
+          "x": 16,
+          "y": 1762.4,
+          "width": 358,
+          "height": 539.8
+        }
+      ],
+      "featureTableCount": 0,
+      "detailsCount": 0,
+      "annualControlPresent": true,
+      "smallVisibleControls": [
+        {
+          "tag": "A",
+          "label": "Skip to content",
+          "href": "#main",
+          "x": -1,
+          "y": -1,
+          "width": 1,
+          "height": 44
+        }
+      ],
+      "axeViolations": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "768x1024",
+      "colorScheme": "light",
+      "status": 200,
+      "overflow": 0,
+      "documentWidth": 768,
+      "documentScrollWidth": 768,
+      "h1Text": "Plans that scale with how your team works.",
+      "h1": {
+        "x": 48,
+        "y": 256.1,
+        "width": 672,
+        "height": 37.4
+      },
+      "h1Font": {
+        "size": "34px",
+        "weight": "400",
+        "lineHeight": "37.4px"
+      },
+      "cards": [
+        {
+          "tier": "starter",
+          "x": 16,
+          "y": 497.7,
+          "width": 736,
+          "height": 560.3
+        },
+        {
+          "tier": "team",
+          "x": 16,
+          "y": 1082,
+          "width": 736,
+          "height": 680.6
+        },
+        {
+          "tier": "studio",
+          "x": 16,
+          "y": 1786.6,
+          "width": 736,
+          "height": 560.3
+        }
+      ],
+      "featureTableCount": 0,
+      "detailsCount": 0,
+      "annualControlPresent": true,
+      "smallVisibleControls": [
+        {
+          "tag": "A",
+          "label": "Skip to content",
+          "href": "#main",
+          "x": -1,
+          "y": -1,
+          "width": 1,
+          "height": 44
+        }
+      ],
+      "axeViolations": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "1024x768",
+      "colorScheme": "light",
+      "status": 200,
+      "overflow": 0,
+      "documentWidth": 1024,
+      "documentScrollWidth": 1024,
+      "h1Text": "Plans that scale with how your team works.",
+      "h1": {
+        "x": 176,
+        "y": 288.1,
+        "width": 672,
+        "height": 37.4
+      },
+      "h1Font": {
+        "size": "34px",
+        "weight": "400",
+        "lineHeight": "37.4px"
+      },
+      "cards": [
+        {
+          "tier": "starter",
+          "x": 40,
+          "y": 545.7,
+          "width": 296,
+          "height": 810.5
+        },
+        {
+          "tier": "team",
+          "x": 364,
+          "y": 545.7,
+          "width": 296,
+          "height": 810.5
+        },
+        {
+          "tier": "studio",
+          "x": 688,
+          "y": 545.7,
+          "width": 296,
+          "height": 810.5
+        }
+      ],
+      "featureTableCount": 0,
+      "detailsCount": 0,
+      "annualControlPresent": true,
+      "smallVisibleControls": [
+        {
+          "tag": "A",
+          "label": "Skip to content",
+          "href": "#main",
+          "x": -1,
+          "y": -1,
+          "width": 1,
+          "height": 44
+        }
+      ],
+      "axeViolations": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "1200x900",
+      "colorScheme": "light",
+      "status": 200,
+      "overflow": 0,
+      "documentWidth": 1200,
+      "documentScrollWidth": 1200,
+      "h1Text": "Plans that scale with how your team works.",
+      "h1": {
+        "x": 264,
+        "y": 288.1,
+        "width": 672,
+        "height": 118.8
+      },
+      "h1Font": {
+        "size": "54px",
+        "weight": "400",
+        "lineHeight": "59.4px"
+      },
+      "cards": [
+        {
+          "tier": "starter",
+          "x": 40,
+          "y": 640.3,
+          "width": 354.7,
+          "height": 721.8
+        },
+        {
+          "tier": "team",
+          "x": 422.7,
+          "y": 640.3,
+          "width": 354.7,
+          "height": 721.8
+        },
+        {
+          "tier": "studio",
+          "x": 805.3,
+          "y": 640.3,
+          "width": 354.7,
+          "height": 721.8
+        }
+      ],
+      "featureTableCount": 0,
+      "detailsCount": 0,
+      "annualControlPresent": true,
+      "smallVisibleControls": [
+        {
+          "tag": "A",
+          "label": "Skip to content",
+          "href": "#main",
+          "x": -1,
+          "y": -1,
+          "width": 1,
+          "height": 44
+        }
+      ],
+      "axeViolations": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "1440x900",
+      "colorScheme": "light",
+      "status": 200,
+      "overflow": 0,
+      "documentWidth": 1440,
+      "documentScrollWidth": 1440,
+      "h1Text": "Plans that scale with how your team works.",
+      "h1": {
+        "x": 384,
+        "y": 288.1,
+        "width": 672,
+        "height": 118.8
+      },
+      "h1Font": {
+        "size": "54px",
+        "weight": "400",
+        "lineHeight": "59.4px"
+      },
+      "cards": [
+        {
+          "tier": "starter",
+          "x": 100,
+          "y": 640.3,
+          "width": 394.7,
+          "height": 750.7
+        },
+        {
+          "tier": "team",
+          "x": 522.7,
+          "y": 640.3,
+          "width": 394.7,
+          "height": 750.7
+        },
+        {
+          "tier": "studio",
+          "x": 945.3,
+          "y": 640.3,
+          "width": 394.7,
+          "height": 750.7
+        }
+      ],
+      "featureTableCount": 0,
+      "detailsCount": 0,
+      "annualControlPresent": true,
+      "smallVisibleControls": [
+        {
+          "tag": "A",
+          "label": "Skip to content",
+          "href": "#main",
+          "x": -1,
+          "y": -1,
+          "width": 1,
+          "height": 44
+        }
+      ],
+      "axeViolations": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "320x700",
+      "colorScheme": "dark",
+      "status": 200,
+      "overflow": 0,
+      "documentWidth": 320,
+      "documentScrollWidth": 320,
+      "h1Text": "Plans that scale with how your team works.",
+      "h1": {
+        "x": 16,
+        "y": 271.1,
+        "width": 288,
+        "height": 105.6
+      },
+      "h1Font": {
+        "size": "32px",
+        "weight": "400",
+        "lineHeight": "35.2px"
+      },
+      "cards": [
+        {
+          "tier": "starter",
+          "x": 16,
+          "y": 596,
+          "width": 288,
+          "height": 559.3
+        },
+        {
+          "tier": "team",
+          "x": 16,
+          "y": 1179.3,
+          "width": 288,
+          "height": 716.5
+        },
+        {
+          "tier": "studio",
+          "x": 16,
+          "y": 1919.8,
+          "width": 288,
+          "height": 580.3
+        }
+      ],
+      "featureTableCount": 0,
+      "detailsCount": 0,
+      "annualControlPresent": true,
+      "smallVisibleControls": [
+        {
+          "tag": "A",
+          "label": "Skip to content",
+          "href": "#main",
+          "x": -1,
+          "y": -1,
+          "width": 1,
+          "height": 44
+        }
+      ],
+      "axeViolations": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "375x812",
+      "colorScheme": "dark",
+      "status": 200,
+      "overflow": 0,
+      "documentWidth": 375,
+      "documentScrollWidth": 375,
+      "h1Text": "Plans that scale with how your team works.",
+      "h1": {
+        "x": 16,
+        "y": 253.1,
+        "width": 343,
+        "height": 70.4
+      },
+      "h1Font": {
+        "size": "32px",
+        "weight": "400",
+        "lineHeight": "35.2px"
+      },
+      "cards": [
+        {
+          "tier": "starter",
+          "x": 16,
+          "y": 519.7,
+          "width": 343,
+          "height": 520.3
+        },
+        {
+          "tier": "team",
+          "x": 16,
+          "y": 1064,
+          "width": 343,
+          "height": 674.3
+        },
+        {
+          "tier": "studio",
+          "x": 16,
+          "y": 1762.4,
+          "width": 343,
+          "height": 560.8
+        }
+      ],
+      "featureTableCount": 0,
+      "detailsCount": 0,
+      "annualControlPresent": true,
+      "smallVisibleControls": [
+        {
+          "tag": "A",
+          "label": "Skip to content",
+          "href": "#main",
+          "x": -1,
+          "y": -1,
+          "width": 1,
+          "height": 44
+        }
+      ],
+      "axeViolations": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "390x844",
+      "colorScheme": "dark",
+      "status": 200,
+      "overflow": 0,
+      "documentWidth": 390,
+      "documentScrollWidth": 390,
+      "h1Text": "Plans that scale with how your team works.",
+      "h1": {
+        "x": 16,
+        "y": 253.1,
+        "width": 358,
+        "height": 70.4
+      },
+      "h1Font": {
+        "size": "32px",
+        "weight": "400",
+        "lineHeight": "35.2px"
+      },
+      "cards": [
+        {
+          "tier": "starter",
+          "x": 16,
+          "y": 519.7,
+          "width": 358,
+          "height": 520.3
+        },
+        {
+          "tier": "team",
+          "x": 16,
+          "y": 1064,
+          "width": 358,
+          "height": 674.3
+        },
+        {
+          "tier": "studio",
+          "x": 16,
+          "y": 1762.4,
+          "width": 358,
+          "height": 539.8
+        }
+      ],
+      "featureTableCount": 0,
+      "detailsCount": 0,
+      "annualControlPresent": true,
+      "smallVisibleControls": [
+        {
+          "tag": "A",
+          "label": "Skip to content",
+          "href": "#main",
+          "x": -1,
+          "y": -1,
+          "width": 1,
+          "height": 44
+        }
+      ],
+      "axeViolations": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "768x1024",
+      "colorScheme": "dark",
+      "status": 200,
+      "overflow": 0,
+      "documentWidth": 768,
+      "documentScrollWidth": 768,
+      "h1Text": "Plans that scale with how your team works.",
+      "h1": {
+        "x": 48,
+        "y": 256.1,
+        "width": 672,
+        "height": 37.4
+      },
+      "h1Font": {
+        "size": "34px",
+        "weight": "400",
+        "lineHeight": "37.4px"
+      },
+      "cards": [
+        {
+          "tier": "starter",
+          "x": 16,
+          "y": 497.7,
+          "width": 736,
+          "height": 560.3
+        },
+        {
+          "tier": "team",
+          "x": 16,
+          "y": 1082,
+          "width": 736,
+          "height": 680.6
+        },
+        {
+          "tier": "studio",
+          "x": 16,
+          "y": 1786.6,
+          "width": 736,
+          "height": 560.3
+        }
+      ],
+      "featureTableCount": 0,
+      "detailsCount": 0,
+      "annualControlPresent": true,
+      "smallVisibleControls": [
+        {
+          "tag": "A",
+          "label": "Skip to content",
+          "href": "#main",
+          "x": -1,
+          "y": -1,
+          "width": 1,
+          "height": 44
+        }
+      ],
+      "axeViolations": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "1024x768",
+      "colorScheme": "dark",
+      "status": 200,
+      "overflow": 0,
+      "documentWidth": 1024,
+      "documentScrollWidth": 1024,
+      "h1Text": "Plans that scale with how your team works.",
+      "h1": {
+        "x": 176,
+        "y": 288.1,
+        "width": 672,
+        "height": 37.4
+      },
+      "h1Font": {
+        "size": "34px",
+        "weight": "400",
+        "lineHeight": "37.4px"
+      },
+      "cards": [
+        {
+          "tier": "starter",
+          "x": 40,
+          "y": 545.7,
+          "width": 296,
+          "height": 810.5
+        },
+        {
+          "tier": "team",
+          "x": 364,
+          "y": 545.7,
+          "width": 296,
+          "height": 810.5
+        },
+        {
+          "tier": "studio",
+          "x": 688,
+          "y": 545.7,
+          "width": 296,
+          "height": 810.5
+        }
+      ],
+      "featureTableCount": 0,
+      "detailsCount": 0,
+      "annualControlPresent": true,
+      "smallVisibleControls": [
+        {
+          "tag": "A",
+          "label": "Skip to content",
+          "href": "#main",
+          "x": -1,
+          "y": -1,
+          "width": 1,
+          "height": 44
+        }
+      ],
+      "axeViolations": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "1200x900",
+      "colorScheme": "dark",
+      "status": 200,
+      "overflow": 0,
+      "documentWidth": 1200,
+      "documentScrollWidth": 1200,
+      "h1Text": "Plans that scale with how your team works.",
+      "h1": {
+        "x": 264,
+        "y": 288.1,
+        "width": 672,
+        "height": 118.8
+      },
+      "h1Font": {
+        "size": "54px",
+        "weight": "400",
+        "lineHeight": "59.4px"
+      },
+      "cards": [
+        {
+          "tier": "starter",
+          "x": 40,
+          "y": 640.3,
+          "width": 354.7,
+          "height": 721.8
+        },
+        {
+          "tier": "team",
+          "x": 422.7,
+          "y": 640.3,
+          "width": 354.7,
+          "height": 721.8
+        },
+        {
+          "tier": "studio",
+          "x": 805.3,
+          "y": 640.3,
+          "width": 354.7,
+          "height": 721.8
+        }
+      ],
+      "featureTableCount": 0,
+      "detailsCount": 0,
+      "annualControlPresent": true,
+      "smallVisibleControls": [
+        {
+          "tag": "A",
+          "label": "Skip to content",
+          "href": "#main",
+          "x": -1,
+          "y": -1,
+          "width": 1,
+          "height": 44
+        }
+      ],
+      "axeViolations": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "1440x900",
+      "colorScheme": "dark",
+      "status": 200,
+      "overflow": 0,
+      "documentWidth": 1440,
+      "documentScrollWidth": 1440,
+      "h1Text": "Plans that scale with how your team works.",
+      "h1": {
+        "x": 384,
+        "y": 288.1,
+        "width": 672,
+        "height": 118.8
+      },
+      "h1Font": {
+        "size": "54px",
+        "weight": "400",
+        "lineHeight": "59.4px"
+      },
+      "cards": [
+        {
+          "tier": "starter",
+          "x": 100,
+          "y": 640.3,
+          "width": 394.7,
+          "height": 750.7
+        },
+        {
+          "tier": "team",
+          "x": 522.7,
+          "y": 640.3,
+          "width": 394.7,
+          "height": 750.7
+        },
+        {
+          "tier": "studio",
+          "x": 945.3,
+          "y": 640.3,
+          "width": 394.7,
+          "height": 750.7
+        }
+      ],
+      "featureTableCount": 0,
+      "detailsCount": 0,
+      "annualControlPresent": true,
+      "smallVisibleControls": [
+        {
+          "tag": "A",
+          "label": "Skip to content",
+          "href": "#main",
+          "x": -1,
+          "y": -1,
+          "width": 1,
+          "height": 44
+        }
+      ],
+      "axeViolations": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "390x844",
+      "mode": "javascript-disabled",
+      "status": 200,
+      "h1": "Plans that scale with how your team works.",
+      "h1Opacity": "1",
+      "cards": 3,
+      "visibleCards": 3,
+      "scrollWidth": 390,
+      "clientWidth": 390
+    },
+    {
+      "viewport": "1440x900",
+      "mode": "javascript-disabled",
+      "status": 200,
+      "h1": "Plans that scale with how your team works.",
+      "h1Opacity": "1",
+      "cards": 3,
+      "visibleCards": 3,
+      "scrollWidth": 1440,
+      "clientWidth": 1440
+    }
+  ],
+  "lcp": [
+    {
+      "scenario": "A",
+      "run": 1,
+      "viewport": "412x823",
+      "cpu": 1,
+      "reducedMotion": "no-preference",
+      "lcp": [
+        {
+          "startTime": 96,
+          "size": 27571,
+          "tag": "H1",
+          "className": "lm-hero-in mt-3 font-display text-lm-32 font-normal leading-lm-heading tracking-lm-display text-lm-ink md:text-lm-34 min-[1200px]:text-lm-54",
+          "id": "pricing-page-heading",
+          "text": "Plans that scale with how your team works."
+        }
+      ],
+      "cls": 0
+    },
+    {
+      "scenario": "A",
+      "run": 2,
+      "viewport": "412x823",
+      "cpu": 1,
+      "reducedMotion": "no-preference",
+      "lcp": [
+        {
+          "startTime": 100,
+          "size": 27571,
+          "tag": "H1",
+          "className": "lm-hero-in mt-3 font-display text-lm-32 font-normal leading-lm-heading tracking-lm-display text-lm-ink md:text-lm-34 min-[1200px]:text-lm-54",
+          "id": "pricing-page-heading",
+          "text": "Plans that scale with how your team works."
+        }
+      ],
+      "cls": 0
+    },
+    {
+      "scenario": "A",
+      "run": 3,
+      "viewport": "412x823",
+      "cpu": 1,
+      "reducedMotion": "no-preference",
+      "lcp": [
+        {
+          "startTime": 96,
+          "size": 27571,
+          "tag": "H1",
+          "className": "lm-hero-in mt-3 font-display text-lm-32 font-normal leading-lm-heading tracking-lm-display text-lm-ink md:text-lm-34 min-[1200px]:text-lm-54",
+          "id": "pricing-page-heading",
+          "text": "Plans that scale with how your team works."
+        }
+      ],
+      "cls": 0
+    },
+    {
+      "scenario": "B",
+      "run": 1,
+      "viewport": "412x823",
+      "cpu": 4,
+      "reducedMotion": "no-preference",
+      "lcp": [
+        {
+          "startTime": 356,
+          "size": 27571,
+          "tag": "H1",
+          "className": "lm-hero-in mt-3 font-display text-lm-32 font-normal leading-lm-heading tracking-lm-display text-lm-ink md:text-lm-34 min-[1200px]:text-lm-54",
+          "id": "pricing-page-heading",
+          "text": "Plans that scale with how your team works."
+        }
+      ],
+      "cls": 0
+    },
+    {
+      "scenario": "B",
+      "run": 2,
+      "viewport": "412x823",
+      "cpu": 4,
+      "reducedMotion": "no-preference",
+      "lcp": [
+        {
+          "startTime": 212,
+          "size": 27571,
+          "tag": "H1",
+          "className": "lm-hero-in mt-3 font-display text-lm-32 font-normal leading-lm-heading tracking-lm-display text-lm-ink md:text-lm-34 min-[1200px]:text-lm-54",
+          "id": "pricing-page-heading",
+          "text": "Plans that scale with how your team works."
+        }
+      ],
+      "cls": 0
+    },
+    {
+      "scenario": "B",
+      "run": 3,
+      "viewport": "412x823",
+      "cpu": 4,
+      "reducedMotion": "no-preference",
+      "lcp": [
+        {
+          "startTime": 196,
+          "size": 27571,
+          "tag": "H1",
+          "className": "lm-hero-in mt-3 font-display text-lm-32 font-normal leading-lm-heading tracking-lm-display text-lm-ink md:text-lm-34 min-[1200px]:text-lm-54",
+          "id": "pricing-page-heading",
+          "text": "Plans that scale with how your team works."
+        }
+      ],
+      "cls": 0
+    },
+    {
+      "scenario": "C",
+      "run": 1,
+      "viewport": "1350x940",
+      "cpu": 1,
+      "reducedMotion": "no-preference",
+      "lcp": [
+        {
+          "startTime": 92,
+          "size": 79002,
+          "tag": "H1",
+          "className": "lm-hero-in mt-3 font-display text-lm-32 font-normal leading-lm-heading tracking-lm-display text-lm-ink md:text-lm-34 min-[1200px]:text-lm-54",
+          "id": "pricing-page-heading",
+          "text": "Plans that scale with how your team works."
+        }
+      ],
+      "cls": 0
+    },
+    {
+      "scenario": "C",
+      "run": 2,
+      "viewport": "1350x940",
+      "cpu": 1,
+      "reducedMotion": "no-preference",
+      "lcp": [
+        {
+          "startTime": 68,
+          "size": 79002,
+          "tag": "H1",
+          "className": "lm-hero-in mt-3 font-display text-lm-32 font-normal leading-lm-heading tracking-lm-display text-lm-ink md:text-lm-34 min-[1200px]:text-lm-54",
+          "id": "pricing-page-heading",
+          "text": "Plans that scale with how your team works."
+        }
+      ],
+      "cls": 0
+    },
+    {
+      "scenario": "C",
+      "run": 3,
+      "viewport": "1350x940",
+      "cpu": 1,
+      "reducedMotion": "no-preference",
+      "lcp": [
+        {
+          "startTime": 104,
+          "size": 79002,
+          "tag": "H1",
+          "className": "lm-hero-in mt-3 font-display text-lm-32 font-normal leading-lm-heading tracking-lm-display text-lm-ink md:text-lm-34 min-[1200px]:text-lm-54",
+          "id": "pricing-page-heading",
+          "text": "Plans that scale with how your team works."
+        }
+      ],
+      "cls": 0
+    },
+    {
+      "scenario": "D",
+      "run": 1,
+      "viewport": "412x823",
+      "cpu": 1,
+      "reducedMotion": "reduce",
+      "lcp": [
+        {
+          "startTime": 108,
+          "size": 27571,
+          "tag": "H1",
+          "className": "lm-hero-in mt-3 font-display text-lm-32 font-normal leading-lm-heading tracking-lm-display text-lm-ink md:text-lm-34 min-[1200px]:text-lm-54",
+          "id": "pricing-page-heading",
+          "text": "Plans that scale with how your team works."
+        }
+      ],
+      "cls": 0
+    },
+    {
+      "scenario": "D",
+      "run": 2,
+      "viewport": "412x823",
+      "cpu": 1,
+      "reducedMotion": "reduce",
+      "lcp": [
+        {
+          "startTime": 104,
+          "size": 27571,
+          "tag": "H1",
+          "className": "lm-hero-in mt-3 font-display text-lm-32 font-normal leading-lm-heading tracking-lm-display text-lm-ink md:text-lm-34 min-[1200px]:text-lm-54",
+          "id": "pricing-page-heading",
+          "text": "Plans that scale with how your team works."
+        }
+      ],
+      "cls": 0
+    },
+    {
+      "scenario": "D",
+      "run": 3,
+      "viewport": "412x823",
+      "cpu": 1,
+      "reducedMotion": "reduce",
+      "lcp": [
+        {
+          "startTime": 100,
+          "size": 27571,
+          "tag": "H1",
+          "className": "lm-hero-in mt-3 font-display text-lm-32 font-normal leading-lm-heading tracking-lm-display text-lm-ink md:text-lm-34 min-[1200px]:text-lm-54",
+          "id": "pricing-page-heading",
+          "text": "Plans that scale with how your team works."
+        }
+      ],
+      "cls": 0
+    }
+  ]
+}
