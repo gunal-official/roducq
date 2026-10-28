@@ -6,28 +6,25 @@
  * CHROMIUM_PATH=/path/to/chromium node scripts/verify-unsaved-edits.mjs
  *
  * Fictional loopback fixture only: this is NOT a production, RLS or live-data
- * test. The script refuses to run when Next could load a real `.env` file or
- * when a `resp-next` build already exists, never kills listeners, never
- * removes a directory it did not create, and blocks every browser request
- * that is not the local app or the local fixture. Screenshots, an axe report
- * and a JSON ledger are written to a new OS temp directory (or EVIDENCE_DIR).
+ * test. The script refuses to load a real `.env` or overwrite `resp-next`.
+ * A local same-origin proxy exposes the fixture without disabling the app's
+ * production CSP; all other browser network requests are blocked. A JSON
+ * ledger, console/build/server logs and screenshots are written to a new OS
+ * temp directory (or EVIDENCE_DIR), including when an assertion fails.
  *
- * What it proves, at 320/375/390/768/1024/1200/1440:
- *   - a clean editor navigates exactly as before (no dialog, no listeners);
- *   - a dirty editor is held for sidebar, drawer, page-link, Back, Forward,
- *     reload, tab close and full-page form navigation;
- *   - "Keep editing" / Escape / overlay leave the URL and the edits intact
- *     and restore focus; "Discard changes" performs the requested navigation;
- *   - a successful save clears the guard, a failed save keeps it armed;
- *   - the dialog is accessible (axe), contained, and usable with reduced
- *     motion; the no-JavaScript behaviour is recorded.
+ * At 320/375/390/768/1024/1200/1440 the shell matrix tests clean and dirty
+ * sign-out and workspace switching, cancellation, focus/keyboard isolation,
+ * local-scope action counts, light/dark, reduced motion and axe. The existing
+ * navigation, unload, save, no-JS and generic-dialog probes are retained.
+ * Axe's incomplete checks remain manual-review items, not automated passes.
  */
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
-import { createServer } from "node:http";
+import { createServer, request as httpRequest } from "node:http";
 import { createServer as createNetServer } from "node:net";
-import { existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { appendFileSync, existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
+import { format } from "node:util";
 import path from "node:path";
 import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
@@ -46,7 +43,7 @@ const USER = "33333333-3333-4333-8333-333333333333";
 const CREATED = "2026-01-10T10:00:00.000Z";
 const WIDTHS = [320, 375, 390, 768, 1024, 1200, 1440];
 const HEIGHTS = { 320: 568, 375: 667, 390: 844, 768: 900, 1024: 900, 1200: 900, 1440: 900 };
-const AXE_TAGS = ["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa", "best-practice"];
+const AXE_TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa", "best-practice"];
 const TITLE_SAVED = "Fictional weekly update";
 const TITLE_EDITED = "Fictional weekly update — edited";
 const BODY_SAVED = "The fictional milestone is on track.";
@@ -54,6 +51,8 @@ const BODY_EDITED = "Unsaved fictional body edit.";
 
 // ── Fictional fixture ────────────────────────────────────────────────────
 let state;
+let currentCase = "setup";
+const fixtureEvents = [];
 function reset(overrides = {}) {
   state = {
     title: TITLE_SAVED,
@@ -122,8 +121,15 @@ function fixtureServer() {
         { workspace_id: WORKSPACE2, workspace_name: "Fictional Second Studio", role: "owner" },
       ]);
       if (pathname === "/rest/v1/rpc/get_shared_document") return send(req, res, []);
-      if (pathname === "/auth/v1/logout") {
-        state.signOuts.push({ at: Date.now() });
+      if (pathname === "/auth/v1/logout" && req.method === "POST") {
+        const event = {
+          at: Date.now(),
+          method: req.method,
+          scope: url.searchParams.get("scope"),
+          hasBearerToken: Boolean(req.headers.authorization?.startsWith("Bearer ")),
+        };
+        state.signOuts.push(event);
+        fixtureEvents.push({ case: currentCase, type: "logout", ...event });
         res.writeHead(204, { "access-control-allow-origin": "*" });
         return res.end();
       }
@@ -132,6 +138,8 @@ function fixtureServer() {
           if (payload.active_workspace_id !== undefined) {
             state.workspaceWrites.push(payload.active_workspace_id);
             state.activeWorkspaceId = payload.active_workspace_id;
+            fixtureEvents.push({ case: currentCase, type: "workspace-write", at: Date.now(),
+              workspaceId: payload.active_workspace_id });
           }
           return send(req, res, []);
         }
@@ -147,10 +155,16 @@ function fixtureServer() {
       }
       if (pathname === "/rest/v1/workspace_members") {
         const wanted = (url.searchParams.get("workspace_id") ?? "").replace(/^eq\./, "");
-        return send(req, res, single(req, {
-          user_id: USER, workspace_id: wanted || WORKSPACE, role: "owner", created_at: CREATED,
-          workspace: workspaceRow(wanted === WORKSPACE2 ? WORKSPACE2 : WORKSPACE),
-        }));
+        const memberships = [WORKSPACE, WORKSPACE2]
+          .filter((id) => !wanted || id === wanted)
+          .map((id) => ({
+            user_id: USER, workspace_id: id, role: "owner", created_at: CREATED,
+            workspace: workspaceRow(id),
+          }));
+        // The shell queries workspace_members directly for every membership;
+        // the separate get_user_memberships RPC is not used by this resolver.
+        return send(req, res, req.headers.accept?.includes("application/vnd.pgrst.object+json")
+          ? memberships[0] ?? null : memberships);
       }
       if (pathname === "/rest/v1/updates") {
         if (req.method === "PATCH") {
@@ -186,6 +200,32 @@ function fixtureServer() {
     }
   });
 }
+// Expose the app and fictional service under one loopback origin. The app's
+// production CSP permits 'self' but not a different localhost port. Disabling
+// CSP would conceal that distinction, so forward only fixture API paths to the
+// stub and everything else to the isolated Next server; no policy is changed.
+function sameOriginProxy(stubPort, appPort) {
+  return createServer((req, res) => {
+    const pathname = new URL(req.url, "http://127.0.0.1").pathname;
+    const fixture = pathname.startsWith("/auth/v1/") || pathname.startsWith("/rest/v1/");
+    const upstream = httpRequest({
+      hostname: "127.0.0.1",
+      port: fixture ? stubPort : appPort,
+      method: req.method,
+      path: req.url,
+      headers: { ...req.headers, "x-forwarded-host": req.headers.host, "x-forwarded-proto": "http" },
+    }, (response) => {
+      res.writeHead(response.statusCode, response.headers);
+      response.pipe(res);
+    });
+    upstream.on("error", () => {
+      if (!res.headersSent) res.writeHead(502);
+      res.end("Local verification upstream unavailable");
+    });
+    req.pipe(upstream);
+  });
+}
+
 const listen = (server) => new Promise((resolve, reject) => {
   server.once("error", reject);
   server.listen(0, "127.0.0.1", resolve);
@@ -238,8 +278,11 @@ function sessionCookie() {
 const ledger = {
   settings: { widths: WIDTHS, heights: HEIGHTS, locale: "en-US", timezoneId: "UTC",
     deviceScaleFactor: 1, reducedMotion: "reduce", serviceWorkers: "block",
-    network: "browser limited to the local app and the fictional loopback fixture" },
-  scenarios: [], scans: [], screenshots: [], browserErrors: [],
+    network: "same-origin loopback proxy; production CSP enabled; external browser requests blocked",
+    axeTags: AXE_TAGS },
+  status: "running",
+  scenarios: [], scans: [], screenshots: [], browserErrors: [], blockedRequests: [],
+  fixtureEvents,
   limitations: [
     "Native beforeunload text is not customisable; Chromium requires prior user interaction and some mobile browsers suppress the prompt.",
     "Back/Forward is only cancellable where the Navigation API exists (Chrome/Edge 102+, Firefox 147+, Safari 26.2+). Older engines keep click and unload protection only.",
@@ -250,10 +293,13 @@ const ledger = {
 };
 
 function trackPage(page) {
-  page.on("pageerror", (error) => ledger.browserErrors.push({ type: "pageerror", message: error.message }));
+  page.on("pageerror", (error) => ledger.browserErrors.push({ case: currentCase, type: "pageerror", message: error.message }));
+  page.on("console", (message) => {
+    if (message.type() === "error") ledger.browserErrors.push({ case: currentCase, type: "console", message: message.text() });
+  });
   page.on("response", (response) => {
     if (response.url().startsWith("http://127.0.0.1") && response.status() >= 400) {
-      ledger.browserErrors.push({ type: "http", status: response.status(), url: response.url() });
+      ledger.browserErrors.push({ case: currentCase, type: "http", status: response.status(), url: response.url() });
     }
   });
 }
@@ -268,6 +314,7 @@ async function newContext(browser, base, stubOrigin, options = {}) {
   await context.route("**/*", (route) => {
     const url = new URL(route.request().url());
     if (url.origin === base || url.origin === stubOrigin) return route.continue();
+    ledger.blockedRequests.push({ case: currentCase, url: route.request().url() });
     return route.abort("blockedbyclient");
   });
   const page = await context.newPage();
@@ -287,6 +334,7 @@ async function openUpdate(page, base, id = ID) {
   await page.locator("main").waitFor();
   await page.waitForLoadState("networkidle");
   await titleBox(page).waitFor();
+  return response;
 }
 async function makeDirty(page) {
   await titleBox(page).fill(TITLE_EDITED);
@@ -315,8 +363,9 @@ async function axeOnPage(page) {
     const report = await window.axe.run(document, { runOnly: { type: "tag", values: tags } });
     return {
       violations: report.violations.map((rule) => ({ id: rule.id, impact: rule.impact,
-        nodes: rule.nodes.map((node) => node.target) })),
-      incomplete: report.incomplete.map((rule) => rule.id),
+        help: rule.help, nodes: rule.nodes.map((node) => ({ target: node.target, summary: node.failureSummary })) })),
+      incomplete: report.incomplete.map((rule) => ({ id: rule.id, impact: rule.impact,
+        help: rule.help, nodes: rule.nodes.map((node) => ({ target: node.target, summary: node.failureSummary })) })),
       passes: report.passes.map((rule) => rule.id),
     };
   }, AXE_TAGS);
@@ -368,7 +417,7 @@ async function layoutProbe(browser, base, stubOrigin, width, output) {
 
     const shot = path.join(output, `dirty-dialog-${width}.png`);
     await page.screenshot({ path: shot });
-    ledger.screenshots.push(shot);
+    ledger.screenshots.push(path.basename(shot));
     return { width, geometry, overflow, buttons, focus, dialogVisible: true };
   } finally {
     await context.close();
@@ -741,7 +790,7 @@ async function dialogAxeProbe(browser, base, stubOrigin, width, scheme, output) 
     assert.ok(scan.passes.length > 0);
     const shot = path.join(output, `dialog-${scheme}-${width}.png`);
     await page.screenshot({ path: shot });
-    ledger.screenshots.push(shot);
+    ledger.screenshots.push(path.basename(shot));
     return { width, scheme, violations: scan.violations, incomplete: scan.incomplete, passes: scan.passes.length };
   } finally {
     await context.close();
@@ -933,6 +982,535 @@ async function shellActionsProbe(browser, base, stubOrigin) {
   return results;
 }
 
+// ── PR #74 shell-action matrix ───────────────────────────────────────────
+// Every case uses the real shell, guard and server actions against the same
+// fictional fixture. No authentication or application code is replaced.
+async function eventually(predicate, message, timeout = 10_000) {
+  const deadline = Date.now() + timeout;
+  while (Date.now() < deadline) {
+    if (predicate()) return;
+    await new Promise((resolve) => setTimeout(resolve, 50));
+  }
+  assert.ok(predicate(), message);
+}
+
+async function sessionPresent(context, base) {
+  return (await context.cookies(base)).some((cookie) =>
+    cookie.name === "sb-127-auth-token" && cookie.value.length > 0);
+}
+
+function assertOneLocalSignOut() {
+  assert.deepEqual(state.signOuts.map(({ method, scope, hasBearerToken }) =>
+    ({ method, scope, hasBearerToken })),
+  [{ method: "POST", scope: "local", hasBearerToken: true }],
+  "exactly one authenticated local-scope logout request reaches the fixture");
+}
+
+async function assertPreserved(page, context, base) {
+  assert.equal(new URL(page.url()).pathname, `/updates/${ID}`, "the editor URL did not change");
+  assert.equal(await titleBox(page).inputValue(), TITLE_EDITED, "the edited title remains");
+  assert.equal(await bodyBox(page).inputValue(), BODY_EDITED, "the edited body remains");
+  assert.equal(await sessionPresent(context, base), true, "the fictional session remains");
+  assert.equal(state.activeWorkspaceId, WORKSPACE, "the active workspace remains");
+  assert.deepEqual(state.workspaceWrites, [], "no workspace write before confirmation");
+  assert.deepEqual(state.signOuts, [], "no logout request before confirmation");
+}
+
+async function assertFocusReturned(page, selector) {
+  await page.waitForFunction((target) => document.activeElement?.matches(target), selector, { timeout: 5000 });
+  assert.equal(await page.evaluate((target) => document.activeElement?.matches(target), selector), true,
+    `focus returns to ${selector}`);
+}
+
+async function selectWorkspaceByKeyboard(page, trigger, selectionKey = "Enter") {
+  await trigger.focus();
+  await page.keyboard.press("Enter");
+  await page.getByRole("option", { name: "Fictional Second Studio" }).waitFor();
+  await page.waitForFunction(() => document.activeElement?.getAttribute("role") === "option", null, { timeout: 5000 });
+  await page.keyboard.press("End");
+  // Radix schedules its roving-focus move with setTimeout; wait for the
+  // actual keyboard target before selecting it rather than racing the move.
+  await page.waitForFunction(() => document.activeElement?.getAttribute("role") === "option" &&
+    document.activeElement?.textContent?.includes("Fictional Second Studio"), null, { timeout: 5000 });
+  await page.keyboard.press(selectionKey);
+}
+
+async function triggerTopbarAction(page, action, keyboard = false, selectionKey = "Enter") {
+  if (action === "sign-out") {
+    const trigger = page.getByRole("button", { name: "Account menu", exact: true });
+    if (keyboard) {
+      await trigger.focus();
+      await page.keyboard.press("Enter");
+      await page.getByRole("menu", { name: "Account menu" }).waitFor();
+      await page.keyboard.press("End");
+      assert.match((await activeLabel(page))?.text ?? "", /Log out/, "End focuses the logout menu item");
+      await page.keyboard.press("Enter");
+    } else {
+      await trigger.click();
+      await page.getByRole("menuitem", { name: /Log out/ }).click();
+    }
+    return "#account-menu-trigger";
+  }
+  const trigger = page.locator("header").getByRole("combobox", { name: "Switch workspace" }).first();
+  const id = await trigger.getAttribute("id");
+  assert.ok(id, "workspace trigger has a stable focus id");
+  if (keyboard) {
+    await selectWorkspaceByKeyboard(page, trigger, selectionKey);
+  } else {
+    await trigger.click();
+    await page.getByRole("option", { name: "Fictional Second Studio" }).click();
+  }
+  return `#${id}`;
+}
+
+async function beginDialogFrameCapture(page) {
+  await page.evaluate(() => {
+    window.__guardMotionFrames = [];
+    window.__guardMotionCapture = true;
+    const capture = () => {
+      if (!window.__guardMotionCapture) return;
+      const element = document.querySelector('[role="alertdialog"]');
+      if (element) {
+        const rect = element.getBoundingClientRect();
+        window.__guardMotionFrames.push({
+          state: element.getAttribute("data-state"),
+          x: rect.x, y: rect.y, right: rect.right, bottom: rect.bottom,
+          opacity: Number(getComputedStyle(element).opacity),
+        });
+      }
+      requestAnimationFrame(capture);
+    };
+    requestAnimationFrame(capture);
+  });
+}
+
+async function endDialogFrameCapture(page, width, output, name) {
+  const frames = await page.evaluate(() => {
+    window.__guardMotionCapture = false;
+    return window.__guardMotionFrames;
+  });
+  const file = `motion-frames-${name}.json`;
+  writeFileSync(path.join(output, file), JSON.stringify(frames, null, 2));
+  assert.ok(frames.some((frame) => frame.state === "open"), `${name}: entering dialog frames captured`);
+  assert.ok(frames.some((frame) => frame.state === "closed"), `${name}: exiting dialog frames captured`);
+  for (const frame of frames) {
+    assert.ok(frame.x >= -1 && frame.y >= -1 && frame.right <= width + 1 &&
+      frame.bottom <= (HEIGHTS[width] ?? 900) + 1, `${name}: ${frame.state} dialog fits throughout animation`);
+  }
+  return { file, frameCount: frames.length,
+    openFrames: frames.filter((frame) => frame.state === "open").length,
+    closedFrames: frames.filter((frame) => frame.state === "closed").length };
+}
+
+async function inspectDialog(page, width, action, motion) {
+  const dialog = dialogOf(page);
+  await dialog.waitFor({ state: "visible" });
+  const expected = action === "sign-out" ? "Discard and sign out" : "Discard and switch workspace";
+  assert.ok(await dialog.getByRole("button", { name: expected, exact: true }).isVisible());
+  assert.equal((await activeLabel(page))?.text, "Keep editing", "safe action receives initial focus");
+  if (motion !== "reduce") {
+    // Target sizes and final geometry are measured after the actual animation;
+    // separate frame capture asserts the dialog remains in view throughout it.
+    await dialog.evaluate(async (element) => {
+      await Promise.all(element.getAnimations().filter((animation) => animation.playState === "running")
+        .map((animation) => animation.finished));
+    });
+  }
+  // Radix preserves aria-live regions and their ancestors, so #main itself
+  // need not be hidden. Wait for the modal effect and inspect actual visible
+  // background controls instead of mistaking a live-region ancestor for a leak.
+  await page.waitForFunction(() => Boolean(document.querySelector('input[aria-label="Title"]')
+    ?.closest('[aria-hidden="true"], [inert]')), null, { timeout: 5000 });
+  const details = await dialog.evaluate((element) => {
+    const rect = element.getBoundingClientRect();
+    const style = getComputedStyle(element);
+    const controls = Array.from(document.querySelectorAll('a[href], button, input, textarea, select'))
+      .filter((node) => {
+        const box = node.getBoundingClientRect();
+        return !element.contains(node) && box.width > 0 && box.height > 0 &&
+          getComputedStyle(node).visibility !== "hidden";
+      });
+    const exposedControls = controls.filter((node) => !node.closest('[aria-hidden="true"], [inert]'))
+      .map((node) => node.getAttribute("aria-label") || node.textContent.trim().slice(0, 50) || node.tagName);
+    return {
+      geometry: { x: rect.x, y: rect.y, width: rect.width, height: rect.height },
+      overflow: document.documentElement.scrollWidth - window.innerWidth,
+      backgroundControls: controls.length,
+      exposedControls,
+      reducedMotion: matchMedia("(prefers-reduced-motion: reduce)").matches,
+      animationName: style.animationName,
+      transitionDuration: style.transitionDuration,
+      dark: document.documentElement.classList.contains("dark"),
+      buttons: Array.from(element.querySelectorAll("button")).map((button) => {
+        const box = button.getBoundingClientRect();
+        return { label: button.textContent.trim(), width: box.width, height: box.height };
+      }),
+    };
+  });
+  assert.ok(details.geometry.x >= 0 && details.geometry.y >= 0, `${width}: dialog starts in viewport`);
+  assert.ok(details.geometry.x + details.geometry.width <= width + 1, `${width}: dialog fits horizontally`);
+  assert.ok(details.geometry.y + details.geometry.height <= (HEIGHTS[width] ?? 900) + 1,
+    `${width}: dialog fits vertically`);
+  assert.ok(details.overflow <= 1, `${width}: no horizontal overflow with shell dialog open`);
+  assert.ok(details.backgroundControls > 0, "background controls were inspected");
+  assert.deepEqual(details.exposedControls, [], "visible background controls are hidden from the accessibility tree");
+  assert.ok(details.buttons.length >= 3, "both actions and close button exist");
+  for (const button of details.buttons) {
+    assert.ok(button.width >= 44 && button.height >= 44, `${width}: ${button.label} is at least 44px`);
+  }
+  assert.equal(details.reducedMotion, motion === "reduce", "requested motion preference is active");
+  if (motion === "reduce") {
+    assert.equal(details.animationName, "none", "dialog animation is disabled with reduced motion");
+    assert.equal(details.transitionDuration, "0s", "dialog transition is disabled with reduced motion");
+  } else {
+    assert.notEqual(details.animationName, "none", "normal-motion dialog animation remains enabled");
+  }
+  return details;
+}
+
+async function assertFocusIsolation(page) {
+  const labels = [];
+  for (const key of ["Tab", "Tab", "Tab", "Tab", "Shift+Tab", "Shift+Tab"]) {
+    await page.keyboard.press(key);
+    const focus = await page.evaluate(() => {
+      const dialog = document.querySelector('[role="alertdialog"]');
+      const active = document.activeElement;
+      return { inside: Boolean(dialog?.contains(active)), text: active?.textContent?.trim() ?? "" };
+    });
+    assert.equal(focus.inside, true, `${key} stays within the dialog`);
+    labels.push(focus.text);
+  }
+  assert.ok(new Set(labels).size >= 2, "keyboard can reach multiple dialog controls");
+  await page.evaluate(() => document.querySelector("#global-search")?.focus());
+  await page.waitForTimeout(30);
+  assert.equal(await page.evaluate(() => document.querySelector('[role="alertdialog"]')?.contains(document.activeElement)),
+    true, "programmatic background focus is redirected into the modal");
+  return labels;
+}
+
+async function scanAndScreenshot(page, output, name, details) {
+  const shot = path.join(output, `${name}.png`);
+  await page.screenshot({ path: shot });
+  ledger.screenshots.push(path.basename(shot));
+  const scan = await axeOnPage(page);
+  ledger.scans.push({ case: currentCase, ...details, violations: scan.violations,
+    incomplete: scan.incomplete, passes: scan.passes.length });
+  assert.deepEqual(scan.violations, [], `${name}: axe violations`);
+  assert.ok(scan.passes.length > 0, `${name}: axe actually ran`);
+  return { violations: scan.violations.length, incomplete: scan.incomplete.length, passes: scan.passes.length };
+}
+
+async function saveFailureScreenshot(page, output, name) {
+  const shot = path.join(output, `FAILED-${name}.png`);
+  await page.screenshot({ path: shot }).catch(() => {});
+  if (existsSync(shot)) ledger.screenshots.push(path.basename(shot));
+}
+
+async function shellMatrixProbe(browser, base, stubOrigin, width, scheme, action, output, motion = "reduce") {
+  reset();
+  const { context, page } = await newContext(browser, base, stubOrigin, { width, scheme, motion });
+  const name = `shell-${action}-${scheme}-${motion}-${width}`;
+  try {
+    const response = await openUpdate(page, base);
+    assert.match(response.headers()["content-security-policy"] ?? "", /connect-src 'self'/,
+      "the production CSP remains enabled");
+    assert.equal(await sessionPresent(context, base), true, "the fictional session is loaded");
+    await page.waitForFunction((dark) => document.documentElement.classList.contains("dark") === dark,
+      scheme === "dark", { timeout: 5000 });
+    await makeDirty(page);
+    if (motion === "no-preference") await beginDialogFrameCapture(page);
+
+    const focusSelector = await triggerTopbarAction(page, action, true);
+    const dialog = dialogOf(page);
+    const layout = await inspectDialog(page, width, action, motion);
+    assert.equal(layout.dark, scheme === "dark", "the requested color scheme was applied");
+    await assertPreserved(page, context, base);
+    const axe = await scanAndScreenshot(page, output, name, { width, scheme, motion, action, surface: "topbar" });
+    const tabSequence = await assertFocusIsolation(page);
+
+    // Escape is a cancel, preserving both draft fields, session and workspace.
+    await page.keyboard.press("Escape");
+    await dialog.waitFor({ state: "hidden" });
+    await assertFocusReturned(page, focusSelector);
+    await assertPreserved(page, context, base);
+
+    if (action === "switch-workspace") {
+      // Space must still select the option and leave the guarded dialog open.
+      await triggerTopbarAction(page, action, true, "Space");
+      await dialog.getByRole("button", { name: "Discard and switch workspace", exact: true }).waitFor();
+      assert.equal((await activeLabel(page))?.text, "Keep editing");
+      await assertPreserved(page, context, base);
+      await page.keyboard.press("Escape");
+      await dialog.waitFor({ state: "hidden" });
+      await assertFocusReturned(page, focusSelector);
+      await assertPreserved(page, context, base);
+    }
+
+    // Backdrop dismissal is the same safe outcome.
+    await triggerTopbarAction(page, action);
+    await dialog.waitFor({ state: "visible" });
+    await page.mouse.click(5, 5);
+    await dialog.waitFor({ state: "hidden" });
+    await assertFocusReturned(page, focusSelector);
+    await assertPreserved(page, context, base);
+
+    // Activate Keep editing from the keyboard, not just with a pointer.
+    await triggerTopbarAction(page, action);
+    await dialog.waitFor({ state: "visible" });
+    await dialog.getByRole("button", { name: "Keep editing" }).focus();
+    await page.keyboard.press("Enter");
+    await dialog.waitFor({ state: "hidden" });
+    await assertFocusReturned(page, focusSelector);
+    await assertPreserved(page, context, base);
+    const animationFrames = motion === "no-preference"
+      ? await endDialogFrameCapture(page, width, output, name) : null;
+
+    // Discard invokes the original operation once, and does not re-prompt.
+    await triggerTopbarAction(page, action);
+    await dialog.waitFor({ state: "visible" });
+    const discard = action === "sign-out" ? "Discard and sign out" : "Discard and switch workspace";
+    await dialog.getByRole("button", { name: discard, exact: true }).click();
+    if (action === "sign-out") {
+      await page.waitForURL("**/login", { timeout: 10_000 });
+      await page.waitForTimeout(300);
+      assertOneLocalSignOut();
+      assert.deepEqual(state.workspaceWrites, []);
+      assert.equal(await sessionPresent(context, base), false, "sign-out removes the fictional session");
+    } else {
+      await eventually(() => state.workspaceWrites.length > 0, "workspace write completed");
+      await page.waitForFunction(({ title, body }) => {
+        const titleField = document.querySelector('input[aria-label="Title"]');
+        const bodyField = document.querySelector('textarea[aria-label="Body (markdown)"]');
+        return titleField?.value === title && bodyField?.value === body;
+      }, { title: TITLE_SAVED, body: BODY_SAVED }, { timeout: 10_000 });
+      await page.waitForTimeout(300);
+      assert.deepEqual(state.workspaceWrites, [WORKSPACE2], "exactly one switch to the target workspace");
+      assert.equal(state.activeWorkspaceId, WORKSPACE2);
+      assert.deepEqual(state.signOuts, []);
+      assert.equal(await sessionPresent(context, base), true);
+      assert.equal(await dialogOf(page).count(), 0, "switch did not repeat the confirmation");
+      assert.equal(new URL(page.url()).pathname, `/updates/${ID}`);
+    }
+    return { width, scheme, motion, action, layout, axe, tabSequence,
+      ...(animationFrames ? { animationFrames } : {}),
+      escapePreserved: true, backdropPreserved: true, keyboardKeepPreserved: true,
+      ...(action === "switch-workspace" ? { enterAndSpaceSelectionPreserved: true } : {}),
+      focusRestored: focusSelector, discardExactlyOnce: true };
+  } catch (error) {
+    await saveFailureScreenshot(page, output, name);
+    throw error;
+  } finally {
+    await context.close();
+  }
+}
+
+async function auditAccountMenuTargets(page, width, output) {
+  const trigger = page.getByRole("button", { name: "Account menu", exact: true });
+  await trigger.click();
+  const menu = page.getByRole("menu", { name: "Account menu" });
+  await menu.waitFor();
+  const items = menu.locator('[role="menuitem"], [role="menuitemradio"]');
+  const count = await items.count();
+  assert.ok(count > 1, `${width}: account menu contains its actions`);
+  const targets = [];
+  for (let index = 0; index < count; index += 1) {
+    const item = items.nth(index);
+    await item.scrollIntoViewIfNeeded();
+    const target = await item.evaluate((element) => {
+      const box = element.getBoundingClientRect();
+      const hit = document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2);
+      return {
+        label: (element.textContent ?? "").trim(),
+        x: box.x, y: box.y, width: box.width, height: box.height,
+        receivesPointer: Boolean(hit && (hit === element || element.contains(hit))),
+        hit: hit?.getAttribute("aria-label") || hit?.textContent?.trim().slice(0, 40) || hit?.tagName,
+      };
+    });
+    assert.ok(target.width >= 44 && target.height >= 44, `${width}: ${target.label} has a 44px target`);
+    assert.ok(target.x >= 0 && target.y >= 0 && target.x + target.width <= width + 1 &&
+      target.y + target.height <= (HEIGHTS[width] ?? 900) + 1, `${width}: ${target.label} fits in the viewport`);
+    assert.equal(target.receivesPointer, true, `${width}: ${target.label} is not covered by ${target.hit}`);
+    targets.push(target);
+  }
+  assert.ok(targets.some((target) => target.label.includes("Log out")), "Log out was hit-tested");
+  const shot = path.join(output, `account-menu-targets-${width}.png`);
+  await page.screenshot({ path: shot });
+  ledger.screenshots.push(path.basename(shot));
+  await page.keyboard.press("Escape");
+  await menu.waitFor({ state: "hidden" });
+  await assertFocusReturned(page, "#account-menu-trigger");
+  return targets;
+}
+
+async function cleanShellMatrixProbe(browser, base, stubOrigin, width, output) {
+  reset();
+  const { context, page } = await newContext(browser, base, stubOrigin, { width });
+  const name = `clean-shell-${width}`;
+  try {
+    await openUpdate(page, base);
+    assert.equal(await sessionPresent(context, base), true);
+    await triggerTopbarAction(page, "switch-workspace", true);
+    await eventually(() => state.workspaceWrites.length > 0, "clean workspace switch completed");
+    await expectNoDialog(page, 300);
+    assert.deepEqual(state.workspaceWrites, [WORKSPACE2]);
+    assert.equal(state.activeWorkspaceId, WORKSPACE2);
+    assert.equal(await sessionPresent(context, base), true);
+    const menuTargets = await auditAccountMenuTargets(page, width, output);
+    assert.deepEqual(state.signOuts, [], "inspecting the menu never signs out");
+    await triggerTopbarAction(page, "sign-out", true);
+    await page.waitForURL("**/login", { timeout: 10_000 });
+    await expectNoDialog(page, 300);
+    assertOneLocalSignOut();
+    assert.equal(await sessionPresent(context, base), false);
+    return { width, cleanSwitchWrites: 1, cleanSignOutRequests: 1, dialogs: 0, menuTargets };
+  } catch (error) {
+    await saveFailureScreenshot(page, output, name);
+    throw error;
+  } finally {
+    await context.close();
+  }
+}
+
+async function railWorkspaceKeyboardProbe(browser, base, stubOrigin, width, output) {
+  reset();
+  const { context, page } = await newContext(browser, base, stubOrigin, { width });
+  const name = `rail-switch-workspace-${width}`;
+  try {
+    await openUpdate(page, base);
+    await makeDirty(page);
+    const trigger = page.getByRole("complementary", { name: "Primary" })
+      .getByRole("combobox", { name: "Switch workspace" });
+    const id = await trigger.getAttribute("id");
+    assert.ok(id, "rail workspace trigger has a focus id");
+    const focusSelector = `#${id}`;
+    const dialog = dialogOf(page);
+
+    await selectWorkspaceByKeyboard(page, trigger, "Enter");
+    const layout = await inspectDialog(page, width, "switch-workspace", "reduce");
+    await assertPreserved(page, context, base);
+    const axe = await scanAndScreenshot(page, output, name,
+      { width, scheme: "light", motion: "reduce", action: "switch-workspace", surface: "rail" });
+    await page.keyboard.press("Escape");
+    await dialog.waitFor({ state: "hidden" });
+    await assertFocusReturned(page, focusSelector);
+    await assertPreserved(page, context, base);
+
+    await selectWorkspaceByKeyboard(page, trigger, "Space");
+    await dialog.getByRole("button", { name: "Discard and switch workspace", exact: true }).waitFor();
+    assert.equal((await activeLabel(page))?.text, "Keep editing");
+    await assertPreserved(page, context, base);
+    await dialog.getByRole("button", { name: "Keep editing" }).click();
+    await dialog.waitFor({ state: "hidden" });
+    await assertFocusReturned(page, focusSelector);
+    await assertPreserved(page, context, base);
+
+    await selectWorkspaceByKeyboard(page, trigger, "Enter");
+    await dialog.getByRole("button", { name: "Discard and switch workspace", exact: true }).click();
+    await eventually(() => state.workspaceWrites.length > 0, "rail switch completed");
+    await page.waitForFunction(({ title, body }) =>
+      document.querySelector('input[aria-label="Title"]')?.value === title &&
+      document.querySelector('textarea[aria-label="Body (markdown)"]')?.value === body,
+    { title: TITLE_SAVED, body: BODY_SAVED }, { timeout: 10_000 });
+    await page.waitForTimeout(300);
+    assert.deepEqual(state.workspaceWrites, [WORKSPACE2], "rail switch writes once after confirmation");
+    assert.equal(state.activeWorkspaceId, WORKSPACE2);
+    assert.deepEqual(state.signOuts, []);
+    assert.equal(await sessionPresent(context, base), true);
+    return { width, layout, axe, enterAndSpaceSelectionPreserved: true, focusRestored: focusSelector,
+      discardExactlyOnce: true };
+  } catch (error) {
+    await saveFailureScreenshot(page, output, name);
+    throw error;
+  } finally {
+    await context.close();
+  }
+}
+
+async function drawerShellProbe(browser, base, stubOrigin, width, action, output) {
+  reset();
+  const { context, page } = await newContext(browser, base, stubOrigin, { width });
+  const name = `drawer-${action}-${width}`;
+  try {
+    await openUpdate(page, base);
+    await makeDirty(page);
+    const openAction = async (keyboard = false) => {
+      let drawer = page.getByRole("dialog", { name: "Workspace navigation" });
+      if (!(await drawer.isVisible())) {
+        await page.getByRole("button", { name: "Open menu", exact: true }).click();
+        drawer = page.getByRole("dialog", { name: "Workspace navigation" });
+        await drawer.waitFor();
+      }
+      if (action === "sign-out") {
+        await drawer.getByRole("button", { name: /Log out/ }).click();
+        return 'button[aria-label="Open menu"]';
+      }
+      const trigger = drawer.getByRole("combobox", { name: "Switch workspace" });
+      const id = await trigger.getAttribute("id");
+      assert.ok(id);
+      if (keyboard) {
+        await selectWorkspaceByKeyboard(page, trigger);
+      } else {
+        await trigger.click();
+        await page.getByRole("option", { name: "Fictional Second Studio" }).click();
+      }
+      return `#${id}`;
+    };
+    const focusSelector = await openAction(action === "switch-workspace");
+    const dialog = dialogOf(page);
+    const layout = await inspectDialog(page, width, action, "reduce");
+    await assertPreserved(page, context, base);
+    const axe = await scanAndScreenshot(page, output, name,
+      { width, scheme: "light", motion: "reduce", action, surface: "mobile-drawer" });
+    await assertFocusIsolation(page);
+    await dialog.getByRole("button", { name: "Keep editing" }).click();
+    await dialog.waitFor({ state: "hidden" });
+    await assertFocusReturned(page, focusSelector);
+    await assertPreserved(page, context, base);
+    await openAction();
+    await dialog.waitFor({ state: "visible" });
+    const discard = action === "sign-out" ? "Discard and sign out" : "Discard and switch workspace";
+    await dialog.getByRole("button", { name: discard, exact: true }).click();
+    if (action === "sign-out") {
+      await page.waitForURL("**/login", { timeout: 10_000 });
+      await page.waitForTimeout(300);
+      assertOneLocalSignOut();
+      assert.equal(await sessionPresent(context, base), false);
+    } else {
+      await eventually(() => state.workspaceWrites.length > 0, "drawer switch completed");
+      await page.waitForTimeout(500);
+      assert.deepEqual(state.workspaceWrites, [WORKSPACE2]);
+      assert.equal(await titleBox(page).inputValue(), TITLE_SAVED);
+      assert.equal(await bodyBox(page).inputValue(), BODY_SAVED);
+      assert.equal(await sessionPresent(context, base), true);
+    }
+    return { width, action, layout, axe, focusRestored: focusSelector, discardExactlyOnce: true };
+  } catch (error) {
+    await saveFailureScreenshot(page, output, name);
+    throw error;
+  } finally {
+    await context.close();
+  }
+}
+
+async function runCase(name, fn) {
+  currentCase = name;
+  const entry = { name, status: "running", startedAt: new Date().toISOString() };
+  const started = Date.now();
+  ledger.scenarios.push(entry);
+  try {
+    Object.assign(entry, await fn());
+    entry.status = "passed";
+    console.log(`✓ ${name}`);
+  } catch (error) {
+    entry.status = "failed";
+    entry.error = { name: error.name, message: error.message, stack: error.stack };
+    console.error(`✗ ${name}: ${error.message}`);
+    throw error;
+  } finally {
+    entry.durationMs = Date.now() - started;
+  }
+}
+
 // ── Main ─────────────────────────────────────────────────────────────────
 async function main() {
   for (const name of [".env", ".env.local", ".env.production", ".env.production.local"]) {
@@ -945,8 +1523,14 @@ async function main() {
   assert.ok(!existsSync(dist), "Refusing to overwrite an existing resp-next build; remove it first");
   const output = process.env.EVIDENCE_DIR || mkdtempSync(path.join(tmpdir(), "roducq-unsaved-"));
   if (process.env.EVIDENCE_DIR) mkdirSync(output);
+  const runLog = path.join(output, "run.log");
+  const log = console.log.bind(console);
+  const errorLog = console.error.bind(console);
+  console.log = (...args) => { appendFileSync(runLog, `${format(...args)}\n`); log(...args); };
+  console.error = (...args) => { appendFileSync(runLog, `${format(...args)}\n`); errorLog(...args); };
   const home = mkdtempSync(path.join(tmpdir(), "roducq-unsaved-home-"));
   const stub = fixtureServer();
+  let proxy;
   let ownsDist = false;
   let child;
   let browser;
@@ -957,12 +1541,14 @@ async function main() {
     ownsDist = true;
     const stubPort = await listen(stub).then(() => stub.address().port);
     const port = await freePort();
-    const base = `http://127.0.0.1:${port}`;
-    const stubOrigin = `http://127.0.0.1:${stubPort}`;
+    proxy = sameOriginProxy(stubPort, port);
+    const proxyPort = await listen(proxy).then(() => proxy.address().port);
+    const base = `http://127.0.0.1:${proxyPort}`;
+    const stubOrigin = base;
     const env = {
       PATH: process.env.PATH || "/usr/bin:/bin", HOME: home, NODE_ENV: "production", TZ: "UTC",
       NEXT_TELEMETRY_DISABLED: "1", NEXT_DIST_DIR: "resp-next",
-      NEXT_PUBLIC_SUPABASE_URL: stubOrigin, NEXT_PUBLIC_SUPABASE_ANON_KEY: "fictional-local-anon-key",
+      NEXT_PUBLIC_SUPABASE_URL: base, NEXT_PUBLIC_SUPABASE_ANON_KEY: "fictional-local-anon-key",
       AUTH_SECRET: "fictional-local-secret", HOST: "stub-project.supabase.co",
     };
     console.log(`Evidence: ${output}\nBuilding the isolated production app…`);
@@ -986,62 +1572,79 @@ async function main() {
       axe: require("axe-core/package.json").version,
     };
 
-    reset();
-    ledger.scenarios.push({ name: "cleanEditor", ...(await cleanEditorProbe(browser, base, stubOrigin)) });
-    console.log("✓ clean editor navigates with no dialog");
-
+    // Run every independent case even if one fails: runCase still records the
+    // failure and screenshot, and the overall audit fails after all probes run.
+    // Each probe owns and closes its browser context in a finally block.
+    const failedCases = [];
+    const recordedCase = async (name, fn) => {
+      try {
+        await runCase(name, fn);
+      } catch {
+        failedCases.push(name);
+      }
+    };
+    // The shell matrix is deliberately first, but never suppresses other
+    // scenarios or turns a failed assertion into an overall pass.
     for (const width of WIDTHS) {
-      reset();
-      ledger.scenarios.push({ name: `layout-${width}`, ...(await layoutProbe(browser, base, stubOrigin, width, output)) });
-      console.log(`✓ ${width}px: dialog contained, 44px actions, safe action focused`);
+      await recordedCase(`clean-shell-${width}`, () => cleanShellMatrixProbe(browser, base, stubOrigin, width, output));
+      for (const scheme of ["light", "dark"]) {
+        for (const action of ["sign-out", "switch-workspace"]) {
+          await recordedCase(`shell-${action}-${scheme}-reduce-${width}`,
+            () => shellMatrixProbe(browser, base, stubOrigin, width, scheme, action, output));
+        }
+      }
+    }
+    // Exercise both the compact tablet rail and the full desktop panel.
+    for (const width of [768, 1440]) {
+      await recordedCase(`rail-switch-workspace-${width}`,
+        () => railWorkspaceKeyboardProbe(browser, base, stubOrigin, width, output));
+    }
+    for (const width of [320, 375, 390]) {
+      for (const action of ["sign-out", "switch-workspace"]) {
+        await recordedCase(`drawer-${action}-${width}`,
+          () => drawerShellProbe(browser, base, stubOrigin, width, action, output));
+      }
+    }
+    for (const action of ["sign-out", "switch-workspace"]) {
+      await recordedCase(`shell-${action}-light-normal-motion-390`,
+        () => shellMatrixProbe(browser, base, stubOrigin, 390, "light", action, output, "no-preference"));
     }
 
-    reset();
-    ledger.scenarios.push({ name: "navigation", ...(await sidebarAndDrawerProbe(browser, base, stubOrigin)) });
-    console.log("✓ sidebar and drawer navigation are held");
-
-    reset();
-    ledger.scenarios.push({ name: "stayAndEscape", ...(await stayAndEscapeProbe(browser, base, stubOrigin)) });
-    console.log("✓ Keep editing, Escape and overlay keep the edits");
-
-    reset();
-    ledger.scenarios.push({ name: "backForward", ...(await backForwardProbe(browser, base, stubOrigin)) });
-    console.log("✓ Back/Forward are cancelled and re-issued on confirm");
-
-    reset();
-    ledger.scenarios.push({ name: "reloadAndClose", ...(await reloadProbe(browser, base, stubOrigin)) });
-    console.log("✓ reload/tab close use the native confirmation");
-
-    reset();
-    ledger.scenarios.push({ name: "saves", ...(await saveProbe(browser, base, stubOrigin)) });
-    console.log("✓ save success clears the guard; failure keeps it armed");
-
-    reset();
-    ledger.scenarios.push({ name: "shellActions", ...(await shellActionsProbe(browser, base, stubOrigin)) });
-    console.log("✓ sign-out and workspace switching are held, run once on confirm, and drop the draft");
-
-    reset();
-    ledger.scenarios.push({ name: "fullPageNavigation", ...(await fullPageNavigationProbe(browser, base, stubOrigin)) });
-    console.log("✓ full-page form navigation asks; downloads and hash links do not");
-
-    reset();
-    ledger.scenarios.push({ name: "noScript", ...(await noScriptProbe(browser, base, stubOrigin)) });
-    console.log("✓ no-JavaScript behaviour recorded");
-
-    reset();
-    ledger.scenarios.push({ name: "normalMotion", ...(await normalMotionProbe(browser, base, stubOrigin)) });
-    console.log("✓ dialog is usable with normal motion");
-
+    // Keep the existing navigation and save coverage; it is not replaced by
+    // the shell matrix. Each old probe remains an individually recorded case.
+    await recordedCase("cleanEditor", () => { reset(); return cleanEditorProbe(browser, base, stubOrigin); });
+    for (const width of WIDTHS) {
+      await recordedCase(`layout-${width}`, () => { reset(); return layoutProbe(browser, base, stubOrigin, width, output); });
+    }
+    await recordedCase("navigation", () => { reset(); return sidebarAndDrawerProbe(browser, base, stubOrigin); });
+    await recordedCase("stayAndEscape", () => { reset(); return stayAndEscapeProbe(browser, base, stubOrigin); });
+    await recordedCase("backForward", () => { reset(); return backForwardProbe(browser, base, stubOrigin); });
+    await recordedCase("reloadAndClose", () => { reset(); return reloadProbe(browser, base, stubOrigin); });
+    await recordedCase("saves", () => { reset(); return saveProbe(browser, base, stubOrigin); });
+    await recordedCase("shellActions", () => { reset(); return shellActionsProbe(browser, base, stubOrigin); });
+    await recordedCase("fullPageNavigation", () => { reset(); return fullPageNavigationProbe(browser, base, stubOrigin); });
+    await recordedCase("noScript", () => { reset(); return noScriptProbe(browser, base, stubOrigin); });
+    await recordedCase("normalMotion", () => { reset(); return normalMotionProbe(browser, base, stubOrigin); });
     for (const [width, scheme] of [[1440, "light"], [375, "dark"], [390, "light"]]) {
-      reset();
-      ledger.scans.push(await dialogAxeProbe(browser, base, stubOrigin, width, scheme, output));
-      console.log(`✓ axe: ${scheme} ${width}px dialog has zero violations`);
+      await recordedCase(`generic-axe-${scheme}-${width}`, async () => {
+        reset();
+        const scan = await dialogAxeProbe(browser, base, stubOrigin, width, scheme, output);
+        ledger.scans.push({ case: currentCase, ...scan });
+        return scan;
+      });
     }
-
-    assert.deepEqual(ledger.browserErrors, [], "no browser page or HTTP errors");
-    writeFileSync(path.join(output, "ledger.json"), JSON.stringify(ledger, null, 2));
-    console.log(`\nLedger: ${path.join(output, "ledger.json")}`);
+    await recordedCase("browser-errors-and-network", async () => {
+      assert.deepEqual(ledger.browserErrors, [], "no browser console, page or HTTP errors");
+      assert.deepEqual(ledger.blockedRequests, [], "no unexpected external requests");
+      return { browserErrors: 0, blockedRequests: 0 };
+    });
+    if (failedCases.length) throw new Error(`${failedCases.length} scenario(s) failed: ${failedCases.join(", ")}`);
+    ledger.status = "passed";
     console.log("unsaved-edits verification passed ✔");
+  } catch (error) {
+    ledger.status = "failed";
+    ledger.error = { name: error.name, message: error.message, stack: error.stack };
+    throw error;
   } finally {
     if (browser) await browser.close().catch(() => {});
     if (child) {
@@ -1049,9 +1652,22 @@ async function main() {
       await new Promise((resolve) => setTimeout(resolve, 800));
       if (child.exitCode === null) child.kill("SIGKILL");
     }
+    if (proxy) await new Promise((resolve) => proxy.close(resolve));
     await new Promise((resolve) => stub.close(resolve));
     if (ownsDist) rmSync(dist, { recursive: true, force: true });
+    rmSync(home, { recursive: true, force: true });
     if (serverLog) writeFileSync(path.join(output, "server.log"), serverLog);
+    ledger.summary = {
+      passed: ledger.scenarios.filter((entry) => entry.status === "passed").length,
+      failed: ledger.scenarios.filter((entry) => entry.status === "failed").length,
+      axeScans: ledger.scans.length,
+      axeViolations: ledger.scans.reduce((sum, scan) => sum + scan.violations.length, 0),
+      axeIncompleteRules: ledger.scans.reduce((sum, scan) => sum + scan.incomplete.length, 0),
+      browserErrors: ledger.browserErrors.length,
+      blockedRequests: ledger.blockedRequests.length,
+    };
+    writeFileSync(path.join(output, "ledger.json"), JSON.stringify(ledger, null, 2));
+    console.log(`Ledger: ${path.join(output, "ledger.json")}`);
   }
 }
 

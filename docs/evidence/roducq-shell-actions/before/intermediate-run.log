@@ -1,0 +1,149 @@
+Evidence: /home/user/roducq-browser-evidence/full-matrix-after-keyboard
+Building the isolated production app…
+✓ clean-shell-320
+✓ shell-sign-out-light-reduce-320
+✓ shell-switch-workspace-light-reduce-320
+✓ shell-sign-out-dark-reduce-320
+✓ shell-switch-workspace-dark-reduce-320
+✓ clean-shell-375
+✓ shell-sign-out-light-reduce-375
+✓ shell-switch-workspace-light-reduce-375
+✓ shell-sign-out-dark-reduce-375
+✓ shell-switch-workspace-dark-reduce-375
+✓ clean-shell-390
+✓ shell-sign-out-light-reduce-390
+✓ shell-switch-workspace-light-reduce-390
+✓ shell-sign-out-dark-reduce-390
+✓ shell-switch-workspace-dark-reduce-390
+✓ clean-shell-768
+✓ shell-sign-out-light-reduce-768
+✓ shell-switch-workspace-light-reduce-768
+✓ shell-sign-out-dark-reduce-768
+✓ shell-switch-workspace-dark-reduce-768
+✓ clean-shell-1024
+✓ shell-sign-out-light-reduce-1024
+✓ shell-switch-workspace-light-reduce-1024
+✓ shell-sign-out-dark-reduce-1024
+✓ shell-switch-workspace-dark-reduce-1024
+✓ clean-shell-1200
+✓ shell-sign-out-light-reduce-1200
+✓ shell-switch-workspace-light-reduce-1200
+✓ shell-sign-out-dark-reduce-1200
+✓ shell-switch-workspace-dark-reduce-1200
+✓ clean-shell-1440
+✓ shell-sign-out-light-reduce-1440
+✓ shell-switch-workspace-light-reduce-1440
+✓ shell-sign-out-dark-reduce-1440
+✓ shell-switch-workspace-dark-reduce-1440
+✓ rail-switch-workspace-768
+✓ rail-switch-workspace-1440
+✓ drawer-sign-out-320
+✗ drawer-switch-workspace-320: locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for getByRole('option', { name: 'Fictional Second Studio' })
+    - locator resolved to <div role="option" tabindex="-1" aria-selected="false" data-state="unchecked" aria-labelledby="radix-_r_i_" data-radix-collection-item="" class="min-h-11 min-w-11 relative flex w-full cursor-default select-none items-center rounded-control py-1.5 pl-2 pr-8 text-sm outline-none focus:bg-accent-soft focus:text-accent data-[disabled]:pointer-events-none data-[disabled]:opacity-50">…</div>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <button type="button" tabindex="-1" data-state="open" aria-hidden="true" aria-label="Close menu" data-aria-hidden="true" class="forma-scrim absolute inset-0 backdrop-blur-[3px] animate-fade-in"></button> from <div aria-hidden="true" role="presentation" data-aria-hidden="true" class="fixed inset-0 z-[70] tab:hidden">…</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <button type="button" tabindex="-1" data-state="open" aria-hidden="true" aria-label="Close menu" data-aria-hidden="true" class="forma-scrim absolute inset-0 backdrop-blur-[3px] animate-fade-in"></button> from <div aria-hidden="true" role="presentation" data-aria-hidden="true" class="fixed inset-0 z-[70] tab:hidden">…</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    58 × waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <button type="button" tabindex="-1" data-state="open" aria-hidden="true" aria-label="Close menu" data-aria-hidden="true" class="forma-scrim absolute inset-0 backdrop-blur-[3px] animate-fade-in"></button> from <div aria-hidden="true" role="presentation" data-aria-hidden="true" class="fixed inset-0 z-[70] tab:hidden">…</div> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+
+✓ drawer-sign-out-375
+✗ drawer-switch-workspace-375: locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for getByRole('option', { name: 'Fictional Second Studio' })
+    - locator resolved to <div role="option" tabindex="-1" aria-selected="false" data-state="unchecked" aria-labelledby="radix-_r_i_" data-radix-collection-item="" class="min-h-11 min-w-11 relative flex w-full cursor-default select-none items-center rounded-control py-1.5 pl-2 pr-8 text-sm outline-none focus:bg-accent-soft focus:text-accent data-[disabled]:pointer-events-none data-[disabled]:opacity-50">…</div>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <button type="button" tabindex="-1" data-state="open" aria-hidden="true" aria-label="Close menu" data-aria-hidden="true" class="forma-scrim absolute inset-0 backdrop-blur-[3px] animate-fade-in"></button> from <div aria-hidden="true" role="presentation" data-aria-hidden="true" class="fixed inset-0 z-[70] tab:hidden">…</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <button type="button" tabindex="-1" data-state="open" aria-hidden="true" aria-label="Close menu" data-aria-hidden="true" class="forma-scrim absolute inset-0 backdrop-blur-[3px] animate-fade-in"></button> from <div aria-hidden="true" role="presentation" data-aria-hidden="true" class="fixed inset-0 z-[70] tab:hidden">…</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    58 × waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <button type="button" tabindex="-1" data-state="open" aria-hidden="true" aria-label="Close menu" data-aria-hidden="true" class="forma-scrim absolute inset-0 backdrop-blur-[3px] animate-fade-in"></button> from <div aria-hidden="true" role="presentation" data-aria-hidden="true" class="fixed inset-0 z-[70] tab:hidden">…</div> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+
+✓ drawer-sign-out-390
+✗ drawer-switch-workspace-390: locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for getByRole('option', { name: 'Fictional Second Studio' })
+    - locator resolved to <div role="option" tabindex="-1" aria-selected="false" data-state="unchecked" aria-labelledby="radix-_r_i_" data-radix-collection-item="" class="min-h-11 min-w-11 relative flex w-full cursor-default select-none items-center rounded-control py-1.5 pl-2 pr-8 text-sm outline-none focus:bg-accent-soft focus:text-accent data-[disabled]:pointer-events-none data-[disabled]:opacity-50">…</div>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <button type="button" tabindex="-1" data-state="open" aria-hidden="true" aria-label="Close menu" data-aria-hidden="true" class="forma-scrim absolute inset-0 backdrop-blur-[3px] animate-fade-in"></button> from <div aria-hidden="true" role="presentation" data-aria-hidden="true" class="fixed inset-0 z-[70] tab:hidden">…</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <button type="button" tabindex="-1" data-state="open" aria-hidden="true" aria-label="Close menu" data-aria-hidden="true" class="forma-scrim absolute inset-0 backdrop-blur-[3px] animate-fade-in"></button> from <div aria-hidden="true" role="presentation" data-aria-hidden="true" class="fixed inset-0 z-[70] tab:hidden">…</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    58 × waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <button type="button" tabindex="-1" data-state="open" aria-hidden="true" aria-label="Close menu" data-aria-hidden="true" class="forma-scrim absolute inset-0 backdrop-blur-[3px] animate-fade-in"></button> from <div aria-hidden="true" role="presentation" data-aria-hidden="true" class="fixed inset-0 z-[70] tab:hidden">…</div> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+
+✗ shell-sign-out-light-normal-motion-390: 390: dialog fits horizontally
+✗ shell-switch-workspace-light-normal-motion-390: 390: dialog fits horizontally
+✓ cleanEditor
+✓ layout-320
+✓ layout-375
+✓ layout-390
+✓ layout-768
+✓ layout-1024
+✓ layout-1200
+✓ layout-1440
+✓ navigation
+✓ stayAndEscape
+✓ backForward
+✓ reloadAndClose
+✓ saves
+✓ shellActions
+✓ fullPageNavigation
+✓ noScript
+✓ normalMotion
+✓ generic-axe-light-1440
+✓ generic-axe-dark-375
+✓ generic-axe-light-390
+✓ browser-errors-and-network
+Ledger: /home/user/roducq-browser-evidence/full-matrix-after-keyboard/ledger.json
+FAILED Error: 5 scenario(s) failed: drawer-switch-workspace-320, drawer-switch-workspace-375, drawer-switch-workspace-390, shell-sign-out-light-normal-motion-390, shell-switch-workspace-light-normal-motion-390
+    at main (file:///home/user/roducq/scripts/verify-unsaved-edits.mjs:1588:35)

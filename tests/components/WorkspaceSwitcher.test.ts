@@ -24,6 +24,21 @@ describe("WorkspaceSwitcher", () => {
     assert.doesNotMatch(singleCompact, /<button|<SelectTrigger|tabIndex=/);
   });
 
+  it("suppresses Enter's second activation after an option is selected on every switcher surface", () => {
+    const src = read("components/app-shell/WorkspaceSwitcher.tsx");
+    const handler = src.slice(src.indexOf("function preventWorkspaceOptionEnterDefault"), src.indexOf("/** First letter"));
+    assert.match(handler, /event\.key === "Enter"/);
+    assert.match(handler, /event\.target\.getAttribute\("role"\) === "option"/);
+    assert.match(handler, /event\.preventDefault\(\)/);
+    assert.equal((src.match(/<SelectContent\b[^>]*onKeyDown=\{preventWorkspaceOptionEnterDefault\}/g) ?? []).length, 3);
+  });
+
+  it("keeps the phone panel's option list above the drawer and below the guard", () => {
+    const src = read("components/app-shell/WorkspaceSwitcher.tsx");
+    const panel = src.slice(src.lastIndexOf('if (variant === "panel")'), src.indexOf("// inline —"));
+    assert.match(panel, /<SelectContent className="z-\[75\] tab:z-50"/);
+  });
+
   it("switching is wired through the server action", () => {
     const src = read("components/app-shell/WorkspaceSwitcher.tsx");
     assert.ok(src.includes("setActiveWorkspaceAction"));

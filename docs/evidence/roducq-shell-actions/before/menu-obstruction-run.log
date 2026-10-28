@@ -1,0 +1,90 @@
+Evidence: /home/user/roducq-browser-evidence/matrix-diagnostic-320c
+Building the isolated production app…
+✓ diagnostic-clean-shell-320
+✗ diagnostic-topbar-sign-out-320: locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for getByRole('menuitem', { name: /Log out/ })
+    - locator resolved to <button tabindex="-1" role="menuitem" title="Log out" class="inline-flex min-h-11 min-w-11 shrink-0 items-center gap-2 whitespace-nowrap rounded-control font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-muted h-11 rounded-control text-xs text-muted-foreground hover:text-text w-full justify-start rounded-m…>…</button>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-file-text h-[22px] w-[22px] shrink-0">…</svg> from <nav aria-label="Primary" class="app-tabbar fixed inset-x-0 bottom-0 z-40 pb-[env(safe-area-inset-bottom,0px)] tab:hidden print:hidden">…</nav> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-file-text h-[22px] w-[22px] shrink-0">…</svg> from <nav aria-label="Primary" class="app-tabbar fixed inset-x-0 bottom-0 z-40 pb-[env(safe-area-inset-bottom,0px)] tab:hidden print:hidden">…</nav> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    58 × waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-file-text h-[22px] w-[22px] shrink-0">…</svg> from <nav aria-label="Primary" class="app-tabbar fixed inset-x-0 bottom-0 z-40 pb-[env(safe-area-inset-bottom,0px)] tab:hidden print:hidden">…</nav> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+
+Ledger: /home/user/roducq-browser-evidence/matrix-diagnostic-320c/ledger.json
+FAILED locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for getByRole('menuitem', { name: /Log out/ })
+    - locator resolved to <button tabindex="-1" role="menuitem" title="Log out" class="inline-flex min-h-11 min-w-11 shrink-0 items-center gap-2 whitespace-nowrap rounded-control font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-muted h-11 rounded-control text-xs text-muted-foreground hover:text-text w-full justify-start rounded-m…>…</button>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-file-text h-[22px] w-[22px] shrink-0">…</svg> from <nav aria-label="Primary" class="app-tabbar fixed inset-x-0 bottom-0 z-40 pb-[env(safe-area-inset-bottom,0px)] tab:hidden print:hidden">…</nav> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-file-text h-[22px] w-[22px] shrink-0">…</svg> from <nav aria-label="Primary" class="app-tabbar fixed inset-x-0 bottom-0 z-40 pb-[env(safe-area-inset-bottom,0px)] tab:hidden print:hidden">…</nav> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    58 × waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-file-text h-[22px] w-[22px] shrink-0">…</svg> from <nav aria-label="Primary" class="app-tabbar fixed inset-x-0 bottom-0 z-40 pb-[env(safe-area-inset-bottom,0px)] tab:hidden print:hidden">…</nav> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+
+    at triggerTopbarAction (/home/user/roducq/scripts/.unsaved-matrix-diagnostic.mjs:1037:61)
+    at async shellMatrixProbe (/home/user/roducq/scripts/.unsaved-matrix-diagnostic.mjs:1184:5)
+    at async runCase (/home/user/roducq/scripts/.unsaved-matrix-diagnostic.mjs:1332:26)
+    at async main (/home/user/roducq/scripts/.unsaved-matrix-diagnostic.mjs:1408:7) {
+  log: [
+    "  - waiting for getByRole('menuitem', { name: /Log out/ })",
+    '    - locator resolved to <button tabindex="-1" role="menuitem" title="Log out" class="inline-flex min-h-11 min-w-11 shrink-0 items-center gap-2 whitespace-nowrap rounded-control font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-muted h-11 rounded-control text-xs text-muted-foreground hover:text-text w-full justify-start rounded-m…>…</button>',
+    '  - attempting click action',
+    '    2 × waiting for element to be visible, enabled and stable',
+    '      - element is visible, enabled and stable',
+    '      - scrolling into view if needed',
+    '      - done scrolling',
+    '      - <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-file-text h-[22px] w-[22px] shrink-0">…</svg> from <nav aria-label="Primary" class="app-tabbar fixed inset-x-0 bottom-0 z-40 pb-[env(safe-area-inset-bottom,0px)] tab:hidden print:hidden">…</nav> subtree intercepts pointer events',
+    '    - retrying click action',
+    '    - waiting 20ms',
+    '    2 × waiting for element to be visible, enabled and stable',
+    '      - element is visible, enabled and stable',
+    '      - scrolling into view if needed',
+    '      - done scrolling',
+    '      - <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-file-text h-[22px] w-[22px] shrink-0">…</svg> from <nav aria-label="Primary" class="app-tabbar fixed inset-x-0 bottom-0 z-40 pb-[env(safe-area-inset-bottom,0px)] tab:hidden print:hidden">…</nav> subtree intercepts pointer events',
+    '    - retrying click action',
+    '      - waiting 100ms',
+    '    58 × waiting for element to be visible, enabled and stable',
+    '       - element is visible, enabled and stable',
+    '       - scrolling into view if needed',
+    '       - done scrolling',
+    '       - <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-file-text h-[22px] w-[22px] shrink-0">…</svg> from <nav aria-label="Primary" class="app-tabbar fixed inset-x-0 bottom-0 z-40 pb-[env(safe-area-inset-bottom,0px)] tab:hidden print:hidden">…</nav> subtree intercepts pointer events',
+    '     - retrying click action',
+    '       - waiting 500ms'
+  ],
+  name: 'TimeoutError'
+}

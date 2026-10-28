@@ -1,0 +1,97 @@
+▲ Next.js 16.4.3 (Turbopack)
+⚠ React 18 support is deprecated in Next.js 16 and will be removed in Next.js 17. Please upgrade to React 19. Learn more: https://nextjs.org/docs/messages/react-version
+✓ Running next.config.mjs took 290ms
+- Experiments (use with caution):
+  · clientTraceMetadata
+
+  Creating an optimized production build ...
+
+warn - The class `duration-[250ms]` is ambiguous and matches multiple utilities.
+warn - If this is content and not a class, replace it with `duration-&lsqb;250ms&rsqb;` to silence this warning.
+✓ Compiled successfully in 22.2s
+  Running next.config.js provided runAfterProductionCompile ...
+✓ Completed runAfterProductionCompile in 397ms
+  Running TypeScript ...
+  Finished TypeScript in 17.2s ...
+  Collecting page data using 1 worker ...
+  Generating static pages using 1 worker (0/45) ...
+  Generating static pages using 1 worker (11/45)
+  Generating static pages using 1 worker (22/45)
+  Generating static pages using 1 worker (33/45)
+✓ Generating static pages using 1 worker (45/45) in 1575ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about
+├ ƒ /api/cron/email
+├ ƒ /api/cron/webhooks
+├ ƒ /api/email/callback
+├ ƒ /api/email/connect
+├ ƒ /api/intake/extract
+├ ƒ /api/notion/callback
+├ ƒ /api/notion/connect
+├ ƒ /api/pdf/[kind]/[id]
+├ ƒ /api/pdf/reports
+├ ƒ /api/pdf/shared/invoice/[token]
+├ ƒ /api/pdf/time
+├ ƒ /api/razorpay/verify
+├ ƒ /api/razorpay/webhook
+├ ƒ /api/slack/callback
+├ ƒ /api/slack/connect
+├ ○ /apple-icon
+├ ƒ /auth/callback
+├ ƒ /auth/recovery/claim
+├ ƒ /auth/recovery/status
+├ ƒ /briefs
+├ ƒ /briefs/[id]
+├ ○ /changelog
+├ ƒ /contracts
+├ ƒ /contracts/[id]
+├ ƒ /dashboard
+├ ○ /features
+├ ○ /forgot-password
+├ ○ /icon.svg
+├ ƒ /intake
+├ ƒ /intake/inbox
+├ ○ /integrations
+├ ƒ /invite/[token]
+├ ƒ /invoice/[token]
+├ ƒ /invoices
+├ ƒ /invoices/[id]
+├ ○ /login
+├ ○ /onboarding
+├ ○ /opengraph-image
+├ ƒ /plans
+├ ƒ /plans/[id]
+├ ○ /pricing
+├ ƒ /proposals
+├ ƒ /proposals/[id]
+├ ƒ /proposals/[id]/versions/[versionId]
+├ ƒ /reports
+├ ○ /reset-password
+├ ○ /robots.txt
+├ ƒ /search
+├ ƒ /settings
+├ ƒ /share/[token]
+├ ○ /signup
+├ ○ /sitemap.xml
+├ ○ /solutions
+├ ƒ /time
+├ ○ /twitter-image
+├ ƒ /updates
+├ ƒ /updates/[id]
+├ ○ /vs
+└   /vs/[slug]
+  ├ ● /vs/notion
+  ├ ● /vs/bonsai
+  ├ ● /vs/honeybook
+  └ ● [+6 more paths]
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand

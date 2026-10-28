@@ -1,6 +1,6 @@
 # Unsaved edits during sign-out and workspace switching
 
-**Status: implemented, awaiting browser evidence.** Sections 1–3 are the approved audit and reproduction; sections 4–8 describe what shipped; section 9 records exactly what was and was not verified.
+**Status: implemented; fictional-fixture Chromium matrix passed, with accessibility and live-service limitations.** Sections 1–10 retain the original audit and checkpoint history. Section 11 records the later approved UI corrections, current browser and automated-gate results, evidence, and remaining unverified items.
 
 Scope: the client-update editor at `/updates/[id]` (the `UpdateComposer`) and the two shell actions that tear the editor down today: **sign out** and **workspace switch**. Everything is fictional — the reproduction used `example.test` identities, a `22222222-…` workspace and stub services; no production account, no Supabase project, no network.
 
@@ -123,7 +123,7 @@ export function requestGuardedAction(run: () => void | Promise<void>): "ran" | "
 - While `dirty`, the hook registers a controller whose `isDirty()` reads the current `dirty` and whose `confirm(run)` reuses the **same** `pending`/`busyRef` machinery, so a shell action and a link click can never both open a dialog.
 - `discard()` gains the shell branch: capture `run`, close the dialog, call `onDiscard()` (composer resets to saved props), then `await run()` — guarded by a `firedRef`/`running` state so the action runs **exactly once** and both buttons are disabled while it is in flight (requirement 4, 7).
 - `stay()` already preserves edits/session/workspace; unchanged.
-- Dialog copy, `role="alertdialog"`, initial focus on **Keep editing**, Escape/overlay/close = stay, focus restoration: all unchanged (requirement 8). No new motion, no new z-index (the dialog is already `z-[80]`, above the `z-[70]` phone drawer).
+- The original proposal kept the dialog's `role="alertdialog"`, initial focus on **Keep editing**, Escape/overlay/close = stay, focus restoration and z-80 stacking. Action-specific destructive labels were subsequently approved (§8); the later dialog-only animation-centering correction is recorded in §11.
 
 ### 4.3 Shell wiring (two call sites)
 
@@ -202,13 +202,13 @@ One test constraint noted: `tests/components/forma-phase-f.test.ts:177` asserts 
 
 **7.1 Module-instance sharing.** The registry relies on the composer and the shell resolving the *same* module instance in the client bundle. Next places shared client modules in a common chunk, so this should hold; if a future refactor lazy-loads the composer behind its own chunk boundary, the registry would silently stop working. Mitigation: keep the module free of side effects, add the structural test, and (Phase 5) assert in a real browser that signing out while dirty opens the dialog. Fallback design if it ever breaks: a `document`-dispatched request/acknowledge `CustomEvent` — same contract, no shared module, more indirection. Rejected for now.
 
-**7.2 Two modal surfaces.** Handled by closing the drawer/menu first (§4.4). If `dismissSurface` were omitted, the dialog still paints above (`z-[80]` > `z-[70]`) but focus restoration depends on Radix's scope stack — accepted only as a degraded case.
+**7.2 Two modal surfaces.** Sign-out closes its account menu or drawer first (§4.4). A workspace switch from the drawer leaves the drawer underneath the guard; the guard is above it (`z-[80]` > `z-[70]`), and the current browser matrix verifies focus isolation and return to the drawer switcher (§11).
 
-**7.3 Browser verification is blocked in this environment.** `scripts/verify-unsaved-edits.mjs` needs a Chromium binary. This sandbox has none, cannot install one (`cdn.playwright.dev` and `storage.googleapis.com` are unreachable) and has no root/apt to satisfy the shared libraries the npm-packaged `@sparticuz/chromium` binary needs (`libnss3`, `libnspr4`). Therefore Phase 5's seven-width browser matrix (320/375/390/768/1024/1200/1440), axe scan and screenshot evidence **cannot be produced here**. Options: (a) I extend the harness script and run everything runnable (`npm ci`, `npm test`, `tsc`, `lint`, `build`, `verify:db`, `verify:pdf`, plus the jsdom reproduction/regression harness) and hand the browser matrix over as a documented, unrun step; (b) the browser run happens on a machine with Chromium. This needs a decision before Phase 5.
+**7.3 Browser availability — original checkpoint, since resolved.** Playwright's download hosts and Debian mirrors were blocked, so the first checkpoint did not have usable Chromium. The later run used an npm-packaged local Chromium and locally built NSS/NSPR libraries without retrying the blocked downloads. The seven-width result and remaining limits are recorded in §11.
 
 **7.4 Other limitations, unchanged from the shipped guard.** Native `beforeunload` wording is not customisable; Back/Forward is only cancellable where the Navigation API exists; a tab crash/OS shutdown cannot be guarded; with JavaScript disabled nothing here runs (and the editor cannot save either).
 
-**7.5 Behaviour changes worth stating.** (i) Signing out or switching with a dirty editor now costs one extra click. (ii) A confirmed switch **discards** the draft by design (requirement 9) — it is not restored in the new workspace. (iii) The dialog copy stays the generic "Discard unsaved changes?" for all three actions (link, sign-out, switch); action-specific wording ("…and sign out") is deliberately not added unless asked. (iv) Sign-out still ignores a Supabase error and always routes to `/login` — unchanged here.
+**7.5 Behaviour changes worth stating.** (i) Signing out or switching with a dirty editor requires a decision. (ii) A confirmed switch **discards** the draft by design; it is not restored in the new workspace. (iii) The title remains generic, while the destructive button names sign-out or workspace switch. (iv) Sign-out still ignores a Supabase error and always routes to `/login` — unchanged here.
 
 **7.6 Non-goals.** No autosave, no draft persistence, no cross-tab coordination, no guard on other composers (intake "Start over" etc.), no change to session expiry or forced sign-out.
 
@@ -217,11 +217,13 @@ One test constraint noted: `tests/components/forma-phase-f.test.ts:177` asserts 
 1. **Registry, not a provider** — approved as proposed.
 2. **Action-specific destructive label** — "Discard and sign out" / "Discard and switch workspace"; the title, description, "Keep editing" and every other string are unchanged.
 3. **Focus returns to the shell trigger** after "Keep editing": `#account-menu-trigger` for the account menu, `[data-app-menu-trigger]` (first visible) for the phone menu / dock "More", and `#workspace-trigger-…` for each switcher instance; the composer's title field remains the last-resort fallback.
-4. **Browser matrix** — the harness was extended (§9.2) and the seven-width Chromium run is recorded as pending, not as passed.
+4. **Browser matrix** — originally pending at this checkpoint; subsequently run with the corrected fixture and approved UI corrections (§11).
 
 ## 9. Verification
 
-### 9.1 What was run here
+### 9.1 Original implementation checkpoint
+
+These are the earlier implementation results; the current patch's final gates are in §11.4.
 
 ```
 npm ci                    # clean, 0 vulnerabilities
@@ -256,25 +258,16 @@ The dirty/discard/focus behaviour was exercised end-to-end in this environment w
 | Double-click on the destructive action | action runs **once** |
 | Phone drawer (390): drawer → Log out | dialog opens, `signOut` 0 calls, drawer closed, safe action focused, focus returns to a shell control after staying |
 
-### 9.2 Browser matrix — extended, NOT run here
+### 9.2 Browser matrix — original checkpoint
 
-`scripts/verify-unsaved-edits.mjs` now also proves, at 320/375/390/768/1024/1200/1440 with the same fictional loopback fixture: sign-out held from the account menu and from the phone drawer, "Keep editing" restoring focus to the trigger, the confirmed sign-out hitting `/auth/v1/logout` exactly once and landing on `/login`, workspace switching writing `profiles.active_workspace_id` exactly once with the draft dropped, a clean editor running both actions with no dialog, and a failed save keeping sign-out guarded. The fixture gained `/auth/v1/logout`, a `profiles` PATCH recorder and a second workspace.
-
-**It could not be executed in this environment**: there is no Chromium binary, `cdn.playwright.dev` / `storage.googleapis.com` are unreachable, and there is no root access to install the shared libraries the npm-packaged Chromium needs (`libnss3`, `libnspr4`). The run must therefore be repeated where Chromium is available:
-
-```
-npm ci
-CHROMIUM_PATH=/path/to/chromium node scripts/verify-unsaved-edits.mjs   # npm run verify:unsaved
-```
-
-Until that run exists, treat the geometry, axe and screenshot rows for this follow-up as **unverified**.
+The first implementation checkpoint extended the fictional-fixture harness but could not run it because Chromium and its libraries were unavailable. That historical limitation was later resolved; §11 gives the actual final run, its fixture corrections, failures found along the way, and remaining limitations.
 
 ## 10. Limitations specific to this extension
 
 | Scenario | Behaviour | Why |
 | --- | --- | --- |
 | A destructive shell action that does not call `requestGuardedAction()` | Not held | The guard cannot see programmatic handlers; the registry is the contract, and `tests/components/unsaved-edits-shell.test.ts` pins the two that exist today. |
-| Two dialogs open at once | The shell surface closes first | `dismissSurface` runs before the confirmation opens, so exactly one modal is on screen; without it the confirmation still paints above (`z-[80]` > `z-[70]`). |
+| Two dialog surfaces | Sign-out closes its shell surface; a drawer workspace switch retains the drawer behind the guard | The guard paints above the drawer (`z-[80]` > `z-[70]`); the browser matrix checks focus isolation and return in both paths. |
 | Focus after "Keep editing" | Returns to the shell trigger, else the composer's title field | The invoking menu item/drawer button unmounts with its surface; the trigger is the nearest stable control. |
 | Module-instance sharing | The composer and the shell must resolve the same registry module | True for the current bundle graph (shared client chunk); a future lazy chunk boundary would silently disarm it, which is why a real-browser sign-out check stays in the harness. |
 | Draft after a confirmed switch | Discarded, never restored | Requirement: unsaved editor data must not persist across workspaces. |
@@ -282,3 +275,72 @@ Until that run exists, treat the geometry, axe and screenshot rows for this foll
 | Sign-out with a Supabase error | Still ignored, still routes to `/login` | Pre-existing behaviour, deliberately not changed. |
 
 The limitations of the underlying guard (native `beforeunload` wording, Back/Forward without the Navigation API, tab crash, JavaScript disabled) are unchanged and documented in [RODUCQ_UNSAVED_EDITS_GUARD.md](./RODUCQ_UNSAVED_EDITS_GUARD.md).
+
+## 11. Follow-up: mobile obstruction, shell matrix and approved UI corrections
+
+### 11.1 Reproduction and root causes
+
+The original browser attempt did **not** prove a production sign-out failure: its fictional auth service used a different loopback port, which the app's unchanged production `connect-src 'self'` CSP blocked. The app navigated to login after clearing the fixture cookie, but the fixture recorded zero logout requests. The existing handler ignores a returned sign-out error; that behavior was not changed or validated against a real service. The harness now uses a loopback **same-origin proxy**, retains CSP, records method/scope/bearer presence, and continues to require **exactly one** authenticated local-scope logout request. Its direct `workspace_members` fixture also returns both fictional memberships (or the requested filtered one), so the real switcher renders.
+
+The corrected browser checks then exposed four UI problems. Each application correction was separately approved:
+
+| Finding | Root cause | Narrow correction |
+| --- | --- | --- |
+| Account menu obstructed at 320×568 | The sticky topbar is a z-30 stacking context; the fixed phone dock (z-40) and timer (z-50) could cover the menu, and the menu needed room to scroll. The unforced Log out click was intercepted by the dock. | `app/globals.css` raises the topbar to z-60 only while its Account menu is open and gives the phone menu a safe-area-aware maximum height. Existing scrolling remains; drawer/dialog remain above it. |
+| Dirty workspace selection via Enter immediately dismissed its dialog | Radix selected on Enter keydown and the browser's default activation clicked the newly focused **Keep editing** button. Space and pointer did not show this effect. | `WorkspaceSwitcher.tsx` prevents that Enter default in the workspace Select content's bubbling phase, after the option handler. Clean behavior, Space, pointer, focus and exactly-once writes are tested. |
+| Drawer workspace option pointer target obstructed at 320/375/390 | The portalled panel Select was z-50, behind the z-70 drawer scrim. | Only the panel switcher's phone popup is z-75, below the z-80 guard; its tablet/desktop z-index remains z-50. The shared Select is unchanged. |
+| Normal-motion guard entrance clipped at 390 | The shared zoom keyframes temporarily replaced the dialog's `translate(-50%, -50%)` centering transform. The pre-fix right edge reached 544px in a 390px viewport. | Only this guard dialog supplies centered enter/exit translate variables; its existing fade/zoom and the shared dialog component remain in place. |
+
+Earlier failed attempts are retained in [the evidence directory](./evidence/roducq-shell-actions/before/): the [320px menu ledger](./evidence/roducq-shell-actions/before/menu-obstruction-ledger.json), the [66-case intermediate ledger](./evidence/roducq-shell-actions/before/intermediate-ledger.json), [Enter/Space/pointer traces](./evidence/roducq-shell-actions/before/keyboard-observations.json), and [pre-fix animation frames](./evidence/roducq-shell-actions/before/motion-observations.json). The intermediate run had 61 passed and 5 failed; it is **not** the final result.
+
+### 11.2 Final real-browser matrix
+
+On 2026-10-28, headless Chromium **153.0.8010.0**, Playwright **1.63.0**, axe-core **4.14.0**, Node **22.22.3** and Next **16.4.3** ran the production build against a fictional same-origin loopback fixture. Locale `en-US`, timezone `UTC`, device scale factor 1, service workers blocked, external browser requests blocked; reduced motion except for explicitly named normal-motion cases. No real account, live Supabase project, customer data or production deployment was used.
+
+**66/66 scenarios passed**, with **0 browser console/page/HTTP errors** and **0 blocked external requests**. The [machine-readable ledger](./evidence/roducq-shell-actions/ledger.json), [run log](./evidence/roducq-shell-actions/run.log), [build log](./evidence/roducq-shell-actions/build.log) and [server log](./evidence/roducq-shell-actions/server.log) are retained. The harness executes all independent cases even after a failure, records each failure, and exits nonzero if any case fails.
+
+- **35 topbar cases:** clean switch and sign-out plus dirty sign-out/switch in light and dark, at **320×568, 375×667, 390×844, 768×900, 1024×900, 1200×900 and 1440×900**. Every clean case scrolls through all **16** Account-menu items, checks 44px minimum dimensions, viewport bounds and `elementFromPoint` at each item's center, then verifies Escape and focus restoration. Pointer clicks are not forced.
+- Dirty cases check the labelled dialog, initial safe focus, tab trapping, visible background control isolation, Escape, backdrop, keyboard Keep editing, restoration of both draft fields/session/workspace and focus, and no action before confirmation. Confirmed logout requires exactly one authenticated `POST /auth/v1/logout?scope=local`; confirmed switch requires exactly one profile workspace write and a dropped draft. Clean actions have no dialog.
+- **2 rail cases:** keyboard Enter and Space in the compact 768px rail and full 1440px panel, including cancellation/focus and one confirmed switch. **6 drawer cases:** sign-out and switch at each of 320/375/390, including keyboard and unforced pointer selection, Keep editing, focus restoration and one confirmed action.
+- **2 normal-motion cases:** sign-out and workspace switch at 390px. Layout and 44px targets are checked after the running animation settles; separately, every captured open/closed animation frame must remain in the viewport. The frame data are [sign-out](./evidence/roducq-shell-actions/motion-frames-shell-sign-out-light-no-preference-390.json) (71 frames) and [switch](./evidence/roducq-shell-actions/motion-frames-shell-switch-workspace-light-no-preference-390.json) (86 frames).
+- **21 retained cases:** clean editor, seven generic dialog layouts, navigation, Stay/Escape, Back/Forward, reload/close, save success/failure, original shell actions, full-page navigation, no JavaScript, generic normal motion, three generic axe scans, and the browser-error/network gate.
+
+Screenshots from the run are retained under [screenshots/roducq-shell-actions](./screenshots/roducq-shell-actions/), including Account-menu targets at [320](./screenshots/roducq-shell-actions/account-menu-targets-320.png), [375](./screenshots/roducq-shell-actions/account-menu-targets-375.png), [390](./screenshots/roducq-shell-actions/account-menu-targets-390.png), [768](./screenshots/roducq-shell-actions/account-menu-targets-768.png), [1024](./screenshots/roducq-shell-actions/account-menu-targets-1024.png), [1200](./screenshots/roducq-shell-actions/account-menu-targets-1200.png) and [1440](./screenshots/roducq-shell-actions/account-menu-targets-1440.png), plus [dark 375](./screenshots/roducq-shell-actions/shell-switch-workspace-dark-reduce-375.png) and [drawer switch 320](./screenshots/roducq-shell-actions/drawer-switch-workspace-320.png). Baseline screenshots of the [menu obstruction](./screenshots/roducq-shell-actions/before-menu-obstruction-320.png), [drawer obstruction](./screenshots/roducq-shell-actions/before-drawer-obstruction-320.png) and [motion clipping](./screenshots/roducq-shell-actions/before-motion-clipping-390.png) are retained separately.
+
+### 11.3 Axe results — incomplete is not a pass
+
+The final run completed **41 scans**, **0 violations**, and **55 incomplete rule occurrences**:
+
+| Rule | Scans with incomplete result | Nodes in each affected scan | Required follow-up |
+| --- | ---: | ---: | --- |
+| `aria-hidden-focus` | 41 | 12 nodes in 38 scans; 13 in 3 scans | Manually review focusable content and Radix focus guards under `aria-hidden`; the scripted focus trap and background-control checks do not resolve axe's incomplete result. |
+| `color-contrast` | 14 | 3–5 nodes per scan | Manually verify contrast where axe could not determine the background, including gradients. |
+
+The rule/node counts repeat across scans and are not unique elements. **Both rules remain UNVERIFIED by axe; 0 violations is not a WCAG certification.** All per-node selectors and summaries are in the ledger.
+
+### 11.4 Final automated gates
+
+| Command | Result |
+| --- | --- |
+| `npm test` | **1,327 passed, 0 failed, 333 suites** |
+| `npx tsc --noEmit` | Passed |
+| `npm run lint` | Passed |
+| `npm run build` | Passed |
+| `npm run verify:db` | Passed (offline PGlite, not live Supabase) |
+| `npm run verify:pdf` | Passed: 14 documents, 20 pages, 0 overflow/structure/content findings |
+
+Complete command logs are in [final-gates](./evidence/roducq-shell-actions/final-gates/); tracked text logs have terminal carriage returns and trailing whitespace normalized. The final application diff changes only `app/globals.css`, `components/app-shell/WorkspaceSwitcher.tsx` and the guard's dialog animation variables; the remaining changes are the browser harness, additive tests, this audit and evidence. Authentication/session handlers, server actions, Supabase, schema/RLS, billing, payments, marketing and pricing code are unchanged.
+
+### 11.5 Reproduction and remaining limits
+
+With an installed Chromium and its system libraries:
+
+```sh
+npm ci
+CHROMIUM_PATH=/path/to/chromium EVIDENCE_DIR=/absolute/path/to/a/new/empty-directory \
+  node scripts/verify-unsaved-edits.mjs
+```
+
+This sandbox used Chromium from `@sparticuz/chromium@153.0.0` and locally built Mozilla NSS/NSPR libraries via `LD_LIBRARY_PATH`; no package manifest or lockfile change was needed. Playwright CDN downloads and apt mirrors were blocked and were not repeatedly retried. The harness refuses real `.env` files and an existing `resp-next`, builds an isolated production app with fictional credentials and removes only its own temporary build.
+
+**UNVERIFIED:** live authentication, session failure handling and production authorization/RLS; physical devices, virtual keyboards, non-zero safe-area insets, other browser engines, older browsers and real assistive technology. Offline PGlite exercises selected RLS policies, not a live project. The other limitations in §10 and the original guard document remain. The browser evidence uses fictional responses and does not establish real network/service behavior.
