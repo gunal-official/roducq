@@ -1,0 +1,173 @@
+--- a/scripts/verify-responsive.mjs
++++ b/scripts/verify-responsive.mjs
+@@ -178,0 +179 @@
++let STUB_VIEWER = false, STUB_MONEY_ONLY = false, STUB_INBOX_ERROR = false;
+@@ -309 +310 @@
+-        return send([{ workspace_id: WS.id, role: "owner", workspace: WS }]);
++        return send([{ workspace_id: WS.id, role: STUB_VIEWER ? "viewer" : "owner", workspace: WS }]);
+@@ -359,0 +361,2 @@
++        if (STUB_INBOX_ERROR && (url.searchParams.get("select") || "").includes("sources:brief_sources")) { res.writeHead(503,{"content-type":"application/json"}); return res.end(JSON.stringify({message:"fictional source read failure"})); }
++        if (STUB_MONEY_ONLY) return send([]);
+@@ -374,3 +377,3 @@
+-      if (p.startsWith("/rest/v1/proposals")) return send(eq("id") ? one(PROPOSAL) : process.env.EMPTY_FIXTURES ? [] : [{ id: PROPOSAL.id, title: PROPOSAL.title, client_name: PROPOSAL.client_name, status: PROPOSAL.status, updated_at: "2026-10-20T10:00:00Z", deliverables: PROPOSAL.deliverables }]);
+-      if (p.startsWith("/rest/v1/plans")) return send(eq("id") ? one(PLAN) : process.env.EMPTY_FIXTURES ? [] : [{ id: PLAN.id, title: PLAN.title, client_name: PLAN.client_name, status: PLAN.status, updated_at: "2026-10-22T10:00:00Z", tasks: PLAN.tasks }]);
+-      if (p.startsWith("/rest/v1/updates")) return send(eq("id") ? one({...UPDATE_ROW, status: STUB_UPDATE_STATUS}) : process.env.EMPTY_FIXTURES ? [] : [{ id: UPDATE_ROW.id, title: UPDATE_ROW.title, client_name: UPDATE_ROW.client_name, status: STUB_UPDATE_STATUS, updated_at: "2026-10-27T10:00:00Z", body: UPDATE_ROW.body }]);
++      if (p.startsWith("/rest/v1/proposals")) return send(STUB_MONEY_ONLY ? [] : eq("id") ? one(PROPOSAL) : process.env.EMPTY_FIXTURES ? [] : [{ id: PROPOSAL.id, title: PROPOSAL.title, client_name: PROPOSAL.client_name, status: PROPOSAL.status, updated_at: "2026-10-20T10:00:00Z", deliverables: PROPOSAL.deliverables }]);
++      if (p.startsWith("/rest/v1/plans")) return send(STUB_MONEY_ONLY ? [] : eq("id") ? one(PLAN) : process.env.EMPTY_FIXTURES ? [] : [{ id: PLAN.id, title: PLAN.title, client_name: PLAN.client_name, status: PLAN.status, updated_at: "2026-10-22T10:00:00Z", tasks: PLAN.tasks }]);
++      if (p.startsWith("/rest/v1/updates")) return send(STUB_MONEY_ONLY ? [] : eq("id") ? one({...UPDATE_ROW, status: STUB_UPDATE_STATUS}) : process.env.EMPTY_FIXTURES ? [] : [{ id: UPDATE_ROW.id, title: UPDATE_ROW.title, client_name: UPDATE_ROW.client_name, status: STUB_UPDATE_STATUS, updated_at: "2026-10-27T10:00:00Z", body: UPDATE_ROW.body }]);
+@@ -378,2 +381,2 @@
+-      if (p.startsWith("/rest/v1/invoices")) return send(eq("id") ? one(INVOICE) : process.env.EMPTY_FIXTURES ? [] : [{ id: INVOICE.id, invoice_number: 7, title: INVOICE.title, client_name: INVOICE.client_name, status: INVOICE.status, items: INVOICE.items, tax_percent: 20, due_date: INVOICE.due_date, updated_at: NOW }]);
+-      if (p.startsWith("/rest/v1/contracts")) return send(eq("id") ? one(CONTRACT) : process.env.EMPTY_FIXTURES ? [] : [{ id: CONTRACT.id, title: CONTRACT.title, client_name: CONTRACT.client_name, status: CONTRACT.status, brief_id: CONTRACT.brief_id, expires_on: CONTRACT.expires_on, updated_at: NOW }]);
++      if (p.startsWith("/rest/v1/invoices")) return send(eq("id") ? one(INVOICE) : process.env.EMPTY_FIXTURES ? [] : [{ id: INVOICE.id, invoice_number: 7, title: INVOICE.title, client_name: INVOICE.client_name, status: INVOICE.status, items: INVOICE.items, tax_percent: 20, due_date: STUB_MONEY_ONLY ? dayOffset(-5) : INVOICE.due_date, updated_at: NOW }]);
++      if (p.startsWith("/rest/v1/contracts")) return send(eq("id") ? one(CONTRACT) : process.env.EMPTY_FIXTURES ? [] : [{ id: CONTRACT.id, title: CONTRACT.title, client_name: CONTRACT.client_name, status: CONTRACT.status, brief_id: CONTRACT.brief_id, expires_on: STUB_MONEY_ONLY ? dayOffset(5) : CONTRACT.expires_on, updated_at: NOW }]);
+@@ -542,41 +545,10 @@
+-  const out = [];
+-  const dir = join(SHOTS, "focused-interactions");
+-  mkdirSync(dir, { recursive: true });
+-  const axePath = require.resolve("axe-core/axe.min.js");
+-  async function check(name, options, task) {
+-    const context = await browser.newContext({viewport:{width:options.width || 390,height:options.height || 844},colorScheme:options.scheme || "light",reducedMotion:options.reduce ? "reduce" : "no-preference"});
+-    await context.route("**/*", route => { const u = new URL(route.request().url()); return u.hostname === "127.0.0.1" ? route.continue() : route.abort("blockedbyclient"); });
+-    if (options.auth !== false) await context.addCookies([authCookie]);
+-    const page = await context.newPage();
+-    await installFixtureNetwork(page, BASE, `http://127.0.0.1:${STUB_PORT}`);
+-    const errors = [];
+-    page.on("pageerror", e => errors.push(String(e)));
+-    const goto = async url => { await page.goto(BASE+url,{waitUntil:"load",timeout:20000}); await page.evaluate(() => document.fonts.ready); await page.waitForTimeout(400); };
+-    try {
+-      const details = await task(page,goto);
+-      out.push({name,ran:true,details,browserErrors:errors});
+-      console.log(`[focused] ${name}: completed`);
+-    } catch (e) {
+-      out.push({name,ran:false,error:String(e.stack || e),browserErrors:errors});
+-      console.log(`[focused] ${name}: ERROR ${String(e).slice(0,160)}`);
+-    } finally {
+-      await context.close();
+-      writeFileSync(join(SHOTS,"focused-interactions.json"),JSON.stringify(out,null,2));
+-    }
+-  }
+-  for (const scheme of ["light","dark"]) {
+-    for (const width of [320,390]) await check(`drawer-${width}-${scheme}`,{width,height:width===320?568:844,scheme},async(page,goto)=>{
+-      await goto("/intake");
+-      const trigger=page.getByRole("button",{name:"More navigation",exact:true});
+-      await trigger.focus(); await page.keyboard.press("Space");
+-      const dialog=page.getByRole("dialog",{name:"Workspace navigation"});
+-      await dialog.waitFor(); await page.waitForTimeout(300);
+-      let focusContained=true; const focusSequence=[];
+-      for(let i=0;i<18;i++) { await page.keyboard.press(i%3===0?"Shift+Tab":"Tab"); const inside=await dialog.evaluate(el=>el.contains(document.activeElement)); focusContained &&= inside; focusSequence.push(await page.evaluate(()=>document.activeElement?.getAttribute("aria-label") || document.activeElement?.textContent?.trim().slice(0,35))); }
+-      await page.addScriptTag({path:axePath});
+-      const axe=await page.evaluate(async()=>{const r=await window.axe.run(document,{runOnly:{type:"tag",values:["wcag2a","wcag2aa","wcag21aa","wcag22aa"]}});return {violations:r.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.length})),incomplete:r.incomplete.map(v=>({id:v.id,nodes:v.nodes.length}))}});
+-      await page.screenshot({path:join(dir,`drawer-${width}-${scheme}.png`)});
+-      await page.keyboard.press("Escape"); await dialog.waitFor({state:"detached"});
+-      const restored=await trigger.evaluate(el=>el===document.activeElement);
+-      return {focusContained,focusSequence,escapeClosed:true,focusRestored:restored,axe};
+-    });
++  const out = []; const dir = join(SHOTS,"focused-interactions"); mkdirSync(dir,{recursive:true});
++  async function run(name,width,task) {
++    const ctx=await browser.newContext({viewport:{width,height:width===320?568:width===390?844:900},colorScheme:"light"});
++    await ctx.route("**/*",r=>new URL(r.request().url()).hostname==="127.0.0.1"?r.continue():r.abort("blockedbyclient"));
++    await ctx.addCookies([authCookie]); const page=await ctx.newPage(); await installFixtureNetwork(page,BASE,`http://127.0.0.1:${STUB_PORT}`);
++    const errors=[];page.on("pageerror",e=>errors.push(String(e)));
++    const goto=async url=>{await page.goto(BASE+url,{waitUntil:"load",timeout:20000});await page.waitForTimeout(350);};
++    try{out.push({name,ran:true,details:await task(page,goto),browserErrors:errors});console.log(`[followup] ${name}: completed`)}
++    catch(e){out.push({name,ran:false,error:String(e.stack||e),browserErrors:errors});console.log(`[followup] ${name}: ERROR ${String(e).slice(0,120)}`)}
++    finally{await ctx.close();writeFileSync(join(SHOTS,"followup.json"),JSON.stringify(out,null,2))}
+@@ -584,36 +556,3 @@
+-  for (const width of [320,768]) await check(`template-dialog-${width}`,{width,height:width===320?568:1024},async(page,goto)=>{
+-    await goto("/settings"); const trigger=page.locator('button:has-text("template")').first();
+-    await trigger.scrollIntoViewIfNeeded(); await trigger.focus(); await page.keyboard.press("Enter");
+-    const dialog=page.getByRole("dialog",{name:"New template"}); await dialog.waitFor();
+-    const title=dialog.getByRole("textbox",{name:"Title",exact:true}); const body=dialog.getByRole("textbox",{name:"Body",exact:true});
+-    await title.fill("Fictional audit template"); await body.fill("Fixture only; not saved.");
+-    let contained=true; for(let i=0;i<12;i++){await page.keyboard.press("Tab");contained &&= await dialog.evaluate(el=>el.contains(document.activeElement));}
+-    const box=await dialog.boundingBox(); await page.screenshot({path:join(dir,`template-dialog-${width}.png`)});
+-    await page.keyboard.press("Escape"); await dialog.waitFor({state:"detached"});
+-    return {namedFields:true,focusContained:contained,focusRestored:await trigger.evaluate(el=>el===document.activeElement),box,noSaveAttempted:true};
+-  });
+-  await check("intake-validation-390",{},async(page,goto)=>{
+-    await goto("/intake"); const textarea=page.locator("#intake-context"), generate=page.getByRole("button",{name:"Generate",exact:true});
+-    const emptyDisabled=await generate.isDisabled(); await textarea.fill("1234567890123456789");
+-    const shortDisabled=await generate.isDisabled(), bodyText=await page.locator("main").innerText();
+-    const visibleMinimumExplanation=/\b20\s*(?:char|characters)/i.test(bodyText);
+-    await textarea.fill("12345678901234567890"); const twentyEnabled=await generate.isEnabled();
+-    return {emptyDisabled,shortDisabled,twentyEnabled,visibleMinimumExplanation,noSubmissionAttempted:true};
+-  });
+-  await check("unsaved-update-navigation-390",{},async(page,goto)=>{
+-    await goto(`/updates/${U.update}`); const title=page.getByRole("textbox",{name:"Title",exact:true});
+-    const original=await title.inputValue(); await title.fill(""); const blankTitleSaveDisabled=await page.getByRole("button",{name:"Save update"}).isDisabled();
+-    await title.fill(original+" — FICTIONAL UNSAVED EDIT");
+-    const dirtyIndicator=await page.getByText("Unsaved changes",{exact:true}).isVisible();
+-    await page.screenshot({path:join(dir,"unsaved-update-390.png")});
+-    let dialogs=[]; page.on("dialog",async d=>{dialogs.push(d.type());await d.accept();});
+-    await page.locator("a.work-back[href='/updates']").click(); await page.waitForURL("**/updates");
+-    await page.goBack({waitUntil:"load"}); await page.waitForTimeout(250);
+-    const after=await page.getByRole("textbox",{name:"Title",exact:true}).inputValue();
+-    return {blankTitleSaveDisabled,dirtyIndicator,navigationDialogs:dialogs,unsavedEditSurvived:after.includes("FICTIONAL UNSAVED EDIT"),noSaveAttempted:true};
+-  });
+-  STUB_SHARE_MODE="active"; STUB_UPDATE_STATUS="draft";
+-  await check("draft-with-live-share-1440",{width:1440,height:900},async(page,goto)=>{
+-    await goto(`/updates/${U.update}`); const main=await page.locator("main").innerText();
+-    await page.screenshot({path:join(dir,"draft-with-live-share-1440.png")});
+-    return {statesPrivateUntilSent:main.includes("it stays private until you mark it sent"),alsoSaysPublicLinkLive:main.includes("Public link live"),fixtureStatus:"draft",fixtureShare:"active"};
++  for(const width of [390,1440]) await run(`dashboard-direct-active-${width}`,width,async(page,goto)=>{
++    await goto("/dashboard"); const active=await page.locator('nav a[aria-current="page"]').evaluateAll(els=>els.map(e=>({text:e.textContent.trim(),href:e.getAttribute("href")})));
++    return {pathname:new URL(page.url()).pathname,activeNavLinks:active,pipelineMarkedActive:active.some(e=>e.href==="/")};
+@@ -621,7 +560,7 @@
+-  STUB_SHARE_MODE="revoked";
+-  await check("revoked-share-1440",{width:1440,height:900},async(page,goto)=>{
+-    await goto(`/updates/${U.update}`); const main=await page.locator("main").innerText();
+-    await page.screenshot({path:join(dir,"revoked-share-header-1440.png")});
+-    await page.getByText(/This link was revoked/).scrollIntoViewIfNeeded();
+-    await page.screenshot({path:join(dir,"revoked-share-panel-1440.png")});
+-    return {statesPublicLinkLive:main.includes("Public link live"),showsRevokedMessage:main.includes("This link was revoked"),regenerateAvailable:main.includes("Regenerate link"),fixtureShare:"revoked"};
++  for(const [width,height] of [[320,568],[375,667]]) await run(`idle-timer-input-overlap-${width}`,width,async(page,goto)=>{
++    await page.setViewportSize({width,height}); await goto("/intake");
++    const input=await page.locator("#intake-context").boundingBox(), timer=await page.getByRole("button",{name:"Start timer",exact:true}).boundingBox();
++    const left=Math.max(input.x,timer.x),top=Math.max(input.y,timer.y),right=Math.min(input.x+input.width,timer.x+timer.width),bottom=Math.min(input.y+input.height,timer.y+timer.height);
++    const intersection={width:Math.max(0,right-left),height:Math.max(0,bottom-top)};
++    const hit=intersection.width&&intersection.height?await page.evaluate(({x,y})=>document.elementFromPoint(x,y)?.closest("button")?.innerText || document.elementFromPoint(x,y)?.tagName,{x:(left+right)/2,y:(top+bottom)/2}):null;
++    await page.screenshot({path:join(dir,`idle-timer-input-overlap-${width}.png`)});return {input,timer,intersection,hitAtIntersection:hit};
+@@ -629,5 +568,5 @@
+-  STUB_SHARE_MODE="none"; STUB_UPDATE_STATUS="sent";
+-  await check("sent-status-copy-1440",{width:1440,height:900},async(page,goto)=>{
+-    await goto(`/updates/${U.update}`); const main=await page.locator("main").innerText();
+-    await page.screenshot({path:join(dir,"sent-status-1440.png")});
+-    return {saysDeliveredToClient:main.includes("Delivered to the client"),saysEditingDoesNotChangeClientCopy:main.includes("not what the client already received"),fixtureStatus:"sent",noActionOrSendAttempted:true};
++  STUB_VIEWER=true;
++  await run("viewer-new-brief-390",390,async(page,goto)=>{
++    await goto("/"); const cta=page.getByRole("link",{name:"New brief",exact:true});const visible=await cta.isVisible();await cta.click();await page.waitForURL("**/intake");
++    const main=await page.locator("main").innerText(); const h1Count=await page.locator("main h1").count();await page.screenshot({path:join(dir,"viewer-intake-390.png")});
++    return {newBriefVisibleOnPipeline:visible,viewOnlyFallback:main.includes("View only"),mainH1Count:h1Count};
+@@ -635,5 +574,6 @@
+-  STUB_UPDATE_STATUS="draft";
+-  await check("dashboard-activity-mixed-dates",{width:1440,height:900},async(page,goto)=>{
+-    await goto("/"); const region=page.locator('[data-proof="pipeline-activity"]'); await region.scrollIntoViewIfNeeded();
+-    const text=await region.innerText(); await page.screenshot({path:join(dir,"dashboard-activity-mixed-dates-1440.png")});
+-    return {renderedActivity:text,fixtureUpdatedAt:{briefs:"2026-09-25T10:00:00Z",proposal:"2026-10-20T10:00:00Z",plan:"2026-10-22T10:00:00Z",update:"2026-10-27T10:00:00Z"}};
++  await run("viewer-share-action-390",390,async(page,goto)=>{
++    await goto(`/updates/${U.update}`);const button=page.getByRole("button",{name:"Create share link",exact:true});
++    await button.scrollIntoViewIfNeeded();const visible=await button.isVisible();await button.click();
++    await page.getByText("View only — you can't make changes.",{exact:true}).waitFor({timeout:6000});
++    await page.screenshot({path:join(dir,"viewer-share-390.png")});
++    return {mutationControlVisible:visible,actionRejectedByEditorGuard:true,noFixtureDataModified:true};
+@@ -641,4 +581,4 @@
+-  await check("search-form-390",{},async(page,goto)=>{
+-    await goto("/search"); const field=page.locator("#search-refine"); await field.fill("Harbor"); await field.press("Enter");
+-    await page.waitForURL("**/search?q=Harbor");
+-    return {submittedUrl:new URL(page.url()).pathname+new URL(page.url()).search,queryRetained:await page.locator("#search-refine").inputValue(),stubDoesNotModelRealSearchFiltering:true};
++  STUB_VIEWER=false; STUB_MONEY_ONLY=true;
++  await run("standalone-overdue-invoice-expiring-contract",1440,async(page,goto)=>{
++    await goto("/");const main=await page.locator("main").innerText();await page.screenshot({path:join(dir,"standalone-money-empty-pipeline-1440.png")});
++    return {pipelineEmpty:main.includes("Your pipeline is empty"),needsYouRendered:main.includes("Needs you"),overdueAlertRendered:main.includes("past the due date"),expiringAlertRendered:main.includes("expiring within 30 days"),fictionalFixture:{invoices:1,overdueSentInvoices:1,contracts:1,soonExpiringContracts:1,briefs:0,proposals:0,plans:0,updates:0,threads:0}};
+@@ -646,3 +586,5 @@
+-  for(const scheme of ["light","dark"]) await check(`reduced-motion-${scheme}`,{width:390,height:844,scheme,reduce:true},async(page,goto)=>{
+-    const proof=[]; for(const path of ["/","/intake","/briefs","/proposals","/plans","/updates","/settings"]){ await goto(path); proof.push({path,...await page.evaluate(()=>({runningAnimations:document.getAnimations().filter(a=>a.playState==="running").length,h1Visible:[...document.querySelectorAll("h1")].some(el=>getComputedStyle(el).opacity==="1" && el.getBoundingClientRect().height>0)}))}); }
+-    return proof;
++  STUB_MONEY_ONLY=false; STUB_INBOX_ERROR=true;
++  await run("dashboard-inbox-error-390",390,async(page,goto)=>{
++    await goto("/");const stage=page.locator('[data-proof="pipeline-flow"]');await stage.scrollIntoViewIfNeeded();const text=await stage.innerText();await page.screenshot({path:join(dir,"inbox-error-dashboard-390.png")});
++    await goto("/intake/inbox");const inbox=await page.locator("main").innerText();
++    return {pipelineFlow:text,showsDashboardFailureNotice:text.toLowerCase().includes("couldn't load"),inboxShowsLoadFailure:inbox.includes("Couldn't load the inbox"),fixtureSimulatesBriefSourceReadFailure:true};
+@@ -650 +592 @@
+-  return out;
++  STUB_INBOX_ERROR=false;return out;

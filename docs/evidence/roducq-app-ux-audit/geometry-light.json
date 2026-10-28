@@ -1,0 +1,2610 @@
+[
+  {
+    "page": "pipeline",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "dashboard-direct",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "public-update",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": null,
+      "h": null,
+      "w": 0,
+      "label": ""
+    },
+    "minW": {
+      "tag": null,
+      "h": 0,
+      "w": null,
+      "label": ""
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "intake",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "intake-inbox",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "briefs",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "brief-detail",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposals",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposal-detail",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposal-version",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "plans",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "plan-detail",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "updates",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "update-detail",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "settings",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "search",
+    "width": 320,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "pipeline",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "dashboard-direct",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "public-update",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": null,
+      "h": null,
+      "w": 0,
+      "label": ""
+    },
+    "minW": {
+      "tag": null,
+      "h": 0,
+      "w": null,
+      "label": ""
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "intake",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "intake-inbox",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "briefs",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "brief-detail",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposals",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposal-detail",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposal-version",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "plans",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "plan-detail",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "updates",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "update-detail",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "settings",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "search",
+    "width": 375,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "pipeline",
+    "width": 390,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "dashboard-direct",
+    "width": 390,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "public-update",
+    "width": 390,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": null,
+      "h": null,
+      "w": 0,
+      "label": ""
+    },
+    "minW": {
+      "tag": null,
+      "h": 0,
+      "w": null,
+      "label": ""
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "intake",
+    "width": 390,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "intake-inbox",
+    "width": 390,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "briefs",
+    "width": 390,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "brief-detail",
+    "width": 390,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposals",
+    "width": 390,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposal-detail",
+    "width": 390,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposal-version",
+    "width": 390,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "plans",
+    "width": 390,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "plan-detail",
+    "width": 390,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "updates",
+    "width": 390,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "update-detail",
+    "width": 390,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "settings",
+    "width": 390,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "search",
+    "width": 390,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "BUTTON",
+      "h": 44,
+      "w": 44,
+      "label": "Open menu"
+    },
+    "minW": {
+      "tag": "BUTTON",
+      "w": 44,
+      "h": 44,
+      "label": "Open menu"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "pipeline",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "dashboard-direct",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "public-update",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": null,
+      "h": null,
+      "w": 0,
+      "label": ""
+    },
+    "minW": {
+      "tag": null,
+      "h": 0,
+      "w": null,
+      "label": ""
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "intake",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "intake-inbox",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "briefs",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "brief-detail",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposals",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposal-detail",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposal-version",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "plans",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "plan-detail",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "updates",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "update-detail",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "settings",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "search",
+    "width": 768,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 315,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "pipeline",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "dashboard-direct",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "public-update",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": null,
+      "h": null,
+      "w": 0,
+      "label": ""
+    },
+    "minW": {
+      "tag": null,
+      "h": 0,
+      "w": null,
+      "label": ""
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "intake",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "intake-inbox",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "briefs",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "brief-detail",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposals",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposal-detail",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposal-version",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "plans",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "plan-detail",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "updates",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "update-detail",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "settings",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "search",
+    "width": 1024,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 379,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "pipeline",
+    "width": 1200,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "dashboard-direct",
+    "width": 1200,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "public-update",
+    "width": 1200,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": null,
+      "h": null,
+      "w": 0,
+      "label": ""
+    },
+    "minW": {
+      "tag": null,
+      "h": 0,
+      "w": null,
+      "label": ""
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "intake",
+    "width": 1200,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "intake-inbox",
+    "width": 1200,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "briefs",
+    "width": 1200,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "brief-detail",
+    "width": 1200,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposals",
+    "width": 1200,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposal-detail",
+    "width": 1200,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposal-version",
+    "width": 1200,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "plans",
+    "width": 1200,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "plan-detail",
+    "width": 1200,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "updates",
+    "width": 1200,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "update-detail",
+    "width": 1200,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "settings",
+    "width": 1200,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "search",
+    "width": 1200,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "pipeline",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "dashboard-direct",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "public-update",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": null,
+      "h": null,
+      "w": 0,
+      "label": ""
+    },
+    "minW": {
+      "tag": null,
+      "h": 0,
+      "w": null,
+      "label": ""
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "intake",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "intake-inbox",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "briefs",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "brief-detail",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposals",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposal-detail",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "proposal-version",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "plans",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "plan-detail",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "updates",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "update-detail",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "settings",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "search",
+    "width": 1440,
+    "overflowX": 0,
+    "offenders": [],
+    "cutoffs": [],
+    "fixedEscapes": [],
+    "smallTaps": [],
+    "nearMiss": [],
+    "minH": {
+      "tag": "INPUT",
+      "h": 44,
+      "w": 384,
+      "label": "Search..."
+    },
+    "minW": {
+      "tag": "A",
+      "w": 44,
+      "h": 44,
+      "label": "Inbox"
+    },
+    "pageErrors": []
+  },
+  {
+    "page": "dialog-template",
+    "width": 320,
+    "dialog": {
+      "left": 16,
+      "right": 304,
+      "top": 43,
+      "bottom": 525,
+      "w": 288,
+      "h": 483,
+      "fitsWidth": true,
+      "fitsHeight": true,
+      "scrolls": true,
+      "innerScroll": true
+    }
+  },
+  {
+    "page": "dialog-template",
+    "width": 768,
+    "dialog": {
+      "left": 128,
+      "right": 640,
+      "top": 264,
+      "bottom": 760,
+      "w": 512,
+      "h": 497,
+      "fitsWidth": true,
+      "fitsHeight": true,
+      "scrolls": true,
+      "innerScroll": false
+    }
+  }
+]

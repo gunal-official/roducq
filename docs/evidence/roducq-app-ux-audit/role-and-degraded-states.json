@@ -1,0 +1,123 @@
+[
+  {
+    "name": "dashboard-direct-active-390",
+    "ran": true,
+    "details": {
+      "pathname": "/dashboard",
+      "activeNavLinks": [],
+      "pipelineMarkedActive": false
+    },
+    "browserErrors": []
+  },
+  {
+    "name": "dashboard-direct-active-1440",
+    "ran": true,
+    "details": {
+      "pathname": "/dashboard",
+      "activeNavLinks": [],
+      "pipelineMarkedActive": false
+    },
+    "browserErrors": []
+  },
+  {
+    "name": "idle-timer-input-overlap-320",
+    "ran": true,
+    "details": {
+      "input": {
+        "x": 37,
+        "y": 528.96875,
+        "width": 246,
+        "height": 220
+      },
+      "timer": {
+        "x": 171,
+        "y": 444,
+        "width": 129,
+        "height": 44
+      },
+      "intersection": {
+        "width": 112,
+        "height": 0
+      },
+      "hitAtIntersection": null
+    },
+    "browserErrors": []
+  },
+  {
+    "name": "idle-timer-input-overlap-375",
+    "ran": true,
+    "details": {
+      "input": {
+        "x": 37,
+        "y": 456.96875,
+        "width": 301,
+        "height": 220
+      },
+      "timer": {
+        "x": 226,
+        "y": 543,
+        "width": 129,
+        "height": 44
+      },
+      "intersection": {
+        "width": 112,
+        "height": 44
+      },
+      "hitAtIntersection": "Start timer"
+    },
+    "browserErrors": []
+  },
+  {
+    "name": "viewer-new-brief-390",
+    "ran": true,
+    "details": {
+      "newBriefVisibleOnPipeline": true,
+      "viewOnlyFallback": false,
+      "mainH1Count": 0
+    },
+    "browserErrors": []
+  },
+  {
+    "name": "viewer-share-action-390",
+    "ran": true,
+    "details": {
+      "mutationControlVisible": true,
+      "actionRejectedByEditorGuard": true,
+      "noFixtureDataModified": true
+    },
+    "browserErrors": []
+  },
+  {
+    "name": "standalone-overdue-invoice-expiring-contract",
+    "ran": true,
+    "details": {
+      "pipelineEmpty": true,
+      "needsYouRendered": false,
+      "overdueAlertRendered": false,
+      "expiringAlertRendered": false,
+      "fictionalFixture": {
+        "invoices": 1,
+        "overdueSentInvoices": 1,
+        "contracts": 1,
+        "soonExpiringContracts": 1,
+        "briefs": 0,
+        "proposals": 0,
+        "plans": 0,
+        "updates": 0,
+        "threads": 0
+      }
+    },
+    "browserErrors": []
+  },
+  {
+    "name": "dashboard-inbox-error-390",
+    "ran": true,
+    "details": {
+      "pipelineFlow": "How the work flows\n\nEvery stage is a live count — tap through to the list.\n\nINTAKE\n0\nBRIEFS\n2\nPROPOSALS\n1\nPLANS\n1\nUPDATES\n1",
+      "showsDashboardFailureNotice": false,
+      "inboxShowsLoadFailure": true,
+      "fixtureSimulatesBriefSourceReadFailure": true
+    },
+    "browserErrors": []
+  }
+]

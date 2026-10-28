@@ -1,0 +1,72 @@
+--- a/scripts/verify-responsive.mjs
++++ b/scripts/verify-responsive.mjs
+@@ -545,10 +545,6 @@
+-  const out = []; const dir = join(SHOTS,"focused-interactions"); mkdirSync(dir,{recursive:true});
+-  async function run(name,width,task) {
+-    const ctx=await browser.newContext({viewport:{width,height:width===320?568:width===390?844:900},colorScheme:"light"});
+-    await ctx.route("**/*",r=>new URL(r.request().url()).hostname==="127.0.0.1"?r.continue():r.abort("blockedbyclient"));
+-    await ctx.addCookies([authCookie]); const page=await ctx.newPage(); await installFixtureNetwork(page,BASE,`http://127.0.0.1:${STUB_PORT}`);
+-    const errors=[];page.on("pageerror",e=>errors.push(String(e)));
+-    const goto=async url=>{await page.goto(BASE+url,{waitUntil:"load",timeout:20000});await page.waitForTimeout(350);};
+-    try{out.push({name,ran:true,details:await task(page,goto),browserErrors:errors});console.log(`[followup] ${name}: completed`)}
+-    catch(e){out.push({name,ran:false,error:String(e.stack||e),browserErrors:errors});console.log(`[followup] ${name}: ERROR ${String(e).slice(0,120)}`)}
+-    finally{await ctx.close();writeFileSync(join(SHOTS,"followup.json"),JSON.stringify(out,null,2))}
++  const out=[]; const dir=join(SHOTS,"focused-interactions"); mkdirSync(dir,{recursive:true});
++  async function run(name,width,task){
++    const ctx=await browser.newContext({viewport:{width,height:width===390?844:900}});await ctx.route("**/*",r=>new URL(r.request().url()).hostname==="127.0.0.1"?r.continue():r.abort("blockedbyclient"));
++    await ctx.addCookies([authCookie]);const page=await ctx.newPage();await installFixtureNetwork(page,BASE,`http://127.0.0.1:${STUB_PORT}`);
++    const errors=[];page.on("pageerror",e=>errors.push(String(e)));const goto=async url=>{await page.goto(BASE+url,{waitUntil:"load",timeout:20000});await page.waitForTimeout(350)};
++    try{out.push({name,ran:true,details:await task(page,goto),browserErrors:errors});console.log(`[empty-followup] ${name}: completed`)}catch(e){out.push({name,ran:false,error:String(e.stack||e),browserErrors:errors});console.log(`[empty-followup] ${name}: ERROR ${String(e).slice(0,160)}`)}finally{await ctx.close();writeFileSync(join(SHOTS,"focused-followup.json"),JSON.stringify(out,null,2))}
+@@ -556,3 +552,4 @@
+-  for(const width of [390,1440]) await run(`dashboard-direct-active-${width}`,width,async(page,goto)=>{
+-    await goto("/dashboard"); const active=await page.locator('nav a[aria-current="page"]').evaluateAll(els=>els.map(e=>({text:e.textContent.trim(),href:e.getAttribute("href")})));
+-    return {pathname:new URL(page.url()).pathname,activeNavLinks:active,pipelineMarkedActive:active.some(e=>e.href==="/")};
++  await run("drawer-focus-restoration-repeat-390-dark",390,async(page,goto)=>{
++    await page.emulateMedia({colorScheme:"dark"});await goto("/intake");const trigger=page.getByRole("button",{name:"More navigation",exact:true});const iterations=[];
++    for(let i=0;i<5;i++){await trigger.focus();await page.keyboard.press("Space");const dialog=page.getByRole("dialog",{name:"Workspace navigation"});await dialog.waitFor();await page.keyboard.press("Escape");await dialog.waitFor({state:"detached"});let restored=true;try{await page.waitForFunction(el=>el===document.activeElement,await trigger.elementHandle(),{timeout:2000})}catch{restored=false}iterations.push({iteration:i+1,focusRestored:restored});}
++    return {iterations};
+@@ -560,7 +557,2 @@
+-  for(const [width,height] of [[320,568],[375,667]]) await run(`idle-timer-input-overlap-${width}`,width,async(page,goto)=>{
+-    await page.setViewportSize({width,height}); await goto("/intake");
+-    const input=await page.locator("#intake-context").boundingBox(), timer=await page.getByRole("button",{name:"Start timer",exact:true}).boundingBox();
+-    const left=Math.max(input.x,timer.x),top=Math.max(input.y,timer.y),right=Math.min(input.x+input.width,timer.x+timer.width),bottom=Math.min(input.y+input.height,timer.y+timer.height);
+-    const intersection={width:Math.max(0,right-left),height:Math.max(0,bottom-top)};
+-    const hit=intersection.width&&intersection.height?await page.evaluate(({x,y})=>document.elementFromPoint(x,y)?.closest("button")?.innerText || document.elementFromPoint(x,y)?.tagName,{x:(left+right)/2,y:(top+bottom)/2}):null;
+-    await page.screenshot({path:join(dir,`idle-timer-input-overlap-${width}.png`)});return {input,timer,intersection,hitAtIntersection:hit};
++  await run("account-menu-keyboard-1440",1440,async(page,goto)=>{
++    await goto("/intake");const trigger=page.getByRole("button",{name:"Account menu",exact:true});await trigger.focus();await page.keyboard.press("ArrowDown");const menu=page.getByRole("menu",{name:"Account menu"});await menu.waitFor();await page.keyboard.press("End");const last=await page.evaluate(()=>document.activeElement.textContent.trim());await page.keyboard.press("Home");const first=await page.evaluate(()=>document.activeElement.textContent.trim());await page.keyboard.press("Escape");let restored=true;try{await page.waitForFunction(el=>el===document.activeElement,await trigger.elementHandle(),{timeout:2000})}catch{restored=false}return {end:last,home:first,escapeRestored:restored};
+@@ -569,4 +561,7 @@
+-  await run("viewer-new-brief-390",390,async(page,goto)=>{
+-    await goto("/"); const cta=page.getByRole("link",{name:"New brief",exact:true});const visible=await cta.isVisible();await cta.click();await page.waitForURL("**/intake");
+-    const main=await page.locator("main").innerText(); const h1Count=await page.locator("main h1").count();await page.screenshot({path:join(dir,"viewer-intake-390.png")});
+-    return {newBriefVisibleOnPipeline:visible,viewOnlyFallback:main.includes("View only"),mainH1Count:h1Count};
++  await run("viewer-new-brief-settled-390",390,async(page,goto)=>{
++    await goto("/");const cta=page.getByRole("link",{name:"New brief",exact:true});const visible=await cta.isVisible();await cta.click();await page.waitForURL("**/intake");await page.getByText("View only",{exact:true}).waitFor({timeout:5000});
++    const main=await page.locator("main").innerText();const h1=await page.locator("main h1").count();await page.screenshot({path:join(dir,"viewer-intake-settled-390.png")});return {newBriefVisibleOnPipeline:visible,viewOnlyFallback:main.includes("View only"),mainH1Count:h1};
++  });
++  STUB_VIEWER=false;
++  await run("unsaved-update-state-visible-390",390,async(page,goto)=>{
++    await goto(`/updates/${U.update}`);const title=page.getByRole("textbox",{name:"Title",exact:true});const original=await title.inputValue();await title.fill(original+" — fictional unsaved edit");await page.getByText("Unsaved changes",{exact:true}).scrollIntoViewIfNeeded();await page.screenshot({path:join(dir,"unsaved-update-state-390.png")});return {unsavedIndicatorVisible:await page.getByText("Unsaved changes",{exact:true}).isVisible(),noSaveAttempted:true};
+@@ -574,6 +569,2 @@
+-  await run("viewer-share-action-390",390,async(page,goto)=>{
+-    await goto(`/updates/${U.update}`);const button=page.getByRole("button",{name:"Create share link",exact:true});
+-    await button.scrollIntoViewIfNeeded();const visible=await button.isVisible();await button.click();
+-    await page.getByText("View only — you can't make changes.",{exact:true}).waitFor({timeout:6000});
+-    await page.screenshot({path:join(dir,"viewer-share-390.png")});
+-    return {mutationControlVisible:visible,actionRejectedByEditorGuard:true,noFixtureDataModified:true};
++  await run("empty-list-copy-390",390,async(page,goto)=>{
++    const states=[];for(const path of ["/","/intake/inbox","/briefs","/proposals","/plans","/updates"]){await goto(path);const text=await page.locator("main").innerText();states.push({path,emptyText:text.match(/Your pipeline is empty|No sources yet|No briefs yet|No proposals yet|No plans yet|No updates yet/)?.[0]||null});}return states;
+@@ -581,12 +572 @@
+-  STUB_VIEWER=false; STUB_MONEY_ONLY=true;
+-  await run("standalone-overdue-invoice-expiring-contract",1440,async(page,goto)=>{
+-    await goto("/");const main=await page.locator("main").innerText();await page.screenshot({path:join(dir,"standalone-money-empty-pipeline-1440.png")});
+-    return {pipelineEmpty:main.includes("Your pipeline is empty"),needsYouRendered:main.includes("Needs you"),overdueAlertRendered:main.includes("past the due date"),expiringAlertRendered:main.includes("expiring within 30 days"),fictionalFixture:{invoices:1,overdueSentInvoices:1,contracts:1,soonExpiringContracts:1,briefs:0,proposals:0,plans:0,updates:0,threads:0}};
+-  });
+-  STUB_MONEY_ONLY=false; STUB_INBOX_ERROR=true;
+-  await run("dashboard-inbox-error-390",390,async(page,goto)=>{
+-    await goto("/");const stage=page.locator('[data-proof="pipeline-flow"]');await stage.scrollIntoViewIfNeeded();const text=await stage.innerText();await page.screenshot({path:join(dir,"inbox-error-dashboard-390.png")});
+-    await goto("/intake/inbox");const inbox=await page.locator("main").innerText();
+-    return {pipelineFlow:text,showsDashboardFailureNotice:text.toLowerCase().includes("couldn't load"),inboxShowsLoadFailure:inbox.includes("Couldn't load the inbox"),fixtureSimulatesBriefSourceReadFailure:true};
+-  });
+-  STUB_INBOX_ERROR=false;return out;
++  return out;

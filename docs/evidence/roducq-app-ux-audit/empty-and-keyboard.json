@@ -1,0 +1,91 @@
+[
+  {
+    "name": "drawer-focus-restoration-repeat-390-dark",
+    "ran": true,
+    "details": {
+      "iterations": [
+        {
+          "iteration": 1,
+          "focusRestored": true
+        },
+        {
+          "iteration": 2,
+          "focusRestored": true
+        },
+        {
+          "iteration": 3,
+          "focusRestored": true
+        },
+        {
+          "iteration": 4,
+          "focusRestored": true
+        },
+        {
+          "iteration": 5,
+          "focusRestored": true
+        }
+      ]
+    },
+    "browserErrors": []
+  },
+  {
+    "name": "account-menu-keyboard-1440",
+    "ran": true,
+    "details": {
+      "end": "Log out",
+      "home": "Pipeline",
+      "escapeRestored": true
+    },
+    "browserErrors": []
+  },
+  {
+    "name": "viewer-new-brief-settled-390",
+    "ran": true,
+    "details": {
+      "newBriefVisibleOnPipeline": true,
+      "viewOnlyFallback": true,
+      "mainH1Count": 0
+    },
+    "browserErrors": []
+  },
+  {
+    "name": "unsaved-update-state-visible-390",
+    "ran": true,
+    "details": {
+      "unsavedIndicatorVisible": true,
+      "noSaveAttempted": true
+    },
+    "browserErrors": []
+  },
+  {
+    "name": "empty-list-copy-390",
+    "ran": true,
+    "details": [
+      {
+        "path": "/",
+        "emptyText": "Your pipeline is empty"
+      },
+      {
+        "path": "/intake/inbox",
+        "emptyText": "No sources yet"
+      },
+      {
+        "path": "/briefs",
+        "emptyText": "No briefs yet"
+      },
+      {
+        "path": "/proposals",
+        "emptyText": "No proposals yet"
+      },
+      {
+        "path": "/plans",
+        "emptyText": "No plans yet"
+      },
+      {
+        "path": "/updates",
+        "emptyText": "No updates yet"
+      }
+    ],
+    "browserErrors": []
+  }
+]

@@ -1,0 +1,195 @@
+# Roducq authenticated application: UX audit
+
+**Audit date:** 28 October 2026 · **Source baseline:** `aa974ca773745e4a4582a97193aed4551383d132` · **Status:** recommendations only; approval required before implementation.
+
+## Executive summary
+
+Roducq already has a coherent authenticated shell, a recognisable pipeline and real, connected intake → brief → proposal → plan → update workflows. The app uses the same type family and purple-led visual language as the approved marketing system, but its productivity surfaces should remain quieter and denser than the marketing site. The largest opportunities are not decorative: they are accurate client-sharing language, a dashboard that surfaces urgent work even when no pipeline documents exist, reliable saving feedback, and controls that stay usable on small screens.
+
+**Prioritise:**
+
+1. Correct the update-sharing and delivery claims: a draft can be exposed through a deliberately created link; marking an update sent does not itself deliver it; editing can change a live link. A revoked link is also labelled live in part of the detail view. These are trust risks, not evidence of an automatic leak or a tested production incident.
+2. Do not let the dashboard's document-empty state suppress overdue invoices and expiring contracts. Distinguish unavailable data from a real zero.
+3. Prevent the floating timer from covering mobile inputs; protect unsaved edits and explain save failures. Make navigation and actions reflect the user's role.
+4. Make activity chronological and actionable, and make editing and next steps explicit instead of implying capabilities that are not present.
+
+No P0 is established. Three P1 issues and the remaining P2/P3 recommendations are detailed below, including evidence, regression checks and backend implications. Local tests used a production build and **fictional, local Supabase fixtures**; they do not establish the deployed production commit, production data, RLS, real delivery or WCAG conformance.
+
+### Baseline and scope
+
+- Live `main` matched the audited SHA when checked; [PR #68](https://github.com/gunal-official/roducq/pull/68) was merged on 28 October 2026 at 04:18 UTC. The open-PR list was empty at that check; this is a point-in-time observation.
+- Reviewed `docs/forma-design-system.md`, `docs/forma-phase-{b-shell,c-closeout,d-closeout,e-closeout,f-closeout}.md`, `docs/PRODUCTION_READINESS_AUDIT.md`, `docs/PRODUCTION_LAUNCH_READINESS.md`, and the approved pricing documentation. Those are historical design/readiness records, not verification of the running production deployment.
+- Reviewed the `(app)` routes, shell, shared UI, data loaders, actions, share RPC migration, styles/tokens, and relevant tests. Local `npm ci` succeeded; `npm test` passed **1,258 tests, 313 suites, zero failures**. The isolated local production build used for browser tests completed; it logged React 18 deprecation and ambiguous Tailwind duration warnings.
+- No authenticated production access was used, no real accounts were created, and no customer data was modified. This audit changes documentation/evidence only; it does not redesign the app, change pricing/billing, authentication, APIs, database policies/schema, marketing pages or production configuration.
+
+## Inventory and task-flow review
+
+The authenticated layout is `app/(app)/layout.tsx`, with `components/app-shell/` (topbar, workspace/account, responsive navigation and appearance), shared `loading.tsx` / `error.tsx`, and a globally mounted `components/time/TimeTimer.tsx`. `/` rewrites to the dashboard; `/dashboard` is also reachable. Desktop uses a sidebar, tablet a rail, and phones a bottom dock plus drawer. Topbar search is a GET form. Common `PageHeader`, `SectionCard`, `EmptyState`, doc-detail and shared control components underpin the pages.
+
+| Workflow / routes | What is actually present | Discoverability, state and mobile observations |
+|---|---|---|
+| **Pipeline** `/`, `/dashboard` | Counts and stages for intake/briefs/proposals/plans/updates; conditional Needs you; recent updates, activity, money and empty state. | Prominent entry point, but `hasWork` ignores standalone invoices/contracts and can hide attention; activity is concatenated by type, not ordered globally. Mobile dock has no active Pipeline indication in the tested root or direct route. The 320px header wraps and the timer overlaps content. |
+| **Intake and inbox** `/intake`, `/intake/inbox` | Source text, title, generation into an editable brief, save actions, threaded inbox and thread-to-brief flow; AI is conditional with fallback. | Entry is visible; generation requires 20 characters but the tested UI does not explain the threshold. Changes can be saved field-by-field; failure semantics are not atomic. Inbox errors are visible on the inbox but can be reported as zero on Pipeline. Viewer sees a view-only intake fallback. |
+| **Briefs** `/briefs`, `/briefs/[id]` | Search/filter/status list, detail sections, status, source and open-question controls/history. | List and empty state are discoverable; detail reads largely as a document, not a general editor. Editing the generated brief happens in intake rather than through a clearly equivalent detail-page editor. Long forms and keyboard flows need real-device verification. |
+| **Proposals** `/proposals`, `/proposals/[id]`, `/proposals/[id]/versions/[versionId]` | Generate from an existing brief, status, document, PDF, version history/read-only snapshots and guarded restore. Generation copies source data; it is not evidence of AI proposal generation. | Lists/status and history are visible; current proposal content is rendered as a document, with no general content-edit control in the inspected detail. List filtering and empty state exist. Review saving/restore behaviour with a real database before promising a full editing workflow. |
+| **Task plans** `/plans`, `/plans/[id]` | Generate a plan from a proposal; task check/uncheck, progress and status. Tasks are `{id, text, checked}`. | Basic task progress is present, but no obvious task-text editor, per-task owner or due date exists. On small screens the list/detail rendered without detected horizontal overflow; full task-editing is not an implemented capability. |
+| **Client updates and sharing** `/updates`, `/updates/[id]`, `/share/[token]` | Draft from a plan, editable markdown with explicit save, status and PDF; update templates; create/copy/revoke/regenerate a public read-only link. | Draft/share/sent/revoked messaging is inconsistent with actions and the share RPC; unsaved navigation loss was reproduced locally. The public route was tested with a synthetic token only. See P1 findings before treating status as delivery or draft as private. |
+| **Search** `/search?q=…` | Labelled global GET search with grouped links and source-level workspace/money visibility scoping. | Query retention rendered locally. The simple fixture did not implement real filtering, so relevance, live data and cross-role isolation were not verified in the browser. |
+| **Account / workspace** `/settings` | Profile/appearance, workspace, members/invites and billing areas; settings navigation and role-dependent controls. Appearance supports system/light/dark. | 1440px account menu keyboard Home, End and Escape worked in the fixture. The plan card uses a resolved Free/Pro entitlement and conditionally shows checkout or request access. Its terminology differs from the public Starter/Team/Studio pricing; verify the intended mapping and production configuration before changing copy. No billing changes are proposed in this audit. |
+| **Adjacent work** `/contracts`, `/contracts/[id]`, `/invoices`, `/invoices/[id]`, `/time`, `/reports` | Contract and invoice lists/details, timer/time entries and reports. | Source-reviewed because they affect attention, money and mobile layout; these routes were not individually included in the seven-width browser sweep. The empty pipeline can hide their urgency. Synthetic browsing cannot validate real payment, permission or accounting behaviour. |
+
+**Dashboard hierarchy assessment.** A large workflow illustration and promotional introduction precede the status tiles. The stage map communicates work in progress, then Needs you lists aggregate open questions, draft updates, expiring offers and overdue invoices in fixed category order; money, time and recent activity sit in the desktop rail. This establishes the workflow, but the next specific action is not explicit and urgent items can sit below substantial introductory content on phones. This is a design assessment from source and fixture screenshots, not a claim about measured customer behaviour.
+
+**Loading/errors/empty states.** The shared app loading/error boundaries provide a starting point; scoped empty states exist for pipeline, intake, briefs, proposals, plans and updates. A local 390px empty-list fixture rendered each of those six states. This is not an exhaustive audit of every detail, mutation failure, network condition or first-load sequence. Source-level save failures and the independently forced inbox read failure are specifically addressed below.
+
+**Form and state coverage by workflow.** Brief/proposal list search and status chips filter the loaded lists client-side; their source provides distinct no-records and no-match states with clear filters. Plans and updates similarly show status/filter/empty states; task toggles save automatically while updates use explicit save. At the seven tested widths, their fixture list/detail pages showed no detected horizontal overflow, but mutation-error, no-match and full edit/save paths were not exhaustively exercised. Search has a labelled refine GET form and prompts for more characters on short input; it has no editing/save state, and real query filtering and failures remain unverified. Settings exposes role-dependent forms and a real entitlement-driven plan state, but profile, membership, invite and billing mutations were not exercised. Shared route error/loading boundaries exist; their presence does not prove each individual failure is actionable or announced. For mobile, the seven-width fixture results cover the scoped core list/detail pages only; visual collision, real keyboards and the unswept adjacent routes remain limitations.
+
+**Existing tests.** `tests/components/phase-b-shell.test.ts`, `phase3-pages.test.ts`, `phase4a-pages.test.ts`, `search.test.ts` and `proposal-version-history.test.ts` largely assert source structure/wiring; `tests/lib/dashboard.test.ts` covers dashboard helpers. Related DB tests exist. `scripts/verify-responsive.mjs` and `scripts/responsive/phase-f.mjs` supply the browser harness. Structural assertions are useful regression gates but do not replace rendering, live-data or keyboard tests. The original responsive harness has destructive port/build-cleanup behaviour: use the isolated documented adaptation below, not the unmodified script against an important workspace.
+
+## Findings and recommendations
+
+**Severity:** P0 = demonstrated immediate widespread harm or safety/security emergency; P1 = material trust or important-workflow risk; P2 = meaningful usability/accessibility/reliability friction; P3 = polish, resilience or measured follow-up. Findings are local-fixture/source evidence unless explicitly qualified. Priority is a recommendation, not a claim about production incident frequency.
+
+### P0 — none established
+
+No observed result establishes an automatic data leak, production account compromise, payment failure or other P0 incident.
+
+### P1-01 — Sent is presented as delivered, and live updates can change
+
+- **Where / evidence:** `app/(app)/updates/[id]/page.tsx` says a sent update was “Delivered to the client” and says editing changes the saved copy, not what the client already received. `app/(app)/updates/[id]/actions.ts` `updateUpdateStatus` only updates status; there is no delivery operation in that action. The active share RPC in `supabase/migrations/20260923030000_share_links_schema.sql` reads the current update by token, not a frozen sent snapshot. Synthetic status and share probes rendered the contradictory copy.
+- **Proposal / benefit:** describe the actual action as “Mark as sent” or “Marked sent”; explain that the user must share/deliver through their own channel, that an active link displays the current saved content, and that a PDF is a separate export. Do not imply email, notification or frozen delivery. This protects client communication and expectations.
+- **Risk and regression checks:** wording must distinguish exported PDF from live link; test draft/sent × active/no/revoked link, edit after marking sent, public view after save, keyboard and screen-reader names. Test with a real isolated database before release. **Backend:** no, for truthful UI; real delivery or immutable sent snapshots would require separately approved backend/product work.
+
+### P1-02 — Draft privacy and revoked-link indicators conflict with sharing behaviour
+
+- **Where / evidence:** the same detail says drafts stay private until marked sent, but `createShareLink` permits a draft and the SQL RPC returns the live update for an active token regardless of status. Exposure requires a user to create and distribute that link; no automatic leak is demonstrated. `page.tsx` uses `shareLink` truthiness for “Public link live” / “Live”, even when `ShareLinkPanel.tsx` correctly sees `revoked_at` and offers regeneration. Both contradictions were reproduced with fictional fixtures.
+- **Proposal / benefit:** remove the unconditional draft-privacy promise; make link creation explicitly explain that anyone holding the active link can view the current saved draft, and derive every badge/action from the same active/revoked state. Consider a confirmation before exposing a draft, while keeping revocation and regeneration understandable. This makes access predictable.
+- **Risk and regression checks:** don't expose token values in logs; verify draft/sent/no-link/active/revoked/regenerated combinations, public token access after revoke, editor and viewer permissions, and RLS against a real isolated database. **Backend:** no for accurate messaging, status derivation and a UI confirmation; enforcing a new draft-sharing policy server-side or changing RPC semantics requires separately approved backend/security work.
+
+### P1-03 — Money-only work can hide overdue/expiring attention
+
+- **Where / evidence:** `app/(app)/dashboard/page.tsx` calculates `hasWork` from briefs, proposals, plans, updates and threads, excluding invoices/contracts. A fixture with an overdue sent invoice and soon-expiring contract but no pipeline documents rendered “Your pipeline is empty” and neither attention alert. An empty chart frame was also rendered.
+- **Proposal / benefit:** render important attention independently from the document-empty state, and make empty-state wording reflect which area is empty. Preserve the `canSeeMoney` role guard. Owners can act on obligations without first creating an unrelated brief.
+- **Risk and regression checks:** moving attention must not expose money to restricted roles or duplicate alerts. Test overdue/expiring-only, truly empty, mixed data, failed reads and money-hidden roles; assert individual links go to the relevant records or clearly labelled lists. **Backend:** no; server-rendered UI composition can use the existing loaded data.
+
+### P2-01 — Floating timer covers mobile work
+
+- **Where / evidence:** `components/time/TimeTimer.tsx` fixes the idle control above the mobile dock. At 375×667 the measured timer/textarea intersection was **112×44 CSS px**; hit-testing the intersection targeted “Start timer”, not the intake textarea. A 320px pipeline screenshot also shows overlap, but the 320px intake textarea probe did not intersect; do not generalise that exact collision to every phone.
+- **Proposal / benefit:** reserve a safe area or make the idle timer a dock/toolbar action, and keep running-timer status accessible without covering fields, dialogs or the final item. Users can focus and complete forms on small screens.
+- **Risk and regression checks:** preserve running/paused state across navigation; test 320/375/390, long and short pages, keyboard, virtual keyboard, zoom, dialogs, drawer, safe-area insets and hit-testing the intended input—not only bounding-box overflow. **Backend:** no.
+
+### P2-02 — Unsaved edits and partial saves can undermine trust
+
+- **Where / evidence:** `components/updates/UpdateComposer.tsx` uses local edits and explicit save. In a synthetic browser test, a dirty update navigated away without a prompt and the text was lost. Intake's “Start over” resets a dirty draft without a guard. `app/(app)/intake/actions.ts` saves changed brief fields with sequential RPC calls; if a later call fails, an earlier one may already have persisted. Source also shows a blank intake title falling back to the old title while the client snapshots its local draft after success. Partial persistence/title desynchronisation were source-reviewed, not reproduced against a real database.
+- **Proposal / benefit:** visibly distinguish unsaved, saving, saved and failed; protect destructive reset/navigation with an accessible confirmation or recoverable local draft, and reload/reconcile persisted values after partial errors. Define whether sequential saves are an intentional contract. Fewer lost edits and more accurate status build confidence.
+- **Risk and regression checks:** avoid traps or stale cross-workspace drafts; test route changes, reload, reset, failed second field, blank title, retry, concurrent edits, focus restoration and assistive announcements. **Backend:** no for dirty-state protection, honest partial-error messaging and reconciliation; atomic multi-field persistence would require a separately approved backend transaction/RPC.
+
+### P2-03 — Activity is grouped by type and not actionable
+
+- **Where / evidence:** dashboard builds its timeline by appending brief, proposal, plan and update arrays then takes seven entries, without a global date sort; `components/ui/doc-detail.tsx` `ActivityTimeline` rows have no links. A mixed-date fixture showed older briefs before newer proposal/plan/update rows.
+- **Proposal / benefit:** merge and sort by the actual timestamp before limiting, add labelled record links, and call it “Recently updated” if it is a list of current records rather than a complete event log. Users can identify and open the next item without inferring order.
+- **Risk and regression checks:** cover equal/missing dates, more than seven of one type, role restrictions, links, keyboard order and long titles. Do not represent record updates as a comprehensive audit trail. **Backend:** no for the existing loaded records; a complete event history would need separately approved backend support.
+
+### P2-04 — Navigation and visible actions do not consistently match context/role
+
+- **Where / evidence:** a self-contained root/direct-route probe found no `aria-current="page"` navigation element for either `/` or `/dashboard` at 390 and 1440. An authenticated synthetic viewer saw “New brief”, reached the settled “View only” intake fallback without a main H1, and saw update-share mutation controls; editor guards rejected the attempted share action. This is a misleading affordance, not evidence of an RLS bypass.
+- **Proposal / benefit:** make the canonical Pipeline alias active on both paths; hide or clearly disable editor-only actions for viewers with an explanation, while preserving server-side authorization. Give every fallback a meaningful main heading. Users can orient themselves and avoid dead ends.
+- **Risk and regression checks:** hiding an action must never replace or weaken the server guard. Test both route aliases, all nav breakpoints and nested routes, viewer/editor/owner roles, direct URL entry, keyboard and screen-reader state, and denied mutations server-side. **Backend:** no for UI/state corrections; existing authorization must remain authoritative.
+
+### P2-05 — Validation, failures and next steps are not consistently explicit
+
+- **Where / evidence:** intake Generate is disabled below 20 characters; the tested page gave no visible minimum-length explanation. A forced inbox read failure renders an error on `/intake/inbox`, while dashboard converts the unavailable thread list into `0`. Pipeline attention appears after the introductory art, status tiles and stage map, is ordered by category rather than urgency, and generally links to broad lists rather than the affected specific items. Search's local stub did not model real filtering.
+- **Proposal / benefit:** explain length requirements before submission and announce actionable errors; show “Unavailable” plus retry/link instead of a false zero; make the highest-priority attention easier to reach and have attention and empty states point to the most relevant next action. Document distinct no-data, no-results and failed states. Users know what to fix and whether data is trustworthy.
+- **Risk and regression checks:** avoid noisy errors or presenting restricted data as an ordinary failure. Test 0/19/20 characters, upper limits, failed reads vs real zero, retry, errors with labels and focus, long/localised text, role-restricted links, and real search relevance in an isolated database. **Backend:** no for these UI states using existing error signals; broader search changes are out of scope.
+
+### P2-06 — Editing capability and workspace plan state are easy to over-assume
+
+- **Where / evidence:** brief detail is largely read-only, proposal content is rendered without a general content editor, and plan tasks have only text/check state; source does not establish per-task ownership/due dates. `app/(app)/settings/page.tsx` passes a resolved `free`/`pro` entitlement into `components/settings/PlanCard.tsx`, which displays Free/Pro; public pricing uses Starter/Team/Studio. That is a terminology/mapping question, not proof of an incorrect entitlement. Existing pricing docs disclose unenforced limits and unavailable capabilities; production subscription state was not inspected.
+- **Proposal / benefit:** label documents and snapshots as editable or read-only, link to the actual edit surface where one exists, and avoid inventing task controls. Separately clarify the relationship between account and public-pricing terminology after product review, while preserving the authoritative entitlement and billing behaviour. This reduces dead ends and false account expectations.
+- **Risk and regression checks:** labels must not imply entitlements or accidentally expose editor actions to viewers. Test role-aware document actions, save/reload, snapshots/restore, no unsupported owner/date controls, and a fixture matrix of free/paid/unknown subscription state. **Backend:** no for clear existing-capability labels; a proposal editor, task owners/dates or subscription changes may need separately approved API/data/billing work. No such changes are authorised by this audit.
+
+### P3-01 — Empty chart and low-information surfaces need refinement
+
+- **Where / evidence:** the money-only synthetic pipeline displayed an empty pipeline message and an empty chart wrapper. The 320px pipeline header wraps, and the dock visually truncates “Proposals”; geometry checks alone did not classify those visual problems as failures.
+- **Proposal / benefit:** omit empty chart chrome or provide a labelled, actionable no-data state; simplify narrow headers and keep full navigation names accessible/visible. Reduce scanning burden without borrowing marketing decoration.
+- **Risk and regression checks:** removing empty chrome must not hide the only useful next action or cause layout shifts. Test empty vs non-empty data, 200% zoom, 320–390px, large text, localisation and screen-reader labels. **Backend:** no.
+
+### P3-02 — Measure real performance before optimising
+
+- **Where / evidence:** local synthetic fixture browsing reported no captured console/page errors or non-aborted request failures in the sampled main sweeps, and navigation statuses matched; individual subresource response statuses were not systematically recorded. A forced inbox read failure was separately tested. The maximum sampled local CLS was about **0.00412** (375px proposal detail). Authenticated sampled pages recorded **276,688–425,742 encoded script-resource bytes** and **18–20 script resources**; these are browser resource observations, not standalone bundle sizes. Cache, local stub, environment and measurement window limit comparison. LCP, INP and real-user performance were not measured.
+- **Proposal / benefit:** inspect route-level production build/chunks and real user or authorised staging traces, set budgets from those observations, then target costly client components or requests. Avoid speculative optimisations and preserve fast workflows.
+- **Risk and regression checks:** speculative lazy-loading can hide critical content or move work into a slower interaction. Compare cold/warm navigation, slow network/CPU, authenticated routes, error/retry, hydration and layout shift; keep content visible with reduced motion. **Backend:** no for instrumentation/route-level UI work; data aggregation changes, if warranted, need separate approval.
+
+## Application-specific design system recommendation
+
+Use the existing design system as the base, not a marketing-page transplant:
+
+| Area | Existing relationship / application direction |
+|---|---|
+| **Type** | Shared self-hosted Manrope and Fira tie product and marketing together. Keep compact, legible body/label hierarchy, sentence-case actions and at least the existing 12px metadata floor; reserve display treatments for page headings rather than every card. |
+| **Colour / theme** | Reuse semantic surface/text/border and purple accent tokens; reserve strong purple for primary action, focus and selected state. Keep status semantic and readable without colour alone. Validate both light/dark/system contrast, especially gradients and muted text; automated incomplete results are not passes. |
+| **Borders / radii / shadow** | Existing vocabulary uses 8px controls and 12px surfaces with hairline borders. Keep card elevation restrained; use grouping, spacing and headings before extra decorative panels. Distinguish empty, loading and error states without relying on shadow. |
+| **Controls / icons** | One obvious primary action per context, consistent secondary/destructive styles, labelled inputs and errors; preserve meaningful icon names. Design for 44×44 CSS px applicable targets and visible focus while acknowledging the automated detector does not cover every control. |
+| **Navigation / density** | Preserve mobile dock/drawer, tablet rail and desktop sidebar, but make active location, workspace, role and next action unmistakable. Surface urgent work first; avoid counting empty chart shells as useful hierarchy. |
+| **Motion** | Use brief, purposeful feedback and respect `prefers-reduced-motion`. Marketing pricing's promotional entrance/treatment is not appropriate as a blanket animation for high-frequency data-entry and navigation. Content and focus must not depend on animation completing. |
+| **State** | Specify no data vs no results vs error; editing, saving, saved and partial failure; draft/sent and public/revoked; read-only/permission denied. State language must match actual APIs and never imply delivery, entitlement or data protection not implemented. |
+
+## QA evidence and limitations
+
+### Browser matrix
+
+Local Chromium **153** loaded a production build of the audited commit in a throwaway archive, using a synthetic, in-process Supabase stub, fictional workspace/user/content and a temporary app server. The light sweep covered **16 page types × seven widths = 112 page records**, including a synthetic public update route; detail pages use stable fictional IDs. It did not exercise every possible state of every route.
+
+| Viewport CSS px | Light scoped pages | Additional coverage | Notes |
+|---|---:|---|---|
+| 320×568 | 16 | Template dialog; mobile drawer | Header wraps; visible timer/content overlap. |
+| 375×667 | 16 | Dark representative sweep | Intake timer/textarea hit-test collision. |
+| 390×844 | 16 | Empty-fixture sweep; drawer; viewer; root/direct navigation | Six list empty states and role/degraded probes. |
+| 768×1024 | 16 | Template dialog | Tablet rail. |
+| 1024×768 | 16 | — | Desktop sidebar breakpoint. |
+| 1200×800 | 16 | — | Desktop. |
+| 1440×900 | 16 | Dark representative sweep; account menu; root/direct navigation | Full sidebar and detail rails. |
+
+The main light and dark geometry checks reported zero detected horizontal overflow, cut/offscreen nodes, undersized *qualifying* controls or sampled scroll-geometry failures. That is not a claim of zero occlusion or all tap targets passing: the timer collision and visual truncation above demonstrate detector limits. Separate dialog geometry was also checked at 320 and 768.
+
+`DARK=1` set `prefers-color-scheme: dark` for the main 375/1440 page sweeps; `phase-f-quality.json` records **32/32 `resolvedTheme: dark`**. Their 32 axe scans had zero reported violations. The follow-up interaction contexts in that same run defaulted to light unless they explicitly selected dark; do not treat their screenshots as dark-mode evidence. The 390 dark drawer screenshot/probes explicitly requested dark.
+
+### Accessibility and interaction checks
+
+- **Axe:** 32 light and 32 dark main-page scans (16 page types × two widths per theme), zero reported violations. Each theme had 30 repeated incomplete `color-contrast` node occurrences, chiefly two shared wordmark targets on gradients. Four separate drawer scans had zero reported violations and three incomplete `aria-hidden-focus` node occurrences apiece. Incomplete items require manual assessment; zero detected violations is neither full coverage nor WCAG certification.
+- **Keyboard/focus:** named template dialog fields, focus containment and Escape/focus restoration were exercised at 320/768. Drawer containment and Escape were exercised at 320/390 light/dark. One immediate dark-390 focus read initially reported no restoration; five later wait-based repetitions restored focus. The 1440 account menu supported Home, End and Escape/focus return. Further assistive-technology and real-device testing remains necessary.
+- **Reduced motion:** representative pipeline, intake, brief, proposal, plan, update and settings pages were probed in light/dark; headings were visible and zero running animations were reported at the sample time. This is not an exhaustive motion audit.
+- **Forms/state:** local tests covered the intake threshold, update dirty navigation, draft/sent/revoked share copy, viewer fallback/denied share action, failed inbox read and standalone money attention. These are synthetic fixtures, not live email, real RLS, production client sharing or payment tests.
+- **Rendering/performance:** no captured console/page errors or non-aborted request failures in the main sampled sweeps; navigation statuses matched, but subresource response statuses were not systematically recorded. Local metrics are described in P3-02. Contracts, invoices, time and reports were not individually swept in the browser. No production field data, systematic network throttling, INP or authenticated LCP was collected. Build warnings were recorded above, not silently counted as performance failures.
+
+### Selected fictional-fixture screenshots
+
+All names, content, IDs, times and links below are synthetic. Screenshots are browser observations, not production captures. See [all screenshots](screenshots/roducq-app-ux-audit/) and [JSON/patch evidence](evidence/roducq-app-ux-audit/).
+
+| Evidence | Screenshot |
+|---|---|
+| Pipeline: [320](screenshots/roducq-app-ux-audit/pipeline-light-320.png), [390](screenshots/roducq-app-ux-audit/pipeline-light-390.png), [1440 light](screenshots/roducq-app-ux-audit/pipeline-light-1440.png), [1440 dark](screenshots/roducq-app-ux-audit/pipeline-dark-1440.png) | Different breakpoints and resolved themes. |
+| [375 intake timer overlap](screenshots/roducq-app-ux-audit/intake-timer-overlap-375.png) | Control covers the source field. |
+| [390 dark drawer](screenshots/roducq-app-ux-audit/drawer-dark-390.png), [320 template dialog](screenshots/roducq-app-ux-audit/template-dialog-320.png) | Sampled focus/keyboard contexts. |
+| [Draft with live link](screenshots/roducq-app-ux-audit/update-draft-live-1440.png), [revoked indicator](screenshots/roducq-app-ux-audit/update-revoked-1440.png), [sent copy](screenshots/roducq-app-ux-audit/update-sent-1440.png), [dirty update](screenshots/roducq-app-ux-audit/update-unsaved-390.png) | Client-sharing and unsaved-state evidence. |
+| [Mixed activity](screenshots/roducq-app-ux-audit/dashboard-activity-1440.png), [money-only empty pipeline](screenshots/roducq-app-ux-audit/standalone-money-pipeline-1440.png), [failed inbox count](screenshots/roducq-app-ux-audit/inbox-error-pipeline-390.png) | Ordering, hidden urgency and false zero. |
+| [Viewer intake](screenshots/roducq-app-ux-audit/viewer-intake-390.png), [viewer sharing](screenshots/roducq-app-ux-audit/viewer-share-390.png), [empty pipeline](screenshots/roducq-app-ux-audit/empty-pipeline-390.png) | Role and empty-state samples. |
+
+### Reproducing the local evidence safely
+
+The [evidence directory](evidence/roducq-app-ux-audit/) contains actual geometry, quality, interaction and navigation JSON, plus **documentation-only patch text** for the audited harness. Apply patches only to a disposable `git archive` of the baseline, never to the real app checkout. Patch transitions were checked against the executed scripts. The original harness can kill listeners on selected ports and remove the selected build directory. The first adaptation prevents port-based killing and preserves the build on `SKIP_BUILD=1`, but **still removes the selected build directory on a fresh build** and can remove the output directory if `FRESH_SHOTS=1`. Use only disposable paths. It uses fictional fixtures, intercepts non-local browser requests in the main sweeps, and enables the additional widths. Never point the stub at real Supabase or pass production credentials.
+
+1. Archive the baseline into a temporary directory, run `npm ci` there, and provide a compatible Chromium executable and any required runtime libraries. Ensure the stub port is unused and choose new temporary output/build directories. No `.env` or production secrets are needed.
+2. Copy the four `.patch.txt` files out of the documentation directory. From the temporary archive run `patch -p1 < 01-light-harness.patch.txt`. Run the script with a clean environment, for example `env -i PATH="$PATH" HOME=<temporary-home> LANG=C.UTF-8 NODE_ENV=production NEXT_TELEMETRY_DISABLED=1 NEXT_DIST_DIR=resp-next STUB_PORT=47831 SHOTS_DIR=<temporary-light-dir> PHASE_F=1 RUN_DIALOG=1 FOCUSED_INTERACTIONS=1 CHROMIUM_EXECUTABLE_PATH=<chromium> node scripts/verify-responsive.mjs`. The first run builds the isolated production app. Add `LD_LIBRARY_PATH` inside the clean environment if the Chromium package requires it.
+3. Apply `02-followup-harness.patch.txt`, save a copy of the resulting script, then repeat with `SKIP_BUILD=1 WIDTHS=375,1440 DARK=1 PHASE_F=1 FOCUSED_INTERACTIONS=1` and a new output directory. Apply `03-empty-harness.patch.txt` on top for `SKIP_BUILD=1 WIDTHS=390 EMPTY_FIXTURES=1 PHASE_F=1 FOCUSED_INTERACTIONS=1` and a new directory. Restore the saved follow-up script, apply `04-nav-harness.patch.txt`, and run `SKIP_BUILD=1 WIDTHS=390,1440 PHASE_F=1 FOCUSED_INTERACTIONS=1` with a new directory. Keep the same isolated build directory and ensure the port is free between runs.
+4. Compare JSON and screenshots, not only the harness exit code. Browser builds, OS fonts, timing, cache and fixture stubs affect results; the reproduction is not a production/RLS/delivery test. The extra root/direct navigation probe uses its own local synthetic context. Keep all generated files out of application code.
+
+## Proposed implementation phases — approval required
+
+1. **Trust and attention first:** truthful sent/live/revoked/draft copy and indicators; dashboard attention independent of pipeline emptiness; explicit unavailable counts. UI-only changes with regression tests, preserving current sharing and authorization semantics.
+2. **Mobile and orientation:** timer safe area, canonical Pipeline active state, role-aware actions, meaningful fallback heading and keyboard/focus checks across breakpoints.
+3. **Editing and workflow clarity:** unsaved/reset protection, accurate save/partial-error feedback, validation requirements, chronological linked activity and honest read-only/next-step labels. Re-test all workflows, dark theme and reduced motion.
+4. **Separately decide any backend-dependent capabilities:** atomic save, immutable sent snapshots/real delivery, additional task fields or a proposal editor, subscription reconciliation and full event history. These are options for product/security review, **not approved by this audit**; schema, policies, APIs and billing stay unchanged unless explicitly authorised later.
+5. **Release gate after any approved work:** isolated real-database permission/share/revoke tests, accessibility/manual contrast and assistive-technology testing, seven widths plus zoom/real devices, failure/retry and navigation tests, production-like performance traces, existing test suite and a fresh scope review.
+
+**Decision:** stop here and review the findings and phased scope before any redesign or implementation.

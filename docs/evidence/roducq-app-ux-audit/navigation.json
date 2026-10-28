@@ -1,0 +1,26 @@
+[
+  {
+    "width": 390,
+    "path": "/",
+    "actual": "/",
+    "active": []
+  },
+  {
+    "width": 390,
+    "path": "/dashboard",
+    "actual": "/dashboard",
+    "active": []
+  },
+  {
+    "width": 1440,
+    "path": "/",
+    "actual": "/",
+    "active": []
+  },
+  {
+    "width": 1440,
+    "path": "/dashboard",
+    "actual": "/dashboard",
+    "active": []
+  }
+]

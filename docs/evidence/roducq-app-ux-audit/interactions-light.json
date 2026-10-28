@@ -1,0 +1,357 @@
+[
+  {
+    "name": "drawer-320-light",
+    "ran": true,
+    "details": {
+      "focusContained": true,
+      "focusSequence": [
+        "Log out",
+        "Close menu",
+        "Pipeline",
+        "Close menu",
+        "Pipeline",
+        "Intake",
+        "Pipeline",
+        "Intake",
+        "Inbox",
+        "Intake",
+        "Inbox",
+        "Briefs",
+        "Inbox",
+        "Briefs",
+        "Proposals",
+        "Briefs",
+        "Proposals",
+        "Plans"
+      ],
+      "escapeClosed": true,
+      "focusRestored": true,
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "aria-hidden-focus",
+            "nodes": 3
+          }
+        ]
+      }
+    },
+    "browserErrors": []
+  },
+  {
+    "name": "drawer-390-light",
+    "ran": true,
+    "details": {
+      "focusContained": true,
+      "focusSequence": [
+        "Log out",
+        "Close menu",
+        "Pipeline",
+        "Close menu",
+        "Pipeline",
+        "Intake",
+        "Pipeline",
+        "Intake",
+        "Inbox",
+        "Intake",
+        "Inbox",
+        "Briefs",
+        "Inbox",
+        "Briefs",
+        "Proposals",
+        "Briefs",
+        "Proposals",
+        "Plans"
+      ],
+      "escapeClosed": true,
+      "focusRestored": true,
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "aria-hidden-focus",
+            "nodes": 3
+          }
+        ]
+      }
+    },
+    "browserErrors": []
+  },
+  {
+    "name": "drawer-320-dark",
+    "ran": true,
+    "details": {
+      "focusContained": true,
+      "focusSequence": [
+        "Log out",
+        "Close menu",
+        "Pipeline",
+        "Close menu",
+        "Pipeline",
+        "Intake",
+        "Pipeline",
+        "Intake",
+        "Inbox",
+        "Intake",
+        "Inbox",
+        "Briefs",
+        "Inbox",
+        "Briefs",
+        "Proposals",
+        "Briefs",
+        "Proposals",
+        "Plans"
+      ],
+      "escapeClosed": true,
+      "focusRestored": true,
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "aria-hidden-focus",
+            "nodes": 3
+          }
+        ]
+      }
+    },
+    "browserErrors": []
+  },
+  {
+    "name": "drawer-390-dark",
+    "ran": true,
+    "details": {
+      "focusContained": true,
+      "focusSequence": [
+        "Log out",
+        "Close menu",
+        "Pipeline",
+        "Close menu",
+        "Pipeline",
+        "Intake",
+        "Pipeline",
+        "Intake",
+        "Inbox",
+        "Intake",
+        "Inbox",
+        "Briefs",
+        "Inbox",
+        "Briefs",
+        "Proposals",
+        "Briefs",
+        "Proposals",
+        "Plans"
+      ],
+      "escapeClosed": true,
+      "focusRestored": false,
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "aria-hidden-focus",
+            "nodes": 3
+          }
+        ]
+      }
+    },
+    "browserErrors": []
+  },
+  {
+    "name": "template-dialog-320",
+    "ran": true,
+    "details": {
+      "namedFields": true,
+      "focusContained": true,
+      "focusRestored": true,
+      "box": {
+        "x": 16,
+        "y": 42.6015625,
+        "width": 288,
+        "height": 482.796875
+      },
+      "noSaveAttempted": true
+    },
+    "browserErrors": []
+  },
+  {
+    "name": "template-dialog-768",
+    "ran": true,
+    "details": {
+      "namedFields": true,
+      "focusContained": true,
+      "focusRestored": true,
+      "box": {
+        "x": 128,
+        "y": 263.625,
+        "width": 512,
+        "height": 496.75
+      },
+      "noSaveAttempted": true
+    },
+    "browserErrors": []
+  },
+  {
+    "name": "intake-validation-390",
+    "ran": true,
+    "details": {
+      "emptyDisabled": true,
+      "shortDisabled": true,
+      "twentyEnabled": true,
+      "visibleMinimumExplanation": false,
+      "noSubmissionAttempted": true
+    },
+    "browserErrors": []
+  },
+  {
+    "name": "unsaved-update-navigation-390",
+    "ran": true,
+    "details": {
+      "blankTitleSaveDisabled": true,
+      "dirtyIndicator": true,
+      "navigationDialogs": [],
+      "unsavedEditSurvived": false,
+      "noSaveAttempted": true
+    },
+    "browserErrors": []
+  },
+  {
+    "name": "draft-with-live-share-1440",
+    "ran": true,
+    "details": {
+      "statesPrivateUntilSent": true,
+      "alsoSaysPublicLinkLive": true,
+      "fixtureStatus": "draft",
+      "fixtureShare": "active"
+    },
+    "browserErrors": []
+  },
+  {
+    "name": "revoked-share-1440",
+    "ran": true,
+    "details": {
+      "statesPublicLinkLive": true,
+      "showsRevokedMessage": true,
+      "regenerateAvailable": true,
+      "fixtureShare": "revoked"
+    },
+    "browserErrors": []
+  },
+  {
+    "name": "sent-status-copy-1440",
+    "ran": true,
+    "details": {
+      "saysDeliveredToClient": true,
+      "saysEditingDoesNotChangeClientCopy": true,
+      "fixtureStatus": "sent",
+      "noActionOrSendAttempted": true
+    },
+    "browserErrors": []
+  },
+  {
+    "name": "dashboard-activity-mixed-dates",
+    "ran": true,
+    "details": {
+      "renderedActivity": "Recent activity\nHarbor Lane rebrand\nHarbor Lane Studio\nSep 25, 2026\nNorthwind packaging\nNorthwind Foods\nSep 25, 2026\nHarbor Lane — phase 1 proposal\nHarbor Lane Studio\n7d ago\nHarbor Lane — delivery plan\nHarbor Lane Studio\n5d ago\nWeekly update — week 3\nUpdate draft\n18h ago",
+      "fixtureUpdatedAt": {
+        "briefs": "2026-09-25T10:00:00Z",
+        "proposal": "2026-10-20T10:00:00Z",
+        "plan": "2026-10-22T10:00:00Z",
+        "update": "2026-10-27T10:00:00Z"
+      }
+    },
+    "browserErrors": []
+  },
+  {
+    "name": "search-form-390",
+    "ran": true,
+    "details": {
+      "submittedUrl": "/search?q=Harbor",
+      "queryRetained": "Harbor",
+      "stubDoesNotModelRealSearchFiltering": true
+    },
+    "browserErrors": []
+  },
+  {
+    "name": "reduced-motion-light",
+    "ran": true,
+    "details": [
+      {
+        "path": "/",
+        "runningAnimations": 0,
+        "h1Visible": true
+      },
+      {
+        "path": "/intake",
+        "runningAnimations": 0,
+        "h1Visible": true
+      },
+      {
+        "path": "/briefs",
+        "runningAnimations": 0,
+        "h1Visible": true
+      },
+      {
+        "path": "/proposals",
+        "runningAnimations": 0,
+        "h1Visible": true
+      },
+      {
+        "path": "/plans",
+        "runningAnimations": 0,
+        "h1Visible": true
+      },
+      {
+        "path": "/updates",
+        "runningAnimations": 0,
+        "h1Visible": true
+      },
+      {
+        "path": "/settings",
+        "runningAnimations": 0,
+        "h1Visible": true
+      }
+    ],
+    "browserErrors": []
+  },
+  {
+    "name": "reduced-motion-dark",
+    "ran": true,
+    "details": [
+      {
+        "path": "/",
+        "runningAnimations": 0,
+        "h1Visible": true
+      },
+      {
+        "path": "/intake",
+        "runningAnimations": 0,
+        "h1Visible": true
+      },
+      {
+        "path": "/briefs",
+        "runningAnimations": 0,
+        "h1Visible": true
+      },
+      {
+        "path": "/proposals",
+        "runningAnimations": 0,
+        "h1Visible": true
+      },
+      {
+        "path": "/plans",
+        "runningAnimations": 0,
+        "h1Visible": true
+      },
+      {
+        "path": "/updates",
+        "runningAnimations": 0,
+        "h1Visible": true
+      },
+      {
+        "path": "/settings",
+        "runningAnimations": 0,
+        "h1Visible": true
+      }
+    ],
+    "browserErrors": []
+  }
+]
