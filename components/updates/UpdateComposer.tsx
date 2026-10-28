@@ -140,8 +140,8 @@ export function UpdateComposer({
           className="composer-body min-h-[320px] font-mono text-sm leading-relaxed"
         />
         <p className="composer-hint">
-          Markdown is kept as written — the client receives it as the
-          exported document and the PDF.
+          Exported Markdown and PDFs use the saved content; neither is sent
+          automatically.
         </p>
       </div>
       <div className="composer-actions">

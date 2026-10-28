@@ -14,7 +14,7 @@
  * and the copy button always has a full URL by the time anyone can click.
  */
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useOrigin } from "@/lib/use-origin";
 import { Ban, Check, Copy, Link2, Loader2, RefreshCw } from "lucide-react";
 
@@ -24,6 +24,7 @@ import {
   revokeShareLink,
 } from "@/app/(app)/updates/[id]/actions";
 import { Button } from "@/components/ui/button";
+import { getUpdateShareState } from "@/lib/ui/update-share-state";
 import type { ShareLink } from "@/lib/types/share";
 
 export function ShareLinkPanel({
@@ -40,7 +41,7 @@ export function ShareLinkPanel({
   const origin = useOrigin();
   const shareUrl = shareLink ? `${origin}/share/${shareLink.token}` : null;
 
-  const isActive = shareLink !== null && shareLink.revoked_at === null;
+  const isActive = getUpdateShareState(shareLink) === "active";
 
   async function run(
     action: () => Promise<{ error?: string } | undefined>
@@ -64,8 +65,9 @@ export function ShareLinkPanel({
       {shareLink === null && (
         <>
           <p className="text-xs leading-relaxed text-muted-foreground">
-            Anyone with the link can view this update — read-only, no
-            account needed. You can revoke it any time.
+            Anyone with an active link can view the latest saved update,
+            including drafts, without an account. You can revoke the link at
+            any time.
           </p>
           <Button
             type="button"
@@ -86,6 +88,10 @@ export function ShareLinkPanel({
 
       {shareLink !== null && isActive && (
         <>
+          <p className="text-xs leading-relaxed text-muted-foreground">
+            Anyone with this link can view the latest saved update, including
+            changes saved later.
+          </p>
           <div className="flex items-center gap-2">
             <code className="min-w-0 flex-1 truncate rounded-md border border-border bg-muted/40 px-2.5 py-1.5 text-xs">
               {shareUrl ?? `/share/${shareLink.token}`}

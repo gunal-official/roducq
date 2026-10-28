@@ -202,7 +202,7 @@ export default async function DashboardPage() {
     },
     updatesDrafts > 0 && {
       icon: MessageSquare,
-      text: `${updatesDrafts} update draft${updatesDrafts === 1 ? "" : "s"} not sent yet`,
+      text: `${updatesDrafts} update${updatesDrafts === 1 ? "" : "s"} marked as draft`,
       href: "/updates",
       tone: "muted",
     },
@@ -258,8 +258,8 @@ export default async function DashboardPage() {
     ...updates.map((u) => ({
       icon: MessageSquare,
       title: u.title,
-      detail: u.status === "sent" ? "Update sent" : "Update draft",
-      at: timeAgo(u.updated_at),
+      detail: u.status === "sent" ? "Status: marked sent" : "Update draft",
+      at: u.status === "sent" ? `Updated ${timeAgo(u.updated_at)}` : timeAgo(u.updated_at),
       tone: u.status === "sent" ? ("success" as const) : ("muted" as const),
     })),
   ].slice(0, 7);
@@ -271,6 +271,37 @@ export default async function DashboardPage() {
       updates.length +
       (threads ?? []).length >
     0;
+
+  const needsYou = (
+    <SectionCard
+      icon={Bell}
+      title="Needs you"
+      description="Anything waiting on a decision, a send, or a signature."
+      tone="accent"
+      className="animate-rise-in"
+      bodyClassName="p-3"
+    >
+      {attention.length === 0 ? (
+        <p className="flex min-h-11 items-center gap-2 px-2 text-sm text-muted-foreground">
+          <CheckCircle2
+            className="h-4 w-4 text-success"
+            aria-hidden="true"
+          />
+          Nothing pressing — everything is moving on schedule.
+        </p>
+      ) : (
+        attention.map((row) => (
+          <AttentionRow
+            key={row.text}
+            icon={row.icon}
+            text={row.text}
+            href={row.href}
+            tone={row.tone}
+          />
+        ))
+      )}
+    </SectionCard>
+  );
 
   return (
     <div className="forma-core forma-pipeline mx-auto max-w-6xl">
@@ -367,7 +398,7 @@ export default async function DashboardPage() {
             icon={MessageSquare}
             label="Update drafts"
             value={updatesDrafts}
-            hint="Not sent yet"
+            hint="Draft status"
             tone={updatesDrafts > 0 ? "accent" : "muted"}
             delay={120}
             href="/updates"
@@ -376,22 +407,25 @@ export default async function DashboardPage() {
       </ListStats>
 
       {!hasWork ? (
-        <EmptyState
-          icon={LayoutDashboard}
-          title="Your pipeline is empty"
-          description="Paste the first client message and roducq drafts the brief — proposals, plans, updates and invoices hang off it."
-          action={
-            <Button asChild>
-              <Link
-                href="/intake"
-                className="inline-flex min-h-11 min-w-11 items-center"
-              >
-                <PenLine className="h-4 w-4" aria-hidden="true" />
-                Start with a brief
-              </Link>
-            </Button>
-          }
-        />
+        <div className="space-y-6">
+          {attention.length > 0 && needsYou}
+          <EmptyState
+            icon={LayoutDashboard}
+            title="Your pipeline is empty"
+            description="Start with a client message to create a brief and begin your pipeline."
+            action={
+              <Button asChild>
+                <Link
+                  href="/intake"
+                  className="inline-flex min-h-11 min-w-11 items-center"
+                >
+                  <PenLine className="h-4 w-4" aria-hidden="true" />
+                  Start with a brief
+                </Link>
+              </Button>
+            }
+          />
+        </div>
       ) : (
         <div className="grid items-start gap-6 desk:grid-cols-[minmax(0,1fr)_20rem]">
           {/* ── Left: flow + attention ── */}
@@ -432,34 +466,7 @@ export default async function DashboardPage() {
               </ol>
             </SectionCard>
 
-            <SectionCard
-              icon={Bell}
-              title="Needs you"
-              description="Anything waiting on a decision, a send, or a signature."
-              tone="accent"
-              className="animate-rise-in"
-              bodyClassName="p-3"
-            >
-              {attention.length === 0 ? (
-                <p className="flex min-h-11 items-center gap-2 px-2 text-sm text-muted-foreground">
-                  <CheckCircle2
-                    className="h-4 w-4 text-success"
-                    aria-hidden="true"
-                  />
-                  Nothing pressing — everything is moving on schedule.
-                </p>
-              ) : (
-                attention.map((row) => (
-                  <AttentionRow
-                    key={row.text}
-                    icon={row.icon}
-                    text={row.text}
-                    href={row.href}
-                    tone={row.tone}
-                  />
-                ))
-              )}
-            </SectionCard>
+            {needsYou}
           </div>
 
           {/* ── Right rail: money + week + activity ── */}
