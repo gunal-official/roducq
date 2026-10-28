@@ -227,6 +227,9 @@ export function StepsSection() {
               <EngagementPanel />
             </div>
           </div>
+          <p className="mt-2 text-center text-lm-12 text-lm-muted">
+            Illustrative example · fictional client workflow
+          </p>
         </Reveal>
       </div>
     </section>
@@ -247,7 +250,7 @@ function EngagementPanel() {
           </h3>
         </div>
         <span className="rounded-lm-pill bg-lm-surface-accent px-2.5 py-0.5 text-lm-12 font-lm-semibold text-lm-ink-accent">
-          {ENGAGEMENT_PANEL.workspace} · {ENGAGEMENT_PANEL.plan}
+          {ENGAGEMENT_PANEL.workspace} · {ENGAGEMENT_PANEL.workspaceMeta}
         </span>
       </div>
 

@@ -8,27 +8,26 @@ import { IntegrationsSection } from "@/components/marketing/landing/Integrations
 import { PricingSection } from "@/components/marketing/landing/PricingSection";
 import { StepsSection } from "@/components/marketing/landing/StepsSection";
 import { TeamsSection } from "@/components/marketing/landing/TeamsSection";
-import { getPricesConfig, formatPrice } from "@/lib/razorpay";
 import { getSiteUrl, isLocalSiteUrl, SOCIAL_IMAGE, TWITTER_IMAGE } from "@/lib/site";
 
+const PAGE_DESCRIPTION =
+  "Bring client context into structured briefs, proposal drafts, project plans and client updates. Creating an account does not activate a paid plan. Roducq does not collect e-signatures or payments.";
+
 export const metadata: Metadata = {
-  title: "roducq — the workspace that does the client writing",
-  description:
-    "Turn messy client messages into gap-flagged briefs, proposals, plans and weekly updates — one purpose-built pipeline. Free to start, billed per workspace, never per seat. No e-signature and no payment collection, by design.",
+  title: "roducq — client intake, briefs and proposals",
+  description: PAGE_DESCRIPTION,
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: "/",
-    title: "roducq — the workspace that does the client writing",
-    description:
-      "Turn messy client messages into gap-flagged briefs, proposals, plans and weekly updates — one purpose-built pipeline. Free to start, billed per workspace, never per seat. No e-signature and no payment collection, by design.",
+    title: "roducq — client intake, briefs and proposals",
+    description: PAGE_DESCRIPTION,
     images: [SOCIAL_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    title: "roducq — the workspace that does the client writing",
-    description:
-      "Turn messy client messages into gap-flagged briefs, proposals, plans and weekly updates — one purpose-built pipeline. Free to start, billed per workspace, never per seat. No e-signature and no payment collection, by design.",
+    title: "roducq — client intake, briefs and proposals",
+    description: PAGE_DESCRIPTION,
     images: [TWITTER_IMAGE],
   },
 };
@@ -42,8 +41,9 @@ export const metadata: Metadata = {
  * ./landing.css. The page's job is the order, and the order follows the
  * reference exactly:
  *
- *   A. AnnouncementBar — in ../layout.tsx, above the header on every
- *                        marketing route (the reference shows it site-wide)
+ *   A. AnnouncementBar — inside the shared SiteHeader, above the sticky nav;
+ *                        homepage copy is route-specific, all other routes
+ *                        retain their original announcement
  *   B. SiteHeader      — in ../layout.tsx, shared with /about /pricing /vs
  *   C. HeroSection     — promise, two ways in, the product frame
  *   D. FeaturesSection — the four jobs, each with its own visual
@@ -59,17 +59,11 @@ export const metadata: Metadata = {
  * native <details>. Nothing here hydrates state, so the landing page ships
  * no client bundle beyond those two.
  *
- * THE ONE ENV READ is billing config, and it is the same read
- * ./pricing/page.tsx makes: the landing page never invents a price, it
- * formats what the operator configured and says so plainly when there is
- * nothing configured.
+ * Pricing is the approved marketing presentation only. The homepage does
+ * not read billing configuration, and this change does not alter checkout,
+ * plans, subscriptions or entitlements.
  */
 export default function HomePage() {
-  const pricesConfig = getPricesConfig();
-  const priceLines = pricesConfig.ok
-    ? pricesConfig.prices.map((p) => `${formatPrice(p.amount, p.currency)} ${p.currency}`)
-    : [];
-
   // Structured data: name + the page's own published description only.
   // The URL is included only when a real deployment origin is configured
   // (lib/site.ts) — a localhost URL in JSON-LD would be worse than none.
@@ -77,8 +71,7 @@ export default function HomePage() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "roducq",
-    description:
-      "Turn messy client messages into gap-flagged briefs, proposals, plans and weekly updates — one purpose-built pipeline. Free to start, billed per workspace, never per seat. No e-signature and no payment collection, by design.",
+    description: PAGE_DESCRIPTION,
     ...(isLocalSiteUrl() ? {} : { url: `${getSiteUrl()}/` }),
   };
 
@@ -104,10 +97,7 @@ export default function HomePage() {
       <TeamsSection />
 
       {/* H. Pricing */}
-      <PricingSection
-        priceLines={priceLines}
-        billingConfigured={pricesConfig.ok}
-      />
+      <PricingSection />
 
       {/* I. FAQ */}
       <FaqAccordion />

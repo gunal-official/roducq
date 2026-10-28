@@ -7,6 +7,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { ArrowRight, Menu, X } from "lucide-react";
 
 import { RoduMark, Wordmark } from "@/components/app-shell/RoduMark";
+import { AnnouncementBar } from "@/components/marketing/landing/AnnouncementBar";
 import { ThemeIconToggle, ThemeToggle } from "@/components/theme-toggle";
 import { clsx as cn } from "clsx";
 
@@ -111,7 +112,9 @@ export function SiteHeader() {
     pathname === href || pathname.startsWith(`${href}/`);
 
   return (
-    <header className="lm-header sticky top-0 z-40 bg-lm-card backdrop-blur-md">
+    <>
+      <AnnouncementBar homepage={pathname === "/"} />
+      <header className="lm-header sticky top-0 z-40 bg-lm-card backdrop-blur-md">
       <div className="lm-shell relative flex h-16 items-center gap-3 md:h-18">
         <Link
           href="/"
@@ -264,6 +267,7 @@ export function SiteHeader() {
           </Dialog.Root>
         </div>
       </div>
-    </header>
+      </header>
+    </>
   );
 }

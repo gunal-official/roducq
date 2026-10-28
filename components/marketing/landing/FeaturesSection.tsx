@@ -35,8 +35,10 @@ export function FeaturesSection() {
           />
         </Reveal>
 
+        <p className="mt-7 text-lm-12 text-lm-muted">{FEATURES_SECTION.disclosure}</p>
+
         {/* Four equal-width vertical feature cards in one horizontal row on desktop */}
-        <div className="mt-12 grid divide-y divide-lm-border-soft rounded-lm-card border border-lm-border-soft bg-lm-card sm:grid-cols-2 sm:divide-x sm:divide-y-0 md:mt-16 lg:grid-cols-4">
+        <div className="mt-4 grid divide-y divide-lm-border-soft rounded-lm-card border border-lm-border-soft bg-lm-card sm:grid-cols-2 sm:divide-x sm:divide-y-0 md:mt-16 lg:grid-cols-4">
           {FEATURE_BLOCKS.map((block, index) => {
             const Visual = FEATURE_VISUALS[index];
             return (

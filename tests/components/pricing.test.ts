@@ -472,15 +472,17 @@ describe("/pricing Motion.dev, accessibility & homepage consistency", () => {
     assert.ok(featuresIdx > ctaIdx, "feature checklist must appear after CTA button");
   });
 
-  it("preserves the homepage legacy PLAN_TIERS while isolating pricing-specific content", () => {
+  it("uses the approved pricing presentation on the homepage without changing /pricing", () => {
     const homePricing = read("components/marketing/landing/PricingSection.tsx");
-    assert.match(homePricing, /from "@\/app\/\(marketing\)\/pricing\/plans"/);
-    assert.match(homePricing, /PLAN_TIERS\.map/);
-    assert.match(homePricing, /tier\.priceDisplay/);
-    assert.match(homePricing, /tier\.seatsLabel/);
-    assert.match(homePricing, /tier\.featuresHeading/);
-    assert.doesNotMatch(PAGE + PLANS_TSX, /PLAN_TIERS/);
+    assert.match(homePricing, /from "@\/app\/\(marketing\)\/pricing\/pricing-content"/);
+    assert.match(homePricing, /PRICING_CARDS\.map/);
+    assert.match(homePricing, /plan\.price/);
+    assert.match(homePricing, /plan\.seats/);
+    assert.match(homePricing, /plan\.featuresHeading/);
+    assert.match(homePricing, /PRICING_DISCLOSURE\.map/);
+    assert.doesNotMatch(homePricing, /PLAN_TIERS|Razorpay/);
     assert.match(PLANS_TSX, /PRICING_CARDS/);
+    assert.match(PAGE, /PricingPlans/);
   });
 
   it("renders Starter and Studio with neutral cards and outline CTA buttons", () => {
