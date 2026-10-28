@@ -24,6 +24,20 @@ describe("TimeTimer", () => {
     }
   });
 
+  it("edits a local stop-form description and saves that draft", () => {
+    const src = read("components/time/TimeTimer.tsx");
+    assert.match(src, /const \[draftDescription, setDraftDescription\] = useState\(""\)/);
+    assert.match(src, /function openStopForm\(\)\s*\{[\s\S]*?setDraftDescription\(stored\.label\)/);
+    assert.match(src, /description: draftDescription/);
+    const stopFields = src.slice(src.indexOf("const stopFields = ("), src.indexOf("if (!narrow)"));
+    assert.match(stopFields, /value=\{draftDescription\}/);
+    assert.match(stopFields, /onChange=\{\(e\) => setDraftDescription\(e\.target\.value\)\}/);
+    assert.doesNotMatch(stopFields, /onChange=\{\(e\) => setLabel\(e\.target\.value\)\}/);
+    assert.match(src, /function dismissStopForm\(\)\s*\{[\s\S]*?setDraftDescription\(stored\?\.label \?\? ""\)[\s\S]*?setPhase\("running"\)/);
+    assert.match(src, /onClick=\{dismissStopForm\}/);
+    assert.match(src, /if \(!open && !pending\) dismissStopForm\(\)/);
+  });
+
   it("reserves a real scrollport only when the narrow shell has a timer", () => {
     const layout = read("app/(app)/layout.tsx");
     const css = read("app/globals.css");
@@ -43,7 +57,7 @@ describe("TimeTimer", () => {
     assert.match(src, /onOpenAutoFocus/);
     assert.match(src, /onCloseAutoFocus/);
     assert.match(src, /stopTriggerRef\.current/);
-    assert.match(src, /if \(!open && !pending\) setPhase\("running"\)/);
+    assert.match(src, /if \(!open && !pending\) dismissStopForm\(\)/);
     assert.match(src, /onEscapeKeyDown/);
     assert.match(src, /aria-label="Close timer form"/);
     assert.match(src, /overflow-y-auto/);

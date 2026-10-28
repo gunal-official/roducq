@@ -78,6 +78,7 @@ export function TimeTimer({ briefs }: { briefs: BriefOption[] }) {
   const [phase, setPhase] = useState<Phase>("idle");
   const [stored, setStored] = useState<StoredTimer | null>(null);
   const [now, setNow] = useState(() => Date.now());
+  const [draftDescription, setDraftDescription] = useState("");
   const [minutes, setMinutes] = useState("");
   const [workedOn, setWorkedOn] = useState("");
   const [briefId, setBriefId] = useState("");
@@ -148,11 +149,18 @@ export function TimeTimer({ briefs }: { briefs: BriefOption[] }) {
 
   function openStopForm() {
     if (!stored) return;
+    // The running label stays untouched until this form is saved.
+    setDraftDescription(stored.label);
     setMinutes(String(Math.max(1, Math.round(elapsedSeconds() / 60))));
     setWorkedOn(localToday());
     setBriefId("");
     setError(null);
     setPhase("stop");
+  }
+
+  function dismissStopForm() {
+    setDraftDescription(stored?.label ?? "");
+    setPhase("running");
   }
 
   function discard() {
@@ -167,7 +175,7 @@ export function TimeTimer({ briefs }: { briefs: BriefOption[] }) {
     setError(null);
     const result = await logTimeAction({
       brief_id: briefId || null,
-      description: stored.label,
+      description: draftDescription,
       worked_on: workedOn,
       duration_minutes: Number(minutes),
     });
@@ -235,8 +243,8 @@ export function TimeTimer({ briefs }: { briefs: BriefOption[] }) {
     <>
       <Input
         ref={stopInputRef}
-        value={stored?.label ?? ""}
-        onChange={(e) => setLabel(e.target.value)}
+        value={draftDescription}
+        onChange={(e) => setDraftDescription(e.target.value)}
         placeholder="What did you work on?"
         aria-label="What did you work on?"
         aria-invalid={descriptionInvalid || undefined}
@@ -293,7 +301,7 @@ export function TimeTimer({ briefs }: { briefs: BriefOption[] }) {
           type="button"
           size="sm"
           variant="ghost"
-          onClick={() => setPhase("running")}
+          onClick={dismissStopForm}
           disabled={pending}
         >
           Keep running
@@ -325,7 +333,7 @@ export function TimeTimer({ briefs }: { briefs: BriefOption[] }) {
       onOpenChange={(open) => {
         // Escape, the close button, and the scrim all mean Keep running.
         // Do not dismiss while a save is already in flight.
-        if (!open && !pending) setPhase("running");
+        if (!open && !pending) dismissStopForm();
       }}
     >
       {/* Keep the original Stop trigger mounted underneath the modal so
