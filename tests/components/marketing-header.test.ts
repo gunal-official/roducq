@@ -154,20 +154,23 @@ describe("Marketing tokens — every named lm-* utility resolves", () => {
 });
 
 describe("Marketing hero entrance — no opacity-zero LCP candidate", () => {
-  it("runs the pricing hero on the shared clip-path ladder, not a scroll reveal", () => {
-    // The hero block only — from its wrapper div to the offer banner.
-    const hero = PRICING_PAGE.slice(
-      PRICING_PAGE.indexOf('<div className="mx-auto max-w-2xl text-center">'),
-      PRICING_PAGE.indexOf("Optional Launch Offer Banner"),
-    );
+  it("keeps the pricing hero and route wrapper visible on first paint without scroll reveals", () => {
+    const start = PRICING_PAGE.indexOf('<div className="mx-auto max-w-2xl text-center">');
+    const end = PRICING_PAGE.indexOf("<PricingPlans", start);
+    assert.ok(start >= 0 && end > start, "the hero boundaries must be present");
+    const hero = PRICING_PAGE.slice(start, end);
+    const pricingCss = read("app/(marketing)/pricing/pricing.css");
     assert.ok(hero.includes('id="pricing-page-heading"'));
     assert.ok(hero.includes("lm-hero-in"));
-    assert.ok(!hero.includes("<Reveal"));
-    assert.ok(!hero.includes("lm-reveal"));
+    assert.doesNotMatch(hero, /<Reveal|lm-reveal|opacity-0/);
+    assert.match(pricingCss, /\.rp-page \.lm-hero-in\s*\{[^}]*animation:\s*none[^}]*opacity:\s*1/);
+    assert.match(CSS, /\.rdq-marketing \.animate-route-in\s*\{[^}]*opacity:\s*1[^}]*animation:\s*none/);
   });
 
-  it("switches the pricing display band at the reference's 1200px boundary", () => {
-    assert.ok(PRICING_PAGE.includes("min-[1200px]:text-lm-54"));
+  it("uses a responsive pricing display size without reintroducing hidden hero states", () => {
+    const pricingCss = read("app/(marketing)/pricing/pricing.css");
+    assert.match(pricingCss, /font-size:\s*clamp\(40px,\s*4\.8vw,\s*68px\)/);
+    assert.match(pricingCss, /font-size:\s*clamp\(37px,\s*10vw,\s*54px\)/);
     assert.ok(!PRICING_PAGE.includes("lg:text-lm-54"));
   });
 });
