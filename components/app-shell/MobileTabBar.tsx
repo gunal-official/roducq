@@ -101,6 +101,9 @@ export function MobileTabBar({
               <button
                 type="button"
                 aria-label="More navigation"
+                /* Focus target for the unsaved-edits dialog after "Keep
+                   editing" (the topbar menu button carries the same hook). */
+                data-app-menu-trigger=""
                 ref={moreTriggerRef}
                 aria-expanded={moreOpen}
                 onClick={() => setOpenedOn(pathname)}

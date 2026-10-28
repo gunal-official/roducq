@@ -171,6 +171,8 @@ export function MobileNav({
                   name={name}
                   email={email}
                   showSignOut
+                  signOutDismissSurface={onClose}
+                  signOutReturnFocusSelector="[data-app-menu-trigger]"
                 />
               </div>
             </nav>

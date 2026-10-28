@@ -85,7 +85,8 @@ To rerun: `npm ci`, then `CHROMIUM_PATH=/path/to/chromium node scripts/verify-un
 | --- | --- | --- |
 | Back/Forward in Safari ≤ 26.1 and Firefox ≤ 146 | Not held; the navigation happens and the edits are lost | Those versions lack the Navigation API, and the History API cannot cancel a traversal. Chromium 102+, Firefox 147+ and Safari 26.2+ (Baseline since January 2026) are covered. |
 | Browser refresh / tab close wording | Native prompt, text not customisable; some mobile browsers (notably iOS Safari) suppress or throttle it | Browser policy. Chromium also requires prior user interaction. A listener suppresses bfcache only while dirty. |
-| Sign out, workspace switch, server-action redirects (programmatic `router.*`) | Not held | Only interceptable with a global router patch/blocker, which was excluded as higher-risk and out of scope. |
+| Sign out, workspace switch | **Held** (follow-up) — see [RODUCQ_UNSAVED_EDITS_SHELL_GUARD.md](./RODUCQ_UNSAVED_EDITS_SHELL_GUARD.md). Both handlers ask the guard's registry first, so the same dialog covers them and the action runs once after confirmation. | They are buttons calling a server action / the Supabase client, so the link-click listener cannot see them; the registry is the smallest contract that avoids a router patch. |
+| Other programmatic `router.*` calls (server-action redirects) | Not held | Only interceptable with a global router patch/blocker, which was excluded as higher-risk and out of scope. |
 | Cross-origin links, `mailto:`/`tel:`, downloads, new tabs | Not held | The current document is not destroyed. |
 | Tab crash, OS shutdown, battery death, link opened from an external app | Cannot be guarded | Outside the page's control. |
 | JavaScript disabled | Guard cannot run | The editor cannot save either; the page body is script-revealed in this app, so the composer is not interactive without JavaScript. |

@@ -1,10 +1,11 @@
 "use client";
 
 /**
- * Composer-scoped unsaved-edits guard (UX audit P2-02).
+ * Composer-scoped unsaved-edits guard (UX audit P2-02, extended for the
+ * sign-out / workspace-switch follow-up).
  *
  * Mounted by the update composer and active ONLY while the editor differs
- * from its last saved state. It adds three listeners for that window and
+ * from its last saved state. It adds its listeners for that window and
  * removes them the moment the editor is clean:
  *
  *   1. `beforeunload` — refresh, tab close, and any cross-document navigation
@@ -19,16 +20,23 @@
  *      Back/Forward buttons are cancelled with `preventDefault()` for
  *      `traverse` navigations, so the URL never moves while the dialog is
  *      open. Confirming re-issues the traversal with `traverseTo(key)`.
+ *   4. A registration with `lib/ui/unsaved-edits-registry` — the two shell
+ *      buttons that cannot be intercepted as clicks (sign out, and the
+ *      workspace switch that is a server action plus a refresh) ask the guard
+ *      first. They are buttons, so the click listener above ignores them;
+ *      instead their handlers call `requestGuardedAction()` and never run the
+ *      action until the user confirms. Same dialog, same decision, same
+ *      lifecycle — no second confirmation system.
  *
  * Deliberately NOT a global blocker: no provider, no history-entry traps, no
  * patching of `next/navigation`. Next 16 owns the `__NA` history state and
  * reloads on foreign entries, so this hook never writes to history at all.
+ * Server-side redirects (session expiry, forced sign-out) never pass through
+ * this code and are unaffected.
  *
  * Browsers without the Navigation API (Safari ≤ 26.1, Firefox ≤ 146) cannot
- * have Back/Forward cancelled; clicks and unloads are still guarded there.
- * Programmatic router calls (sign out, workspace switch, server-action
- * redirects) cannot be intercepted without a global blocker and are out of
- * scope — documented in docs/RODUCQ_UNSAVED_EDITS_GUARD.md.
+ * have Back/Forward cancelled; clicks, unloads and the shell actions are still
+ * guarded there.
  */
 
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -51,11 +59,30 @@ import {
   type NavigationLike,
   type NavigateEventLike,
 } from "@/lib/ui/unsaved-changes";
+import {
+  registerUnsavedEditor,
+  type GuardedActionRequest,
+  type GuardedShellAction,
+} from "@/lib/ui/unsaved-edits-registry";
 
 const ANCHOR_SELECTOR = "a[href]";
 const SKIP_ATTRIBUTE = "data-skip-unsaved-guard";
 /** The composer's first field — where focus lands when the invoker is gone. */
 const DEFAULT_FALLBACK_FOCUS = "#update-composer input, #update-composer textarea";
+
+/**
+ * A decision the dialog is asking for: a navigation the user clicked, or a
+ * shell action (sign out / switch workspace) whose handler asked first.
+ */
+type PendingDecision =
+  | GuardedNavigation
+  | { kind: "action"; request: GuardedActionRequest };
+
+/** The destructive button names the action it will perform, exactly once. */
+const DESTRUCTIVE_LABEL: Record<GuardedShellAction, string> = {
+  "sign-out": "Discard and sign out",
+  "switch-workspace": "Discard and switch workspace",
+};
 
 function getNavigation(): NavigationLike | null {
   if (typeof window === "undefined") return null;
@@ -66,35 +93,78 @@ function hrefForRouter(url: URL): string {
   return `${url.pathname}${url.search}${url.hash}`;
 }
 
+function focusedElement(): HTMLElement | null {
+  return typeof document !== "undefined" &&
+    document.activeElement instanceof HTMLElement &&
+    document.activeElement !== document.body
+    ? document.activeElement
+    : null;
+}
+
+/**
+ * Best-effort focus return to the shell control that opened the dialog.
+ * Several triggers can share a selector (the phone's menu button and the
+ * dock's "More" tab), so the first VISIBLE match wins — the hidden one must
+ * not swallow focus.
+ */
+function focusFirstVisible(selector: string): boolean {
+  if (typeof document === "undefined") return false;
+  for (const element of Array.from(
+    document.querySelectorAll<HTMLElement>(selector)
+  )) {
+    if (element.getClientRects().length > 0) {
+      element.focus();
+      return true;
+    }
+  }
+  return false;
+}
+
 export function useUnsavedChangesGuard({
   dirty,
   fallbackFocusSelector = DEFAULT_FALLBACK_FOCUS,
+  onDiscard,
 }: {
   /** True while the editor differs from the last successfully saved state. */
   dirty: boolean;
   /** Focus target when the dialog was opened without a focused invoker. */
   fallbackFocusSelector?: string;
+  /**
+   * Runs when the user confirms "Discard…", BEFORE the requested action.
+   * The composer uses it to drop its draft, so unsaved content can never
+   * follow the user into another workspace.
+   */
+  onDiscard?: () => void;
 }) {
   const router = useRouter();
-  const [pending, setPending] = useState<GuardedNavigation | null>(null);
+  const [pending, setPending] = useState<PendingDecision | null>(null);
 
-  const pendingRef = useRef<GuardedNavigation | null>(null);
+  const pendingRef = useRef<PendingDecision | null>(null);
   const busyRef = useRef(false); // a dialog is open (or its discard is in flight)
   const bypassRef = useRef(false); // the confirmed navigation must not re-trigger
+  const firedRef = useRef(false); // the confirmed shell action ran already
+  const dirtyRef = useRef(dirty);
   const invokerRef = useRef<HTMLElement | null>(null);
+  const returnFocusRef = useRef<string | undefined>(undefined);
   const keepButtonRef = useRef<HTMLButtonElement>(null);
 
-  const request = useCallback((next: GuardedNavigation) => {
-    if (busyRef.current) return; // one decision at a time — never stack dialogs
-    busyRef.current = true;
-    pendingRef.current = next;
-    invokerRef.current =
-      document.activeElement instanceof HTMLElement &&
-      document.activeElement !== document.body
-        ? document.activeElement
-        : null;
-    setPending(next);
-  }, []);
+  // The composer's reset must never be called through a stale render closure.
+  const onDiscardRef = useRef(onDiscard);
+  useEffect(() => {
+    onDiscardRef.current = onDiscard;
+  }, [onDiscard]);
+
+  const request = useCallback(
+    (next: PendingDecision, returnFocusSelector?: string) => {
+      if (busyRef.current) return; // one decision at a time — never stack dialogs
+      busyRef.current = true;
+      pendingRef.current = next;
+      returnFocusRef.current = returnFocusSelector;
+      invokerRef.current = focusedElement();
+      setPending(next);
+    },
+    []
+  );
 
   const stay = useCallback(() => {
     pendingRef.current = null;
@@ -105,10 +175,36 @@ export function useUnsavedChangesGuard({
   const discard = useCallback(() => {
     const next = pendingRef.current;
     setPending(null);
+    pendingRef.current = null;
     if (!next) {
       busyRef.current = false;
       return;
     }
+
+    // Shell action (sign out / switch workspace): drop the draft first, then
+    // perform the ORIGINAL action exactly once.
+    if (next.kind === "action") {
+      if (firedRef.current) return;
+      firedRef.current = true;
+      returnFocusRef.current = undefined;
+      onDiscardRef.current?.();
+      let settled: void | Promise<void>;
+      try {
+        settled = next.request.run();
+      } catch {
+        settled = undefined;
+      }
+      void Promise.resolve(settled)
+        .catch(() => {
+          /* the action surfaces its own errors */
+        })
+        .finally(() => {
+          firedRef.current = false;
+          busyRef.current = false;
+        });
+      return;
+    }
+
     bypassRef.current = true;
 
     if (next.kind === "push") {
@@ -142,17 +238,21 @@ export function useUnsavedChangesGuard({
     }
   }, [router]);
 
-  // Clean editors keep no listeners at all; a completed save also re-arms the
-  // guard for whatever the user does next.
+  // Clean editors keep no listeners and no registry entry; a completed save
+  // also re-arms the guard for whatever the user does next.
   useEffect(() => {
     if (dirty) return;
     pendingRef.current = null;
     busyRef.current = false;
     bypassRef.current = false;
+    firedRef.current = false;
+    returnFocusRef.current = undefined;
+    dirtyRef.current = false;
   }, [dirty]);
 
   useEffect(() => {
     if (!dirty) return undefined;
+    dirtyRef.current = true;
 
     const onClick = (event: MouseEvent) => {
       if (bypassRef.current) return;
@@ -208,7 +308,25 @@ export function useUnsavedChangesGuard({
     document.addEventListener("click", onClick, true);
     window.addEventListener("beforeunload", onBeforeUnload);
     navigation?.addEventListener("navigate", onNavigate);
+
+    // The shell's sign-out button and workspace switcher consult this while
+    // the editor is dirty. Unregistered on unmount and the moment the editor
+    // is clean, so no stale callback can ever hold an action.
+    const unregister = registerUnsavedEditor({
+      isDirty: () => dirtyRef.current,
+      confirm: (actionRequest) => {
+        if (busyRef.current) return false;
+        request(
+          { kind: "action", request: actionRequest },
+          actionRequest.returnFocusSelector
+        );
+        return true;
+      },
+    });
+
     return () => {
+      dirtyRef.current = false;
+      unregister();
       document.removeEventListener("click", onClick, true);
       window.removeEventListener("beforeunload", onBeforeUnload);
       navigation?.removeEventListener("navigate", onNavigate);
@@ -218,6 +336,11 @@ export function useUnsavedChangesGuard({
   // `open` is derived, never stored: a successful save (dirty → false) closes
   // the dialog without an extra state write.
   const open = dirty && pending !== null;
+
+  const destructiveLabel =
+    pending?.kind === "action"
+      ? DESTRUCTIVE_LABEL[pending.request.action]
+      : "Discard changes";
 
   const dialog = (
     <Dialog
@@ -237,6 +360,11 @@ export function useUnsavedChangesGuard({
         onCloseAutoFocus={(event) => {
           if (invokerRef.current?.isConnected) return; // shared wrapper restores it
           event.preventDefault();
+          // The invoking control may have closed with its menu or drawer
+          // (shell actions do), so fall back to the surface that owns it —
+          // then to the composer's first field, never to <body>.
+          const returnSelector = returnFocusRef.current;
+          if (returnSelector && focusFirstVisible(returnSelector)) return;
           document.querySelector<HTMLElement>(fallbackFocusSelector)?.focus();
         }}
       >
@@ -257,7 +385,7 @@ export function useUnsavedChangesGuard({
             Keep editing
           </Button>
           <Button type="button" variant="destructive" onClick={discard}>
-            Discard changes
+            {destructiveLabel}
           </Button>
         </DialogFooter>
       </DialogContent>

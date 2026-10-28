@@ -42,9 +42,10 @@ describe("unsaved-changes guard — scope and dirty lifecycle", () => {
       composer,
       /const dirty = isEditorDirty\(\s*\{ title, body \},\s*\{ title: initialTitle, body: initialBody \}\s*\)/
     );
+    // Same contract as before, with the discard hook the shell actions need.
     assert.match(
       composer,
-      /const \{ dialog: unsavedChangesDialog \} = useUnsavedChangesGuard\(\{ dirty \}\)/
+      /const \{ dialog: unsavedChangesDialog \} = useUnsavedChangesGuard\(\{\s*dirty,\s*onDiscard:/
     );
     assert.ok(composer.includes("{unsavedChangesDialog}"), "the dialog renders");
   });

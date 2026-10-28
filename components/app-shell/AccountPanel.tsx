@@ -19,6 +19,8 @@ export function AccountPanel({
   email,
   className,
   showSignOut = false,
+  signOutDismissSurface,
+  signOutReturnFocusSelector,
 }: {
   initials: string;
   name: string | null;
@@ -26,6 +28,13 @@ export function AccountPanel({
   className?: string;
   /** The phone drawer has no account menu, so it carries sign-out here. */
   showSignOut?: boolean;
+  /**
+   * Closes the drawer when the unsaved-edits guard takes the sign-out click,
+   * so the confirmation dialog is the only dialog on screen.
+   */
+  signOutDismissSurface?: () => void;
+  /** Focus target after "Keep editing", once this panel has been dismissed. */
+  signOutReturnFocusSelector?: string;
 }) {
   return (
     <div
@@ -54,6 +63,8 @@ export function AccountPanel({
         <LogoutButton
           className="mt-2 w-full justify-center rounded-control text-muted-foreground hover:bg-muted hover:text-text"
           iconOnly={false}
+          dismissSurface={signOutDismissSurface}
+          returnFocusSelector={signOutReturnFocusSelector}
         />
       ) : null}
     </div>
