@@ -1,0 +1,74 @@
+[
+  {
+    "target": "forma",
+    "viewport": "1440x900",
+    "theme": "light",
+    "message": "page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n  - navigating to \"feature/homepage-fidelity-refinement-2026-10-28\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "target": "forma",
+    "viewport": "1440x900",
+    "theme": "dark",
+    "message": "page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n  - navigating to \"feature/homepage-fidelity-refinement-2026-10-28\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "target": "forma",
+    "viewport": "1024x768",
+    "theme": "light",
+    "message": "page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n  - navigating to \"feature/homepage-fidelity-refinement-2026-10-28\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "target": "forma",
+    "viewport": "1024x768",
+    "theme": "dark",
+    "message": "page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n  - navigating to \"feature/homepage-fidelity-refinement-2026-10-28\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "target": "forma",
+    "viewport": "768x1024",
+    "theme": "light",
+    "message": "page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n  - navigating to \"feature/homepage-fidelity-refinement-2026-10-28\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "target": "forma",
+    "viewport": "768x1024",
+    "theme": "dark",
+    "message": "page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n  - navigating to \"feature/homepage-fidelity-refinement-2026-10-28\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "target": "forma",
+    "viewport": "390x844",
+    "theme": "light",
+    "message": "page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n  - navigating to \"feature/homepage-fidelity-refinement-2026-10-28\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "target": "forma",
+    "viewport": "390x844",
+    "theme": "dark",
+    "message": "page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n  - navigating to \"feature/homepage-fidelity-refinement-2026-10-28\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "target": "forma",
+    "viewport": "375x812",
+    "theme": "light",
+    "message": "page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n  - navigating to \"feature/homepage-fidelity-refinement-2026-10-28\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "target": "forma",
+    "viewport": "375x812",
+    "theme": "dark",
+    "message": "page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n  - navigating to \"feature/homepage-fidelity-refinement-2026-10-28\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "target": "forma",
+    "viewport": "320x700",
+    "theme": "light",
+    "message": "page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n  - navigating to \"feature/homepage-fidelity-refinement-2026-10-28\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "target": "forma",
+    "viewport": "320x700",
+    "theme": "dark",
+    "message": "page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n  - navigating to \"feature/homepage-fidelity-refinement-2026-10-28\", waiting until \"domcontentloaded\"\n"
+  }
+]
