@@ -634,7 +634,7 @@ describe("/ landing design tokens", () => {
     "--lm-accent-strong": "#5b3fe0",
     "--lm-accent-line": "#7f67e6",
     "--lm-success": "#15803d",
-    "--lm-border": "#ac7dfc",
+    "--lm-border": "#ddd6ea", /* Forma reference: --border */
   };
 
   it("declares the reference palette exactly once, scoped to the shell", () => {

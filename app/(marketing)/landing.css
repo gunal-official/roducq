@@ -68,9 +68,9 @@
   --lm-success: #15803d; /* "included", "done", "on track" */
 
   /* ── Border ────────────────────────────────────────────────────────── */
-  --lm-border: #ac7dfc; /* the reference's signature brand hairline */
-  --lm-border-hairline: rgba(172, 125, 252, 0.28);
-  --lm-border-soft: rgba(172, 125, 252, 0.16);
+  --lm-border: #ddd6ea; /* Forma reference: --border (soft lavender for ordinary borders) */
+  --lm-border-hairline: rgba(221, 214, 234, 0.28);
+  --lm-border-soft: rgba(221, 214, 234, 0.16);
   /* Warmer steps of the same hairline, for hover and for the featured tier.
      These exist as NAMED tokens rather than `border-lm-border/45` modifiers
      because a Tailwind opacity modifier cannot resolve against a `var()`
