@@ -95,7 +95,7 @@ results are claimed in this document.
 | Live page fetch (`forma-visuvate.framer.website/about`, this session) | **[MEASURED]** | Title ("About Forma — The team and principles behind the product"), section order, exact headings/copy, link destinations |
 | Owner-supplied `about.pdf` — image-only, 2 Letter pages (612×792 pt, no text layer), SHA-256 `bd84771d0d3bd22fa18b0daaf53250176095f20e419f1a0664ad11a4c56f99a0`; rendered to `docs/screenshots/forma-about-audit/reference-user-provided-page{1,2}.png` (1600×2071) | **[OBSERVED]** | Desktop light-mode composition, hierarchy, gradient headline, row/card/CTA geometry as proportions. Source viewport/DPR unknown — not measured CSS (pricing precedent, `docs/FORMA_PRICING_REDESIGN.md`) |
 | Existing repo measurements (`FORMA_FINAL_FIDELITY_AUDIT.md`, `ANIMATION_NOTES.md`, `landing.css` tokens) | **[DOCUMENTED]** | Shared type scale, container widths, purple gradient stops, button metrics, motion vocabulary |
-| CI capture #40681222999 (`scripts/capture-about-reference.mjs`) | **pending** | Exact `/about` computed styles, WAAPI timings, all seven widths, both themes — items labelled **[UNVERIFIED]** below resolve when it completes |
+| CI capture #40682058330 (`scripts/capture-about-reference.mjs`, real Chromium, saved in `docs/screenshots/forma-about-reference/`) | **[MEASURED]** | Exact `/about` computed styles + boxes, WAAPI timings, all seven widths, light theme. **Limitation:** the reference's manual theme toggle did not respond to `colorScheme` emulation (both "dark" passes record a white body), so the reference dark theme is **[UNVERIFIED]**; Roducq dark will follow its own documented `--lm-*` dark tokens |
 
 ---
 
@@ -192,30 +192,34 @@ against the raster. Headline tokens arrive word-wrapped
 
 ---
 
-## 5. Motion plan — inherited vocabulary, [DOCUMENTED]/[INFERRED]
+## 5. Motion plan — measured on `/about` (§4.4) + inherited components
 
 Motion.dev only (`motion@14.3.0` already the marketing runtime). If
-approved, reuse the existing components rather than inventing motion:
+approved, bind the existing components to this page's measured profile
+rather than inventing motion:
 
 - **Hero**: `lm-line-rise` masked line rise for the H1 (900 ms,
   `cubic-bezier(0.16,1,0.3,1)`, lines at 80/280 ms) and `lm-hero-in`
-  fade-ups for eyebrow/lead on the measured ladder
-  (0 / 550 / 650 ms, 900 ms, `cubic-bezier(0.2,0.7,0.2,1)`).
+  fade-ups for eyebrow/lead on the measured landing ladder — [INFERRED]
+  where `/about`'s ladder isn't individually resolved in the dump.
 - **Section headings**: `SectionHeading` per-word masked rise
-  (900 ms, 50 ms/word).
-- **Reveals**: `Reveal` (620 ms `cubic-bezier(0.22,1,0.36,1)`, once,
-  `amount: 0.08`) with 60–90 ms staggers for principle rows, cards, CTA.
-- **Hover**: 200 ms colour/border/shadow transitions (measured on the
-  reference's links/buttons); no scale on cards.
+  (900 ms, 50 ms/word) — matches the 252-record 900 ms profile and the
+  reference's per-word span structure seen in the dump.
+- **Block reveals** (rows, cards, CTA): `Reveal` (once,
+  `amount: 0.08`, 60–90 ms staggers) with its duration bound to this
+  page's measured 800 ms `cubic-bezier(0.2,0.7,0.2,1)` entrance profile
+  instead of the landing's inherited 620 ms estimate — final binding
+  decided at implementation against the dump, and recorded either way.
+- **Hover/state**: 200 ms `cubic-bezier(0.2,0.7,0.2,1)` colour/border/
+  shadow (measured here and on the landing); no card scale.
 - **PR #53 LCP protections (mandatory)**: hero/LCP text never starts at
   `opacity: 0` — clip-path masking only; no heavy initial blur; content
   fully visible without JavaScript; `prefers-reduced-motion` disables
   all of the above via the existing kill switch. LCP target < 2.5 s in
   the four PR #53 scenarios (verified in Phase 8; not measured here).
 
-Exact `/about` timings will be reconciled against the WAAPI dump from
-run #40681222999 before implementation; anything not observable stays
-labelled an inherited estimate, as in `ANIMATION_NOTES.md`.
+Element-by-element timing assignment stays labelled until Phase 3,
+per the honesty rules in `ANIMATION_NOTES.md` §1.
 
 ---
 
