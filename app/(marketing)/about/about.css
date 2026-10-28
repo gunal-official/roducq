@@ -1,0 +1,352 @@
+/* /about only — geometry and the off-scale type steps of the Forma
+   About recreation. Every value is measured on the live reference
+   (Chromium capture run #40682058330; docs/FORMA_ABOUT_REFERENCE.md
+   §4). Colours, the shared type tokens and all motion come from
+   landing.css / Motion.dev — this file binds sizes and spacing only,
+   so light and dark themes both resolve through the --lm-* tokens.
+   The shared marketing shell, header, footer and other pages are
+   untouched. */
+
+.ab-page {
+  background: var(--lm-card);
+  color: var(--lm-ink);
+}
+
+/* ── Band rhythm ─────────────────────────────────────────────────────
+   Measured padding-top ladders: the three content bands share
+   120 / 65 / 57 (≥1200 / ≥1024 / below); the hero is 92→56 over the
+   same 1024 boundary. Band bottoms are flush (0) or 22: each band's
+   own top padding makes the gap, exactly as in the reference. */
+.ab-hero {
+  padding-top: 56px;
+  padding-bottom: 44px;
+}
+
+.ab-band {
+  padding-top: 57px;
+}
+
+.ab-band-story {
+  padding-bottom: 22px;
+}
+
+.ab-cta-band {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+@media (min-width: 1024px) {
+  .ab-hero {
+    padding-top: 92px;
+    padding-bottom: 72px;
+  }
+  .ab-band {
+    padding-top: 65px;
+  }
+  .ab-cta-band {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .ab-band {
+    padding-top: 120px;
+  }
+  .ab-cta-band {
+    padding-top: 120px;
+    padding-bottom: 100px;
+  }
+}
+
+/* ── Split prose band ───────────────────────────────────────────────
+   One column until 1200, then 45fr / 55fr (529.2 + 64 + 646.8 at the
+   1240 shell). The 64px gap is shared by both states: it is also the
+   measured heading→prose gap when stacked. */
+.ab-story-grid {
+  display: grid;
+  gap: 64px;
+}
+
+@media (min-width: 1200px) {
+  .ab-story-grid {
+    grid-template-columns: 45fr 55fr;
+  }
+}
+
+.ab-split-title {
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+@media (min-width: 1200px) {
+  .ab-split-title {
+    font-size: 43.2px;
+  }
+}
+
+.ab-body {
+  font-size: 18.5px;
+  line-height: 1.75;
+}
+
+/* ── Principles ─────────────────────────────────────────────────────*/
+.ab-section-title {
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+@media (min-width: 1024px) {
+  .ab-section-title {
+    font-size: 34px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .ab-section-title {
+    font-size: 54px;
+  }
+}
+
+.ab-principles-list {
+  margin-top: 26px;
+  border-bottom: 1px solid var(--lm-border-soft);
+}
+
+@media (min-width: 1024px) {
+  .ab-principles-list {
+    margin-top: 31px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .ab-principles-list {
+    margin-top: 45px;
+  }
+}
+
+/* Rows: number + title on one line with the description indented
+   below until 1200, then three columns (70 + 24 + 300 + 24 + 1fr).
+   30px row padding at every width; the number sits 7px lower than
+   the title's line box and the description 4px lower at desktop —
+   both measured glyph alignments, kept as padding so the start
+   alignment holds at any wrap. */
+.ab-principle {
+  display: grid;
+  grid-template-columns: 74px minmax(0, 1fr);
+  align-items: start;
+  padding-block: 30px;
+  border-top: 1px solid var(--lm-border-soft);
+}
+
+.ab-principle-number {
+  padding-top: 7px;
+}
+
+.ab-principle-title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.045em;
+}
+
+.ab-principle-desc {
+  grid-column: 2;
+  margin-top: 8px;
+  font-size: 16.5px;
+  line-height: 1.7;
+}
+
+@media (min-width: 1200px) {
+  .ab-principle {
+    grid-template-columns: 70px 300px minmax(0, 1fr);
+    column-gap: 24px;
+  }
+  .ab-principle-desc {
+    grid-column: 3;
+    margin-top: 0;
+    padding-top: 4px;
+  }
+}
+
+/* ── Link cards ─────────────────────────────────────────────────────
+   3-up only ≥1200 (402.7px each at the 1240 shell), 1-up below;
+   16px gaps both ways. The reference's whole card is one <a>; here
+   the link row stretches over the card instead (same click area),
+   so the visible label is the accessible name (WCAG 2.5.3). */
+.ab-cards {
+  display: grid;
+  gap: 16px;
+}
+
+@media (min-width: 1200px) {
+  .ab-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.ab-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 31px;
+  border: 1px solid var(--lm-border-soft);
+  border-radius: 18px;
+  background: var(--lm-card);
+  transition:
+    border-color 200ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 200ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.ab-card:hover {
+  border-color: var(--lm-border-strong);
+  box-shadow: var(--lm-shadow-sm);
+}
+
+/* The stretched hit area. Focus is drawn on the card (`:focus-within`,
+   the shell's 2px accent outline) rather than around the small link
+   row, so keyboard users see the whole target they will activate. */
+.ab-card-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.ab-card:focus-within {
+  outline: 2px solid var(--lm-accent);
+  outline-offset: 2px;
+}
+
+.ab-card a:focus-visible {
+  outline: none;
+}
+
+.ab-card-title {
+  margin-top: 28px;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.045em;
+}
+
+.ab-card-desc {
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.ab-card-link {
+  margin-top: auto;
+  padding-top: 27px;
+}
+
+/* ── Closing CTA ────────────────────────────────────────────────────
+   Panel: measured ≈28px corner radius (pixel-fitted), padding
+   72 / 48 / 20 (≥1200 / ≥1024 / below). The gradient itself is the
+   shared `.lm-cta-card` — pixel samples on the reference panel match
+   its stops (docs/FORMA_ABOUT_REFERENCE.md §4.1). */
+.ab-cta-panel {
+  padding: 20px;
+  border-radius: 28px;
+}
+
+@media (min-width: 1024px) {
+  .ab-cta-panel {
+    padding: 48px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .ab-cta-panel {
+    padding: 72px;
+  }
+}
+
+.ab-cta-grid {
+  display: grid;
+  align-items: center;
+  gap: 32px;
+}
+
+@media (min-width: 1200px) {
+  .ab-cta-grid {
+    grid-template-columns: 565px minmax(0, 1fr);
+    gap: 64px;
+  }
+}
+
+.ab-cta-title {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+}
+
+/* The approved line-2 copy ("your own client work") is longer than
+   the reference's ("your own projects", 523px measured), so at
+   ≥1200 it wraps inside the 565px column. Balance keeps that wrap
+   deliberate ("your own / client work" — the same 3-line shape the
+   reference itself takes at 390) instead of orphaning "work". */
+.ab-cta-title .lm-line > span {
+  text-wrap: balance;
+}
+
+@media (min-width: 1024px) {
+  .ab-cta-title {
+    font-size: 43.8px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .ab-cta-title {
+    font-size: 64.8px;
+  }
+}
+
+.ab-cta-lead {
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+@media (min-width: 1024px) {
+  .ab-cta-lead {
+    font-size: 19px;
+  }
+}
+
+/* Buttons stack full-width until 1024 (measured at 768), then sit
+   inline at their natural width. 52px tall at every width. */
+.ab-cta-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 36px;
+}
+
+@media (min-width: 1024px) {
+  .ab-cta-actions {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.ab-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  min-height: 52px;
+  padding-inline: 26px;
+  border-radius: 10px;
+  font-size: 15.5px;
+  line-height: 1.55;
+  white-space: nowrap;
+  transition:
+    background-color 200ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    border-color 200ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}

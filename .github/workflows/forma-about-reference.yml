@@ -1,0 +1,105 @@
+# Forma /about reference capture — measured evidence for the Roducq
+# /about recreation (structure, computed CSS, animation timings,
+# screenshots at the seven milestone widths in both colour schemes).
+#
+# WHY A SEPARATE WORKFLOW. The repository's development sandbox has an
+# egress allowlist that blocks `forma-visuvate.framer.website`, so the
+# reference cannot be measured in-process. A GitHub-hosted runner can
+# reach it, so — following `forma-reference.yml` and the per-page
+# `forma-*-reference.yml` workflows — this workflow runs the same capture
+# harness against the reference AND against this repository's own /about
+# page in one job, with the same browser build, viewports and themes.
+#
+# IT IS READ-ONLY. It never modifies a source file, never deploys, and
+# never touches any payment, billing or database path. Output is
+# published only as a build artefact.
+#
+# BOOTSTRAP HISTORY. During the original audit this temporarily
+# carried a narrowly-scoped `push` trigger plus a step committing a
+# curated subset of evidence to the session branch (GitHub will not
+# dispatch a workflow that does not yet exist on the default branch,
+# and the sandbox could not reach the artefact download host). Both
+# were removed before the PR, leaving the dispatch-only form below —
+# the discipline recorded in docs/FORMA_FINAL_FIDELITY_AUDIT.md §1.1.
+# Manual runs become possible once this file lands on the default
+# branch.
+name: forma-about-reference
+
+on:
+  workflow_dispatch:
+    inputs:
+      reference:
+        description: "About page to measure"
+        required: false
+        default: "https://forma-visuvate.framer.website/about"
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ">=22.18.0"
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright-core install --with-deps chromium
+
+      - name: Build
+        run: npm run build
+
+      - name: Start this repository's site
+        run: |
+          npm start &
+          for i in $(seq 1 60); do
+            if curl -fsS http://127.0.0.1:3000/about -o /dev/null; then
+              echo "about page is up"
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "site did not start" >&2
+          exit 1
+
+      - name: Capture this repository's /about page
+        run: |
+          node scripts/capture-about-reference.mjs \
+            --target roducq \
+            --base http://127.0.0.1:3000/about \
+            --out docs/screenshots/forma-about-reference
+
+      - name: Capture the reference /about page
+        env:
+          # `inputs` is only populated for workflow_dispatch; a
+          # push-triggered run must fall back to the same default rather
+          # than navigate to "".
+          REFERENCE: ${{ inputs.reference || 'https://forma-visuvate.framer.website/about' }}
+        run: |
+          node scripts/capture-about-reference.mjs \
+            --target forma \
+            --base "$REFERENCE" \
+            --out docs/screenshots/forma-about-reference
+
+      - name: Report what was measured
+        if: always()
+        run: |
+          find docs/screenshots/forma-about-reference -type f | sort | head -200
+          du -sh docs/screenshots/forma-about-reference || true
+
+      - name: Upload the capture
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: forma-about-reference-capture
+          path: docs/screenshots/forma-about-reference
+          if-no-files-found: warn
+          retention-days: 14
