@@ -1,0 +1,571 @@
+{
+  "method": "PR #53 four scenarios, 2.8s post-load window, sum of non-input layout-shift entries; controls injected pre-paint by rewriting the document response",
+  "chromium": "153.0.8010.0",
+  "baseline": {
+    "route": "/",
+    "chromium": "153.0.8010.0",
+    "runsPerCell": 10,
+    "generatedAt": "2026-10-28T14:17:41.671Z",
+    "cells": {
+      "A-baseline": {
+        "scenario": "mobile unthrottled",
+        "conditions": {
+          "viewport": "412x823",
+          "dpr": 1.75,
+          "cpuThrottle": 1,
+          "reducedMotion": "no-preference",
+          "network": "unthrottled (loopback)"
+        },
+        "mode": "baseline",
+        "clsRuns": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "clsMedian": 0,
+        "clsMax": 0,
+        "nonzeroRuns": 0,
+        "attributedShifts": [],
+        "lcpMedian": 128,
+        "lcpElement": "p.lm-hero-in.mt-5.5",
+        "fontsReadyAtMedian": 20
+      },
+      "B-baseline": {
+        "scenario": "mobile 4x CPU",
+        "conditions": {
+          "viewport": "412x823",
+          "dpr": 1.75,
+          "cpuThrottle": 4,
+          "reducedMotion": "no-preference",
+          "network": "unthrottled (loopback)"
+        },
+        "mode": "baseline",
+        "clsRuns": [
+          0.0613,
+          0,
+          0,
+          0.0843,
+          0,
+          0,
+          0.0811,
+          0,
+          0,
+          0.2348
+        ],
+        "clsMedian": 0,
+        "clsMax": 0.2348,
+        "nonzeroRuns": 4,
+        "attributedShifts": [
+          {
+            "run": 0,
+            "value": 0.0613,
+            "at": 298,
+            "input": false,
+            "sources": [
+              {
+                "node": "div.lm-bloom-b.lm-drift",
+                "from": [
+                  0,
+                  266,
+                  412,
+                  512
+                ],
+                "to": [
+                  0,
+                  284,
+                  412,
+                  512
+                ]
+              },
+              {
+                "node": "div.lm-bloom-a.lm-drift",
+                "from": [
+                  0,
+                  169,
+                  412,
+                  252
+                ],
+                "to": [
+                  0,
+                  169,
+                  412,
+                  186
+                ]
+              }
+            ]
+          },
+          {
+            "run": 3,
+            "value": 0.08431,
+            "at": 332,
+            "input": false,
+            "sources": [
+              {
+                "node": "div.lm-bloom-b.lm-drift",
+                "from": [
+                  0,
+                  259,
+                  412,
+                  512
+                ],
+                "to": [
+                  0,
+                  284,
+                  412,
+                  512
+                ]
+              },
+              {
+                "node": "div.lm-bloom-a.lm-drift",
+                "from": [
+                  0,
+                  169,
+                  412,
+                  277
+                ],
+                "to": [
+                  0,
+                  169,
+                  412,
+                  186
+                ]
+              }
+            ]
+          },
+          {
+            "run": 6,
+            "value": 0.08106,
+            "at": 247,
+            "input": false,
+            "sources": [
+              {
+                "node": "div.lm-bloom-b.lm-drift",
+                "from": [
+                  0,
+                  260,
+                  412,
+                  512
+                ],
+                "to": [
+                  0,
+                  284,
+                  412,
+                  512
+                ]
+              },
+              {
+                "node": "div.lm-bloom-a.lm-drift",
+                "from": [
+                  0,
+                  169,
+                  412,
+                  274
+                ],
+                "to": [
+                  0,
+                  169,
+                  412,
+                  186
+                ]
+              }
+            ]
+          },
+          {
+            "run": 9,
+            "value": 0.15371,
+            "at": 186,
+            "input": false,
+            "sources": [
+              {
+                "node": "div.lm-bloom-b.lm-drift",
+                "from": [
+                  0,
+                  213,
+                  412,
+                  512
+                ],
+                "to": [
+                  0,
+                  260,
+                  412,
+                  512
+                ]
+              },
+              {
+                "node": "div.lm-bloom-a.lm-drift",
+                "from": [
+                  0,
+                  169,
+                  412,
+                  446
+                ],
+                "to": [
+                  0,
+                  169,
+                  412,
+                  274
+                ]
+              }
+            ]
+          },
+          {
+            "run": 9,
+            "value": 0.08106,
+            "at": 277,
+            "input": false,
+            "sources": [
+              {
+                "node": "div.lm-bloom-b.lm-drift",
+                "from": [
+                  0,
+                  260,
+                  412,
+                  512
+                ],
+                "to": [
+                  0,
+                  284,
+                  412,
+                  512
+                ]
+              },
+              {
+                "node": "div.lm-bloom-a.lm-drift",
+                "from": [
+                  0,
+                  169,
+                  412,
+                  274
+                ],
+                "to": [
+                  0,
+                  169,
+                  412,
+                  186
+                ]
+              }
+            ]
+          }
+        ],
+        "lcpMedian": 312,
+        "lcpElement": "p.lm-hero-in.mt-5.5",
+        "fontsReadyAtMedian": 50
+      },
+      "C-baseline": {
+        "scenario": "desktop unthrottled",
+        "conditions": {
+          "viewport": "1440x900",
+          "dpr": 1,
+          "cpuThrottle": 1,
+          "reducedMotion": "no-preference",
+          "network": "unthrottled (loopback)"
+        },
+        "mode": "baseline",
+        "clsRuns": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "clsMedian": 0,
+        "clsMax": 0,
+        "nonzeroRuns": 0,
+        "attributedShifts": [],
+        "lcpMedian": 208,
+        "lcpElement": "p.lm-hero-in.mt-5.5",
+        "fontsReadyAtMedian": 19
+      },
+      "D-baseline": {
+        "scenario": "mobile reduced motion",
+        "conditions": {
+          "viewport": "412x823",
+          "dpr": 1.75,
+          "cpuThrottle": 1,
+          "reducedMotion": "reduce",
+          "network": "unthrottled (loopback)"
+        },
+        "mode": "baseline",
+        "clsRuns": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "clsMedian": 0,
+        "clsMax": 0,
+        "nonzeroRuns": 0,
+        "attributedShifts": [],
+        "lcpMedian": 192,
+        "lcpElement": "p.lm-hero-in.mt-5.5",
+        "fontsReadyAtMedian": 18
+      }
+    }
+  },
+  "controls": {
+    "b_no_drift": {
+      "scenario": "mobile 4x CPU",
+      "conditions": {
+        "viewport": "412x823",
+        "dpr": 1.75,
+        "cpuThrottle": 4,
+        "reducedMotion": "no-preference",
+        "network": "unthrottled (loopback)"
+      },
+      "mode": "no-drift",
+      "clsRuns": [
+        0,
+        0.1388,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "clsMedian": 0,
+      "clsMax": 0.1388,
+      "nonzeroRuns": 1,
+      "attributedShifts": [
+        {
+          "run": 1,
+          "value": 0.0808,
+          "at": 280,
+          "input": false,
+          "sources": [
+            {
+              "node": "div.lm-bloom-b.lm-drift",
+              "from": [
+                0,
+                243,
+                412,
+                512
+              ],
+              "to": [
+                0,
+                267,
+                412,
+                512
+              ]
+            },
+            {
+              "node": "div.lm-bloom-a.lm-drift",
+              "from": [
+                0,
+                169,
+                412,
+                338
+              ],
+              "to": [
+                0,
+                169,
+                412,
+                249
+              ]
+            }
+          ]
+        },
+        {
+          "run": 1,
+          "value": 0.05804,
+          "at": 396,
+          "input": false,
+          "sources": [
+            {
+              "node": "div.lm-bloom-b.lm-drift",
+              "from": [
+                0,
+                267,
+                412,
+                512
+              ],
+              "to": [
+                0,
+                284,
+                412,
+                512
+              ]
+            },
+            {
+              "node": "div.lm-bloom-a.lm-drift",
+              "from": [
+                0,
+                169,
+                412,
+                249
+              ],
+              "to": [
+                0,
+                169,
+                412,
+                186
+              ]
+            }
+          ]
+        }
+      ],
+      "lcpMedian": 356,
+      "lcpElement": "p.lm-hero-in.mt-5.5",
+      "fontsReadyAtMedian": 62
+    },
+    "b_no_bloom": {
+      "scenario": "mobile 4x CPU",
+      "conditions": {
+        "viewport": "412x823",
+        "dpr": 1.75,
+        "cpuThrottle": 4,
+        "reducedMotion": "no-preference",
+        "network": "unthrottled (loopback)"
+      },
+      "mode": "no-bloom",
+      "clsRuns": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "clsMedian": 0,
+      "clsMax": 0,
+      "nonzeroRuns": 0,
+      "attributedShifts": [],
+      "lcpMedian": 280,
+      "lcpElement": "p.lm-hero-in.mt-5.5",
+      "fontsReadyAtMedian": 61
+    },
+    "b_no_blur": {
+      "scenario": "mobile 4x CPU",
+      "conditions": {
+        "viewport": "412x823",
+        "dpr": 1.75,
+        "cpuThrottle": 4,
+        "reducedMotion": "no-preference",
+        "network": "unthrottled (loopback)"
+      },
+      "mode": "no-blur",
+      "clsRuns": [
+        0,
+        0,
+        0.1411,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "clsMedian": 0,
+      "clsMax": 0.1411,
+      "nonzeroRuns": 1,
+      "attributedShifts": [
+        {
+          "run": 2,
+          "value": 0.1411,
+          "at": 313,
+          "input": false,
+          "sources": [
+            {
+              "node": "div.lm-bloom-b.lm-drift",
+              "from": [
+                0,
+                243,
+                412,
+                512
+              ],
+              "to": [
+                0,
+                284,
+                412,
+                512
+              ]
+            },
+            {
+              "node": "div.lm-bloom-a.lm-drift",
+              "from": [
+                0,
+                169,
+                412,
+                338
+              ],
+              "to": [
+                0,
+                169,
+                412,
+                186
+              ]
+            }
+          ]
+        }
+      ],
+      "lcpMedian": 292,
+      "lcpElement": "p.lm-hero-in.mt-5.5",
+      "fontsReadyAtMedian": 56
+    }
+  },
+  "d_repeat_20_runs": {
+    "scenario": "mobile reduced motion",
+    "conditions": {
+      "viewport": "412x823",
+      "dpr": 1.75,
+      "cpuThrottle": 1,
+      "reducedMotion": "reduce",
+      "network": "unthrottled (loopback)"
+    },
+    "mode": "baseline",
+    "clsRuns": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "clsMedian": 0,
+    "clsMax": 0,
+    "nonzeroRuns": 0,
+    "attributedShifts": [],
+    "lcpMedian": 184,
+    "lcpElement": "p.lm-hero-in.mt-5.5",
+    "fontsReadyAtMedian": 19
+  }
+}
