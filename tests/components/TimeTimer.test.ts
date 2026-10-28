@@ -17,5 +17,35 @@ describe("TimeTimer", () => {
     assert.ok(src.includes('placeholder="What are you working on?"'));
     assert.ok(src.includes('pending ? "Saving…"')); // real submit label + pending state
     assert.ok(src.includes("logTimeAction")); // real server action
+    assert.match(src, /role="alert"/);
+    for (const field of ["descriptionInvalid", "minutesInvalid", "dateInvalid"]) {
+      assert.match(src, new RegExp(`aria-invalid=\\{${field} \\|\\| undefined\\}`));
+      assert.match(src, new RegExp(`aria-describedby=\\{${field} \\? errorId : undefined\\}`));
+    }
+  });
+
+  it("reserves a real scrollport only when the narrow shell has a timer", () => {
+    const layout = read("app/(app)/layout.tsx");
+    const css = read("app/globals.css");
+    assert.match(layout, /data-has-timer=\{context\.canSeeMoney \? "" : undefined\}/);
+    assert.match(css, /\.app-main\[data-has-timer\]\s*\{\s*margin-bottom: calc\(9\.5rem \+ env\(safe-area-inset-bottom, 0px\)\)/);
+    assert.match(css, /min-width: 600px\) and \(max-width: 1023\.98px\)/);
+    assert.match(css, /\.app-main\[data-has-timer\]\s*\{\s*margin-bottom: 5\.5rem/);
+  });
+
+  it("keeps a modal stop form focus-safe on narrow screens and the desktop form non-modal", () => {
+    const src = read("components/time/TimeTimer.tsx");
+    assert.match(src, /useSyncExternalStore\(subscribeToNarrowTimer/);
+    assert.match(src, /if \(!narrow\)/);
+    assert.match(src, /<Dialog\.Root/);
+    assert.match(src, /<Dialog\.Title/);
+    assert.match(src, /<Dialog\.Description/);
+    assert.match(src, /onOpenAutoFocus/);
+    assert.match(src, /onCloseAutoFocus/);
+    assert.match(src, /stopTriggerRef\.current/);
+    assert.match(src, /if \(!open && !pending\) setPhase\("running"\)/);
+    assert.match(src, /onEscapeKeyDown/);
+    assert.match(src, /aria-label="Close timer form"/);
+    assert.match(src, /overflow-y-auto/);
   });
 });

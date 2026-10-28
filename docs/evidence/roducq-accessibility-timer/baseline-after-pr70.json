@@ -1,0 +1,5479 @@
+{
+  "build": "main-after-70",
+  "currentHead": "c34b33c5160c6184f9c5e9f0a6a7d1d637da72a0",
+  "pre70": "ff90300b730edff2ed6d37a035619512b8a1e8f8",
+  "widths": [
+    320,
+    375,
+    390,
+    768,
+    1024,
+    1200,
+    1440
+  ],
+  "heights": {
+    "320": 568,
+    "375": 667,
+    "390": 844,
+    "768": 900,
+    "1024": 900,
+    "1200": 900,
+    "1440": 900
+  },
+  "settings": {
+    "scheme": [
+      "light",
+      "dark"
+    ],
+    "reducedMotion": "reduce",
+    "deviceScaleFactor": 1,
+    "locale": "en-US",
+    "timezoneId": "UTC",
+    "serviceWorkers": "block",
+    "browserNetwork": "blocked except loopback app/fixture",
+    "fixture": "one fictional owner, one fictional workspace and update, no real auth or data",
+    "statusDelayMs": 900
+  },
+  "scans": [
+    {
+      "scheme": "light",
+      "width": 320,
+      "height": 568,
+      "route": "detail",
+      "fixture": "sent/revoked",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "light",
+      "width": 320,
+      "height": 568,
+      "route": "dashboard",
+      "fixture": "empty-pipeline/one-overdue-invoice/one-expiring-contract",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "light",
+      "width": 320,
+      "height": 568,
+      "route": "updates",
+      "fixture": "one-draft-update",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "light",
+      "width": 375,
+      "height": 667,
+      "route": "detail",
+      "fixture": "sent/revoked",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "light",
+      "width": 375,
+      "height": 667,
+      "route": "dashboard",
+      "fixture": "empty-pipeline/one-overdue-invoice/one-expiring-contract",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "light",
+      "width": 375,
+      "height": 667,
+      "route": "updates",
+      "fixture": "one-draft-update",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "light",
+      "width": 390,
+      "height": 844,
+      "route": "detail",
+      "fixture": "sent/revoked",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "light",
+      "width": 390,
+      "height": 844,
+      "route": "dashboard",
+      "fixture": "empty-pipeline/one-overdue-invoice/one-expiring-contract",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "light",
+      "width": 390,
+      "height": 844,
+      "route": "updates",
+      "fixture": "one-draft-update",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "light",
+      "width": 768,
+      "height": 900,
+      "route": "detail",
+      "fixture": "sent/revoked",
+      "violations": [
+        {
+          "id": "aria-prohibited-attr",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".w-11"
+              ],
+              "html": "<div class=\"flex h-11 w-11 items-center justify-center rounded-control\" title=\"Fictional Studio\" aria-label=\"Workspace: Fictional Studio\"><span aria-hidden=\"true\" class=\"flex h-8 w-8 items-center justify-center rounded-lg bg-accent-soft text-xs font-bold text-accent\">F</span></div>",
+              "summary": "Fix all of the following:\n  aria-label attribute cannot be used on \"div\" elements with no valid role attribute."
+            }
+          ]
+        }
+      ],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "light",
+      "width": 768,
+      "height": 900,
+      "route": "dashboard",
+      "fixture": "empty-pipeline/one-overdue-invoice/one-expiring-contract",
+      "violations": [
+        {
+          "id": "aria-prohibited-attr",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".w-11"
+              ],
+              "html": "<div class=\"flex h-11 w-11 items-center justify-center rounded-control\" title=\"Fictional Studio\" aria-label=\"Workspace: Fictional Studio\"><span aria-hidden=\"true\" class=\"flex h-8 w-8 items-center justify-center rounded-lg bg-accent-soft text-xs font-bold text-accent\">F</span></div>",
+              "summary": "Fix all of the following:\n  aria-label attribute cannot be used on \"div\" elements with no valid role attribute."
+            }
+          ]
+        }
+      ],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "light",
+      "width": 768,
+      "height": 900,
+      "route": "updates",
+      "fixture": "one-draft-update",
+      "violations": [
+        {
+          "id": "aria-prohibited-attr",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".w-11"
+              ],
+              "html": "<div class=\"flex h-11 w-11 items-center justify-center rounded-control\" title=\"Fictional Studio\" aria-label=\"Workspace: Fictional Studio\"><span aria-hidden=\"true\" class=\"flex h-8 w-8 items-center justify-center rounded-lg bg-accent-soft text-xs font-bold text-accent\">F</span></div>",
+              "summary": "Fix all of the following:\n  aria-label attribute cannot be used on \"div\" elements with no valid role attribute."
+            }
+          ]
+        }
+      ],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "light",
+      "width": 1024,
+      "height": 900,
+      "route": "detail",
+      "fixture": "sent/revoked",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(38, 29, 45)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              38,
+              29,
+              45
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  243,
+                  237,
+                  253
+                ],
+                "count": 58
+              },
+              {
+                "rgb": [
+                  242,
+                  236,
+                  253
+                ],
+                "count": 55
+              },
+              {
+                "rgb": [
+                  242,
+                  235,
+                  253
+                ],
+                "count": 33
+              },
+              {
+                "rgb": [
+                  243,
+                  237,
+                  254
+                ],
+                "count": 32
+              },
+              {
+                "rgb": [
+                  244,
+                  238,
+                  254
+                ],
+                "count": 28
+              }
+            ],
+            "glyphRatio": {
+              "min": 13.833,
+              "median": 14.153,
+              "max": 14.398,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 13.718,
+              "max": 14.488
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(124, 58, 237)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              124,
+              58,
+              237
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  241,
+                  234,
+                  253
+                ],
+                "count": 48
+              },
+              {
+                "rgb": [
+                  242,
+                  235,
+                  253
+                ],
+                "count": 44
+              },
+              {
+                "rgb": [
+                  242,
+                  236,
+                  253
+                ],
+                "count": 19
+              },
+              {
+                "rgb": [
+                  241,
+                  235,
+                  253
+                ],
+                "count": 14
+              },
+              {
+                "rgb": [
+                  242,
+                  235,
+                  254
+                ],
+                "count": 8
+              }
+            ],
+            "glyphRatio": {
+              "min": 4.825,
+              "median": 4.905,
+              "max": 4.95,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 4.75,
+              "max": 4.981
+            }
+          }
+        ],
+        "beforeScreenshot": "light-1024-detail-gradient-text.png",
+        "backgroundScreenshot": "light-1024-detail-gradient-background.png",
+        "method": "Foreground from computed CSS; actual composited background from paired Chromium screenshots with only wordmark text colors temporarily transparent. Compare pixels changing >=4/255 in any channel; WCAG luminance, no rounding before 4.5 decision."
+      }
+    },
+    {
+      "scheme": "light",
+      "width": 1024,
+      "height": 900,
+      "route": "dashboard",
+      "fixture": "empty-pipeline/one-overdue-invoice/one-expiring-contract",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(38, 29, 45)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              38,
+              29,
+              45
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  243,
+                  237,
+                  253
+                ],
+                "count": 58
+              },
+              {
+                "rgb": [
+                  242,
+                  236,
+                  253
+                ],
+                "count": 55
+              },
+              {
+                "rgb": [
+                  242,
+                  235,
+                  253
+                ],
+                "count": 33
+              },
+              {
+                "rgb": [
+                  243,
+                  237,
+                  254
+                ],
+                "count": 32
+              },
+              {
+                "rgb": [
+                  244,
+                  238,
+                  254
+                ],
+                "count": 28
+              }
+            ],
+            "glyphRatio": {
+              "min": 13.833,
+              "median": 14.153,
+              "max": 14.398,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 13.718,
+              "max": 14.488
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(124, 58, 237)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              124,
+              58,
+              237
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  241,
+                  234,
+                  253
+                ],
+                "count": 48
+              },
+              {
+                "rgb": [
+                  242,
+                  235,
+                  253
+                ],
+                "count": 44
+              },
+              {
+                "rgb": [
+                  242,
+                  236,
+                  253
+                ],
+                "count": 19
+              },
+              {
+                "rgb": [
+                  241,
+                  235,
+                  253
+                ],
+                "count": 14
+              },
+              {
+                "rgb": [
+                  242,
+                  235,
+                  254
+                ],
+                "count": 8
+              }
+            ],
+            "glyphRatio": {
+              "min": 4.825,
+              "median": 4.905,
+              "max": 4.95,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 4.75,
+              "max": 4.981
+            }
+          }
+        ],
+        "beforeScreenshot": "light-1024-dashboard-gradient-text.png",
+        "backgroundScreenshot": "light-1024-dashboard-gradient-background.png",
+        "method": "Foreground from computed CSS; actual composited background from paired Chromium screenshots with only wordmark text colors temporarily transparent. Compare pixels changing >=4/255 in any channel; WCAG luminance, no rounding before 4.5 decision."
+      }
+    },
+    {
+      "scheme": "light",
+      "width": 1024,
+      "height": 900,
+      "route": "updates",
+      "fixture": "one-draft-update",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(38, 29, 45)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              38,
+              29,
+              45
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  243,
+                  237,
+                  253
+                ],
+                "count": 58
+              },
+              {
+                "rgb": [
+                  242,
+                  236,
+                  253
+                ],
+                "count": 55
+              },
+              {
+                "rgb": [
+                  242,
+                  235,
+                  253
+                ],
+                "count": 33
+              },
+              {
+                "rgb": [
+                  243,
+                  237,
+                  254
+                ],
+                "count": 32
+              },
+              {
+                "rgb": [
+                  244,
+                  238,
+                  254
+                ],
+                "count": 28
+              }
+            ],
+            "glyphRatio": {
+              "min": 13.833,
+              "median": 14.153,
+              "max": 14.398,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 13.718,
+              "max": 14.488
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(124, 58, 237)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              124,
+              58,
+              237
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  241,
+                  234,
+                  253
+                ],
+                "count": 48
+              },
+              {
+                "rgb": [
+                  242,
+                  235,
+                  253
+                ],
+                "count": 44
+              },
+              {
+                "rgb": [
+                  242,
+                  236,
+                  253
+                ],
+                "count": 19
+              },
+              {
+                "rgb": [
+                  241,
+                  235,
+                  253
+                ],
+                "count": 14
+              },
+              {
+                "rgb": [
+                  242,
+                  235,
+                  254
+                ],
+                "count": 8
+              }
+            ],
+            "glyphRatio": {
+              "min": 4.825,
+              "median": 4.905,
+              "max": 4.95,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 4.75,
+              "max": 4.981
+            }
+          }
+        ],
+        "beforeScreenshot": "light-1024-updates-gradient-text.png",
+        "backgroundScreenshot": "light-1024-updates-gradient-background.png",
+        "method": "Foreground from computed CSS; actual composited background from paired Chromium screenshots with only wordmark text colors temporarily transparent. Compare pixels changing >=4/255 in any channel; WCAG luminance, no rounding before 4.5 decision."
+      }
+    },
+    {
+      "scheme": "light",
+      "width": 1200,
+      "height": 900,
+      "route": "detail",
+      "fixture": "sent/revoked",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(38, 29, 45)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              38,
+              29,
+              45
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  243,
+                  237,
+                  253
+                ],
+                "count": 58
+              },
+              {
+                "rgb": [
+                  242,
+                  236,
+                  253
+                ],
+                "count": 55
+              },
+              {
+                "rgb": [
+                  242,
+                  235,
+                  253
+                ],
+                "count": 33
+              },
+              {
+                "rgb": [
+                  243,
+                  237,
+                  254
+                ],
+                "count": 32
+              },
+              {
+                "rgb": [
+                  244,
+                  238,
+                  254
+                ],
+                "count": 28
+              }
+            ],
+            "glyphRatio": {
+              "min": 13.833,
+              "median": 14.153,
+              "max": 14.398,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 13.718,
+              "max": 14.488
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(124, 58, 237)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              124,
+              58,
+              237
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  241,
+                  234,
+                  253
+                ],
+                "count": 48
+              },
+              {
+                "rgb": [
+                  242,
+                  235,
+                  253
+                ],
+                "count": 44
+              },
+              {
+                "rgb": [
+                  242,
+                  236,
+                  253
+                ],
+                "count": 19
+              },
+              {
+                "rgb": [
+                  241,
+                  235,
+                  253
+                ],
+                "count": 14
+              },
+              {
+                "rgb": [
+                  242,
+                  235,
+                  254
+                ],
+                "count": 8
+              }
+            ],
+            "glyphRatio": {
+              "min": 4.825,
+              "median": 4.905,
+              "max": 4.95,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 4.75,
+              "max": 4.981
+            }
+          }
+        ],
+        "beforeScreenshot": "light-1200-detail-gradient-text.png",
+        "backgroundScreenshot": "light-1200-detail-gradient-background.png",
+        "method": "Foreground from computed CSS; actual composited background from paired Chromium screenshots with only wordmark text colors temporarily transparent. Compare pixels changing >=4/255 in any channel; WCAG luminance, no rounding before 4.5 decision."
+      }
+    },
+    {
+      "scheme": "light",
+      "width": 1200,
+      "height": 900,
+      "route": "dashboard",
+      "fixture": "empty-pipeline/one-overdue-invoice/one-expiring-contract",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(38, 29, 45)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              38,
+              29,
+              45
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  243,
+                  237,
+                  253
+                ],
+                "count": 58
+              },
+              {
+                "rgb": [
+                  242,
+                  236,
+                  253
+                ],
+                "count": 55
+              },
+              {
+                "rgb": [
+                  242,
+                  235,
+                  253
+                ],
+                "count": 33
+              },
+              {
+                "rgb": [
+                  243,
+                  237,
+                  254
+                ],
+                "count": 32
+              },
+              {
+                "rgb": [
+                  244,
+                  238,
+                  254
+                ],
+                "count": 28
+              }
+            ],
+            "glyphRatio": {
+              "min": 13.833,
+              "median": 14.153,
+              "max": 14.398,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 13.718,
+              "max": 14.488
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(124, 58, 237)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              124,
+              58,
+              237
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  241,
+                  234,
+                  253
+                ],
+                "count": 48
+              },
+              {
+                "rgb": [
+                  242,
+                  235,
+                  253
+                ],
+                "count": 44
+              },
+              {
+                "rgb": [
+                  242,
+                  236,
+                  253
+                ],
+                "count": 19
+              },
+              {
+                "rgb": [
+                  241,
+                  235,
+                  253
+                ],
+                "count": 14
+              },
+              {
+                "rgb": [
+                  242,
+                  235,
+                  254
+                ],
+                "count": 8
+              }
+            ],
+            "glyphRatio": {
+              "min": 4.825,
+              "median": 4.905,
+              "max": 4.95,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 4.75,
+              "max": 4.981
+            }
+          }
+        ],
+        "beforeScreenshot": "light-1200-dashboard-gradient-text.png",
+        "backgroundScreenshot": "light-1200-dashboard-gradient-background.png",
+        "method": "Foreground from computed CSS; actual composited background from paired Chromium screenshots with only wordmark text colors temporarily transparent. Compare pixels changing >=4/255 in any channel; WCAG luminance, no rounding before 4.5 decision."
+      }
+    },
+    {
+      "scheme": "light",
+      "width": 1200,
+      "height": 900,
+      "route": "updates",
+      "fixture": "one-draft-update",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(38, 29, 45)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              38,
+              29,
+              45
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  243,
+                  237,
+                  253
+                ],
+                "count": 58
+              },
+              {
+                "rgb": [
+                  242,
+                  236,
+                  253
+                ],
+                "count": 55
+              },
+              {
+                "rgb": [
+                  242,
+                  235,
+                  253
+                ],
+                "count": 33
+              },
+              {
+                "rgb": [
+                  243,
+                  237,
+                  254
+                ],
+                "count": 32
+              },
+              {
+                "rgb": [
+                  244,
+                  238,
+                  254
+                ],
+                "count": 28
+              }
+            ],
+            "glyphRatio": {
+              "min": 13.833,
+              "median": 14.153,
+              "max": 14.398,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 13.718,
+              "max": 14.488
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(124, 58, 237)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              124,
+              58,
+              237
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  241,
+                  234,
+                  253
+                ],
+                "count": 48
+              },
+              {
+                "rgb": [
+                  242,
+                  235,
+                  253
+                ],
+                "count": 44
+              },
+              {
+                "rgb": [
+                  242,
+                  236,
+                  253
+                ],
+                "count": 19
+              },
+              {
+                "rgb": [
+                  241,
+                  235,
+                  253
+                ],
+                "count": 14
+              },
+              {
+                "rgb": [
+                  242,
+                  235,
+                  254
+                ],
+                "count": 8
+              }
+            ],
+            "glyphRatio": {
+              "min": 4.825,
+              "median": 4.905,
+              "max": 4.95,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 4.75,
+              "max": 4.981
+            }
+          }
+        ],
+        "beforeScreenshot": "light-1200-updates-gradient-text.png",
+        "backgroundScreenshot": "light-1200-updates-gradient-background.png",
+        "method": "Foreground from computed CSS; actual composited background from paired Chromium screenshots with only wordmark text colors temporarily transparent. Compare pixels changing >=4/255 in any channel; WCAG luminance, no rounding before 4.5 decision."
+      }
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "height": 900,
+      "route": "detail",
+      "fixture": "sent/revoked",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(38, 29, 45)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              38,
+              29,
+              45
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  243,
+                  237,
+                  253
+                ],
+                "count": 58
+              },
+              {
+                "rgb": [
+                  242,
+                  236,
+                  253
+                ],
+                "count": 55
+              },
+              {
+                "rgb": [
+                  242,
+                  235,
+                  253
+                ],
+                "count": 33
+              },
+              {
+                "rgb": [
+                  243,
+                  237,
+                  254
+                ],
+                "count": 32
+              },
+              {
+                "rgb": [
+                  244,
+                  238,
+                  254
+                ],
+                "count": 28
+              }
+            ],
+            "glyphRatio": {
+              "min": 13.833,
+              "median": 14.153,
+              "max": 14.398,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 13.718,
+              "max": 14.488
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(124, 58, 237)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              124,
+              58,
+              237
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  241,
+                  234,
+                  253
+                ],
+                "count": 48
+              },
+              {
+                "rgb": [
+                  242,
+                  235,
+                  253
+                ],
+                "count": 44
+              },
+              {
+                "rgb": [
+                  242,
+                  236,
+                  253
+                ],
+                "count": 19
+              },
+              {
+                "rgb": [
+                  241,
+                  235,
+                  253
+                ],
+                "count": 14
+              },
+              {
+                "rgb": [
+                  242,
+                  235,
+                  254
+                ],
+                "count": 8
+              }
+            ],
+            "glyphRatio": {
+              "min": 4.825,
+              "median": 4.905,
+              "max": 4.95,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 4.75,
+              "max": 4.981
+            }
+          }
+        ],
+        "beforeScreenshot": "light-1440-detail-gradient-text.png",
+        "backgroundScreenshot": "light-1440-detail-gradient-background.png",
+        "method": "Foreground from computed CSS; actual composited background from paired Chromium screenshots with only wordmark text colors temporarily transparent. Compare pixels changing >=4/255 in any channel; WCAG luminance, no rounding before 4.5 decision."
+      }
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "height": 900,
+      "route": "dashboard",
+      "fixture": "empty-pipeline/one-overdue-invoice/one-expiring-contract",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(38, 29, 45)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              38,
+              29,
+              45
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  243,
+                  237,
+                  253
+                ],
+                "count": 58
+              },
+              {
+                "rgb": [
+                  242,
+                  236,
+                  253
+                ],
+                "count": 55
+              },
+              {
+                "rgb": [
+                  242,
+                  235,
+                  253
+                ],
+                "count": 33
+              },
+              {
+                "rgb": [
+                  243,
+                  237,
+                  254
+                ],
+                "count": 32
+              },
+              {
+                "rgb": [
+                  244,
+                  238,
+                  254
+                ],
+                "count": 28
+              }
+            ],
+            "glyphRatio": {
+              "min": 13.833,
+              "median": 14.153,
+              "max": 14.398,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 13.718,
+              "max": 14.488
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(124, 58, 237)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              124,
+              58,
+              237
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  241,
+                  234,
+                  253
+                ],
+                "count": 48
+              },
+              {
+                "rgb": [
+                  242,
+                  235,
+                  253
+                ],
+                "count": 44
+              },
+              {
+                "rgb": [
+                  242,
+                  236,
+                  253
+                ],
+                "count": 19
+              },
+              {
+                "rgb": [
+                  241,
+                  235,
+                  253
+                ],
+                "count": 14
+              },
+              {
+                "rgb": [
+                  242,
+                  235,
+                  254
+                ],
+                "count": 8
+              }
+            ],
+            "glyphRatio": {
+              "min": 4.825,
+              "median": 4.905,
+              "max": 4.95,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 4.75,
+              "max": 4.981
+            }
+          }
+        ],
+        "beforeScreenshot": "light-1440-dashboard-gradient-text.png",
+        "backgroundScreenshot": "light-1440-dashboard-gradient-background.png",
+        "method": "Foreground from computed CSS; actual composited background from paired Chromium screenshots with only wordmark text colors temporarily transparent. Compare pixels changing >=4/255 in any channel; WCAG luminance, no rounding before 4.5 decision."
+      }
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "height": 900,
+      "route": "updates",
+      "fixture": "one-draft-update",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(38, 29, 45)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              38,
+              29,
+              45
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  243,
+                  237,
+                  253
+                ],
+                "count": 58
+              },
+              {
+                "rgb": [
+                  242,
+                  236,
+                  253
+                ],
+                "count": 55
+              },
+              {
+                "rgb": [
+                  242,
+                  235,
+                  253
+                ],
+                "count": 33
+              },
+              {
+                "rgb": [
+                  243,
+                  237,
+                  254
+                ],
+                "count": 32
+              },
+              {
+                "rgb": [
+                  244,
+                  238,
+                  254
+                ],
+                "count": 28
+              }
+            ],
+            "glyphRatio": {
+              "min": 13.833,
+              "median": 14.153,
+              "max": 14.398,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 13.718,
+              "max": 14.488
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(124, 58, 237)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              124,
+              58,
+              237
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  241,
+                  234,
+                  253
+                ],
+                "count": 48
+              },
+              {
+                "rgb": [
+                  242,
+                  235,
+                  253
+                ],
+                "count": 44
+              },
+              {
+                "rgb": [
+                  242,
+                  236,
+                  253
+                ],
+                "count": 19
+              },
+              {
+                "rgb": [
+                  241,
+                  235,
+                  253
+                ],
+                "count": 14
+              },
+              {
+                "rgb": [
+                  242,
+                  235,
+                  254
+                ],
+                "count": 8
+              }
+            ],
+            "glyphRatio": {
+              "min": 4.825,
+              "median": 4.905,
+              "max": 4.95,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 4.75,
+              "max": 4.981
+            }
+          }
+        ],
+        "beforeScreenshot": "light-1440-updates-gradient-text.png",
+        "backgroundScreenshot": "light-1440-updates-gradient-background.png",
+        "method": "Foreground from computed CSS; actual composited background from paired Chromium screenshots with only wordmark text colors temporarily transparent. Compare pixels changing >=4/255 in any channel; WCAG luminance, no rounding before 4.5 decision."
+      }
+    },
+    {
+      "scheme": "dark",
+      "width": 320,
+      "height": 568,
+      "route": "detail",
+      "fixture": "sent/revoked",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "dark",
+      "width": 320,
+      "height": 568,
+      "route": "dashboard",
+      "fixture": "empty-pipeline/one-overdue-invoice/one-expiring-contract",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "dark",
+      "width": 320,
+      "height": 568,
+      "route": "updates",
+      "fixture": "one-draft-update",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "dark",
+      "width": 375,
+      "height": 667,
+      "route": "detail",
+      "fixture": "sent/revoked",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "dark",
+      "width": 375,
+      "height": 667,
+      "route": "dashboard",
+      "fixture": "empty-pipeline/one-overdue-invoice/one-expiring-contract",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "dark",
+      "width": 375,
+      "height": 667,
+      "route": "updates",
+      "fixture": "one-draft-update",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "dark",
+      "width": 390,
+      "height": 844,
+      "route": "detail",
+      "fixture": "sent/revoked",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "dark",
+      "width": 390,
+      "height": 844,
+      "route": "dashboard",
+      "fixture": "empty-pipeline/one-overdue-invoice/one-expiring-contract",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "dark",
+      "width": 390,
+      "height": 844,
+      "route": "updates",
+      "fixture": "one-draft-update",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "dark",
+      "width": 768,
+      "height": 900,
+      "route": "detail",
+      "fixture": "sent/revoked",
+      "violations": [
+        {
+          "id": "aria-prohibited-attr",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".w-11"
+              ],
+              "html": "<div class=\"flex h-11 w-11 items-center justify-center rounded-control\" title=\"Fictional Studio\" aria-label=\"Workspace: Fictional Studio\"><span aria-hidden=\"true\" class=\"flex h-8 w-8 items-center justify-center rounded-lg bg-accent-soft text-xs font-bold text-accent\">F</span></div>",
+              "summary": "Fix all of the following:\n  aria-label attribute cannot be used on \"div\" elements with no valid role attribute."
+            }
+          ]
+        }
+      ],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "dark",
+      "width": 768,
+      "height": 900,
+      "route": "dashboard",
+      "fixture": "empty-pipeline/one-overdue-invoice/one-expiring-contract",
+      "violations": [
+        {
+          "id": "aria-prohibited-attr",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".w-11"
+              ],
+              "html": "<div class=\"flex h-11 w-11 items-center justify-center rounded-control\" title=\"Fictional Studio\" aria-label=\"Workspace: Fictional Studio\"><span aria-hidden=\"true\" class=\"flex h-8 w-8 items-center justify-center rounded-lg bg-accent-soft text-xs font-bold text-accent\">F</span></div>",
+              "summary": "Fix all of the following:\n  aria-label attribute cannot be used on \"div\" elements with no valid role attribute."
+            }
+          ]
+        }
+      ],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "dark",
+      "width": 768,
+      "height": 900,
+      "route": "updates",
+      "fixture": "one-draft-update",
+      "violations": [
+        {
+          "id": "aria-prohibited-attr",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".w-11"
+              ],
+              "html": "<div class=\"flex h-11 w-11 items-center justify-center rounded-control\" title=\"Fictional Studio\" aria-label=\"Workspace: Fictional Studio\"><span aria-hidden=\"true\" class=\"flex h-8 w-8 items-center justify-center rounded-lg bg-accent-soft text-xs font-bold text-accent\">F</span></div>",
+              "summary": "Fix all of the following:\n  aria-label attribute cannot be used on \"div\" elements with no valid role attribute."
+            }
+          ]
+        }
+      ],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "dark",
+      "width": 1024,
+      "height": 900,
+      "route": "detail",
+      "fixture": "sent/revoked",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(250, 247, 255)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              250,
+              247,
+              255
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  62,
+                  49,
+                  80
+                ],
+                "count": 46
+              },
+              {
+                "rgb": [
+                  61,
+                  48,
+                  79
+                ],
+                "count": 39
+              },
+              {
+                "rgb": [
+                  63,
+                  50,
+                  82
+                ],
+                "count": 35
+              },
+              {
+                "rgb": [
+                  62,
+                  49,
+                  81
+                ],
+                "count": 26
+              },
+              {
+                "rgb": [
+                  64,
+                  51,
+                  83
+                ],
+                "count": 23
+              }
+            ],
+            "glyphRatio": {
+              "min": 10.745,
+              "median": 11.258,
+              "max": 11.786,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 10.406,
+              "max": 11.978
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(187, 164, 255)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              187,
+              164,
+              255
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  64,
+                  51,
+                  83
+                ],
+                "count": 34
+              },
+              {
+                "rgb": [
+                  63,
+                  50,
+                  82
+                ],
+                "count": 33
+              },
+              {
+                "rgb": [
+                  65,
+                  52,
+                  85
+                ],
+                "count": 24
+              },
+              {
+                "rgb": [
+                  65,
+                  52,
+                  84
+                ],
+                "count": 15
+              },
+              {
+                "rgb": [
+                  64,
+                  51,
+                  84
+                ],
+                "count": 11
+              }
+            ],
+            "glyphRatio": {
+              "min": 5.262,
+              "median": 5.432,
+              "max": 5.597,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 5.076,
+              "max": 5.69
+            }
+          }
+        ],
+        "beforeScreenshot": "dark-1024-detail-gradient-text.png",
+        "backgroundScreenshot": "dark-1024-detail-gradient-background.png",
+        "method": "Foreground from computed CSS; actual composited background from paired Chromium screenshots with only wordmark text colors temporarily transparent. Compare pixels changing >=4/255 in any channel; WCAG luminance, no rounding before 4.5 decision."
+      }
+    },
+    {
+      "scheme": "dark",
+      "width": 1024,
+      "height": 900,
+      "route": "dashboard",
+      "fixture": "empty-pipeline/one-overdue-invoice/one-expiring-contract",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(250, 247, 255)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              250,
+              247,
+              255
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  62,
+                  49,
+                  80
+                ],
+                "count": 46
+              },
+              {
+                "rgb": [
+                  61,
+                  48,
+                  79
+                ],
+                "count": 39
+              },
+              {
+                "rgb": [
+                  63,
+                  50,
+                  82
+                ],
+                "count": 35
+              },
+              {
+                "rgb": [
+                  62,
+                  49,
+                  81
+                ],
+                "count": 26
+              },
+              {
+                "rgb": [
+                  64,
+                  51,
+                  83
+                ],
+                "count": 23
+              }
+            ],
+            "glyphRatio": {
+              "min": 10.745,
+              "median": 11.258,
+              "max": 11.786,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 10.406,
+              "max": 11.978
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(187, 164, 255)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              187,
+              164,
+              255
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  64,
+                  51,
+                  83
+                ],
+                "count": 34
+              },
+              {
+                "rgb": [
+                  63,
+                  50,
+                  82
+                ],
+                "count": 33
+              },
+              {
+                "rgb": [
+                  65,
+                  52,
+                  85
+                ],
+                "count": 24
+              },
+              {
+                "rgb": [
+                  65,
+                  52,
+                  84
+                ],
+                "count": 15
+              },
+              {
+                "rgb": [
+                  64,
+                  51,
+                  84
+                ],
+                "count": 11
+              }
+            ],
+            "glyphRatio": {
+              "min": 5.262,
+              "median": 5.432,
+              "max": 5.597,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 5.076,
+              "max": 5.69
+            }
+          }
+        ],
+        "beforeScreenshot": "dark-1024-dashboard-gradient-text.png",
+        "backgroundScreenshot": "dark-1024-dashboard-gradient-background.png",
+        "method": "Foreground from computed CSS; actual composited background from paired Chromium screenshots with only wordmark text colors temporarily transparent. Compare pixels changing >=4/255 in any channel; WCAG luminance, no rounding before 4.5 decision."
+      }
+    },
+    {
+      "scheme": "dark",
+      "width": 1024,
+      "height": 900,
+      "route": "updates",
+      "fixture": "one-draft-update",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(250, 247, 255)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              250,
+              247,
+              255
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  62,
+                  49,
+                  80
+                ],
+                "count": 46
+              },
+              {
+                "rgb": [
+                  61,
+                  48,
+                  79
+                ],
+                "count": 39
+              },
+              {
+                "rgb": [
+                  63,
+                  50,
+                  82
+                ],
+                "count": 35
+              },
+              {
+                "rgb": [
+                  62,
+                  49,
+                  81
+                ],
+                "count": 26
+              },
+              {
+                "rgb": [
+                  64,
+                  51,
+                  83
+                ],
+                "count": 23
+              }
+            ],
+            "glyphRatio": {
+              "min": 10.745,
+              "median": 11.258,
+              "max": 11.786,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 10.406,
+              "max": 11.978
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(187, 164, 255)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              187,
+              164,
+              255
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  64,
+                  51,
+                  83
+                ],
+                "count": 34
+              },
+              {
+                "rgb": [
+                  63,
+                  50,
+                  82
+                ],
+                "count": 33
+              },
+              {
+                "rgb": [
+                  65,
+                  52,
+                  85
+                ],
+                "count": 24
+              },
+              {
+                "rgb": [
+                  65,
+                  52,
+                  84
+                ],
+                "count": 15
+              },
+              {
+                "rgb": [
+                  64,
+                  51,
+                  84
+                ],
+                "count": 11
+              }
+            ],
+            "glyphRatio": {
+              "min": 5.262,
+              "median": 5.432,
+              "max": 5.597,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 5.076,
+              "max": 5.69
+            }
+          }
+        ],
+        "beforeScreenshot": "dark-1024-updates-gradient-text.png",
+        "backgroundScreenshot": "dark-1024-updates-gradient-background.png",
+        "method": "Foreground from computed CSS; actual composited background from paired Chromium screenshots with only wordmark text colors temporarily transparent. Compare pixels changing >=4/255 in any channel; WCAG luminance, no rounding before 4.5 decision."
+      }
+    },
+    {
+      "scheme": "dark",
+      "width": 1200,
+      "height": 900,
+      "route": "detail",
+      "fixture": "sent/revoked",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(250, 247, 255)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              250,
+              247,
+              255
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  62,
+                  49,
+                  80
+                ],
+                "count": 46
+              },
+              {
+                "rgb": [
+                  61,
+                  48,
+                  79
+                ],
+                "count": 39
+              },
+              {
+                "rgb": [
+                  63,
+                  50,
+                  82
+                ],
+                "count": 35
+              },
+              {
+                "rgb": [
+                  62,
+                  49,
+                  81
+                ],
+                "count": 26
+              },
+              {
+                "rgb": [
+                  64,
+                  51,
+                  83
+                ],
+                "count": 23
+              }
+            ],
+            "glyphRatio": {
+              "min": 10.745,
+              "median": 11.258,
+              "max": 11.786,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 10.406,
+              "max": 11.978
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(187, 164, 255)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              187,
+              164,
+              255
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  64,
+                  51,
+                  83
+                ],
+                "count": 34
+              },
+              {
+                "rgb": [
+                  63,
+                  50,
+                  82
+                ],
+                "count": 33
+              },
+              {
+                "rgb": [
+                  65,
+                  52,
+                  85
+                ],
+                "count": 24
+              },
+              {
+                "rgb": [
+                  65,
+                  52,
+                  84
+                ],
+                "count": 15
+              },
+              {
+                "rgb": [
+                  64,
+                  51,
+                  84
+                ],
+                "count": 11
+              }
+            ],
+            "glyphRatio": {
+              "min": 5.262,
+              "median": 5.432,
+              "max": 5.597,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 5.076,
+              "max": 5.69
+            }
+          }
+        ],
+        "beforeScreenshot": "dark-1200-detail-gradient-text.png",
+        "backgroundScreenshot": "dark-1200-detail-gradient-background.png",
+        "method": "Foreground from computed CSS; actual composited background from paired Chromium screenshots with only wordmark text colors temporarily transparent. Compare pixels changing >=4/255 in any channel; WCAG luminance, no rounding before 4.5 decision."
+      }
+    },
+    {
+      "scheme": "dark",
+      "width": 1200,
+      "height": 900,
+      "route": "dashboard",
+      "fixture": "empty-pipeline/one-overdue-invoice/one-expiring-contract",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(250, 247, 255)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              250,
+              247,
+              255
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  62,
+                  49,
+                  80
+                ],
+                "count": 46
+              },
+              {
+                "rgb": [
+                  61,
+                  48,
+                  79
+                ],
+                "count": 39
+              },
+              {
+                "rgb": [
+                  63,
+                  50,
+                  82
+                ],
+                "count": 35
+              },
+              {
+                "rgb": [
+                  62,
+                  49,
+                  81
+                ],
+                "count": 26
+              },
+              {
+                "rgb": [
+                  64,
+                  51,
+                  83
+                ],
+                "count": 23
+              }
+            ],
+            "glyphRatio": {
+              "min": 10.745,
+              "median": 11.258,
+              "max": 11.786,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 10.406,
+              "max": 11.978
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(187, 164, 255)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              187,
+              164,
+              255
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  64,
+                  51,
+                  83
+                ],
+                "count": 34
+              },
+              {
+                "rgb": [
+                  63,
+                  50,
+                  82
+                ],
+                "count": 33
+              },
+              {
+                "rgb": [
+                  65,
+                  52,
+                  85
+                ],
+                "count": 24
+              },
+              {
+                "rgb": [
+                  65,
+                  52,
+                  84
+                ],
+                "count": 15
+              },
+              {
+                "rgb": [
+                  64,
+                  51,
+                  84
+                ],
+                "count": 11
+              }
+            ],
+            "glyphRatio": {
+              "min": 5.262,
+              "median": 5.432,
+              "max": 5.597,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 5.076,
+              "max": 5.69
+            }
+          }
+        ],
+        "beforeScreenshot": "dark-1200-dashboard-gradient-text.png",
+        "backgroundScreenshot": "dark-1200-dashboard-gradient-background.png",
+        "method": "Foreground from computed CSS; actual composited background from paired Chromium screenshots with only wordmark text colors temporarily transparent. Compare pixels changing >=4/255 in any channel; WCAG luminance, no rounding before 4.5 decision."
+      }
+    },
+    {
+      "scheme": "dark",
+      "width": 1200,
+      "height": 900,
+      "route": "updates",
+      "fixture": "one-draft-update",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(250, 247, 255)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              250,
+              247,
+              255
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  62,
+                  49,
+                  80
+                ],
+                "count": 46
+              },
+              {
+                "rgb": [
+                  61,
+                  48,
+                  79
+                ],
+                "count": 39
+              },
+              {
+                "rgb": [
+                  63,
+                  50,
+                  82
+                ],
+                "count": 35
+              },
+              {
+                "rgb": [
+                  62,
+                  49,
+                  81
+                ],
+                "count": 26
+              },
+              {
+                "rgb": [
+                  64,
+                  51,
+                  83
+                ],
+                "count": 23
+              }
+            ],
+            "glyphRatio": {
+              "min": 10.745,
+              "median": 11.258,
+              "max": 11.786,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 10.406,
+              "max": 11.978
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(187, 164, 255)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              187,
+              164,
+              255
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  64,
+                  51,
+                  83
+                ],
+                "count": 34
+              },
+              {
+                "rgb": [
+                  63,
+                  50,
+                  82
+                ],
+                "count": 33
+              },
+              {
+                "rgb": [
+                  65,
+                  52,
+                  85
+                ],
+                "count": 24
+              },
+              {
+                "rgb": [
+                  65,
+                  52,
+                  84
+                ],
+                "count": 15
+              },
+              {
+                "rgb": [
+                  64,
+                  51,
+                  84
+                ],
+                "count": 11
+              }
+            ],
+            "glyphRatio": {
+              "min": 5.262,
+              "median": 5.432,
+              "max": 5.597,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 5.076,
+              "max": 5.69
+            }
+          }
+        ],
+        "beforeScreenshot": "dark-1200-updates-gradient-text.png",
+        "backgroundScreenshot": "dark-1200-updates-gradient-background.png",
+        "method": "Foreground from computed CSS; actual composited background from paired Chromium screenshots with only wordmark text colors temporarily transparent. Compare pixels changing >=4/255 in any channel; WCAG luminance, no rounding before 4.5 decision."
+      }
+    },
+    {
+      "scheme": "dark",
+      "width": 1440,
+      "height": 900,
+      "route": "detail",
+      "fixture": "sent/revoked",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(250, 247, 255)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              250,
+              247,
+              255
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  62,
+                  49,
+                  80
+                ],
+                "count": 46
+              },
+              {
+                "rgb": [
+                  61,
+                  48,
+                  79
+                ],
+                "count": 39
+              },
+              {
+                "rgb": [
+                  63,
+                  50,
+                  82
+                ],
+                "count": 35
+              },
+              {
+                "rgb": [
+                  62,
+                  49,
+                  81
+                ],
+                "count": 26
+              },
+              {
+                "rgb": [
+                  64,
+                  51,
+                  83
+                ],
+                "count": 23
+              }
+            ],
+            "glyphRatio": {
+              "min": 10.745,
+              "median": 11.258,
+              "max": 11.786,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 10.406,
+              "max": 11.978
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(187, 164, 255)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              187,
+              164,
+              255
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  64,
+                  51,
+                  83
+                ],
+                "count": 34
+              },
+              {
+                "rgb": [
+                  63,
+                  50,
+                  82
+                ],
+                "count": 33
+              },
+              {
+                "rgb": [
+                  65,
+                  52,
+                  85
+                ],
+                "count": 24
+              },
+              {
+                "rgb": [
+                  65,
+                  52,
+                  84
+                ],
+                "count": 15
+              },
+              {
+                "rgb": [
+                  64,
+                  51,
+                  84
+                ],
+                "count": 11
+              }
+            ],
+            "glyphRatio": {
+              "min": 5.262,
+              "median": 5.432,
+              "max": 5.597,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 5.076,
+              "max": 5.69
+            }
+          }
+        ],
+        "beforeScreenshot": "dark-1440-detail-gradient-text.png",
+        "backgroundScreenshot": "dark-1440-detail-gradient-background.png",
+        "method": "Foreground from computed CSS; actual composited background from paired Chromium screenshots with only wordmark text colors temporarily transparent. Compare pixels changing >=4/255 in any channel; WCAG luminance, no rounding before 4.5 decision."
+      }
+    },
+    {
+      "scheme": "dark",
+      "width": 1440,
+      "height": 900,
+      "route": "dashboard",
+      "fixture": "empty-pipeline/one-overdue-invoice/one-expiring-contract",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(250, 247, 255)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              250,
+              247,
+              255
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  62,
+                  49,
+                  80
+                ],
+                "count": 46
+              },
+              {
+                "rgb": [
+                  61,
+                  48,
+                  79
+                ],
+                "count": 39
+              },
+              {
+                "rgb": [
+                  63,
+                  50,
+                  82
+                ],
+                "count": 35
+              },
+              {
+                "rgb": [
+                  62,
+                  49,
+                  81
+                ],
+                "count": 26
+              },
+              {
+                "rgb": [
+                  64,
+                  51,
+                  83
+                ],
+                "count": 23
+              }
+            ],
+            "glyphRatio": {
+              "min": 10.745,
+              "median": 11.258,
+              "max": 11.786,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 10.406,
+              "max": 11.978
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(187, 164, 255)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              187,
+              164,
+              255
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  64,
+                  51,
+                  83
+                ],
+                "count": 34
+              },
+              {
+                "rgb": [
+                  63,
+                  50,
+                  82
+                ],
+                "count": 33
+              },
+              {
+                "rgb": [
+                  65,
+                  52,
+                  85
+                ],
+                "count": 24
+              },
+              {
+                "rgb": [
+                  65,
+                  52,
+                  84
+                ],
+                "count": 15
+              },
+              {
+                "rgb": [
+                  64,
+                  51,
+                  84
+                ],
+                "count": 11
+              }
+            ],
+            "glyphRatio": {
+              "min": 5.262,
+              "median": 5.432,
+              "max": 5.597,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 5.076,
+              "max": 5.69
+            }
+          }
+        ],
+        "beforeScreenshot": "dark-1440-dashboard-gradient-text.png",
+        "backgroundScreenshot": "dark-1440-dashboard-gradient-background.png",
+        "method": "Foreground from computed CSS; actual composited background from paired Chromium screenshots with only wordmark text colors temporarily transparent. Compare pixels changing >=4/255 in any channel; WCAG luminance, no rounding before 4.5 decision."
+      }
+    },
+    {
+      "scheme": "dark",
+      "width": 1440,
+      "height": 900,
+      "route": "updates",
+      "fixture": "one-draft-update",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(250, 247, 255)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              250,
+              247,
+              255
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  62,
+                  49,
+                  80
+                ],
+                "count": 46
+              },
+              {
+                "rgb": [
+                  61,
+                  48,
+                  79
+                ],
+                "count": 39
+              },
+              {
+                "rgb": [
+                  63,
+                  50,
+                  82
+                ],
+                "count": 35
+              },
+              {
+                "rgb": [
+                  62,
+                  49,
+                  81
+                ],
+                "count": 26
+              },
+              {
+                "rgb": [
+                  64,
+                  51,
+                  83
+                ],
+                "count": 23
+              }
+            ],
+            "glyphRatio": {
+              "min": 10.745,
+              "median": 11.258,
+              "max": 11.786,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 10.406,
+              "max": 11.978
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(187, 164, 255)",
+            "fontSize": "17px",
+            "fontWeight": "800",
+            "foregroundRgb": [
+              187,
+              164,
+              255
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphBackgrounds": [
+              {
+                "rgb": [
+                  64,
+                  51,
+                  83
+                ],
+                "count": 34
+              },
+              {
+                "rgb": [
+                  63,
+                  50,
+                  82
+                ],
+                "count": 33
+              },
+              {
+                "rgb": [
+                  65,
+                  52,
+                  85
+                ],
+                "count": 24
+              },
+              {
+                "rgb": [
+                  65,
+                  52,
+                  84
+                ],
+                "count": 15
+              },
+              {
+                "rgb": [
+                  64,
+                  51,
+                  84
+                ],
+                "count": 11
+              }
+            ],
+            "glyphRatio": {
+              "min": 5.262,
+              "median": 5.432,
+              "max": 5.597,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 5.076,
+              "max": 5.69
+            }
+          }
+        ],
+        "beforeScreenshot": "dark-1440-updates-gradient-text.png",
+        "backgroundScreenshot": "dark-1440-updates-gradient-background.png",
+        "method": "Foreground from computed CSS; actual composited background from paired Chromium screenshots with only wordmark text colors temporarily transparent. Compare pixels changing >=4/255 in any channel; WCAG luminance, no rounding before 4.5 decision."
+      }
+    }
+  ],
+  "focus": [
+    {
+      "scheme": "light",
+      "width": 375,
+      "height": 667,
+      "scenario": "error",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "ariaLabel": "Update status",
+        "text": "Draft",
+        "disabled": false,
+        "rect": {
+          "x": 146,
+          "y": 393.59,
+          "width": 150,
+          "height": 44
+        }
+      },
+      "during": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 667
+        }
+      },
+      "disabledDuring": true,
+      "moved": null,
+      "after": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 667
+        }
+      },
+      "triggerText": "Draft",
+      "persistedFixtureStatus": "draft",
+      "errorText": "Synthetic status save failure",
+      "patchWrites": [
+        {
+          "path": "/rest/v1/updates",
+          "method": "PATCH",
+          "body": {
+            "status": "sent"
+          }
+        }
+      ]
+    },
+    {
+      "scheme": "light",
+      "width": 375,
+      "height": 667,
+      "scenario": "move-focus",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "ariaLabel": "Update status",
+        "text": "Draft",
+        "disabled": false,
+        "rect": {
+          "x": 146,
+          "y": 393.59,
+          "width": 150,
+          "height": 44
+        }
+      },
+      "during": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 667
+        }
+      },
+      "disabledDuring": true,
+      "moved": {
+        "tag": "INPUT",
+        "id": "global-search",
+        "role": null,
+        "ariaLabel": null,
+        "text": "",
+        "disabled": false,
+        "rect": {
+          "x": 12,
+          "y": 112,
+          "width": 351,
+          "height": 44
+        }
+      },
+      "after": {
+        "tag": "INPUT",
+        "id": "global-search",
+        "role": null,
+        "ariaLabel": null,
+        "text": "",
+        "disabled": false,
+        "rect": {
+          "x": 12,
+          "y": 112,
+          "width": 351,
+          "height": 44
+        }
+      },
+      "triggerText": "Marked sent",
+      "persistedFixtureStatus": "sent",
+      "errorText": null,
+      "patchWrites": [
+        {
+          "path": "/rest/v1/updates",
+          "method": "PATCH",
+          "body": {
+            "status": "sent"
+          }
+        }
+      ]
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "height": 900,
+      "scenario": "error",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "ariaLabel": "Update status",
+        "text": "Draft",
+        "disabled": false,
+        "rect": {
+          "x": 1195,
+          "y": 856.44,
+          "width": 150,
+          "height": 44
+        }
+      },
+      "during": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        }
+      },
+      "disabledDuring": true,
+      "moved": null,
+      "after": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        }
+      },
+      "triggerText": "Draft",
+      "persistedFixtureStatus": "draft",
+      "errorText": "Synthetic status save failure",
+      "patchWrites": [
+        {
+          "path": "/rest/v1/updates",
+          "method": "PATCH",
+          "body": {
+            "status": "sent"
+          }
+        }
+      ]
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "height": 900,
+      "scenario": "move-focus",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "ariaLabel": "Update status",
+        "text": "Draft",
+        "disabled": false,
+        "rect": {
+          "x": 1195,
+          "y": 856.44,
+          "width": 150,
+          "height": 44
+        }
+      },
+      "during": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        }
+      },
+      "disabledDuring": true,
+      "moved": {
+        "tag": "INPUT",
+        "id": "global-search",
+        "role": null,
+        "ariaLabel": null,
+        "text": "",
+        "disabled": false,
+        "rect": {
+          "x": 440,
+          "y": 9.5,
+          "width": 384,
+          "height": 44
+        }
+      },
+      "after": {
+        "tag": "INPUT",
+        "id": "global-search",
+        "role": null,
+        "ariaLabel": null,
+        "text": "",
+        "disabled": false,
+        "rect": {
+          "x": 440,
+          "y": 9.5,
+          "width": 384,
+          "height": 44
+        }
+      },
+      "triggerText": "Marked sent",
+      "persistedFixtureStatus": "sent",
+      "errorText": null,
+      "patchWrites": [
+        {
+          "path": "/rest/v1/updates",
+          "method": "PATCH",
+          "body": {
+            "status": "sent"
+          }
+        }
+      ]
+    },
+    {
+      "scheme": "light",
+      "width": 320,
+      "height": 568,
+      "scenario": "success",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "ariaLabel": "Update status",
+        "text": "Draft",
+        "disabled": false,
+        "rect": {
+          "x": 97,
+          "y": 344.59,
+          "width": 150,
+          "height": 44
+        }
+      },
+      "during": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 568
+        }
+      },
+      "disabledDuring": true,
+      "moved": null,
+      "after": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 568
+        }
+      },
+      "triggerText": "Marked sent",
+      "persistedFixtureStatus": "sent",
+      "errorText": null,
+      "patchWrites": [
+        {
+          "path": "/rest/v1/updates",
+          "method": "PATCH",
+          "body": {
+            "status": "sent"
+          }
+        }
+      ]
+    },
+    {
+      "scheme": "light",
+      "width": 375,
+      "height": 667,
+      "scenario": "success",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "ariaLabel": "Update status",
+        "text": "Draft",
+        "disabled": false,
+        "rect": {
+          "x": 146,
+          "y": 393.59,
+          "width": 150,
+          "height": 44
+        }
+      },
+      "during": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 667
+        }
+      },
+      "disabledDuring": true,
+      "moved": null,
+      "after": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 667
+        }
+      },
+      "triggerText": "Marked sent",
+      "persistedFixtureStatus": "sent",
+      "errorText": null,
+      "patchWrites": [
+        {
+          "path": "/rest/v1/updates",
+          "method": "PATCH",
+          "body": {
+            "status": "sent"
+          }
+        }
+      ]
+    },
+    {
+      "scheme": "light",
+      "width": 390,
+      "height": 844,
+      "scenario": "success",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "ariaLabel": "Update status",
+        "text": "Draft",
+        "disabled": false,
+        "rect": {
+          "x": 161,
+          "y": 456.59,
+          "width": 150,
+          "height": 44
+        }
+      },
+      "during": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844
+        }
+      },
+      "disabledDuring": true,
+      "moved": null,
+      "after": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844
+        }
+      },
+      "triggerText": "Marked sent",
+      "persistedFixtureStatus": "sent",
+      "errorText": null,
+      "patchWrites": [
+        {
+          "path": "/rest/v1/updates",
+          "method": "PATCH",
+          "body": {
+            "status": "sent"
+          }
+        }
+      ]
+    },
+    {
+      "scheme": "light",
+      "width": 768,
+      "height": 900,
+      "scenario": "success",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "ariaLabel": "Update status",
+        "text": "Draft",
+        "disabled": false,
+        "rect": {
+          "x": 523,
+          "y": 459.56,
+          "width": 150,
+          "height": 44
+        }
+      },
+      "during": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 768,
+          "height": 900
+        }
+      },
+      "disabledDuring": true,
+      "moved": null,
+      "after": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 768,
+          "height": 900
+        }
+      },
+      "triggerText": "Marked sent",
+      "persistedFixtureStatus": "sent",
+      "errorText": null,
+      "patchWrites": [
+        {
+          "path": "/rest/v1/updates",
+          "method": "PATCH",
+          "body": {
+            "status": "sent"
+          }
+        }
+      ]
+    },
+    {
+      "scheme": "light",
+      "width": 1024,
+      "height": 900,
+      "scenario": "success",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "ariaLabel": "Update status",
+        "text": "Draft",
+        "disabled": false,
+        "rect": {
+          "x": 846.33,
+          "y": 460.27,
+          "width": 124.67,
+          "height": 44
+        }
+      },
+      "during": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1024,
+          "height": 900
+        }
+      },
+      "disabledDuring": true,
+      "moved": null,
+      "after": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1024,
+          "height": 900
+        }
+      },
+      "triggerText": "Marked sent",
+      "persistedFixtureStatus": "sent",
+      "errorText": null,
+      "patchWrites": [
+        {
+          "path": "/rest/v1/updates",
+          "method": "PATCH",
+          "body": {
+            "status": "sent"
+          }
+        }
+      ]
+    },
+    {
+      "scheme": "light",
+      "width": 1200,
+      "height": 900,
+      "scenario": "success",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "ariaLabel": "Update status",
+        "text": "Draft",
+        "disabled": false,
+        "rect": {
+          "x": 963.66,
+          "y": 460.27,
+          "width": 150,
+          "height": 44
+        }
+      },
+      "during": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1200,
+          "height": 900
+        }
+      },
+      "disabledDuring": true,
+      "moved": null,
+      "after": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1200,
+          "height": 900
+        }
+      },
+      "triggerText": "Marked sent",
+      "persistedFixtureStatus": "sent",
+      "errorText": null,
+      "patchWrites": [
+        {
+          "path": "/rest/v1/updates",
+          "method": "PATCH",
+          "body": {
+            "status": "sent"
+          }
+        }
+      ]
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "height": 900,
+      "scenario": "success",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "ariaLabel": "Update status",
+        "text": "Draft",
+        "disabled": false,
+        "rect": {
+          "x": 1195,
+          "y": 856.44,
+          "width": 150,
+          "height": 44
+        }
+      },
+      "during": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        }
+      },
+      "disabledDuring": true,
+      "moved": null,
+      "after": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        }
+      },
+      "triggerText": "Marked sent",
+      "persistedFixtureStatus": "sent",
+      "errorText": null,
+      "patchWrites": [
+        {
+          "path": "/rest/v1/updates",
+          "method": "PATCH",
+          "body": {
+            "status": "sent"
+          }
+        }
+      ]
+    },
+    {
+      "scheme": "dark",
+      "width": 320,
+      "height": 568,
+      "scenario": "success",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "ariaLabel": "Update status",
+        "text": "Draft",
+        "disabled": false,
+        "rect": {
+          "x": 97,
+          "y": 344.59,
+          "width": 150,
+          "height": 44
+        }
+      },
+      "during": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 568
+        }
+      },
+      "disabledDuring": true,
+      "moved": null,
+      "after": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 568
+        }
+      },
+      "triggerText": "Marked sent",
+      "persistedFixtureStatus": "sent",
+      "errorText": null,
+      "patchWrites": [
+        {
+          "path": "/rest/v1/updates",
+          "method": "PATCH",
+          "body": {
+            "status": "sent"
+          }
+        }
+      ]
+    },
+    {
+      "scheme": "dark",
+      "width": 375,
+      "height": 667,
+      "scenario": "success",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "ariaLabel": "Update status",
+        "text": "Draft",
+        "disabled": false,
+        "rect": {
+          "x": 146,
+          "y": 393.59,
+          "width": 150,
+          "height": 44
+        }
+      },
+      "during": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 667
+        }
+      },
+      "disabledDuring": true,
+      "moved": null,
+      "after": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 667
+        }
+      },
+      "triggerText": "Marked sent",
+      "persistedFixtureStatus": "sent",
+      "errorText": null,
+      "patchWrites": [
+        {
+          "path": "/rest/v1/updates",
+          "method": "PATCH",
+          "body": {
+            "status": "sent"
+          }
+        }
+      ]
+    },
+    {
+      "scheme": "dark",
+      "width": 390,
+      "height": 844,
+      "scenario": "success",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "ariaLabel": "Update status",
+        "text": "Draft",
+        "disabled": false,
+        "rect": {
+          "x": 161,
+          "y": 456.59,
+          "width": 150,
+          "height": 44
+        }
+      },
+      "during": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844
+        }
+      },
+      "disabledDuring": true,
+      "moved": null,
+      "after": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844
+        }
+      },
+      "triggerText": "Marked sent",
+      "persistedFixtureStatus": "sent",
+      "errorText": null,
+      "patchWrites": [
+        {
+          "path": "/rest/v1/updates",
+          "method": "PATCH",
+          "body": {
+            "status": "sent"
+          }
+        }
+      ]
+    },
+    {
+      "scheme": "dark",
+      "width": 768,
+      "height": 900,
+      "scenario": "success",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "ariaLabel": "Update status",
+        "text": "Draft",
+        "disabled": false,
+        "rect": {
+          "x": 523,
+          "y": 459.56,
+          "width": 150,
+          "height": 44
+        }
+      },
+      "during": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 768,
+          "height": 900
+        }
+      },
+      "disabledDuring": true,
+      "moved": null,
+      "after": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 768,
+          "height": 900
+        }
+      },
+      "triggerText": "Marked sent",
+      "persistedFixtureStatus": "sent",
+      "errorText": null,
+      "patchWrites": [
+        {
+          "path": "/rest/v1/updates",
+          "method": "PATCH",
+          "body": {
+            "status": "sent"
+          }
+        }
+      ]
+    },
+    {
+      "scheme": "dark",
+      "width": 1024,
+      "height": 900,
+      "scenario": "success",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "ariaLabel": "Update status",
+        "text": "Draft",
+        "disabled": false,
+        "rect": {
+          "x": 846.33,
+          "y": 460.27,
+          "width": 124.67,
+          "height": 44
+        }
+      },
+      "during": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1024,
+          "height": 900
+        }
+      },
+      "disabledDuring": true,
+      "moved": null,
+      "after": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1024,
+          "height": 900
+        }
+      },
+      "triggerText": "Marked sent",
+      "persistedFixtureStatus": "sent",
+      "errorText": null,
+      "patchWrites": [
+        {
+          "path": "/rest/v1/updates",
+          "method": "PATCH",
+          "body": {
+            "status": "sent"
+          }
+        }
+      ]
+    },
+    {
+      "scheme": "dark",
+      "width": 1200,
+      "height": 900,
+      "scenario": "success",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "ariaLabel": "Update status",
+        "text": "Draft",
+        "disabled": false,
+        "rect": {
+          "x": 963.66,
+          "y": 460.27,
+          "width": 150,
+          "height": 44
+        }
+      },
+      "during": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1200,
+          "height": 900
+        }
+      },
+      "disabledDuring": true,
+      "moved": null,
+      "after": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1200,
+          "height": 900
+        }
+      },
+      "triggerText": "Marked sent",
+      "persistedFixtureStatus": "sent",
+      "errorText": null,
+      "patchWrites": [
+        {
+          "path": "/rest/v1/updates",
+          "method": "PATCH",
+          "body": {
+            "status": "sent"
+          }
+        }
+      ]
+    },
+    {
+      "scheme": "dark",
+      "width": 1440,
+      "height": 900,
+      "scenario": "success",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "ariaLabel": "Update status",
+        "text": "Draft",
+        "disabled": false,
+        "rect": {
+          "x": 1195,
+          "y": 856.44,
+          "width": 150,
+          "height": 44
+        }
+      },
+      "during": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        }
+      },
+      "disabledDuring": true,
+      "moved": null,
+      "after": {
+        "tag": "BODY",
+        "id": null,
+        "role": null,
+        "ariaLabel": null,
+        "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        }
+      },
+      "triggerText": "Marked sent",
+      "persistedFixtureStatus": "sent",
+      "errorText": null,
+      "patchWrites": [
+        {
+          "path": "/rest/v1/updates",
+          "method": "PATCH",
+          "body": {
+            "status": "sent"
+          }
+        }
+      ]
+    }
+  ],
+  "timer": [
+    {
+      "width": 320,
+      "height": 568,
+      "scheme": "light",
+      "phases": [
+        {
+          "phase": "idle",
+          "main": {
+            "x": 0,
+            "y": 165,
+            "width": 320,
+            "height": 403
+          },
+          "timer": {
+            "x": 171,
+            "y": 444,
+            "width": 129,
+            "height": 44
+          },
+          "mainMaxScroll": 1156,
+          "best": {
+            "scrollTop": 88,
+            "area": 4928,
+            "intersection": {
+              "x": 171,
+              "y": 444,
+              "width": 112,
+              "height": 44
+            },
+            "hitPoint": {
+              "x": 227,
+              "y": 466
+            },
+            "hitTag": "BUTTON",
+            "hitLabel": null,
+            "hitText": "Start timer",
+            "field": {
+              "x": 37,
+              "y": 440.97,
+              "width": 246,
+              "height": 220
+            }
+          },
+          "viewport": {
+            "width": 320,
+            "height": 568
+          },
+          "timerFitsViewport": true,
+          "screenshot": "timer-320-idle.png",
+          "activeFocus": {
+            "tag": "BODY",
+            "id": null,
+            "role": null,
+            "ariaLabel": null,
+            "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+            "disabled": false,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 320,
+              "height": 568
+            }
+          }
+        },
+        {
+          "phase": "running",
+          "main": {
+            "x": 0,
+            "y": 165,
+            "width": 320,
+            "height": 403
+          },
+          "timer": {
+            "x": 20,
+            "y": 430,
+            "width": 280,
+            "height": 58
+          },
+          "mainMaxScroll": 1156,
+          "best": {
+            "scrollTop": 100,
+            "area": 14268,
+            "intersection": {
+              "x": 37,
+              "y": 430,
+              "width": 246,
+              "height": 58
+            },
+            "hitPoint": {
+              "x": 160,
+              "y": 459
+            },
+            "hitTag": "BUTTON",
+            "hitLabel": null,
+            "hitText": "Stop",
+            "field": {
+              "x": 37,
+              "y": 428.97,
+              "width": 246,
+              "height": 220
+            }
+          },
+          "viewport": {
+            "width": 320,
+            "height": 568
+          },
+          "timerFitsViewport": true,
+          "screenshot": "timer-320-running.png",
+          "activeFocus": {
+            "tag": "BODY",
+            "id": null,
+            "role": null,
+            "ariaLabel": null,
+            "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+            "disabled": false,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 320,
+              "height": 568
+            }
+          }
+        },
+        {
+          "phase": "stop",
+          "main": {
+            "x": 0,
+            "y": 165,
+            "width": 320,
+            "height": 403
+          },
+          "timer": {
+            "x": 20,
+            "y": 214,
+            "width": 280,
+            "height": 274
+          },
+          "mainMaxScroll": 1156,
+          "best": {
+            "scrollTop": 264,
+            "area": 54120,
+            "intersection": {
+              "x": 37,
+              "y": 264.97,
+              "width": 246,
+              "height": 220
+            },
+            "hitPoint": {
+              "x": 160,
+              "y": 374.97
+            },
+            "hitTag": "BUTTON",
+            "hitLabel": "Brief",
+            "hitText": "General (no brief)",
+            "field": {
+              "x": 37,
+              "y": 264.97,
+              "width": 246,
+              "height": 220
+            }
+          },
+          "viewport": {
+            "width": 320,
+            "height": 568
+          },
+          "timerFitsViewport": true,
+          "screenshot": "timer-320-stop.png",
+          "activeFocus": {
+            "tag": "INPUT",
+            "id": null,
+            "role": null,
+            "ariaLabel": "What did you work on?",
+            "text": "",
+            "disabled": false,
+            "rect": {
+              "x": 37,
+              "y": 263,
+              "width": 246,
+              "height": 44
+            }
+          }
+        }
+      ],
+      "stopControls": [
+        {
+          "tag": "INPUT",
+          "label": "What did you work on?",
+          "disabled": false,
+          "rect": {
+            "x": 37,
+            "y": 263,
+            "width": 246,
+            "height": 44
+          }
+        },
+        {
+          "tag": "INPUT",
+          "label": "Minutes",
+          "disabled": false,
+          "rect": {
+            "x": 37,
+            "y": 319,
+            "width": 96,
+            "height": 44
+          }
+        },
+        {
+          "tag": "INPUT",
+          "label": "Worked on",
+          "disabled": false,
+          "rect": {
+            "x": 141,
+            "y": 319,
+            "width": 142,
+            "height": 44
+          }
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Brief",
+          "disabled": false,
+          "rect": {
+            "x": 37,
+            "y": 371,
+            "width": 246,
+            "height": 44
+          }
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Keep running",
+          "disabled": false,
+          "rect": {
+            "x": 109,
+            "y": 427,
+            "width": 106,
+            "height": 44
+          }
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Save",
+          "disabled": false,
+          "rect": {
+            "x": 223,
+            "y": 427,
+            "width": 60,
+            "height": 44
+          }
+        }
+      ],
+      "storageWhileRunning": true,
+      "storageAfterDiscard": false,
+      "fixtureWrites": []
+    },
+    {
+      "width": 375,
+      "height": 667,
+      "scheme": "light",
+      "phases": [
+        {
+          "phase": "idle",
+          "main": {
+            "x": 0,
+            "y": 165,
+            "width": 375,
+            "height": 502
+          },
+          "timer": {
+            "x": 226,
+            "y": 543,
+            "width": 129,
+            "height": 44
+          },
+          "mainMaxScroll": 1025,
+          "best": {
+            "scrollTop": 0,
+            "area": 4928,
+            "intersection": {
+              "x": 226,
+              "y": 543,
+              "width": 112,
+              "height": 44
+            },
+            "hitPoint": {
+              "x": 282,
+              "y": 565
+            },
+            "hitTag": "BUTTON",
+            "hitLabel": null,
+            "hitText": "Start timer",
+            "field": {
+              "x": 37,
+              "y": 508.97,
+              "width": 301,
+              "height": 220
+            }
+          },
+          "viewport": {
+            "width": 375,
+            "height": 667
+          },
+          "timerFitsViewport": true,
+          "screenshot": "timer-375-idle.png",
+          "activeFocus": {
+            "tag": "BODY",
+            "id": null,
+            "role": null,
+            "ariaLabel": null,
+            "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+            "disabled": false,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 667
+            }
+          }
+        },
+        {
+          "phase": "running",
+          "main": {
+            "x": 0,
+            "y": 165,
+            "width": 375,
+            "height": 502
+          },
+          "timer": {
+            "x": 51,
+            "y": 529,
+            "width": 304,
+            "height": 58
+          },
+          "mainMaxScroll": 1025,
+          "best": {
+            "scrollTop": 0,
+            "area": 16646,
+            "intersection": {
+              "x": 51,
+              "y": 529,
+              "width": 287,
+              "height": 58
+            },
+            "hitPoint": {
+              "x": 194.5,
+              "y": 558
+            },
+            "hitTag": "INPUT",
+            "hitLabel": "What are you working on?",
+            "hitText": "",
+            "field": {
+              "x": 37,
+              "y": 508.97,
+              "width": 301,
+              "height": 220
+            }
+          },
+          "viewport": {
+            "width": 375,
+            "height": 667
+          },
+          "timerFitsViewport": true,
+          "screenshot": "timer-375-running.png",
+          "activeFocus": {
+            "tag": "BODY",
+            "id": null,
+            "role": null,
+            "ariaLabel": null,
+            "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+            "disabled": false,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 667
+            }
+          }
+        },
+        {
+          "phase": "stop",
+          "main": {
+            "x": 0,
+            "y": 165,
+            "width": 375,
+            "height": 502
+          },
+          "timer": {
+            "x": 35,
+            "y": 313,
+            "width": 320,
+            "height": 274
+          },
+          "mainMaxScroll": 1025,
+          "best": {
+            "scrollTop": 144,
+            "area": 66220,
+            "intersection": {
+              "x": 37,
+              "y": 364.97,
+              "width": 301,
+              "height": 220
+            },
+            "hitPoint": {
+              "x": 187.5,
+              "y": 474.97
+            },
+            "hitTag": "BUTTON",
+            "hitLabel": "Brief",
+            "hitText": "General (no brief)",
+            "field": {
+              "x": 37,
+              "y": 364.97,
+              "width": 301,
+              "height": 220
+            }
+          },
+          "viewport": {
+            "width": 375,
+            "height": 667
+          },
+          "timerFitsViewport": true,
+          "screenshot": "timer-375-stop.png",
+          "activeFocus": {
+            "tag": "INPUT",
+            "id": null,
+            "role": null,
+            "ariaLabel": "What did you work on?",
+            "text": "",
+            "disabled": false,
+            "rect": {
+              "x": 52,
+              "y": 362,
+              "width": 286,
+              "height": 44
+            }
+          }
+        }
+      ],
+      "stopControls": [
+        {
+          "tag": "INPUT",
+          "label": "What did you work on?",
+          "disabled": false,
+          "rect": {
+            "x": 52,
+            "y": 362,
+            "width": 286,
+            "height": 44
+          }
+        },
+        {
+          "tag": "INPUT",
+          "label": "Minutes",
+          "disabled": false,
+          "rect": {
+            "x": 52,
+            "y": 418,
+            "width": 96,
+            "height": 44
+          }
+        },
+        {
+          "tag": "INPUT",
+          "label": "Worked on",
+          "disabled": false,
+          "rect": {
+            "x": 156,
+            "y": 418,
+            "width": 182,
+            "height": 44
+          }
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Brief",
+          "disabled": false,
+          "rect": {
+            "x": 52,
+            "y": 470,
+            "width": 286,
+            "height": 44
+          }
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Keep running",
+          "disabled": false,
+          "rect": {
+            "x": 164,
+            "y": 526,
+            "width": 106,
+            "height": 44
+          }
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Save",
+          "disabled": false,
+          "rect": {
+            "x": 278,
+            "y": 526,
+            "width": 60,
+            "height": 44
+          }
+        }
+      ],
+      "storageWhileRunning": true,
+      "storageAfterDiscard": false,
+      "fixtureWrites": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "scheme": "light",
+      "phases": [
+        {
+          "phase": "idle",
+          "main": {
+            "x": 0,
+            "y": 113,
+            "width": 390,
+            "height": 731
+          },
+          "timer": {
+            "x": 241,
+            "y": 720,
+            "width": 129,
+            "height": 44
+          },
+          "mainMaxScroll": 782,
+          "best": null,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "timerFitsViewport": true,
+          "screenshot": "timer-390-idle.png",
+          "activeFocus": {
+            "tag": "BODY",
+            "id": null,
+            "role": null,
+            "ariaLabel": null,
+            "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+            "disabled": false,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 390,
+              "height": 844
+            }
+          }
+        },
+        {
+          "phase": "running",
+          "main": {
+            "x": 0,
+            "y": 113,
+            "width": 390,
+            "height": 731
+          },
+          "timer": {
+            "x": 66,
+            "y": 706,
+            "width": 304,
+            "height": 58
+          },
+          "mainMaxScroll": 782,
+          "best": null,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "timerFitsViewport": true,
+          "screenshot": "timer-390-running.png",
+          "activeFocus": {
+            "tag": "BODY",
+            "id": null,
+            "role": null,
+            "ariaLabel": null,
+            "text": "!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','d",
+            "disabled": false,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 390,
+              "height": 844
+            }
+          }
+        },
+        {
+          "phase": "stop",
+          "main": {
+            "x": 0,
+            "y": 113,
+            "width": 390,
+            "height": 731
+          },
+          "timer": {
+            "x": 50,
+            "y": 490,
+            "width": 320,
+            "height": 274
+          },
+          "mainMaxScroll": 782,
+          "best": {
+            "scrollTop": 0,
+            "area": 56651.53125,
+            "intersection": {
+              "x": 50,
+              "y": 490,
+              "width": 303,
+              "height": 186.97
+            },
+            "hitPoint": {
+              "x": 201.5,
+              "y": 583.48
+            },
+            "hitTag": "DIV",
+            "hitLabel": null,
+            "hitText": "Log this sessionGeneral (no brief)Keep runningSave",
+            "field": {
+              "x": 37,
+              "y": 456.97,
+              "width": 316,
+              "height": 220
+            }
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "timerFitsViewport": true,
+          "screenshot": "timer-390-stop.png",
+          "activeFocus": {
+            "tag": "INPUT",
+            "id": null,
+            "role": null,
+            "ariaLabel": "What did you work on?",
+            "text": "",
+            "disabled": false,
+            "rect": {
+              "x": 67,
+              "y": 539,
+              "width": 286,
+              "height": 44
+            }
+          }
+        }
+      ],
+      "stopControls": [
+        {
+          "tag": "INPUT",
+          "label": "What did you work on?",
+          "disabled": false,
+          "rect": {
+            "x": 67,
+            "y": 539,
+            "width": 286,
+            "height": 44
+          }
+        },
+        {
+          "tag": "INPUT",
+          "label": "Minutes",
+          "disabled": false,
+          "rect": {
+            "x": 67,
+            "y": 595,
+            "width": 96,
+            "height": 44
+          }
+        },
+        {
+          "tag": "INPUT",
+          "label": "Worked on",
+          "disabled": false,
+          "rect": {
+            "x": 171,
+            "y": 595,
+            "width": 182,
+            "height": 44
+          }
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Brief",
+          "disabled": false,
+          "rect": {
+            "x": 67,
+            "y": 647,
+            "width": 286,
+            "height": 44
+          }
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Keep running",
+          "disabled": false,
+          "rect": {
+            "x": 179,
+            "y": 703,
+            "width": 106,
+            "height": 44
+          }
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Save",
+          "disabled": false,
+          "rect": {
+            "x": 293,
+            "y": 703,
+            "width": 60,
+            "height": 44
+          }
+        }
+      ],
+      "storageWhileRunning": true,
+      "storageAfterDiscard": false,
+      "fixtureWrites": []
+    }
+  ],
+  "multi": {
+    "width": 768,
+    "workspaceCount": 2,
+    "controlCount": 2,
+    "firstVisible": true,
+    "firstRole": "combobox"
+  },
+  "viewer": {
+    "width": 375,
+    "startTimer": 0,
+    "role": "viewer"
+  },
+  "browserErrors": [],
+  "browserVersion": "153.0.8010.0",
+  "packageVersions": {
+    "node": "v22.22.3",
+    "playwright": "1.63.0",
+    "axe": "4.14.0",
+    "sharp": "0.35.5"
+  },
+  "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36"
+}

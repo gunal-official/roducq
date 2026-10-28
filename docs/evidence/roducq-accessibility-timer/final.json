@@ -1,0 +1,4123 @@
+{
+  "widths": [
+    320,
+    375,
+    390,
+    768,
+    1024,
+    1200,
+    1440
+  ],
+  "heights": {
+    "320": 568,
+    "375": 667,
+    "390": 844,
+    "768": 900,
+    "1024": 900,
+    "1200": 900,
+    "1440": 900
+  },
+  "output": "/tmp/roducq-a11y-evidence-FeCKDv",
+  "settings": {
+    "schemes": [
+      "light",
+      "dark"
+    ],
+    "deviceScaleFactor": 1,
+    "locale": "en-US",
+    "timezoneId": "UTC",
+    "reducedMotion": "reduce",
+    "serviceWorkers": "block",
+    "network": "browser limited to local app and fictional loopback fixture",
+    "statusDelayMs": 900,
+    "guardedStressDelayMs": 1400
+  },
+  "scans": [
+    {
+      "scheme": "light",
+      "width": 320,
+      "height": 568,
+      "route": "detail",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "light",
+      "width": 320,
+      "height": 568,
+      "route": "dashboard",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "light",
+      "width": 320,
+      "height": 568,
+      "route": "updates",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "light",
+      "width": 375,
+      "height": 667,
+      "route": "detail",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "light",
+      "width": 375,
+      "height": 667,
+      "route": "dashboard",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "light",
+      "width": 375,
+      "height": 667,
+      "route": "updates",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "light",
+      "width": 390,
+      "height": 844,
+      "route": "detail",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "light",
+      "width": 390,
+      "height": 844,
+      "route": "dashboard",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "light",
+      "width": 390,
+      "height": 844,
+      "route": "updates",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "light",
+      "width": 768,
+      "height": 900,
+      "route": "detail",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "light",
+      "width": 768,
+      "height": 900,
+      "route": "dashboard",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "light",
+      "width": 768,
+      "height": 900,
+      "route": "updates",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "light",
+      "width": 1024,
+      "height": 900,
+      "route": "detail",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(38, 29, 45)",
+            "foregroundRgb": [
+              38,
+              29,
+              45
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphRatio": {
+              "min": 13.833,
+              "median": 14.153,
+              "max": 14.398,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 13.718,
+              "max": 14.488
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(124, 58, 237)",
+            "foregroundRgb": [
+              124,
+              58,
+              237
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphRatio": {
+              "min": 4.825,
+              "median": 4.905,
+              "max": 4.95,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 4.75,
+              "max": 4.981
+            }
+          }
+        ],
+        "beforeScreenshot": "light-1024-detail-gradient-text.png",
+        "backgroundScreenshot": "light-1024-detail-gradient-background.png",
+        "method": "Computed foreground versus paired Chromium screenshot background at glyph pixels (difference >=4/255), WCAG relative luminance; axe incompletes remain incomplete."
+      }
+    },
+    {
+      "scheme": "light",
+      "width": 1024,
+      "height": 900,
+      "route": "dashboard",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(38, 29, 45)",
+            "foregroundRgb": [
+              38,
+              29,
+              45
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphRatio": {
+              "min": 13.833,
+              "median": 14.153,
+              "max": 14.398,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 13.718,
+              "max": 14.488
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(124, 58, 237)",
+            "foregroundRgb": [
+              124,
+              58,
+              237
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphRatio": {
+              "min": 4.825,
+              "median": 4.905,
+              "max": 4.95,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 4.75,
+              "max": 4.981
+            }
+          }
+        ],
+        "beforeScreenshot": "light-1024-dashboard-gradient-text.png",
+        "backgroundScreenshot": "light-1024-dashboard-gradient-background.png",
+        "method": "Computed foreground versus paired Chromium screenshot background at glyph pixels (difference >=4/255), WCAG relative luminance; axe incompletes remain incomplete."
+      }
+    },
+    {
+      "scheme": "light",
+      "width": 1024,
+      "height": 900,
+      "route": "updates",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(38, 29, 45)",
+            "foregroundRgb": [
+              38,
+              29,
+              45
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphRatio": {
+              "min": 13.833,
+              "median": 14.153,
+              "max": 14.398,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 13.718,
+              "max": 14.488
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(124, 58, 237)",
+            "foregroundRgb": [
+              124,
+              58,
+              237
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphRatio": {
+              "min": 4.825,
+              "median": 4.905,
+              "max": 4.95,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 4.75,
+              "max": 4.981
+            }
+          }
+        ],
+        "beforeScreenshot": "light-1024-updates-gradient-text.png",
+        "backgroundScreenshot": "light-1024-updates-gradient-background.png",
+        "method": "Computed foreground versus paired Chromium screenshot background at glyph pixels (difference >=4/255), WCAG relative luminance; axe incompletes remain incomplete."
+      }
+    },
+    {
+      "scheme": "light",
+      "width": 1200,
+      "height": 900,
+      "route": "detail",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(38, 29, 45)",
+            "foregroundRgb": [
+              38,
+              29,
+              45
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphRatio": {
+              "min": 13.833,
+              "median": 14.153,
+              "max": 14.398,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 13.718,
+              "max": 14.488
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(124, 58, 237)",
+            "foregroundRgb": [
+              124,
+              58,
+              237
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphRatio": {
+              "min": 4.825,
+              "median": 4.905,
+              "max": 4.95,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 4.75,
+              "max": 4.981
+            }
+          }
+        ],
+        "beforeScreenshot": "light-1200-detail-gradient-text.png",
+        "backgroundScreenshot": "light-1200-detail-gradient-background.png",
+        "method": "Computed foreground versus paired Chromium screenshot background at glyph pixels (difference >=4/255), WCAG relative luminance; axe incompletes remain incomplete."
+      }
+    },
+    {
+      "scheme": "light",
+      "width": 1200,
+      "height": 900,
+      "route": "dashboard",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(38, 29, 45)",
+            "foregroundRgb": [
+              38,
+              29,
+              45
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphRatio": {
+              "min": 13.833,
+              "median": 14.153,
+              "max": 14.398,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 13.718,
+              "max": 14.488
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(124, 58, 237)",
+            "foregroundRgb": [
+              124,
+              58,
+              237
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphRatio": {
+              "min": 4.825,
+              "median": 4.905,
+              "max": 4.95,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 4.75,
+              "max": 4.981
+            }
+          }
+        ],
+        "beforeScreenshot": "light-1200-dashboard-gradient-text.png",
+        "backgroundScreenshot": "light-1200-dashboard-gradient-background.png",
+        "method": "Computed foreground versus paired Chromium screenshot background at glyph pixels (difference >=4/255), WCAG relative luminance; axe incompletes remain incomplete."
+      }
+    },
+    {
+      "scheme": "light",
+      "width": 1200,
+      "height": 900,
+      "route": "updates",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(38, 29, 45)",
+            "foregroundRgb": [
+              38,
+              29,
+              45
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphRatio": {
+              "min": 13.833,
+              "median": 14.153,
+              "max": 14.398,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 13.718,
+              "max": 14.488
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(124, 58, 237)",
+            "foregroundRgb": [
+              124,
+              58,
+              237
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphRatio": {
+              "min": 4.825,
+              "median": 4.905,
+              "max": 4.95,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 4.75,
+              "max": 4.981
+            }
+          }
+        ],
+        "beforeScreenshot": "light-1200-updates-gradient-text.png",
+        "backgroundScreenshot": "light-1200-updates-gradient-background.png",
+        "method": "Computed foreground versus paired Chromium screenshot background at glyph pixels (difference >=4/255), WCAG relative luminance; axe incompletes remain incomplete."
+      }
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "height": 900,
+      "route": "detail",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(38, 29, 45)",
+            "foregroundRgb": [
+              38,
+              29,
+              45
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphRatio": {
+              "min": 13.833,
+              "median": 14.153,
+              "max": 14.398,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 13.718,
+              "max": 14.488
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(124, 58, 237)",
+            "foregroundRgb": [
+              124,
+              58,
+              237
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphRatio": {
+              "min": 4.825,
+              "median": 4.905,
+              "max": 4.95,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 4.75,
+              "max": 4.981
+            }
+          }
+        ],
+        "beforeScreenshot": "light-1440-detail-gradient-text.png",
+        "backgroundScreenshot": "light-1440-detail-gradient-background.png",
+        "method": "Computed foreground versus paired Chromium screenshot background at glyph pixels (difference >=4/255), WCAG relative luminance; axe incompletes remain incomplete."
+      }
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "height": 900,
+      "route": "dashboard",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(38, 29, 45)",
+            "foregroundRgb": [
+              38,
+              29,
+              45
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphRatio": {
+              "min": 13.833,
+              "median": 14.153,
+              "max": 14.398,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 13.718,
+              "max": 14.488
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(124, 58, 237)",
+            "foregroundRgb": [
+              124,
+              58,
+              237
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphRatio": {
+              "min": 4.825,
+              "median": 4.905,
+              "max": 4.95,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 4.75,
+              "max": 4.981
+            }
+          }
+        ],
+        "beforeScreenshot": "light-1440-dashboard-gradient-text.png",
+        "backgroundScreenshot": "light-1440-dashboard-gradient-background.png",
+        "method": "Computed foreground versus paired Chromium screenshot background at glyph pixels (difference >=4/255), WCAG relative luminance; axe incompletes remain incomplete."
+      }
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "height": 900,
+      "route": "updates",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(38, 29, 45)",
+            "foregroundRgb": [
+              38,
+              29,
+              45
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphRatio": {
+              "min": 13.833,
+              "median": 14.153,
+              "max": 14.398,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 13.718,
+              "max": 14.488
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(124, 58, 237)",
+            "foregroundRgb": [
+              124,
+              58,
+              237
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphRatio": {
+              "min": 4.825,
+              "median": 4.905,
+              "max": 4.95,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 4.75,
+              "max": 4.981
+            }
+          }
+        ],
+        "beforeScreenshot": "light-1440-updates-gradient-text.png",
+        "backgroundScreenshot": "light-1440-updates-gradient-background.png",
+        "method": "Computed foreground versus paired Chromium screenshot background at glyph pixels (difference >=4/255), WCAG relative luminance; axe incompletes remain incomplete."
+      }
+    },
+    {
+      "scheme": "dark",
+      "width": 320,
+      "height": 568,
+      "route": "detail",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "dark",
+      "width": 320,
+      "height": 568,
+      "route": "dashboard",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "dark",
+      "width": 320,
+      "height": 568,
+      "route": "updates",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "dark",
+      "width": 375,
+      "height": 667,
+      "route": "detail",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "dark",
+      "width": 375,
+      "height": 667,
+      "route": "dashboard",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "dark",
+      "width": 375,
+      "height": 667,
+      "route": "updates",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "dark",
+      "width": 390,
+      "height": 844,
+      "route": "detail",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "dark",
+      "width": 390,
+      "height": 844,
+      "route": "dashboard",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "dark",
+      "width": 390,
+      "height": 844,
+      "route": "updates",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "dark",
+      "width": 768,
+      "height": 900,
+      "route": "detail",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "dark",
+      "width": 768,
+      "height": 900,
+      "route": "dashboard",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "dark",
+      "width": 768,
+      "height": 900,
+      "route": "updates",
+      "violations": [],
+      "incomplete": [],
+      "colorContrast": "pass",
+      "contrast": null
+    },
+    {
+      "scheme": "dark",
+      "width": 1024,
+      "height": 900,
+      "route": "detail",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(250, 247, 255)",
+            "foregroundRgb": [
+              250,
+              247,
+              255
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphRatio": {
+              "min": 10.745,
+              "median": 11.258,
+              "max": 11.786,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 10.406,
+              "max": 11.978
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(187, 164, 255)",
+            "foregroundRgb": [
+              187,
+              164,
+              255
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphRatio": {
+              "min": 5.262,
+              "median": 5.432,
+              "max": 5.597,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 5.076,
+              "max": 5.69
+            }
+          }
+        ],
+        "beforeScreenshot": "dark-1024-detail-gradient-text.png",
+        "backgroundScreenshot": "dark-1024-detail-gradient-background.png",
+        "method": "Computed foreground versus paired Chromium screenshot background at glyph pixels (difference >=4/255), WCAG relative luminance; axe incompletes remain incomplete."
+      }
+    },
+    {
+      "scheme": "dark",
+      "width": 1024,
+      "height": 900,
+      "route": "dashboard",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(250, 247, 255)",
+            "foregroundRgb": [
+              250,
+              247,
+              255
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphRatio": {
+              "min": 10.745,
+              "median": 11.258,
+              "max": 11.786,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 10.406,
+              "max": 11.978
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(187, 164, 255)",
+            "foregroundRgb": [
+              187,
+              164,
+              255
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphRatio": {
+              "min": 5.262,
+              "median": 5.432,
+              "max": 5.597,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 5.076,
+              "max": 5.69
+            }
+          }
+        ],
+        "beforeScreenshot": "dark-1024-dashboard-gradient-text.png",
+        "backgroundScreenshot": "dark-1024-dashboard-gradient-background.png",
+        "method": "Computed foreground versus paired Chromium screenshot background at glyph pixels (difference >=4/255), WCAG relative luminance; axe incompletes remain incomplete."
+      }
+    },
+    {
+      "scheme": "dark",
+      "width": 1024,
+      "height": 900,
+      "route": "updates",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(250, 247, 255)",
+            "foregroundRgb": [
+              250,
+              247,
+              255
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphRatio": {
+              "min": 10.745,
+              "median": 11.258,
+              "max": 11.786,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 10.406,
+              "max": 11.978
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(187, 164, 255)",
+            "foregroundRgb": [
+              187,
+              164,
+              255
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphRatio": {
+              "min": 5.262,
+              "median": 5.432,
+              "max": 5.597,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 5.076,
+              "max": 5.69
+            }
+          }
+        ],
+        "beforeScreenshot": "dark-1024-updates-gradient-text.png",
+        "backgroundScreenshot": "dark-1024-updates-gradient-background.png",
+        "method": "Computed foreground versus paired Chromium screenshot background at glyph pixels (difference >=4/255), WCAG relative luminance; axe incompletes remain incomplete."
+      }
+    },
+    {
+      "scheme": "dark",
+      "width": 1200,
+      "height": 900,
+      "route": "detail",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(250, 247, 255)",
+            "foregroundRgb": [
+              250,
+              247,
+              255
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphRatio": {
+              "min": 10.745,
+              "median": 11.258,
+              "max": 11.786,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 10.406,
+              "max": 11.978
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(187, 164, 255)",
+            "foregroundRgb": [
+              187,
+              164,
+              255
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphRatio": {
+              "min": 5.262,
+              "median": 5.432,
+              "max": 5.597,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 5.076,
+              "max": 5.69
+            }
+          }
+        ],
+        "beforeScreenshot": "dark-1200-detail-gradient-text.png",
+        "backgroundScreenshot": "dark-1200-detail-gradient-background.png",
+        "method": "Computed foreground versus paired Chromium screenshot background at glyph pixels (difference >=4/255), WCAG relative luminance; axe incompletes remain incomplete."
+      }
+    },
+    {
+      "scheme": "dark",
+      "width": 1200,
+      "height": 900,
+      "route": "dashboard",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(250, 247, 255)",
+            "foregroundRgb": [
+              250,
+              247,
+              255
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphRatio": {
+              "min": 10.745,
+              "median": 11.258,
+              "max": 11.786,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 10.406,
+              "max": 11.978
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(187, 164, 255)",
+            "foregroundRgb": [
+              187,
+              164,
+              255
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphRatio": {
+              "min": 5.262,
+              "median": 5.432,
+              "max": 5.597,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 5.076,
+              "max": 5.69
+            }
+          }
+        ],
+        "beforeScreenshot": "dark-1200-dashboard-gradient-text.png",
+        "backgroundScreenshot": "dark-1200-dashboard-gradient-background.png",
+        "method": "Computed foreground versus paired Chromium screenshot background at glyph pixels (difference >=4/255), WCAG relative luminance; axe incompletes remain incomplete."
+      }
+    },
+    {
+      "scheme": "dark",
+      "width": 1200,
+      "height": 900,
+      "route": "updates",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(250, 247, 255)",
+            "foregroundRgb": [
+              250,
+              247,
+              255
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphRatio": {
+              "min": 10.745,
+              "median": 11.258,
+              "max": 11.786,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 10.406,
+              "max": 11.978
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(187, 164, 255)",
+            "foregroundRgb": [
+              187,
+              164,
+              255
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphRatio": {
+              "min": 5.262,
+              "median": 5.432,
+              "max": 5.597,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 5.076,
+              "max": 5.69
+            }
+          }
+        ],
+        "beforeScreenshot": "dark-1200-updates-gradient-text.png",
+        "backgroundScreenshot": "dark-1200-updates-gradient-background.png",
+        "method": "Computed foreground versus paired Chromium screenshot background at glyph pixels (difference >=4/255), WCAG relative luminance; axe incompletes remain incomplete."
+      }
+    },
+    {
+      "scheme": "dark",
+      "width": 1440,
+      "height": 900,
+      "route": "detail",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(250, 247, 255)",
+            "foregroundRgb": [
+              250,
+              247,
+              255
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphRatio": {
+              "min": 10.745,
+              "median": 11.258,
+              "max": 11.786,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 10.406,
+              "max": 11.978
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(187, 164, 255)",
+            "foregroundRgb": [
+              187,
+              164,
+              255
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphRatio": {
+              "min": 5.262,
+              "median": 5.432,
+              "max": 5.597,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 5.076,
+              "max": 5.69
+            }
+          }
+        ],
+        "beforeScreenshot": "dark-1440-detail-gradient-text.png",
+        "backgroundScreenshot": "dark-1440-detail-gradient-background.png",
+        "method": "Computed foreground versus paired Chromium screenshot background at glyph pixels (difference >=4/255), WCAG relative luminance; axe incompletes remain incomplete."
+      }
+    },
+    {
+      "scheme": "dark",
+      "width": 1440,
+      "height": 900,
+      "route": "dashboard",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(250, 247, 255)",
+            "foregroundRgb": [
+              250,
+              247,
+              255
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphRatio": {
+              "min": 10.745,
+              "median": 11.258,
+              "max": 11.786,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 10.406,
+              "max": 11.978
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(187, 164, 255)",
+            "foregroundRgb": [
+              187,
+              164,
+              255
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphRatio": {
+              "min": 5.262,
+              "median": 5.432,
+              "max": 5.597,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 5.076,
+              "max": 5.69
+            }
+          }
+        ],
+        "beforeScreenshot": "dark-1440-dashboard-gradient-text.png",
+        "backgroundScreenshot": "dark-1440-dashboard-gradient-background.png",
+        "method": "Computed foreground versus paired Chromium screenshot background at glyph pixels (difference >=4/255), WCAG relative luminance; axe incompletes remain incomplete."
+      }
+    },
+    {
+      "scheme": "dark",
+      "width": 1440,
+      "height": 900,
+      "route": "updates",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "colorContrast": "incomplete",
+      "contrast": {
+        "nodes": [
+          {
+            "text": "rodu",
+            "rect": {
+              "x": 60,
+              "y": 18,
+              "width": 37.625,
+              "height": 23
+            },
+            "color": "rgb(250, 247, 255)",
+            "foregroundRgb": [
+              250,
+              247,
+              255
+            ],
+            "measuredGlyphPixels": 281,
+            "glyphRatio": {
+              "min": 10.745,
+              "median": 11.258,
+              "max": 11.786,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 10.406,
+              "max": 11.978
+            }
+          },
+          {
+            "text": "cq",
+            "rect": {
+              "x": 97.625,
+              "y": 18,
+              "width": 19.8125,
+              "height": 23
+            },
+            "color": "rgb(187, 164, 255)",
+            "foregroundRgb": [
+              187,
+              164,
+              255
+            ],
+            "measuredGlyphPixels": 160,
+            "glyphRatio": {
+              "min": 5.262,
+              "median": 5.432,
+              "max": 5.597,
+              "meets45BeforeRounding": true
+            },
+            "entireBoundingBoxRatio": {
+              "min": 5.076,
+              "max": 5.69
+            }
+          }
+        ],
+        "beforeScreenshot": "dark-1440-updates-gradient-text.png",
+        "backgroundScreenshot": "dark-1440-updates-gradient-background.png",
+        "method": "Computed foreground versus paired Chromium screenshot background at glyph pixels (difference >=4/255), WCAG relative luminance; axe incompletes remain incomplete."
+      }
+    }
+  ],
+  "focus": [
+    {
+      "scheme": "light",
+      "width": 375,
+      "scenario": "error",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "during": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "moved": null,
+      "after": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "display": "Draft",
+      "fixtureStatus": "draft",
+      "error": "Synthetic status save failure"
+    },
+    {
+      "scheme": "light",
+      "width": 375,
+      "scenario": "move-focus",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "during": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "moved": {
+        "tag": "INPUT",
+        "id": "global-search",
+        "role": null,
+        "label": null
+      },
+      "after": {
+        "tag": "INPUT",
+        "id": "global-search",
+        "role": null,
+        "label": null
+      },
+      "display": "Marked sent",
+      "fixtureStatus": "sent",
+      "error": null
+    },
+    {
+      "scheme": "light",
+      "width": 375,
+      "scenario": "guard",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "during": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "moved": null,
+      "after": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "display": "Marked sent",
+      "fixtureStatus": "sent",
+      "error": null
+    },
+    {
+      "scheme": "light",
+      "width": 375,
+      "scenario": "reverse",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "during": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "moved": null,
+      "after": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "display": "Draft",
+      "fixtureStatus": "draft",
+      "error": null
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "scenario": "error",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "during": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "moved": null,
+      "after": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "display": "Draft",
+      "fixtureStatus": "draft",
+      "error": "Synthetic status save failure"
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "scenario": "move-focus",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "during": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "moved": {
+        "tag": "INPUT",
+        "id": "global-search",
+        "role": null,
+        "label": null
+      },
+      "after": {
+        "tag": "INPUT",
+        "id": "global-search",
+        "role": null,
+        "label": null
+      },
+      "display": "Marked sent",
+      "fixtureStatus": "sent",
+      "error": null
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "scenario": "guard",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "during": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "moved": null,
+      "after": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "display": "Marked sent",
+      "fixtureStatus": "sent",
+      "error": null
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "scenario": "reverse",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "during": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "moved": null,
+      "after": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "display": "Draft",
+      "fixtureStatus": "draft",
+      "error": null
+    },
+    {
+      "scheme": "light",
+      "width": 320,
+      "scenario": "success",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "during": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "moved": null,
+      "after": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "display": "Marked sent",
+      "fixtureStatus": "sent",
+      "error": null
+    },
+    {
+      "scheme": "light",
+      "width": 375,
+      "scenario": "success",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "during": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "moved": null,
+      "after": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "display": "Marked sent",
+      "fixtureStatus": "sent",
+      "error": null
+    },
+    {
+      "scheme": "light",
+      "width": 390,
+      "scenario": "success",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "during": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "moved": null,
+      "after": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "display": "Marked sent",
+      "fixtureStatus": "sent",
+      "error": null
+    },
+    {
+      "scheme": "light",
+      "width": 768,
+      "scenario": "success",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "during": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "moved": null,
+      "after": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "display": "Marked sent",
+      "fixtureStatus": "sent",
+      "error": null
+    },
+    {
+      "scheme": "light",
+      "width": 1024,
+      "scenario": "success",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "during": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "moved": null,
+      "after": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "display": "Marked sent",
+      "fixtureStatus": "sent",
+      "error": null
+    },
+    {
+      "scheme": "light",
+      "width": 1200,
+      "scenario": "success",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "during": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "moved": null,
+      "after": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "display": "Marked sent",
+      "fixtureStatus": "sent",
+      "error": null
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "scenario": "success",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "during": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "moved": null,
+      "after": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "display": "Marked sent",
+      "fixtureStatus": "sent",
+      "error": null
+    },
+    {
+      "scheme": "dark",
+      "width": 320,
+      "scenario": "success",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "during": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "moved": null,
+      "after": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "display": "Marked sent",
+      "fixtureStatus": "sent",
+      "error": null
+    },
+    {
+      "scheme": "dark",
+      "width": 375,
+      "scenario": "success",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "during": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "moved": null,
+      "after": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "display": "Marked sent",
+      "fixtureStatus": "sent",
+      "error": null
+    },
+    {
+      "scheme": "dark",
+      "width": 390,
+      "scenario": "success",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "during": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "moved": null,
+      "after": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "display": "Marked sent",
+      "fixtureStatus": "sent",
+      "error": null
+    },
+    {
+      "scheme": "dark",
+      "width": 768,
+      "scenario": "success",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "during": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "moved": null,
+      "after": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "display": "Marked sent",
+      "fixtureStatus": "sent",
+      "error": null
+    },
+    {
+      "scheme": "dark",
+      "width": 1024,
+      "scenario": "success",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "during": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "moved": null,
+      "after": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "display": "Marked sent",
+      "fixtureStatus": "sent",
+      "error": null
+    },
+    {
+      "scheme": "dark",
+      "width": 1200,
+      "scenario": "success",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "during": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "moved": null,
+      "after": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "display": "Marked sent",
+      "fixtureStatus": "sent",
+      "error": null
+    },
+    {
+      "scheme": "dark",
+      "width": 1440,
+      "scenario": "success",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "during": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "moved": null,
+      "after": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "display": "Marked sent",
+      "fixtureStatus": "sent",
+      "error": null
+    }
+  ],
+  "timer": [
+    {
+      "width": 320,
+      "height": 568,
+      "idle": {
+        "phase": "idle",
+        "main": {
+          "x": 0,
+          "y": 165,
+          "width": 320,
+          "height": 251,
+          "bottom": 416
+        },
+        "timer": {
+          "x": 171,
+          "y": 444,
+          "width": 129,
+          "height": 44,
+          "bottom": 488
+        },
+        "gap": 28,
+        "maxScroll": 1276,
+        "positions": 161,
+        "controls": 4,
+        "hits": [],
+        "horizontalOverflow": {
+          "document": 0,
+          "main": 0
+        }
+      },
+      "running": {
+        "phase": "running",
+        "main": {
+          "x": 0,
+          "y": 165,
+          "width": 320,
+          "height": 251,
+          "bottom": 416
+        },
+        "timer": {
+          "x": 20,
+          "y": 430,
+          "width": 280,
+          "height": 58,
+          "bottom": 488
+        },
+        "gap": 14,
+        "maxScroll": 1276,
+        "positions": 161,
+        "controls": 4,
+        "hits": [],
+        "horizontalOverflow": {
+          "document": 0,
+          "main": 0
+        }
+      },
+      "focusedControls": [
+        {
+          "label": "intake-context",
+          "focused": true,
+          "centerInScrollport": true,
+          "hitOwnControl": true,
+          "width": 246,
+          "height": 220
+        },
+        {
+          "label": "Add a file",
+          "focused": true,
+          "centerInScrollport": true,
+          "hitOwnControl": true,
+          "width": 109,
+          "height": 44
+        }
+      ],
+      "modal": true,
+      "actions": [
+        "Escape restores Stop focus without saving",
+        "Close restores Stop focus without saving",
+        "Keep running restores Stop focus without saving",
+        "nested brief select is accessible above scrim; Escape closes the select first",
+        "validation errors are announced and associated with each field without saving",
+        "save writes once, clears timer, and focuses Start timer"
+      ],
+      "storedBefore": {
+        "startedAt": 1793170314701,
+        "label": "Fictional accessibility session"
+      },
+      "modalGeometry": {
+        "x": 20,
+        "y": 135,
+        "width": 280,
+        "height": 298,
+        "bottom": 433,
+        "viewportWidth": 320,
+        "viewportHeight": 568,
+        "controls": [
+          {
+            "label": "Close timer form",
+            "width": 44,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "What did you work on?",
+            "width": 246,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Minutes",
+            "width": 80,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Worked on",
+            "width": 158,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Brief",
+            "width": 246,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Keep running",
+            "width": 106,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Save",
+            "width": 60,
+            "height": 44,
+            "insideHorizontally": true
+          }
+        ]
+      },
+      "modalAxe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "aria-hidden-focus",
+            "impact": "serious",
+            "nodes": [
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(1)"
+                ],
+                "html": "<span data-radix-focus-guard=\"\" tabindex=\"0\" data-aria-hidden=\"true\" aria-hidden=\"true\" style=\"outline: none; opacity: 0; position: fixed; pointer-events: none;\"></span>",
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  ".app-shell"
+                ],
+                "html": "<div class=\"app-shell grid h-dvh grid-cols-1 grid-rows-[auto_1fr] overflow-hidden tab:grid-cols-[64px_1fr] desk:grid-cols-[256px_1fr]\" data-aria-hidden=\"true\" aria-hidden=\"true\">",
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(15)"
+                ],
+                "html": "<span data-radix-focus-guard=\"\" tabindex=\"0\" data-aria-hidden=\"true\" aria-hidden=\"true\" style=\"outline: none; opacity: 0; position: fixed; pointer-events: none;\"></span>",
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              }
+            ]
+          }
+        ],
+        "colorContrast": "pass"
+      },
+      "backgroundBlocked": {
+        "hitTag": "DIV",
+        "searchIsHit": false,
+        "backgroundHidden": true,
+        "bodyPointerEvents": "none"
+      },
+      "savedFixtureEntry": {
+        "workspace_id": "22222222-2222-4222-8222-222222222222",
+        "brief_id": null,
+        "description": "Fictional accessibility session",
+        "worked_on": "2026-10-28",
+        "duration_minutes": 5
+      }
+    },
+    {
+      "width": 375,
+      "height": 667,
+      "idle": {
+        "phase": "idle",
+        "main": {
+          "x": 0,
+          "y": 165,
+          "width": 375,
+          "height": 350,
+          "bottom": 515
+        },
+        "timer": {
+          "x": 226,
+          "y": 543,
+          "width": 129,
+          "height": 44,
+          "bottom": 587
+        },
+        "gap": 28,
+        "maxScroll": 1145,
+        "positions": 145,
+        "controls": 4,
+        "hits": [],
+        "horizontalOverflow": {
+          "document": 0,
+          "main": 0
+        }
+      },
+      "running": {
+        "phase": "running",
+        "main": {
+          "x": 0,
+          "y": 165,
+          "width": 375,
+          "height": 350,
+          "bottom": 515
+        },
+        "timer": {
+          "x": 51,
+          "y": 529,
+          "width": 304,
+          "height": 58,
+          "bottom": 587
+        },
+        "gap": 14,
+        "maxScroll": 1145,
+        "positions": 145,
+        "controls": 4,
+        "hits": [],
+        "horizontalOverflow": {
+          "document": 0,
+          "main": 0
+        }
+      },
+      "focusedControls": [
+        {
+          "label": "intake-context",
+          "focused": true,
+          "centerInScrollport": true,
+          "hitOwnControl": true,
+          "width": 301,
+          "height": 220
+        },
+        {
+          "label": "Add a file",
+          "focused": true,
+          "centerInScrollport": true,
+          "hitOwnControl": true,
+          "width": 109,
+          "height": 44
+        }
+      ],
+      "modal": true,
+      "actions": [
+        "Escape restores Stop focus without saving",
+        "Close restores Stop focus without saving",
+        "Keep running restores Stop focus without saving",
+        "resumed timer continues counting",
+        "nested brief select is accessible above scrim; Escape closes the select first",
+        "validation errors are announced and associated with each field without saving",
+        "save writes once, clears timer, and focuses Start timer"
+      ],
+      "storedBefore": {
+        "startedAt": 1793170318632,
+        "label": "Fictional accessibility session"
+      },
+      "modalGeometry": {
+        "x": 27.5,
+        "y": 184.5,
+        "width": 320,
+        "height": 298,
+        "bottom": 482.5,
+        "viewportWidth": 375,
+        "viewportHeight": 667,
+        "controls": [
+          {
+            "label": "Close timer form",
+            "width": 44,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "What did you work on?",
+            "width": 286,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Minutes",
+            "width": 96,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Worked on",
+            "width": 182,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Brief",
+            "width": 286,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Keep running",
+            "width": 106,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Save",
+            "width": 60,
+            "height": 44,
+            "insideHorizontally": true
+          }
+        ]
+      },
+      "modalAxe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "aria-hidden-focus",
+            "impact": "serious",
+            "nodes": [
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(1)"
+                ],
+                "html": "<span data-radix-focus-guard=\"\" tabindex=\"0\" data-aria-hidden=\"true\" aria-hidden=\"true\" style=\"outline: none; opacity: 0; position: fixed; pointer-events: none;\"></span>",
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  ".app-shell"
+                ],
+                "html": "<div class=\"app-shell grid h-dvh grid-cols-1 grid-rows-[auto_1fr] overflow-hidden tab:grid-cols-[64px_1fr] desk:grid-cols-[256px_1fr]\" data-aria-hidden=\"true\" aria-hidden=\"true\">",
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(15)"
+                ],
+                "html": "<span data-radix-focus-guard=\"\" tabindex=\"0\" data-aria-hidden=\"true\" aria-hidden=\"true\" style=\"outline: none; opacity: 0; position: fixed; pointer-events: none;\"></span>",
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              }
+            ]
+          }
+        ],
+        "colorContrast": "pass"
+      },
+      "backgroundBlocked": {
+        "hitTag": "DIV",
+        "searchIsHit": false,
+        "backgroundHidden": true,
+        "bodyPointerEvents": "none"
+      },
+      "savedFixtureEntry": {
+        "workspace_id": "22222222-2222-4222-8222-222222222222",
+        "brief_id": null,
+        "description": "Fictional accessibility session",
+        "worked_on": "2026-10-28",
+        "duration_minutes": 5
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "idle": {
+        "phase": "idle",
+        "main": {
+          "x": 0,
+          "y": 113,
+          "width": 390,
+          "height": 579,
+          "bottom": 692
+        },
+        "timer": {
+          "x": 241,
+          "y": 720,
+          "width": 129,
+          "height": 44,
+          "bottom": 764
+        },
+        "gap": 28,
+        "maxScroll": 902,
+        "positions": 114,
+        "controls": 4,
+        "hits": [],
+        "horizontalOverflow": {
+          "document": 0,
+          "main": 0
+        }
+      },
+      "running": {
+        "phase": "running",
+        "main": {
+          "x": 0,
+          "y": 113,
+          "width": 390,
+          "height": 579,
+          "bottom": 692
+        },
+        "timer": {
+          "x": 66,
+          "y": 706,
+          "width": 304,
+          "height": 58,
+          "bottom": 764
+        },
+        "gap": 14,
+        "maxScroll": 902,
+        "positions": 114,
+        "controls": 4,
+        "hits": [],
+        "horizontalOverflow": {
+          "document": 0,
+          "main": 0
+        }
+      },
+      "focusedControls": [
+        {
+          "label": "intake-context",
+          "focused": true,
+          "centerInScrollport": true,
+          "hitOwnControl": true,
+          "width": 316,
+          "height": 220
+        },
+        {
+          "label": "Add a file",
+          "focused": true,
+          "centerInScrollport": true,
+          "hitOwnControl": true,
+          "width": 109,
+          "height": 44
+        }
+      ],
+      "modal": true,
+      "actions": [
+        "Escape restores Stop focus without saving",
+        "Close restores Stop focus without saving",
+        "Keep running restores Stop focus without saving",
+        "nested brief select is accessible above scrim; Escape closes the select first",
+        "validation errors are announced and associated with each field without saving",
+        "save writes once, clears timer, and focuses Start timer"
+      ],
+      "storedBefore": {
+        "startedAt": 1793170324247,
+        "label": "Fictional accessibility session"
+      },
+      "modalGeometry": {
+        "x": 35,
+        "y": 273,
+        "width": 320,
+        "height": 298,
+        "bottom": 571,
+        "viewportWidth": 390,
+        "viewportHeight": 844,
+        "controls": [
+          {
+            "label": "Close timer form",
+            "width": 44,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "What did you work on?",
+            "width": 286,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Minutes",
+            "width": 96,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Worked on",
+            "width": 182,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Brief",
+            "width": 286,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Keep running",
+            "width": 106,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Save",
+            "width": 60,
+            "height": 44,
+            "insideHorizontally": true
+          }
+        ]
+      },
+      "modalAxe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "aria-hidden-focus",
+            "impact": "serious",
+            "nodes": [
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(1)"
+                ],
+                "html": "<span data-radix-focus-guard=\"\" tabindex=\"0\" data-aria-hidden=\"true\" aria-hidden=\"true\" style=\"outline: none; opacity: 0; position: fixed; pointer-events: none;\"></span>",
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  ".app-shell"
+                ],
+                "html": "<div class=\"app-shell grid h-dvh grid-cols-1 grid-rows-[auto_1fr] overflow-hidden tab:grid-cols-[64px_1fr] desk:grid-cols-[256px_1fr]\" data-aria-hidden=\"true\" aria-hidden=\"true\">",
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(15)"
+                ],
+                "html": "<span data-radix-focus-guard=\"\" tabindex=\"0\" data-aria-hidden=\"true\" aria-hidden=\"true\" style=\"outline: none; opacity: 0; position: fixed; pointer-events: none;\"></span>",
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              }
+            ]
+          }
+        ],
+        "colorContrast": "pass"
+      },
+      "backgroundBlocked": {
+        "hitTag": "DIV",
+        "searchIsHit": false,
+        "backgroundHidden": true,
+        "bodyPointerEvents": "none"
+      },
+      "savedFixtureEntry": {
+        "workspace_id": "22222222-2222-4222-8222-222222222222",
+        "brief_id": null,
+        "description": "Fictional accessibility session",
+        "worked_on": "2026-10-28",
+        "duration_minutes": 5
+      }
+    },
+    {
+      "width": 768,
+      "height": 900,
+      "idle": {
+        "phase": "idle",
+        "main": {
+          "x": 64,
+          "y": 64,
+          "width": 704,
+          "height": 748,
+          "bottom": 812
+        },
+        "timer": {
+          "x": 619,
+          "y": 836,
+          "width": 129,
+          "height": 44,
+          "bottom": 880
+        },
+        "gap": 24,
+        "maxScroll": 770,
+        "positions": 98,
+        "controls": 4,
+        "hits": [],
+        "horizontalOverflow": {
+          "document": 0,
+          "main": 0
+        }
+      },
+      "running": {
+        "phase": "running",
+        "main": {
+          "x": 64,
+          "y": 64,
+          "width": 704,
+          "height": 748,
+          "bottom": 812
+        },
+        "timer": {
+          "x": 364,
+          "y": 822,
+          "width": 384,
+          "height": 58,
+          "bottom": 880
+        },
+        "gap": 10,
+        "maxScroll": 770,
+        "positions": 98,
+        "controls": 4,
+        "hits": [],
+        "horizontalOverflow": {
+          "document": 0,
+          "main": 0
+        }
+      },
+      "focusedControls": [
+        {
+          "label": "intake-context",
+          "focused": true,
+          "centerInScrollport": true,
+          "hitOwnControl": true,
+          "width": 598,
+          "height": 340
+        },
+        {
+          "label": "Add a file",
+          "focused": true,
+          "centerInScrollport": true,
+          "hitOwnControl": true,
+          "width": 109,
+          "height": 44
+        }
+      ],
+      "modal": true,
+      "actions": [
+        "Escape restores Stop focus without saving",
+        "Close restores Stop focus without saving",
+        "Keep running restores Stop focus without saving",
+        "nested brief select is accessible above scrim; Escape closes the select first",
+        "validation errors are announced and associated with each field without saving",
+        "save writes once, clears timer, and focuses Start timer"
+      ],
+      "storedBefore": {
+        "startedAt": 1793170328165,
+        "label": "Fictional accessibility session"
+      },
+      "modalGeometry": {
+        "x": 224,
+        "y": 301,
+        "width": 320,
+        "height": 298,
+        "bottom": 599,
+        "viewportWidth": 768,
+        "viewportHeight": 900,
+        "controls": [
+          {
+            "label": "Close timer form",
+            "width": 44,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "What did you work on?",
+            "width": 286,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Minutes",
+            "width": 96,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Worked on",
+            "width": 182,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Brief",
+            "width": 286,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Keep running",
+            "width": 106,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Save",
+            "width": 60,
+            "height": 44,
+            "insideHorizontally": true
+          }
+        ]
+      },
+      "modalAxe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "aria-hidden-focus",
+            "impact": "serious",
+            "nodes": [
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(1)"
+                ],
+                "html": "<span data-radix-focus-guard=\"\" tabindex=\"0\" data-aria-hidden=\"true\" aria-hidden=\"true\" style=\"outline: none; opacity: 0; position: fixed; pointer-events: none;\"></span>",
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  ".app-shell"
+                ],
+                "html": "<div class=\"app-shell grid h-dvh grid-cols-1 grid-rows-[auto_1fr] overflow-hidden tab:grid-cols-[64px_1fr] desk:grid-cols-[256px_1fr]\" data-aria-hidden=\"true\" aria-hidden=\"true\">",
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(15)"
+                ],
+                "html": "<span data-radix-focus-guard=\"\" tabindex=\"0\" data-aria-hidden=\"true\" aria-hidden=\"true\" style=\"outline: none; opacity: 0; position: fixed; pointer-events: none;\"></span>",
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              }
+            ]
+          }
+        ],
+        "colorContrast": "pass"
+      },
+      "backgroundBlocked": {
+        "hitTag": "DIV",
+        "searchIsHit": false,
+        "backgroundHidden": true,
+        "bodyPointerEvents": "none"
+      },
+      "savedFixtureEntry": {
+        "workspace_id": "22222222-2222-4222-8222-222222222222",
+        "brief_id": null,
+        "description": "Fictional accessibility session",
+        "worked_on": "2026-10-28",
+        "duration_minutes": 5
+      }
+    },
+    {
+      "width": 1024,
+      "height": 900,
+      "idle": {
+        "phase": "idle",
+        "main": {
+          "x": 256,
+          "y": 64,
+          "width": 768,
+          "height": 836,
+          "bottom": 900
+        },
+        "timer": {
+          "x": 875,
+          "y": 836,
+          "width": 129,
+          "height": 44,
+          "bottom": 880
+        },
+        "gap": -64,
+        "maxScroll": 229,
+        "positions": 30,
+        "controls": 4,
+        "hits": [],
+        "horizontalOverflow": {
+          "document": 0,
+          "main": 0
+        }
+      },
+      "running": {
+        "phase": "running",
+        "main": {
+          "x": 256,
+          "y": 64,
+          "width": 768,
+          "height": 836,
+          "bottom": 900
+        },
+        "timer": {
+          "x": 620,
+          "y": 822,
+          "width": 384,
+          "height": 58,
+          "bottom": 880
+        },
+        "gap": -78,
+        "maxScroll": 229,
+        "positions": 30,
+        "controls": 4,
+        "hits": [],
+        "horizontalOverflow": {
+          "document": 0,
+          "main": 0
+        }
+      },
+      "focusedControls": [
+        {
+          "label": "intake-context",
+          "focused": true,
+          "centerInScrollport": true,
+          "hitOwnControl": true,
+          "width": 241.328125,
+          "height": 340
+        },
+        {
+          "label": "Add a file",
+          "focused": true,
+          "centerInScrollport": true,
+          "hitOwnControl": true,
+          "width": 109,
+          "height": 44
+        }
+      ],
+      "modal": false,
+      "actions": [
+        "desktop remains non-modal; Keep running",
+        "discard clears local timer"
+      ],
+      "storedBefore": {
+        "startedAt": 1793170332298,
+        "label": "Fictional accessibility session"
+      }
+    },
+    {
+      "width": 1200,
+      "height": 900,
+      "idle": {
+        "phase": "idle",
+        "main": {
+          "x": 256,
+          "y": 64,
+          "width": 944,
+          "height": 836,
+          "bottom": 900
+        },
+        "timer": {
+          "x": 1051,
+          "y": 836,
+          "width": 129,
+          "height": 44,
+          "bottom": 880
+        },
+        "gap": -64,
+        "maxScroll": 200,
+        "positions": 26,
+        "controls": 4,
+        "hits": [],
+        "horizontalOverflow": {
+          "document": 0,
+          "main": 0
+        }
+      },
+      "running": {
+        "phase": "running",
+        "main": {
+          "x": 256,
+          "y": 64,
+          "width": 944,
+          "height": 836,
+          "bottom": 900
+        },
+        "timer": {
+          "x": 796,
+          "y": 822,
+          "width": 384,
+          "height": 58,
+          "bottom": 880
+        },
+        "gap": -78,
+        "maxScroll": 200,
+        "positions": 26,
+        "controls": 4,
+        "hits": [],
+        "horizontalOverflow": {
+          "document": 0,
+          "main": 0
+        }
+      },
+      "focusedControls": [
+        {
+          "label": "intake-context",
+          "focused": true,
+          "centerInScrollport": true,
+          "hitOwnControl": true,
+          "width": 314.65625,
+          "height": 340
+        },
+        {
+          "label": "Add a file",
+          "focused": true,
+          "centerInScrollport": true,
+          "hitOwnControl": true,
+          "width": 109,
+          "height": 44
+        }
+      ],
+      "modal": false,
+      "actions": [
+        "desktop remains non-modal; Keep running",
+        "discard clears local timer"
+      ],
+      "storedBefore": {
+        "startedAt": 1793170333681,
+        "label": "Fictional accessibility session"
+      }
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "idle": {
+        "phase": "idle",
+        "main": {
+          "x": 256,
+          "y": 64,
+          "width": 1184,
+          "height": 836,
+          "bottom": 900
+        },
+        "timer": {
+          "x": 1291,
+          "y": 836,
+          "width": 129,
+          "height": 44,
+          "bottom": 880
+        },
+        "gap": -64,
+        "maxScroll": 147,
+        "positions": 20,
+        "controls": 4,
+        "hits": [],
+        "horizontalOverflow": {
+          "document": 0,
+          "main": 0
+        }
+      },
+      "running": {
+        "phase": "running",
+        "main": {
+          "x": 256,
+          "y": 64,
+          "width": 1184,
+          "height": 836,
+          "bottom": 900
+        },
+        "timer": {
+          "x": 1036,
+          "y": 822,
+          "width": 384,
+          "height": 58,
+          "bottom": 880
+        },
+        "gap": -78,
+        "maxScroll": 147,
+        "positions": 20,
+        "controls": 4,
+        "hits": [],
+        "horizontalOverflow": {
+          "document": 0,
+          "main": 0
+        }
+      },
+      "focusedControls": [
+        {
+          "label": "intake-context",
+          "focused": true,
+          "centerInScrollport": true,
+          "hitOwnControl": true,
+          "width": 414.65625,
+          "height": 340
+        },
+        {
+          "label": "Add a file",
+          "focused": true,
+          "centerInScrollport": true,
+          "hitOwnControl": true,
+          "width": 109,
+          "height": 44
+        }
+      ],
+      "modal": false,
+      "actions": [
+        "desktop remains non-modal; Keep running",
+        "discard clears local timer"
+      ],
+      "storedBefore": {
+        "startedAt": 1793170335031,
+        "label": "Fictional accessibility session"
+      }
+    }
+  ],
+  "workspace": {
+    "width": 768,
+    "single": "named static image, not focusable",
+    "multi": "named combobox, both options keyboard reachable, Escape restores focus"
+  },
+  "viewer": {
+    "width": 375,
+    "role": "viewer",
+    "timerCount": 0,
+    "reservedTimerSpace": false
+  },
+  "navigation": {
+    "width": 375,
+    "openAndEscape": true,
+    "focusReturned": "More navigation"
+  },
+  "resize": {
+    "widths": [
+      390,
+      1024,
+      390
+    ],
+    "preservedStopState": true,
+    "desktopNonModal": true,
+    "modalFocusAndReturn": true
+  },
+  "browserErrors": [],
+  "browserVersion": "153.0.8010.0",
+  "packageVersions": {
+    "node": "v22.22.3",
+    "playwright": "1.63.0",
+    "axe": "4.14.0"
+  },
+  "darkTimer": [
+    {
+      "width": 375,
+      "height": 667,
+      "idle": {
+        "phase": "idle",
+        "main": {
+          "x": 0,
+          "y": 165,
+          "width": 375,
+          "height": 350,
+          "bottom": 515
+        },
+        "timer": {
+          "x": 226,
+          "y": 543,
+          "width": 129,
+          "height": 44,
+          "bottom": 587
+        },
+        "gap": 28,
+        "maxScroll": 1145,
+        "positions": 145,
+        "controls": 4,
+        "hits": [],
+        "horizontalOverflow": {
+          "document": 0,
+          "main": 0
+        }
+      },
+      "running": {
+        "phase": "running",
+        "main": {
+          "x": 0,
+          "y": 165,
+          "width": 375,
+          "height": 350,
+          "bottom": 515
+        },
+        "timer": {
+          "x": 51,
+          "y": 529,
+          "width": 304,
+          "height": 58,
+          "bottom": 587
+        },
+        "gap": 14,
+        "maxScroll": 1145,
+        "positions": 145,
+        "controls": 4,
+        "hits": [],
+        "horizontalOverflow": {
+          "document": 0,
+          "main": 0
+        }
+      },
+      "focusedControls": [
+        {
+          "label": "intake-context",
+          "focused": true,
+          "centerInScrollport": true,
+          "hitOwnControl": true,
+          "width": 301,
+          "height": 220
+        },
+        {
+          "label": "Add a file",
+          "focused": true,
+          "centerInScrollport": true,
+          "hitOwnControl": true,
+          "width": 109,
+          "height": 44
+        }
+      ],
+      "modal": true,
+      "actions": [
+        "Escape restores Stop focus without saving",
+        "Close restores Stop focus without saving",
+        "Keep running restores Stop focus without saving",
+        "resumed timer continues counting",
+        "nested brief select is accessible above scrim; Escape closes the select first",
+        "validation errors are announced and associated with each field without saving",
+        "save writes once, clears timer, and focuses Start timer"
+      ],
+      "storedBefore": {
+        "startedAt": 1793170336231,
+        "label": "Fictional accessibility session"
+      },
+      "modalGeometry": {
+        "x": 27.5,
+        "y": 184.5,
+        "width": 320,
+        "height": 298,
+        "bottom": 482.5,
+        "viewportWidth": 375,
+        "viewportHeight": 667,
+        "controls": [
+          {
+            "label": "Close timer form",
+            "width": 44,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "What did you work on?",
+            "width": 286,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Minutes",
+            "width": 96,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Worked on",
+            "width": 182,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Brief",
+            "width": 286,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Keep running",
+            "width": 106,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Save",
+            "width": 60,
+            "height": 44,
+            "insideHorizontally": true
+          }
+        ]
+      },
+      "modalAxe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "aria-hidden-focus",
+            "impact": "serious",
+            "nodes": [
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(1)"
+                ],
+                "html": "<span data-radix-focus-guard=\"\" tabindex=\"0\" data-aria-hidden=\"true\" aria-hidden=\"true\" style=\"outline: none; opacity: 0; position: fixed; pointer-events: none;\"></span>",
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  ".app-shell"
+                ],
+                "html": "<div class=\"app-shell grid h-dvh grid-cols-1 grid-rows-[auto_1fr] overflow-hidden tab:grid-cols-[64px_1fr] desk:grid-cols-[256px_1fr]\" data-aria-hidden=\"true\" aria-hidden=\"true\">",
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(15)"
+                ],
+                "html": "<span data-radix-focus-guard=\"\" tabindex=\"0\" data-aria-hidden=\"true\" aria-hidden=\"true\" style=\"outline: none; opacity: 0; position: fixed; pointer-events: none;\"></span>",
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              }
+            ]
+          }
+        ],
+        "colorContrast": "pass"
+      },
+      "backgroundBlocked": {
+        "hitTag": "DIV",
+        "searchIsHit": false,
+        "backgroundHidden": true,
+        "bodyPointerEvents": "none"
+      },
+      "savedFixtureEntry": {
+        "workspace_id": "22222222-2222-4222-8222-222222222222",
+        "brief_id": null,
+        "description": "Fictional accessibility session",
+        "worked_on": "2026-10-28",
+        "duration_minutes": 5
+      }
+    },
+    {
+      "width": 768,
+      "height": 900,
+      "idle": {
+        "phase": "idle",
+        "main": {
+          "x": 64,
+          "y": 64,
+          "width": 704,
+          "height": 748,
+          "bottom": 812
+        },
+        "timer": {
+          "x": 619,
+          "y": 836,
+          "width": 129,
+          "height": 44,
+          "bottom": 880
+        },
+        "gap": 24,
+        "maxScroll": 770,
+        "positions": 98,
+        "controls": 4,
+        "hits": [],
+        "horizontalOverflow": {
+          "document": 0,
+          "main": 0
+        }
+      },
+      "running": {
+        "phase": "running",
+        "main": {
+          "x": 64,
+          "y": 64,
+          "width": 704,
+          "height": 748,
+          "bottom": 812
+        },
+        "timer": {
+          "x": 364,
+          "y": 822,
+          "width": 384,
+          "height": 58,
+          "bottom": 880
+        },
+        "gap": 10,
+        "maxScroll": 770,
+        "positions": 98,
+        "controls": 4,
+        "hits": [],
+        "horizontalOverflow": {
+          "document": 0,
+          "main": 0
+        }
+      },
+      "focusedControls": [
+        {
+          "label": "intake-context",
+          "focused": true,
+          "centerInScrollport": true,
+          "hitOwnControl": true,
+          "width": 598,
+          "height": 340
+        },
+        {
+          "label": "Add a file",
+          "focused": true,
+          "centerInScrollport": true,
+          "hitOwnControl": true,
+          "width": 109,
+          "height": 44
+        }
+      ],
+      "modal": true,
+      "actions": [
+        "Escape restores Stop focus without saving",
+        "Close restores Stop focus without saving",
+        "Keep running restores Stop focus without saving",
+        "nested brief select is accessible above scrim; Escape closes the select first",
+        "validation errors are announced and associated with each field without saving",
+        "save writes once, clears timer, and focuses Start timer"
+      ],
+      "storedBefore": {
+        "startedAt": 1793170342032,
+        "label": "Fictional accessibility session"
+      },
+      "modalGeometry": {
+        "x": 224,
+        "y": 301,
+        "width": 320,
+        "height": 298,
+        "bottom": 599,
+        "viewportWidth": 768,
+        "viewportHeight": 900,
+        "controls": [
+          {
+            "label": "Close timer form",
+            "width": 44,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "What did you work on?",
+            "width": 286,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Minutes",
+            "width": 96,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Worked on",
+            "width": 182,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Brief",
+            "width": 286,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Keep running",
+            "width": 106,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Save",
+            "width": 60,
+            "height": 44,
+            "insideHorizontally": true
+          }
+        ]
+      },
+      "modalAxe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "aria-hidden-focus",
+            "impact": "serious",
+            "nodes": [
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(1)"
+                ],
+                "html": "<span data-radix-focus-guard=\"\" tabindex=\"0\" data-aria-hidden=\"true\" aria-hidden=\"true\" style=\"outline: none; opacity: 0; position: fixed; pointer-events: none;\"></span>",
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  ".app-shell"
+                ],
+                "html": "<div class=\"app-shell grid h-dvh grid-cols-1 grid-rows-[auto_1fr] overflow-hidden tab:grid-cols-[64px_1fr] desk:grid-cols-[256px_1fr]\" data-aria-hidden=\"true\" aria-hidden=\"true\">",
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(15)"
+                ],
+                "html": "<span data-radix-focus-guard=\"\" tabindex=\"0\" data-aria-hidden=\"true\" aria-hidden=\"true\" style=\"outline: none; opacity: 0; position: fixed; pointer-events: none;\"></span>",
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              }
+            ]
+          }
+        ],
+        "colorContrast": "pass"
+      },
+      "backgroundBlocked": {
+        "hitTag": "DIV",
+        "searchIsHit": false,
+        "backgroundHidden": true,
+        "bodyPointerEvents": "none"
+      },
+      "savedFixtureEntry": {
+        "workspace_id": "22222222-2222-4222-8222-222222222222",
+        "brief_id": null,
+        "description": "Fictional accessibility session",
+        "worked_on": "2026-10-28",
+        "duration_minutes": 5
+      }
+    }
+  ],
+  "normalMotion": {
+    "timer": {
+      "width": 375,
+      "height": 667,
+      "idle": {
+        "phase": "idle",
+        "main": {
+          "x": 0,
+          "y": 165,
+          "width": 375,
+          "height": 350,
+          "bottom": 515
+        },
+        "timer": {
+          "x": 226,
+          "y": 543,
+          "width": 129,
+          "height": 44,
+          "bottom": 587
+        },
+        "gap": 28,
+        "maxScroll": 1145,
+        "positions": 145,
+        "controls": 4,
+        "hits": [],
+        "horizontalOverflow": {
+          "document": 0,
+          "main": 0
+        }
+      },
+      "running": {
+        "phase": "running",
+        "main": {
+          "x": 0,
+          "y": 165,
+          "width": 375,
+          "height": 350,
+          "bottom": 515
+        },
+        "timer": {
+          "x": 51,
+          "y": 529,
+          "width": 304,
+          "height": 58,
+          "bottom": 587
+        },
+        "gap": 14,
+        "maxScroll": 1145,
+        "positions": 145,
+        "controls": 4,
+        "hits": [],
+        "horizontalOverflow": {
+          "document": 0,
+          "main": 0
+        }
+      },
+      "focusedControls": [
+        {
+          "label": "intake-context",
+          "focused": true,
+          "centerInScrollport": true,
+          "hitOwnControl": true,
+          "width": 301,
+          "height": 220
+        },
+        {
+          "label": "Add a file",
+          "focused": true,
+          "centerInScrollport": true,
+          "hitOwnControl": true,
+          "width": 109,
+          "height": 44
+        }
+      ],
+      "modal": true,
+      "actions": [
+        "Escape restores Stop focus without saving",
+        "Close restores Stop focus without saving",
+        "Keep running restores Stop focus without saving",
+        "resumed timer continues counting",
+        "nested brief select is accessible above scrim; Escape closes the select first",
+        "validation errors are announced and associated with each field without saving",
+        "save writes once, clears timer, and focuses Start timer"
+      ],
+      "storedBefore": {
+        "startedAt": 1793170345948,
+        "label": "Fictional accessibility session"
+      },
+      "modalGeometry": {
+        "x": 27.5,
+        "y": 184.5,
+        "width": 320,
+        "height": 298,
+        "bottom": 482.5,
+        "viewportWidth": 375,
+        "viewportHeight": 667,
+        "controls": [
+          {
+            "label": "Close timer form",
+            "width": 44,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "What did you work on?",
+            "width": 286,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Minutes",
+            "width": 96,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Worked on",
+            "width": 182,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Brief",
+            "width": 286,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Keep running",
+            "width": 106,
+            "height": 44,
+            "insideHorizontally": true
+          },
+          {
+            "label": "Save",
+            "width": 60,
+            "height": 44,
+            "insideHorizontally": true
+          }
+        ]
+      },
+      "modalAxe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "aria-hidden-focus",
+            "impact": "serious",
+            "nodes": [
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(1)"
+                ],
+                "html": "<span data-radix-focus-guard=\"\" tabindex=\"0\" data-aria-hidden=\"true\" aria-hidden=\"true\" style=\"outline: none; opacity: 0; position: fixed; pointer-events: none;\"></span>",
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  ".app-shell"
+                ],
+                "html": "<div class=\"app-shell grid h-dvh grid-cols-1 grid-rows-[auto_1fr] overflow-hidden tab:grid-cols-[64px_1fr] desk:grid-cols-[256px_1fr]\" data-aria-hidden=\"true\" aria-hidden=\"true\">",
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              },
+              {
+                "target": [
+                  "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(15)"
+                ],
+                "html": "<span data-radix-focus-guard=\"\" tabindex=\"0\" data-aria-hidden=\"true\" aria-hidden=\"true\" style=\"outline: none; opacity: 0; position: fixed; pointer-events: none;\"></span>",
+                "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+              }
+            ]
+          }
+        ],
+        "colorContrast": "pass"
+      },
+      "backgroundBlocked": {
+        "hitTag": "DIV",
+        "searchIsHit": false,
+        "backgroundHidden": true,
+        "bodyPointerEvents": "none"
+      },
+      "savedFixtureEntry": {
+        "workspace_id": "22222222-2222-4222-8222-222222222222",
+        "brief_id": null,
+        "description": "Fictional accessibility session",
+        "worked_on": "2026-10-28",
+        "duration_minutes": 5
+      }
+    },
+    "focus": {
+      "scheme": "light",
+      "width": 375,
+      "scenario": "success",
+      "before": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "during": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "moved": null,
+      "after": {
+        "tag": "BUTTON",
+        "id": null,
+        "role": "combobox",
+        "label": "Update status"
+      },
+      "display": "Marked sent",
+      "fixtureStatus": "sent",
+      "error": null
+    }
+  },
+  "shortViewport": {
+    "width": 320,
+    "height": 320,
+    "geometry": {
+      "top": 16,
+      "bottom": 304,
+      "clientHeight": 286,
+      "scrollHeight": 296,
+      "viewportHeight": 320
+    },
+    "scrollableAndFocusRestored": true
+  },
+  "timerSaveFailure": {
+    "width": 375,
+    "alert": "Synthetic time save failure",
+    "timerRetained": true,
+    "focusRestored": true
+  }
+}

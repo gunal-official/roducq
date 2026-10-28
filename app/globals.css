@@ -310,6 +310,23 @@
   }
 }
 
+/* The timer is fixed above the phone nav (or 20px above the tablet
+   viewport). Padding alone leaves it on top of controls at intermediate
+   scroll positions. Shrink the actual scrollport when the timer exists,
+   reserving room for the tallest idle/running pill, the nav, and the safe
+   area. Viewers without the timer and desktop/print layouts are unchanged. */
+@media screen and (max-width: 599.98px) {
+  .app-main[data-has-timer] {
+    margin-bottom: calc(9.5rem + env(safe-area-inset-bottom, 0px));
+    padding-bottom: 3rem;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 1023.98px) {
+  .app-main[data-has-timer] {
+    margin-bottom: 5.5rem;
+  }
+}
+
 /* ── Forma Phase B: the app shell is a rail plus a content column ──────
    The rail is a full-height plane — brand, workspace, navigation and the
    account controls share one column — and the topbar spans only the

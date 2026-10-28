@@ -1,0 +1,1384 @@
+{
+  "widths": [
+    375,
+    390,
+    768,
+    1024,
+    1200,
+    1440,
+    1920
+  ],
+  "output": "/tmp/roducq-phase1-evidence-5lnGFv",
+  "rendered": [
+    {
+      "scheme": "light",
+      "width": 375,
+      "page": "detail",
+      "status": "draft",
+      "link": "none"
+    },
+    {
+      "scheme": "light",
+      "width": 375,
+      "page": "detail",
+      "status": "draft",
+      "link": "active"
+    },
+    {
+      "scheme": "light",
+      "width": 375,
+      "page": "detail",
+      "status": "draft",
+      "link": "revoked"
+    },
+    {
+      "scheme": "light",
+      "width": 375,
+      "page": "detail",
+      "status": "sent",
+      "link": "none"
+    },
+    {
+      "scheme": "light",
+      "width": 375,
+      "page": "detail",
+      "status": "sent",
+      "link": "active"
+    },
+    {
+      "scheme": "light",
+      "width": 375,
+      "page": "detail",
+      "status": "sent",
+      "link": "revoked"
+    },
+    {
+      "scheme": "light",
+      "width": 375,
+      "page": "dashboard",
+      "attention": true
+    },
+    {
+      "scheme": "light",
+      "width": 375,
+      "page": "dashboard",
+      "attention": false
+    },
+    {
+      "scheme": "light",
+      "width": 375,
+      "page": "updates-list"
+    },
+    {
+      "scheme": "light",
+      "width": 375,
+      "page": "public-draft",
+      "anonymous": true
+    },
+    {
+      "scheme": "light",
+      "width": 390,
+      "page": "detail",
+      "status": "draft",
+      "link": "none"
+    },
+    {
+      "scheme": "light",
+      "width": 390,
+      "page": "detail",
+      "status": "draft",
+      "link": "active"
+    },
+    {
+      "scheme": "light",
+      "width": 390,
+      "page": "detail",
+      "status": "draft",
+      "link": "revoked"
+    },
+    {
+      "scheme": "light",
+      "width": 390,
+      "page": "detail",
+      "status": "sent",
+      "link": "none"
+    },
+    {
+      "scheme": "light",
+      "width": 390,
+      "page": "detail",
+      "status": "sent",
+      "link": "active"
+    },
+    {
+      "scheme": "light",
+      "width": 390,
+      "page": "detail",
+      "status": "sent",
+      "link": "revoked"
+    },
+    {
+      "scheme": "light",
+      "width": 390,
+      "page": "dashboard",
+      "attention": true
+    },
+    {
+      "scheme": "light",
+      "width": 390,
+      "page": "dashboard",
+      "attention": false
+    },
+    {
+      "scheme": "light",
+      "width": 390,
+      "page": "updates-list"
+    },
+    {
+      "scheme": "light",
+      "width": 390,
+      "page": "public-draft",
+      "anonymous": true
+    },
+    {
+      "scheme": "light",
+      "width": 768,
+      "page": "detail",
+      "status": "draft",
+      "link": "none"
+    },
+    {
+      "scheme": "light",
+      "width": 768,
+      "page": "detail",
+      "status": "draft",
+      "link": "active"
+    },
+    {
+      "scheme": "light",
+      "width": 768,
+      "page": "detail",
+      "status": "draft",
+      "link": "revoked"
+    },
+    {
+      "scheme": "light",
+      "width": 768,
+      "page": "detail",
+      "status": "sent",
+      "link": "none"
+    },
+    {
+      "scheme": "light",
+      "width": 768,
+      "page": "detail",
+      "status": "sent",
+      "link": "active"
+    },
+    {
+      "scheme": "light",
+      "width": 768,
+      "page": "detail",
+      "status": "sent",
+      "link": "revoked"
+    },
+    {
+      "scheme": "light",
+      "width": 768,
+      "page": "dashboard",
+      "attention": true
+    },
+    {
+      "scheme": "light",
+      "width": 768,
+      "page": "dashboard",
+      "attention": false
+    },
+    {
+      "scheme": "light",
+      "width": 768,
+      "page": "updates-list"
+    },
+    {
+      "scheme": "light",
+      "width": 768,
+      "page": "public-draft",
+      "anonymous": true
+    },
+    {
+      "scheme": "light",
+      "width": 1024,
+      "page": "detail",
+      "status": "draft",
+      "link": "none"
+    },
+    {
+      "scheme": "light",
+      "width": 1024,
+      "page": "detail",
+      "status": "draft",
+      "link": "active"
+    },
+    {
+      "scheme": "light",
+      "width": 1024,
+      "page": "detail",
+      "status": "draft",
+      "link": "revoked"
+    },
+    {
+      "scheme": "light",
+      "width": 1024,
+      "page": "detail",
+      "status": "sent",
+      "link": "none"
+    },
+    {
+      "scheme": "light",
+      "width": 1024,
+      "page": "detail",
+      "status": "sent",
+      "link": "active"
+    },
+    {
+      "scheme": "light",
+      "width": 1024,
+      "page": "detail",
+      "status": "sent",
+      "link": "revoked"
+    },
+    {
+      "scheme": "light",
+      "width": 1024,
+      "page": "dashboard",
+      "attention": true
+    },
+    {
+      "scheme": "light",
+      "width": 1024,
+      "page": "dashboard",
+      "attention": false
+    },
+    {
+      "scheme": "light",
+      "width": 1024,
+      "page": "updates-list"
+    },
+    {
+      "scheme": "light",
+      "width": 1024,
+      "page": "public-draft",
+      "anonymous": true
+    },
+    {
+      "scheme": "light",
+      "width": 1200,
+      "page": "detail",
+      "status": "draft",
+      "link": "none"
+    },
+    {
+      "scheme": "light",
+      "width": 1200,
+      "page": "detail",
+      "status": "draft",
+      "link": "active"
+    },
+    {
+      "scheme": "light",
+      "width": 1200,
+      "page": "detail",
+      "status": "draft",
+      "link": "revoked"
+    },
+    {
+      "scheme": "light",
+      "width": 1200,
+      "page": "detail",
+      "status": "sent",
+      "link": "none"
+    },
+    {
+      "scheme": "light",
+      "width": 1200,
+      "page": "detail",
+      "status": "sent",
+      "link": "active"
+    },
+    {
+      "scheme": "light",
+      "width": 1200,
+      "page": "detail",
+      "status": "sent",
+      "link": "revoked"
+    },
+    {
+      "scheme": "light",
+      "width": 1200,
+      "page": "dashboard",
+      "attention": true
+    },
+    {
+      "scheme": "light",
+      "width": 1200,
+      "page": "dashboard",
+      "attention": false
+    },
+    {
+      "scheme": "light",
+      "width": 1200,
+      "page": "updates-list"
+    },
+    {
+      "scheme": "light",
+      "width": 1200,
+      "page": "public-draft",
+      "anonymous": true
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "page": "detail",
+      "status": "draft",
+      "link": "none"
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "page": "detail",
+      "status": "draft",
+      "link": "active"
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "page": "detail",
+      "status": "draft",
+      "link": "revoked"
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "page": "detail",
+      "status": "sent",
+      "link": "none"
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "page": "detail",
+      "status": "sent",
+      "link": "active"
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "page": "detail",
+      "status": "sent",
+      "link": "revoked"
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "page": "dashboard",
+      "attention": true
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "page": "dashboard",
+      "attention": false
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "page": "updates-list"
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "page": "public-draft",
+      "anonymous": true
+    },
+    {
+      "scheme": "light",
+      "width": 1920,
+      "page": "detail",
+      "status": "draft",
+      "link": "none"
+    },
+    {
+      "scheme": "light",
+      "width": 1920,
+      "page": "detail",
+      "status": "draft",
+      "link": "active"
+    },
+    {
+      "scheme": "light",
+      "width": 1920,
+      "page": "detail",
+      "status": "draft",
+      "link": "revoked"
+    },
+    {
+      "scheme": "light",
+      "width": 1920,
+      "page": "detail",
+      "status": "sent",
+      "link": "none"
+    },
+    {
+      "scheme": "light",
+      "width": 1920,
+      "page": "detail",
+      "status": "sent",
+      "link": "active"
+    },
+    {
+      "scheme": "light",
+      "width": 1920,
+      "page": "detail",
+      "status": "sent",
+      "link": "revoked"
+    },
+    {
+      "scheme": "light",
+      "width": 1920,
+      "page": "dashboard",
+      "attention": true
+    },
+    {
+      "scheme": "light",
+      "width": 1920,
+      "page": "dashboard",
+      "attention": false
+    },
+    {
+      "scheme": "light",
+      "width": 1920,
+      "page": "updates-list"
+    },
+    {
+      "scheme": "light",
+      "width": 1920,
+      "page": "public-draft",
+      "anonymous": true
+    },
+    {
+      "scheme": "dark",
+      "width": 375,
+      "page": "detail",
+      "status": "draft",
+      "link": "none"
+    },
+    {
+      "scheme": "dark",
+      "width": 375,
+      "page": "detail",
+      "status": "draft",
+      "link": "active"
+    },
+    {
+      "scheme": "dark",
+      "width": 375,
+      "page": "detail",
+      "status": "draft",
+      "link": "revoked"
+    },
+    {
+      "scheme": "dark",
+      "width": 375,
+      "page": "detail",
+      "status": "sent",
+      "link": "none"
+    },
+    {
+      "scheme": "dark",
+      "width": 375,
+      "page": "detail",
+      "status": "sent",
+      "link": "active"
+    },
+    {
+      "scheme": "dark",
+      "width": 375,
+      "page": "detail",
+      "status": "sent",
+      "link": "revoked"
+    },
+    {
+      "scheme": "dark",
+      "width": 375,
+      "page": "dashboard",
+      "attention": true
+    },
+    {
+      "scheme": "dark",
+      "width": 375,
+      "page": "dashboard",
+      "attention": false
+    },
+    {
+      "scheme": "dark",
+      "width": 375,
+      "page": "updates-list"
+    },
+    {
+      "scheme": "dark",
+      "width": 375,
+      "page": "public-draft",
+      "anonymous": true
+    },
+    {
+      "scheme": "dark",
+      "width": 1440,
+      "page": "detail",
+      "status": "draft",
+      "link": "none"
+    },
+    {
+      "scheme": "dark",
+      "width": 1440,
+      "page": "detail",
+      "status": "draft",
+      "link": "active"
+    },
+    {
+      "scheme": "dark",
+      "width": 1440,
+      "page": "detail",
+      "status": "draft",
+      "link": "revoked"
+    },
+    {
+      "scheme": "dark",
+      "width": 1440,
+      "page": "detail",
+      "status": "sent",
+      "link": "none"
+    },
+    {
+      "scheme": "dark",
+      "width": 1440,
+      "page": "detail",
+      "status": "sent",
+      "link": "active"
+    },
+    {
+      "scheme": "dark",
+      "width": 1440,
+      "page": "detail",
+      "status": "sent",
+      "link": "revoked"
+    },
+    {
+      "scheme": "dark",
+      "width": 1440,
+      "page": "dashboard",
+      "attention": true
+    },
+    {
+      "scheme": "dark",
+      "width": 1440,
+      "page": "dashboard",
+      "attention": false
+    },
+    {
+      "scheme": "dark",
+      "width": 1440,
+      "page": "updates-list"
+    },
+    {
+      "scheme": "dark",
+      "width": 1440,
+      "page": "public-draft",
+      "anonymous": true
+    }
+  ],
+  "dashboardCases": [
+    "invoice only",
+    "contract only",
+    "both",
+    "neither",
+    "viewer invoice suppressed",
+    "viewer contract retained",
+    "member money visible",
+    "populated without attention",
+    "populated with attention",
+    "inclusive dates and statuses"
+  ],
+  "interactions": [
+    "keyboard draft/sent changes write only the stored status; no link is created",
+    "draft link create/copy/revoke/regenerate, saved edits and anonymous visibility",
+    "sent public update displays Marked sent without changing access",
+    "draft/sent list filtering retains its stored-status semantics",
+    "viewer cannot create a link through the existing action guard"
+  ],
+  "focus": [
+    {
+      "action": "status change completes",
+      "tag": "BUTTON",
+      "label": "Update status"
+    }
+  ],
+  "axe": [
+    {
+      "label": "light/375/detail/sent/revoked",
+      "violations": [],
+      "incomplete": [],
+      "contrast": [
+        {
+          "kind": "passes",
+          "nodes": 27
+        }
+      ]
+    },
+    {
+      "label": "light/375/dashboard/attention",
+      "violations": [],
+      "incomplete": [],
+      "contrast": [
+        {
+          "kind": "passes",
+          "nodes": 25
+        }
+      ]
+    },
+    {
+      "label": "light/375/updates-list",
+      "violations": [],
+      "incomplete": [],
+      "contrast": [
+        {
+          "kind": "passes",
+          "nodes": 38
+        }
+      ]
+    },
+    {
+      "label": "light/375/public-draft",
+      "violations": [],
+      "incomplete": [],
+      "contrast": [
+        {
+          "kind": "passes",
+          "nodes": 10
+        }
+      ]
+    },
+    {
+      "label": "light/390/detail/sent/revoked",
+      "violations": [],
+      "incomplete": [],
+      "contrast": [
+        {
+          "kind": "passes",
+          "nodes": 28
+        }
+      ]
+    },
+    {
+      "label": "light/390/dashboard/attention",
+      "violations": [],
+      "incomplete": [],
+      "contrast": [
+        {
+          "kind": "passes",
+          "nodes": 25
+        }
+      ]
+    },
+    {
+      "label": "light/390/updates-list",
+      "violations": [],
+      "incomplete": [],
+      "contrast": [
+        {
+          "kind": "passes",
+          "nodes": 37
+        }
+      ]
+    },
+    {
+      "label": "light/390/public-draft",
+      "violations": [],
+      "incomplete": [],
+      "contrast": [
+        {
+          "kind": "passes",
+          "nodes": 10
+        }
+      ]
+    },
+    {
+      "label": "light/768/detail/sent/revoked",
+      "violations": [],
+      "incomplete": [],
+      "contrast": [
+        {
+          "kind": "passes",
+          "nodes": 24
+        }
+      ]
+    },
+    {
+      "label": "light/768/dashboard/attention",
+      "violations": [],
+      "incomplete": [],
+      "contrast": [
+        {
+          "kind": "passes",
+          "nodes": 24
+        }
+      ]
+    },
+    {
+      "label": "light/768/updates-list",
+      "violations": [],
+      "incomplete": [],
+      "contrast": [
+        {
+          "kind": "passes",
+          "nodes": 41
+        }
+      ]
+    },
+    {
+      "label": "light/768/public-draft",
+      "violations": [],
+      "incomplete": [],
+      "contrast": [
+        {
+          "kind": "passes",
+          "nodes": 10
+        }
+      ]
+    },
+    {
+      "label": "light/1024/detail/sent/revoked",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "contrast": [
+        {
+          "kind": "incomplete",
+          "nodes": 2
+        },
+        {
+          "kind": "passes",
+          "nodes": 58
+        }
+      ]
+    },
+    {
+      "label": "light/1024/dashboard/attention",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "contrast": [
+        {
+          "kind": "incomplete",
+          "nodes": 2
+        },
+        {
+          "kind": "passes",
+          "nodes": 57
+        }
+      ]
+    },
+    {
+      "label": "light/1024/updates-list",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "contrast": [
+        {
+          "kind": "incomplete",
+          "nodes": 2
+        },
+        {
+          "kind": "passes",
+          "nodes": 63
+        }
+      ]
+    },
+    {
+      "label": "light/1024/public-draft",
+      "violations": [],
+      "incomplete": [],
+      "contrast": [
+        {
+          "kind": "passes",
+          "nodes": 10
+        }
+      ]
+    },
+    {
+      "label": "light/1200/detail/sent/revoked",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "contrast": [
+        {
+          "kind": "incomplete",
+          "nodes": 2
+        },
+        {
+          "kind": "passes",
+          "nodes": 59
+        }
+      ]
+    },
+    {
+      "label": "light/1200/dashboard/attention",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "contrast": [
+        {
+          "kind": "incomplete",
+          "nodes": 2
+        },
+        {
+          "kind": "passes",
+          "nodes": 57
+        }
+      ]
+    },
+    {
+      "label": "light/1200/updates-list",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "contrast": [
+        {
+          "kind": "incomplete",
+          "nodes": 2
+        },
+        {
+          "kind": "passes",
+          "nodes": 63
+        }
+      ]
+    },
+    {
+      "label": "light/1200/public-draft",
+      "violations": [],
+      "incomplete": [],
+      "contrast": [
+        {
+          "kind": "passes",
+          "nodes": 10
+        }
+      ]
+    },
+    {
+      "label": "light/1440/detail/sent/revoked",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "contrast": [
+        {
+          "kind": "incomplete",
+          "nodes": 2
+        },
+        {
+          "kind": "passes",
+          "nodes": 64
+        }
+      ]
+    },
+    {
+      "label": "light/1440/dashboard/attention",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "contrast": [
+        {
+          "kind": "incomplete",
+          "nodes": 2
+        },
+        {
+          "kind": "passes",
+          "nodes": 57
+        }
+      ]
+    },
+    {
+      "label": "light/1440/updates-list",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "contrast": [
+        {
+          "kind": "incomplete",
+          "nodes": 2
+        },
+        {
+          "kind": "passes",
+          "nodes": 63
+        }
+      ]
+    },
+    {
+      "label": "light/1440/public-draft",
+      "violations": [],
+      "incomplete": [],
+      "contrast": [
+        {
+          "kind": "passes",
+          "nodes": 10
+        }
+      ]
+    },
+    {
+      "label": "light/1920/detail/sent/revoked",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "contrast": [
+        {
+          "kind": "incomplete",
+          "nodes": 2
+        },
+        {
+          "kind": "passes",
+          "nodes": 64
+        }
+      ]
+    },
+    {
+      "label": "light/1920/dashboard/attention",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "contrast": [
+        {
+          "kind": "incomplete",
+          "nodes": 2
+        },
+        {
+          "kind": "passes",
+          "nodes": 57
+        }
+      ]
+    },
+    {
+      "label": "light/1920/updates-list",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "contrast": [
+        {
+          "kind": "incomplete",
+          "nodes": 2
+        },
+        {
+          "kind": "passes",
+          "nodes": 63
+        }
+      ]
+    },
+    {
+      "label": "light/1920/public-draft",
+      "violations": [],
+      "incomplete": [],
+      "contrast": [
+        {
+          "kind": "passes",
+          "nodes": 10
+        }
+      ]
+    },
+    {
+      "label": "dark/375/detail/sent/revoked",
+      "violations": [],
+      "incomplete": [],
+      "contrast": [
+        {
+          "kind": "passes",
+          "nodes": 27
+        }
+      ]
+    },
+    {
+      "label": "dark/375/dashboard/attention",
+      "violations": [],
+      "incomplete": [],
+      "contrast": [
+        {
+          "kind": "passes",
+          "nodes": 25
+        }
+      ]
+    },
+    {
+      "label": "dark/375/updates-list",
+      "violations": [],
+      "incomplete": [],
+      "contrast": [
+        {
+          "kind": "passes",
+          "nodes": 38
+        }
+      ]
+    },
+    {
+      "label": "dark/375/public-draft",
+      "violations": [],
+      "incomplete": [],
+      "contrast": [
+        {
+          "kind": "passes",
+          "nodes": 10
+        }
+      ]
+    },
+    {
+      "label": "dark/1440/detail/sent/revoked",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "contrast": [
+        {
+          "kind": "incomplete",
+          "nodes": 2
+        },
+        {
+          "kind": "passes",
+          "nodes": 64
+        }
+      ]
+    },
+    {
+      "label": "dark/1440/dashboard/attention",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "contrast": [
+        {
+          "kind": "incomplete",
+          "nodes": 2
+        },
+        {
+          "kind": "passes",
+          "nodes": 57
+        }
+      ]
+    },
+    {
+      "label": "dark/1440/updates-list",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "html": "<span class=\"font-display text-[17px] font-extrabold leading-none tracking-[-0.035em] text-text\">rodu<span class=\"text-accent\">cq</span></span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "html": "<span class=\"text-accent\">cq</span>",
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ],
+      "contrast": [
+        {
+          "kind": "incomplete",
+          "nodes": 2
+        },
+        {
+          "kind": "passes",
+          "nodes": 63
+        }
+      ]
+    },
+    {
+      "label": "dark/1440/public-draft",
+      "violations": [],
+      "incomplete": [],
+      "contrast": [
+        {
+          "kind": "passes",
+          "nodes": 10
+        }
+      ]
+    }
+  ],
+  "browserErrors": []
+}

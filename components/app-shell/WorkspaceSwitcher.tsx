@@ -87,6 +87,7 @@ export function WorkspaceSwitcher({
             className
           )}
           title={activeName}
+          role="img"
           aria-label={`Workspace: ${activeName}`}
         >
           <span
