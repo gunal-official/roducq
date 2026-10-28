@@ -1,0 +1,178 @@
+--- a/scripts/verify-responsive.mjs
++++ b/scripts/verify-responsive.mjs
+@@ -62,9 +62,2 @@
+-const freePort = (port) => {
+-  for (const pid of pidsOnPort(port)) {
+-    // The stub server listens in THIS process — sweeping the port must never
+-    // kill the harness itself (or our parent shell): that was the exit-137
+-    // "Killed" cascade on early-error paths.
+-    if (pid === process.pid || pid === process.ppid) continue;
+-    try { process.kill(pid, "SIGKILL"); } catch {}
+-  }
+-};
++// Audit adaptation: never kill another process by port. A collision fails.
++const freePort = (_port) => {};
+@@ -84,2 +77 @@
+-  { w: 414, h: 736 },
+-  { w: 600, h: 800 }, // in-between probe (mobile nav stretched)
++  { w: 390, h: 844 },
+@@ -87,0 +80 @@
++  { w: 1200, h: 800 },
+@@ -110 +103 @@
+-const PAGES = [
++const ALL_PAGES = [
+@@ -171 +164,3 @@
+-const COMPLEX = new Set(["invoice-detail", "time", "reports", "settings", "search"]);
++const AUDIT_SLUGS = new Set(["pipeline", "dashboard-direct", "intake", "intake-inbox", "briefs", "brief-detail", "proposals", "proposal-detail", "proposal-version", "plans", "plan-detail", "updates", "update-detail", "settings", "search", "public-update"]);
++const PAGES = ALL_PAGES.filter(p => AUDIT_SLUGS.has(p.slug));
++const COMPLEX = new Set(["settings", "search"]);
+@@ -183,0 +179,2 @@
++let STUB_SHARE_MODE = "none";
++let STUB_UPDATE_STATUS = "draft";
+@@ -377,3 +374,3 @@
+-      if (p.startsWith("/rest/v1/proposals")) return send(eq("id") ? one(PROPOSAL) : process.env.EMPTY_FIXTURES ? [] : [{ id: PROPOSAL.id, title: PROPOSAL.title, client_name: PROPOSAL.client_name, status: PROPOSAL.status, updated_at: NOW, deliverables: PROPOSAL.deliverables }]);
+-      if (p.startsWith("/rest/v1/plans")) return send(eq("id") ? one(PLAN) : process.env.EMPTY_FIXTURES ? [] : [{ id: PLAN.id, title: PLAN.title, client_name: PLAN.client_name, status: PLAN.status, updated_at: NOW, tasks: PLAN.tasks }]);
+-      if (p.startsWith("/rest/v1/updates")) return send(eq("id") ? one(UPDATE_ROW) : process.env.EMPTY_FIXTURES ? [] : [{ id: UPDATE_ROW.id, title: UPDATE_ROW.title, client_name: UPDATE_ROW.client_name, status: UPDATE_ROW.status, updated_at: NOW, body: UPDATE_ROW.body }]);
++      if (p.startsWith("/rest/v1/proposals")) return send(eq("id") ? one(PROPOSAL) : process.env.EMPTY_FIXTURES ? [] : [{ id: PROPOSAL.id, title: PROPOSAL.title, client_name: PROPOSAL.client_name, status: PROPOSAL.status, updated_at: "2026-10-20T10:00:00Z", deliverables: PROPOSAL.deliverables }]);
++      if (p.startsWith("/rest/v1/plans")) return send(eq("id") ? one(PLAN) : process.env.EMPTY_FIXTURES ? [] : [{ id: PLAN.id, title: PLAN.title, client_name: PLAN.client_name, status: PLAN.status, updated_at: "2026-10-22T10:00:00Z", tasks: PLAN.tasks }]);
++      if (p.startsWith("/rest/v1/updates")) return send(eq("id") ? one({...UPDATE_ROW, status: STUB_UPDATE_STATUS}) : process.env.EMPTY_FIXTURES ? [] : [{ id: UPDATE_ROW.id, title: UPDATE_ROW.title, client_name: UPDATE_ROW.client_name, status: STUB_UPDATE_STATUS, updated_at: "2026-10-27T10:00:00Z", body: UPDATE_ROW.body }]);
+@@ -406 +403,4 @@
+-      if (p.startsWith("/rest/v1/share_links")) return send([]);
++      if (p.startsWith("/rest/v1/share_links")) {
++        if (STUB_SHARE_MODE === "none") return send([]);
++        return send(one({id:"share-fixture", workspace_id:WS.id, update_id:U.update, token:U.publicShare, created_at:NOW, revoked_at:STUB_SHARE_MODE === "revoked" ? NOW : null}));
++      }
+@@ -410,4 +410 @@
+-    server.on("error", () => {
+-      freePort(STUB_PORT);
+-      setTimeout(() => server.listen(STUB_PORT, "127.0.0.1"), 800);
+-    });
++    server.on("error", reject);
+@@ -543,0 +541,112 @@
++async function runFocusedInteractions(browser, authCookie) {
++  const out = [];
++  const dir = join(SHOTS, "focused-interactions");
++  mkdirSync(dir, { recursive: true });
++  const axePath = require.resolve("axe-core/axe.min.js");
++  async function check(name, options, task) {
++    const context = await browser.newContext({viewport:{width:options.width || 390,height:options.height || 844},colorScheme:options.scheme || "light",reducedMotion:options.reduce ? "reduce" : "no-preference"});
++    await context.route("**/*", route => { const u = new URL(route.request().url()); return u.hostname === "127.0.0.1" ? route.continue() : route.abort("blockedbyclient"); });
++    if (options.auth !== false) await context.addCookies([authCookie]);
++    const page = await context.newPage();
++    await installFixtureNetwork(page, BASE, `http://127.0.0.1:${STUB_PORT}`);
++    const errors = [];
++    page.on("pageerror", e => errors.push(String(e)));
++    const goto = async url => { await page.goto(BASE+url,{waitUntil:"load",timeout:20000}); await page.evaluate(() => document.fonts.ready); await page.waitForTimeout(400); };
++    try {
++      const details = await task(page,goto);
++      out.push({name,ran:true,details,browserErrors:errors});
++      console.log(`[focused] ${name}: completed`);
++    } catch (e) {
++      out.push({name,ran:false,error:String(e.stack || e),browserErrors:errors});
++      console.log(`[focused] ${name}: ERROR ${String(e).slice(0,160)}`);
++    } finally {
++      await context.close();
++      writeFileSync(join(SHOTS,"focused-interactions.json"),JSON.stringify(out,null,2));
++    }
++  }
++  for (const scheme of ["light","dark"]) {
++    for (const width of [320,390]) await check(`drawer-${width}-${scheme}`,{width,height:width===320?568:844,scheme},async(page,goto)=>{
++      await goto("/intake");
++      const trigger=page.getByRole("button",{name:"More navigation",exact:true});
++      await trigger.focus(); await page.keyboard.press("Space");
++      const dialog=page.getByRole("dialog",{name:"Workspace navigation"});
++      await dialog.waitFor(); await page.waitForTimeout(300);
++      let focusContained=true; const focusSequence=[];
++      for(let i=0;i<18;i++) { await page.keyboard.press(i%3===0?"Shift+Tab":"Tab"); const inside=await dialog.evaluate(el=>el.contains(document.activeElement)); focusContained &&= inside; focusSequence.push(await page.evaluate(()=>document.activeElement?.getAttribute("aria-label") || document.activeElement?.textContent?.trim().slice(0,35))); }
++      await page.addScriptTag({path:axePath});
++      const axe=await page.evaluate(async()=>{const r=await window.axe.run(document,{runOnly:{type:"tag",values:["wcag2a","wcag2aa","wcag21aa","wcag22aa"]}});return {violations:r.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.length})),incomplete:r.incomplete.map(v=>({id:v.id,nodes:v.nodes.length}))}});
++      await page.screenshot({path:join(dir,`drawer-${width}-${scheme}.png`)});
++      await page.keyboard.press("Escape"); await dialog.waitFor({state:"detached"});
++      const restored=await trigger.evaluate(el=>el===document.activeElement);
++      return {focusContained,focusSequence,escapeClosed:true,focusRestored:restored,axe};
++    });
++  }
++  for (const width of [320,768]) await check(`template-dialog-${width}`,{width,height:width===320?568:1024},async(page,goto)=>{
++    await goto("/settings"); const trigger=page.locator('button:has-text("template")').first();
++    await trigger.scrollIntoViewIfNeeded(); await trigger.focus(); await page.keyboard.press("Enter");
++    const dialog=page.getByRole("dialog",{name:"New template"}); await dialog.waitFor();
++    const title=dialog.getByRole("textbox",{name:"Title",exact:true}); const body=dialog.getByRole("textbox",{name:"Body",exact:true});
++    await title.fill("Fictional audit template"); await body.fill("Fixture only; not saved.");
++    let contained=true; for(let i=0;i<12;i++){await page.keyboard.press("Tab");contained &&= await dialog.evaluate(el=>el.contains(document.activeElement));}
++    const box=await dialog.boundingBox(); await page.screenshot({path:join(dir,`template-dialog-${width}.png`)});
++    await page.keyboard.press("Escape"); await dialog.waitFor({state:"detached"});
++    return {namedFields:true,focusContained:contained,focusRestored:await trigger.evaluate(el=>el===document.activeElement),box,noSaveAttempted:true};
++  });
++  await check("intake-validation-390",{},async(page,goto)=>{
++    await goto("/intake"); const textarea=page.locator("#intake-context"), generate=page.getByRole("button",{name:"Generate",exact:true});
++    const emptyDisabled=await generate.isDisabled(); await textarea.fill("1234567890123456789");
++    const shortDisabled=await generate.isDisabled(), bodyText=await page.locator("main").innerText();
++    const visibleMinimumExplanation=/\b20\s*(?:char|characters)/i.test(bodyText);
++    await textarea.fill("12345678901234567890"); const twentyEnabled=await generate.isEnabled();
++    return {emptyDisabled,shortDisabled,twentyEnabled,visibleMinimumExplanation,noSubmissionAttempted:true};
++  });
++  await check("unsaved-update-navigation-390",{},async(page,goto)=>{
++    await goto(`/updates/${U.update}`); const title=page.getByRole("textbox",{name:"Title",exact:true});
++    const original=await title.inputValue(); await title.fill(""); const blankTitleSaveDisabled=await page.getByRole("button",{name:"Save update"}).isDisabled();
++    await title.fill(original+" — FICTIONAL UNSAVED EDIT");
++    const dirtyIndicator=await page.getByText("Unsaved changes",{exact:true}).isVisible();
++    await page.screenshot({path:join(dir,"unsaved-update-390.png")});
++    let dialogs=[]; page.on("dialog",async d=>{dialogs.push(d.type());await d.accept();});
++    await page.locator("a.work-back[href='/updates']").click(); await page.waitForURL("**/updates");
++    await page.goBack({waitUntil:"load"}); await page.waitForTimeout(250);
++    const after=await page.getByRole("textbox",{name:"Title",exact:true}).inputValue();
++    return {blankTitleSaveDisabled,dirtyIndicator,navigationDialogs:dialogs,unsavedEditSurvived:after.includes("FICTIONAL UNSAVED EDIT"),noSaveAttempted:true};
++  });
++  STUB_SHARE_MODE="active"; STUB_UPDATE_STATUS="draft";
++  await check("draft-with-live-share-1440",{width:1440,height:900},async(page,goto)=>{
++    await goto(`/updates/${U.update}`); const main=await page.locator("main").innerText();
++    await page.screenshot({path:join(dir,"draft-with-live-share-1440.png")});
++    return {statesPrivateUntilSent:main.includes("it stays private until you mark it sent"),alsoSaysPublicLinkLive:main.includes("Public link live"),fixtureStatus:"draft",fixtureShare:"active"};
++  });
++  STUB_SHARE_MODE="revoked";
++  await check("revoked-share-1440",{width:1440,height:900},async(page,goto)=>{
++    await goto(`/updates/${U.update}`); const main=await page.locator("main").innerText();
++    await page.screenshot({path:join(dir,"revoked-share-header-1440.png")});
++    await page.getByText(/This link was revoked/).scrollIntoViewIfNeeded();
++    await page.screenshot({path:join(dir,"revoked-share-panel-1440.png")});
++    return {statesPublicLinkLive:main.includes("Public link live"),showsRevokedMessage:main.includes("This link was revoked"),regenerateAvailable:main.includes("Regenerate link"),fixtureShare:"revoked"};
++  });
++  STUB_SHARE_MODE="none"; STUB_UPDATE_STATUS="sent";
++  await check("sent-status-copy-1440",{width:1440,height:900},async(page,goto)=>{
++    await goto(`/updates/${U.update}`); const main=await page.locator("main").innerText();
++    await page.screenshot({path:join(dir,"sent-status-1440.png")});
++    return {saysDeliveredToClient:main.includes("Delivered to the client"),saysEditingDoesNotChangeClientCopy:main.includes("not what the client already received"),fixtureStatus:"sent",noActionOrSendAttempted:true};
++  });
++  STUB_UPDATE_STATUS="draft";
++  await check("dashboard-activity-mixed-dates",{width:1440,height:900},async(page,goto)=>{
++    await goto("/"); const region=page.locator('[data-proof="pipeline-activity"]'); await region.scrollIntoViewIfNeeded();
++    const text=await region.innerText(); await page.screenshot({path:join(dir,"dashboard-activity-mixed-dates-1440.png")});
++    return {renderedActivity:text,fixtureUpdatedAt:{briefs:"2026-09-25T10:00:00Z",proposal:"2026-10-20T10:00:00Z",plan:"2026-10-22T10:00:00Z",update:"2026-10-27T10:00:00Z"}};
++  });
++  await check("search-form-390",{},async(page,goto)=>{
++    await goto("/search"); const field=page.locator("#search-refine"); await field.fill("Harbor"); await field.press("Enter");
++    await page.waitForURL("**/search?q=Harbor");
++    return {submittedUrl:new URL(page.url()).pathname+new URL(page.url()).search,queryRetained:await page.locator("#search-refine").inputValue(),stubDoesNotModelRealSearchFiltering:true};
++  });
++  for(const scheme of ["light","dark"]) await check(`reduced-motion-${scheme}`,{width:390,height:844,scheme,reduce:true},async(page,goto)=>{
++    const proof=[]; for(const path of ["/","/intake","/briefs","/proposals","/plans","/updates","/settings"]){ await goto(path); proof.push({path,...await page.evaluate(()=>({runningAnimations:document.getAnimations().filter(a=>a.playState==="running").length,h1Visible:[...document.querySelectorAll("h1")].some(el=>getComputedStyle(el).opacity==="1" && el.getBoundingClientRect().height>0)}))}); }
++    return proof;
++  });
++  return out;
++}
++
+@@ -563 +672 @@
+-    const child = spawn(process.execPath, [join(ROOT, "node_modules", "next", "dist", "bin", "next"), "start", "-p", String(APP_PORT)], {
++    const child = spawn(process.execPath, [join(ROOT, "node_modules", "next", "dist", "bin", "next"), "start", "-p", String(APP_PORT), "-H", "127.0.0.1"], {
+@@ -580 +689 @@
+-  rmSync(join(ROOT, DIST), { recursive: true, force: true });
++  if (process.env.SKIP_BUILD !== "1") rmSync(join(ROOT, DIST), { recursive: true, force: true });
+@@ -642 +751 @@
+-  if (process.env.PHASE_F === "1") assertRouteCoverage(ROOT, PAGES);
++  // This focused audit intentionally selects a documented subset, not all routes.
+@@ -659,0 +769 @@
++    await ctx.route("**/*", route => { const u = new URL(route.request().url()); return u.hostname === "127.0.0.1" ? route.continue() : route.abort("blockedbyclient"); });
+@@ -669,0 +780 @@
++      page.on("requestfailed", request => { if (!request.failure()?.errorText?.includes("ERR_ABORTED")) pageErrors.push("requestfailed:"+request.url()+":"+request.failure()?.errorText); });
+@@ -1783,0 +1895 @@
++  if (process.env.FOCUSED_INTERACTIONS === "1") await runFocusedInteractions(browser, authCookie);

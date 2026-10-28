@@ -1,0 +1,3523 @@
+[
+  {
+    "page": "pipeline",
+    "url": "/",
+    "renderedUrl": "http://127.0.0.1:34609/",
+    "width": 375,
+    "scheme": "dark",
+    "title": "roducq",
+    "httpStatus": 200,
+    "h1s": [
+      "Pipeline"
+    ],
+    "mains": 1,
+    "headings": [
+      {
+        "level": 1,
+        "text": "Pipeline"
+      },
+      {
+        "level": 2,
+        "text": "A little structure.A lot more momentum."
+      },
+      {
+        "level": 2,
+        "text": "How the work flows"
+      },
+      {
+        "level": 2,
+        "text": "Needs you"
+      },
+      {
+        "level": 2,
+        "text": "Money"
+      },
+      {
+        "level": 2,
+        "text": "This week"
+      },
+      {
+        "level": 2,
+        "text": "Recent activity"
+      }
+    ],
+    "smallText": [],
+    "nonManrope": [],
+    "nestedInteractive": [],
+    "resolvedTheme": "dark",
+    "persistedTheme": "system (default)",
+    "fontReady": "loaded",
+    "performance": {
+      "cls": 0.01213117579141464,
+      "scriptResources": 18,
+      "encodedScriptBytes": 276688
+    },
+    "accessibility": {
+      "violations": [],
+      "incomplete": []
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [],
+    "failures": [],
+    "scrollGeometry": {
+      "samples": [
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 387,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 774,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 1161,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 1548,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 1935,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 2322,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 2426,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        }
+      ],
+      "findings": []
+    }
+  },
+  {
+    "page": "dashboard-direct",
+    "url": "/dashboard",
+    "renderedUrl": "http://127.0.0.1:34609/dashboard",
+    "width": 375,
+    "scheme": "dark",
+    "title": "roducq",
+    "httpStatus": 200,
+    "h1s": [
+      "Pipeline"
+    ],
+    "mains": 1,
+    "headings": [
+      {
+        "level": 1,
+        "text": "Pipeline"
+      },
+      {
+        "level": 2,
+        "text": "A little structure.A lot more momentum."
+      },
+      {
+        "level": 2,
+        "text": "How the work flows"
+      },
+      {
+        "level": 2,
+        "text": "Needs you"
+      },
+      {
+        "level": 2,
+        "text": "Money"
+      },
+      {
+        "level": 2,
+        "text": "This week"
+      },
+      {
+        "level": 2,
+        "text": "Recent activity"
+      }
+    ],
+    "smallText": [],
+    "nonManrope": [],
+    "nestedInteractive": [],
+    "resolvedTheme": "dark",
+    "persistedTheme": "system (default)",
+    "fontReady": "loaded",
+    "performance": {
+      "cls": 0,
+      "scriptResources": 18,
+      "encodedScriptBytes": 276688
+    },
+    "accessibility": {
+      "violations": [],
+      "incomplete": []
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [],
+    "failures": [],
+    "scrollGeometry": {
+      "samples": [
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 387,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 774,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 1161,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 1548,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 1935,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 2322,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 2426,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        }
+      ],
+      "findings": []
+    }
+  },
+  {
+    "page": "public-update",
+    "url": "/share/00000000-0000-0000-0000-000000000171",
+    "renderedUrl": "http://127.0.0.1:34609/share/00000000-0000-0000-0000-000000000171",
+    "width": 375,
+    "scheme": "dark",
+    "title": "roducq",
+    "httpStatus": 200,
+    "h1s": [
+      "Weekly update — week 3"
+    ],
+    "mains": 1,
+    "headings": [
+      {
+        "level": 1,
+        "text": "Weekly update — week 3"
+      }
+    ],
+    "smallText": [],
+    "nonManrope": [],
+    "nestedInteractive": [],
+    "resolvedTheme": "dark",
+    "persistedTheme": "system (default)",
+    "fontReady": "loaded",
+    "performance": {
+      "cls": 0,
+      "scriptResources": 11,
+      "encodedScriptBytes": 159002
+    },
+    "accessibility": {
+      "violations": [],
+      "incomplete": []
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [],
+    "failures": [],
+    "scrollGeometry": {
+      "samples": [
+        {
+          "root": "html.dark",
+          "rootIndex": "0",
+          "top": 6,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        }
+      ],
+      "findings": []
+    }
+  },
+  {
+    "page": "intake",
+    "url": "/intake",
+    "renderedUrl": "http://127.0.0.1:34609/intake",
+    "width": 375,
+    "scheme": "dark",
+    "title": "roducq",
+    "httpStatus": 200,
+    "h1s": [
+      "Intake"
+    ],
+    "mains": 1,
+    "headings": [
+      {
+        "level": 1,
+        "text": "Intake"
+      },
+      {
+        "level": 2,
+        "text": "Paste client text"
+      },
+      {
+        "level": 2,
+        "text": "Good work starts with a clear brief."
+      },
+      {
+        "level": 3,
+        "text": "Bring the context"
+      },
+      {
+        "level": 3,
+        "text": "Review the draft"
+      },
+      {
+        "level": 3,
+        "text": "Make it yours"
+      }
+    ],
+    "smallText": [],
+    "nonManrope": [],
+    "nestedInteractive": [],
+    "resolvedTheme": "dark",
+    "persistedTheme": "system (default)",
+    "fontReady": "loaded",
+    "performance": {
+      "cls": 0,
+      "scriptResources": 19,
+      "encodedScriptBytes": 285446
+    },
+    "accessibility": {
+      "violations": [],
+      "incomplete": []
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [],
+    "failures": [],
+    "scrollGeometry": {
+      "samples": [
+        {
+          "root": "html.dark",
+          "rootIndex": "0",
+          "top": 93,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 387,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 774,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 973,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        }
+      ],
+      "findings": []
+    }
+  },
+  {
+    "page": "intake-inbox",
+    "url": "/intake/inbox",
+    "renderedUrl": "http://127.0.0.1:34609/intake/inbox",
+    "width": 375,
+    "scheme": "dark",
+    "title": "roducq",
+    "httpStatus": 200,
+    "h1s": [
+      "Inbox"
+    ],
+    "mains": 1,
+    "headings": [
+      {
+        "level": 1,
+        "text": "Inbox"
+      },
+      {
+        "level": 2,
+        "text": "Client conversations"
+      },
+      {
+        "level": 2,
+        "text": "Northwind packaging"
+      },
+      {
+        "level": 2,
+        "text": "Harbor Lane rebrand"
+      },
+      {
+        "level": 2,
+        "text": "Staged imports"
+      }
+    ],
+    "smallText": [],
+    "nonManrope": [],
+    "nestedInteractive": [],
+    "resolvedTheme": "dark",
+    "persistedTheme": "system (default)",
+    "fontReady": "loaded",
+    "performance": {
+      "cls": 0,
+      "scriptResources": 19,
+      "encodedScriptBytes": 281676
+    },
+    "accessibility": {
+      "violations": [],
+      "incomplete": []
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [],
+    "failures": [],
+    "scrollGeometry": {
+      "samples": [
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 387,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 774,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 1161,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 1509,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "textarea.flex",
+          "rootIndex": "1",
+          "top": 60,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "textarea.flex",
+          "rootIndex": "2",
+          "top": 60,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        }
+      ],
+      "findings": []
+    }
+  },
+  {
+    "page": "briefs",
+    "url": "/briefs",
+    "renderedUrl": "http://127.0.0.1:34609/briefs",
+    "width": 375,
+    "scheme": "dark",
+    "title": "roducq",
+    "httpStatus": 200,
+    "h1s": [
+      "Briefs"
+    ],
+    "mains": 1,
+    "headings": [
+      {
+        "level": 1,
+        "text": "Briefs"
+      },
+      {
+        "level": 2,
+        "text": "Requests that became documents"
+      }
+    ],
+    "smallText": [],
+    "nonManrope": [],
+    "nestedInteractive": [],
+    "resolvedTheme": "dark",
+    "persistedTheme": "system (default)",
+    "fontReady": "loaded",
+    "performance": {
+      "cls": 0,
+      "scriptResources": 19,
+      "encodedScriptBytes": 282142
+    },
+    "accessibility": {
+      "violations": [],
+      "incomplete": []
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [],
+    "failures": [],
+    "scrollGeometry": {
+      "samples": [
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 387,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 774,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 1128,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        }
+      ],
+      "findings": []
+    }
+  },
+  {
+    "page": "brief-detail",
+    "url": "/briefs/00000000-0000-0000-0000-000000000111",
+    "renderedUrl": "http://127.0.0.1:34609/briefs/00000000-0000-0000-0000-000000000111",
+    "width": 375,
+    "scheme": "dark",
+    "title": "roducq",
+    "httpStatus": 200,
+    "h1s": [
+      "Harbor Lane rebrand"
+    ],
+    "mains": 1,
+    "headings": [
+      {
+        "level": 1,
+        "text": "Harbor Lane rebrand"
+      },
+      {
+        "level": 2,
+        "text": "Objective"
+      },
+      {
+        "level": 2,
+        "text": "Deliverables"
+      },
+      {
+        "level": 2,
+        "text": "Budget & timeline"
+      },
+      {
+        "level": 2,
+        "text": "Clarifying questions"
+      },
+      {
+        "level": 3,
+        "text": "Open questions"
+      },
+      {
+        "level": 3,
+        "text": "Resolved questions"
+      },
+      {
+        "level": 2,
+        "text": "Details"
+      },
+      {
+        "level": 2,
+        "text": "Sources"
+      },
+      {
+        "level": 2,
+        "text": "History"
+      }
+    ],
+    "smallText": [],
+    "nonManrope": [],
+    "nestedInteractive": [],
+    "resolvedTheme": "dark",
+    "persistedTheme": "system (default)",
+    "fontReady": "loaded",
+    "performance": {
+      "cls": 0,
+      "scriptResources": 19,
+      "encodedScriptBytes": 280936
+    },
+    "accessibility": {
+      "violations": [],
+      "incomplete": []
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [],
+    "failures": [],
+    "scrollGeometry": {
+      "samples": [
+        {
+          "root": "html.dark",
+          "rootIndex": "0",
+          "top": 466,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "html.dark",
+          "rootIndex": "0",
+          "top": 740,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 387,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 774,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 1161,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 1548,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 1935,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 2035,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "textarea.flex",
+          "rootIndex": "2",
+          "top": 60,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        }
+      ],
+      "findings": []
+    }
+  },
+  {
+    "page": "proposals",
+    "url": "/proposals",
+    "renderedUrl": "http://127.0.0.1:34609/proposals",
+    "width": 375,
+    "scheme": "dark",
+    "title": "roducq",
+    "httpStatus": 200,
+    "h1s": [
+      "Proposals"
+    ],
+    "mains": 1,
+    "headings": [
+      {
+        "level": 1,
+        "text": "Proposals"
+      },
+      {
+        "level": 2,
+        "text": "Quotes that read like documents"
+      }
+    ],
+    "smallText": [],
+    "nonManrope": [],
+    "nestedInteractive": [],
+    "resolvedTheme": "dark",
+    "persistedTheme": "system (default)",
+    "fontReady": "loaded",
+    "performance": {
+      "cls": 0,
+      "scriptResources": 19,
+      "encodedScriptBytes": 282099
+    },
+    "accessibility": {
+      "violations": [],
+      "incomplete": []
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [],
+    "failures": [],
+    "scrollGeometry": {
+      "samples": [
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 387,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 774,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 883,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        }
+      ],
+      "findings": []
+    }
+  },
+  {
+    "page": "proposal-detail",
+    "url": "/proposals/00000000-0000-0000-0000-000000000112",
+    "renderedUrl": "http://127.0.0.1:34609/proposals/00000000-0000-0000-0000-000000000112",
+    "width": 375,
+    "scheme": "dark",
+    "title": "roducq",
+    "httpStatus": 200,
+    "h1s": [
+      "Harbor Lane — phase 1 proposal"
+    ],
+    "mains": 1,
+    "headings": [
+      {
+        "level": 1,
+        "text": "Harbor Lane — phase 1 proposal"
+      },
+      {
+        "level": 2,
+        "text": "Scope of work"
+      },
+      {
+        "level": 2,
+        "text": "Budget & timeline"
+      },
+      {
+        "level": 2,
+        "text": "Next step"
+      },
+      {
+        "level": 2,
+        "text": "Details"
+      },
+      {
+        "level": 2,
+        "text": "Source"
+      },
+      {
+        "level": 2,
+        "text": "Activity"
+      },
+      {
+        "level": 2,
+        "text": "Version history"
+      }
+    ],
+    "smallText": [],
+    "nonManrope": [],
+    "nestedInteractive": [],
+    "resolvedTheme": "dark",
+    "persistedTheme": "system (default)",
+    "fontReady": "loaded",
+    "performance": {
+      "cls": 0,
+      "scriptResources": 19,
+      "encodedScriptBytes": 278439
+    },
+    "accessibility": {
+      "violations": [],
+      "incomplete": []
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [],
+    "failures": [],
+    "scrollGeometry": {
+      "samples": [
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 387,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 774,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 1161,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 1548,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 1935,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 2322,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 2468,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        }
+      ],
+      "findings": []
+    }
+  },
+  {
+    "page": "proposal-version",
+    "url": "/proposals/00000000-0000-0000-0000-000000000112/versions/00000000-0000-0000-0000-000000000118",
+    "renderedUrl": "http://127.0.0.1:34609/proposals/00000000-0000-0000-0000-000000000112/versions/00000000-0000-0000-0000-000000000118",
+    "width": 375,
+    "scheme": "dark",
+    "title": "roducq",
+    "httpStatus": 200,
+    "h1s": [
+      "Harbor Lane — phase 1 proposal"
+    ],
+    "mains": 1,
+    "headings": [
+      {
+        "level": 1,
+        "text": "Harbor Lane — phase 1 proposal"
+      },
+      {
+        "level": 2,
+        "text": "Scope of work"
+      },
+      {
+        "level": 2,
+        "text": "Budget & timeline"
+      },
+      {
+        "level": 2,
+        "text": "Restore"
+      },
+      {
+        "level": 2,
+        "text": "Snapshot"
+      }
+    ],
+    "smallText": [],
+    "nonManrope": [],
+    "nestedInteractive": [],
+    "resolvedTheme": "dark",
+    "persistedTheme": "system (default)",
+    "fontReady": "loaded",
+    "performance": {
+      "cls": 0,
+      "scriptResources": 19,
+      "encodedScriptBytes": 277745
+    },
+    "accessibility": {
+      "violations": [],
+      "incomplete": []
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [],
+    "failures": [],
+    "scrollGeometry": {
+      "samples": [
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 387,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 774,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 823,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        }
+      ],
+      "findings": []
+    }
+  },
+  {
+    "page": "plans",
+    "url": "/plans",
+    "renderedUrl": "http://127.0.0.1:34609/plans",
+    "width": 375,
+    "scheme": "dark",
+    "title": "roducq",
+    "httpStatus": 200,
+    "h1s": [
+      "Plans"
+    ],
+    "mains": 1,
+    "headings": [
+      {
+        "level": 1,
+        "text": "Plans"
+      },
+      {
+        "level": 2,
+        "text": "The delivery workspace"
+      }
+    ],
+    "smallText": [],
+    "nonManrope": [],
+    "nestedInteractive": [],
+    "resolvedTheme": "dark",
+    "persistedTheme": "system (default)",
+    "fontReady": "loaded",
+    "performance": {
+      "cls": 0,
+      "scriptResources": 19,
+      "encodedScriptBytes": 282105
+    },
+    "accessibility": {
+      "violations": [],
+      "incomplete": []
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [],
+    "failures": [],
+    "scrollGeometry": {
+      "samples": [
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 387,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 774,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 898,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        }
+      ],
+      "findings": []
+    }
+  },
+  {
+    "page": "plan-detail",
+    "url": "/plans/00000000-0000-0000-0000-000000000113",
+    "renderedUrl": "http://127.0.0.1:34609/plans/00000000-0000-0000-0000-000000000113",
+    "width": 375,
+    "scheme": "dark",
+    "title": "roducq",
+    "httpStatus": 200,
+    "h1s": [
+      "Harbor Lane — delivery plan"
+    ],
+    "mains": 1,
+    "headings": [
+      {
+        "level": 1,
+        "text": "Harbor Lane — delivery plan"
+      },
+      {
+        "level": 2,
+        "text": "Budget & timeline"
+      },
+      {
+        "level": 2,
+        "text": "Tasks"
+      },
+      {
+        "level": 3,
+        "text": "To do2"
+      },
+      {
+        "level": 3,
+        "text": "Completed1"
+      },
+      {
+        "level": 2,
+        "text": "Client update"
+      },
+      {
+        "level": 2,
+        "text": "Details"
+      },
+      {
+        "level": 2,
+        "text": "Source"
+      },
+      {
+        "level": 2,
+        "text": "Activity"
+      }
+    ],
+    "smallText": [],
+    "nonManrope": [],
+    "nestedInteractive": [],
+    "resolvedTheme": "dark",
+    "persistedTheme": "system (default)",
+    "fontReady": "loaded",
+    "performance": {
+      "cls": 0,
+      "scriptResources": 19,
+      "encodedScriptBytes": 279849
+    },
+    "accessibility": {
+      "violations": [],
+      "incomplete": []
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [],
+    "failures": [],
+    "scrollGeometry": {
+      "samples": [
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 387,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 774,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 1161,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 1548,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 1935,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 2094,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        }
+      ],
+      "findings": []
+    }
+  },
+  {
+    "page": "updates",
+    "url": "/updates",
+    "renderedUrl": "http://127.0.0.1:34609/updates",
+    "width": 375,
+    "scheme": "dark",
+    "title": "roducq",
+    "httpStatus": 200,
+    "h1s": [
+      "Updates"
+    ],
+    "mains": 1,
+    "headings": [
+      {
+        "level": 1,
+        "text": "Updates"
+      },
+      {
+        "level": 2,
+        "text": "Keep clients in the loop"
+      }
+    ],
+    "smallText": [],
+    "nonManrope": [],
+    "nestedInteractive": [],
+    "resolvedTheme": "dark",
+    "persistedTheme": "system (default)",
+    "fontReady": "loaded",
+    "performance": {
+      "cls": 0,
+      "scriptResources": 19,
+      "encodedScriptBytes": 282009
+    },
+    "accessibility": {
+      "violations": [],
+      "incomplete": []
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [],
+    "failures": [],
+    "scrollGeometry": {
+      "samples": [
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 387,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 774,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 821,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        }
+      ],
+      "findings": []
+    }
+  },
+  {
+    "page": "update-detail",
+    "url": "/updates/00000000-0000-0000-0000-000000000114",
+    "renderedUrl": "http://127.0.0.1:34609/updates/00000000-0000-0000-0000-000000000114",
+    "width": 375,
+    "scheme": "dark",
+    "title": "roducq",
+    "httpStatus": 200,
+    "h1s": [
+      "Weekly update — week 3"
+    ],
+    "mains": 1,
+    "headings": [
+      {
+        "level": 1,
+        "text": "Weekly update — week 3"
+      },
+      {
+        "level": 2,
+        "text": "Weekly update — week 3"
+      },
+      {
+        "level": 2,
+        "text": "Edit update"
+      },
+      {
+        "level": 2,
+        "text": "Public link"
+      },
+      {
+        "level": 2,
+        "text": "Details"
+      },
+      {
+        "level": 2,
+        "text": "Source"
+      },
+      {
+        "level": 2,
+        "text": "Activity"
+      }
+    ],
+    "smallText": [],
+    "nonManrope": [],
+    "nestedInteractive": [],
+    "resolvedTheme": "dark",
+    "persistedTheme": "system (default)",
+    "fontReady": "loaded",
+    "performance": {
+      "cls": 0,
+      "scriptResources": 19,
+      "encodedScriptBytes": 280685
+    },
+    "accessibility": {
+      "violations": [],
+      "incomplete": []
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [],
+    "failures": [],
+    "scrollGeometry": {
+      "samples": [
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 387,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 774,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 1161,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 1548,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 1935,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 2322,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 2709,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 2780,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        }
+      ],
+      "findings": []
+    }
+  },
+  {
+    "page": "settings",
+    "url": "/settings",
+    "renderedUrl": "http://127.0.0.1:34609/settings",
+    "width": 375,
+    "scheme": "dark",
+    "title": "roducq",
+    "httpStatus": 200,
+    "h1s": [
+      "Settings"
+    ],
+    "mains": 1,
+    "headings": [
+      {
+        "level": 1,
+        "text": "Settings"
+      },
+      {
+        "level": 2,
+        "text": "A workspace that works your way."
+      },
+      {
+        "level": 2,
+        "text": "Workspace"
+      },
+      {
+        "level": 2,
+        "text": "Branding & logo"
+      },
+      {
+        "level": 2,
+        "text": "Team"
+      },
+      {
+        "level": 2,
+        "text": "Templates"
+      },
+      {
+        "level": 2,
+        "text": "Plan"
+      },
+      {
+        "level": 2,
+        "text": "Webhooks"
+      },
+      {
+        "level": 2,
+        "text": "Mailbox"
+      },
+      {
+        "level": 2,
+        "text": "Integrations"
+      },
+      {
+        "level": 2,
+        "text": "Activity"
+      },
+      {
+        "level": 2,
+        "text": "Danger zone"
+      }
+    ],
+    "smallText": [],
+    "nonManrope": [],
+    "nestedInteractive": [],
+    "resolvedTheme": "dark",
+    "persistedTheme": "system (default)",
+    "fontReady": "loaded",
+    "performance": {
+      "cls": 0,
+      "scriptResources": 20,
+      "encodedScriptBytes": 425742
+    },
+    "accessibility": {
+      "violations": [],
+      "incomplete": []
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [],
+    "failures": [],
+    "scrollGeometry": {
+      "samples": [
+        {
+          "root": "html.dark",
+          "rootIndex": "0",
+          "top": 235,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 387,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 774,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 1161,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 1548,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 1935,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 2322,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 2709,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 3096,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 3483,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 3870,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 4148,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        }
+      ],
+      "findings": []
+    }
+  },
+  {
+    "page": "search",
+    "url": "/search?q=Harbor",
+    "renderedUrl": "http://127.0.0.1:34609/search?q=Harbor",
+    "width": 375,
+    "scheme": "dark",
+    "title": "roducq",
+    "httpStatus": 200,
+    "h1s": [
+      "Search"
+    ],
+    "mains": 1,
+    "headings": [
+      {
+        "level": 1,
+        "text": "Search"
+      },
+      {
+        "level": 2,
+        "text": "Briefs"
+      },
+      {
+        "level": 2,
+        "text": "Proposals"
+      },
+      {
+        "level": 2,
+        "text": "Plans"
+      },
+      {
+        "level": 2,
+        "text": "Updates"
+      },
+      {
+        "level": 2,
+        "text": "Invoices"
+      },
+      {
+        "level": 2,
+        "text": "Contracts"
+      }
+    ],
+    "smallText": [],
+    "nonManrope": [],
+    "nestedInteractive": [],
+    "resolvedTheme": "dark",
+    "persistedTheme": "system (default)",
+    "fontReady": "loaded",
+    "performance": {
+      "cls": 0,
+      "scriptResources": 18,
+      "encodedScriptBytes": 276688
+    },
+    "accessibility": {
+      "violations": [],
+      "incomplete": []
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [],
+    "failures": [],
+    "scrollGeometry": {
+      "samples": [
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 387,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 774,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 1161,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "0",
+          "top": 1379,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        }
+      ],
+      "findings": []
+    }
+  },
+  {
+    "page": "pipeline",
+    "url": "/",
+    "renderedUrl": "http://127.0.0.1:34609/",
+    "width": 1440,
+    "scheme": "dark",
+    "title": "roducq",
+    "httpStatus": 200,
+    "h1s": [
+      "Pipeline"
+    ],
+    "mains": 1,
+    "headings": [
+      {
+        "level": 1,
+        "text": "Pipeline"
+      },
+      {
+        "level": 2,
+        "text": "A little structure.A lot more momentum."
+      },
+      {
+        "level": 2,
+        "text": "How the work flows"
+      },
+      {
+        "level": 2,
+        "text": "Needs you"
+      },
+      {
+        "level": 2,
+        "text": "Money"
+      },
+      {
+        "level": 2,
+        "text": "This week"
+      },
+      {
+        "level": 2,
+        "text": "Recent activity"
+      }
+    ],
+    "smallText": [],
+    "nonManrope": [],
+    "nestedInteractive": [],
+    "resolvedTheme": "dark",
+    "persistedTheme": "system (default)",
+    "fontReady": "loaded",
+    "performance": {
+      "cls": 0,
+      "scriptResources": 18,
+      "encodedScriptBytes": 276688
+    },
+    "accessibility": {
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ]
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [],
+    "failures": [],
+    "scrollGeometry": {
+      "samples": [
+        {
+          "root": "div.app-rail-nav",
+          "rootIndex": "0",
+          "top": 79,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 585,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 906,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        }
+      ],
+      "findings": []
+    }
+  },
+  {
+    "page": "dashboard-direct",
+    "url": "/dashboard",
+    "renderedUrl": "http://127.0.0.1:34609/dashboard",
+    "width": 1440,
+    "scheme": "dark",
+    "title": "roducq",
+    "httpStatus": 200,
+    "h1s": [
+      "Pipeline"
+    ],
+    "mains": 1,
+    "headings": [
+      {
+        "level": 1,
+        "text": "Pipeline"
+      },
+      {
+        "level": 2,
+        "text": "A little structure.A lot more momentum."
+      },
+      {
+        "level": 2,
+        "text": "How the work flows"
+      },
+      {
+        "level": 2,
+        "text": "Needs you"
+      },
+      {
+        "level": 2,
+        "text": "Money"
+      },
+      {
+        "level": 2,
+        "text": "This week"
+      },
+      {
+        "level": 2,
+        "text": "Recent activity"
+      }
+    ],
+    "smallText": [],
+    "nonManrope": [],
+    "nestedInteractive": [],
+    "resolvedTheme": "dark",
+    "persistedTheme": "system (default)",
+    "fontReady": "loaded",
+    "performance": {
+      "cls": 0,
+      "scriptResources": 18,
+      "encodedScriptBytes": 276688
+    },
+    "accessibility": {
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ]
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [],
+    "failures": [],
+    "scrollGeometry": {
+      "samples": [
+        {
+          "root": "div.app-rail-nav",
+          "rootIndex": "0",
+          "top": 79,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 585,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 906,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        }
+      ],
+      "findings": []
+    }
+  },
+  {
+    "page": "public-update",
+    "url": "/share/00000000-0000-0000-0000-000000000171",
+    "renderedUrl": "http://127.0.0.1:34609/share/00000000-0000-0000-0000-000000000171",
+    "width": 1440,
+    "scheme": "dark",
+    "title": "roducq",
+    "httpStatus": 200,
+    "h1s": [
+      "Weekly update — week 3"
+    ],
+    "mains": 1,
+    "headings": [
+      {
+        "level": 1,
+        "text": "Weekly update — week 3"
+      }
+    ],
+    "smallText": [],
+    "nonManrope": [],
+    "nestedInteractive": [],
+    "resolvedTheme": "dark",
+    "persistedTheme": "system (default)",
+    "fontReady": "loaded",
+    "performance": {
+      "cls": 0,
+      "scriptResources": 11,
+      "encodedScriptBytes": 159002
+    },
+    "accessibility": {
+      "violations": [],
+      "incomplete": []
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [],
+    "failures": [],
+    "scrollGeometry": {
+      "samples": [],
+      "findings": []
+    }
+  },
+  {
+    "page": "intake",
+    "url": "/intake",
+    "renderedUrl": "http://127.0.0.1:34609/intake",
+    "width": 1440,
+    "scheme": "dark",
+    "title": "roducq",
+    "httpStatus": 200,
+    "h1s": [
+      "Intake"
+    ],
+    "mains": 1,
+    "headings": [
+      {
+        "level": 1,
+        "text": "Intake"
+      },
+      {
+        "level": 2,
+        "text": "Paste client text"
+      },
+      {
+        "level": 2,
+        "text": "Good work starts with a clear brief."
+      },
+      {
+        "level": 3,
+        "text": "Bring the context"
+      },
+      {
+        "level": 3,
+        "text": "Review the draft"
+      },
+      {
+        "level": 3,
+        "text": "Make it yours"
+      }
+    ],
+    "smallText": [],
+    "nonManrope": [],
+    "nestedInteractive": [],
+    "resolvedTheme": "dark",
+    "persistedTheme": "system (default)",
+    "fontReady": "loaded",
+    "performance": {
+      "cls": 0,
+      "scriptResources": 19,
+      "encodedScriptBytes": 285446
+    },
+    "accessibility": {
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ]
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [],
+    "failures": [],
+    "scrollGeometry": {
+      "samples": [
+        {
+          "root": "div.app-rail-nav",
+          "rootIndex": "0",
+          "top": 79,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 147,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        }
+      ],
+      "findings": []
+    }
+  },
+  {
+    "page": "intake-inbox",
+    "url": "/intake/inbox",
+    "renderedUrl": "http://127.0.0.1:34609/intake/inbox",
+    "width": 1440,
+    "scheme": "dark",
+    "title": "roducq",
+    "httpStatus": 200,
+    "h1s": [
+      "Inbox"
+    ],
+    "mains": 1,
+    "headings": [
+      {
+        "level": 1,
+        "text": "Inbox"
+      },
+      {
+        "level": 2,
+        "text": "Client conversations"
+      },
+      {
+        "level": 2,
+        "text": "Northwind packaging"
+      },
+      {
+        "level": 2,
+        "text": "Harbor Lane rebrand"
+      },
+      {
+        "level": 2,
+        "text": "Staged imports"
+      }
+    ],
+    "smallText": [],
+    "nonManrope": [],
+    "nestedInteractive": [],
+    "resolvedTheme": "dark",
+    "persistedTheme": "system (default)",
+    "fontReady": "loaded",
+    "performance": {
+      "cls": 0,
+      "scriptResources": 19,
+      "encodedScriptBytes": 281676
+    },
+    "accessibility": {
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ]
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [],
+    "failures": [],
+    "scrollGeometry": {
+      "samples": [
+        {
+          "root": "div.app-rail-nav",
+          "rootIndex": "0",
+          "top": 79,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 585,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 615,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "textarea.flex",
+          "rootIndex": "2",
+          "top": 6,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "textarea.flex",
+          "rootIndex": "3",
+          "top": 6,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        }
+      ],
+      "findings": []
+    }
+  },
+  {
+    "page": "briefs",
+    "url": "/briefs",
+    "renderedUrl": "http://127.0.0.1:34609/briefs",
+    "width": 1440,
+    "scheme": "dark",
+    "title": "roducq",
+    "httpStatus": 200,
+    "h1s": [
+      "Briefs"
+    ],
+    "mains": 1,
+    "headings": [
+      {
+        "level": 1,
+        "text": "Briefs"
+      },
+      {
+        "level": 2,
+        "text": "Requests that became documents"
+      }
+    ],
+    "smallText": [],
+    "nonManrope": [],
+    "nestedInteractive": [],
+    "resolvedTheme": "dark",
+    "persistedTheme": "system (default)",
+    "fontReady": "loaded",
+    "performance": {
+      "cls": 0,
+      "scriptResources": 19,
+      "encodedScriptBytes": 282142
+    },
+    "accessibility": {
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ]
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [],
+    "failures": [],
+    "scrollGeometry": {
+      "samples": [
+        {
+          "root": "div.app-rail-nav",
+          "rootIndex": "0",
+          "top": 79,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 172,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        }
+      ],
+      "findings": []
+    }
+  },
+  {
+    "page": "brief-detail",
+    "url": "/briefs/00000000-0000-0000-0000-000000000111",
+    "renderedUrl": "http://127.0.0.1:34609/briefs/00000000-0000-0000-0000-000000000111",
+    "width": 1440,
+    "scheme": "dark",
+    "title": "roducq",
+    "httpStatus": 200,
+    "h1s": [
+      "Harbor Lane rebrand"
+    ],
+    "mains": 1,
+    "headings": [
+      {
+        "level": 1,
+        "text": "Harbor Lane rebrand"
+      },
+      {
+        "level": 2,
+        "text": "Objective"
+      },
+      {
+        "level": 2,
+        "text": "Deliverables"
+      },
+      {
+        "level": 2,
+        "text": "Budget & timeline"
+      },
+      {
+        "level": 2,
+        "text": "Clarifying questions"
+      },
+      {
+        "level": 3,
+        "text": "Open questions"
+      },
+      {
+        "level": 3,
+        "text": "Resolved questions"
+      },
+      {
+        "level": 2,
+        "text": "Details"
+      },
+      {
+        "level": 2,
+        "text": "Sources"
+      },
+      {
+        "level": 2,
+        "text": "History"
+      }
+    ],
+    "smallText": [],
+    "nonManrope": [],
+    "nestedInteractive": [],
+    "resolvedTheme": "dark",
+    "persistedTheme": "system (default)",
+    "fontReady": "loaded",
+    "performance": {
+      "cls": 0,
+      "scriptResources": 19,
+      "encodedScriptBytes": 280936
+    },
+    "accessibility": {
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ]
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [],
+    "failures": [],
+    "scrollGeometry": {
+      "samples": [
+        {
+          "root": "html.dark",
+          "rootIndex": "0",
+          "top": 211,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "div.app-rail-nav",
+          "rootIndex": "1",
+          "top": 79,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "2",
+          "top": 585,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "2",
+          "top": 648,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "textarea.flex",
+          "rootIndex": "3",
+          "top": 26,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        }
+      ],
+      "findings": []
+    }
+  },
+  {
+    "page": "proposals",
+    "url": "/proposals",
+    "renderedUrl": "http://127.0.0.1:34609/proposals",
+    "width": 1440,
+    "scheme": "dark",
+    "title": "roducq",
+    "httpStatus": 200,
+    "h1s": [
+      "Proposals"
+    ],
+    "mains": 1,
+    "headings": [
+      {
+        "level": 1,
+        "text": "Proposals"
+      },
+      {
+        "level": 2,
+        "text": "Quotes that read like documents"
+      }
+    ],
+    "smallText": [],
+    "nonManrope": [],
+    "nestedInteractive": [],
+    "resolvedTheme": "dark",
+    "persistedTheme": "system (default)",
+    "fontReady": "loaded",
+    "performance": {
+      "cls": 0,
+      "scriptResources": 19,
+      "encodedScriptBytes": 282099
+    },
+    "accessibility": {
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ]
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [],
+    "failures": [],
+    "scrollGeometry": {
+      "samples": [
+        {
+          "root": "div.app-rail-nav",
+          "rootIndex": "0",
+          "top": 79,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 132,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        }
+      ],
+      "findings": []
+    }
+  },
+  {
+    "page": "proposal-detail",
+    "url": "/proposals/00000000-0000-0000-0000-000000000112",
+    "renderedUrl": "http://127.0.0.1:34609/proposals/00000000-0000-0000-0000-000000000112",
+    "width": 1440,
+    "scheme": "dark",
+    "title": "roducq",
+    "httpStatus": 200,
+    "h1s": [
+      "Harbor Lane — phase 1 proposal"
+    ],
+    "mains": 1,
+    "headings": [
+      {
+        "level": 1,
+        "text": "Harbor Lane — phase 1 proposal"
+      },
+      {
+        "level": 2,
+        "text": "Scope of work"
+      },
+      {
+        "level": 2,
+        "text": "Budget & timeline"
+      },
+      {
+        "level": 2,
+        "text": "Next step"
+      },
+      {
+        "level": 2,
+        "text": "Details"
+      },
+      {
+        "level": 2,
+        "text": "Source"
+      },
+      {
+        "level": 2,
+        "text": "Activity"
+      },
+      {
+        "level": 2,
+        "text": "Version history"
+      }
+    ],
+    "smallText": [],
+    "nonManrope": [],
+    "nestedInteractive": [],
+    "resolvedTheme": "dark",
+    "persistedTheme": "system (default)",
+    "fontReady": "loaded",
+    "performance": {
+      "cls": 0,
+      "scriptResources": 19,
+      "encodedScriptBytes": 278439
+    },
+    "accessibility": {
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ]
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [],
+    "failures": [],
+    "scrollGeometry": {
+      "samples": [
+        {
+          "root": "div.app-rail-nav",
+          "rootIndex": "0",
+          "top": 79,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 585,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 1152,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        }
+      ],
+      "findings": []
+    }
+  },
+  {
+    "page": "proposal-version",
+    "url": "/proposals/00000000-0000-0000-0000-000000000112/versions/00000000-0000-0000-0000-000000000118",
+    "renderedUrl": "http://127.0.0.1:34609/proposals/00000000-0000-0000-0000-000000000112/versions/00000000-0000-0000-0000-000000000118",
+    "width": 1440,
+    "scheme": "dark",
+    "title": "roducq",
+    "httpStatus": 200,
+    "h1s": [
+      "Harbor Lane — phase 1 proposal"
+    ],
+    "mains": 1,
+    "headings": [
+      {
+        "level": 1,
+        "text": "Harbor Lane — phase 1 proposal"
+      },
+      {
+        "level": 2,
+        "text": "Scope of work"
+      },
+      {
+        "level": 2,
+        "text": "Budget & timeline"
+      },
+      {
+        "level": 2,
+        "text": "Restore"
+      },
+      {
+        "level": 2,
+        "text": "Snapshot"
+      }
+    ],
+    "smallText": [],
+    "nonManrope": [],
+    "nestedInteractive": [],
+    "resolvedTheme": "dark",
+    "persistedTheme": "system (default)",
+    "fontReady": "loaded",
+    "performance": {
+      "cls": 0,
+      "scriptResources": 19,
+      "encodedScriptBytes": 277745
+    },
+    "accessibility": {
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ]
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [],
+    "failures": [],
+    "scrollGeometry": {
+      "samples": [
+        {
+          "root": "div.app-rail-nav",
+          "rootIndex": "0",
+          "top": 79,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        }
+      ],
+      "findings": []
+    }
+  },
+  {
+    "page": "plans",
+    "url": "/plans",
+    "renderedUrl": "http://127.0.0.1:34609/plans",
+    "width": 1440,
+    "scheme": "dark",
+    "title": "roducq",
+    "httpStatus": 200,
+    "h1s": [
+      "Plans"
+    ],
+    "mains": 1,
+    "headings": [
+      {
+        "level": 1,
+        "text": "Plans"
+      },
+      {
+        "level": 2,
+        "text": "The delivery workspace"
+      }
+    ],
+    "smallText": [],
+    "nonManrope": [],
+    "nestedInteractive": [],
+    "resolvedTheme": "dark",
+    "persistedTheme": "system (default)",
+    "fontReady": "loaded",
+    "performance": {
+      "cls": 0,
+      "scriptResources": 19,
+      "encodedScriptBytes": 282105
+    },
+    "accessibility": {
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ]
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [],
+    "failures": [],
+    "scrollGeometry": {
+      "samples": [
+        {
+          "root": "div.app-rail-nav",
+          "rootIndex": "0",
+          "top": 79,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 216,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        }
+      ],
+      "findings": []
+    }
+  },
+  {
+    "page": "plan-detail",
+    "url": "/plans/00000000-0000-0000-0000-000000000113",
+    "renderedUrl": "http://127.0.0.1:34609/plans/00000000-0000-0000-0000-000000000113",
+    "width": 1440,
+    "scheme": "dark",
+    "title": "roducq",
+    "httpStatus": 200,
+    "h1s": [
+      "Harbor Lane — delivery plan"
+    ],
+    "mains": 1,
+    "headings": [
+      {
+        "level": 1,
+        "text": "Harbor Lane — delivery plan"
+      },
+      {
+        "level": 2,
+        "text": "Budget & timeline"
+      },
+      {
+        "level": 2,
+        "text": "Tasks"
+      },
+      {
+        "level": 3,
+        "text": "To do2"
+      },
+      {
+        "level": 3,
+        "text": "Completed1"
+      },
+      {
+        "level": 2,
+        "text": "Client update"
+      },
+      {
+        "level": 2,
+        "text": "Details"
+      },
+      {
+        "level": 2,
+        "text": "Source"
+      },
+      {
+        "level": 2,
+        "text": "Activity"
+      }
+    ],
+    "smallText": [],
+    "nonManrope": [],
+    "nestedInteractive": [],
+    "resolvedTheme": "dark",
+    "persistedTheme": "system (default)",
+    "fontReady": "loaded",
+    "performance": {
+      "cls": 0,
+      "scriptResources": 19,
+      "encodedScriptBytes": 279849
+    },
+    "accessibility": {
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ]
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [],
+    "failures": [],
+    "scrollGeometry": {
+      "samples": [
+        {
+          "root": "div.app-rail-nav",
+          "rootIndex": "0",
+          "top": 79,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 585,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 774,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        }
+      ],
+      "findings": []
+    }
+  },
+  {
+    "page": "updates",
+    "url": "/updates",
+    "renderedUrl": "http://127.0.0.1:34609/updates",
+    "width": 1440,
+    "scheme": "dark",
+    "title": "roducq",
+    "httpStatus": 200,
+    "h1s": [
+      "Updates"
+    ],
+    "mains": 1,
+    "headings": [
+      {
+        "level": 1,
+        "text": "Updates"
+      },
+      {
+        "level": 2,
+        "text": "Keep clients in the loop"
+      }
+    ],
+    "smallText": [],
+    "nonManrope": [],
+    "nestedInteractive": [],
+    "resolvedTheme": "dark",
+    "persistedTheme": "system (default)",
+    "fontReady": "loaded",
+    "performance": {
+      "cls": 0,
+      "scriptResources": 19,
+      "encodedScriptBytes": 282009
+    },
+    "accessibility": {
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ]
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [],
+    "failures": [],
+    "scrollGeometry": {
+      "samples": [
+        {
+          "root": "div.app-rail-nav",
+          "rootIndex": "0",
+          "top": 79,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 192,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        }
+      ],
+      "findings": []
+    }
+  },
+  {
+    "page": "update-detail",
+    "url": "/updates/00000000-0000-0000-0000-000000000114",
+    "renderedUrl": "http://127.0.0.1:34609/updates/00000000-0000-0000-0000-000000000114",
+    "width": 1440,
+    "scheme": "dark",
+    "title": "roducq",
+    "httpStatus": 200,
+    "h1s": [
+      "Weekly update — week 3"
+    ],
+    "mains": 1,
+    "headings": [
+      {
+        "level": 1,
+        "text": "Weekly update — week 3"
+      },
+      {
+        "level": 2,
+        "text": "Weekly update — week 3"
+      },
+      {
+        "level": 2,
+        "text": "Edit update"
+      },
+      {
+        "level": 2,
+        "text": "Public link"
+      },
+      {
+        "level": 2,
+        "text": "Details"
+      },
+      {
+        "level": 2,
+        "text": "Source"
+      },
+      {
+        "level": 2,
+        "text": "Activity"
+      }
+    ],
+    "smallText": [],
+    "nonManrope": [],
+    "nestedInteractive": [],
+    "resolvedTheme": "dark",
+    "persistedTheme": "system (default)",
+    "fontReady": "loaded",
+    "performance": {
+      "cls": 0,
+      "scriptResources": 19,
+      "encodedScriptBytes": 280685
+    },
+    "accessibility": {
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ]
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [],
+    "failures": [],
+    "scrollGeometry": {
+      "samples": [
+        {
+          "root": "div.app-rail-nav",
+          "rootIndex": "0",
+          "top": 79,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 585,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 802,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        }
+      ],
+      "findings": []
+    }
+  },
+  {
+    "page": "settings",
+    "url": "/settings",
+    "renderedUrl": "http://127.0.0.1:34609/settings",
+    "width": 1440,
+    "scheme": "dark",
+    "title": "roducq",
+    "httpStatus": 200,
+    "h1s": [
+      "Settings"
+    ],
+    "mains": 1,
+    "headings": [
+      {
+        "level": 1,
+        "text": "Settings"
+      },
+      {
+        "level": 2,
+        "text": "A workspace that works your way."
+      },
+      {
+        "level": 2,
+        "text": "Workspace"
+      },
+      {
+        "level": 2,
+        "text": "Branding & logo"
+      },
+      {
+        "level": 2,
+        "text": "Team"
+      },
+      {
+        "level": 2,
+        "text": "Templates"
+      },
+      {
+        "level": 2,
+        "text": "Plan"
+      },
+      {
+        "level": 2,
+        "text": "Webhooks"
+      },
+      {
+        "level": 2,
+        "text": "Mailbox"
+      },
+      {
+        "level": 2,
+        "text": "Integrations"
+      },
+      {
+        "level": 2,
+        "text": "Activity"
+      },
+      {
+        "level": 2,
+        "text": "Danger zone"
+      }
+    ],
+    "smallText": [],
+    "nonManrope": [],
+    "nestedInteractive": [],
+    "resolvedTheme": "dark",
+    "persistedTheme": "system (default)",
+    "fontReady": "loaded",
+    "performance": {
+      "cls": 0,
+      "scriptResources": 20,
+      "encodedScriptBytes": 425742
+    },
+    "accessibility": {
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ]
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [],
+    "failures": [],
+    "scrollGeometry": {
+      "samples": [
+        {
+          "root": "div.app-rail-nav",
+          "rootIndex": "0",
+          "top": 79,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 585,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 1170,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 1755,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 2340,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 2786,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        }
+      ],
+      "findings": []
+    }
+  },
+  {
+    "page": "search",
+    "url": "/search?q=Harbor",
+    "renderedUrl": "http://127.0.0.1:34609/search?q=Harbor",
+    "width": 1440,
+    "scheme": "dark",
+    "title": "roducq",
+    "httpStatus": 200,
+    "h1s": [
+      "Search"
+    ],
+    "mains": 1,
+    "headings": [
+      {
+        "level": 1,
+        "text": "Search"
+      },
+      {
+        "level": 2,
+        "text": "Briefs"
+      },
+      {
+        "level": 2,
+        "text": "Proposals"
+      },
+      {
+        "level": 2,
+        "text": "Plans"
+      },
+      {
+        "level": 2,
+        "text": "Updates"
+      },
+      {
+        "level": 2,
+        "text": "Invoices"
+      },
+      {
+        "level": 2,
+        "text": "Contracts"
+      }
+    ],
+    "smallText": [],
+    "nonManrope": [],
+    "nestedInteractive": [],
+    "resolvedTheme": "dark",
+    "persistedTheme": "system (default)",
+    "fontReady": "loaded",
+    "performance": {
+      "cls": 0,
+      "scriptResources": 18,
+      "encodedScriptBytes": 276688
+    },
+    "accessibility": {
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                ".text-\\[17px\\]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            },
+            {
+              "target": [
+                ".text-\\[17px\\] > .text-accent"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+            }
+          ]
+        }
+      ]
+    },
+    "browserErrors": [],
+    "expectedHttpErrors": [],
+    "failures": [],
+    "scrollGeometry": {
+      "samples": [
+        {
+          "root": "div.app-rail-nav",
+          "rootIndex": "0",
+          "top": 79,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        },
+        {
+          "root": "main#main.app-main",
+          "rootIndex": "1",
+          "top": 213,
+          "overflowX": 0,
+          "offenders": [],
+          "cutoffs": [],
+          "smallTaps": [],
+          "fixedEscapes": []
+        }
+      ],
+      "findings": []
+    }
+  }
+]
