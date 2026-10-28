@@ -1,7 +1,9 @@
 import Link from "next/link";
-import { ArrowRight, ArrowUp } from "lucide-react";
+import { ArrowUp } from "lucide-react";
 
 import { FOOTER } from "@/app/(marketing)/home/content";
+import { HOME_FOOTER_CTA } from "@/app/(marketing)/home/chrome-content";
+import { FooterAccountCta } from "@/components/marketing/FooterAccountCta";
 import { RoduMark, Wordmark } from "@/components/app-shell/RoduMark";
 import { Reveal } from "@/components/marketing/landing/Reveal";
 
@@ -30,13 +32,10 @@ export function SiteFooter() {
               {FOOTER.tagline}
             </p>
             <div className="mt-4.5">
-              <Link
+              <FooterAccountCta
                 href={FOOTER.cta.href}
-                className="inline-flex h-11 min-h-11 items-center justify-center gap-2 rounded-lm-button bg-lm-accent px-4 text-lm-14 font-lm-regular text-lm-on-accent shadow-lm-sm transition-colors duration-200 hover:bg-lm-accent-strong"
-              >
-                {FOOTER.cta.label}
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
+                homepageLabel={HOME_FOOTER_CTA.label}
+              />
             </div>
             <p className="mt-4 text-lm-12 leading-relaxed text-lm-muted-readable">
               {FOOTER.limits}

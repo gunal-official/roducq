@@ -1,40 +1,25 @@
 import Link from "next/link";
-import { ArrowUpRight, Check, Minus } from "lucide-react";
+import { ArrowUpRight, Check, CircleHelp, Minus } from "lucide-react";
 
 import {
-  ENTERPRISE_COLUMN,
-  PRICING_SECTION,
-} from "@/app/(marketing)/home/content";
-import {
-  PLAN_TIERS,
-  PRICES_UNCONFIGURED_NOTE,
-  type PlanTier,
-} from "@/app/(marketing)/pricing/plans";
-import { clsx as cn } from "clsx";
+  PRICING_CARDS,
+  PRICING_DISCLOSURE,
+  type PricingCard as ApprovedPricingCard,
+  type PricingFeature,
+} from "@/app/(marketing)/pricing/pricing-content";
+import { PRICING_SECTION } from "@/app/(marketing)/home/content";
 
-import { GhostLink, PrimaryLink, SecondaryLink } from "./Buttons";
+import { GhostLink } from "./Buttons";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
 
 /**
- * Pricing — the reference's four-column tier band, shared with `/pricing`
- * (`app/(marketing)/pricing/plans.ts`) plus the fourth Enterprise column:
- *   1. Starter card ($29 / month, 1 seat)
- *   2. Featured Team card ("MOST POPULAR" badge, $79 / month, Up to 5 seats)
- *   3. Studio card ($199 / month, Up to 15 seats)
- *   4. Dark Enterprise premium card (Custom, `.lm-pricing-dark`, white CTA)
+ * Homepage pricing uses the owner-approved `/pricing` presentation data.
+ * Three commercial plans sit beside a fourth, non-commercial contact panel
+ * to retain the reference's four-column composition. This is presentation
+ * only: it does not read or change checkout, billing, or entitlements.
  */
-export interface HomePricingProps {
-  /** Pre-formatted price lines from the live Razorpay config (amount + currency code). */
-  priceLines: string[];
-  /** False when RAZORPAY_PLANS is absent, so no price row is invented. */
-  billingConfigured: boolean;
-}
-
-export function PricingSection({
-  priceLines,
-  billingConfigured,
-}: HomePricingProps) {
+export function PricingSection() {
   return (
     <section id="pricing" className="scroll-mt-20 bg-lm-card">
       <div className="lm-shell py-13 md:py-22 lg:py-30">
@@ -49,32 +34,26 @@ export function PricingSection({
         </Reveal>
 
         <ul className="mt-12 grid items-stretch gap-3.5 md:mt-16 md:grid-cols-2 lg:grid-cols-4">
-          {PLAN_TIERS.map((tier, index) => (
-            <Reveal
-              key={tier.slug}
-              as="li"
-              delay={index * 80}
-              className="h-full min-w-0"
-            >
-              <PricingCard
-                tier={tier}
-                priceLines={priceLines}
-                billingConfigured={billingConfigured}
-              />
+          {PRICING_CARDS.map((plan, index) => (
+            <Reveal key={plan.slug} as="li" delay={index * 80} className="h-full min-w-0">
+              <PlanCard plan={plan} />
             </Reveal>
           ))}
-
-          {/* 4th column: Dark premium plan card matching Forma reference */}
           <Reveal as="li" delay={240} className="h-full min-w-0">
-            <EnterprisePricingCard />
+            <ContactPanel />
           </Reveal>
         </ul>
 
-        <Reveal className="mt-10 text-center md:mt-12">
-          <GhostLink
-            href={PRICING_SECTION.cta.href}
-            className="border-b border-lm-border-soft pb-1"
-          >
+        <div className="mt-8 space-y-2 rounded-lm-card border border-lm-border-soft bg-lm-canvas p-4 md:p-5">
+          {PRICING_DISCLOSURE.map((line) => (
+            <p key={line} className="text-lm-12 leading-relaxed text-lm-muted-readable">
+              {line}
+            </p>
+          ))}
+        </div>
+
+        <Reveal className="mt-8 text-center md:mt-10">
+          <GhostLink href={PRICING_SECTION.cta.href} className="border-b border-lm-border-soft pb-1">
             {PRICING_SECTION.cta.label}
             <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
           </GhostLink>
@@ -84,193 +63,111 @@ export function PricingSection({
   );
 }
 
-function splitPrice(line: string): { amount: string; currency: string } {
-  const match = line.match(/^(.*?)\s*([A-Z]{3})$/);
-  return match
-    ? { amount: match[1].trim(), currency: match[2] }
-    : { amount: line, currency: "" };
-}
-
-function PricingCard({
-  tier,
-  priceLines,
-  billingConfigured,
-}: {
-  tier: PlanTier;
-  priceLines: string[];
-  billingConfigured: boolean;
-}) {
-  const featured = Boolean(tier.badge);
+function PlanCard({ plan }: { plan: ApprovedPricingCard }) {
+  const featured = plan.featured;
 
   return (
-    <div
-      className={cn(
+    <article
+      aria-labelledby={`home-plan-${plan.slug}`}
+      className={[
         "flex h-full flex-col overflow-hidden rounded-lm-card bg-lm-card",
         featured
           ? "border-2 border-lm-accent shadow-lm-lg"
-          : "border border-lm-border-soft shadow-lm-sm"
-      )}
+          : "border border-lm-border-soft shadow-lm-sm",
+      ].join(" ")}
     >
-      {/* Full-width top banner on the featured "MOST POPULAR" plan */}
-      {featured ? (
+      {plan.badge ? (
         <div className="bg-lm-accent px-4 py-2 text-center text-lm-12 font-lm-bold text-lm-on-accent">
-          {tier.badge}
+          {plan.badge}
         </div>
       ) : null}
 
       <div className="flex flex-1 flex-col p-5 md:p-6">
         <div className="min-w-0">
-          <p className="text-lm-12 font-lm-semibold uppercase tracking-[0.14em] text-lm-muted">
-            {tier.eyebrow}
-          </p>
-          <h3 className="mt-2 font-lm-semibold tracking-[-0.025em] text-lm-23 text-lm-ink lg:text-lm-21 xl:text-lm-23">
-            {tier.name}
+          <h3 id={`home-plan-${plan.slug}`} className="font-lm-semibold tracking-[-0.025em] text-lm-23 text-lm-ink">
+            {plan.name}
           </h3>
+          <p className="mt-2 min-h-[3.25rem] text-lm-14 leading-relaxed text-lm-ink-soft">
+            {plan.tagline}
+          </p>
         </div>
 
-        <p className="mt-2 text-lm-15 leading-relaxed text-lm-ink-soft">
-          {tier.tagline}
-        </p>
-
-        <div className="mt-5 border-t border-lm-border-soft pt-4.5">
+        <div className="mt-4 border-t border-lm-border-soft pt-4">
           <p className="font-lm-medium text-lm-36 tracking-[-0.07em] text-lm-ink lg:text-lm-35 xl:text-lm-46">
-            {tier.priceDisplay ?? "$0"}
+            {plan.price}
             <span className="ml-2 font-lm-regular text-lm-14 tracking-normal text-lm-muted">
-              {tier.cadence}
+              {plan.cadence}
             </span>
           </p>
-
-          <p className="mt-2 text-lm-12 text-lm-ink-soft">
-            {tier.seatsLabel}
-            {tier.additionalSeatsLabel ? ` · ${tier.additionalSeatsLabel}` : ""}
+          <p className="mt-2 min-h-10 text-lm-12 leading-relaxed text-lm-ink-soft">
+            {plan.seats}
           </p>
-
-          {tier.pricing === "configured" ? (
-            billingConfigured && priceLines.length > 0 ? (
-              <p className="mt-1.5 text-lm-12 text-lm-muted">
-                Live checkout: {splitPrice(priceLines[0]).amount}{" "}
-                {splitPrice(priceLines[0]).currency} / month
-                {priceLines.length > 1
-                  ? ` (also ${priceLines.slice(1).join(", ")})`
-                  : ""}
-              </p>
-            ) : (
-              <p className="mt-1.5 text-lm-12 leading-relaxed text-lm-muted-readable">
-                {PRICES_UNCONFIGURED_NOTE}
-              </p>
-            )
-          ) : (
-            <p className="mt-1.5 text-lm-12 text-lm-muted">{tier.billingNote}</p>
-          )}
         </div>
 
-        <div className="mt-5">
-          {featured ? (
-            <PrimaryLink
-              href={tier.cta.href}
-              className="w-full whitespace-normal text-center leading-tight"
-            >
-              {tier.cta.label}
-            </PrimaryLink>
-          ) : (
-            <SecondaryLink
-              href={tier.cta.href}
-              className="w-full whitespace-normal text-center leading-tight"
-            >
-              {tier.cta.label}
-            </SecondaryLink>
-          )}
-        </div>
+        <Link
+          href={plan.cta.href}
+          className={[
+            "mt-4 inline-flex min-h-11 items-center justify-center rounded-lm-button px-4 text-center text-lm-14 font-lm-regular transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lm-accent",
+            featured
+              ? "bg-lm-accent text-lm-on-accent shadow-lm-sm hover:bg-lm-accent-strong"
+              : "border border-lm-hairline bg-lm-card text-lm-ink hover:bg-lm-canvas",
+          ].join(" ")}
+        >
+          {plan.cta.label}
+        </Link>
 
-        <div className="mt-5 flex flex-1 flex-col border-t border-lm-border-soft pt-4.5">
-          {tier.featuresHeading ? (
-            <p className="mb-2.5 text-lm-10 font-lm-semibold uppercase tracking-[0.08em] text-lm-muted-label">
-              {tier.featuresHeading}
-            </p>
-          ) : null}
-          <ul className="flex flex-1 flex-col gap-2.5">
-            {tier.features.map((feature) => (
-              <li
-                key={feature}
-                className="flex items-start gap-2.5 text-lm-15 text-lm-ink-soft"
-              >
-                <Check
-                  className="mt-0.5 h-4 w-4 shrink-0 text-lm-ink-accent"
-                  aria-hidden="true"
-                />
-                <span>{feature}</span>
-              </li>
-            ))}
-            {tier.planned?.map((feature) => (
-              <li
-                key={feature}
-                className="flex items-start gap-2.5 text-lm-12 text-lm-muted"
-              >
-                <Minus className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
-                <span>
-                  {feature}
-                  <span className="ml-1.5 rounded-lm-chip bg-lm-surface-muted px-1.5 py-0.5 text-lm-12 font-lm-semibold text-lm-ink-soft">
-                    planned
-                  </span>
-                </span>
-              </li>
+        <div className="mt-4 flex-1 border-t border-lm-border-soft pt-4">
+          <p className="mb-2.5 text-lm-10 font-lm-semibold uppercase tracking-[0.08em] text-lm-muted-label">
+            {plan.featuresHeading}
+          </p>
+          <ul className="flex flex-col gap-2.5">
+            {plan.features.map((feature) => (
+              <FeatureLine key={feature.text} feature={feature} />
             ))}
           </ul>
         </div>
       </div>
-    </div>
+    </article>
   );
 }
 
-function EnterprisePricingCard() {
+function FeatureLine({ feature }: { feature: PricingFeature }) {
+  const Icon = feature.state === "available" ? Check : feature.state === "note" ? CircleHelp : Minus;
   return (
-    <div className="lm-pricing-dark flex h-full flex-col rounded-lm-card border p-5 md:p-6">
-      <div className="min-w-0">
-        <p className="text-lm-12 font-lm-semibold uppercase tracking-[0.14em] text-lm-dark-muted">
-          {ENTERPRISE_COLUMN.eyebrow}
-        </p>
-        <h3 className="mt-2 font-lm-semibold tracking-[-0.025em] text-lm-23 text-lm-dark-ink">
-          {ENTERPRISE_COLUMN.name}
-        </h3>
-      </div>
+    <li className="flex items-start gap-2.5 text-lm-12 leading-relaxed text-lm-ink-soft">
+      <Icon
+        className="mt-0.5 h-4 w-4 shrink-0 text-lm-ink-accent"
+        aria-hidden="true"
+      />
+      <span>{feature.text}</span>
+    </li>
+  );
+}
 
-      <p className="mt-2 text-lm-12 leading-relaxed text-lm-dark-muted">
-        {ENTERPRISE_COLUMN.tagline}
+function ContactPanel() {
+  return (
+    <div role="group" aria-labelledby="pricing-contact-title" className="lm-pricing-dark flex h-full flex-col rounded-lm-card border p-5 md:p-6">
+      <p className="text-lm-12 font-lm-semibold uppercase tracking-[0.14em] text-lm-dark-muted">
+        Questions?
       </p>
-
-      <div className="mt-5 border-t border-lm-dark-border pt-4.5">
-        <p className="font-lm-medium text-lm-36 tracking-[-0.07em] text-lm-dark-ink lg:text-lm-35 xl:text-lm-46">
-          Custom
-        </p>
-        <p className="mt-2 text-lm-12 text-lm-dark-muted">
-          {ENTERPRISE_COLUMN.billingNote}
+      <h3 id="pricing-contact-title" className="mt-2 font-lm-semibold tracking-[-0.025em] text-lm-23 text-lm-dark-ink">
+        Talk to us
+      </h3>
+      <p className="mt-3 text-lm-14 leading-relaxed text-lm-dark-muted">
+        Need help understanding the listed plans or their current limitations? Send us a note.
+      </p>
+      <div className="mt-5 border-t border-lm-dark-border pt-4">
+        <p className="text-lm-12 leading-relaxed text-lm-dark-ink">
+          This is a contact option, not another plan or a promise of custom services.
         </p>
       </div>
-
-      <div className="mt-5">
-        <Link
-          href={ENTERPRISE_COLUMN.cta.href}
-          className="inline-flex h-11 min-h-11 w-full items-center justify-center rounded-lm-button bg-lm-card px-5 text-lm-15 font-lm-regular text-lm-ink shadow-lm-sm transition-colors duration-200 hover:bg-lm-surface-accent md:h-13"
-        >
-          {ENTERPRISE_COLUMN.cta.label}
-          <span className="sr-only">(opens your email client)</span>
-        </Link>
-      </div>
-
-      <ul className="mt-5 flex flex-1 flex-col gap-2.5 border-t border-lm-dark-border pt-4.5">
-        {ENTERPRISE_COLUMN.features.map((feature) => (
-          <li
-            key={feature}
-            className="flex items-start gap-2.5 text-lm-12 text-lm-dark-ink"
-          >
-            <Check
-              className="mt-0.5 h-4 w-4 shrink-0 text-lm-accent"
-              aria-hidden="true"
-            />
-            <span>{feature}</span>
-          </li>
-        ))}
-      </ul>
+      <Link
+        href="mailto:hello@roducq.dev?subject=roducq%20pricing%20question"
+        className="mt-5 inline-flex min-h-11 items-center justify-center rounded-lm-button bg-lm-card px-4 text-center text-lm-14 font-lm-regular text-lm-ink transition-colors duration-200 hover:bg-lm-surface-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lm-accent"
+      >
+        Send a question
+        <span className="sr-only">(opens your email client)</span>
+      </Link>
     </div>
   );
 }

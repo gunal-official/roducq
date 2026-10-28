@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Fragment } from "react";
 import {
   ArrowRight,
   FileDown,
@@ -10,7 +11,7 @@ import {
 } from "lucide-react";
 
 import {
-  ANNOUNCEMENT,
+  HOME_ANNOUNCEMENT,
   CONNECTS_WITH,
   HERO,
 } from "@/app/(marketing)/home/content";
@@ -51,8 +52,8 @@ const HERO_LADDER = {
   dashboard: 850,
 } as const;
 
-/** The second headline line starts four words in: 4 × the 50ms word cadence. */
-const SECOND_LINE_OFFSET_MS = 200;
+/** The measured hero cadence is 50ms from word to word, across both lines. */
+const HERO_WORD_STAGGER_MS = 50;
 
 function ladder(delay: number, duration?: number): React.CSSProperties {
   return {
@@ -73,14 +74,14 @@ export function HeroSection() {
 
       <div className="lm-shell pt-13 pb-16 md:pt-22 md:pb-22 lg:pt-22 lg:pb-30">
         <div className="mx-auto flex max-w-[54rem] flex-col items-center text-center">
-          {/* Small announcement badge above headline */}
+          {/* Small Roducq badge above headline */}
           <Link
-            href={ANNOUNCEMENT.href}
+            href={HOME_ANNOUNCEMENT.href}
             style={ladder(HERO_LADDER.announcement)}
             className="lm-hero-in inline-flex min-h-11 items-center gap-2.5 rounded-lm-pill border border-lm-border-soft bg-lm-card px-3.5 py-1.5 text-lm-14 font-lm-regular text-lm-ink shadow-lm-sm transition-colors hover:border-lm-border-strong hover:bg-lm-surface-accent"
           >
             <span className="rounded-lm-pill bg-lm-surface-accent px-2 py-0.5 text-lm-12 font-lm-semibold text-lm-ink-accent">
-              {ANNOUNCEMENT.badge}
+              {HOME_ANNOUNCEMENT.badge}
             </span>
             <span>{HERO.eyebrow}</span>
             <ArrowRight
@@ -93,17 +94,27 @@ export function HeroSection() {
             aria-label={HERO.title}
             className="mt-6 font-lm-regular tracking-[-0.03em] text-lm-43 text-lm-ink lg:text-lm-48 xl:text-lm-72"
           >
-            {HERO.titleLines.map((line, index) => (
-              <span
-                key={line}
-                className="lm-line"
-                style={
-                  {
-                    "--lm-line-delay": `${HERO_LADDER.headline + index * SECOND_LINE_OFFSET_MS}ms`,
-                  } as React.CSSProperties
-                }
-              >
-                <span>{renderLineWithAccent(line, HERO.emphasis)}</span>
+            {HERO.titleLines.map((line, lineIndex) => (
+              <span key={line} className="lm-hero-line">
+                {line.split(/\s+/).map((word, wordIndex) => {
+                  const wordOffset = HERO.titleLines
+                    .slice(0, lineIndex)
+                    .reduce((count, priorLine) => count + priorLine.split(/\s+/).length, 0) + wordIndex;
+                  const emphasized = HERO.emphasis.split(/\s+/).includes(word);
+                  return (
+                    <Fragment key={`${word}-${wordIndex}`}>
+                      {wordIndex > 0 ? " " : null}
+                      <span
+                        className={emphasized ? "lm-hero-word lm-text-gradient" : "lm-hero-word"}
+                        style={{
+                          "--lm-word-delay": `${HERO_LADDER.headline + wordOffset * HERO_WORD_STAGGER_MS}ms`,
+                        } as React.CSSProperties}
+                      >
+                        {word}
+                      </span>
+                    </Fragment>
+                  );
+                })}
               </span>
             ))}
           </h1>
@@ -179,24 +190,5 @@ export function HeroSection() {
         </div>
       </div>
     </section>
-  );
-}
-
-/**
- * Splits the line on `accent` if present and wraps only that phrase in the
- * brand accent colour. Matching is literal and case-sensitive, so if the
- * copy changes and the word moves to another line, the highlight follows it.
- */
-function renderLineWithAccent(line: string, accent: string): React.ReactNode {
-  const at = line.indexOf(accent);
-  if (at === -1) return line;
-  const before = line.slice(0, at);
-  const after = line.slice(at + accent.length);
-  return (
-    <>
-      {before}
-      <span className="text-lm-ink-accent">{accent}</span>
-      {after}
-    </>
   );
 }

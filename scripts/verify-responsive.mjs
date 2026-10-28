@@ -81,10 +81,12 @@ const findFreePort = () => new Promise((res, rej) => {
 const WIDTHS_ALL = [
   { w: 320, h: 568 },
   { w: 375, h: 667 },
+  { w: 390, h: 844 },
   { w: 414, h: 736 },
   { w: 600, h: 800 }, // in-between probe (mobile nav stretched)
   { w: 768, h: 1024 },
   { w: 1024, h: 768 },
+  { w: 1200, h: 900 },
   { w: 1440, h: 900 },
 ];
 const WIDTH_FILTER = (process.env.WIDTHS ?? "").split(",").map(Number).filter(Boolean);
@@ -168,6 +170,11 @@ const PAGES = [
   { slug: "invoice-unavailable", url: "/invoices/not-a-uuid", auth: true, expected: "Invoice not found" },
   { slug: "contract-unavailable", url: "/contracts/not-a-uuid", auth: true, expected: "Contract not found" },
 ];
+const PAGE_SLUG_FILTER = (process.env.PAGE_SLUGS ?? "").split(",").map((slug) => slug.trim()).filter(Boolean);
+const AUDIT_PAGES = PAGE_SLUG_FILTER.length ? PAGES.filter((page) => PAGE_SLUG_FILTER.includes(page.slug)) : PAGES;
+if (PAGE_SLUG_FILTER.length && AUDIT_PAGES.length !== PAGE_SLUG_FILTER.length) {
+  throw new Error(`Unknown PAGE_SLUGS value: ${PAGE_SLUG_FILTER.filter((slug) => !PAGES.some((page) => page.slug === slug)).join(", ")}`);
+}
 const COMPLEX = new Set(["invoice-detail", "time", "reports", "settings", "search"]);
 
 // ───────────────────────── fixtures (rich rows — every page renders) ──
@@ -657,7 +664,7 @@ async function main() {
 
   for (const { w, h } of WIDTHS) {
     const ctx = await browser.newContext({ viewport: { width: w, height: h }, deviceScaleFactor: 1, ...(process.env.DARK ? { colorScheme: "dark" } : {}) });
-    for (const pg of PAGES) {
+    for (const pg of AUDIT_PAGES) {
       // Per-page auth state: marketing/auth pages captured WITHOUT the
       // session cookie (an authed login/signup correctly redirects into the
       // workspace — that aliased earlier evidence onto the intake page);

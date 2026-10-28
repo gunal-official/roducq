@@ -71,7 +71,7 @@ const DUE_TODAY = [
 
 export function WorkspacePreview() {
   return (
-    <div className="relative">
+    <figure className="relative">
       <div
         className="pointer-events-none absolute inset-x-0 -bottom-10 top-16 -z-10 rounded-lm-frame bg-lm-glow blur-3xl"
         aria-hidden="true"
@@ -98,7 +98,7 @@ export function WorkspacePreview() {
                   </span>
                 </div>
                 <span className="rounded-lm-chip border border-lm-border-soft bg-lm-card px-1.5 py-0.5 text-lm-10 font-lm-semibold text-lm-muted">
-                  v2.4
+                  DEMO
                 </span>
               </div>
 
@@ -121,7 +121,7 @@ export function WorkspacePreview() {
                     Acme Studio
                   </span>
                   <span className="block truncate text-lm-10 text-lm-muted">
-                    Team plan · 4 members
+                    Example workspace · 4 members
                   </span>
                 </span>
               </div>
@@ -485,6 +485,9 @@ export function WorkspacePreview() {
           </div>
         </div>
       </div>
-    </div>
+      <figcaption className="mt-2 text-center text-lm-12 text-lm-muted">
+        Illustrative example · fictional client
+      </figcaption>
+    </figure>
   );
 }

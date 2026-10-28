@@ -34,7 +34,9 @@ export function TeamsSection() {
           />
         </Reveal>
 
-        <div className="mt-12 grid divide-y divide-lm-border-soft rounded-lm-card border border-lm-border-soft bg-lm-card sm:grid-cols-2 sm:divide-x sm:divide-y-0 md:mt-16 lg:grid-cols-4">
+        <p className="mt-7 text-lm-12 text-lm-muted">{TEAMS_SECTION.disclosure}</p>
+
+        <div className="mt-4 grid divide-y divide-lm-border-soft rounded-lm-card border border-lm-border-soft bg-lm-card sm:grid-cols-2 sm:divide-x sm:divide-y-0 md:mt-6 lg:grid-cols-4">
           {TEAM_CARDS.map((team, index) => (
             <Reveal
               key={team.index}
@@ -70,7 +72,7 @@ export function TeamsSection() {
                     {team.detail}
                   </p>
                   <p className="mt-0.5 text-lm-12 text-lm-muted">
-                    {team.templates}
+                    {team.workflow}
                   </p>
                 </div>
               </div>
@@ -224,9 +226,9 @@ function TeamMiniPreview({
       </div>
       <ul className="mt-2.5 flex flex-col gap-1.5">
         {[
-          "Log billable hours (31.5h)",
-          "Export signed-line PDF",
-          "Dispatch status webhook",
+          "Log project time",
+          "Export a time report",
+          "Review a client update",
         ].map((step) => (
           <li
             key={step}

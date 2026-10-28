@@ -1,15 +1,14 @@
 import "./landing.css";
 
-import { AnnouncementBar } from "@/components/marketing/landing/AnnouncementBar";
 import { SiteFooter } from "@/components/marketing/SiteFooter";
 import { SiteHeader } from "@/components/marketing/SiteHeader";
 import { MotionProvider } from "@/components/marketing/motion/MotionProvider";
 
 /**
  * Marketing shell: announcement band, shared header and footer around /,
- * /about, /pricing and /vs/[slug]. Auth-ed state is intentionally not
- * detected here — the marketing surface is identical for everyone; Log in /
- * Start free remain the funnel into the app side.
+ * /about, /pricing and /vs/[slug]. Auth state is intentionally not detected
+ * here — the shell is the same for everyone, with route-specific copy where
+ * needed; Log in and Get started remain the funnel into the app side.
  *
  * `.rdq-marketing` IS THE DESIGN BOUNDARY. It switches on the Forma-referenced
  * token set declared in ./landing.css (see that file for why the tokens are
@@ -51,7 +50,6 @@ export default function MarketingLayout({
       >
         Skip to content
       </a>
-      <AnnouncementBar />
       <SiteHeader />
       <main id="main" tabIndex={-1} className="flex-1">
         {children}

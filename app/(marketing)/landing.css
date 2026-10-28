@@ -390,6 +390,12 @@
   animation-delay: var(--lm-line-delay, 0ms);
 }
 
+/* Homepage hero retains explicit two-line composition while each word gets
+   the measured 50ms mask cadence. */
+.lm-hero-line {
+  display: block;
+}
+
 /* ── Per-word heading rise ──────────────────────────────────────────────
    The reference renders every heading as one span per word and raises them
    in sequence: 900ms on cubic-bezier(0.16, 1, 0.3, 1), 50ms apart. The

@@ -19,8 +19,8 @@
  *
  *  3. TRUTHFULNESS. Every string a visitor reads lives in a data module and
  *     is asserted here: no invented customer counts, no invented numbers
- *     (the only figure on the page is the free plan's $0, and the paid price
- *     comes from live Razorpay config), and every mention of signatures,
+ *     (only the three approved monthly plan prices are shown, sourced from
+ *     the pricing presentation module), and every mention of signatures,
  *     cards, payments or accounting is either inside LIMITATION or is an
  *     explicit negation of the capability.
  *
@@ -43,8 +43,9 @@ import { join } from "node:path";
 
 import {
   ANNOUNCEMENT,
-  AUTOMATION_PANEL,
-  CLOSING,
+  HOME_ANNOUNCEMENT,
+  HOME_CLOSING,
+  HOME_FOOTER_CTA,
   CONNECTS_WITH,
   ENGAGEMENT_PANEL,
   FAQ,
@@ -65,7 +66,7 @@ import {
   TONE_CHIP_CLASS,
   TONE_RULE_CLASS,
 } from "../../app/(marketing)/home/content.ts";
-import { PLAN_TIERS } from "../../app/(marketing)/pricing/plans.ts";
+import { PRICING_CARDS, PRICING_DISCLOSURE } from "../../app/(marketing)/pricing/pricing-content.ts";
 import { VS_PAGE_LIST } from "../../app/(marketing)/vs/[slug]/vs-pages.ts";
 
 const read = (rel: string) =>
@@ -93,6 +94,7 @@ const ALL_SOURCES: [string, string][] = [
   ["app/(marketing)/layout.tsx", LAYOUT],
   ["components/marketing/SiteHeader.tsx", HEADER],
   ["components/marketing/SiteFooter.tsx", FOOTER_TSX],
+  ["components/marketing/FooterAccountCta.tsx", read("components/marketing/FooterAccountCta.tsx")],
   ...LANDING_FILES.map((f) => [`components/marketing/landing/${f}`, read(`components/marketing/landing/${f}`)] as [string, string]),
 ];
 
@@ -122,11 +124,10 @@ function strings(value: unknown, out: string[] = []): string[] {
 }
 
 const ALL_COPY = strings([
-  ANNOUNCEMENT,
+  HOME_ANNOUNCEMENT,
   HERO,
   CONNECTS_WITH,
   FEATURES_SECTION,
-  AUTOMATION_PANEL,
   FEATURE_BLOCKS,
   STEPS_SECTION,
   STEPS,
@@ -137,11 +138,13 @@ const ALL_COPY = strings([
   TEAMS_SECTION,
   TEAM_CARDS,
   PRICING_SECTION,
+  PRICING_CARDS,
+  PRICING_DISCLOSURE,
   FAQ_SECTION,
   FAQ,
-  CLOSING,
+  HOME_CLOSING,
   LIMITATION,
-  FOOTER,
+  { ...FOOTER, cta: HOME_FOOTER_CTA },
 ]);
 
 const LIMITATION_COPY = strings(LIMITATION);
@@ -276,9 +279,9 @@ describe("/ hero", () => {
     );
   });
 
-  it("has exactly two hero CTAs, to /signup and /vs", () => {
+  it("has exactly two hero CTAs, to /signup and /solutions", () => {
     assert.equal(HERO.primaryCta.href, "/signup");
-    assert.equal(HERO.secondaryCta.href, "/vs");
+    assert.equal(HERO.secondaryCta.href, "/solutions");
     assert.ok(HERO.primaryCta.label.trim(), "primary CTA label");
     assert.ok(HERO.secondaryCta.label.trim(), "secondary CTA label");
     const hero = read("components/marketing/landing/HeroSection.tsx");
@@ -334,14 +337,11 @@ describe("/ feature bands", () => {
     assert.match(features, /lg:grid-cols-4/);
   });
 
-  it("the automation panel names transitions roducq really records", () => {
-    const events = read("lib/events.ts");
-    assert.match(AUTOMATION_PANEL.trigger, /proposal is accepted/i);
-    assert.ok(
-      events.includes('"proposal.accepted"'),
-      "proposal.accepted must stay a recorded event type",
-    );
+  it("does not present webhooks as an automation engine", () => {
+    const content = strings([FEATURE_BLOCKS, INTEGRATION_CARDS, FAQ]).join(" ");
+    assert.doesNotMatch(content, /writes itself|queue the first update|notify the client channel/i);
     assert.ok(existsSync(new URL("../../lib/webhook-dispatch.ts", import.meta.url)));
+    assert.match(INTEGRATION_CARDS.find((card) => card.name === "Webhooks")?.copy ?? "", /signed outbound events/i);
   });
 
   it("three steps, numbered, each with capability chips", () => {
@@ -389,7 +389,7 @@ describe("/ feature bands", () => {
     const copy = strings([TEAM_CARDS, TEAMS_SECTION]).join(" ");
     assert.doesNotMatch(copy, /testimonial|customer story|case study/i);
     for (const card of TEAM_CARDS) {
-      assert.match(card.templates, /^Templates: /, `${card.label}: template line`);
+      assert.match(card.workflow, /^Workflow: /, `${card.label}: workflow line`);
       assert.ok(card.copy.length > 60, `${card.label}: needs real copy`);
     }
   });
@@ -398,33 +398,41 @@ describe("/ feature bands", () => {
 /* ── Pricing (H) ────────────────────────────────────────────────────────── */
 
 describe("/ pricing band", () => {
-  it("reuses the /pricing tiers and adds the dark 4th column for a 4-column grid", () => {
+  it("keeps three approved commercial plans and a non-plan fourth column", () => {
     const pricing = read("components/marketing/landing/PricingSection.tsx");
-    assert.match(pricing, /from "@\/app\/\(marketing\)\/pricing\/plans"/);
-    assert.match(pricing, /PLAN_TIERS\.map/);
+    assert.match(pricing, /PRICING_CARDS\.map/);
     assert.match(pricing, /lg:grid-cols-4/);
+    assert.match(pricing, /ContactPanel/);
     assert.match(pricing, /lm-pricing-dark/);
-    assert.equal(PLAN_TIERS.length, 3);
+    assert.deepEqual(PRICING_CARDS.map((plan) => plan.name), ["Starter", "Team", "Studio"]);
+    assert.equal(PRICING_CARDS.filter((plan) => plan.featured).length, 1);
+    assert.equal(PRICING_CARDS.find((plan) => plan.featured)?.badge, "MOST POPULAR");
+    assert.doesNotMatch(pricing, /Enterprise/);
   });
 
-  it("never types a price — the paid row comes from live config", () => {
-    const pricing = code(read("components/marketing/landing/PricingSection.tsx"));
-    assert.match(pricing, /priceLines/, "the card renders pre-formatted price lines");
-    assert.match(pricing, /PRICES_UNCONFIGURED_NOTE/, "and says so when there is no config");
-    // The only literal money on the whole landing surface is the free $0.
-    const literals = pricing.match(/\$\d[,\d.]*/g) ?? [];
-    assert.deepEqual(literals, ["$0"], "no hardcoded prices in the pricing band");
+  it("renders the approved monthly amounts and seat terms from the pricing-page presentation", () => {
+    assert.deepEqual(PRICING_CARDS.map((plan) => plan.price), ["$29", "$79", "$199"]);
+    assert.deepEqual(PRICING_CARDS.map((plan) => plan.cadence), ["/ month", "/ month", "/ month"]);
+    assert.equal(PRICING_CARDS[0].seats, "1 seat");
+    assert.match(PRICING_CARDS[1].seats, /Up to 5 seats/);
+    assert.match(PRICING_CARDS[1].seats, /\+\$12/);
+    assert.match(PRICING_CARDS[2].seats, /Up to 15 seats/);
+    assert.equal(PRICING_CARDS[0].cta.href, "/signup");
+    assert.equal(PRICING_CARDS[1].cta.href, "/signup");
+    assert.equal(PRICING_CARDS[2].cta.href, "mailto:hello@roducq.dev?subject=roducq%20Studio%20enquiry");
   });
 
-  it("does not offer a billing interval it cannot charge", () => {
-    const pricing = code(read("components/marketing/landing/PricingSection.tsx"));
-    assert.doesNotMatch(pricing, /yearly|annual/i, "no annual toggle until ANNUAL_PRICES is real");
+  it("prints every approved billing and enforcement disclosure on the homepage", () => {
+    const pricing = read("components/marketing/landing/PricingSection.tsx");
+    assert.match(pricing, /PRICING_DISCLOSURE\.map/);
+    assert.match(PRICING_DISCLOSURE.join(" "), /Annual checkout is not available/i);
+    assert.match(PRICING_DISCLOSURE.join(" "), /brief and seat limits are not currently enforced/i);
+    assert.match(PRICING_DISCLOSURE.join(" "), /Additional-seat billing is not currently implemented/i);
+    assert.match(PRICING_DISCLOSURE.join(" "), /does not purchase or activate a paid plan/i);
+    assert.doesNotMatch(pricing, /Razorpay|priceLines|billingConfigured/);
   });
 
-  it("carries the per-workspace, not-per-seat contract", () => {
-    const copy = `${PRICING_SECTION.title} ${PRICING_SECTION.intro}`;
-    assert.match(copy, /per workspace/i);
-    assert.match(copy, /never per seat/i);
+  it("links the price details to the approved pricing route", () => {
     assert.equal(PRICING_SECTION.cta.href, "/pricing");
   });
 });
@@ -490,15 +498,15 @@ describe("/ limitation callout", () => {
 
   it("closes the page inside the final CTA band, after the actions", () => {
     const cta = read("components/marketing/landing/FinalCta.tsx");
-    const action = cta.indexOf("CLOSING.primaryCta.href");
+    const action = cta.indexOf("HOME_CLOSING.primaryCta.href");
     const callout = cta.indexOf("home-limitation");
     assert.ok(action > -1 && callout > action, "callout belongs after the closing actions");
   });
 
   it("the closing headline spells the same sentence as its accessible title", () => {
     assert.equal(
-      CLOSING.lines.join(" ").replace(/\s+/g, " ").trim(),
-      CLOSING.title.replace(/\s+/g, " ").trim(),
+      HOME_CLOSING.lines.join(" ").replace(/\s+/g, " ").trim(),
+      HOME_CLOSING.title.replace(/\s+/g, " ").trim(),
     );
   });
 });
@@ -518,11 +526,14 @@ describe("/ landing truthfulness", () => {
     }
   });
 
-  it("the only price figure in the copy is the free plan's $0", () => {
+  it("publishes only the three approved monthly prices and no fabricated tier", () => {
     const figures = ALL_COPY.join("\n").match(/\$\d[\d,]*(?:\.\d{2})?/g) ?? [];
-    assert.deepEqual(figures, [], "no price belongs in the copy — the card renders live config");
+    assert.deepEqual(figures.filter((price) => ["$29", "$79", "$199"].includes(price)), ["$29", "$79", "$199"]);
+    assert.doesNotMatch(ALL_COPY.join(" "), /\b(?:Free|Enterprise) plan\b/i);
+    assert.doesNotMatch(ALL_COPY.join(" "), /annual discount|save \d+%/i);
     const pricing = read("components/marketing/landing/PricingSection.tsx");
-    assert.match(pricing, /\$0/, "the free tier's $0 is rendered from the component");
+    assert.match(pricing, /PRICING_CARDS/);
+    assert.doesNotMatch(pricing, /priceLines|PRICES_UNCONFIGURED_NOTE/);
   });
 
   it("every signature / payment / accounting mention is a denial or the limits", () => {
@@ -572,8 +583,8 @@ describe("/ landing truthfulness", () => {
 
   it("the metadata description repeats the limits, so search snippets do too", () => {
     const metadata = PAGE.slice(0, PAGE.indexOf("export default"));
-    assert.match(metadata, /no e-signature/i);
-    assert.match(metadata, /payment collection/i);
+    assert.match(metadata, /does not collect e-signatures/i);
+    assert.match(metadata, /payments/i);
   });
 
   it("claims only capabilities the repo actually ships", () => {
@@ -1085,6 +1096,19 @@ describe("/ landing routes", () => {
     return false;
   }
 
+  it("limits homepage account/announcement copy to / while preserving the shared shell elsewhere", () => {
+    const announcement = read("components/marketing/landing/AnnouncementBar.tsx");
+    const footerAccount = read("components/marketing/FooterAccountCta.tsx");
+    assert.ok(announcement.includes("homepage ? HOME_ANNOUNCEMENT : ANNOUNCEMENT"));
+    assert.ok(HEADER.includes('<AnnouncementBar homepage={pathname === "/"} />'));
+    assert.ok(footerAccount.includes('pathname === "/" ? homepageLabel : "Start free"'));
+    assert.match(FOOTER_TSX, /homepageLabel=\{HOME_FOOTER_CTA\.label\}/);
+    assert.equal(ANNOUNCEMENT.label, "Included on the free plan");
+    assert.equal(FOOTER.cta.label, "Start free");
+    assert.equal(HOME_FOOTER_CTA.label, "Create an account");
+    assert.equal(HOME_ANNOUNCEMENT.label, "Client work, made clearer");
+  });
+
   it("publishes no broken internal link", () => {
     const hrefs = internalHrefs();
     assert.ok(hrefs.length >= 6, "the landing surface should link somewhere");
@@ -1358,6 +1382,19 @@ describe("/ landing design documentation", () => {
     assert.match(DOC, /prefers-reduced-motion/);
     assert.match(DOC, /44px/);
     assert.match(DOC, /<details>\/<summary>|<details>\/<summary>/);
+  });
+});
+
+describe("Forma homepage redesign records", () => {
+  it("includes both the reference audit and the implementation/verification record", () => {
+    const reference = read("docs/FORMA_HOMEPAGE_REDESIGN_REFERENCE.md");
+    const implementation = read("docs/FORMA_HOMEPAGE_REDESIGN.md");
+    assert.match(reference, /forma-visuvate\.framer\.website/);
+    assert.match(reference, /No pixel-match percentage/);
+    assert.match(implementation, /1,329 tests/);
+    assert.match(implementation, /320, 375, 390, 768, 1024, 1200, and 1440px/);
+    assert.match(implementation, /axe-core scan/);
+    assert.match(implementation, /No browser evidence supports a claim of exact pixel parity/);
   });
 });
 
