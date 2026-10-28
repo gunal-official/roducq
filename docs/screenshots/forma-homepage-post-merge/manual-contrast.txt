@@ -1,0 +1,19 @@
+Manual contrast samples for axe-core's incomplete color-contrast checks
+
+Solid-color samples (pixel-sampled background under glyphs; light and dark theme; 1440 CSS px; text-size-specific WCAG 2.2 AA minimum):
+light / 1440 5.01:1 PASS (needs 4.5) hero note (muted ink on card) — 12px/400 fg rgb(122, 101, 159) on rgb(255,255,255)
+dark  / 1440 6.17:1 PASS (needs 4.5) hero note (muted ink on card) — 12px/400 fg rgb(167, 149, 196) on rgb(33,27,41)
+light / 1440 8.25:1 PASS (needs 3) closing CTA headline (white on gradient) — 64px/600 fg rgb(255, 255, 255) on rgb(76,54,186)
+dark  / 1440 8.25:1 PASS (needs 3) closing CTA headline (white on gradient) — 64px/600 fg rgb(255, 255, 255) on rgb(76,54,186)
+light / 1440 6.23:1 PASS (needs 4.5) closing CTA body — 19px/400 fg rgb(239, 235, 255) on rgb(85,62,198)
+dark  / 1440 6.23:1 PASS (needs 4.5) closing CTA body — 19px/400 fg rgb(239, 235, 255) on rgb(85,62,198)
+light / 1440 15.62:1 PASS (needs 4.5) dark pricing card title — 23px/600 fg rgb(249, 247, 252) on rgb(35,26,49)
+dark  / 1440 14.86:1 PASS (needs 4.5) dark pricing card title — 23px/600 fg rgb(244, 240, 251) on rgb(34,26,48)
+light / 1440 9.88:1 PASS (needs 4.5) dark pricing card body — 12px/600 fg rgb(205, 196, 216) on rgb(35,26,49)
+dark  / 1440 9.88:1 PASS (needs 4.5) dark pricing card body — 12px/600 fg rgb(205, 196, 216) on rgb(35,26,49)
+light / 1440 5.01:1 PASS (needs 4.5) works-with chip — 10px/600 fg rgb(122, 101, 159) on rgb(255,255,255)
+dark  / 1440 6.17:1 PASS (needs 4.5) works-with chip — 10px/600 fg rgb(167, 149, 196) on rgb(33,27,41)
+
+Hero gradient text was checked separately by comparing the exact computed CSS gradient stops with sampled page-background pixels at glyph locations (all visible gradient spans; 390 and 1440 CSS px; light and dark themes). Minimum ratios: 3.12:1 light/390, 3.85:1 light/1440, 3.06:1 dark/390, 3.96:1 dark/1440. These are above the 3:1 large-text floor; mobile dark has the narrowest margin. Full per-span samples and pixel coordinates are in gradient-contrast-exact.json.
+
+Scope note: these are representative, manually sampled contrast checks only. Axe left 42–44 nodes per run incomplete because of layered/overlapped demo artwork, gradient text, and preview backgrounds; the complete per-node axe output is retained in browser-audit.json. This does not certify every incomplete node.

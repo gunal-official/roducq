@@ -1,0 +1,210 @@
+[
+  {
+    "scheme": "light",
+    "width": 390,
+    "text": "clear",
+    "cssGradient": "linear-gradient(90deg, rgb(98, 70, 234) 0%, rgb(139, 92, 246) 50%, rgb(168, 85, 251) 100%)",
+    "glyphBackdropPixels": 1075,
+    "minimumContrast": 3.12,
+    "worst": {
+      "x": 190,
+      "y": 391,
+      "fraction": 0.958,
+      "foreground": [
+        166,
+        86,
+        251
+      ],
+      "background": [
+        234,
+        225,
+        253
+      ],
+      "ratio": 3.122,
+      "pixelDifference": 76
+    },
+    "threshold": "3:1 WCAG AA for large text; exact CSS gradient stops vs sampled page background at pixels intersecting rendered glyphs (diff >15)"
+  },
+  {
+    "scheme": "light",
+    "width": 390,
+    "text": "proposal",
+    "cssGradient": "linear-gradient(90deg, rgb(98, 70, 234) 0%, rgb(139, 92, 246) 50%, rgb(168, 85, 251) 100%)",
+    "glyphBackdropPixels": 1891,
+    "minimumContrast": 3.24,
+    "worst": {
+      "x": 361,
+      "y": 411,
+      "fraction": 0.98,
+      "foreground": [
+        167,
+        85,
+        251
+      ],
+      "background": [
+        238,
+        229,
+        255
+      ],
+      "ratio": 3.24,
+      "pixelDifference": 218
+    },
+    "threshold": "3:1 WCAG AA for large text; exact CSS gradient stops vs sampled page background at pixels intersecting rendered glyphs (diff >15)"
+  },
+  {
+    "scheme": "light",
+    "width": 1440,
+    "text": "clear",
+    "cssGradient": "linear-gradient(90deg, rgb(98, 70, 234) 0%, rgb(139, 92, 246) 50%, rgb(168, 85, 251) 100%)",
+    "glyphBackdropPixels": 2628,
+    "minimumContrast": 3.92,
+    "worst": {
+      "x": 716,
+      "y": 387,
+      "fraction": 0.994,
+      "foreground": [
+        168,
+        85,
+        251
+      ],
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "ratio": 3.92,
+      "pixelDifference": 221
+    },
+    "threshold": "3:1 WCAG AA for large text; exact CSS gradient stops vs sampled page background at pixels intersecting rendered glyphs (diff >15)"
+  },
+  {
+    "scheme": "light",
+    "width": 1440,
+    "text": "proposal",
+    "cssGradient": "linear-gradient(90deg, rgb(98, 70, 234) 0%, rgb(139, 92, 246) 50%, rgb(168, 85, 251) 100%)",
+    "glyphBackdropPixels": 4793,
+    "minimumContrast": 3.85,
+    "worst": {
+      "x": 997,
+      "y": 373,
+      "fraction": 0.976,
+      "foreground": [
+        167,
+        85,
+        251
+      ],
+      "background": [
+        253,
+        252,
+        255
+      ],
+      "ratio": 3.851,
+      "pixelDifference": 231
+    },
+    "threshold": "3:1 WCAG AA for large text; exact CSS gradient stops vs sampled page background at pixels intersecting rendered glyphs (diff >15)"
+  },
+  {
+    "scheme": "dark",
+    "width": 390,
+    "text": "clear",
+    "cssGradient": "linear-gradient(90deg, rgb(167, 139, 250) 0%, rgb(139, 92, 246) 50%, rgb(168, 85, 251) 100%)",
+    "glyphBackdropPixels": 1081,
+    "minimumContrast": 3.06,
+    "worst": {
+      "x": 148,
+      "y": 404,
+      "fraction": 0.499,
+      "foreground": [
+        139,
+        92,
+        246
+      ],
+      "background": [
+        54,
+        43,
+        80
+      ],
+      "ratio": 3.065,
+      "pixelDifference": 75
+    },
+    "threshold": "3:1 WCAG AA for large text; exact CSS gradient stops vs sampled page background at pixels intersecting rendered glyphs (diff >15)"
+  },
+  {
+    "scheme": "dark",
+    "width": 390,
+    "text": "proposal",
+    "cssGradient": "linear-gradient(90deg, rgb(167, 139, 250) 0%, rgb(139, 92, 246) 50%, rgb(168, 85, 251) 100%)",
+    "glyphBackdropPixels": 1901,
+    "minimumContrast": 3.11,
+    "worst": {
+      "x": 285,
+      "y": 409,
+      "fraction": 0.513,
+      "foreground": [
+        140,
+        92,
+        246
+      ],
+      "background": [
+        52,
+        43,
+        77
+      ],
+      "ratio": 3.113,
+      "pixelDifference": 307
+    },
+    "threshold": "3:1 WCAG AA for large text; exact CSS gradient stops vs sampled page background at pixels intersecting rendered glyphs (diff >15)"
+  },
+  {
+    "scheme": "dark",
+    "width": 1440,
+    "text": "clear",
+    "cssGradient": "linear-gradient(90deg, rgb(167, 139, 250) 0%, rgb(139, 92, 246) 50%, rgb(168, 85, 251) 100%)",
+    "glyphBackdropPixels": 2693,
+    "minimumContrast": 3.96,
+    "worst": {
+      "x": 640,
+      "y": 386,
+      "fraction": 0.495,
+      "foreground": [
+        139,
+        92,
+        246
+      ],
+      "background": [
+        33,
+        27,
+        41
+      ],
+      "ratio": 3.957,
+      "pixelDifference": 202
+    },
+    "threshold": "3:1 WCAG AA for large text; exact CSS gradient stops vs sampled page background at pixels intersecting rendered glyphs (diff >15)"
+  },
+  {
+    "scheme": "dark",
+    "width": 1440,
+    "text": "proposal",
+    "cssGradient": "linear-gradient(90deg, rgb(167, 139, 250) 0%, rgb(139, 92, 246) 50%, rgb(168, 85, 251) 100%)",
+    "glyphBackdropPixels": 4870,
+    "minimumContrast": 3.96,
+    "worst": {
+      "x": 865,
+      "y": 389,
+      "fraction": 0.496,
+      "foreground": [
+        139,
+        92,
+        246
+      ],
+      "background": [
+        33,
+        27,
+        41
+      ],
+      "ratio": 3.957,
+      "pixelDifference": 235
+    },
+    "threshold": "3:1 WCAG AA for large text; exact CSS gradient stops vs sampled page background at pixels intersecting rendered glyphs (diff >15)"
+  }
+]

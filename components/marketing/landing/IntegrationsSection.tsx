@@ -64,7 +64,6 @@ export function IntegrationsSection() {
               <Reveal key={item.name} as="li" delay={(index % 3) * 70}>
                 <Link
                   href="/integrations"
-                  aria-label={`Learn more about ${item.name} on the integrations page`}
                   className="group relative flex h-full min-h-11 items-start gap-4 rounded-lm-card border border-lm-border-soft bg-lm-card p-6.25 transition-[border-color,box-shadow] duration-200 hover:border-lm-border-strong hover:shadow-lm-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lm-accent"
                 >
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lm-row border border-lm-border-soft bg-lm-canvas text-lm-ink-accent">
