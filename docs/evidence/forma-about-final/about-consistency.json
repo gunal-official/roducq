@@ -1,0 +1,2651 @@
+{
+  "capturedAt": "2026-10-28T13:04:22.614Z",
+  "baseUrl": "http://localhost:3000",
+  "routes": [
+    "/about"
+  ],
+  "widths": [
+    320,
+    375,
+    390,
+    768,
+    1024,
+    1200,
+    1440
+  ],
+  "runs": 3,
+  "phases": [
+    "shell",
+    "axe",
+    "lcp",
+    "motion"
+  ],
+  "tools": {
+    "chromium": "153.0.8010.0",
+    "axeCore": true
+  },
+  "shell": [
+    {
+      "route": "/about",
+      "width": 320,
+      "scheme": "light",
+      "overflowX": 0,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "announceHeight": 123,
+      "header": {
+        "height": 64,
+        "bg": "rgb(255, 255, 255)",
+        "borderBottom": "0px",
+        "position": "sticky"
+      },
+      "nav": {
+        "display": "none",
+        "x": 0,
+        "right": 0,
+        "labels": [
+          "Features",
+          "Solutions",
+          "Integrations",
+          "Pricing",
+          "Changelog",
+          "About",
+          "Compare"
+        ],
+        "hrefs": [
+          "/features",
+          "/solutions",
+          "/integrations",
+          "/pricing",
+          "/changelog",
+          "/about",
+          "/vs"
+        ],
+        "active": [
+          "About"
+        ],
+        "firstLink": {
+          "fontSize": "15px",
+          "fontWeight": "400",
+          "color": "rgb(104, 112, 131)",
+          "paddingLeft": "10px",
+          "minHeight": "44px",
+          "borderRadius": "5px"
+        }
+      },
+      "wordmark": {
+        "size": "17px",
+        "weight": "700",
+        "tracking": "-1.02px"
+      },
+      "headerActions": [
+        {
+          "label": "roducq",
+          "href": "/"
+        },
+        {
+          "label": "Get started",
+          "href": "/signup"
+        },
+        {
+          "label": "Open menu",
+          "href": null
+        }
+      ],
+      "h1": {
+        "text": "Why we are building roducq",
+        "fontSize": "44px",
+        "fontWeight": "600",
+        "lineHeight": "44.88px",
+        "letterSpacing": "-1.32px",
+        "color": "rgb(27, 20, 38)"
+      },
+      "footer": {
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "1px",
+        "columns": 3,
+        "backToTop": true,
+        "wordmark": true
+      },
+      "smallTaps": [],
+      "canvasBg": "rgb(249, 247, 252)",
+      "bodyFont": "manrope, \"manrope Fallback\", ui-sans-serif, system-ui, sans-serif, Manrope, ui-sans-serif, system-ui, sans-serif",
+      "htmlClass": "lm-js light",
+      "themeSwitch": null,
+      "keyboard": [
+        {
+          "tag": "a",
+          "label": "Skip to content",
+          "href": "#main",
+          "outline": "solid 2px",
+          "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0"
+        },
+        {
+          "tag": "a",
+          "label": "See what's included",
+          "href": "/pricing",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "roducq home",
+          "href": "/",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Get started",
+          "href": "/signup",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "button",
+          "label": "Open menu",
+          "href": null,
+          "outline": "solid 2px",
+          "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0"
+        },
+        {
+          "tag": "a",
+          "label": "Read the changelog",
+          "href": "/changelog",
+          "outline": "none 3px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Read the comparisons",
+          "href": "/vs",
+          "outline": "none 3px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Get in touch(opens your email ",
+          "href": "mailto:hello@roducq.dev",
+          "outline": "none 3px",
+          "boxShadow": "none"
+        }
+      ],
+      "pageErrors": 0
+    },
+    {
+      "route": "/about",
+      "width": 320,
+      "scheme": "dark",
+      "overflowX": 0,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "announceHeight": 123,
+      "header": {
+        "height": 64,
+        "bg": "rgb(33, 27, 41)",
+        "borderBottom": "0px",
+        "position": "sticky"
+      },
+      "nav": {
+        "display": "none",
+        "x": 0,
+        "right": 0,
+        "labels": [
+          "Features",
+          "Solutions",
+          "Integrations",
+          "Pricing",
+          "Changelog",
+          "About",
+          "Compare"
+        ],
+        "hrefs": [
+          "/features",
+          "/solutions",
+          "/integrations",
+          "/pricing",
+          "/changelog",
+          "/about",
+          "/vs"
+        ],
+        "active": [
+          "About"
+        ],
+        "firstLink": {
+          "fontSize": "15px",
+          "fontWeight": "400",
+          "color": "rgb(164, 162, 179)",
+          "paddingLeft": "10px",
+          "minHeight": "44px",
+          "borderRadius": "5px"
+        }
+      },
+      "wordmark": {
+        "size": "17px",
+        "weight": "700",
+        "tracking": "-1.02px"
+      },
+      "headerActions": [
+        {
+          "label": "roducq",
+          "href": "/"
+        },
+        {
+          "label": "Get started",
+          "href": "/signup"
+        },
+        {
+          "label": "Open menu",
+          "href": null
+        }
+      ],
+      "h1": {
+        "text": "Why we are building roducq",
+        "fontSize": "44px",
+        "fontWeight": "600",
+        "lineHeight": "44.88px",
+        "letterSpacing": "-1.32px",
+        "color": "rgb(244, 240, 251)"
+      },
+      "footer": {
+        "bg": "rgb(33, 27, 41)",
+        "borderTop": "1px",
+        "columns": 3,
+        "backToTop": true,
+        "wordmark": true
+      },
+      "smallTaps": [],
+      "canvasBg": "rgb(23, 19, 30)",
+      "bodyFont": "manrope, \"manrope Fallback\", ui-sans-serif, system-ui, sans-serif, Manrope, ui-sans-serif, system-ui, sans-serif",
+      "htmlClass": "lm-js dark",
+      "themeSwitch": null,
+      "keyboard": [
+        {
+          "tag": "a",
+          "label": "Skip to content",
+          "href": "#main",
+          "outline": "solid 2px",
+          "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0"
+        },
+        {
+          "tag": "a",
+          "label": "See what's included",
+          "href": "/pricing",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "roducq home",
+          "href": "/",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Get started",
+          "href": "/signup",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "button",
+          "label": "Open menu",
+          "href": null,
+          "outline": "solid 2px",
+          "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0"
+        },
+        {
+          "tag": "a",
+          "label": "Read the changelog",
+          "href": "/changelog",
+          "outline": "none 3px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Read the comparisons",
+          "href": "/vs",
+          "outline": "none 3px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Get in touch(opens your email ",
+          "href": "mailto:hello@roducq.dev",
+          "outline": "none 3px",
+          "boxShadow": "none"
+        }
+      ],
+      "pageErrors": 0
+    },
+    {
+      "route": "/about",
+      "width": 375,
+      "scheme": "light",
+      "overflowX": 0,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "announceHeight": 105,
+      "header": {
+        "height": 64,
+        "bg": "rgb(255, 255, 255)",
+        "borderBottom": "0px",
+        "position": "sticky"
+      },
+      "nav": {
+        "display": "none",
+        "x": 0,
+        "right": 0,
+        "labels": [
+          "Features",
+          "Solutions",
+          "Integrations",
+          "Pricing",
+          "Changelog",
+          "About",
+          "Compare"
+        ],
+        "hrefs": [
+          "/features",
+          "/solutions",
+          "/integrations",
+          "/pricing",
+          "/changelog",
+          "/about",
+          "/vs"
+        ],
+        "active": [
+          "About"
+        ],
+        "firstLink": {
+          "fontSize": "15px",
+          "fontWeight": "400",
+          "color": "rgb(104, 112, 131)",
+          "paddingLeft": "10px",
+          "minHeight": "44px",
+          "borderRadius": "5px"
+        }
+      },
+      "wordmark": {
+        "size": "17px",
+        "weight": "700",
+        "tracking": "-1.02px"
+      },
+      "headerActions": [
+        {
+          "label": "roducq",
+          "href": "/"
+        },
+        {
+          "label": "Switch to dark theme",
+          "href": null
+        },
+        {
+          "label": "Get started",
+          "href": "/signup"
+        },
+        {
+          "label": "Open menu",
+          "href": null
+        }
+      ],
+      "h1": {
+        "text": "Why we are building roducq",
+        "fontSize": "44px",
+        "fontWeight": "600",
+        "lineHeight": "44.88px",
+        "letterSpacing": "-1.32px",
+        "color": "rgb(27, 20, 38)"
+      },
+      "footer": {
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "1px",
+        "columns": 3,
+        "backToTop": true,
+        "wordmark": true
+      },
+      "smallTaps": [],
+      "canvasBg": "rgb(249, 247, 252)",
+      "bodyFont": "manrope, \"manrope Fallback\", ui-sans-serif, system-ui, sans-serif, Manrope, ui-sans-serif, system-ui, sans-serif",
+      "htmlClass": "lm-js light",
+      "themeSwitch": null,
+      "keyboard": [
+        {
+          "tag": "a",
+          "label": "Skip to content",
+          "href": "#main",
+          "outline": "solid 2px",
+          "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0"
+        },
+        {
+          "tag": "a",
+          "label": "See what's included",
+          "href": "/pricing",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "roducq home",
+          "href": "/",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "button",
+          "label": "Switch to dark theme",
+          "href": null,
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Get started",
+          "href": "/signup",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "button",
+          "label": "Open menu",
+          "href": null,
+          "outline": "solid 2px",
+          "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0"
+        },
+        {
+          "tag": "a",
+          "label": "Read the changelog",
+          "href": "/changelog",
+          "outline": "none 3px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Read the comparisons",
+          "href": "/vs",
+          "outline": "none 3px",
+          "boxShadow": "none"
+        }
+      ],
+      "pageErrors": 0
+    },
+    {
+      "route": "/about",
+      "width": 375,
+      "scheme": "dark",
+      "overflowX": 0,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "announceHeight": 105,
+      "header": {
+        "height": 64,
+        "bg": "rgb(33, 27, 41)",
+        "borderBottom": "0px",
+        "position": "sticky"
+      },
+      "nav": {
+        "display": "none",
+        "x": 0,
+        "right": 0,
+        "labels": [
+          "Features",
+          "Solutions",
+          "Integrations",
+          "Pricing",
+          "Changelog",
+          "About",
+          "Compare"
+        ],
+        "hrefs": [
+          "/features",
+          "/solutions",
+          "/integrations",
+          "/pricing",
+          "/changelog",
+          "/about",
+          "/vs"
+        ],
+        "active": [
+          "About"
+        ],
+        "firstLink": {
+          "fontSize": "15px",
+          "fontWeight": "400",
+          "color": "rgb(164, 162, 179)",
+          "paddingLeft": "10px",
+          "minHeight": "44px",
+          "borderRadius": "5px"
+        }
+      },
+      "wordmark": {
+        "size": "17px",
+        "weight": "700",
+        "tracking": "-1.02px"
+      },
+      "headerActions": [
+        {
+          "label": "roducq",
+          "href": "/"
+        },
+        {
+          "label": "Switch to light theme",
+          "href": null
+        },
+        {
+          "label": "Get started",
+          "href": "/signup"
+        },
+        {
+          "label": "Open menu",
+          "href": null
+        }
+      ],
+      "h1": {
+        "text": "Why we are building roducq",
+        "fontSize": "44px",
+        "fontWeight": "600",
+        "lineHeight": "44.88px",
+        "letterSpacing": "-1.32px",
+        "color": "rgb(244, 240, 251)"
+      },
+      "footer": {
+        "bg": "rgb(33, 27, 41)",
+        "borderTop": "1px",
+        "columns": 3,
+        "backToTop": true,
+        "wordmark": true
+      },
+      "smallTaps": [],
+      "canvasBg": "rgb(23, 19, 30)",
+      "bodyFont": "manrope, \"manrope Fallback\", ui-sans-serif, system-ui, sans-serif, Manrope, ui-sans-serif, system-ui, sans-serif",
+      "htmlClass": "lm-js dark",
+      "themeSwitch": null,
+      "keyboard": [
+        {
+          "tag": "a",
+          "label": "Skip to content",
+          "href": "#main",
+          "outline": "solid 2px",
+          "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0"
+        },
+        {
+          "tag": "a",
+          "label": "See what's included",
+          "href": "/pricing",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "roducq home",
+          "href": "/",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "button",
+          "label": "Switch to light theme",
+          "href": null,
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Get started",
+          "href": "/signup",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "button",
+          "label": "Open menu",
+          "href": null,
+          "outline": "solid 2px",
+          "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0"
+        },
+        {
+          "tag": "a",
+          "label": "Read the changelog",
+          "href": "/changelog",
+          "outline": "none 3px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Read the comparisons",
+          "href": "/vs",
+          "outline": "none 3px",
+          "boxShadow": "none"
+        }
+      ],
+      "pageErrors": 0
+    },
+    {
+      "route": "/about",
+      "width": 390,
+      "scheme": "light",
+      "overflowX": 0,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "announceHeight": 105,
+      "header": {
+        "height": 64,
+        "bg": "rgb(255, 255, 255)",
+        "borderBottom": "0px",
+        "position": "sticky"
+      },
+      "nav": {
+        "display": "none",
+        "x": 0,
+        "right": 0,
+        "labels": [
+          "Features",
+          "Solutions",
+          "Integrations",
+          "Pricing",
+          "Changelog",
+          "About",
+          "Compare"
+        ],
+        "hrefs": [
+          "/features",
+          "/solutions",
+          "/integrations",
+          "/pricing",
+          "/changelog",
+          "/about",
+          "/vs"
+        ],
+        "active": [
+          "About"
+        ],
+        "firstLink": {
+          "fontSize": "15px",
+          "fontWeight": "400",
+          "color": "rgb(104, 112, 131)",
+          "paddingLeft": "10px",
+          "minHeight": "44px",
+          "borderRadius": "5px"
+        }
+      },
+      "wordmark": {
+        "size": "17px",
+        "weight": "700",
+        "tracking": "-1.02px"
+      },
+      "headerActions": [
+        {
+          "label": "roducq",
+          "href": "/"
+        },
+        {
+          "label": "Switch to dark theme",
+          "href": null
+        },
+        {
+          "label": "Get started",
+          "href": "/signup"
+        },
+        {
+          "label": "Open menu",
+          "href": null
+        }
+      ],
+      "h1": {
+        "text": "Why we are building roducq",
+        "fontSize": "44px",
+        "fontWeight": "600",
+        "lineHeight": "44.88px",
+        "letterSpacing": "-1.32px",
+        "color": "rgb(27, 20, 38)"
+      },
+      "footer": {
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "1px",
+        "columns": 3,
+        "backToTop": true,
+        "wordmark": true
+      },
+      "smallTaps": [],
+      "canvasBg": "rgb(249, 247, 252)",
+      "bodyFont": "manrope, \"manrope Fallback\", ui-sans-serif, system-ui, sans-serif, Manrope, ui-sans-serif, system-ui, sans-serif",
+      "htmlClass": "lm-js light",
+      "themeSwitch": null,
+      "keyboard": [
+        {
+          "tag": "a",
+          "label": "Skip to content",
+          "href": "#main",
+          "outline": "solid 2px",
+          "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0"
+        },
+        {
+          "tag": "a",
+          "label": "See what's included",
+          "href": "/pricing",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "roducq home",
+          "href": "/",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "button",
+          "label": "Switch to dark theme",
+          "href": null,
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Get started",
+          "href": "/signup",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "button",
+          "label": "Open menu",
+          "href": null,
+          "outline": "solid 2px",
+          "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0"
+        },
+        {
+          "tag": "a",
+          "label": "Read the changelog",
+          "href": "/changelog",
+          "outline": "none 3px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Read the comparisons",
+          "href": "/vs",
+          "outline": "none 3px",
+          "boxShadow": "none"
+        }
+      ],
+      "pageErrors": 0
+    },
+    {
+      "route": "/about",
+      "width": 390,
+      "scheme": "dark",
+      "overflowX": 0,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "announceHeight": 105,
+      "header": {
+        "height": 64,
+        "bg": "rgb(33, 27, 41)",
+        "borderBottom": "0px",
+        "position": "sticky"
+      },
+      "nav": {
+        "display": "none",
+        "x": 0,
+        "right": 0,
+        "labels": [
+          "Features",
+          "Solutions",
+          "Integrations",
+          "Pricing",
+          "Changelog",
+          "About",
+          "Compare"
+        ],
+        "hrefs": [
+          "/features",
+          "/solutions",
+          "/integrations",
+          "/pricing",
+          "/changelog",
+          "/about",
+          "/vs"
+        ],
+        "active": [
+          "About"
+        ],
+        "firstLink": {
+          "fontSize": "15px",
+          "fontWeight": "400",
+          "color": "rgb(164, 162, 179)",
+          "paddingLeft": "10px",
+          "minHeight": "44px",
+          "borderRadius": "5px"
+        }
+      },
+      "wordmark": {
+        "size": "17px",
+        "weight": "700",
+        "tracking": "-1.02px"
+      },
+      "headerActions": [
+        {
+          "label": "roducq",
+          "href": "/"
+        },
+        {
+          "label": "Switch to light theme",
+          "href": null
+        },
+        {
+          "label": "Get started",
+          "href": "/signup"
+        },
+        {
+          "label": "Open menu",
+          "href": null
+        }
+      ],
+      "h1": {
+        "text": "Why we are building roducq",
+        "fontSize": "44px",
+        "fontWeight": "600",
+        "lineHeight": "44.88px",
+        "letterSpacing": "-1.32px",
+        "color": "rgb(244, 240, 251)"
+      },
+      "footer": {
+        "bg": "rgb(33, 27, 41)",
+        "borderTop": "1px",
+        "columns": 3,
+        "backToTop": true,
+        "wordmark": true
+      },
+      "smallTaps": [],
+      "canvasBg": "rgb(23, 19, 30)",
+      "bodyFont": "manrope, \"manrope Fallback\", ui-sans-serif, system-ui, sans-serif, Manrope, ui-sans-serif, system-ui, sans-serif",
+      "htmlClass": "lm-js dark",
+      "themeSwitch": null,
+      "keyboard": [
+        {
+          "tag": "a",
+          "label": "Skip to content",
+          "href": "#main",
+          "outline": "solid 2px",
+          "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0"
+        },
+        {
+          "tag": "a",
+          "label": "See what's included",
+          "href": "/pricing",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "roducq home",
+          "href": "/",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "button",
+          "label": "Switch to light theme",
+          "href": null,
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Get started",
+          "href": "/signup",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "button",
+          "label": "Open menu",
+          "href": null,
+          "outline": "solid 2px",
+          "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0"
+        },
+        {
+          "tag": "a",
+          "label": "Read the changelog",
+          "href": "/changelog",
+          "outline": "none 3px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Read the comparisons",
+          "href": "/vs",
+          "outline": "none 3px",
+          "boxShadow": "none"
+        }
+      ],
+      "pageErrors": 0
+    },
+    {
+      "route": "/about",
+      "width": 768,
+      "scheme": "light",
+      "overflowX": 0,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "announceHeight": 61,
+      "header": {
+        "height": 72,
+        "bg": "rgb(255, 255, 255)",
+        "borderBottom": "0px",
+        "position": "sticky"
+      },
+      "nav": {
+        "display": "none",
+        "x": 0,
+        "right": 0,
+        "labels": [
+          "Features",
+          "Solutions",
+          "Integrations",
+          "Pricing",
+          "Changelog",
+          "About",
+          "Compare"
+        ],
+        "hrefs": [
+          "/features",
+          "/solutions",
+          "/integrations",
+          "/pricing",
+          "/changelog",
+          "/about",
+          "/vs"
+        ],
+        "active": [
+          "About"
+        ],
+        "firstLink": {
+          "fontSize": "15px",
+          "fontWeight": "400",
+          "color": "rgb(104, 112, 131)",
+          "paddingLeft": "10px",
+          "minHeight": "44px",
+          "borderRadius": "5px"
+        }
+      },
+      "wordmark": {
+        "size": "28px",
+        "weight": "700",
+        "tracking": "-1.68px"
+      },
+      "headerActions": [
+        {
+          "label": "roducq",
+          "href": "/"
+        },
+        {
+          "label": "Switch to dark theme",
+          "href": null
+        },
+        {
+          "label": "Get started",
+          "href": "/signup"
+        },
+        {
+          "label": "Open menu",
+          "href": null
+        }
+      ],
+      "h1": {
+        "text": "Why we are building roducq",
+        "fontSize": "44px",
+        "fontWeight": "600",
+        "lineHeight": "44.88px",
+        "letterSpacing": "-1.32px",
+        "color": "rgb(27, 20, 38)"
+      },
+      "footer": {
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "1px",
+        "columns": 3,
+        "backToTop": true,
+        "wordmark": true
+      },
+      "smallTaps": [],
+      "canvasBg": "rgb(249, 247, 252)",
+      "bodyFont": "manrope, \"manrope Fallback\", ui-sans-serif, system-ui, sans-serif, Manrope, ui-sans-serif, system-ui, sans-serif",
+      "htmlClass": "lm-js light",
+      "themeSwitch": null,
+      "keyboard": [
+        {
+          "tag": "a",
+          "label": "Skip to content",
+          "href": "#main",
+          "outline": "solid 2px",
+          "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0"
+        },
+        {
+          "tag": "a",
+          "label": "See what's included",
+          "href": "/pricing",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "roducq home",
+          "href": "/",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "button",
+          "label": "Switch to dark theme",
+          "href": null,
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Get started",
+          "href": "/signup",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "button",
+          "label": "Open menu",
+          "href": null,
+          "outline": "solid 2px",
+          "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0"
+        },
+        {
+          "tag": "a",
+          "label": "Read the changelog",
+          "href": "/changelog",
+          "outline": "none 3px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Read the comparisons",
+          "href": "/vs",
+          "outline": "none 3px",
+          "boxShadow": "none"
+        }
+      ],
+      "pageErrors": 0
+    },
+    {
+      "route": "/about",
+      "width": 768,
+      "scheme": "dark",
+      "overflowX": 0,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "announceHeight": 61,
+      "header": {
+        "height": 72,
+        "bg": "rgb(33, 27, 41)",
+        "borderBottom": "0px",
+        "position": "sticky"
+      },
+      "nav": {
+        "display": "none",
+        "x": 0,
+        "right": 0,
+        "labels": [
+          "Features",
+          "Solutions",
+          "Integrations",
+          "Pricing",
+          "Changelog",
+          "About",
+          "Compare"
+        ],
+        "hrefs": [
+          "/features",
+          "/solutions",
+          "/integrations",
+          "/pricing",
+          "/changelog",
+          "/about",
+          "/vs"
+        ],
+        "active": [
+          "About"
+        ],
+        "firstLink": {
+          "fontSize": "15px",
+          "fontWeight": "400",
+          "color": "rgb(164, 162, 179)",
+          "paddingLeft": "10px",
+          "minHeight": "44px",
+          "borderRadius": "5px"
+        }
+      },
+      "wordmark": {
+        "size": "28px",
+        "weight": "700",
+        "tracking": "-1.68px"
+      },
+      "headerActions": [
+        {
+          "label": "roducq",
+          "href": "/"
+        },
+        {
+          "label": "Switch to light theme",
+          "href": null
+        },
+        {
+          "label": "Get started",
+          "href": "/signup"
+        },
+        {
+          "label": "Open menu",
+          "href": null
+        }
+      ],
+      "h1": {
+        "text": "Why we are building roducq",
+        "fontSize": "44px",
+        "fontWeight": "600",
+        "lineHeight": "44.88px",
+        "letterSpacing": "-1.32px",
+        "color": "rgb(244, 240, 251)"
+      },
+      "footer": {
+        "bg": "rgb(33, 27, 41)",
+        "borderTop": "1px",
+        "columns": 3,
+        "backToTop": true,
+        "wordmark": true
+      },
+      "smallTaps": [],
+      "canvasBg": "rgb(23, 19, 30)",
+      "bodyFont": "manrope, \"manrope Fallback\", ui-sans-serif, system-ui, sans-serif, Manrope, ui-sans-serif, system-ui, sans-serif",
+      "htmlClass": "lm-js dark",
+      "themeSwitch": null,
+      "keyboard": [
+        {
+          "tag": "a",
+          "label": "Skip to content",
+          "href": "#main",
+          "outline": "solid 2px",
+          "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0"
+        },
+        {
+          "tag": "a",
+          "label": "See what's included",
+          "href": "/pricing",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "roducq home",
+          "href": "/",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "button",
+          "label": "Switch to light theme",
+          "href": null,
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Get started",
+          "href": "/signup",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "button",
+          "label": "Open menu",
+          "href": null,
+          "outline": "solid 2px",
+          "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0"
+        },
+        {
+          "tag": "a",
+          "label": "Read the changelog",
+          "href": "/changelog",
+          "outline": "none 3px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Read the comparisons",
+          "href": "/vs",
+          "outline": "none 3px",
+          "boxShadow": "none"
+        }
+      ],
+      "pageErrors": 0
+    },
+    {
+      "route": "/about",
+      "width": 1024,
+      "scheme": "light",
+      "overflowX": 0,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "announceHeight": 61,
+      "header": {
+        "height": 72,
+        "bg": "rgb(255, 255, 255)",
+        "borderBottom": "0px",
+        "position": "sticky"
+      },
+      "nav": {
+        "display": "flex",
+        "x": 216,
+        "right": 808,
+        "labels": [
+          "Features",
+          "Solutions",
+          "Integrations",
+          "Pricing",
+          "Changelog",
+          "About",
+          "Compare"
+        ],
+        "hrefs": [
+          "/features",
+          "/solutions",
+          "/integrations",
+          "/pricing",
+          "/changelog",
+          "/about",
+          "/vs"
+        ],
+        "active": [
+          "About"
+        ],
+        "firstLink": {
+          "fontSize": "15px",
+          "fontWeight": "400",
+          "color": "rgb(104, 112, 131)",
+          "paddingLeft": "10px",
+          "minHeight": "44px",
+          "borderRadius": "5px"
+        }
+      },
+      "wordmark": {
+        "size": "28px",
+        "weight": "700",
+        "tracking": "-1.68px"
+      },
+      "headerActions": [
+        {
+          "label": "roducq",
+          "href": "/"
+        },
+        {
+          "label": "Features",
+          "href": "/features"
+        },
+        {
+          "label": "Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Integrations",
+          "href": "/integrations"
+        },
+        {
+          "label": "Pricing",
+          "href": "/pricing"
+        },
+        {
+          "label": "Changelog",
+          "href": "/changelog"
+        },
+        {
+          "label": "About",
+          "href": "/about"
+        },
+        {
+          "label": "Compare",
+          "href": "/vs"
+        },
+        {
+          "label": "Switch to dark theme",
+          "href": null
+        },
+        {
+          "label": "Get started",
+          "href": "/signup"
+        }
+      ],
+      "h1": {
+        "text": "Why we are building roducq",
+        "fontSize": "45.4px",
+        "fontWeight": "600",
+        "lineHeight": "46.308px",
+        "letterSpacing": "-1.362px",
+        "color": "rgb(27, 20, 38)"
+      },
+      "footer": {
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "1px",
+        "columns": 3,
+        "backToTop": true,
+        "wordmark": true
+      },
+      "smallTaps": [],
+      "canvasBg": "rgb(249, 247, 252)",
+      "bodyFont": "manrope, \"manrope Fallback\", ui-sans-serif, system-ui, sans-serif, Manrope, ui-sans-serif, system-ui, sans-serif",
+      "htmlClass": "lm-js light",
+      "themeSwitch": {
+        "before": "lm-js light",
+        "after": "lm-js dark",
+        "changed": true
+      },
+      "keyboard": [
+        {
+          "tag": "a",
+          "label": "Skip to content",
+          "href": "#main",
+          "outline": "solid 2px",
+          "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0"
+        },
+        {
+          "tag": "a",
+          "label": "See what's included",
+          "href": "/pricing",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "roducq home",
+          "href": "/",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Features",
+          "href": "/features",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Solutions",
+          "href": "/solutions",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Integrations",
+          "href": "/integrations",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Pricing",
+          "href": "/pricing",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Changelog",
+          "href": "/changelog",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        }
+      ],
+      "pageErrors": 0
+    },
+    {
+      "route": "/about",
+      "width": 1024,
+      "scheme": "dark",
+      "overflowX": 0,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "announceHeight": 61,
+      "header": {
+        "height": 72,
+        "bg": "rgb(33, 27, 41)",
+        "borderBottom": "0px",
+        "position": "sticky"
+      },
+      "nav": {
+        "display": "flex",
+        "x": 216,
+        "right": 808,
+        "labels": [
+          "Features",
+          "Solutions",
+          "Integrations",
+          "Pricing",
+          "Changelog",
+          "About",
+          "Compare"
+        ],
+        "hrefs": [
+          "/features",
+          "/solutions",
+          "/integrations",
+          "/pricing",
+          "/changelog",
+          "/about",
+          "/vs"
+        ],
+        "active": [
+          "About"
+        ],
+        "firstLink": {
+          "fontSize": "15px",
+          "fontWeight": "400",
+          "color": "rgb(164, 162, 179)",
+          "paddingLeft": "10px",
+          "minHeight": "44px",
+          "borderRadius": "5px"
+        }
+      },
+      "wordmark": {
+        "size": "28px",
+        "weight": "700",
+        "tracking": "-1.68px"
+      },
+      "headerActions": [
+        {
+          "label": "roducq",
+          "href": "/"
+        },
+        {
+          "label": "Features",
+          "href": "/features"
+        },
+        {
+          "label": "Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Integrations",
+          "href": "/integrations"
+        },
+        {
+          "label": "Pricing",
+          "href": "/pricing"
+        },
+        {
+          "label": "Changelog",
+          "href": "/changelog"
+        },
+        {
+          "label": "About",
+          "href": "/about"
+        },
+        {
+          "label": "Compare",
+          "href": "/vs"
+        },
+        {
+          "label": "Switch to light theme",
+          "href": null
+        },
+        {
+          "label": "Get started",
+          "href": "/signup"
+        }
+      ],
+      "h1": {
+        "text": "Why we are building roducq",
+        "fontSize": "45.4px",
+        "fontWeight": "600",
+        "lineHeight": "46.308px",
+        "letterSpacing": "-1.362px",
+        "color": "rgb(244, 240, 251)"
+      },
+      "footer": {
+        "bg": "rgb(33, 27, 41)",
+        "borderTop": "1px",
+        "columns": 3,
+        "backToTop": true,
+        "wordmark": true
+      },
+      "smallTaps": [],
+      "canvasBg": "rgb(23, 19, 30)",
+      "bodyFont": "manrope, \"manrope Fallback\", ui-sans-serif, system-ui, sans-serif, Manrope, ui-sans-serif, system-ui, sans-serif",
+      "htmlClass": "lm-js dark",
+      "themeSwitch": {
+        "before": "lm-js dark",
+        "after": "lm-js light",
+        "changed": true
+      },
+      "keyboard": [
+        {
+          "tag": "a",
+          "label": "Skip to content",
+          "href": "#main",
+          "outline": "solid 2px",
+          "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0"
+        },
+        {
+          "tag": "a",
+          "label": "See what's included",
+          "href": "/pricing",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "roducq home",
+          "href": "/",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Features",
+          "href": "/features",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Solutions",
+          "href": "/solutions",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Integrations",
+          "href": "/integrations",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Pricing",
+          "href": "/pricing",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Changelog",
+          "href": "/changelog",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        }
+      ],
+      "pageErrors": 0
+    },
+    {
+      "route": "/about",
+      "width": 1200,
+      "scheme": "light",
+      "overflowX": 0,
+      "scrollWidth": 1200,
+      "clientWidth": 1200,
+      "announceHeight": 61,
+      "header": {
+        "height": 72,
+        "bg": "rgb(255, 255, 255)",
+        "borderBottom": "0px",
+        "position": "sticky"
+      },
+      "nav": {
+        "display": "flex",
+        "x": 290,
+        "right": 910,
+        "labels": [
+          "Features",
+          "Solutions",
+          "Integrations",
+          "Pricing",
+          "Changelog",
+          "About",
+          "Compare"
+        ],
+        "hrefs": [
+          "/features",
+          "/solutions",
+          "/integrations",
+          "/pricing",
+          "/changelog",
+          "/about",
+          "/vs"
+        ],
+        "active": [
+          "About"
+        ],
+        "firstLink": {
+          "fontSize": "15px",
+          "fontWeight": "400",
+          "color": "rgb(104, 112, 131)",
+          "paddingLeft": "12px",
+          "minHeight": "44px",
+          "borderRadius": "5px"
+        }
+      },
+      "wordmark": {
+        "size": "28px",
+        "weight": "700",
+        "tracking": "-1.68px"
+      },
+      "headerActions": [
+        {
+          "label": "roducq",
+          "href": "/"
+        },
+        {
+          "label": "Features",
+          "href": "/features"
+        },
+        {
+          "label": "Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Integrations",
+          "href": "/integrations"
+        },
+        {
+          "label": "Pricing",
+          "href": "/pricing"
+        },
+        {
+          "label": "Changelog",
+          "href": "/changelog"
+        },
+        {
+          "label": "About",
+          "href": "/about"
+        },
+        {
+          "label": "Compare",
+          "href": "/vs"
+        },
+        {
+          "label": "Switch to dark theme",
+          "href": null
+        },
+        {
+          "label": "Get started",
+          "href": "/signup"
+        }
+      ],
+      "h1": {
+        "text": "Why we are building roducq",
+        "fontSize": "67.2px",
+        "fontWeight": "600",
+        "lineHeight": "68.544px",
+        "letterSpacing": "-2.016px",
+        "color": "rgb(27, 20, 38)"
+      },
+      "footer": {
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "1px",
+        "columns": 3,
+        "backToTop": true,
+        "wordmark": true
+      },
+      "smallTaps": [],
+      "canvasBg": "rgb(249, 247, 252)",
+      "bodyFont": "manrope, \"manrope Fallback\", ui-sans-serif, system-ui, sans-serif, Manrope, ui-sans-serif, system-ui, sans-serif",
+      "htmlClass": "lm-js light",
+      "themeSwitch": {
+        "before": "lm-js light",
+        "after": "lm-js dark",
+        "changed": true
+      },
+      "keyboard": [
+        {
+          "tag": "a",
+          "label": "Skip to content",
+          "href": "#main",
+          "outline": "solid 2px",
+          "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0"
+        },
+        {
+          "tag": "a",
+          "label": "See what's included",
+          "href": "/pricing",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "roducq home",
+          "href": "/",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Features",
+          "href": "/features",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Solutions",
+          "href": "/solutions",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Integrations",
+          "href": "/integrations",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Pricing",
+          "href": "/pricing",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Changelog",
+          "href": "/changelog",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        }
+      ],
+      "pageErrors": 0
+    },
+    {
+      "route": "/about",
+      "width": 1200,
+      "scheme": "dark",
+      "overflowX": 0,
+      "scrollWidth": 1200,
+      "clientWidth": 1200,
+      "announceHeight": 61,
+      "header": {
+        "height": 72,
+        "bg": "rgb(33, 27, 41)",
+        "borderBottom": "0px",
+        "position": "sticky"
+      },
+      "nav": {
+        "display": "flex",
+        "x": 290,
+        "right": 910,
+        "labels": [
+          "Features",
+          "Solutions",
+          "Integrations",
+          "Pricing",
+          "Changelog",
+          "About",
+          "Compare"
+        ],
+        "hrefs": [
+          "/features",
+          "/solutions",
+          "/integrations",
+          "/pricing",
+          "/changelog",
+          "/about",
+          "/vs"
+        ],
+        "active": [
+          "About"
+        ],
+        "firstLink": {
+          "fontSize": "15px",
+          "fontWeight": "400",
+          "color": "rgb(164, 162, 179)",
+          "paddingLeft": "12px",
+          "minHeight": "44px",
+          "borderRadius": "5px"
+        }
+      },
+      "wordmark": {
+        "size": "28px",
+        "weight": "700",
+        "tracking": "-1.68px"
+      },
+      "headerActions": [
+        {
+          "label": "roducq",
+          "href": "/"
+        },
+        {
+          "label": "Features",
+          "href": "/features"
+        },
+        {
+          "label": "Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Integrations",
+          "href": "/integrations"
+        },
+        {
+          "label": "Pricing",
+          "href": "/pricing"
+        },
+        {
+          "label": "Changelog",
+          "href": "/changelog"
+        },
+        {
+          "label": "About",
+          "href": "/about"
+        },
+        {
+          "label": "Compare",
+          "href": "/vs"
+        },
+        {
+          "label": "Switch to light theme",
+          "href": null
+        },
+        {
+          "label": "Get started",
+          "href": "/signup"
+        }
+      ],
+      "h1": {
+        "text": "Why we are building roducq",
+        "fontSize": "67.2px",
+        "fontWeight": "600",
+        "lineHeight": "68.544px",
+        "letterSpacing": "-2.016px",
+        "color": "rgb(244, 240, 251)"
+      },
+      "footer": {
+        "bg": "rgb(33, 27, 41)",
+        "borderTop": "1px",
+        "columns": 3,
+        "backToTop": true,
+        "wordmark": true
+      },
+      "smallTaps": [],
+      "canvasBg": "rgb(23, 19, 30)",
+      "bodyFont": "manrope, \"manrope Fallback\", ui-sans-serif, system-ui, sans-serif, Manrope, ui-sans-serif, system-ui, sans-serif",
+      "htmlClass": "lm-js dark",
+      "themeSwitch": {
+        "before": "lm-js dark",
+        "after": "lm-js light",
+        "changed": true
+      },
+      "keyboard": [
+        {
+          "tag": "a",
+          "label": "Skip to content",
+          "href": "#main",
+          "outline": "solid 2px",
+          "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0"
+        },
+        {
+          "tag": "a",
+          "label": "See what's included",
+          "href": "/pricing",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "roducq home",
+          "href": "/",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Features",
+          "href": "/features",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Solutions",
+          "href": "/solutions",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Integrations",
+          "href": "/integrations",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Pricing",
+          "href": "/pricing",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Changelog",
+          "href": "/changelog",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        }
+      ],
+      "pageErrors": 0
+    },
+    {
+      "route": "/about",
+      "width": 1440,
+      "scheme": "light",
+      "overflowX": 0,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "announceHeight": 61,
+      "header": {
+        "height": 72,
+        "bg": "rgb(255, 255, 255)",
+        "borderBottom": "0px",
+        "position": "sticky"
+      },
+      "nav": {
+        "display": "flex",
+        "x": 410,
+        "right": 1030,
+        "labels": [
+          "Features",
+          "Solutions",
+          "Integrations",
+          "Pricing",
+          "Changelog",
+          "About",
+          "Compare"
+        ],
+        "hrefs": [
+          "/features",
+          "/solutions",
+          "/integrations",
+          "/pricing",
+          "/changelog",
+          "/about",
+          "/vs"
+        ],
+        "active": [
+          "About"
+        ],
+        "firstLink": {
+          "fontSize": "15px",
+          "fontWeight": "400",
+          "color": "rgb(104, 112, 131)",
+          "paddingLeft": "12px",
+          "minHeight": "44px",
+          "borderRadius": "5px"
+        }
+      },
+      "wordmark": {
+        "size": "28px",
+        "weight": "700",
+        "tracking": "-1.68px"
+      },
+      "headerActions": [
+        {
+          "label": "roducq",
+          "href": "/"
+        },
+        {
+          "label": "Features",
+          "href": "/features"
+        },
+        {
+          "label": "Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Integrations",
+          "href": "/integrations"
+        },
+        {
+          "label": "Pricing",
+          "href": "/pricing"
+        },
+        {
+          "label": "Changelog",
+          "href": "/changelog"
+        },
+        {
+          "label": "About",
+          "href": "/about"
+        },
+        {
+          "label": "Compare",
+          "href": "/vs"
+        },
+        {
+          "label": "Switch to dark theme",
+          "href": null
+        },
+        {
+          "label": "Get started",
+          "href": "/signup"
+        }
+      ],
+      "h1": {
+        "text": "Why we are building roducq",
+        "fontSize": "67.2px",
+        "fontWeight": "600",
+        "lineHeight": "68.544px",
+        "letterSpacing": "-2.016px",
+        "color": "rgb(27, 20, 38)"
+      },
+      "footer": {
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "1px",
+        "columns": 3,
+        "backToTop": true,
+        "wordmark": true
+      },
+      "smallTaps": [],
+      "canvasBg": "rgb(249, 247, 252)",
+      "bodyFont": "manrope, \"manrope Fallback\", ui-sans-serif, system-ui, sans-serif, Manrope, ui-sans-serif, system-ui, sans-serif",
+      "htmlClass": "lm-js light",
+      "themeSwitch": {
+        "before": "lm-js light",
+        "after": "lm-js dark",
+        "changed": true
+      },
+      "keyboard": [
+        {
+          "tag": "a",
+          "label": "Skip to content",
+          "href": "#main",
+          "outline": "solid 2px",
+          "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0"
+        },
+        {
+          "tag": "a",
+          "label": "See what's included",
+          "href": "/pricing",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "roducq home",
+          "href": "/",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Features",
+          "href": "/features",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Solutions",
+          "href": "/solutions",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Integrations",
+          "href": "/integrations",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Pricing",
+          "href": "/pricing",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Changelog",
+          "href": "/changelog",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        }
+      ],
+      "pageErrors": 0
+    },
+    {
+      "route": "/about",
+      "width": 1440,
+      "scheme": "dark",
+      "overflowX": 0,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "announceHeight": 61,
+      "header": {
+        "height": 72,
+        "bg": "rgb(33, 27, 41)",
+        "borderBottom": "0px",
+        "position": "sticky"
+      },
+      "nav": {
+        "display": "flex",
+        "x": 410,
+        "right": 1030,
+        "labels": [
+          "Features",
+          "Solutions",
+          "Integrations",
+          "Pricing",
+          "Changelog",
+          "About",
+          "Compare"
+        ],
+        "hrefs": [
+          "/features",
+          "/solutions",
+          "/integrations",
+          "/pricing",
+          "/changelog",
+          "/about",
+          "/vs"
+        ],
+        "active": [
+          "About"
+        ],
+        "firstLink": {
+          "fontSize": "15px",
+          "fontWeight": "400",
+          "color": "rgb(164, 162, 179)",
+          "paddingLeft": "12px",
+          "minHeight": "44px",
+          "borderRadius": "5px"
+        }
+      },
+      "wordmark": {
+        "size": "28px",
+        "weight": "700",
+        "tracking": "-1.68px"
+      },
+      "headerActions": [
+        {
+          "label": "roducq",
+          "href": "/"
+        },
+        {
+          "label": "Features",
+          "href": "/features"
+        },
+        {
+          "label": "Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Integrations",
+          "href": "/integrations"
+        },
+        {
+          "label": "Pricing",
+          "href": "/pricing"
+        },
+        {
+          "label": "Changelog",
+          "href": "/changelog"
+        },
+        {
+          "label": "About",
+          "href": "/about"
+        },
+        {
+          "label": "Compare",
+          "href": "/vs"
+        },
+        {
+          "label": "Switch to light theme",
+          "href": null
+        },
+        {
+          "label": "Get started",
+          "href": "/signup"
+        }
+      ],
+      "h1": {
+        "text": "Why we are building roducq",
+        "fontSize": "67.2px",
+        "fontWeight": "600",
+        "lineHeight": "68.544px",
+        "letterSpacing": "-2.016px",
+        "color": "rgb(244, 240, 251)"
+      },
+      "footer": {
+        "bg": "rgb(33, 27, 41)",
+        "borderTop": "1px",
+        "columns": 3,
+        "backToTop": true,
+        "wordmark": true
+      },
+      "smallTaps": [],
+      "canvasBg": "rgb(23, 19, 30)",
+      "bodyFont": "manrope, \"manrope Fallback\", ui-sans-serif, system-ui, sans-serif, Manrope, ui-sans-serif, system-ui, sans-serif",
+      "htmlClass": "lm-js dark",
+      "themeSwitch": {
+        "before": "lm-js dark",
+        "after": "lm-js light",
+        "changed": true
+      },
+      "keyboard": [
+        {
+          "tag": "a",
+          "label": "Skip to content",
+          "href": "#main",
+          "outline": "solid 2px",
+          "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0"
+        },
+        {
+          "tag": "a",
+          "label": "See what's included",
+          "href": "/pricing",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "roducq home",
+          "href": "/",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Features",
+          "href": "/features",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Solutions",
+          "href": "/solutions",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Integrations",
+          "href": "/integrations",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Pricing",
+          "href": "/pricing",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        },
+        {
+          "tag": "a",
+          "label": "Changelog",
+          "href": "/changelog",
+          "outline": "solid 2px",
+          "boxShadow": "none"
+        }
+      ],
+      "pageErrors": 0
+    }
+  ],
+  "axe": [
+    {
+      "route": "/about",
+      "width": 320,
+      "scheme": "light",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 8,
+          "targets": [
+            ".lm-hero-accent-inline",
+            ".lm-line:nth-child(1) > span",
+            ".lm-text-gradient-soft"
+          ]
+        }
+      ],
+      "passes": 40
+    },
+    {
+      "route": "/about",
+      "width": 320,
+      "scheme": "dark",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 8,
+          "targets": [
+            ".lm-hero-accent-inline",
+            ".lm-line:nth-child(1) > span",
+            ".lm-text-gradient-soft"
+          ]
+        }
+      ],
+      "passes": 40
+    },
+    {
+      "route": "/about",
+      "width": 768,
+      "scheme": "light",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 8,
+          "targets": [
+            ".lm-hero-accent-inline",
+            ".lm-line:nth-child(1) > span",
+            ".lm-text-gradient-soft"
+          ]
+        }
+      ],
+      "passes": 40
+    },
+    {
+      "route": "/about",
+      "width": 768,
+      "scheme": "dark",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 8,
+          "targets": [
+            ".lm-hero-accent-inline",
+            ".lm-line:nth-child(1) > span",
+            ".lm-text-gradient-soft"
+          ]
+        }
+      ],
+      "passes": 40
+    },
+    {
+      "route": "/about",
+      "width": 1440,
+      "scheme": "light",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 8,
+          "targets": [
+            ".lm-hero-accent-inline",
+            ".lm-line:nth-child(1) > span",
+            ".lm-text-gradient-soft"
+          ]
+        }
+      ],
+      "passes": 40
+    },
+    {
+      "route": "/about",
+      "width": 1440,
+      "scheme": "dark",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 8,
+          "targets": [
+            ".lm-hero-accent-inline",
+            ".lm-line:nth-child(1) > span",
+            ".lm-text-gradient-soft"
+          ]
+        }
+      ],
+      "passes": 40
+    }
+  ],
+  "lcp": {
+    "/about": {
+      "A-mobile-unthrottled": {
+        "runs": [
+          {
+            "lcp": 116,
+            "lcpSize": 49256,
+            "lcpElement": "p.lm-hero-in.mt-8",
+            "lcpText": "Client work starts as scattered communic",
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 116,
+            "heroEarly": {
+              "opacity": "1",
+              "visibility": "visible",
+              "filter": "none"
+            },
+            "pageErrors": 0
+          },
+          {
+            "lcp": 108,
+            "lcpSize": 49256,
+            "lcpElement": "p.lm-hero-in.mt-8",
+            "lcpText": "Client work starts as scattered communic",
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 108,
+            "heroEarly": {
+              "opacity": "1",
+              "visibility": "visible",
+              "filter": "none"
+            },
+            "pageErrors": 0
+          },
+          {
+            "lcp": 156,
+            "lcpSize": 49256,
+            "lcpElement": "p.lm-hero-in.mt-8",
+            "lcpText": "Client work starts as scattered communic",
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 156,
+            "heroEarly": {
+              "opacity": "1",
+              "visibility": "visible",
+              "filter": "none"
+            },
+            "pageErrors": 0
+          }
+        ],
+        "median": 116,
+        "under2500": true
+      },
+      "B-mobile-cpu-4x": {
+        "runs": [
+          {
+            "lcp": 296,
+            "lcpSize": 49256,
+            "lcpElement": "p.lm-hero-in.mt-8",
+            "lcpText": "Client work starts as scattered communic",
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 296,
+            "heroEarly": {
+              "opacity": "1",
+              "visibility": "visible",
+              "filter": "none"
+            },
+            "pageErrors": 0
+          },
+          {
+            "lcp": 256,
+            "lcpSize": 49256,
+            "lcpElement": "p.lm-hero-in.mt-8",
+            "lcpText": "Client work starts as scattered communic",
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 256,
+            "heroEarly": {
+              "opacity": "1",
+              "visibility": "visible",
+              "filter": "none"
+            },
+            "pageErrors": 0
+          },
+          {
+            "lcp": 280,
+            "lcpSize": 49256,
+            "lcpElement": "p.lm-hero-in.mt-8",
+            "lcpText": "Client work starts as scattered communic",
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 280,
+            "heroEarly": {
+              "opacity": "1",
+              "visibility": "visible",
+              "filter": "none"
+            },
+            "pageErrors": 0
+          }
+        ],
+        "median": 280,
+        "under2500": true
+      },
+      "C-desktop": {
+        "runs": [
+          {
+            "lcp": 296,
+            "lcpSize": 80104,
+            "lcpElement": "p.ab-body.text-lm-ink",
+            "lcpText": "On most engagements, the brief lives in ",
+            "lcpCandidates": 2,
+            "cls": 0,
+            "fcp": 132,
+            "heroEarly": {
+              "opacity": "1",
+              "visibility": "visible",
+              "filter": "none"
+            },
+            "pageErrors": 0
+          },
+          {
+            "lcp": 284,
+            "lcpSize": 80104,
+            "lcpElement": "p.ab-body.text-lm-ink",
+            "lcpText": "On most engagements, the brief lives in ",
+            "lcpCandidates": 2,
+            "cls": 0,
+            "fcp": 116,
+            "heroEarly": {
+              "opacity": "1",
+              "visibility": "visible",
+              "filter": "none"
+            },
+            "pageErrors": 0
+          },
+          {
+            "lcp": 300,
+            "lcpSize": 80104,
+            "lcpElement": "p.ab-body.text-lm-ink",
+            "lcpText": "On most engagements, the brief lives in ",
+            "lcpCandidates": 2,
+            "cls": 0,
+            "fcp": 128,
+            "heroEarly": {
+              "opacity": "1",
+              "visibility": "visible",
+              "filter": "none"
+            },
+            "pageErrors": 0
+          }
+        ],
+        "median": 296,
+        "under2500": true
+      },
+      "D-mobile-reduced-motion": {
+        "runs": [
+          {
+            "lcp": 128,
+            "lcpSize": 49256,
+            "lcpElement": "p.lm-hero-in.mt-8",
+            "lcpText": "Client work starts as scattered communic",
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 128,
+            "heroEarly": {
+              "opacity": "1",
+              "visibility": "visible",
+              "filter": "none"
+            },
+            "pageErrors": 0
+          },
+          {
+            "lcp": 136,
+            "lcpSize": 49256,
+            "lcpElement": "p.lm-hero-in.mt-8",
+            "lcpText": "Client work starts as scattered communic",
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 136,
+            "heroEarly": {
+              "opacity": "1",
+              "visibility": "visible",
+              "filter": "none"
+            },
+            "pageErrors": 0
+          },
+          {
+            "lcp": 132,
+            "lcpSize": 49256,
+            "lcpElement": "p.lm-hero-in.mt-8",
+            "lcpText": "Client work starts as scattered communic",
+            "lcpCandidates": 1,
+            "cls": 0,
+            "fcp": 132,
+            "heroEarly": {
+              "opacity": "1",
+              "visibility": "visible",
+              "filter": "none"
+            },
+            "pageErrors": 0
+          }
+        ],
+        "median": 132,
+        "under2500": true
+      }
+    }
+  },
+  "motion": {
+    "reducedMotion": {
+      "/about": {
+        "running": 0,
+        "runningNames": [],
+        "hiddenBands": 0
+      }
+    },
+    "noJavaScript": {
+      "/about": {
+        "h1": "Why we are building roducq",
+        "h2Count": 3,
+        "sections": 5,
+        "zeroOpacity": [],
+        "textLength": 2835
+      }
+    }
+  }
+}
