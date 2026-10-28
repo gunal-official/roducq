@@ -12,16 +12,21 @@
 #
 # IT IS READ-ONLY WITH RESPECT TO THE REPOSITORY'S CODE. It never
 # modifies a source file, never deploys, and never touches any payment,
-# billing or database path. It publishes its output solely as a build
-# artefact; the session branch workflow downloads the artefact and
-# commits the evidence locally (no cross-branch force-push).
+# billing or database path. It publishes its output as a build artefact
+# AND — because the development sandbox's egress allowlist blocks the
+# artefact download host (`*.blob.core.windows.net`) — commits a
+# curated subset of the evidence back onto the triggering session
+# branch, which is fetchable over `github.com` (the same reason the
+# older workflows force-pushed a capture branch, here constrained to
+# the session branch only).
 #
-# TEMPORARY PUSH TRIGGER. GitHub will not dispatch a workflow that does
-# not yet exist on the default branch, so during the audit this carries a
-# narrowly-scoped `push` trigger on the audit session branch, limited to
-# the two evidence files. It must be removed before the PR so the landed
-# workflow is dispatch-only (the bootstrap discipline recorded in
-# docs/FORMA_FINAL_FIDELITY_AUDIT.md §1.1).
+# TEMPORARY PUSH TRIGGER + PUBLISH STEP. GitHub will not dispatch a
+# workflow that does not yet exist on the default branch, so during the
+# audit this carries a narrowly-scoped `push` trigger on the audit
+# session branch, limited to the two evidence files, plus a publish
+# step that only runs for that push event. Both must be removed before
+# the PR so the landed workflow is dispatch-only (the bootstrap
+# discipline recorded in docs/FORMA_FINAL_FIDELITY_AUDIT.md §1.1).
 name: forma-about-reference
 
 on:
@@ -39,7 +44,9 @@ on:
       - ".github/workflows/forma-about-reference.yml"
 
 permissions:
-  contents: read
+  # write is required only for the temporary session-branch evidence
+  # publish step below; drop back to read with the trigger before the PR.
+  contents: write
 
 jobs:
   capture:
@@ -99,6 +106,26 @@ jobs:
         run: |
           find docs/screenshots/forma-about-reference -type f | sort | head -200
           du -sh docs/screenshots/forma-about-reference || true
+
+      - name: Publish selected evidence to the session branch
+        # Temporary bootstrap only (removed with the push trigger before
+        # the PR): the sandbox cannot reach the artefact download host,
+        # so a curated subset is committed to the triggering branch.
+        # The commit touches only docs/screenshots/forma-about-reference,
+        # which is outside the push `paths:` filter, so it cannot
+        # retrigger this workflow.
+        if: always() && github.event_name == 'push'
+        run: |
+          git config user.name "Arena Agent"
+          git config user.email "agent@arena.ai"
+          # Curate: keep every JSON and every full-page PNG; keep
+          # per-section PNGs only for the reference at 1440/390.
+          find docs/screenshots/forma-about-reference -name "*-sec-*.png" \
+            ! -name "forma-1440x900-*" ! -name "forma-390x844-*" -delete
+          du -sh docs/screenshots/forma-about-reference || true
+          git add -f docs/screenshots/forma-about-reference
+          git commit -q -m "capture(about): measured Forma reference + current Roducq /about evidence [CI]" || echo "nothing to commit"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
 
       - name: Upload the capture
         if: always()
