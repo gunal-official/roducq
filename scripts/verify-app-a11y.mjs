@@ -449,6 +449,31 @@ async function timerDockGeometry(page, phase) {
   }, phase);
 }
 
+async function waitForTimerTick(page) {
+  const elapsed = page.locator('[aria-label="What are you working on?"]').locator("..").locator(":scope > span").first();
+  const before = await elapsed.innerText();
+  await page.waitForFunction((value) => document.querySelector('[aria-label="What are you working on?"]')?.parentElement?.querySelector("span")?.textContent?.trim() !== value, before, { timeout: 4000 });
+  return { before, after: await elapsed.innerText() };
+}
+
+async function cancelInitiallyBlankTimer(page, modal) {
+  await page.getByRole("button", { name: "Start timer" }).click();
+  const before = await page.evaluate(() => JSON.parse(localStorage.getItem("roducq.timer.v1")));
+  assert.equal(before.label, "");
+  await page.getByRole("button", { name: "Stop", exact: true }).click();
+  const label = page.getByRole("textbox", { name: "What did you work on?" });
+  assert.equal(await label.inputValue(), "");
+  await label.fill("Unsaved description for blank timer");
+  assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem("roducq.timer.v1"))), before);
+  if (modal) await page.keyboard.press("Escape");
+  else await page.getByRole("button", { name: "Keep running" }).click();
+  await page.getByRole("button", { name: "Stop", exact: true }).waitFor({ state: "visible" });
+  assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem("roducq.timer.v1"))), before);
+  assert.equal(await page.getByRole("textbox", { name: "What are you working on?" }).inputValue(), "");
+  await page.getByRole("button", { name: "Discard this session" }).click();
+  assert.equal(await page.evaluate(() => localStorage.getItem("roducq.timer.v1")), null);
+}
+
 async function timerProbe(page, base, width, output, scheme = "light") {
   reset({ timerDelayMs: 1100 });
   await goto(page, base, "/intake", scheme);
@@ -497,13 +522,31 @@ async function timerProbe(page, base, width, output, scheme = "light") {
   const result = { width, height: HEIGHTS[width], idle, running, focusedControls, modal: width < 1024, actions: [], storedBefore };
   if (width >= 1024) {
     assert.equal(await page.getByRole("dialog", { name: "Log this session" }).count(), 0, "Desktop stop form became modal");
-    await page.getByRole("textbox", { name: "What did you work on?" }).waitFor();
+    const desktopLabel = page.getByRole("textbox", { name: "What did you work on?" });
+    await desktopLabel.waitFor();
+    assert.equal(await desktopLabel.inputValue(), storedBefore.label);
+    await desktopLabel.fill("Unsaved desktop description");
+    assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem("roducq.timer.v1"))), storedBefore, "Desktop draft changed the running timer");
     await page.getByRole("button", { name: "Keep running" }).click();
     assert.equal(await page.getByRole("button", { name: "Stop", exact: true }).count(), 1);
-    result.actions.push("desktop remains non-modal; Keep running");
-    await page.getByRole("button", { name: "Discard this session" }).click();
+    assert.equal(await runningInput.inputValue(), storedBefore.label);
+    assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem("roducq.timer.v1"))), storedBefore, "Desktop cancellation changed the timer");
+    assert.equal(state.writes.filter((w) => w.path === "/rest/v1/time_entries").length, 0, "Desktop cancellation saved time");
+    result.actions.push("desktop remains non-modal; Keep running discards edited description");
+    result.resumedTick = await waitForTimerTick(page);
+    await page.getByRole("button", { name: "Stop", exact: true }).click();
+    assert.equal(await desktopLabel.inputValue(), storedBefore.label, "Desktop reopen retained a discarded draft");
+    await desktopLabel.fill("Fictional desktop session edited for saving");
+    assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem("roducq.timer.v1"))), storedBefore);
+    await page.getByRole("button", { name: "Save", exact: true }).click();
+    await page.getByRole("button", { name: "Start timer" }).waitFor({ state: "visible", timeout: 15000 });
     assert.equal(await page.evaluate(() => localStorage.getItem("roducq.timer.v1")), null);
-    result.actions.push("discard clears local timer");
+    const writes = state.writes.filter((w) => w.path === "/rest/v1/time_entries");
+    assert.equal(writes.length, 1);
+    assert.equal(writes[0].body.description, "Fictional desktop session edited for saving");
+    result.actions.push("desktop save writes edited description and clears timer");
+    await cancelInitiallyBlankTimer(page, false);
+    result.actions.push("blank timer survives edited cancellation; discard clears local timer");
     return result;
   }
   const dialog = page.getByRole("dialog", { name: "Log this session" });
@@ -511,6 +554,20 @@ async function timerProbe(page, base, width, output, scheme = "light") {
     await dialog.waitFor({ state: "visible" });
     await page.waitForFunction(() => document.activeElement?.getAttribute("aria-label") === "What did you work on?");
     assert.equal(await dialog.getAttribute("aria-modal"), "true");
+    assert.equal(await dialog.getByRole("textbox", { name: "What did you work on?" }).inputValue(), storedBefore.label, "Reopening retained a discarded draft");
+  }
+  async function editDraft(method) {
+    await dialog.getByRole("textbox", { name: "What did you work on?" }).fill(`Unsaved ${method} description`);
+    const stored = await page.evaluate(() => JSON.parse(localStorage.getItem("roducq.timer.v1")));
+    assert.deepEqual(stored, storedBefore, `${method}: editing the draft changed the running timer`);
+    assert.equal(await page.locator('[aria-label="What are you working on?"]').inputValue(), storedBefore.label);
+  }
+  async function keyboardActivate(button) {
+    for (let i = 0; i < 12 && !(await button.evaluate((el) => el === document.activeElement)); i++) {
+      await page.keyboard.press("Tab");
+    }
+    assert.equal(await button.evaluate((el) => el === document.activeElement), true, "Dialog button was not keyboard reachable");
+    await page.keyboard.press("Enter");
   }
   async function checkClosed() {
     await dialog.waitFor({ state: "hidden" });
@@ -550,6 +607,8 @@ async function timerProbe(page, base, width, output, scheme = "light") {
     await page.keyboard.press(key);
     assert.equal(await dialog.evaluate((el) => el.contains(document.activeElement)), true, `${width}: ${key} escaped timer dialog`);
   }
+  await page.locator("#global-search").evaluate((el) => el.focus());
+  assert.equal(await dialog.evaluate((el) => el.contains(document.activeElement)), true, `${width}: background focus escaped the dialog`);
   const blocked = await page.evaluate(() => {
     const search = document.querySelector("#global-search");
     const rect = search.getBoundingClientRect();
@@ -560,21 +619,26 @@ async function timerProbe(page, base, width, output, scheme = "light") {
   assert.equal(blocked.searchIsHit, false, `${width}: background search receives pointer hit`);
   assert.equal(blocked.backgroundHidden, true, `${width}: background not hidden from accessibility tree`);
   result.backgroundBlocked = blocked;
-  await page.keyboard.press("Escape"); await checkClosed(); result.actions.push("Escape restores Stop focus without saving");
+  await editDraft("Escape");
+  await page.keyboard.press("Escape"); await checkClosed();
+  result.actions.push("Escape discards edited description and restores Stop focus");
   await reopen();
-  await dialog.getByRole("button", { name: "Close timer form" }).click(); await checkClosed();
-  result.actions.push("Close restores Stop focus without saving");
+  await editDraft("Close");
+  await keyboardActivate(dialog.getByRole("button", { name: "Close timer form" })); await checkClosed();
+  result.actions.push("Close discards edited description and restores Stop focus");
   await reopen();
-  await dialog.getByRole("button", { name: "Keep running" }).click(); await checkClosed();
-  result.actions.push("Keep running restores Stop focus without saving");
-  if (width === 375) {
-    const elapsed = page.locator('[aria-label="What are you working on?"]').locator("..").locator(":scope > span").first();
-    const beforeTick = await elapsed.innerText();
-    await page.waitForFunction((before) => document.querySelector('[aria-label="What are you working on?"]')?.parentElement?.querySelector('span')?.textContent?.trim() !== before, beforeTick, { timeout: 3000 });
-    result.actions.push("resumed timer continues counting");
-  }
+  await editDraft("Keep running");
+  await keyboardActivate(dialog.getByRole("button", { name: "Keep running" })); await checkClosed();
+  result.actions.push("Keep running discards edited description and restores Stop focus");
+  result.resumedTick = await waitForTimerTick(page);
+  await reopen();
+  await editDraft("backdrop");
+  assert.equal(await page.evaluate(() => Boolean(document.elementFromPoint(1, 1)?.matches('[data-state="open"].fixed.inset-0'))), true, "Backdrop is not the click target");
+  await page.mouse.click(1, 1); await checkClosed();
+  result.actions.push("backdrop discards edited description and restores Stop focus");
   await reopen();
   // The nested Radix Select must be visible and usable above the scrim.
+  await editDraft("nested picker");
   const brief = dialog.getByRole("combobox", { name: "Brief" });
   await brief.click();
   await page.getByRole("option", { name: "General (no brief)" }).click();
@@ -587,7 +651,10 @@ async function timerProbe(page, base, width, output, scheme = "light") {
   await page.keyboard.press("Escape");
   await page.waitForFunction(() => document.querySelector('[aria-label="Brief"]')?.getAttribute("aria-expanded") === "false");
   await dialog.waitFor({ state: "visible" });
-  result.actions.push("nested brief select is accessible above scrim; Escape closes the select first");
+  assert.equal(await dialog.getByRole("textbox", { name: "What did you work on?" }).inputValue(), "Unsaved nested picker description");
+  await page.keyboard.press("Escape"); await checkClosed();
+  result.actions.push("nested brief Escape closes the select first, then discards the draft and closes the dialog");
+  await reopen();
   const label = dialog.getByRole("textbox", { name: "What did you work on?" });
   await label.fill("");
   await dialog.getByRole("button", { name: "Save", exact: true }).click();
@@ -597,7 +664,8 @@ async function timerProbe(page, base, width, output, scheme = "light") {
   assert.equal(await label.getAttribute("aria-invalid"), "true");
   assert.equal(await label.getAttribute("aria-describedby"), await error.getAttribute("id"));
   assert.equal(await dialog.isVisible(), true);
-  await label.fill("Fictional accessibility session");
+  assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem("roducq.timer.v1"))), storedBefore, "Validation changed the running timer");
+  await label.fill("Fictional session edited for saving");
   const minutes = dialog.getByRole("spinbutton", { name: "Minutes" });
   await minutes.fill("0");
   await dialog.getByRole("button", { name: "Save", exact: true }).click();
@@ -613,9 +681,15 @@ async function timerProbe(page, base, width, output, scheme = "light") {
   assert.equal(await date.getAttribute("aria-invalid"), "true");
   assert.equal(await date.getAttribute("aria-describedby"), await error.getAttribute("id"));
   await date.fill(savedDate);
-  result.actions.push("validation errors are announced and associated with each field without saving");
+  result.actions.push("validation errors expose assertive alert semantics and field associations without saving");
+  assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem("roducq.timer.v1"))), storedBefore, "Edits changed the timer before save");
   await dialog.getByRole("button", { name: "Save", exact: true }).click();
   await dialog.getByRole("button", { name: "Saving…" }).waitFor({ state: "visible" });
+  assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem("roducq.timer.v1"))), storedBefore, "Pending save changed the running timer");
+  assert.equal(await dialog.getByRole("button", { name: "Close timer form" }).isDisabled(), true);
+  assert.equal(await dialog.getByRole("button", { name: "Keep running" }).isDisabled(), true);
+  await page.mouse.click(1, 1);
+  assert.equal(await dialog.isVisible(), true, "Pending save dismissed via backdrop");
   await page.keyboard.press("Escape");
   assert.equal(await dialog.isVisible(), true, "Pending save dismissed via Escape");
   await page.getByRole("button", { name: "Start timer" }).waitFor({ state: "visible", timeout: 15000 });
@@ -623,31 +697,54 @@ async function timerProbe(page, base, width, output, scheme = "light") {
   assert.equal(await page.evaluate(() => localStorage.getItem("roducq.timer.v1")), null);
   const writes = state.writes.filter((w) => w.path === "/rest/v1/time_entries");
   assert.equal(writes.length, 1);
-  assert.equal(writes[0].body.description, "Fictional accessibility session");
+  assert.equal(writes[0].body.description, "Fictional session edited for saving");
   assert.equal(writes[0].body.duration_minutes, 5);
   result.savedFixtureEntry = writes[0].body;
   result.actions.push("save writes once, clears timer, and focuses Start timer");
+  await cancelInitiallyBlankTimer(page, true);
+  assert.equal(state.writes.filter((w) => w.path === "/rest/v1/time_entries").length, 1);
+  result.actions.push("blank timer survives edited cancellation; discard clears local timer");
   return result;
 }
 
 async function timerSaveFailureProbe(page, base) {
+  const width = page.viewportSize().width;
+  const modal = width < 1024;
   reset({ failTimer: true, timerDelayMs: 500 }); await goto(page, base, "/intake", "light");
   await page.getByRole("button", { name: "Start timer" }).click();
-  await page.getByRole("textbox", { name: "What are you working on?" }).fill("Fictional failed time entry");
+  await page.getByRole("textbox", { name: "What are you working on?" }).fill("Original timer before failure");
   const before = await page.evaluate(() => JSON.parse(localStorage.getItem("roducq.timer.v1")));
   await page.getByRole("button", { name: "Stop", exact: true }).click();
-  const dialog = page.getByRole("dialog", { name: "Log this session" });
-  await dialog.getByRole("button", { name: "Save", exact: true }).click();
-  const error = dialog.getByRole("alert"); await error.waitFor();
+  const label = page.getByRole("textbox", { name: "What did you work on?" });
+  const form = modal ? page.getByRole("dialog", { name: "Log this session" }) : label.locator("..");
+  await label.fill("Edited description for failed save");
+  assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem("roducq.timer.v1"))), before);
+  await form.getByRole("button", { name: "Save", exact: true }).click();
+  await form.getByRole("button", { name: "Saving…" }).waitFor();
+  assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem("roducq.timer.v1"))), before, "Pending save changed the timer");
+  const error = form.getByRole("alert"); await error.waitFor();
   assert.equal(await error.innerText(), "Synthetic time save failure");
+  assert.equal(await label.inputValue(), "Edited description for failed save", "Save failure discarded the draft");
   assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem("roducq.timer.v1"))), before);
-  assert.equal(await dialog.isVisible(), true);
+  assert.equal(await form.isVisible(), true);
   assert.equal(state.writes.filter((w) => w.path === "/rest/v1/time_entries").length, 1);
-  await dialog.getByRole("button", { name: "Keep running" }).click();
-  await page.waitForFunction(() => document.activeElement?.textContent?.trim() === "Stop");
+  await form.getByRole("button", { name: "Keep running" }).click();
+  if (modal) await page.waitForFunction(() => document.activeElement?.textContent?.trim() === "Stop");
   assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem("roducq.timer.v1"))), before);
-  await page.getByRole("button", { name: "Discard this session" }).click();
-  return { width: 375, alert: "Synthetic time save failure", timerRetained: true, focusRestored: true };
+  assert.equal(await page.getByRole("textbox", { name: "What are you working on?" }).inputValue(), before.label);
+  await page.getByRole("button", { name: "Stop", exact: true }).click();
+  assert.equal(await label.inputValue(), before.label, "Reopening after failure retained a discarded draft");
+  await label.fill("Edited description for successful retry");
+  state.failTimer = false;
+  await form.getByRole("button", { name: "Save", exact: true }).click();
+  await page.getByRole("button", { name: "Start timer" }).waitFor({ state: "visible", timeout: 15000 });
+  const writes = state.writes.filter((w) => w.path === "/rest/v1/time_entries");
+  assert.equal(writes.length, 2);
+  assert.equal(writes[0].body.description, "Edited description for failed save");
+  assert.equal(writes[1].body.description, "Edited description for successful retry");
+  assert.equal(await page.evaluate(() => localStorage.getItem("roducq.timer.v1")), null);
+  return { width, alert: "Synthetic time save failure", timerRetained: true, draftRetainedAfterFailure: true,
+    cancellationDiscardedDraft: true, retrySavedDraft: true, modalFocusRestored: modal ? true : null };
 }
 async function workspaceProbe(page, base) {
   reset({ pipeline: true });
@@ -711,24 +808,33 @@ async function shortViewportProbe(page, base) {
 async function resizeProbe(page, base) {
   reset(); await goto(page, base, "/intake", "light");
   await page.getByRole("button", { name: "Start timer" }).click();
+  await page.getByRole("textbox", { name: "What are you working on?" }).fill("Original timer before resize");
+  const before = await page.evaluate(() => JSON.parse(localStorage.getItem("roducq.timer.v1")));
   await page.getByRole("button", { name: "Stop", exact: true }).click();
   const dialog = page.getByRole("dialog", { name: "Log this session" });
   await dialog.waitFor({ state: "visible" });
+  await dialog.getByRole("textbox", { name: "What did you work on?" }).fill("Unsaved draft across resize");
+  assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem("roducq.timer.v1"))), before);
   await page.setViewportSize({ width: 1024, height: 900 });
   await dialog.waitFor({ state: "hidden" });
   const desktopLabel = page.getByRole("textbox", { name: "What did you work on?" });
   await desktopLabel.waitFor({ state: "visible" });
+  assert.equal(await desktopLabel.inputValue(), "Unsaved draft across resize");
   // The desktop form is intentionally non-modal: the background can receive focus.
   await page.locator("#global-search").focus();
   assert.equal((await focusSnapshot(page)).id, "global-search");
   await page.setViewportSize({ width: 390, height: 844 });
   await dialog.waitFor({ state: "visible" });
   await page.waitForFunction(() => document.activeElement?.getAttribute("aria-label") === "What did you work on?");
+  assert.equal(await dialog.getByRole("textbox", { name: "What did you work on?" }).inputValue(), "Unsaved draft across resize");
   await page.keyboard.press("Escape");
   await dialog.waitFor({ state: "hidden" });
   await page.waitForFunction(() => document.activeElement?.textContent?.trim() === "Stop");
+  assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem("roducq.timer.v1"))), before);
+  assert.equal(await page.getByRole("textbox", { name: "What are you working on?" }).inputValue(), before.label);
   await page.getByRole("button", { name: "Discard this session" }).click();
-  return { widths: [390, 1024, 390], preservedStopState: true, desktopNonModal: true, modalFocusAndReturn: true };
+  return { widths: [390, 1024, 390], draftPreservedDuringResize: true, cancellationRestoredTimer: true,
+    desktopNonModal: true, modalFocusAndReturn: true };
 }
 
 async function main() {
@@ -774,14 +880,24 @@ async function main() {
     }
     // Verify the modal in the second theme too, including its axe result.
     ledger.darkTimer = [];
-    for (const width of [375, 768]) {
+    for (const width of [320, 375, 390, 768]) {
       console.log(`Dark timer and dialog: ${width}`);
       const darkDir = path.join(output, `dark-${width}`); mkdirSync(darkDir);
       const { context, page } = await newContext(browser, base, stubOrigin, { width, scheme: "dark" });
       try { ledger.darkTimer.push(await timerProbe(page, base, width, darkDir, "dark")); } finally { await context.close(); }
     }
-    // Baseline comparison uses reduced motion. Also exercise the dialog and
-    // status flow with ordinary motion enabled rather than assuming parity.
+    // Exercise all requested mobile/tablet widths with ordinary motion in
+    // both themes as well as the reduced-motion baseline above.
+    ledger.normalMotionTimerMatrix = [];
+    for (const width of [320, 390, 768]) for (const scheme of ["light", "dark"]) {
+      console.log(`Timer and dialog with normal motion: ${scheme} ${width}`);
+      const motionDir = path.join(output, `normal-motion-${scheme}-${width}`); mkdirSync(motionDir);
+      const { context, page } = await newContext(browser, base, stubOrigin, { width, scheme, motion: "no-preference" });
+      try {
+        ledger.normalMotionTimerMatrix.push({ scheme, ...await timerProbe(page, base, width, motionDir, scheme) });
+      } finally { await context.close(); }
+    }
+    // Keep the pre-existing normal-motion status and timer coverage at 375px.
     {
       console.log("Timer and status with normal motion: 375x667");
       const motionDir = path.join(output, "normal-motion"); mkdirSync(motionDir);
@@ -796,10 +912,10 @@ async function main() {
       const { context, page } = await newContext(browser, base, stubOrigin, { width, scheme: "light" });
       try { ledger.focus.push(await statusProbe(page, base, "light", width, scenario)); } finally { await context.close(); }
     }
-    for (const [width, kind] of [[768, "workspace"], [375, "viewer"], [375, "navigation"], [390, "resize"], [320, "shortViewport"], [375, "timerSaveFailure"]]) {
+    for (const [width, kind] of [[768, "workspace"], [375, "viewer"], [375, "navigation"], [390, "resize"], [320, "shortViewport"], [375, "timerSaveFailure"], [1440, "desktopTimerSaveFailure"]]) {
       const { context, page } = await newContext(browser, base, stubOrigin, { width, scheme: "light" });
       try {
-        ledger[kind] = await ({ workspace: workspaceProbe, viewer: viewerProbe, navigation: navigationProbe, resize: resizeProbe, shortViewport: shortViewportProbe, timerSaveFailure: timerSaveFailureProbe })[kind](page, base);
+        ledger[kind] = await ({ workspace: workspaceProbe, viewer: viewerProbe, navigation: navigationProbe, resize: resizeProbe, shortViewport: shortViewportProbe, timerSaveFailure: timerSaveFailureProbe, desktopTimerSaveFailure: timerSaveFailureProbe })[kind](page, base);
       } finally { await context.close(); }
     }
     for (const scheme of ["light", "dark"]) for (const width of WIDTHS) {
@@ -820,7 +936,7 @@ async function main() {
     }
     assert.deepEqual(browserErrors, [], `Browser page/HTTP errors: ${JSON.stringify(browserErrors)}`);
     writeFileSync(path.join(output, "results.json"), JSON.stringify(ledger, null, 2));
-    const modalScans = [...ledger.timer, ...ledger.darkTimer, ledger.normalMotion.timer].filter((item) => item.modalAxe);
+    const modalScans = [...ledger.timer, ...ledger.darkTimer, ...ledger.normalMotionTimerMatrix, ledger.normalMotion.timer].filter((item) => item.modalAxe);
     console.log(JSON.stringify({ browser: ledger.browserVersion, scans: ledger.scans.length, focus: ledger.focus.length,
       timer: ledger.timer.length, incomplete: ledger.scans.reduce((n, s) => n + s.incomplete.length, 0),
       modalScans: modalScans.length, modalIncomplete: modalScans.reduce((n, item) => n + item.modalAxe.incomplete.length, 0), output }, null, 2));
