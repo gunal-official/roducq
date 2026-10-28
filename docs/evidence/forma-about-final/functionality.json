@@ -1,0 +1,208 @@
+{
+  "heroEarlyOpacity": "1",
+  "cardLinks": [
+    {
+      "text": "Read the changelog",
+      "hrefAttr": "/changelog"
+    },
+    {
+      "text": "Read the comparisons",
+      "hrefAttr": "/vs"
+    },
+    {
+      "text": "Get in touch(opens your email client)",
+      "hrefAttr": "mailto:hello@roducq.dev"
+    }
+  ],
+  "ctaLinks": [
+    {
+      "text": "Create account",
+      "hrefAttr": "/signup"
+    },
+    {
+      "text": "See pricing",
+      "hrefAttr": "/pricing"
+    }
+  ],
+  "headerNav": [
+    {
+      "text": "roducq",
+      "href": "/",
+      "ariaCurrent": null
+    },
+    {
+      "text": "Features",
+      "href": "/features",
+      "ariaCurrent": null
+    },
+    {
+      "text": "Solutions",
+      "href": "/solutions",
+      "ariaCurrent": null
+    },
+    {
+      "text": "Integrations",
+      "href": "/integrations",
+      "ariaCurrent": null
+    },
+    {
+      "text": "Pricing",
+      "href": "/pricing",
+      "ariaCurrent": null
+    },
+    {
+      "text": "Changelog",
+      "href": "/changelog",
+      "ariaCurrent": null
+    },
+    {
+      "text": "About",
+      "href": "/about",
+      "ariaCurrent": "page"
+    },
+    {
+      "text": "Compare",
+      "href": "/vs",
+      "ariaCurrent": null
+    },
+    {
+      "text": "Get started",
+      "href": "/signup",
+      "ariaCurrent": null
+    }
+  ],
+  "clickChangelogCard": "/changelog",
+  "clickCompareCard": "/vs",
+  "clickSeePricing": "/pricing",
+  "cardHover": {
+    "before": {
+      "shadow": "none",
+      "transform": "none"
+    },
+    "after": {
+      "shadow": "rgba(33, 20, 56, 0.06) 0px 1px 2px 0px",
+      "transform": "none"
+    },
+    "changed": true
+  },
+  "animationsAfterSettle": {
+    "total": 20,
+    "running": 0,
+    "hiddenAboutSections": 0
+  },
+  "cardFocusViaTab": {
+    "cardOutline": "solid 2px rgb(98, 70, 234)",
+    "cardOutlineOffset": "2px",
+    "linkOwnOutline": "none"
+  },
+  "keyboardStopsToFirstCard": [
+    {
+      "tag": "a",
+      "text": "Skip to content",
+      "href": "#main",
+      "isCardLink": false
+    },
+    {
+      "tag": "a",
+      "text": "See what's included",
+      "href": "/pricing",
+      "isCardLink": false
+    },
+    {
+      "tag": "a",
+      "text": "roducq",
+      "href": "/",
+      "isCardLink": false
+    },
+    {
+      "tag": "a",
+      "text": "Features",
+      "href": "/features",
+      "isCardLink": false
+    },
+    {
+      "tag": "a",
+      "text": "Solutions",
+      "href": "/solutions",
+      "isCardLink": false
+    },
+    {
+      "tag": "a",
+      "text": "Integrations",
+      "href": "/integrations",
+      "isCardLink": false
+    },
+    {
+      "tag": "a",
+      "text": "Pricing",
+      "href": "/pricing",
+      "isCardLink": false
+    },
+    {
+      "tag": "a",
+      "text": "Changelog",
+      "href": "/changelog",
+      "isCardLink": false
+    },
+    {
+      "tag": "a",
+      "text": "About",
+      "href": "/about",
+      "isCardLink": false
+    },
+    {
+      "tag": "a",
+      "text": "Compare",
+      "href": "/vs",
+      "isCardLink": false
+    },
+    {
+      "tag": "button",
+      "text": "",
+      "href": null,
+      "isCardLink": false
+    },
+    {
+      "tag": "a",
+      "text": "Get started",
+      "href": "/signup",
+      "isCardLink": false
+    },
+    {
+      "tag": "a",
+      "text": "Read the changelog",
+      "href": "/changelog",
+      "isCardLink": true
+    }
+  ],
+  "mobileMenu": {
+    "buttonFound": true,
+    "openState": {
+      "ariaExpanded": "true",
+      "aboutLinkVisible": true
+    },
+    "afterEscape": {
+      "ariaExpanded": "false"
+    }
+  },
+  "themeToggle": {
+    "buttonFound": true,
+    "before": {
+      "bg": "rgb(255, 255, 255)",
+      "htmlClass": "lm-js light",
+      "colorScheme": "light"
+    },
+    "after": {
+      "bg": "rgb(33, 27, 41)",
+      "htmlClass": "lm-js dark",
+      "colorScheme": "dark"
+    },
+    "changed": true,
+    "backAgain": {
+      "bg": "rgb(255, 255, 255)",
+      "htmlClass": "lm-js light",
+      "colorScheme": "light"
+    },
+    "roundTrip": true
+  }
+}
