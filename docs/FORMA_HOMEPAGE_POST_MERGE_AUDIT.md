@@ -6,6 +6,8 @@
 **Live-production visual check:** **UNVERIFIED.** Deployment metadata is verified, but the production domain could not be reached from this sandbox.
 **Production deployment:** none.
 
+**Pull request:** [#79 — Roducq — Fix homepage integration link accessible names](https://github.com/gunal-official/roducq/pull/79), open against `main` and intentionally unmerged. GitHub `verify`, Vercel Preview, and Vercel Preview Comments checks passed.
+
 This audit covers the `main` baseline after PR #76 and the narrowly approved accessible-name fix. The fix only removes a redundant ARIA name from the six integration-card links; it does not change visible text, destinations, layout, styles, animation, pricing, or product claims.
 
 ## 1. Baseline and deployment evidence
