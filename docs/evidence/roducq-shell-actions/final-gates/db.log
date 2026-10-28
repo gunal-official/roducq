@@ -1,0 +1,257 @@
+
+> roducq@0.1.0 verify:db
+> node scripts/verify-db.mjs
+
+Starting PGlite (WASM Postgres)…
+· applied migration 20260922000000_workspace_auth_init.sql
+· applied migration 20260922123000_briefs_schema.sql
+· applied migration 20260922130000_create_brief_bundle_rpc.sql
+· applied migration 20260923000000_proposals_schema.sql
+· applied migration 20260923010000_plans_schema.sql
+· applied migration 20260923020000_updates_schema.sql
+· applied migration 20260923030000_share_links_schema.sql
+· applied migration 20260923040000_templates_schema.sql
+· applied migration 20260923050000_add_brief_source_rpc.sql
+· applied migration 20260923060000_workspaces_rename_policy.sql
+· applied migration 20260923070000_team_invites_schema.sql
+· applied migration 20260923080000_active_workspace.sql
+· applied migration 20260923090000_invoices_schema.sql
+· applied migration 20260924090000_time_entries_schema.sql
+· applied migration 20260925090000_contracts_schema.sql
+· applied migration 20260925120000_role_management.sql
+· applied migration 20260925180000_workspace_members_leave.sql
+· applied migration 20260925200000_workspace_deletion.sql
+· applied migration 20260925220000_viewer_role.sql
+· applied migration 20260926080000_events.sql
+· applied migration 20260926090000_webhooks.sql
+· applied migration 20260926100000_billing.sql
+· applied migration 20260926110000_webhook_retry_schedule.sql
+· applied migration 20260926120000_event_types_team_templates.sql
+· applied migration 20260926130000_billing_currency.sql
+· applied migration 20260926140000_email_mailbox.sql
+· applied migration 20261006000000_proposal_versions.sql
+· applied migration 20261009000000_integration_connections.sql
+· applied migration 20261010000000_integration_imports.sql
+· applied migration 20261010010000_workspace_logo.sql
+· applied migration 20261016000000_razorpay_billing.sql
+· applied migration 20261016120000_razorpay_atomic_ledger_entitlements.sql
+✓ 32 migrations apply cleanly
+✓ seed.sql loads idempotently (run twice) — password hash stubbed (pgcrypto unavailable in PGlite)
+✓ all 15 tables exist with RLS enabled — brief_edit_history=true brief_questions=true brief_sources=true briefs=true invoice_links=true invoices=true plans=true profiles=true proposals=true share_links=true team_invites=true templates=true updates=true workspace_members=true workspaces=true
+✓ workspace logo column + bounded PNG/JPEG data-url constraint exist — {"logo_column":1,"logo_constraint":1}
+✓ profile trigger + derived initials for seed user — {"full_name":"Maya Chen","avatar_initials":"MC"}
+✓ seed brief present (Brightloop, in_review, 3 deliverables) — Brightloop Co. — Brand Identity Refresh
+✓ seed: 2 sources, 1 open + 2 resolved questions, 3 history entries — {"sources":2,"open_q":1,"resolved_q":2,"history":3}
+✓ seed follow-up source (.0054) threads after the original (.0011), with a 'source_added' audit row — {"followup_is_newer":true,"source_added_rows":1}
+✓ seed proposal present (from Brightloop brief, draft, 3 deliverables) — Brightloop Co. — Brand Identity Refresh
+✓ proposals.status CHECK rejects invalid value
+✓ proposals.brief_id FK enforces a real brief
+✓ seed plan present (from Brightloop proposal, not_started, 3 tasks) — Brightloop Co. — Brand Identity Refresh
+✓ plans.status CHECK rejects invalid value
+✓ plans.proposal_id FK enforces a real proposal
+✓ seed updates present (from Brightloop plan: 1 sent + 1 draft) — ["sent","draft"]
+✓ updates.status CHECK rejects invalid value
+✓ updates.plan_id FK enforces a real plan
+✓ seed share link present (for Week 1 update, active token …0051) — 00000000-0000-0000-0000-000000000051
+✓ share_links unique(update_id) — one link per update
+✓ share_links unique(token) enforces token uniqueness
+✓ seed templates present (2 snippets on the demo workspace) — Intake follow-up — missing scope | Weekly update sign-off
+✓ seed invoices present (sequential: draft INV-0001 + sent INV-0002) — 1:draft 2:sent
+✓ seed invoice links present (draft + sent invoices, both active) — 00000000-0000-0000-0000-000000000069 00000000-0000-0000-0000-000000000070
+✓ seed time entries present (3 brief-linked + 1 general, 505 min total) — 220m + 135m + 60m + 90m
+✓ seed contracts present (1 draft + 1 signed with audit stamps) — signed + draft
+✓ invoices.status CHECK rejects invalid value
+✓ invoices unique(workspace_id, invoice_number) — per-workspace sequence
+✓ invoice_links unique(invoice_id) — one link per invoice
+✓ create_workspace RPC → workspace + owner membership — 23977cfe-64fa-490b-97e6-78053b618080
+✓ update_brief_field: value updated + 'edited Budget & timeline' logged — edited Budget & timeline
+✓ update_brief_field: jsonb deliverables replace works
+✓ update_brief_field rejects 'status' (whitelist)
+✓ status trigger logs 'status changed from in_review to approved' with actor — status changed from in_review to approved
+✓ updated_at touch trigger fires
+✓ auth.uid() simulation active
+✓ RLS: member sees own-workspace briefs only — 1 visible
+✓ RLS: cannot insert brief into foreign workspace
+✓ RLS: brief_sources is NOT updatable (immutable raw_content)
+✓ brief_sources truly has zero UPDATE policies
+✓ RLS: member can resolve questions (update allowed)
+✓ RLS: member can append edit history
+✓ RLS: member sees own-workspace proposals only — 1 visible
+✓ RLS: cannot insert proposal into foreign workspace
+✓ RLS: member can update proposal status
+✓ proposals updated_at touch trigger fires
+✓ RLS: member sees own-workspace plans only — 1 visible
+✓ RLS: cannot insert plan into foreign workspace
+✓ RLS: member can update plan status
+✓ plans updated_at touch trigger fires
+✓ RLS: member sees own-workspace updates only — 2 visible
+✓ RLS: cannot insert update into foreign workspace
+✓ RLS: member can update update status
+✓ updates updated_at touch trigger fires
+✓ RLS: member sees own-workspace share links only — 2 visible
+✓ RLS: cannot insert share link into foreign workspace
+✓ get_shared_document returns the update for a valid active token — Update — Week 1: kickoff & discovery
+✓ get_shared_document returns nothing for a revoked token
+✓ get_shared_document returns nothing for a nonexistent token
+✓ RLS: member sees own-workspace invoices only — 3 visible
+✓ RLS: cannot insert invoice into foreign workspace
+✓ RLS: invoices have NO delete policy — void is the only cancel
+✓ get_shared_invoice returns the invoice for a valid active token
+✓ get_shared_invoice returns nothing for a draft invoice's link
+✓ get_shared_invoice returns nothing for a revoked token
+✓ get_shared_invoice returns nothing for a nonexistent token
+✓ time_entries.duration_minutes CHECK rejects 0
+✓ time_entries.duration_minutes CHECK rejects negatives
+✓ time_entries.description NOT NULL rejects null
+✓ time_entries.brief_id FK enforces a real brief
+✓ RLS: member sees own-workspace time entries only — 5 visible
+✓ RLS: cannot insert time entry into foreign workspace
+✓ RLS: member CAN delete own time entry (the schema's one delete policy)
+✓ RLS: cannot delete a foreign workspace's time entry
+✓ time_entries updated_at touch trigger fires on update
+✓ contracts.status CHECK rejects invalid value
+✓ contracts.brief_id FK enforces a real brief
+✓ RLS: member sees own-workspace contracts only — 3 visible
+✓ RLS: cannot insert contract into foreign workspace
+✓ RLS: contracts have NO delete policy — void is the only cancel
+✓ contracts updated_at touch trigger fires on update
+✓ RLS: plain member can VIEW templates (read allowed) — 2 visible
+✓ RLS: plain member CANNOT insert template (owner-only)
+✓ RLS: OWNER can insert template — f0e3a9ed-8798-429e-8f6b-aecf2de103d2
+✓ RLS: OWNER can update template
+✓ templates updated_at touch trigger fires
+✓ RLS: OWNER can delete template (first delete policy)
+✓ RLS: owner cannot insert template into foreign workspace
+✓ add_brief_source: member can thread a source onto a brief — 3ca6889d-f58a-4a23-bdab-550c8dc03dd5
+✓ add_brief_source: inserted brief_sources row is correct (type/content/metadata)
+✓ add_brief_source: 'source_added' history row logged with the caller as actor
+✓ add_brief_source rejects non-member workspaces — not_authorized for workspace 00000000-0000-0000-0000-000000000099
+✓ add_brief_source rejection is atomic — no partial source/history rows — {"leftover_sources":0,"leftover_history":0}
+✓ add_brief_source rejects invalid source_type
+✓ RLS: OWNER can rename the workspace — Atelier North (renamed)
+✓ RLS: OWNER can set a bounded PNG workspace logo
+✓ RLS: plain member CANNOT rename the workspace (owner-only)
+✓ RLS: plain member CANNOT set or replace the workspace logo
+✓ RLS: cannot rename a foreign workspace
+✓ workspace logo CHECK rejects unsupported image MIME types
+✓ workspace logo CHECK caps the persisted data URL size
+✓ RLS: OWNER can remove the workspace logo
+✓ create_brief_bundle: brief + source + questions (blank filtered) + 'generated' log, atomically — {"brief":1,"sources":1,"open_q":1,"gen_log":1}
+✓ create_brief_bundle rejects non-member workspaces
+✓ create_brief_bundle rejects empty source text
+✓ RLS: owner sees workspace invites — [{"email":"teammate@brightloop.co"}]
+✓ RLS: member sees ZERO invites (owner-only table)
+✓ RLS: member cannot create invites
+✓ duplicate PENDING invite per (workspace, email) is rejected
+✓ get_team_invite_preview: unknown token → zero rows
+✓ get_team_invite_preview: live token → workspace name only — {"workspace_name":"Atelier North","expires_at":"2026-11-11T11:01:20.887Z"}
+✓ accept_team_invite: expired token → invite_invalid_or_expired
+✓ accept_team_invite: wrong account email → invite_email_mismatch
+✓ accept_team_invite: invitee joins, workspace id returned
+✓ accept writes 'member' row + stamps accepted_at/accepted_by — {"role":"member","consumed":true,"accepted_by":"00000000-0000-0000-0000-000000000071"}
+✓ accept_team_invite: consumed token → invite_invalid_or_expired (single-use)
+✓ preview returns zero rows for an accepted token (indistinguishable)
+✓ get_workspace_members: member sees the roster (Maya + Leo + Tess) — 3 rows
+✓ get_workspace_members: owner sees the same roster
+✓ get_workspace_members: non-member → zero rows
+✓ profiles.active_workspace_id column exists (uuid)
+✓ active_workspace_id FK references workspaces, ON DELETE SET NULL — confdeltype=n
+✓ RLS: user can set their OWN active workspace
+✓ RLS: cannot set another user's active workspace
+✓ get_workspace_members follows the active pointer (ws B = Maya alone) — 1 rows
+✓ stale active pointer falls back to first-joined workspace — 3 rows
+✓ null active pointer resolves to first-joined workspace
+✓ is_last_owner() identifies the sole owner (and not a member)
+✓ RLS: plain member CANNOT change a role
+✓ RLS: owner CAN promote a member
+✓ RLS: owner CAN demote an owner (when another owner remains)
+✓ RLS: owner CANNOT change their OWN role (self-guard + last-owner)
+✓ RLS: membership rows cannot be reassigned (identity pinned)
+✓ RLS: plain member CANNOT delete a workspace member
+✓ RLS: owner CAN delete a workspace member (removal path)
+✓ RLS: the last owner CANNOT leave (delete their own row)
+✓ RLS: a non-last owner CAN leave (self-delete)
+✓ leaving PRESERVES a pointer that names another workspace — {"active_workspace_id":"00000000-0000-0000-0000-000000000064"}
+✓ RLS: a plain member CAN leave (self-delete policy)
+✓ leaving CLEARS a matching active pointer (DB-grade hygiene) — {"active_workspace_id":null}
+✓ RLS: a workspace's owner CANNOT delete a DIFFERENT workspace
+✓ RLS: owner CAN delete a solo workspace (last-owner guard lets the cascade through)
+✓ workspace deletion cascades children + clears active pointers — {"members":0,"templates":0,"pointer":null}
+✓ CHECK constraint accepts the viewer role — {"role":"viewer"}
+✓ CHECK constraint rejects any fourth role (admin)
+✓ RLS: an owner CAN set a teammate's role to viewer — rowCount 1
+✓ RLS: a viewer reads operational content but ZERO money (invoices + time hidden) — {"templates":1,"proposals":1,"invoices":0,"time_entries":0}
+✓ RLS: a viewer CANNOT insert content (briefs)
+✓ RLS: a viewer's updates/deletes affect 0 rows (content + money) — upd 0, del 0, money 0
+✓ RLS: members still edit content (is_workspace_editor regression) — rowCount 1
+✓ RLS: owners still see money (invoices visible to editors) — {"n":1}
+✓ events: member can insert an event row
+✓ events: member can read workspace events
+✓ RLS: cannot insert event into foreign workspace
+✓ RLS: foreign events are invisible
+✓ events.event_type CHECK rejects unknown types
+✓ events: team/template types accepted (suggestions pass 9/10)
+✓ events has zero UPDATE/DELETE policies (append-only)
+✓ webhooks: owner can register an endpoint
+✓ RLS: cannot register an endpoint in a foreign workspace
+✓ webhooks: dispatch RPC returns own endpoints (with secrets)
+✓ webhooks: dispatch RPC leaks nothing to non-members
+✓ webhooks: dispatch can record a delivery row
+✓ webhooks: dispatch can settle a delivery row
+✓ webhook_endpoints has zero UPDATE policies (rotate = re-register)
+✓ webhook_deliveries has zero DELETE policies (audit trail)
+✓ billing: absent row reads as Free (0 rows)
+✓ RLS: users cannot write billing state (service role only)
+✓ billing.status CHECK rejects invented values
+✓ billing: currency + amount display columns exist
+✓ billing.currency CHECK rejects non-ISO codes
+✓ billing: owner sees the active subscription (Pro)
+✓ billing: owner sees currency + amount (global pricing)
+✓ billing: Razorpay columns exist
+✓ billing: Razorpay halted status is representable
+✓ billing: webhook event ledger dedupes
+✓ mailbox: no connected accounts by default
+✓ RLS: users cannot write mailbox accounts (service role only)
+✓ RLS: users cannot write staged mail (service role only)
+✓ email_accounts.service CHECK rejects non-Gmail/Outlook values
+✓ email_accounts unique (workspace, service, address) holds
+✓ email_messages unique (account_id, external_id) holds (idempotent sync)
+✓ mailbox: owner sees the staged (unattached) mail
+✓ mailbox: attached mail drops out of the staging view
+✓ integrations: no connections by default
+✓ RLS: users cannot write integration_connections (service role only)
+✓ integration_connections.provider CHECK rejects unknown providers
+✓ integration_connections unique (workspace, provider) holds
+✓ integrations: owner can SELECT slack + notion connections
+✓ RLS: users cannot write integration_imports (service role only)
+✓ integration_imports unique (connection_id, external_id) holds (idempotent import)
+✓ integration_imports.provider CHECK rejects unknown providers
+✓ imports: owner sees the staged (unattached) items
+✓ imports: attached items drop out of the staging view
+✓ integrations: last_synced_at column exists
+✓ retry: webhook_deliveries.next_retry_at column exists
+✓ retry: partial index on due pending rows exists
+✓ retry: fixtures (event + endpoint) inserted
+✓ retry: member can open a delivery row
+✓ retry: member can set next_retry_at (existing UPDATE policy covers it)
+✓ retry: claim wins once (due pending row)
+✓ retry: second claim loses (lease is in the future)
+✓ retry: claim never touches settled rows
+✓ proposal_versions exists with RLS enabled
+✓ proposal_versions policies: 1 SELECT + 1 INSERT, ZERO UPDATE/DELETE (append-only) — {"INSERT":1,"SELECT":1}
+✓ insert trigger captures version 1 (reason 'created', full snapshot, actor) — [{"version_number":1,"reason":"created","title":"Versioned proposal","client_name":"Brightloop Co.","status":"draft","budget_timeline":"Kickoff Oct 12","created_by":"00000000-0000-0000-0000-000000000001"}]
+✓ first edit lands (status sent) and dedups against the 'created' snapshot (still 1 version)
+✓ second edit captured as version 2 ('edited') holding the PRE-change state; newest→oldest = [2,1] — [{"version_number":2,"reason":"edited","status":"sent","budget_timeline":"Kickoff Oct 12"},{"version_number":1,"reason":"created","status":"draft","budget_timeline":"Kickoff Oct 12"}]
+✓ no-op update (same status) creates NO version
+✓ restore applies the snapshot (draft + original budget back on the proposal)
+✓ restore is auditable: ONE new version 3 'restored' capturing the PRE-restore state, attributed — {"version_number":3,"reason":"restored","status":"sent","budget_timeline":"Kickoff Oct 19","created_by":"00000000-0000-0000-0000-000000000001"}
+✓ no-op restore is refused (already_current)
+✓ a version from a DIFFERENT proposal cannot be restored onto this one
+✓ viewer (member, not editor) CAN read version history
+✓ viewer restore is refused by the RPC editor gate
+✓ viewer cannot INSERT a version row (RLS insert is editor-only)
+✓ stranger sees zero version rows (workspace isolation)
+✓ stranger restore is refused
+✓ no UPDATE/DELETE policies: tamper + purge affect 0 rows; 3 versions intact
+
+All database checks passed ✔

@@ -43,6 +43,14 @@ const before = (source: string, first: string, second: string) => {
   );
 };
 
+describe("unsaved-edits dialog animation", () => {
+  it("keeps this dialog centered in both enter and exit keyframes", () => {
+    for (const variable of ["enter-translate-x", "enter-translate-y", "exit-translate-x", "exit-translate-y"]) {
+      assert.ok(guard.includes(`"--tw-${variable}": "-50%"`), `${variable} stays centered`);
+    }
+  });
+});
+
 describe("unsaved-edits guard — sign-out is held until confirmed", () => {
   it("consults the guard before it touches the session", () => {
     assert.ok(

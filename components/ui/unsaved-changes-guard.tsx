@@ -39,7 +39,7 @@
  * guarded there.
  */
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
@@ -352,6 +352,14 @@ export function useUnsavedChangesGuard({
     >
       <DialogContent
         role="alertdialog"
+        // The shared zoom keyframes otherwise replace the centering transform
+        // during motion, briefly moving this dialog outside the viewport.
+        style={{
+          "--tw-enter-translate-x": "-50%",
+          "--tw-enter-translate-y": "-50%",
+          "--tw-exit-translate-x": "-50%",
+          "--tw-exit-translate-y": "-50%",
+        } as CSSProperties}
         onOpenAutoFocus={(event) => {
           // Land on the safe action, not the dismiss control.
           event.preventDefault();

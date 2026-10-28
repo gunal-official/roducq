@@ -1209,6 +1209,14 @@
 .work-card { border-radius: var(--radius-card); }
 .workflow-labels { display: flex; flex-wrap: wrap; justify-content: center; gap: .35rem 1rem; margin-top: .75rem; font-size: .75rem; font-weight: 600; color: var(--secondary-text); }
 .account-menu { max-height: min(38rem, calc(100dvh - 8rem)); overscroll-behavior: contain; }
+/* The topbar is a stacking context. Raise it only while its account menu is
+   open, above the phone dock/timer but below the drawer (70) and dialogs (80). */
+header.app-topbar:has(.account-menu) { z-index: 60; }
+@media screen and (max-width: 599.98px) {
+  /* Reserve room for the wrapped topbar, floating timer and bottom safe area.
+     The existing overflow-y-auto keeps every menu item reachable by scrolling. */
+  .account-menu { max-height: min(38rem, max(8rem, calc(100dvh - 15rem - env(safe-area-inset-bottom, 0px)))); }
+}
 .site-menu { padding-top: max(1.25rem, env(safe-area-inset-top, 0px)); padding-bottom: max(1.25rem, env(safe-area-inset-bottom, 0px)); }
 .marketing {
   --work-sheet: var(--surface);

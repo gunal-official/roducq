@@ -24,7 +24,7 @@
  * editor the original handler runs synchronously, once per selection.
  */
 
-import { useId, useState } from "react";
+import { useId, useState, type KeyboardEvent } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 
@@ -45,6 +45,23 @@ export interface SwitcherWorkspace {
 }
 
 export type WorkspaceSwitcherVariant = "panel" | "compact" | "inline";
+
+/**
+ * Radix selects an option on Enter keydown without preventing its browser
+ * default. If the dirty-editor dialog opens and focuses Keep editing during
+ * that event, the default can activate the newly focused button. Run in the
+ * SelectContent bubble phase, after Radix has handled the option, so selection
+ * still works while that unintended second activation is prevented.
+ */
+function preventWorkspaceOptionEnterDefault(event: KeyboardEvent<HTMLDivElement>) {
+  if (
+    event.key === "Enter" &&
+    event.target instanceof HTMLElement &&
+    event.target.getAttribute("role") === "option"
+  ) {
+    event.preventDefault();
+  }
+}
 
 /** First letter of a workspace name, used for the monogram tile. */
 function monogram(name: string): string {
@@ -194,7 +211,7 @@ export function WorkspaceSwitcher({
               <SelectValue />
             </span>
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent onKeyDown={preventWorkspaceOptionEnterDefault}>
             {workspaces.map((workspace) => (
               <SelectItem key={workspace.id} value={workspace.id}>
                 <span className="truncate">{workspace.name}</span>
@@ -241,7 +258,9 @@ export function WorkspaceSwitcher({
               </span>
             </span>
           </SelectTrigger>
-          <SelectContent>
+          {/* The phone drawer sits at z-70; its portalled list must be above
+              the drawer and below the unsaved-changes dialog at z-80. */}
+          <SelectContent className="z-[75] tab:z-50" onKeyDown={preventWorkspaceOptionEnterDefault}>
             {workspaces.map((workspace) => (
               <SelectItem key={workspace.id} value={workspace.id}>
                 <span className="truncate">{workspace.name}</span>
@@ -286,7 +305,7 @@ export function WorkspaceSwitcher({
             <SelectValue className="min-w-0 truncate font-semibold text-text" />
           </span>
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent onKeyDown={preventWorkspaceOptionEnterDefault}>
           {workspaces.map((workspace) => (
             <SelectItem key={workspace.id} value={workspace.id}>
               <span className="truncate">{workspace.name}</span>

@@ -1,0 +1,203 @@
+{
+  "settings": {
+    "widths": [
+      320,
+      375,
+      390,
+      768,
+      1024,
+      1200,
+      1440
+    ],
+    "heights": {
+      "320": 568,
+      "375": 667,
+      "390": 844,
+      "768": 900,
+      "1024": 900,
+      "1200": 900,
+      "1440": 900
+    },
+    "locale": "en-US",
+    "timezoneId": "UTC",
+    "deviceScaleFactor": 1,
+    "reducedMotion": "reduce",
+    "serviceWorkers": "block",
+    "network": "same-origin loopback proxy; production CSP enabled; external browser requests blocked",
+    "axeTags": [
+      "wcag2a",
+      "wcag2aa",
+      "wcag21a",
+      "wcag21aa",
+      "wcag22aa",
+      "best-practice"
+    ]
+  },
+  "status": "failed",
+  "scenarios": [
+    {
+      "name": "diagnostic-clean-shell-320",
+      "status": "passed",
+      "startedAt": "2026-10-28T09:53:35.106Z",
+      "width": 320,
+      "cleanSwitchWrites": 1,
+      "cleanSignOutRequests": 1,
+      "dialogs": 0,
+      "durationMs": 2656
+    },
+    {
+      "name": "diagnostic-topbar-sign-out-320",
+      "status": "failed",
+      "startedAt": "2026-10-28T09:53:37.762Z",
+      "error": {
+        "name": "TimeoutError",
+        "message": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByRole('menuitem', { name: /Log out/ })\n    - locator resolved to <button tabindex=\"-1\" role=\"menuitem\" title=\"Log out\" class=\"inline-flex min-h-11 min-w-11 shrink-0 items-center gap-2 whitespace-nowrap rounded-control font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-muted h-11 rounded-control text-xs text-muted-foreground hover:text-text w-full justify-start rounded-m…>…</button>\n  - attempting click action\n    2 × waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-[22px] w-[22px] shrink-0\">…</svg> from <nav aria-label=\"Primary\" class=\"app-tabbar fixed inset-x-0 bottom-0 z-40 pb-[env(safe-area-inset-bottom,0px)] tab:hidden print:hidden\">…</nav> subtree intercepts pointer events\n    - retrying click action\n    - waiting 20ms\n    2 × waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-[22px] w-[22px] shrink-0\">…</svg> from <nav aria-label=\"Primary\" class=\"app-tabbar fixed inset-x-0 bottom-0 z-40 pb-[env(safe-area-inset-bottom,0px)] tab:hidden print:hidden\">…</nav> subtree intercepts pointer events\n    - retrying click action\n      - waiting 100ms\n    58 × waiting for element to be visible, enabled and stable\n       - element is visible, enabled and stable\n       - scrolling into view if needed\n       - done scrolling\n       - <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-[22px] w-[22px] shrink-0\">…</svg> from <nav aria-label=\"Primary\" class=\"app-tabbar fixed inset-x-0 bottom-0 z-40 pb-[env(safe-area-inset-bottom,0px)] tab:hidden print:hidden\">…</nav> subtree intercepts pointer events\n     - retrying click action\n       - waiting 500ms\n",
+        "stack": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByRole('menuitem', { name: /Log out/ })\n    - locator resolved to <button tabindex=\"-1\" role=\"menuitem\" title=\"Log out\" class=\"inline-flex min-h-11 min-w-11 shrink-0 items-center gap-2 whitespace-nowrap rounded-control font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-muted h-11 rounded-control text-xs text-muted-foreground hover:text-text w-full justify-start rounded-m…>…</button>\n  - attempting click action\n    2 × waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-[22px] w-[22px] shrink-0\">…</svg> from <nav aria-label=\"Primary\" class=\"app-tabbar fixed inset-x-0 bottom-0 z-40 pb-[env(safe-area-inset-bottom,0px)] tab:hidden print:hidden\">…</nav> subtree intercepts pointer events\n    - retrying click action\n    - waiting 20ms\n    2 × waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-[22px] w-[22px] shrink-0\">…</svg> from <nav aria-label=\"Primary\" class=\"app-tabbar fixed inset-x-0 bottom-0 z-40 pb-[env(safe-area-inset-bottom,0px)] tab:hidden print:hidden\">…</nav> subtree intercepts pointer events\n    - retrying click action\n      - waiting 100ms\n    58 × waiting for element to be visible, enabled and stable\n       - element is visible, enabled and stable\n       - scrolling into view if needed\n       - done scrolling\n       - <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-[22px] w-[22px] shrink-0\">…</svg> from <nav aria-label=\"Primary\" class=\"app-tabbar fixed inset-x-0 bottom-0 z-40 pb-[env(safe-area-inset-bottom,0px)] tab:hidden print:hidden\">…</nav> subtree intercepts pointer events\n     - retrying click action\n       - waiting 500ms\n\n    at triggerTopbarAction (/home/user/roducq/scripts/.unsaved-matrix-diagnostic.mjs:1037:61)\n    at async shellMatrixProbe (/home/user/roducq/scripts/.unsaved-matrix-diagnostic.mjs:1184:5)\n    at async runCase (/home/user/roducq/scripts/.unsaved-matrix-diagnostic.mjs:1332:26)\n    at async main (/home/user/roducq/scripts/.unsaved-matrix-diagnostic.mjs:1408:7)"
+      },
+      "durationMs": 32122
+    }
+  ],
+  "scans": [
+    {
+      "case": "diagnostic-topbar-sign-out-320",
+      "width": 320,
+      "scheme": "light",
+      "motion": "reduce",
+      "action": "sign-out",
+      "surface": "topbar",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-hidden-focus",
+          "impact": "serious",
+          "help": "ARIA hidden element must not be focusable or contain focusable elements",
+          "nodes": [
+            {
+              "target": [
+                "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(1)"
+              ],
+              "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+            },
+            {
+              "target": [
+                ".focus\\:not-sr-only"
+              ],
+              "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+            },
+            {
+              "target": [
+                ".col-span-2"
+              ],
+              "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+            },
+            {
+              "target": [
+                ".work-back"
+              ],
+              "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+            },
+            {
+              "target": [
+                ".mb-6.gap-4.flex-wrap"
+              ],
+              "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+            },
+            {
+              "target": [
+                ".composer-field[data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(1)"
+              ],
+              "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+            },
+            {
+              "target": [
+                ".composer-field[data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(2)"
+              ],
+              "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+            },
+            {
+              "target": [
+                ".hover\\:bg-accent-hover"
+              ],
+              "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+            },
+            {
+              "target": [
+                ".space-y-6.min-w-0[data-aria-hidden=\"true\"]"
+              ],
+              "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+            },
+            {
+              "target": [
+                ".app-tabbar"
+              ],
+              "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+            },
+            {
+              "target": [
+                ".bottom-\\[calc\\(5rem_\\+_env\\(safe-area-inset-bottom\\,0px\\)\\)\\]"
+              ],
+              "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+            },
+            {
+              "target": [
+                "span[data-radix-focus-guard=\"\"][data-aria-hidden=\"true\"][aria-hidden=\"true\"]:nth-child(22)"
+              ],
+              "summary": "Fix all of the following:\n  Check that focusable elements are not tabbable in the current state"
+            }
+          ]
+        }
+      ],
+      "passes": 34
+    }
+  ],
+  "screenshots": [
+    "shell-sign-out-light-reduce-320.png",
+    "FAILED-shell-sign-out-light-reduce-320.png"
+  ],
+  "browserErrors": [],
+  "blockedRequests": [],
+  "fixtureEvents": [
+    {
+      "case": "diagnostic-clean-shell-320",
+      "type": "workspace-write",
+      "at": 1793181216772,
+      "workspaceId": "55555555-5555-4555-8555-555555555555"
+    },
+    {
+      "case": "diagnostic-clean-shell-320",
+      "type": "logout",
+      "at": 1793181217236,
+      "method": "POST",
+      "scope": "local",
+      "hasBearerToken": true
+    }
+  ],
+  "limitations": [
+    "Native beforeunload text is not customisable; Chromium requires prior user interaction and some mobile browsers suppress the prompt.",
+    "Back/Forward is only cancellable where the Navigation API exists (Chrome/Edge 102+, Firefox 147+, Safari 26.2+). Older engines keep click and unload protection only.",
+    "Sign out and workspace switching are guarded at their own handlers (the guard registry), not by intercepting the router: any future destructive shell action must call requestGuardedAction() to be covered.",
+    "With JavaScript disabled the guard cannot run; the editor cannot save either.",
+    "Headless Chromium viewports are simulations, not physical devices or assistive technology."
+  ],
+  "browserVersion": "153.0.8010.0",
+  "packageVersions": {
+    "node": "v22.22.3",
+    "next": "16.4.3",
+    "playwright": "1.63.0",
+    "axe": "4.14.0"
+  },
+  "error": {
+    "name": "TimeoutError",
+    "message": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByRole('menuitem', { name: /Log out/ })\n    - locator resolved to <button tabindex=\"-1\" role=\"menuitem\" title=\"Log out\" class=\"inline-flex min-h-11 min-w-11 shrink-0 items-center gap-2 whitespace-nowrap rounded-control font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-muted h-11 rounded-control text-xs text-muted-foreground hover:text-text w-full justify-start rounded-m…>…</button>\n  - attempting click action\n    2 × waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-[22px] w-[22px] shrink-0\">…</svg> from <nav aria-label=\"Primary\" class=\"app-tabbar fixed inset-x-0 bottom-0 z-40 pb-[env(safe-area-inset-bottom,0px)] tab:hidden print:hidden\">…</nav> subtree intercepts pointer events\n    - retrying click action\n    - waiting 20ms\n    2 × waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-[22px] w-[22px] shrink-0\">…</svg> from <nav aria-label=\"Primary\" class=\"app-tabbar fixed inset-x-0 bottom-0 z-40 pb-[env(safe-area-inset-bottom,0px)] tab:hidden print:hidden\">…</nav> subtree intercepts pointer events\n    - retrying click action\n      - waiting 100ms\n    58 × waiting for element to be visible, enabled and stable\n       - element is visible, enabled and stable\n       - scrolling into view if needed\n       - done scrolling\n       - <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-[22px] w-[22px] shrink-0\">…</svg> from <nav aria-label=\"Primary\" class=\"app-tabbar fixed inset-x-0 bottom-0 z-40 pb-[env(safe-area-inset-bottom,0px)] tab:hidden print:hidden\">…</nav> subtree intercepts pointer events\n     - retrying click action\n       - waiting 500ms\n",
+    "stack": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByRole('menuitem', { name: /Log out/ })\n    - locator resolved to <button tabindex=\"-1\" role=\"menuitem\" title=\"Log out\" class=\"inline-flex min-h-11 min-w-11 shrink-0 items-center gap-2 whitespace-nowrap rounded-control font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-muted h-11 rounded-control text-xs text-muted-foreground hover:text-text w-full justify-start rounded-m…>…</button>\n  - attempting click action\n    2 × waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-[22px] w-[22px] shrink-0\">…</svg> from <nav aria-label=\"Primary\" class=\"app-tabbar fixed inset-x-0 bottom-0 z-40 pb-[env(safe-area-inset-bottom,0px)] tab:hidden print:hidden\">…</nav> subtree intercepts pointer events\n    - retrying click action\n    - waiting 20ms\n    2 × waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-[22px] w-[22px] shrink-0\">…</svg> from <nav aria-label=\"Primary\" class=\"app-tabbar fixed inset-x-0 bottom-0 z-40 pb-[env(safe-area-inset-bottom,0px)] tab:hidden print:hidden\">…</nav> subtree intercepts pointer events\n    - retrying click action\n      - waiting 100ms\n    58 × waiting for element to be visible, enabled and stable\n       - element is visible, enabled and stable\n       - scrolling into view if needed\n       - done scrolling\n       - <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-[22px] w-[22px] shrink-0\">…</svg> from <nav aria-label=\"Primary\" class=\"app-tabbar fixed inset-x-0 bottom-0 z-40 pb-[env(safe-area-inset-bottom,0px)] tab:hidden print:hidden\">…</nav> subtree intercepts pointer events\n     - retrying click action\n       - waiting 500ms\n\n    at triggerTopbarAction (/home/user/roducq/scripts/.unsaved-matrix-diagnostic.mjs:1037:61)\n    at async shellMatrixProbe (/home/user/roducq/scripts/.unsaved-matrix-diagnostic.mjs:1184:5)\n    at async runCase (/home/user/roducq/scripts/.unsaved-matrix-diagnostic.mjs:1332:26)\n    at async main (/home/user/roducq/scripts/.unsaved-matrix-diagnostic.mjs:1408:7)"
+  },
+  "summary": {
+    "passed": 1,
+    "failed": 1,
+    "axeScans": 1,
+    "axeViolations": 0,
+    "axeIncompleteRules": 1,
+    "browserErrors": 0,
+    "blockedRequests": 0
+  }
+}

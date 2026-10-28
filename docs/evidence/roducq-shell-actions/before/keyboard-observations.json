@@ -1,0 +1,451 @@
+[
+  {
+    "width": 320,
+    "method": "Enter",
+    "beforeRelease": {
+      "dialog": null,
+      "active": {
+        "tag": "BUTTON",
+        "role": "combobox",
+        "label": "Switch workspace",
+        "text": "FFictional Studio"
+      },
+      "events": [
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "tag": "BUTTON",
+          "role": "combobox",
+          "label": "Switch workspace",
+          "text": "FFictional Studio",
+          "defaultPrevented": false
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "tag": "DIV",
+          "role": "option",
+          "label": null,
+          "text": "Fictional Studio",
+          "defaultPrevented": false
+        },
+        {
+          "type": "keydown",
+          "key": "End",
+          "tag": "DIV",
+          "role": "option",
+          "label": null,
+          "text": "Fictional Studio",
+          "defaultPrevented": false
+        },
+        {
+          "type": "keyup",
+          "key": "End",
+          "tag": "DIV",
+          "role": "option",
+          "label": null,
+          "text": "Fictional Second Studio",
+          "defaultPrevented": false
+        },
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "tag": "DIV",
+          "role": "option",
+          "label": null,
+          "text": "Fictional Second Studio",
+          "defaultPrevented": false
+        },
+        {
+          "type": "click",
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "text": "Keep editing",
+          "defaultPrevented": false
+        }
+      ]
+    },
+    "afterRelease": {
+      "dialog": null,
+      "active": {
+        "tag": "BUTTON",
+        "role": "combobox",
+        "label": "Switch workspace",
+        "text": "FFictional Studio"
+      },
+      "events": [
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "tag": "BUTTON",
+          "role": "combobox",
+          "label": "Switch workspace",
+          "text": "FFictional Studio",
+          "defaultPrevented": false
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "tag": "DIV",
+          "role": "option",
+          "label": null,
+          "text": "Fictional Studio",
+          "defaultPrevented": false
+        },
+        {
+          "type": "keydown",
+          "key": "End",
+          "tag": "DIV",
+          "role": "option",
+          "label": null,
+          "text": "Fictional Studio",
+          "defaultPrevented": false
+        },
+        {
+          "type": "keyup",
+          "key": "End",
+          "tag": "DIV",
+          "role": "option",
+          "label": null,
+          "text": "Fictional Second Studio",
+          "defaultPrevented": false
+        },
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "tag": "DIV",
+          "role": "option",
+          "label": null,
+          "text": "Fictional Second Studio",
+          "defaultPrevented": false
+        },
+        {
+          "type": "click",
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "text": "Keep editing",
+          "defaultPrevented": false
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "tag": "BUTTON",
+          "role": "combobox",
+          "label": "Switch workspace",
+          "text": "FFictional Studio",
+          "defaultPrevented": false
+        }
+      ]
+    },
+    "workspaceWrites": []
+  },
+  {
+    "width": 320,
+    "method": "Space",
+    "beforeRelease": {
+      "dialog": {
+        "text": "Discard unsaved changes?Your edits to this update haven’t been saved. If you leave now, they’ll be lost.Keep editingDiscard and switch workspaceClose",
+        "state": "open",
+        "visibility": "visible",
+        "display": "grid"
+      },
+      "active": {
+        "tag": "BUTTON",
+        "role": null,
+        "label": null,
+        "text": "Keep editing"
+      },
+      "events": [
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "tag": "BUTTON",
+          "role": "combobox",
+          "label": "Switch workspace",
+          "text": "FFictional Studio",
+          "defaultPrevented": false
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "tag": "DIV",
+          "role": "option",
+          "label": null,
+          "text": "Fictional Studio",
+          "defaultPrevented": false
+        },
+        {
+          "type": "keydown",
+          "key": "End",
+          "tag": "DIV",
+          "role": "option",
+          "label": null,
+          "text": "Fictional Studio",
+          "defaultPrevented": false
+        },
+        {
+          "type": "keyup",
+          "key": "End",
+          "tag": "DIV",
+          "role": "option",
+          "label": null,
+          "text": "Fictional Second Studio",
+          "defaultPrevented": false
+        },
+        {
+          "type": "keydown",
+          "key": " ",
+          "tag": "DIV",
+          "role": "option",
+          "label": null,
+          "text": "Fictional Second Studio",
+          "defaultPrevented": false
+        }
+      ]
+    },
+    "afterRelease": {
+      "dialog": {
+        "text": "Discard unsaved changes?Your edits to this update haven’t been saved. If you leave now, they’ll be lost.Keep editingDiscard and switch workspaceClose",
+        "state": "open",
+        "visibility": "visible",
+        "display": "grid"
+      },
+      "active": {
+        "tag": "BUTTON",
+        "role": null,
+        "label": null,
+        "text": "Keep editing"
+      },
+      "events": [
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "tag": "BUTTON",
+          "role": "combobox",
+          "label": "Switch workspace",
+          "text": "FFictional Studio",
+          "defaultPrevented": false
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "tag": "DIV",
+          "role": "option",
+          "label": null,
+          "text": "Fictional Studio",
+          "defaultPrevented": false
+        },
+        {
+          "type": "keydown",
+          "key": "End",
+          "tag": "DIV",
+          "role": "option",
+          "label": null,
+          "text": "Fictional Studio",
+          "defaultPrevented": false
+        },
+        {
+          "type": "keyup",
+          "key": "End",
+          "tag": "DIV",
+          "role": "option",
+          "label": null,
+          "text": "Fictional Second Studio",
+          "defaultPrevented": false
+        },
+        {
+          "type": "keydown",
+          "key": " ",
+          "tag": "DIV",
+          "role": "option",
+          "label": null,
+          "text": "Fictional Second Studio",
+          "defaultPrevented": false
+        },
+        {
+          "type": "keyup",
+          "key": " ",
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "text": "Keep editing",
+          "defaultPrevented": false
+        }
+      ]
+    },
+    "workspaceWrites": []
+  },
+  {
+    "width": 320,
+    "method": "pointer",
+    "after": {
+      "dialog": {
+        "text": "Discard unsaved changes?Your edits to this update haven’t been saved. If you leave now, they’ll be lost.Keep editingDiscard and switch workspaceClose",
+        "state": "open",
+        "visibility": "visible",
+        "display": "grid"
+      },
+      "active": {
+        "tag": "BUTTON",
+        "role": null,
+        "label": null,
+        "text": "Keep editing"
+      },
+      "events": [
+        {
+          "type": "click",
+          "tag": "HTML",
+          "role": null,
+          "label": null,
+          "text": "roducq\n  .with-scroll-bars-hidden {\n   overflow: hidden !important;\n   padding-r",
+          "defaultPrevented": false
+        }
+      ]
+    },
+    "workspaceWrites": []
+  },
+  {
+    "width": 1440,
+    "method": "Enter",
+    "beforeRelease": {
+      "dialog": null,
+      "active": {
+        "tag": "BUTTON",
+        "role": "combobox",
+        "label": "Switch workspace",
+        "text": "FFictional Studio"
+      },
+      "events": [
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "tag": "BUTTON",
+          "role": "combobox",
+          "label": "Switch workspace",
+          "text": "FFictional Studio",
+          "defaultPrevented": false
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "tag": "DIV",
+          "role": "option",
+          "label": null,
+          "text": "Fictional Studio",
+          "defaultPrevented": false
+        },
+        {
+          "type": "keydown",
+          "key": "End",
+          "tag": "DIV",
+          "role": "option",
+          "label": null,
+          "text": "Fictional Studio",
+          "defaultPrevented": false
+        },
+        {
+          "type": "keyup",
+          "key": "End",
+          "tag": "DIV",
+          "role": "option",
+          "label": null,
+          "text": "Fictional Studio",
+          "defaultPrevented": false
+        },
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "tag": "DIV",
+          "role": "option",
+          "label": null,
+          "text": "Fictional Second Studio",
+          "defaultPrevented": false
+        },
+        {
+          "type": "click",
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "text": "Keep editing",
+          "defaultPrevented": false
+        }
+      ]
+    },
+    "afterRelease": {
+      "dialog": null,
+      "active": {
+        "tag": "BUTTON",
+        "role": "combobox",
+        "label": "Switch workspace",
+        "text": "FFictional Studio"
+      },
+      "events": [
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "tag": "BUTTON",
+          "role": "combobox",
+          "label": "Switch workspace",
+          "text": "FFictional Studio",
+          "defaultPrevented": false
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "tag": "DIV",
+          "role": "option",
+          "label": null,
+          "text": "Fictional Studio",
+          "defaultPrevented": false
+        },
+        {
+          "type": "keydown",
+          "key": "End",
+          "tag": "DIV",
+          "role": "option",
+          "label": null,
+          "text": "Fictional Studio",
+          "defaultPrevented": false
+        },
+        {
+          "type": "keyup",
+          "key": "End",
+          "tag": "DIV",
+          "role": "option",
+          "label": null,
+          "text": "Fictional Studio",
+          "defaultPrevented": false
+        },
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "tag": "DIV",
+          "role": "option",
+          "label": null,
+          "text": "Fictional Second Studio",
+          "defaultPrevented": false
+        },
+        {
+          "type": "click",
+          "tag": "BUTTON",
+          "role": null,
+          "label": null,
+          "text": "Keep editing",
+          "defaultPrevented": false
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "tag": "BUTTON",
+          "role": "combobox",
+          "label": "Switch workspace",
+          "text": "FFictional Studio",
+          "defaultPrevented": false
+        }
+      ]
+    },
+    "workspaceWrites": []
+  }
+]
