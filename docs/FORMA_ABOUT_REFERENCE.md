@@ -3,8 +3,16 @@
 Reference: <https://forma-visuvate.framer.website/about>
 Target: <https://roducq.nanexi.com/about> (`app/(marketing)/about/page.tsx`)
 Branch: `arena/38893169-roducq` (branched from `main` @ `4618b16`)
-Status: **Phase 1 reference audit + Phase 2 proposal. No application code
-has been changed: awaiting owner approval before Phase 3 implementation.**
+Status: **approved by the owner and implemented.** This document is
+the Phase 1 reference audit + Phase 2 proposal (including the
+§E questions, answered in the owner's approval: hero "Why we are
+building roducq.", split "Where the context gets lost", the five
+principles as proposed, Changelog/Compare/Contact cards, CTA "Try
+roducq with your own client work" with Create account / See pricing
+and the no-paid-plan note). Implementation details, deviations, and
+verification evidence live in `docs/FORMA_ABOUT_REDESIGN.md`. The
+audit below is preserved as written (labels unchanged) for
+provenance.
 
 Every claim is labelled:
 

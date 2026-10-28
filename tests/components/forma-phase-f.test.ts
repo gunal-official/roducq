@@ -153,10 +153,19 @@ describe("Forma F — marketing responsiveness and semantics", () => {
     // screenshot, so it reflows instead of clipping on a phone.
     assert.match(read("components/marketing/landing/WorkspacePreview.tsx"), /grid-cols-1 md:grid-cols-\[13\.5rem_minmax\(0,1fr\)\]/);
   });
-  it("replaces continuous marketing orbits with the same original artwork as the app", () => {
-    assert.match(read("app/(marketing)/about/page.tsx"), /BriefSourceArt/);
+  it("replaces continuous marketing orbits with still, original artwork", () => {
+    // /about is the measured Forma About recreation now: the reference
+    // hero is type-only, so BriefSourceArt left the page along with the
+    // orbiting art it replaced; the only illustration is the labelled,
+    // fictional pipeline card in the closing CTA
+    // (docs/FORMA_ABOUT_REDESIGN.md). BriefSourceArt itself remains the
+    // app's artwork on the brief surfaces, unchanged.
+    assert.match(read("app/(marketing)/about/page.tsx"), /AboutHero/);
+    assert.match(read("components/marketing/landing/about/AboutCta.tsx"), /aria-hidden="true"/);
+    assert.match(read("app/(marketing)/about/content.ts"), /Illustrative example · fictional client/);
     assert.match(read("app/(marketing)/vs/page.tsx"), /ProposalDocumentArt/);
     for (const path of ["app/(marketing)/about/page.tsx", "app/(marketing)/vs/page.tsx"]) assert.doesNotMatch(read(path), /spin_\d+s|animate-pulse/);
+    assert.doesNotMatch(read("components/marketing/landing/about/AboutCta.tsx"), /spin_\d+s|animate-pulse/);
   });
 });
 
