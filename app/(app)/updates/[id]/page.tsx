@@ -40,13 +40,13 @@ import {
   Link2,
   Megaphone,
   PenLine,
-  Send,
 } from "lucide-react";
 
 import { getUpdateById } from "@/lib/data/updates";
 import { getShareLinkForUpdate } from "@/lib/data/shares";
 import { getTemplates } from "@/lib/data/templates";
 import { getWorkspaceContext } from "@/lib/data/workspace-context";
+import { getUpdateShareState, UPDATE_SHARE_PRESENTATION } from "@/lib/ui/update-share-state";
 import { CanEdit } from "@/components/app-shell/CanEdit";
 import { formatDate, isUuid, timeAgo } from "@/lib/utils";
 import { ExportUpdateMarkdownButton } from "@/components/updates/ExportUpdateMarkdownButton";
@@ -122,6 +122,8 @@ export default async function UpdateDetailPage({
     getShareLinkForUpdate(id),
     context ? getTemplates(context.id) : Promise.resolve([]),
   ]);
+  const shareState = getUpdateShareState(shareLink);
+  const sharePresentation = UPDATE_SHARE_PRESENTATION[shareState];
 
   const events: TimelineEvent[] = [
     {
@@ -131,17 +133,6 @@ export default async function UpdateDetailPage({
       at: formatDate(update.created_at),
       tone: "accent",
     },
-    ...(update.status === "sent"
-      ? [
-          {
-            icon: Send,
-            title: "Marked sent",
-            detail: update.client_name ?? undefined,
-            at: formatDate(update.updated_at),
-            tone: "success",
-          } as TimelineEvent,
-        ]
-      : []),
     {
       icon: Clock,
       title: "Last updated",
@@ -179,8 +170,8 @@ export default async function UpdateDetailPage({
           <p className="forma-kicker">Where this update stands</p>
           <p className="work-doc-band-note">
             {update.status === "sent"
-              ? `Marked sent ${timeAgo(update.updated_at)}. Editing it afterwards changes the saved copy, not what the client already received.`
-              : "Drafted and saved — it stays private until you mark it sent."}
+              ? "Marked sent. Changing this status does not send the update; share a link or export it separately."
+              : "Draft saved. A public link can be created while this update is still a draft."}
           </p>
           <div className="work-doc-band-chips">
             <UpdateStatusBadge status={update.status} />
@@ -188,7 +179,7 @@ export default async function UpdateDetailPage({
               {update.body.trim().split(/\s+/).filter(Boolean).length} words
             </Badge>
             <Badge variant="secondary">
-              {shareLink ? "Public link live" : "No public link"}
+              {sharePresentation.chip}
             </Badge>
           </div>
         </div>
@@ -200,7 +191,11 @@ export default async function UpdateDetailPage({
           icon={FileText}
           label="Status"
           value={<UpdateStatusBadge status={update.status} />}
-          hint={update.status === "sent" ? "Delivered to the client" : "Not sent yet"}
+          hint={
+            update.status === "sent"
+              ? "Status only; this does not confirm delivery."
+              : "Draft status; a link can still be shared."
+          }
           tone={update.status === "sent" ? "success" : "muted"}
         />
         <StatTile
@@ -214,13 +209,9 @@ export default async function UpdateDetailPage({
         <StatTile
           icon={Link2}
           label="Public link"
-          value={shareLink ? "Live" : "Private"}
-          hint={
-            shareLink
-              ? "Clients can open the read-only view"
-              : "Create one to share this update"
-          }
-          tone={shareLink ? "success" : "muted"}
+          value={sharePresentation.value}
+          hint={sharePresentation.hint}
+          tone={shareState === "active" ? "success" : "muted"}
           delay={80}
         />
       </div>
@@ -260,7 +251,7 @@ export default async function UpdateDetailPage({
               icon={PenLine}
               tone="accent"
               title="Edit update"
-              description="Edit the title and body, then save — the client gets the exported markdown."
+              description="Edit the title and body, then save. Anyone with an active share link can view the saved changes."
             >
               <UpdateComposer
                 updateId={update.id}
@@ -278,7 +269,7 @@ export default async function UpdateDetailPage({
             id="update-share"
             icon={Link2}
             title="Public link"
-            description="Read-only update the client can open — revocable any time."
+            description="Read-only link to the latest saved update. Sharing it is up to you."
           >
             <ShareLinkPanel updateId={update.id} shareLink={shareLink} />
           </SectionCard>

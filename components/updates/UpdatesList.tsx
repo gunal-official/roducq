@@ -32,7 +32,7 @@ type StatusFilter = "all" | UpdateStatus;
 const FILTER_OPTIONS: { value: StatusFilter; label: string }[] = [
   { value: "all", label: "All" },
   { value: "draft", label: "Draft" },
-  { value: "sent", label: "Sent" },
+  { value: "sent", label: "Marked sent" },
 ];
 
 export function UpdatesList({ updates }: { updates: UpdateSummary[] }) {
@@ -70,12 +70,12 @@ export function UpdatesList({ updates }: { updates: UpdateSummary[] }) {
       <WorkBand
         kicker="Updates"
         title="Keep clients in the loop"
-        description="Every update is composed from a plan — you write it, save it, then decide when it goes out. Drafts stay private until you mark them sent."
+        description="Write and save updates from plans. Drafts can be shared by link; changing the status does not send an update."
         art={<UpdateTimelineArt entries={updates.length} />}
         stats={[
           { value: updates.length, label: "updates" },
           { value: draftCount, label: "drafts" },
-          { value: sentCount, label: "sent" },
+          { value: sentCount, label: "marked sent" },
         ]}
       />
 
@@ -84,7 +84,7 @@ export function UpdatesList({ updates }: { updates: UpdateSummary[] }) {
           <StackedBar
             segments={[
               { label: "Draft", weight: draftCount, className: "bg-accent" },
-              { label: "Sent", weight: sentCount, className: "bg-success" },
+              { label: "Marked sent", weight: sentCount, className: "bg-success" },
             ]}
           />
         }
@@ -92,9 +92,9 @@ export function UpdatesList({ updates }: { updates: UpdateSummary[] }) {
         <StatTile icon={Megaphone} label="Total updates" value={updates.length} hint="All time" />
         <StatTile
           icon={Send}
-          label="Sent"
+          label="Marked sent"
           value={sentCount}
-          hint="Delivered to clients"
+          hint="Status only; this does not confirm delivery."
           tone={sentCount > 0 ? "success" : "muted"}
           delay={40}
         />

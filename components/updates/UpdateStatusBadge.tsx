@@ -4,9 +4,8 @@ import type { UpdateStatus } from "@/lib/types/update";
 
 /**
  * Status badge for updates — fourth member of the badge family, with
- * updates' 2-status vocabulary. Mirrors the family's conventions:
- * draft = solid muted (same as brief/proposal drafts), sent = accent
- * outline (same look as proposal "sent" — same meaning here).
+ * updates' 2-status vocabulary. Draft is muted; the stored "sent" value is
+ * presented as "Marked sent" because changing status does not deliver it.
  */
 const STATUS_STYLES: Record<
   UpdateStatus,
@@ -17,7 +16,7 @@ const STATUS_STYLES: Record<
     className: "border-transparent bg-muted text-text",
   },
   sent: {
-    label: "Sent",
+    label: "Marked sent",
     className: "border-accent bg-accent-soft text-accent",
   },
 };

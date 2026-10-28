@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import { Loader2 } from "lucide-react";
 
 import { updateUpdateStatus } from "@/app/(app)/updates/[id]/actions";
@@ -15,7 +15,7 @@ import type { UpdateStatus } from "@/lib/types/update";
 
 const STATUS_OPTIONS: { value: UpdateStatus; label: string }[] = [
   { value: "draft", label: "Draft" },
-  { value: "sent", label: "Sent" },
+  { value: "sent", label: "Marked sent" },
 ];
 
 /** Draft → Sent. Same optimistic-with-rollback pattern as the plan
@@ -27,6 +27,7 @@ export function UpdateStatusSelect({
   updateId: string;
   status: UpdateStatus;
 }) {
+  const hintId = useId();
   const [value, setValue] = useState<UpdateStatus>(status);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -56,7 +57,7 @@ export function UpdateStatusSelect({
     <div className="space-y-1.5">
       <div className="flex items-center gap-2">
         <Select value={value} onValueChange={handleChange} disabled={pending}>
-          <SelectTrigger aria-label="Update status" className="h-11 w-[150px]">
+          <SelectTrigger aria-label="Update status" aria-describedby={hintId} className="h-11 w-[150px]">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -71,6 +72,9 @@ export function UpdateStatusSelect({
           <Loader2 className="h-4 w-4 animate-spin text-muted-foreground"  aria-hidden="true" />
         )}
       </div>
+      <p id={hintId} className="max-w-48 text-xs text-muted-foreground">
+        Changing the status does not send this update.
+      </p>
       {error && <p role="alert" className="text-sm text-error">{error}</p>}
     </div>
   );
