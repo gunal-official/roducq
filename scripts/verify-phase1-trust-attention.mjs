@@ -277,14 +277,9 @@ async function scan(page, ledger, label) {
     };
   }, AXE_TAGS);
   ledger.axe.push({ label, ...result });
-  // The unchanged compact, single-workspace shell contains a labelled generic
-  // div. Record it (do not claim a clean scan) while still failing on every
-  // other violation. This fixture deliberately exercises that existing case.
-  const unexpected = result.violations.flatMap((rule) => rule.nodes
-    .filter((node) => !(rule.id === "aria-prohibited-attr" && node.html.startsWith("<div ") &&
-      node.html.includes('aria-label="Workspace: Fictional Studio"')))
-    .map((node) => ({ rule: rule.id, ...node })));
-  assert.deepEqual(unexpected, [], `${label}: unexpected axe violations ${JSON.stringify(unexpected)}`);
+  // The compact single-workspace label must no longer need an exception.
+  // Incomplete rules remain in the ledger and are never treated as passes.
+  assert.deepEqual(result.violations, [], `${label}: axe violations ${JSON.stringify(result.violations)}`);
 }
 async function checkDetail(page, base, scheme, status, link, ledger, takeScan, output, width) {
   reset({ status, link });
@@ -440,13 +435,11 @@ async function interactions(browser, page, context, base, stubOrigin, ledger) {
       focused: await page.evaluate(() => document.activeElement?.outerHTML), main: (await page.locator("main").innerText()).slice(-3000) }));
     throw error;
   }
-  await page.waitForFunction(() => !document.querySelector('button[role="combobox"][aria-label="Update status"]')?.disabled);
+  await page.waitForFunction(() => document.querySelector('button[role="combobox"][aria-label="Update status"]')?.getAttribute("aria-disabled") === "false");
   const focus = await page.evaluate(() => ({ tag: document.activeElement?.tagName,
     label: document.activeElement?.getAttribute("aria-label") }));
   ledger.focus.push({ action: "status change completes", ...focus });
-  // The existing selector disables its trigger while saving; a keyboard
-  // user can lose focus to BODY. Record this without treating it as a pass.
-  assert.ok(focus.tag === "BODY" || focus.label === "Update status", `Unexpected focus target: ${JSON.stringify(focus)}`);
+  assert.equal(focus.label, "Update status", `Status save lost keyboard focus: ${JSON.stringify(focus)}`);
   await select.focus();
   assert.equal(await select.evaluate((el) => document.activeElement === el), true);
   assert.equal(state.status, "sent");
@@ -460,7 +453,7 @@ async function interactions(browser, page, context, base, stubOrigin, ledger) {
   await page.waitForFunction(() => document.activeElement?.getAttribute("role") === "option" && document.activeElement.textContent?.trim() === "Draft");
   await page.keyboard.press("Enter");
   await page.waitForFunction(() => document.querySelector('button[role="combobox"][aria-label="Update status"]')?.textContent?.trim() === "Draft");
-  await page.waitForFunction(() => !document.querySelector('button[role="combobox"][aria-label="Update status"]')?.disabled);
+  await page.waitForFunction(() => document.querySelector('button[role="combobox"][aria-label="Update status"]')?.getAttribute("aria-disabled") === "false");
   assert.deepEqual(state.writes.map(({ path: p, body }) => ({ path: p, body })), [
     { path: "/rest/v1/updates", body: { status: "sent" } },
     { path: "/rest/v1/updates", body: { status: "draft" } },

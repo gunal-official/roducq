@@ -1,0 +1,517 @@
+#!/usr/bin/env node
+/**
+ * Phase 1 synthetic browser regression. This is NOT a production/RLS test.
+ *
+ * npm ci
+ * CHROMIUM_PATH=/path/to/chromium node scripts/verify-phase1-trust-attention.mjs
+ *
+ * The script builds with a fictional loopback-only Supabase substitute and a
+ * sanitized environment. It refuses to run if Next could load a real .env
+ * file or if resp-next already exists; it never kills listeners, removes a
+ * directory it did not create, or connects the browser to external hosts.
+ * Screenshots and a JSON ledger are left in a newly created OS temp directory.
+ */
+import assert from "node:assert/strict";
+import { spawn } from "node:child_process";
+import { createServer } from "node:http";
+import { createServer as createNetServer } from "node:net";
+import { existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { createRequire } from "node:module";
+import { chromium } from "playwright-core";
+import sharp from "sharp";
+import { installFixtureNetwork } from "./responsive/phase-f.mjs";
+
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const require = createRequire(import.meta.url);
+const AXE = require.resolve("axe-core/axe.min.js");
+const ID = "11111111-1111-4111-8111-111111111111";
+const WORKSPACE = "22222222-2222-4222-8222-222222222222";
+const USER = "33333333-3333-4333-8333-333333333333";
+const FIRST_TOKEN = "44444444-4444-4444-8444-444444444444";
+const WIDTHS = [320, 375, 390, 768, 1024, 1200, 1440];
+const HEIGHTS = { 320: 568, 375: 667, 390: 844, 768: 900, 1024: 900, 1200: 900, 1440: 900 };
+const STATUS_BANDS = {
+  draft: "Draft saved. A public link can be created while this update is still a draft.",
+  sent: "Marked sent. Changing this status does not send the update; share a link or export it separately.",
+};
+const SHARE = {
+  none: { chip: "No public link", value: "No link", hint: "No public link has been created.", control: "Create share link" },
+  active: { chip: "Public link live", value: "Live", hint: "Anyone with the link can view the latest saved update.", control: "Revoke link" },
+  revoked: { chip: "Public link revoked", value: "Revoked", hint: "This link no longer works.", control: "Regenerate link" },
+};
+const AXE_TAGS = ["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa", "best-practice"];
+const browserErrors = [];
+const today = (offset = 0) => new Date(Date.now() + offset * 86_400_000).toISOString().slice(0, 10);
+const created = "2026-01-10T10:00:00.000Z";
+
+function initialState(overrides = {}) {
+  return {
+    role: "owner", status: "draft", link: "none", token: FIRST_TOKEN,
+    pipeline: false, updates: null, invoices: [], contracts: [], title: "Fictional weekly update",
+    body: "The fictional milestone is on track.", failStatus: false, multi: false, writes: [], requests: [], ...overrides,
+  };
+}
+let state = initialState();
+function reset(overrides = {}) { state = initialState(overrides); }
+function updateRow() {
+  return {
+    id: ID, workspace_id: WORKSPACE, status: state.status, title: state.title,
+    body: state.body, client_name: null, created_at: created, updated_at: created, plan: null, plan_id: null, template_id: null,
+  };
+}
+function briefRow() {
+  return {
+    id: ID, workspace_id: WORKSPACE, title: "Fictional project brief", status: "draft",
+    created_at: created, updated_at: created, content: "Example brief", content_md: "Example brief",
+    sources: [], questions: [],
+  };
+}
+function invoice(id, due, status = "sent") {
+  return { id, workspace_id: WORKSPACE, title: "Fictional invoice", invoice_number: 1, client_name: null,
+    items: [], tax_percent: 0, status, due_date: due, paid_at: null, created_at: created, updated_at: created };
+}
+function contract(id, expiry, status = "sent") {
+  return { id, workspace_id: WORKSPACE, title: "Fictional contract", status,
+    expires_on: expiry, created_at: created, updated_at: created };
+}
+const overdue = () => invoice("inv-overdue", today(-1));
+const expiring = () => contract("contract-soon", today(5));
+
+async function bodyOf(req) {
+  const parts = [];
+  for await (const chunk of req) parts.push(chunk);
+  const raw = Buffer.concat(parts).toString("utf8");
+  if (!raw) return {};
+  try { return JSON.parse(raw); } catch { return { raw }; }
+}
+function send(req, res, data, status = 200, extra = {}) {
+  res.writeHead(status, {
+    "content-type": "application/json; charset=utf-8", "access-control-allow-origin": "*",
+    "access-control-allow-methods": "GET,POST,PATCH,DELETE,OPTIONS",
+    "access-control-allow-headers": req.headers["access-control-request-headers"] || "*", ...extra,
+  });
+  res.end(JSON.stringify(data));
+}
+function single(req, row) {
+  // PostgREST's maybeSingle() accepts an array for zero/one records.
+  if (req.headers.accept?.includes("application/vnd.pgrst.object+json")) return row ?? null;
+  return row == null ? [] : [row];
+}
+
+function fixtureServer() {
+  return createServer(async (req, res) => {
+    try {
+      const url = new URL(req.url, "http://127.0.0.1");
+      const pathname = url.pathname;
+      if (req.method === "OPTIONS") return send(req, res, {});
+      const payload = ["POST", "PATCH", "PUT", "DELETE"].includes(req.method) ? await bodyOf(req) : {};
+      state.requests.push({ method: req.method, path: pathname });
+      if (pathname === "/auth/v1/user") return send(req, res, {
+        id: USER, email: "fictional@example.test", aud: "authenticated", role: "authenticated",
+        app_metadata: {}, user_metadata: { full_name: "Fictional User" },
+      });
+      if (pathname === "/rest/v1/rpc/get_shared_document") {
+        const valid = state.link === "active" && payload.p_token === state.token;
+        return send(req, res, valid ? [{ status: state.status, title: state.title,
+          client_name: null, body: state.body, updated_at: created }] : []);
+      }
+      if (pathname === "/rest/v1/rpc/get_user_memberships") return send(req, res, [{
+        workspace_id: WORKSPACE, workspace_name: "Fictional Studio", role: state.role,
+      }]);
+      if (pathname === "/rest/v1/profiles") return send(req, res, single(req, {
+        id: USER, email: "fictional@example.test", full_name: "Fictional User",
+        onboarding_completed: true, active_workspace_id: WORKSPACE,
+      }));
+      if (pathname === "/rest/v1/workspaces") return send(req, res, single(req, {
+        id: WORKSPACE, name: "Fictional Studio", created_at: created,
+        plan_tier: "starter", razorpay_subscription_status: null,
+      }));
+      if (pathname === "/rest/v1/workspace_members") {
+        const member = { user_id: USER, workspace_id: WORKSPACE, role: state.role, created_at: created,
+          workspace: { id: WORKSPACE, name: "Fictional Studio", created_at: created,
+            plan_tier: "starter", razorpay_subscription_status: null } };
+        const other = { user_id: USER, workspace_id: "77777777-7777-4777-8777-777777777777", role: state.role, created_at: created,
+          workspace: { id: "77777777-7777-4777-8777-777777777777", name: "Second Fictional Studio", created_at: created,
+            plan_tier: "starter", razorpay_subscription_status: null } };
+        return send(req, res, state.multi ? [member, other] : single(req, member));
+      }
+      if (pathname === "/rest/v1/updates") {
+        if (req.method === "PATCH") {
+          state.writes.push({ path: pathname, method: req.method, body: payload });
+          if (payload.status !== undefined) {
+            await new Promise((resolve) => setTimeout(resolve, 900));
+            if (state.failStatus) return send(req, res, { code: "SYNTHETIC", message: "Synthetic status save failure", details: null, hint: null }, 400);
+            state.status = payload.status;
+          }
+          if (payload.title !== undefined) state.title = payload.title;
+          if (payload.body !== undefined) state.body = payload.body;
+          return send(req, res, []);
+        }
+        const isDetail = url.searchParams.has("id");
+        return send(req, res, isDetail ? single(req, updateRow()) : (state.updates ?? (state.pipeline ? [updateRow()] : [])));
+      }
+      if (pathname === "/rest/v1/share_links") {
+        if (req.method === "POST") {
+          state.writes.push({ path: pathname, method: req.method, body: payload });
+          state.link = "active";
+          state.token = payload.token || FIRST_TOKEN;
+          return send(req, res, []);
+        }
+        if (req.method === "PATCH") {
+          state.writes.push({ path: pathname, method: req.method, body: payload });
+          state.link = payload.revoked_at === null ? "active" : "revoked";
+          if (payload.token) state.token = payload.token;
+          return send(req, res, []);
+        }
+        const row = state.link === "none" ? null : {
+          id: "55555555-5555-4555-8555-555555555555", workspace_id: WORKSPACE,
+          document_type: "update", document_id: ID, token: state.token, created_at: created,
+          revoked_at: state.link === "revoked" ? created : null,
+        };
+        return send(req, res, single(req, row));
+      }
+      if (pathname === "/rest/v1/briefs") return send(req, res, state.pipeline ? [briefRow()] : []);
+      if (pathname === "/rest/v1/invoices") return send(req, res, state.invoices);
+      if (pathname === "/rest/v1/contracts") return send(req, res, state.contracts);
+      if (pathname.startsWith("/rest/v1/")) return send(req, res, []);
+      return send(req, res, { error: "Unknown fixture endpoint" }, 404);
+    } catch (error) {
+      console.error("Fixture server error:", error);
+      if (!res.headersSent) send(req, res, { error: "Fixture server error" }, 500);
+      else res.end();
+    }
+  });
+}
+async function listen(server) {
+  await new Promise((resolve, reject) => {
+    server.once("error", reject);
+    server.listen(0, "127.0.0.1", resolve);
+  });
+  return server.address().port;
+}
+async function freePort() {
+  const server = createNetServer();
+  const port = await listen(server);
+  await new Promise((resolve) => server.close(resolve));
+  return port; // Next fails normally if another process claims it; we never terminate that process.
+}
+function run(command, args, env, logfile) {
+  return new Promise((resolve, reject) => {
+    const child = spawn(command, args, { cwd: ROOT, env, stdio: ["ignore", "pipe", "pipe"] });
+    let log = "";
+    child.stdout.on("data", (d) => { log += d; });
+    child.stderr.on("data", (d) => { log += d; });
+    child.once("error", reject);
+    child.once("exit", (code, signal) => {
+      writeFileSync(logfile, log);
+      if (code === 0) resolve();
+      else reject(new Error(`${command} exited ${code ?? signal}; see ${logfile}\n${log.slice(-5000)}`));
+    });
+  });
+}
+async function waitForServer(url, child) {
+  const until = Date.now() + 60_000;
+  while (Date.now() < until) {
+    if (child.exitCode !== null || child.signalCode !== null) throw new Error("Fixture Next process exited before startup");
+    try { const response = await fetch(url, { redirect: "manual", signal: AbortSignal.timeout(1500) }); if (response.status < 500) return; } catch {}
+    await new Promise((resolve) => setTimeout(resolve, 250));
+  }
+  throw new Error("Fixture Next process did not start within 60 seconds");
+}
+function sessionCookie() {
+  const b64 = (value) => Buffer.from(JSON.stringify(value)).toString("base64url");
+  const token = `${b64({ alg: "HS256", typ: "JWT" })}.${b64({ sub: USER, aud: "authenticated", exp: 2000000000, iat: 1750000000 })}.fictional`;
+  const session = { access_token: token, refresh_token: "fictional-local-refresh",
+    token_type: "bearer", expires_in: 3600, expires_at: 2000000000,
+    user: { id: USER, email: "fictional@example.test", aud: "authenticated", role: "authenticated",
+      app_metadata: {}, user_metadata: { full_name: "Fictional User" } } };
+  return `base64-${Buffer.from(JSON.stringify(session)).toString("base64url")}`;
+}
+async function newContext(browser, base, stubOrigin, { width = 1440, scheme = "light", auth = true } = {}) {
+  const context = await browser.newContext({ viewport: { width, height: HEIGHTS[width] }, colorScheme: scheme, deviceScaleFactor: 1,
+    locale: "en-US", timezoneId: "UTC", reducedMotion: "reduce", serviceWorkers: "block" });
+  if (auth) await context.addCookies([{ name: "sb-127-auth-token", value: sessionCookie(), url: base }]);
+  await context.route("**/*", (route) => {
+    const url = new URL(route.request().url());
+    if (url.origin === base || url.origin === stubOrigin) return route.continue();
+    return route.abort("blockedbyclient");
+  });
+  const page = await context.newPage();
+  page.on("pageerror", (error) => browserErrors.push({ type: "pageerror", message: error.message }));
+  page.on("response", (response) => {
+    if (response.url().startsWith(base) && response.status() >= 400)
+      browserErrors.push({ type: "http", status: response.status(), url: response.url() });
+  });
+  await installFixtureNetwork(page, base, stubOrigin);
+  await context.grantPermissions(["local-network-access", "clipboard-read", "clipboard-write"], { origin: base });
+  return { context, page };
+}
+async function goto(page, base, route, scheme) {
+  const response = await page.goto(`${base}${route}`, { waitUntil: "domcontentloaded" });
+  assert.equal(response?.status(), 200, `GET ${route}: expected HTTP 200`);
+  await page.locator("main").waitFor();
+  await page.waitForLoadState("networkidle");
+  await page.waitForFunction((wanted) => document.documentElement.classList.contains("dark") === (wanted === "dark"), scheme);
+}
+// This is an external, synthetic-only probe, not application code. The
+// working tree and real customer services are neither modified nor contacted.
+const OUT = process.env.EVIDENCE_DIR;
+const LABEL = process.env.BUILD_LABEL;
+assert.ok(OUT && ["main-after-70", "main-before-70"].includes(LABEL));
+
+function round(n) { return Math.round(n * 1000) / 1000; }
+function luminance(rgb) {
+  const c = rgb.map(v => v / 255).map(v => v <= .04045 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4);
+  return .2126 * c[0] + .7152 * c[1] + .0722 * c[2];
+}
+function ratio(a, b) {
+  const [x, y] = [luminance(a), luminance(b)].sort((p,q) => q - p);
+  return (x + .05) / (y + .05);
+}
+function parseRgb(s) {
+  const m = s.match(/^rgba?\(\s*([\d.]+)[,\s]+([\d.]+)[,\s]+([\d.]+)/);
+  assert.ok(m, `Unexpected foreground color: ${s}`);
+  return m.slice(1, 4).map(Number);
+}
+async function gradientEvidence(page, stem) {
+  const word = page.locator('.app-sidebar a[aria-label="RoduCQ home"] > span > span');
+  if (await word.count() !== 1 || !(await word.isVisible())) return null;
+  await page.evaluate(() => document.fonts.ready);
+  const nodes = await word.evaluate(el => {
+    const part = el.querySelector('span');
+    const range = document.createRange(); range.selectNodeContents(el.firstChild);
+    const geom = r => ({x:r.x,y:r.y,width:r.width,height:r.height});
+    return [
+      {text:'rodu', rect:geom(range.getBoundingClientRect()), color:getComputedStyle(el).color, fontSize:getComputedStyle(el).fontSize, fontWeight:getComputedStyle(el).fontWeight},
+      {text:'cq', rect:geom(part.getBoundingClientRect()), color:getComputedStyle(part).color, fontSize:getComputedStyle(part).fontSize, fontWeight:getComputedStyle(part).fontWeight},
+    ];
+  });
+  const beforePath = path.join(OUT, `${stem}-gradient-text.png`);
+  const bgPath = path.join(OUT, `${stem}-gradient-background.png`);
+  await page.screenshot({path: beforePath, animations:'disabled'});
+  // Change only the text colors, never backgrounds/layout, then capture again.
+  await word.evaluate(el => {
+    window.__probeColors = [el.style.color, el.style.getPropertyPriority('color'), el.firstElementChild.style.color, el.firstElementChild.style.getPropertyPriority('color')];
+    el.style.setProperty('color', 'transparent', 'important');
+    el.firstElementChild.style.setProperty('color', 'transparent', 'important');
+  });
+  await page.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))));
+  await page.screenshot({path:bgPath, animations:'disabled'});
+  await word.evaluate(el => {
+    const [a,ap,b,bp] = window.__probeColors;
+    if (a) el.style.setProperty('color',a,ap); else el.style.removeProperty('color');
+    if (b) el.firstElementChild.style.setProperty('color',b,bp); else el.firstElementChild.style.removeProperty('color');
+    delete window.__probeColors;
+  });
+  const a = await sharp(beforePath).removeAlpha().raw().toBuffer({resolveWithObject:true});
+  const b = await sharp(bgPath).removeAlpha().raw().toBuffer({resolveWithObject:true});
+  assert.equal(a.info.width, b.info.width); assert.equal(a.info.height, b.info.height);
+  for (const node of nodes) {
+    const fg = parseRgb(node.color);
+    const x1 = Math.max(0,Math.floor(node.rect.x)), x2 = Math.min(a.info.width,Math.ceil(node.rect.x + node.rect.width));
+    const y1 = Math.max(0,Math.floor(node.rect.y)), y2 = Math.min(a.info.height,Math.ceil(node.rect.y + node.rect.height));
+    const samples = [], bounds = [], hist = new Map();
+    for (let y=y1;y<y2;y++) for (let x=x1;x<x2;x++) {
+      const i=(y*a.info.width+x)*3, bg=[b.data[i],b.data[i+1],b.data[i+2]];
+      const diff=Math.max(...bg.map((v,k)=>Math.abs(v-a.data[i+k])));
+      const r=ratio(fg,bg); bounds.push(r);
+      if (diff >= 4) {
+        samples.push(r);
+        const key=bg.join(','); hist.set(key,(hist.get(key)||0)+1);
+      }
+    }
+    assert.ok(samples.length, `No rendered pixels detected for ${node.text}`);
+    samples.sort((x,y)=>x-y); bounds.sort((x,y)=>x-y);
+    node.foregroundRgb=fg;
+    node.measuredGlyphPixels=samples.length;
+    node.glyphBackgrounds=[...hist.entries()].sort((x,y)=>y[1]-x[1]).slice(0,5).map(([rgb,count])=>({rgb:rgb.split(',').map(Number),count}));
+    node.glyphRatio={min:round(samples[0]), median:round(samples[Math.floor(samples.length/2)]), max:round(samples.at(-1)), meets45BeforeRounding:samples[0]>=4.5};
+    node.entireBoundingBoxRatio={min:round(bounds[0]),max:round(bounds.at(-1))};
+  }
+  return {nodes, beforeScreenshot:path.basename(beforePath), backgroundScreenshot:path.basename(bgPath), method:'Foreground from computed CSS; actual composited background from paired Chromium screenshots with only wordmark text colors temporarily transparent. Compare pixels changing >=4/255 in any channel; WCAG luminance, no rounding before 4.5 decision.'};
+}
+async function axeResult(page) {
+  if (!(await page.evaluate(() => Boolean(window.axe)))) await page.addScriptTag({path: AXE});
+  return page.evaluate(async tags => {
+    const r=await window.axe.run(document,{runOnly:{type:'tag',values:tags}});
+    const rules = kind => r[kind].map(rule => ({id:rule.id,impact:rule.impact,nodes:rule.nodes.map(n=>({target:n.target,html:n.html,summary:n.failureSummary}))}));
+    return {violations:rules('violations'), incomplete:rules('incomplete'), colorContrast:r.violations.some(x=>x.id==='color-contrast')?'violation':r.incomplete.some(x=>x.id==='color-contrast')?'incomplete':r.passes.some(x=>x.id==='color-contrast')?'pass':'inapplicable'};
+  }, AXE_TAGS);
+}
+async function identifyFocus(page) {
+  return page.evaluate(() => {
+    const e=document.activeElement; const b=e?.getBoundingClientRect();
+    return {tag:e?.tagName, id:e?.id || null, role:e?.getAttribute('role'), ariaLabel:e?.getAttribute('aria-label'), text:e?.textContent?.trim().slice(0,80), disabled:e?.disabled === true,
+      rect:b?{x:Math.round(b.x*100)/100,y:Math.round(b.y*100)/100,width:Math.round(b.width*100)/100,height:Math.round(b.height*100)/100}:null};
+  });
+}
+async function focusProbe(page, base, scheme, width, scenario) {
+  reset({status:'draft',link:'none',failStatus:scenario==='error'});
+  await goto(page,base,`/updates/${ID}`,scheme);
+  const select=page.getByRole('combobox',{name:'Update status'});
+  await select.waitFor({state:'visible'});
+  await select.focus();
+  const before=await identifyFocus(page);
+  await page.keyboard.press('Enter');
+  await page.getByRole('option',{name:/^(Sent|Marked sent)$/}).waitFor({state:'visible'});
+  // Radix focuses the selected option asynchronously after opening; wait for
+  // that before moving the keyboard selection, avoiding a navigation race.
+  await page.waitForFunction(() => document.activeElement?.getAttribute('role')==='option' && document.activeElement?.getAttribute('data-state')==='checked', null, {timeout:5000});
+  await page.keyboard.press('ArrowDown');
+  await page.waitForFunction(() => document.activeElement?.getAttribute('role')==='option' && /^(Sent|Marked sent)$/.test(document.activeElement?.textContent?.trim()||''), null, {timeout:5000});
+  await page.keyboard.press('Enter');
+  await page.waitForFunction(() => document.querySelector('[aria-label="Update status"]')?.disabled === true, null, {timeout:5000});
+  const during=await identifyFocus(page);
+  const disabledDuring=await select.isDisabled();
+  let moved=null;
+  if (scenario==='move-focus') {
+    await page.locator('#global-search').focus();
+    moved=await identifyFocus(page);
+  }
+  await page.waitForFunction(() => document.querySelector('[aria-label="Update status"]')?.disabled === false, null, {timeout:12000});
+  if (scenario==='error') await page.getByRole('alert').filter({hasText:'Synthetic status save failure'}).waitFor({state:'visible'});
+  await page.waitForTimeout(150);
+  const after=await identifyFocus(page);
+  const result={scheme,width,height:HEIGHTS[width],scenario,before,during,disabledDuring,moved,after,
+    triggerText:(await select.innerText()).trim(), persistedFixtureStatus:state.status,
+    errorText:scenario==='error'?(await page.getByRole('alert').filter({hasText:'Synthetic status save failure'}).innerText()):null,
+    patchWrites:state.writes.filter(w=>w.path==='/rest/v1/updates')};
+  assert.equal(result.patchWrites.length,1,`${scenario} status update should make one local fixture write`);
+  assert.equal(result.persistedFixtureStatus,scenario==='error'?'draft':'sent');
+  return result;
+}
+async function timerGeometry(page, phase) {
+  return page.evaluate((phase) => {
+    const main=document.querySelector('main');
+    const field=document.querySelector('#intake-context');
+    const timer=phase==='idle' ? [...document.querySelectorAll('button')].find(e=>e.textContent.trim()==='Start timer') :
+      phase==='running' ? document.querySelector('[aria-label="What are you working on?"]')?.parentElement :
+      [...document.querySelectorAll('p')].find(e=>e.textContent.trim()==='Log this session')?.parentElement;
+    if (!main || !field || !timer) return {error:`Missing main, field, or ${phase} timer`};
+    const rect=r=>({x:+r.x.toFixed(2),y:+r.y.toFixed(2),width:+r.width.toFixed(2),height:+r.height.toFixed(2)});
+    const m=main.getBoundingClientRect(), t=timer.getBoundingClientRect();
+    const max=Math.max(0,main.scrollHeight-main.clientHeight);
+    let best=null;
+    const positions=[]; for(let n=0;n<max;n+=4)positions.push(n); positions.push(max);
+    for(const y of positions) {
+      main.scrollTop=y;
+      const f=field.getBoundingClientRect();
+      const x1=Math.max(f.left,t.left,m.left,0), x2=Math.min(f.right,t.right,m.right,innerWidth);
+      const y1=Math.max(f.top,t.top,m.top,0), y2=Math.min(f.bottom,t.bottom,m.bottom,innerHeight);
+      if (x2<=x1 || y2<=y1) continue;
+      const x=(x1+x2)/2, yy=(y1+y2)/2, hit=document.elementFromPoint(x,yy);
+      const area=(x2-x1)*(y2-y1);
+      if (timer.contains(hit) && (!best||area>best.area)) best={scrollTop:main.scrollTop,area,intersection:{x:round2(x1),y:round2(y1),width:round2(x2-x1),height:round2(y2-y1)},hitPoint:{x:round2(x),y:round2(yy)},hitTag:hit?.tagName,hitLabel:hit?.getAttribute('aria-label'),hitText:hit?.textContent.trim().slice(0,80),field:rect(f)};
+    }
+    function round2(n){return +n.toFixed(2);}
+    main.scrollTop=best?.scrollTop ?? 0;
+    return {phase,main:rect(m),timer:rect(t),mainMaxScroll:max,best,viewport:{width:innerWidth,height:innerHeight},
+      timerFitsViewport:t.top>=0&&t.bottom<=innerHeight&&t.left>=0&&t.right<=innerWidth};
+  },phase);
+}
+async function timerProbe(page, base, width) {
+  reset(); await goto(page,base,'/intake','light');
+  await page.locator('#intake-context').waitFor({state:'visible'});
+  const phases=[];
+  for (const phase of ['idle','running','stop']) {
+    if (phase==='running') await page.getByRole('button',{name:'Start timer'}).click();
+    if (phase==='stop') await page.getByRole('button',{name:'Stop',exact:true}).click();
+    const measure=await timerGeometry(page,phase);
+    assert.ok(!measure.error, JSON.stringify(measure));
+    await page.evaluate(() => new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
+    const screenshot=`timer-${width}-${phase}.png`;
+    await page.screenshot({path:path.join(OUT,screenshot),animations:'disabled'});
+    phases.push({...measure,screenshot,activeFocus:await identifyFocus(page)});
+  }
+  const stopControls=await page.evaluate(()=>[...document.querySelectorAll('input,button,[role="combobox"]')]
+    .filter(e=>e.closest('div') && (e.getAttribute('aria-label')==='What did you work on?'||e.getAttribute('aria-label')==='Minutes'||e.getAttribute('aria-label')==='Worked on'||e.getAttribute('aria-label')==='Brief'||['Save','Keep running'].includes(e.textContent.trim())))
+    .map(e=>({tag:e.tagName,label:e.getAttribute('aria-label')||e.textContent.trim(),disabled:e.disabled,rect:(()=>{const r=e.getBoundingClientRect();return {x:+r.x.toFixed(2),y:+r.y.toFixed(2),width:+r.width.toFixed(2),height:+r.height.toFixed(2)};})()})));
+  await page.getByRole('button',{name:'Keep running'}).click();
+  assert.equal(await page.getByRole('button',{name:'Stop',exact:true}).count(),1);
+  const storageWhileRunning=await page.evaluate(()=>Boolean(localStorage.getItem('roducq.timer.v1')));
+  await page.getByRole('button',{name:'Discard this session'}).click();
+  assert.equal(await page.getByRole('button',{name:'Start timer'}).count(),1);
+  const storageAfterDiscard=await page.evaluate(()=>Boolean(localStorage.getItem('roducq.timer.v1')));
+  return {width,height:HEIGHTS[width],scheme:'light',phases,stopControls,storageWhileRunning,storageAfterDiscard,fixtureWrites:state.writes};
+}
+async function switcherMulti(page,base) {
+  reset({multi:true,pipeline:true}); await goto(page,base,'/updates','light');
+  const controls=page.getByRole('combobox',{name:'Switch workspace'});
+  const n=await controls.count(); const visible=await controls.first().isVisible();
+  const role=await controls.first().getAttribute('role');
+  return {width:768,workspaceCount:2,controlCount:n,firstVisible:visible,firstRole:role};
+}
+async function main() {
+  for (const name of ['.env','.env.local','.env.production','.env.production.local']) assert.ok(!existsSync(path.join(ROOT,name)),`Refusing real env file ${name}`);
+  const executablePath=process.env.CHROMIUM_PATH; assert.ok(executablePath&&existsSync(executablePath));
+  const dist=path.join(ROOT,'resp-next'); assert.ok(!existsSync(dist),'Refusing existing dist');
+  mkdirSync(OUT,{recursive:true}); mkdirSync(dist);
+  const home=mkdtempSync(path.join(tmpdir(),'roducq-a11y-test-home-'));
+  const stub=fixtureServer(); let child,browser,serverLog='';
+  const ledger={build:LABEL, currentHead:'c34b33c5160c6184f9c5e9f0a6a7d1d637da72a0', pre70:'ff90300b730edff2ed6d37a035619512b8a1e8f8',
+    widths:WIDTHS, heights:HEIGHTS, settings:{scheme:['light','dark'],reducedMotion:'reduce',deviceScaleFactor:1,locale:'en-US',timezoneId:'UTC',serviceWorkers:'block',browserNetwork:'blocked except loopback app/fixture',fixture:'one fictional owner, one fictional workspace and update, no real auth or data',statusDelayMs:900},
+    scans:[],focus:[],timer:[],multi:null,viewer:null,browserErrors};
+  try {
+    const stubPort=await listen(stub),port=await freePort();
+    const base=`http://127.0.0.1:${port}`,stubOrigin=`http://127.0.0.1:${stubPort}`;
+    const env={PATH:process.env.PATH||'/usr/bin:/bin',HOME:home,NODE_ENV:'production',TZ:'UTC',NEXT_TELEMETRY_DISABLED:'1',NEXT_DIST_DIR:'resp-next',NEXT_PUBLIC_SUPABASE_URL:stubOrigin,NEXT_PUBLIC_SUPABASE_ANON_KEY:'fictional-local-anon-key',AUTH_SECRET:'fictional-local-secret',HOST:'stub-project.supabase.co'};
+    console.log(`${LABEL}: building isolated archive`);
+    await run(process.execPath,[path.join(ROOT,'node_modules/next/dist/bin/next'),'build'],env,path.join(OUT,'build.log'));
+    child=spawn(process.execPath,[path.join(ROOT,'node_modules/next/dist/bin/next'),'start','-p',String(port),'-H','127.0.0.1'],{cwd:ROOT,env,stdio:['ignore','pipe','pipe']});
+    child.stdout.on('data',d=>{serverLog+=d;}); child.stderr.on('data',d=>{serverLog+=d;});
+    await waitForServer(`${base}/`,child);
+    browser=await chromium.launch({executablePath,headless:true,args:['--no-sandbox','--disable-dev-shm-usage'],env:{...env,LD_LIBRARY_PATH:process.env.LD_LIBRARY_PATH||''}});
+    ledger.browserVersion=browser.version();
+    ledger.packageVersions={node:process.version,playwright:require('playwright-core/package.json').version,axe:require('axe-core/package.json').version,sharp:sharp.versions.sharp};
+    for (const width of [375,1440]) for (const scenario of ['error','move-focus']) {
+      console.log(`${LABEL}: focus ${scenario} ${width}`);
+      const {context,page}=await newContext(browser,base,stubOrigin,{width,scheme:'light'});
+      try {ledger.focus.push(await focusProbe(page,base,'light',width,scenario));} finally {await context.close();}
+    }
+    for (const width of [320,375,390]) {
+      console.log(`${LABEL}: timer ${width}`);
+      const {context,page}=await newContext(browser,base,stubOrigin,{width,scheme:'light'});
+      try {ledger.timer.push(await timerProbe(page,base,width));} finally {await context.close();}
+    }
+    {
+      const {context,page}=await newContext(browser,base,stubOrigin,{width:768,scheme:'light'});
+      try {ledger.multi=await switcherMulti(page,base);} finally {await context.close();}
+    }
+    {
+      const {context,page}=await newContext(browser,base,stubOrigin,{width:375,scheme:'light'});
+      try {reset({role:'viewer'});await goto(page,base,'/intake','light');ledger.viewer={width:375,startTimer:await page.getByRole('button',{name:'Start timer'}).count(),role:'viewer'};} finally {await context.close();}
+    }
+    for (const scheme of ['light','dark']) for (const width of WIDTHS) {
+      console.log(`${LABEL}: axe / focus ${scheme} ${width}x${HEIGHTS[width]}`);
+      const {context,page}=await newContext(browser,base,stubOrigin,{width,scheme});
+      try {
+        ledger.userAgent=await page.evaluate(()=>navigator.userAgent);
+        for (const route of ['detail','dashboard','updates']) {
+          reset(route==='detail'?{status:'sent',link:'revoked'}:route==='dashboard'?{invoices:[overdue()],contracts:[expiring()]}:{pipeline:true});
+          await goto(page,base,route==='detail'?`/updates/${ID}`:route==='dashboard'?'/dashboard':'/updates',scheme);
+          await page.evaluate(()=>document.fonts.ready);
+          const resolved=await page.evaluate(()=>document.documentElement.classList.contains('dark')?'dark':'light');
+          assert.equal(resolved,scheme);
+          const ax=await axeResult(page);
+          const contrast=(width>=1024)?await gradientEvidence(page,`${scheme}-${width}-${route}`):null;
+          ledger.scans.push({scheme,width,height:HEIGHTS[width],route,fixture:route==='detail'?'sent/revoked':route==='dashboard'?'empty-pipeline/one-overdue-invoice/one-expiring-contract':'one-draft-update',...ax,contrast});
+        }
+        ledger.focus.push(await focusProbe(page,base,scheme,width,'success'));
+      } finally { await context.close(); }
+    }
+    writeFileSync(path.join(OUT,'results.json'),JSON.stringify(ledger,null,2));
+    console.log(`${LABEL}: completed ${ledger.scans.length} axe scans, ${ledger.focus.length} focus probes, ${ledger.timer.length} three-state timer probes`);
+  } catch(error) {
+    writeFileSync(path.join(OUT,'partial-results.json'),JSON.stringify(ledger,null,2)); throw error;
+  } finally {
+    writeFileSync(path.join(OUT,'server.log'),serverLog);
+    if(browser)await browser.close();
+    if(child&&child.exitCode===null&&child.signalCode===null){child.kill('SIGTERM');await Promise.race([new Promise(r=>child.once('exit',r)),new Promise(r=>setTimeout(r,5000))]);if(child.exitCode===null&&child.signalCode===null)child.kill('SIGKILL');}
+    if(stub.listening)await new Promise(r=>stub.close(r));
+    rmSync(home,{recursive:true,force:true}); rmSync(dist,{recursive:true,force:true});
+  }
+}
+main().catch(error=>{console.error(error);process.exitCode=1;});
