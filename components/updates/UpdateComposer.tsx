@@ -75,9 +75,18 @@ export function UpdateComposer({
     { title: initialTitle, body: initialBody }
   );
 
-  // Hold in-app link navigation (and refresh/tab close) behind an accessible
-  // confirmation while there is unsaved content; completely inert otherwise.
-  const { dialog: unsavedChangesDialog } = useUnsavedChangesGuard({ dirty });
+  // Hold in-app link navigation, refresh/tab close, sign-out and workspace
+  // switching behind an accessible confirmation while there is unsaved
+  // content; completely inert otherwise. `onDiscard` drops the draft the
+  // moment a confirmed action abandons it, so unsaved content can never
+  // survive into another workspace.
+  const { dialog: unsavedChangesDialog } = useUnsavedChangesGuard({
+    dirty,
+    onDiscard: () => {
+      setTitle(initialTitle);
+      setBody(initialBody);
+    },
+  });
 
   async function handleSave() {
     setPending(true);

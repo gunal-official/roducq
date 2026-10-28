@@ -11,10 +11,13 @@ export function Menu({
   trigger,
   children,
   label,
+  triggerId,
 }: {
   trigger: React.ReactNode;
   children: (close: () => void) => React.ReactNode;
   label: string;
+  /** Stable id so the unsaved-edits dialog can return focus to the trigger. */
+  triggerId?: string;
 }) {
   const [open, setOpen] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -55,6 +58,7 @@ export function Menu({
     <div ref={wrapRef} className="relative">
       <button
         ref={btnRef}
+        id={triggerId}
         type="button"
         aria-haspopup="menu"
         aria-expanded={open}

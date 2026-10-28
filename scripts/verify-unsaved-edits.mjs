@@ -40,6 +40,8 @@ const AXE = require.resolve("axe-core/axe.min.js");
 const ID = "11111111-1111-4111-8111-111111111111";
 const ID2 = "99999999-9999-4999-8999-999999999999";
 const WORKSPACE = "22222222-2222-4222-8222-222222222222";
+/** A second fictional workspace, so the switcher renders a real control. */
+const WORKSPACE2 = "55555555-5555-4555-8555-555555555555";
 const USER = "33333333-3333-4333-8333-333333333333";
 const CREATED = "2026-01-10T10:00:00.000Z";
 const WIDTHS = [320, 375, 390, 768, 1024, 1200, 1440];
@@ -59,6 +61,11 @@ function reset(overrides = {}) {
     status: "draft",
     failSave: false,
     saves: [],
+    // Sign-out / workspace-switch ledger (the fixture runs in this process, so
+    // the probes can assert exactly-once semantics without extra endpoints).
+    signOuts: [],
+    workspaceWrites: [],
+    activeWorkspaceId: WORKSPACE,
     ...overrides,
   };
 }
@@ -67,6 +74,14 @@ reset();
 const updateRow = (id, title, body) => ({
   id, workspace_id: WORKSPACE, status: state.status, title, body, client_name: null,
   created_at: CREATED, updated_at: CREATED, plan: null, plan_id: null, template_id: null,
+});
+const WORKSPACE_NAMES = {
+  [WORKSPACE]: "Fictional Studio",
+  [WORKSPACE2]: "Fictional Second Studio",
+};
+const workspaceRow = (id) => ({
+  id, name: WORKSPACE_NAMES[id] ?? "Fictional Studio", created_at: CREATED,
+  plan_tier: "starter", razorpay_subscription_status: null,
 });
 const detailRow = () => updateRow(ID, state.title, state.body);
 const secondRow = () => updateRow(ID2, "Second fictional update", "Another fictional body.");
@@ -102,23 +117,41 @@ function fixtureServer() {
         id: USER, email: "fictional@example.test", aud: "authenticated", role: "authenticated",
         app_metadata: {}, user_metadata: { full_name: "Fictional User" },
       });
-      if (pathname === "/rest/v1/rpc/get_user_memberships") return send(req, res, [{
-        workspace_id: WORKSPACE, workspace_name: "Fictional Studio", role: "owner",
-      }]);
+      if (pathname === "/rest/v1/rpc/get_user_memberships") return send(req, res, [
+        { workspace_id: WORKSPACE, workspace_name: "Fictional Studio", role: "owner" },
+        { workspace_id: WORKSPACE2, workspace_name: "Fictional Second Studio", role: "owner" },
+      ]);
       if (pathname === "/rest/v1/rpc/get_shared_document") return send(req, res, []);
-      if (pathname === "/rest/v1/profiles") return send(req, res, single(req, {
-        id: USER, email: "fictional@example.test", full_name: "Fictional User",
-        onboarding_completed: true, active_workspace_id: WORKSPACE,
-      }));
-      if (pathname === "/rest/v1/workspaces") return send(req, res, single(req, {
-        id: WORKSPACE, name: "Fictional Studio", created_at: CREATED,
-        plan_tier: "starter", razorpay_subscription_status: null,
-      }));
-      if (pathname === "/rest/v1/workspace_members") return send(req, res, single(req, {
-        user_id: USER, workspace_id: WORKSPACE, role: "owner", created_at: CREATED,
-        workspace: { id: WORKSPACE, name: "Fictional Studio", created_at: CREATED,
-          plan_tier: "starter", razorpay_subscription_status: null },
-      }));
+      if (pathname === "/auth/v1/logout") {
+        state.signOuts.push({ at: Date.now() });
+        res.writeHead(204, { "access-control-allow-origin": "*" });
+        return res.end();
+      }
+      if (pathname === "/rest/v1/profiles") {
+        if (req.method === "PATCH") {
+          if (payload.active_workspace_id !== undefined) {
+            state.workspaceWrites.push(payload.active_workspace_id);
+            state.activeWorkspaceId = payload.active_workspace_id;
+          }
+          return send(req, res, []);
+        }
+        return send(req, res, single(req, {
+          id: USER, email: "fictional@example.test", full_name: "Fictional User",
+          onboarding_completed: true, active_workspace_id: state.activeWorkspaceId,
+        }));
+      }
+      if (pathname === "/rest/v1/workspaces") {
+        const wanted = (url.searchParams.get("id") ?? "").replace(/^eq\./, "");
+        const row = workspaceRow(wanted === WORKSPACE2 ? WORKSPACE2 : WORKSPACE);
+        return send(req, res, single(req, row));
+      }
+      if (pathname === "/rest/v1/workspace_members") {
+        const wanted = (url.searchParams.get("workspace_id") ?? "").replace(/^eq\./, "");
+        return send(req, res, single(req, {
+          user_id: USER, workspace_id: wanted || WORKSPACE, role: "owner", created_at: CREATED,
+          workspace: workspaceRow(wanted === WORKSPACE2 ? WORKSPACE2 : WORKSPACE),
+        }));
+      }
       if (pathname === "/rest/v1/updates") {
         if (req.method === "PATCH") {
           state.saves.push(payload);
@@ -210,7 +243,7 @@ const ledger = {
   limitations: [
     "Native beforeunload text is not customisable; Chromium requires prior user interaction and some mobile browsers suppress the prompt.",
     "Back/Forward is only cancellable where the Navigation API exists (Chrome/Edge 102+, Firefox 147+, Safari 26.2+). Older engines keep click and unload protection only.",
-    "Programmatic router navigation (sign out, workspace switch, server-action redirects) cannot be intercepted without a global blocker and is out of scope.",
+    "Sign out and workspace switching are guarded at their own handlers (the guard registry), not by intercepting the router: any future destructive shell action must call requestGuardedAction() to be covered.",
     "With JavaScript disabled the guard cannot run; the editor cannot save either.",
     "Headless Chromium viewports are simulations, not physical devices or assistive technology.",
   ],
@@ -731,6 +764,175 @@ async function normalMotionProbe(browser, base, stubOrigin) {
   }
 }
 
+/**
+ * Sign-out and workspace-switch protection (the follow-up to P2-02).
+ *
+ * Both are shell buttons whose handlers call a server action / the Supabase
+ * client, so they cannot be intercepted as link clicks. They ask the guard's
+ * registry first. These scenarios prove: nothing is called before the user
+ * confirms, "Keep editing" changes nothing at all, "Discard …" performs the
+ * ORIGINAL action exactly once, the draft never follows the user into another
+ * workspace, and a clean editor still behaves exactly as it did before.
+ */
+async function shellActionsProbe(browser, base, stubOrigin) {
+  const results = {};
+  const switchTrigger = (page) => page.locator('[aria-label="Switch workspace"]:visible').first();
+  const secondWorkspace = (page) => page.getByRole("option", { name: "Fictional Second Studio" });
+
+  // A. Desktop — sign-out is held, "Keep editing" changes nothing, then the
+  //    confirmed discard signs out exactly once.
+  {
+    reset();
+    const { context, page } = await newContext(browser, base, stubOrigin, { width: 1440 });
+    try {
+      await openUpdate(page, base);
+      await makeDirty(page);
+      await page.getByRole("button", { name: "Account menu" }).click();
+      await page.getByRole("menuitem", { name: /Log out/ }).click();
+      await dialogOf(page).waitFor();
+      assert.equal(state.signOuts.length, 0, "no sign-out before the user confirms");
+      assert.ok(
+        await page.getByRole("button", { name: "Discard and sign out" }).isVisible(),
+        "the destructive button names the action it performs"
+      );
+      const focusInDialog = await activeLabel(page);
+      assert.equal(focusInDialog?.text, "Keep editing", "the safe action holds focus");
+
+      await page.getByRole("button", { name: "Keep editing" }).click();
+      await dialogOf(page).waitFor({ state: "hidden" });
+      assert.equal(state.signOuts.length, 0, "staying never signs the user out");
+      assert.equal(await titleBox(page).inputValue(), TITLE_EDITED, "staying keeps the draft");
+      assert.ok(page.url().includes(`/updates/${ID}`), "staying keeps the page");
+      const focusAfterStay = await activeLabel(page);
+      assert.equal(focusAfterStay?.label, "Account menu", "focus returns to the shell trigger");
+
+      await page.getByRole("button", { name: "Account menu" }).click();
+      await page.getByRole("menuitem", { name: /Log out/ }).click();
+      await dialogOf(page).waitFor();
+      await page.getByRole("button", { name: "Discard and sign out" }).click();
+      await page.waitForURL("**/login", { timeout: 10_000 });
+      assert.equal(state.signOuts.length, 1, "sign-out is invoked exactly once");
+      results.signOut = {
+        heldWhileDirty: true, noCallBeforeConfirm: true, stayKeepsDraft: true,
+        focusReturnedToTrigger: true, discardSignsOut: true, signOutCalls: state.signOuts.length,
+      };
+    } finally { await context.close(); }
+  }
+
+  // B. Desktop — workspace switching is held; staying keeps workspace + draft,
+  //    discarding performs the server action once and drops the draft.
+  {
+    reset();
+    const { context, page } = await newContext(browser, base, stubOrigin, { width: 1440 });
+    try {
+      await openUpdate(page, base);
+      await makeDirty(page);
+      await switchTrigger(page).click();
+      await secondWorkspace(page).click();
+      await dialogOf(page).waitFor();
+      assert.equal(state.workspaceWrites.length, 0, "no workspace write before confirmation");
+      assert.ok(await page.getByRole("button", { name: "Discard and switch workspace" }).isVisible());
+
+      await page.getByRole("button", { name: "Keep editing" }).click();
+      await dialogOf(page).waitFor({ state: "hidden" });
+      assert.equal(state.workspaceWrites.length, 0, "staying keeps the current workspace");
+      assert.equal(await titleBox(page).inputValue(), TITLE_EDITED, "staying keeps the draft");
+
+      await switchTrigger(page).click();
+      await secondWorkspace(page).click();
+      await dialogOf(page).waitFor();
+      await page.getByRole("button", { name: "Discard and switch workspace" }).click();
+      await page.waitForTimeout(1500);
+      assert.deepEqual(state.workspaceWrites, [WORKSPACE2], "the switch runs exactly once");
+      assert.equal(await dialogOf(page).count(), 0, "no repeated confirmation");
+      assert.equal(
+        await titleBox(page).inputValue(), TITLE_SAVED,
+        "the discarded draft does not cross into the new workspace"
+      );
+      results.workspaceSwitch = {
+        heldWhileDirty: true, noWriteBeforeConfirm: true, stayKeepsWorkspace: true,
+        discardSwitches: true, workspaceWrites: state.workspaceWrites.length,
+        draftDropped: true,
+      };
+    } finally { await context.close(); }
+  }
+
+  // C. Clean editor — both actions behave exactly as before (no dialog).
+  {
+    reset();
+    const { context, page } = await newContext(browser, base, stubOrigin, { width: 1440 });
+    try {
+      await openUpdate(page, base);
+      await switchTrigger(page).click();
+      await secondWorkspace(page).click();
+      await page.waitForTimeout(1200);
+      await expectNoDialog(page, 300);
+      assert.deepEqual(state.workspaceWrites, [WORKSPACE2], "a clean editor switches immediately");
+      await page.getByRole("button", { name: "Account menu" }).click();
+      await page.getByRole("menuitem", { name: /Log out/ }).click();
+      await page.waitForURL("**/login", { timeout: 10_000 });
+      await expectNoDialog(page, 200);
+      assert.equal(state.signOuts.length, 1, "a clean editor signs out immediately");
+      results.cleanEditor = { switchDialog: false, signOutDialog: false, bothActionsRan: true };
+    } finally { await context.close(); }
+  }
+
+  // D. Phone (390px) — the drawer's own account plane is guarded, and the
+  //    drawer closes so the confirmation is the only dialog on screen.
+  {
+    reset();
+    const { context, page } = await newContext(browser, base, stubOrigin, { width: 390 });
+    try {
+      await openUpdate(page, base);
+      await makeDirty(page);
+      await page.getByRole("button", { name: "Open menu" }).click();
+      const drawer = page.getByRole("dialog", { name: "Workspace navigation" });
+      await drawer.waitFor();
+      await drawer.getByRole("button", { name: /Log out/ }).click();
+      await dialogOf(page).waitFor();
+      assert.equal(state.signOuts.length, 0, "no sign-out from the drawer before confirmation");
+      await page.waitForTimeout(400);
+      assert.equal(
+        await page.getByRole("dialog", { name: "Workspace navigation" }).count(), 0,
+        "the drawer closes so only the confirmation is modal"
+      );
+      assert.equal((await activeLabel(page))?.text, "Keep editing", "focus lands on the safe action");
+      await page.getByRole("button", { name: "Keep editing" }).click();
+      await dialogOf(page).waitFor({ state: "hidden" });
+      assert.equal(await titleBox(page).inputValue(), TITLE_EDITED);
+      const focusAfterStay = await activeLabel(page);
+      assert.equal(focusAfterStay?.tag, "BUTTON", "focus returns to a shell control");
+      results.mobileDrawerSignOut = {
+        held: true, drawerClosed: true, safeActionFocused: true,
+        stayKeepsDraft: true, signOutCalls: state.signOuts.length,
+      };
+    } finally { await context.close(); }
+  }
+
+  // E. A failed save leaves the guard armed for sign-out too.
+  {
+    reset();
+    state.failSave = true;
+    const { context, page } = await newContext(browser, base, stubOrigin, { width: 1440 });
+    try {
+      await openUpdate(page, base);
+      await makeDirty(page);
+      await page.getByRole("button", { name: "Save update" }).click();
+      await page.locator(".composer-error").waitFor({ timeout: 15_000 });
+      await page.getByRole("button", { name: "Account menu" }).click();
+      await page.getByRole("menuitem", { name: /Log out/ }).click();
+      await dialogOf(page).waitFor();
+      assert.equal(state.signOuts.length, 0, "a failed save never unlocks sign-out");
+      await page.getByRole("button", { name: "Keep editing" }).click();
+      await dialogOf(page).waitFor({ state: "hidden" });
+      assert.ok(await page.getByText("Unsaved changes").isVisible(), "still dirty");
+      results.failedSaveThenSignOut = { stillGuarded: true, signOutCalls: state.signOuts.length };
+    } finally { await context.close(); }
+  }
+
+  return results;
+}
+
 // ── Main ─────────────────────────────────────────────────────────────────
 async function main() {
   for (const name of [".env", ".env.local", ".env.production", ".env.production.local"]) {
@@ -813,6 +1015,10 @@ async function main() {
     reset();
     ledger.scenarios.push({ name: "saves", ...(await saveProbe(browser, base, stubOrigin)) });
     console.log("✓ save success clears the guard; failure keeps it armed");
+
+    reset();
+    ledger.scenarios.push({ name: "shellActions", ...(await shellActionsProbe(browser, base, stubOrigin)) });
+    console.log("✓ sign-out and workspace switching are held, run once on confirm, and drop the draft");
 
     reset();
     ledger.scenarios.push({ name: "fullPageNavigation", ...(await fullPageNavigationProbe(browser, base, stubOrigin)) });

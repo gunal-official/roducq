@@ -60,6 +60,9 @@ export function Topbar({
       <button
         type="button"
         aria-label="Open menu"
+        /* Focus target for the unsaved-edits dialog after "Keep editing".
+           Shared with the dock's "More" tab (first visible match wins). */
+        data-app-menu-trigger=""
         ref={menuTriggerRef}
         aria-expanded={navOpen}
         onClick={() => setNavOpen(true)}
@@ -134,6 +137,7 @@ export function Topbar({
         </Link>
         <Menu
           label="Account menu"
+          triggerId="account-menu-trigger"
           trigger={
             /* Menu wraps its trigger in a <button> — this MUST stay non-interactive
              (button-in-button = invalid HTML = hydration #418). */
@@ -188,6 +192,8 @@ export function Topbar({
               <LogoutButton
                 role="menuitem"
                 iconOnly={false}
+                dismissSurface={close}
+                returnFocusSelector="#account-menu-trigger"
                 className="w-full justify-start rounded-md px-3"
               />
             </>

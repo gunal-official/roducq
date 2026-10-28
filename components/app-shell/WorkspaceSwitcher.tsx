@@ -16,9 +16,15 @@
  * workspace. A single-workspace account gets a static label instead of a
  * control — there is nothing to switch to, and a dead dropdown would be
  * a lie.
+ *
+ * The switch is a server action plus a client refresh, not a link, so the
+ * unsaved-edits guard cannot see it as a click. It asks the guard first:
+ * with a dirty update composer the shared dialog opens and neither the
+ * action nor the refresh happens until the user confirms; with a clean
+ * editor the original handler runs synchronously, once per selection.
  */
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 
@@ -30,6 +36,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { requestGuardedAction } from "@/lib/ui/unsaved-edits-registry";
 import { cn } from "@/lib/utils";
 
 export interface SwitcherWorkspace {
@@ -58,14 +65,16 @@ export function WorkspaceSwitcher({
   className?: string;
 }) {
   const router = useRouter();
+  // CSS-selector-safe, per-instance trigger id: the guard returns focus here
+  // after "Keep editing" (useId() itself contains characters CSS dislikes).
+  const triggerId = `workspace-trigger-${useId().replace(/[^a-zA-Z0-9_-]/g, "")}`;
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const active =
     workspaces.find((w) => w.id === activeWorkspaceId) ?? workspaces[0];
   const activeName = active?.name ?? "";
 
-  async function handleChange(workspaceId: string) {
-    if (workspaceId === activeWorkspaceId) return;
+  async function applySwitch(workspaceId: string) {
     setPending(true);
     setError(null);
     const result = await setActiveWorkspaceAction({ workspaceId });
@@ -75,6 +84,19 @@ export function WorkspaceSwitcher({
       return;
     }
     router.refresh(); // current page's lists re-read under the new scope
+  }
+
+  function handleChange(workspaceId: string) {
+    if (workspaceId === activeWorkspaceId) return;
+    const outcome = requestGuardedAction({
+      action: "switch-workspace",
+      returnFocusSelector: `#${triggerId}`,
+      run: () => applySwitch(workspaceId),
+    });
+    // "held": the confirmation dialog owns the switch; the action runs there
+    // only if the user discards, exactly once. The control keeps showing the
+    // current workspace because nothing has changed yet.
+    if (outcome === "ran") void applySwitch(workspaceId);
   }
 
   // Single-workspace account: a static label, never a dead dropdown.
@@ -151,6 +173,7 @@ export function WorkspaceSwitcher({
           disabled={pending}
         >
           <SelectTrigger
+            id={triggerId}
             className={cn(
               "h-11 w-11 justify-center border-transparent bg-transparent p-0 shadow-none",
               "hover:bg-muted focus:ring-0"
@@ -192,6 +215,7 @@ export function WorkspaceSwitcher({
           disabled={pending}
         >
           <SelectTrigger
+            id={triggerId}
             className={cn(
               "h-11 w-full justify-start gap-2.5 border-transparent bg-transparent p-0 pl-0 pr-1 text-left shadow-none",
               "hover:bg-muted/70 focus:ring-0"
@@ -241,6 +265,7 @@ export function WorkspaceSwitcher({
         disabled={pending}
       >
         <SelectTrigger
+          id={triggerId}
           className={cn(
             "h-11 min-w-11 w-auto max-w-[190px] gap-2 border-transparent bg-transparent px-2 text-sm shadow-none",
             "hover:bg-muted/70 hover:text-text focus:ring-0"
