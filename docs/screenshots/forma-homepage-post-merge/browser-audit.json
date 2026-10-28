@@ -1,0 +1,3839 @@
+{
+  "baseline": {
+    "url": "http://127.0.0.1:3100",
+    "commit": "9e774ac5ca88998fdd52fbfbf75bdcdf49f5d9af",
+    "chromium": "153.0.8010.0"
+  },
+  "responsive": [
+    {
+      "width": 320,
+      "scrollWidth": 320,
+      "overflowX": 0,
+      "importantOffscreen": [],
+      "textClips": [],
+      "gridInfo": {
+        "features": 1,
+        "integrations": 1,
+        "teams": 1,
+        "pricing": 1
+      },
+      "allGrids": [
+        {
+          "id": "",
+          "classes": "mt-4.5 grid grid-cols-2 gap-3 lg:grid-cols-4",
+          "columns": 2,
+          "items": 4,
+          "top": 1278
+        },
+        {
+          "id": "",
+          "classes": "mt-3.5 grid gap-3.5 lg:grid-cols-[1.2fr_1fr]",
+          "columns": 1,
+          "items": 2,
+          "top": 1568
+        },
+        {
+          "id": "",
+          "classes": "mt-1.5 grid grid-cols-7 text-center text-lm-10 text-lm-muted",
+          "columns": 7,
+          "items": 7,
+          "top": 1799
+        },
+        {
+          "id": "features",
+          "classes": "mt-4 grid divide-y divide-lm-border-soft rounded-lm-card border border",
+          "columns": 1,
+          "items": 4,
+          "top": 2694
+        },
+        {
+          "id": "",
+          "classes": "mt-12 grid divide-y divide-lm-border-soft rounded-t-lm-frame border-x ",
+          "columns": 1,
+          "items": 3,
+          "top": 5515
+        },
+        {
+          "id": "",
+          "classes": "grid items-center gap-6 lg:grid-cols-[0.9fr_1fr_1.1fr]",
+          "columns": 1,
+          "items": 3,
+          "top": 6503
+        },
+        {
+          "id": "",
+          "classes": "grid grid-cols-[2.75rem_1fr] items-start gap-2.5",
+          "columns": 2,
+          "items": 2,
+          "top": 7068
+        },
+        {
+          "id": "",
+          "classes": "grid grid-cols-[2.75rem_1fr] items-start gap-2.5",
+          "columns": 2,
+          "items": 2,
+          "top": 7182
+        },
+        {
+          "id": "",
+          "classes": "grid grid-cols-[2.75rem_1fr] items-start gap-2.5",
+          "columns": 2,
+          "items": 2,
+          "top": 7296
+        },
+        {
+          "id": "",
+          "classes": "grid grid-cols-[2.75rem_1fr] items-start gap-2.5",
+          "columns": 2,
+          "items": 2,
+          "top": 7410
+        },
+        {
+          "id": "integrations",
+          "classes": "mt-12 grid gap-3.5 sm:grid-cols-2 md:mt-16 lg:grid-cols-3",
+          "columns": 1,
+          "items": 6,
+          "top": 8068
+        },
+        {
+          "id": "",
+          "classes": "mt-4 grid divide-y divide-lm-border-soft rounded-lm-card border border",
+          "columns": 1,
+          "items": 4,
+          "top": 10149
+        },
+        {
+          "id": "pricing",
+          "classes": "mt-12 grid items-stretch gap-3.5 md:mt-16 md:grid-cols-2 lg:grid-cols-",
+          "columns": 1,
+          "items": 4,
+          "top": 12608
+        },
+        {
+          "id": "faq",
+          "classes": "grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-start lg:gap-16",
+          "columns": 1,
+          "items": 2,
+          "top": 15149
+        },
+        {
+          "id": "",
+          "classes": "grid items-center gap-8 lg:grid-cols-[1.12fr_0.88fr] lg:gap-12",
+          "columns": 1,
+          "items": 2,
+          "top": 16234
+        },
+        {
+          "id": "",
+          "classes": "lm-reveal grid gap-8 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]",
+          "columns": 1,
+          "items": 4,
+          "top": 17664
+        }
+      ]
+    },
+    {
+      "width": 375,
+      "scrollWidth": 375,
+      "overflowX": 0,
+      "importantOffscreen": [],
+      "textClips": [],
+      "gridInfo": {
+        "features": 1,
+        "integrations": 1,
+        "teams": 1,
+        "pricing": 1
+      },
+      "allGrids": [
+        {
+          "id": "",
+          "classes": "mt-4.5 grid grid-cols-2 gap-3 lg:grid-cols-4",
+          "columns": 2,
+          "items": 4,
+          "top": 1156
+        },
+        {
+          "id": "",
+          "classes": "mt-3.5 grid gap-3.5 lg:grid-cols-[1.2fr_1fr]",
+          "columns": 1,
+          "items": 2,
+          "top": 1416
+        },
+        {
+          "id": "",
+          "classes": "mt-1.5 grid grid-cols-7 text-center text-lm-10 text-lm-muted",
+          "columns": 7,
+          "items": 7,
+          "top": 1614
+        },
+        {
+          "id": "features",
+          "classes": "mt-4 grid divide-y divide-lm-border-soft rounded-lm-card border border",
+          "columns": 1,
+          "items": 4,
+          "top": 2508
+        },
+        {
+          "id": "",
+          "classes": "mt-12 grid divide-y divide-lm-border-soft rounded-t-lm-frame border-x ",
+          "columns": 1,
+          "items": 3,
+          "top": 5143
+        },
+        {
+          "id": "",
+          "classes": "grid items-center gap-6 lg:grid-cols-[0.9fr_1fr_1.1fr]",
+          "columns": 1,
+          "items": 3,
+          "top": 5983
+        },
+        {
+          "id": "",
+          "classes": "grid grid-cols-[2.75rem_1fr] items-start gap-2.5",
+          "columns": 2,
+          "items": 2,
+          "top": 6519
+        },
+        {
+          "id": "",
+          "classes": "grid grid-cols-[2.75rem_1fr] items-start gap-2.5",
+          "columns": 2,
+          "items": 2,
+          "top": 6597
+        },
+        {
+          "id": "",
+          "classes": "grid grid-cols-[2.75rem_1fr] items-start gap-2.5",
+          "columns": 2,
+          "items": 2,
+          "top": 6675
+        },
+        {
+          "id": "",
+          "classes": "grid grid-cols-[2.75rem_1fr] items-start gap-2.5",
+          "columns": 2,
+          "items": 2,
+          "top": 6753
+        },
+        {
+          "id": "integrations",
+          "classes": "mt-12 grid gap-3.5 sm:grid-cols-2 md:mt-16 lg:grid-cols-3",
+          "columns": 1,
+          "items": 6,
+          "top": 7349
+        },
+        {
+          "id": "",
+          "classes": "mt-4 grid divide-y divide-lm-border-soft rounded-lm-card border border",
+          "columns": 1,
+          "items": 4,
+          "top": 9100
+        },
+        {
+          "id": "pricing",
+          "classes": "mt-12 grid items-stretch gap-3.5 md:mt-16 md:grid-cols-2 lg:grid-cols-",
+          "columns": 1,
+          "items": 4,
+          "top": 11436
+        },
+        {
+          "id": "faq",
+          "classes": "grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-start lg:gap-16",
+          "columns": 1,
+          "items": 2,
+          "top": 13799
+        },
+        {
+          "id": "",
+          "classes": "grid items-center gap-8 lg:grid-cols-[1.12fr_0.88fr] lg:gap-12",
+          "columns": 1,
+          "items": 2,
+          "top": 14812
+        },
+        {
+          "id": "",
+          "classes": "lm-reveal grid gap-8 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]",
+          "columns": 1,
+          "items": 4,
+          "top": 16130
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "scrollWidth": 390,
+      "overflowX": 0,
+      "importantOffscreen": [],
+      "textClips": [],
+      "gridInfo": {
+        "features": 1,
+        "integrations": 1,
+        "teams": 1,
+        "pricing": 1
+      },
+      "allGrids": [
+        {
+          "id": "",
+          "classes": "mt-4.5 grid grid-cols-2 gap-3 lg:grid-cols-4",
+          "columns": 2,
+          "items": 4,
+          "top": 1138
+        },
+        {
+          "id": "",
+          "classes": "mt-3.5 grid gap-3.5 lg:grid-cols-[1.2fr_1fr]",
+          "columns": 1,
+          "items": 2,
+          "top": 1383
+        },
+        {
+          "id": "",
+          "classes": "mt-1.5 grid grid-cols-7 text-center text-lm-10 text-lm-muted",
+          "columns": 7,
+          "items": 7,
+          "top": 1581
+        },
+        {
+          "id": "features",
+          "classes": "mt-4 grid divide-y divide-lm-border-soft rounded-lm-card border border",
+          "columns": 1,
+          "items": 4,
+          "top": 2475
+        },
+        {
+          "id": "",
+          "classes": "mt-12 grid divide-y divide-lm-border-soft rounded-t-lm-frame border-x ",
+          "columns": 1,
+          "items": 3,
+          "top": 5058
+        },
+        {
+          "id": "",
+          "classes": "grid items-center gap-6 lg:grid-cols-[0.9fr_1fr_1.1fr]",
+          "columns": 1,
+          "items": 3,
+          "top": 5846
+        },
+        {
+          "id": "",
+          "classes": "grid grid-cols-[2.75rem_1fr] items-start gap-2.5",
+          "columns": 2,
+          "items": 2,
+          "top": 6364
+        },
+        {
+          "id": "",
+          "classes": "grid grid-cols-[2.75rem_1fr] items-start gap-2.5",
+          "columns": 2,
+          "items": 2,
+          "top": 6442
+        },
+        {
+          "id": "",
+          "classes": "grid grid-cols-[2.75rem_1fr] items-start gap-2.5",
+          "columns": 2,
+          "items": 2,
+          "top": 6520
+        },
+        {
+          "id": "",
+          "classes": "grid grid-cols-[2.75rem_1fr] items-start gap-2.5",
+          "columns": 2,
+          "items": 2,
+          "top": 6598
+        },
+        {
+          "id": "integrations",
+          "classes": "mt-12 grid gap-3.5 sm:grid-cols-2 md:mt-16 lg:grid-cols-3",
+          "columns": 1,
+          "items": 6,
+          "top": 7194
+        },
+        {
+          "id": "",
+          "classes": "mt-4 grid divide-y divide-lm-border-soft rounded-lm-card border border",
+          "columns": 1,
+          "items": 4,
+          "top": 8896
+        },
+        {
+          "id": "pricing",
+          "classes": "mt-12 grid items-stretch gap-3.5 md:mt-16 md:grid-cols-2 lg:grid-cols-",
+          "columns": 1,
+          "items": 4,
+          "top": 11207
+        },
+        {
+          "id": "faq",
+          "classes": "grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-start lg:gap-16",
+          "columns": 1,
+          "items": 2,
+          "top": 13569
+        },
+        {
+          "id": "",
+          "classes": "grid items-center gap-8 lg:grid-cols-[1.12fr_0.88fr] lg:gap-12",
+          "columns": 1,
+          "items": 2,
+          "top": 14582
+        },
+        {
+          "id": "",
+          "classes": "lm-reveal grid gap-8 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]",
+          "columns": 1,
+          "items": 4,
+          "top": 15830
+        }
+      ]
+    },
+    {
+      "width": 768,
+      "scrollWidth": 768,
+      "overflowX": 0,
+      "importantOffscreen": [],
+      "textClips": [],
+      "gridInfo": {
+        "features": 2,
+        "integrations": 2,
+        "teams": 2,
+        "pricing": 2
+      },
+      "allGrids": [
+        {
+          "id": "",
+          "classes": "grid min-h-[29rem] grid-cols-1 md:grid-cols-[13.5rem_minmax(0,1fr)]",
+          "columns": 2,
+          "items": 2,
+          "top": 749
+        },
+        {
+          "id": "",
+          "classes": "mt-4.5 grid grid-cols-2 gap-3 lg:grid-cols-4",
+          "columns": 2,
+          "items": 4,
+          "top": 937
+        },
+        {
+          "id": "",
+          "classes": "mt-3.5 grid gap-3.5 lg:grid-cols-[1.2fr_1fr]",
+          "columns": 1,
+          "items": 2,
+          "top": 1183
+        },
+        {
+          "id": "",
+          "classes": "mt-1.5 grid grid-cols-7 text-center text-lm-10 text-lm-muted",
+          "columns": 7,
+          "items": 7,
+          "top": 1381
+        },
+        {
+          "id": "features",
+          "classes": "mt-4 grid divide-y divide-lm-border-soft rounded-lm-card border border",
+          "columns": 2,
+          "items": 4,
+          "top": 2318
+        },
+        {
+          "id": "",
+          "classes": "mt-12 grid divide-y divide-lm-border-soft rounded-t-lm-frame border-x ",
+          "columns": 3,
+          "items": 3,
+          "top": 4010
+        },
+        {
+          "id": "",
+          "classes": "grid items-center gap-6 lg:grid-cols-[0.9fr_1fr_1.1fr]",
+          "columns": 1,
+          "items": 3,
+          "top": 4486
+        },
+        {
+          "id": "",
+          "classes": "grid grid-cols-[2.75rem_1fr] items-start gap-2.5",
+          "columns": 2,
+          "items": 2,
+          "top": 4974
+        },
+        {
+          "id": "",
+          "classes": "grid grid-cols-[2.75rem_1fr] items-start gap-2.5",
+          "columns": 2,
+          "items": 2,
+          "top": 5034
+        },
+        {
+          "id": "",
+          "classes": "grid grid-cols-[2.75rem_1fr] items-start gap-2.5",
+          "columns": 2,
+          "items": 2,
+          "top": 5094
+        },
+        {
+          "id": "",
+          "classes": "grid grid-cols-[2.75rem_1fr] items-start gap-2.5",
+          "columns": 2,
+          "items": 2,
+          "top": 5154
+        },
+        {
+          "id": "integrations",
+          "classes": "mt-12 grid gap-3.5 sm:grid-cols-2 md:mt-16 lg:grid-cols-3",
+          "columns": 2,
+          "items": 6,
+          "top": 5808
+        },
+        {
+          "id": "",
+          "classes": "mt-4 grid divide-y divide-lm-border-soft rounded-lm-card border border",
+          "columns": 2,
+          "items": 4,
+          "top": 6935
+        },
+        {
+          "id": "pricing",
+          "classes": "mt-12 grid items-stretch gap-3.5 md:mt-16 md:grid-cols-2 lg:grid-cols-",
+          "columns": 2,
+          "items": 4,
+          "top": 8415
+        },
+        {
+          "id": "faq",
+          "classes": "grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-start lg:gap-16",
+          "columns": 1,
+          "items": 2,
+          "top": 9974
+        },
+        {
+          "id": "",
+          "classes": "grid items-center gap-8 lg:grid-cols-[1.12fr_0.88fr] lg:gap-12",
+          "columns": 1,
+          "items": 2,
+          "top": 10882
+        },
+        {
+          "id": "",
+          "classes": "lm-reveal grid gap-8 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]",
+          "columns": 2,
+          "items": 4,
+          "top": 12035
+        }
+      ]
+    },
+    {
+      "width": 1024,
+      "scrollWidth": 1024,
+      "overflowX": 0,
+      "importantOffscreen": [],
+      "textClips": [],
+      "gridInfo": {
+        "features": 4,
+        "integrations": 3,
+        "teams": 4,
+        "pricing": 4
+      },
+      "allGrids": [
+        {
+          "id": "",
+          "classes": "grid min-h-[29rem] grid-cols-1 md:grid-cols-[13.5rem_minmax(0,1fr)]",
+          "columns": 2,
+          "items": 2,
+          "top": 767
+        },
+        {
+          "id": "",
+          "classes": "mt-4.5 grid grid-cols-2 gap-3 lg:grid-cols-4",
+          "columns": 4,
+          "items": 4,
+          "top": 923
+        },
+        {
+          "id": "",
+          "classes": "mt-3.5 grid gap-3.5 lg:grid-cols-[1.2fr_1fr]",
+          "columns": 2,
+          "items": 2,
+          "top": 1047
+        },
+        {
+          "id": "",
+          "classes": "mt-1.5 grid grid-cols-7 text-center text-lm-10 text-lm-muted",
+          "columns": 7,
+          "items": 7,
+          "top": 1289
+        },
+        {
+          "id": "features",
+          "classes": "mt-4 grid divide-y divide-lm-border-soft rounded-lm-card border border",
+          "columns": 4,
+          "items": 4,
+          "top": 1965
+        },
+        {
+          "id": "",
+          "classes": "mt-12 grid divide-y divide-lm-border-soft rounded-t-lm-frame border-x ",
+          "columns": 3,
+          "items": 3,
+          "top": 3253
+        },
+        {
+          "id": "",
+          "classes": "grid items-center gap-6 lg:grid-cols-[0.9fr_1fr_1.1fr]",
+          "columns": 3,
+          "items": 3,
+          "top": 3667
+        },
+        {
+          "id": "",
+          "classes": "grid grid-cols-[2.75rem_1fr] items-start gap-2.5",
+          "columns": 2,
+          "items": 2,
+          "top": 3803
+        },
+        {
+          "id": "",
+          "classes": "grid grid-cols-[2.75rem_1fr] items-start gap-2.5",
+          "columns": 2,
+          "items": 2,
+          "top": 3881
+        },
+        {
+          "id": "",
+          "classes": "grid grid-cols-[2.75rem_1fr] items-start gap-2.5",
+          "columns": 2,
+          "items": 2,
+          "top": 3959
+        },
+        {
+          "id": "",
+          "classes": "grid grid-cols-[2.75rem_1fr] items-start gap-2.5",
+          "columns": 2,
+          "items": 2,
+          "top": 4037
+        },
+        {
+          "id": "integrations",
+          "classes": "mt-12 grid gap-3.5 sm:grid-cols-2 md:mt-16 lg:grid-cols-3",
+          "columns": 3,
+          "items": 6,
+          "top": 4783
+        },
+        {
+          "id": "",
+          "classes": "mt-4 grid divide-y divide-lm-border-soft rounded-lm-card border border",
+          "columns": 4,
+          "items": 4,
+          "top": 5858
+        },
+        {
+          "id": "pricing",
+          "classes": "mt-12 grid items-stretch gap-3.5 md:mt-16 md:grid-cols-2 lg:grid-cols-",
+          "columns": 4,
+          "items": 4,
+          "top": 7065
+        },
+        {
+          "id": "faq",
+          "classes": "grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-start lg:gap-16",
+          "columns": 2,
+          "items": 2,
+          "top": 8332
+        },
+        {
+          "id": "",
+          "classes": "grid items-center gap-8 lg:grid-cols-[1.12fr_0.88fr] lg:gap-12",
+          "columns": 2,
+          "items": 2,
+          "top": 9146
+        },
+        {
+          "id": "",
+          "classes": "lm-reveal grid gap-8 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]",
+          "columns": 4,
+          "items": 4,
+          "top": 10062
+        }
+      ]
+    },
+    {
+      "width": 1200,
+      "scrollWidth": 1200,
+      "overflowX": 0,
+      "importantOffscreen": [],
+      "textClips": [],
+      "gridInfo": {
+        "features": 4,
+        "integrations": 3,
+        "teams": 4,
+        "pricing": 4
+      },
+      "allGrids": [
+        {
+          "id": "",
+          "classes": "grid min-h-[29rem] grid-cols-1 md:grid-cols-[13.5rem_minmax(0,1fr)]",
+          "columns": 2,
+          "items": 2,
+          "top": 767
+        },
+        {
+          "id": "",
+          "classes": "mt-4.5 grid grid-cols-2 gap-3 lg:grid-cols-4",
+          "columns": 4,
+          "items": 4,
+          "top": 923
+        },
+        {
+          "id": "",
+          "classes": "mt-3.5 grid gap-3.5 lg:grid-cols-[1.2fr_1fr]",
+          "columns": 2,
+          "items": 2,
+          "top": 1047
+        },
+        {
+          "id": "",
+          "classes": "mt-1.5 grid grid-cols-7 text-center text-lm-10 text-lm-muted",
+          "columns": 7,
+          "items": 7,
+          "top": 1289
+        },
+        {
+          "id": "features",
+          "classes": "mt-4 grid divide-y divide-lm-border-soft rounded-lm-card border border",
+          "columns": 4,
+          "items": 4,
+          "top": 1965
+        },
+        {
+          "id": "",
+          "classes": "mt-12 grid divide-y divide-lm-border-soft rounded-t-lm-frame border-x ",
+          "columns": 3,
+          "items": 3,
+          "top": 3145
+        },
+        {
+          "id": "",
+          "classes": "grid items-center gap-6 lg:grid-cols-[0.9fr_1fr_1.1fr]",
+          "columns": 3,
+          "items": 3,
+          "top": 3507
+        },
+        {
+          "id": "",
+          "classes": "grid grid-cols-[2.75rem_1fr] items-start gap-2.5",
+          "columns": 2,
+          "items": 2,
+          "top": 3625
+        },
+        {
+          "id": "",
+          "classes": "grid grid-cols-[2.75rem_1fr] items-start gap-2.5",
+          "columns": 2,
+          "items": 2,
+          "top": 3685
+        },
+        {
+          "id": "",
+          "classes": "grid grid-cols-[2.75rem_1fr] items-start gap-2.5",
+          "columns": 2,
+          "items": 2,
+          "top": 3745
+        },
+        {
+          "id": "",
+          "classes": "grid grid-cols-[2.75rem_1fr] items-start gap-2.5",
+          "columns": 2,
+          "items": 2,
+          "top": 3823
+        },
+        {
+          "id": "integrations",
+          "classes": "mt-12 grid gap-3.5 sm:grid-cols-2 md:mt-16 lg:grid-cols-3",
+          "columns": 3,
+          "items": 6,
+          "top": 4551
+        },
+        {
+          "id": "",
+          "classes": "mt-4 grid divide-y divide-lm-border-soft rounded-lm-card border border",
+          "columns": 4,
+          "items": 4,
+          "top": 5552
+        },
+        {
+          "id": "pricing",
+          "classes": "mt-12 grid items-stretch gap-3.5 md:mt-16 md:grid-cols-2 lg:grid-cols-",
+          "columns": 4,
+          "items": 4,
+          "top": 6657
+        },
+        {
+          "id": "faq",
+          "classes": "grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-start lg:gap-16",
+          "columns": 2,
+          "items": 2,
+          "top": 7889
+        },
+        {
+          "id": "",
+          "classes": "grid items-center gap-8 lg:grid-cols-[1.12fr_0.88fr] lg:gap-12",
+          "columns": 2,
+          "items": 2,
+          "top": 8656
+        },
+        {
+          "id": "",
+          "classes": "lm-reveal grid gap-8 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]",
+          "columns": 4,
+          "items": 4,
+          "top": 9542
+        }
+      ]
+    },
+    {
+      "width": 1440,
+      "scrollWidth": 1440,
+      "overflowX": 0,
+      "importantOffscreen": [],
+      "textClips": [],
+      "gridInfo": {
+        "features": 4,
+        "integrations": 3,
+        "teams": 4,
+        "pricing": 4
+      },
+      "allGrids": [
+        {
+          "id": "",
+          "classes": "grid min-h-[29rem] grid-cols-1 md:grid-cols-[13.5rem_minmax(0,1fr)]",
+          "columns": 2,
+          "items": 2,
+          "top": 808
+        },
+        {
+          "id": "",
+          "classes": "mt-4.5 grid grid-cols-2 gap-3 lg:grid-cols-4",
+          "columns": 4,
+          "items": 4,
+          "top": 965
+        },
+        {
+          "id": "",
+          "classes": "mt-3.5 grid gap-3.5 lg:grid-cols-[1.2fr_1fr]",
+          "columns": 2,
+          "items": 2,
+          "top": 1088
+        },
+        {
+          "id": "",
+          "classes": "mt-1.5 grid grid-cols-7 text-center text-lm-10 text-lm-muted",
+          "columns": 7,
+          "items": 7,
+          "top": 1331
+        },
+        {
+          "id": "features",
+          "classes": "mt-4 grid divide-y divide-lm-border-soft rounded-lm-card border border",
+          "columns": 4,
+          "items": 4,
+          "top": 2029
+        },
+        {
+          "id": "",
+          "classes": "mt-12 grid divide-y divide-lm-border-soft rounded-t-lm-frame border-x ",
+          "columns": 3,
+          "items": 3,
+          "top": 3287
+        },
+        {
+          "id": "",
+          "classes": "grid items-center gap-6 lg:grid-cols-[0.9fr_1fr_1.1fr]",
+          "columns": 3,
+          "items": 3,
+          "top": 3620
+        },
+        {
+          "id": "",
+          "classes": "grid grid-cols-[2.75rem_1fr] items-start gap-2.5",
+          "columns": 2,
+          "items": 2,
+          "top": 3738
+        },
+        {
+          "id": "",
+          "classes": "grid grid-cols-[2.75rem_1fr] items-start gap-2.5",
+          "columns": 2,
+          "items": 2,
+          "top": 3798
+        },
+        {
+          "id": "",
+          "classes": "grid grid-cols-[2.75rem_1fr] items-start gap-2.5",
+          "columns": 2,
+          "items": 2,
+          "top": 3858
+        },
+        {
+          "id": "",
+          "classes": "grid grid-cols-[2.75rem_1fr] items-start gap-2.5",
+          "columns": 2,
+          "items": 2,
+          "top": 3918
+        },
+        {
+          "id": "integrations",
+          "classes": "mt-12 grid gap-3.5 sm:grid-cols-2 md:mt-16 lg:grid-cols-3",
+          "columns": 3,
+          "items": 6,
+          "top": 4669
+        },
+        {
+          "id": "",
+          "classes": "mt-4 grid divide-y divide-lm-border-soft rounded-lm-card border border",
+          "columns": 4,
+          "items": 4,
+          "top": 5653
+        },
+        {
+          "id": "pricing",
+          "classes": "mt-12 grid items-stretch gap-3.5 md:mt-16 md:grid-cols-2 lg:grid-cols-",
+          "columns": 4,
+          "items": 4,
+          "top": 6761
+        },
+        {
+          "id": "faq",
+          "classes": "grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-start lg:gap-16",
+          "columns": 2,
+          "items": 2,
+          "top": 7989
+        },
+        {
+          "id": "",
+          "classes": "grid items-center gap-8 lg:grid-cols-[1.12fr_0.88fr] lg:gap-12",
+          "columns": 2,
+          "items": 2,
+          "top": 8756
+        },
+        {
+          "id": "",
+          "classes": "lm-reveal grid gap-8 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]",
+          "columns": 4,
+          "items": 4,
+          "top": 9679
+        }
+      ]
+    }
+  ],
+  "layouts": [],
+  "interactions": {
+    "theme": {
+      "light": {
+        "htmlClass": "lm-js light",
+        "bodyBg": "rgb(250, 248, 252)"
+      },
+      "dark": {
+        "htmlClass": "lm-js dark",
+        "theme": null,
+        "bodyBg": "rgb(23, 19, 30)"
+      },
+      "back": {
+        "htmlClass": "lm-js light",
+        "theme": null,
+        "bodyBg": "rgb(250, 248, 252)"
+      }
+    },
+    "faq": {
+      "count": 6,
+      "detailsTag": "DETAILS",
+      "summaryTag": "SUMMARY",
+      "before": true,
+      "keyboardFocus": true,
+      "afterSpace": false,
+      "afterEnter": true
+    },
+    "ctaNavigation": {
+      "signupPath": "/signup",
+      "solutionsPath": "/solutions"
+    },
+    "mobileMenu": {
+      "opened": true,
+      "navLinkCount": 7,
+      "selectedLink": "Pricing",
+      "selectedHref": "/pricing",
+      "selectedPath": "/pricing",
+      "closedAfterNavigation": true
+    }
+  },
+  "accessibility": [
+    {
+      "scheme": "light",
+      "width": 390,
+      "passes": 43,
+      "violations": [
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "nodes": [
+            {
+              "target": [
+                ".lm-reveal[data-visible=\"true\"][data-motion=\"compact\"]:nth-child(1) > .p-6\\.25.transition-\\[border-color\\,box-shadow\\].hover\\:border-lm-border-strong"
+              ],
+              "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": [
+                ".lm-reveal[data-visible=\"true\"][data-motion=\"compact\"]:nth-child(2) > .p-6\\.25.transition-\\[border-color\\,box-shadow\\].hover\\:border-lm-border-strong"
+              ],
+              "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": [
+                ".lm-reveal[data-visible=\"true\"][data-motion=\"compact\"]:nth-child(3) > .p-6\\.25.transition-\\[border-color\\,box-shadow\\].hover\\:border-lm-border-strong"
+              ],
+              "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": [
+                ".lm-reveal[data-visible=\"true\"][data-motion=\"compact\"]:nth-child(4) > .p-6\\.25.transition-\\[border-color\\,box-shadow\\].hover\\:border-lm-border-strong"
+              ],
+              "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": [
+                ".lm-reveal[data-visible=\"true\"][data-motion=\"compact\"]:nth-child(5) > .p-6\\.25.transition-\\[border-color\\,box-shadow\\].hover\\:border-lm-border-strong"
+              ],
+              "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": [
+                ".lm-reveal[data-visible=\"true\"][data-motion=\"compact\"]:nth-child(6) > .p-6\\.25.transition-\\[border-color\\,box-shadow\\].hover\\:border-lm-border-strong"
+              ],
+              "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": [
+                ".min-h-9 > .text-lm-ink.text-lm-12.font-lm-semibold"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".min-h-9 > .text-lm-muted-readable.text-lm-12"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".gap-1.hover\\:text-lm-accent-strong[href$=\"solutions\"]"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-hero-line:nth-child(1) > .lm-hero-word:nth-child(1)"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it's partially obscured by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "32.3pt (43px)",
+                  "fontWeight": "normal",
+                  "messageKey": "elmPartiallyObscured",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-hero-line:nth-child(1) > .lm-hero-word:nth-child(2)"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it's partially obscured by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "32.3pt (43px)",
+                  "fontWeight": "normal",
+                  "messageKey": "elmPartiallyObscured",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-hero-line:nth-child(1) > .lm-hero-word:nth-child(3)"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it's partially obscured by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "32.3pt (43px)",
+                  "fontWeight": "normal",
+                  "messageKey": "elmPartiallyObscured",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-hero-line:nth-child(1) > .lm-hero-word:nth-child(4)"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "32.3pt (43px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-hero-line:nth-child(2) > .lm-hero-word:nth-child(1)"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "32.3pt (43px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-hero-line:nth-child(2) > .lm-hero-word:nth-child(2)"
+              ],
+              "summary": "Fix any of the following: Element content is too short to determine if it is actual text content",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "32.3pt (43px)",
+                  "fontWeight": "normal",
+                  "messageKey": "shortTextContent",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-text-gradient.lm-hero-word:nth-child(3)"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "32.3pt (43px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-text-gradient.lm-hero-word:nth-child(4)"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "32.3pt (43px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".mt-5\\.5"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "12.0pt (16px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-hero-in.mt-3\\.5.text-lm-muted"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".mr-1\\.5"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".md\\:mt-14 > figure > figcaption"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".rounded-b-lm-frame > .text-center.mt-2.text-lm-muted"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".text-lm-dark-muted.tracking-\\[0\\.14em\\].uppercase"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                "#pricing-contact-title"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "17.3pt (23px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".text-lm-dark-muted.mt-3.text-lm-14"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".text-lm-dark-ink.leading-relaxed"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-line:nth-child(1) > span"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "32.3pt (43px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-line:nth-child(2) > span"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "32.3pt (43px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-line:nth-child(3) > span"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "32.3pt (43px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".max-w-\\[32rem\\]"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "12.0pt (16px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".hover\\:bg-lm-surface-accent.px-5.md\\:h-13"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "11.3pt (15px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".border-lm-cta-border"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "11.3pt (15px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".text-lm-cta-muted.mt-4\\.5"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".gap-3.justify-between.items-center > .font-lm-bold.text-lm-14.text-lm-ink"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "bold",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".gap-3.justify-between.items-center > .text-lm-ink-soft.text-lm-12.font-lm-semibold"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".py-2\\.5.gap-3.justify-between:nth-child(1) > .gap-2\\.5.min-w-0.items-center > .truncate.text-lm-ink-soft.text-lm-12"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".py-2\\.5.gap-3.justify-between:nth-child(1) > .text-lm-10.shrink-0.text-lm-ink-soft"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "7.5pt (10px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".py-2\\.5.gap-3.justify-between:nth-child(2) > .gap-2\\.5.min-w-0.items-center > .truncate.text-lm-ink-soft.text-lm-12"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".py-2\\.5.gap-3.justify-between:nth-child(2) > .text-lm-10.shrink-0.text-lm-ink-soft"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "7.5pt (10px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".gap-2\\.5.min-w-0.items-center > .truncate.text-lm-ink.text-lm-12"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".-mx-2 > .text-lm-ink-accent.text-lm-10.shrink-0"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "7.5pt (10px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".py-2\\.5.gap-3.justify-between:nth-child(4) > .gap-2\\.5.min-w-0.items-center > .truncate.text-lm-ink-soft.text-lm-12"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".py-2\\.5.gap-3.justify-between:nth-child(4) > .text-lm-10.shrink-0.text-lm-ink-soft"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "7.5pt (10px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lg\\:grid-cols-\\[1\\.12fr_0\\.88fr\\] > figure > figcaption"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".tracking-\\[-0\\.01em\\].text-lm-16.font-lm-bold"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "12.0pt (16px)",
+                  "fontWeight": "bold",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".mt-1.text-lm-14.text-lm-ink-accent"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".max-w-\\[44rem\\].mt-2\\.5.text-lm-muted-readable"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".underline.underline-offset-4[href=\"/vs\"]"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                "text"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because element contains an image node",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "147.0pt (196px)",
+                  "fontWeight": "bold",
+                  "messageKey": "imgNode",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "passes": 43,
+      "violations": [
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "nodes": [
+            {
+              "target": [
+                ".lm-reveal[data-visible=\"true\"][data-motion=\"desktop\"]:nth-child(1) > .p-6\\.25.transition-\\[border-color\\,box-shadow\\].hover\\:border-lm-border-strong"
+              ],
+              "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": [
+                ".lm-reveal[data-visible=\"true\"][data-motion=\"desktop\"]:nth-child(2) > .p-6\\.25.transition-\\[border-color\\,box-shadow\\].hover\\:border-lm-border-strong"
+              ],
+              "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": [
+                ".lm-reveal[data-visible=\"true\"][data-motion=\"desktop\"]:nth-child(3) > .p-6\\.25.transition-\\[border-color\\,box-shadow\\].hover\\:border-lm-border-strong"
+              ],
+              "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": [
+                ".lm-reveal[data-visible=\"true\"][data-motion=\"desktop\"]:nth-child(4) > .p-6\\.25.transition-\\[border-color\\,box-shadow\\].hover\\:border-lm-border-strong"
+              ],
+              "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": [
+                ".lm-reveal[data-visible=\"true\"][data-motion=\"desktop\"]:nth-child(5) > .p-6\\.25.transition-\\[border-color\\,box-shadow\\].hover\\:border-lm-border-strong"
+              ],
+              "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": [
+                ".lm-reveal[data-visible=\"true\"][data-motion=\"desktop\"]:nth-child(6) > .p-6\\.25.transition-\\[border-color\\,box-shadow\\].hover\\:border-lm-border-strong"
+              ],
+              "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": [
+                ".lm-hero-line:nth-child(1) > .lm-hero-word:nth-child(1)"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it's partially obscured by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "54.0pt (72px)",
+                  "fontWeight": "normal",
+                  "messageKey": "elmPartiallyObscured",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-hero-line:nth-child(1) > .lm-hero-word:nth-child(2)"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "54.0pt (72px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-hero-line:nth-child(1) > .lm-hero-word:nth-child(3)"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "54.0pt (72px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-hero-line:nth-child(1) > .lm-hero-word:nth-child(4)"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "54.0pt (72px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-hero-line:nth-child(2) > .lm-hero-word:nth-child(1)"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "54.0pt (72px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-hero-line:nth-child(2) > .lm-hero-word:nth-child(2)"
+              ],
+              "summary": "Fix any of the following: Element content is too short to determine if it is actual text content",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "54.0pt (72px)",
+                  "fontWeight": "normal",
+                  "messageKey": "shortTextContent",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-text-gradient.lm-hero-word:nth-child(3)"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "54.0pt (72px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-text-gradient.lm-hero-word:nth-child(4)"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "54.0pt (72px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".mt-5\\.5"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "13.5pt (18px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-hero-in.mt-3\\.5.text-lm-muted"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".mr-1\\.5"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".py-1\\.5.text-lm-muted-readable.gap-2:nth-child(3) > .bg-lm-surface-muted.px-1\\.5.rounded-lm-chip"
+              ],
+              "summary": "Fix any of the following: Element content is too short to determine if it is actual text content",
+              "data": [
+                {
+                  "fgColor": "#75609a",
+                  "bgColor": "#eae6f1",
+                  "contrastRatio": 4.38,
+                  "fontSize": "7.5pt (10px)",
+                  "fontWeight": "normal",
+                  "messageKey": "shortTextContent",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".py-1\\.5.text-lm-muted-readable.gap-2:nth-child(4) > .bg-lm-surface-muted.px-1\\.5.rounded-lm-chip"
+              ],
+              "summary": "Fix any of the following: Element content is too short to determine if it is actual text content",
+              "data": [
+                {
+                  "fgColor": "#75609a",
+                  "bgColor": "#eae6f1",
+                  "contrastRatio": 4.38,
+                  "fontSize": "7.5pt (10px)",
+                  "fontWeight": "normal",
+                  "messageKey": "shortTextContent",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".md\\:mt-14 > figure > figcaption"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".mt-2.font-lm-bold.text-lm-14"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because element contains an image node",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "bold",
+                  "messageKey": "imgNode",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lg\\:absolute > .text-lm-muted.text-lm-10"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because element contains an image node",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "7.5pt (10px)",
+                  "fontWeight": "normal",
+                  "messageKey": "imgNode",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".rounded-b-lm-frame > .text-center.mt-2.text-lm-muted"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".text-lm-dark-muted.tracking-\\[0\\.14em\\].uppercase"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                "#pricing-contact-title"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "17.3pt (23px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".text-lm-dark-muted.mt-3.text-lm-14"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".text-lm-dark-ink.leading-relaxed"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-line:nth-child(1) > span"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "48.0pt (64px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-line:nth-child(2) > span"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "48.0pt (64px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-line:nth-child(3) > span"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "48.0pt (64px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".max-w-\\[32rem\\]"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "14.3pt (19px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".hover\\:bg-lm-surface-accent.px-5.md\\:h-13"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "11.3pt (15px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".border-lm-cta-border"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "11.3pt (15px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".text-lm-cta-muted.mt-4\\.5"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".gap-3.justify-between.items-center > .font-lm-bold.text-lm-14.text-lm-ink"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "bold",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".gap-3.justify-between.items-center > .text-lm-ink-soft.text-lm-12.font-lm-semibold"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".py-2\\.5.gap-3.justify-between:nth-child(1) > .gap-2\\.5.min-w-0.items-center > .truncate.text-lm-ink-soft.text-lm-12"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".py-2\\.5.gap-3.justify-between:nth-child(1) > .text-lm-10.shrink-0.text-lm-ink-soft"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "7.5pt (10px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".py-2\\.5.gap-3.justify-between:nth-child(2) > .gap-2\\.5.min-w-0.items-center > .truncate.text-lm-ink-soft.text-lm-12"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".py-2\\.5.gap-3.justify-between:nth-child(2) > .text-lm-10.shrink-0.text-lm-ink-soft"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "7.5pt (10px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".gap-2\\.5.min-w-0.items-center > .truncate.text-lm-ink.text-lm-12"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".-mx-2 > .text-lm-ink-accent.text-lm-10.shrink-0"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "7.5pt (10px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".py-2\\.5.gap-3.justify-between:nth-child(4) > .gap-2\\.5.min-w-0.items-center > .truncate.text-lm-ink-soft.text-lm-12"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".py-2\\.5.gap-3.justify-between:nth-child(4) > .text-lm-10.shrink-0.text-lm-ink-soft"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "7.5pt (10px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lg\\:grid-cols-\\[1\\.12fr_0\\.88fr\\] > figure > figcaption"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".tracking-\\[-0\\.01em\\].text-lm-16.font-lm-bold"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "12.0pt (16px)",
+                  "fontWeight": "bold",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".mt-1.text-lm-14.text-lm-ink-accent"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".max-w-\\[44rem\\].mt-2\\.5.text-lm-muted-readable"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".underline.underline-offset-4[href=\"/vs\"]"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                "text"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because element contains an image node",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "147.0pt (196px)",
+                  "fontWeight": "bold",
+                  "messageKey": "imgNode",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scheme": "dark",
+      "width": 390,
+      "passes": 43,
+      "violations": [
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "nodes": [
+            {
+              "target": [
+                ".lm-reveal[data-visible=\"true\"][data-motion=\"compact\"]:nth-child(1) > .p-6\\.25.transition-\\[border-color\\,box-shadow\\].hover\\:border-lm-border-strong"
+              ],
+              "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": [
+                ".lm-reveal[data-visible=\"true\"][data-motion=\"compact\"]:nth-child(2) > .p-6\\.25.transition-\\[border-color\\,box-shadow\\].hover\\:border-lm-border-strong"
+              ],
+              "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": [
+                ".lm-reveal[data-visible=\"true\"][data-motion=\"compact\"]:nth-child(3) > .p-6\\.25.transition-\\[border-color\\,box-shadow\\].hover\\:border-lm-border-strong"
+              ],
+              "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": [
+                ".lm-reveal[data-visible=\"true\"][data-motion=\"compact\"]:nth-child(4) > .p-6\\.25.transition-\\[border-color\\,box-shadow\\].hover\\:border-lm-border-strong"
+              ],
+              "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": [
+                ".lm-reveal[data-visible=\"true\"][data-motion=\"compact\"]:nth-child(5) > .p-6\\.25.transition-\\[border-color\\,box-shadow\\].hover\\:border-lm-border-strong"
+              ],
+              "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": [
+                ".lm-reveal[data-visible=\"true\"][data-motion=\"compact\"]:nth-child(6) > .p-6\\.25.transition-\\[border-color\\,box-shadow\\].hover\\:border-lm-border-strong"
+              ],
+              "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": [
+                ".min-h-9 > .text-lm-ink.text-lm-12.font-lm-semibold"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".min-h-9 > .text-lm-muted-readable.text-lm-12"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".gap-1.hover\\:text-lm-accent-strong[href$=\"solutions\"]"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-hero-line:nth-child(1) > .lm-hero-word:nth-child(1)"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it's partially obscured by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "32.3pt (43px)",
+                  "fontWeight": "normal",
+                  "messageKey": "elmPartiallyObscured",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-hero-line:nth-child(1) > .lm-hero-word:nth-child(2)"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it's partially obscured by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "32.3pt (43px)",
+                  "fontWeight": "normal",
+                  "messageKey": "elmPartiallyObscured",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-hero-line:nth-child(1) > .lm-hero-word:nth-child(3)"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it's partially obscured by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "32.3pt (43px)",
+                  "fontWeight": "normal",
+                  "messageKey": "elmPartiallyObscured",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-hero-line:nth-child(1) > .lm-hero-word:nth-child(4)"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "32.3pt (43px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-hero-line:nth-child(2) > .lm-hero-word:nth-child(1)"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "32.3pt (43px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-hero-line:nth-child(2) > .lm-hero-word:nth-child(2)"
+              ],
+              "summary": "Fix any of the following: Element content is too short to determine if it is actual text content",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "32.3pt (43px)",
+                  "fontWeight": "normal",
+                  "messageKey": "shortTextContent",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-text-gradient.lm-hero-word:nth-child(3)"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "32.3pt (43px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-text-gradient.lm-hero-word:nth-child(4)"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "32.3pt (43px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".mt-5\\.5"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "12.0pt (16px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-hero-in.mt-3\\.5.text-lm-muted"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".mr-1\\.5"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".md\\:mt-14 > figure > figcaption"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".rounded-b-lm-frame > .text-center.mt-2.text-lm-muted"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".text-lm-dark-muted.tracking-\\[0\\.14em\\].uppercase"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                "#pricing-contact-title"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "17.3pt (23px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".text-lm-dark-muted.mt-3.text-lm-14"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".text-lm-dark-ink.leading-relaxed"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-line:nth-child(1) > span"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "32.3pt (43px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-line:nth-child(2) > span"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "32.3pt (43px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-line:nth-child(3) > span"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "32.3pt (43px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".max-w-\\[32rem\\]"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "12.0pt (16px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".hover\\:bg-lm-surface-accent.px-5.md\\:h-13"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "11.3pt (15px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".border-lm-cta-border"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "11.3pt (15px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".text-lm-cta-muted.mt-4\\.5"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".gap-3.justify-between.items-center > .font-lm-bold.text-lm-14.text-lm-ink"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "bold",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".gap-3.justify-between.items-center > .text-lm-ink-soft.text-lm-12.font-lm-semibold"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".py-2\\.5.gap-3.justify-between:nth-child(1) > .gap-2\\.5.min-w-0.items-center > .truncate.text-lm-ink-soft.text-lm-12"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".py-2\\.5.gap-3.justify-between:nth-child(1) > .text-lm-10.shrink-0.text-lm-ink-soft"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "7.5pt (10px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".py-2\\.5.gap-3.justify-between:nth-child(2) > .gap-2\\.5.min-w-0.items-center > .truncate.text-lm-ink-soft.text-lm-12"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".py-2\\.5.gap-3.justify-between:nth-child(2) > .text-lm-10.shrink-0.text-lm-ink-soft"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "7.5pt (10px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".gap-2\\.5.min-w-0.items-center > .truncate.text-lm-ink.text-lm-12"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".-mx-2 > .text-lm-ink-accent.text-lm-10.shrink-0"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "7.5pt (10px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".py-2\\.5.gap-3.justify-between:nth-child(4) > .gap-2\\.5.min-w-0.items-center > .truncate.text-lm-ink-soft.text-lm-12"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".py-2\\.5.gap-3.justify-between:nth-child(4) > .text-lm-10.shrink-0.text-lm-ink-soft"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "7.5pt (10px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lg\\:grid-cols-\\[1\\.12fr_0\\.88fr\\] > figure > figcaption"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".tracking-\\[-0\\.01em\\].text-lm-16.font-lm-bold"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "12.0pt (16px)",
+                  "fontWeight": "bold",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".mt-1.text-lm-14.text-lm-ink-accent"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".max-w-\\[44rem\\].mt-2\\.5.text-lm-muted-readable"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".underline.underline-offset-4[href=\"/vs\"]"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                "text"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because element contains an image node",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "147.0pt (196px)",
+                  "fontWeight": "bold",
+                  "messageKey": "imgNode",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scheme": "dark",
+      "width": 1440,
+      "passes": 43,
+      "violations": [
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "nodes": [
+            {
+              "target": [
+                ".lm-reveal[data-visible=\"true\"][data-motion=\"desktop\"]:nth-child(1) > .p-6\\.25.transition-\\[border-color\\,box-shadow\\].hover\\:border-lm-border-strong"
+              ],
+              "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": [
+                ".lm-reveal[data-visible=\"true\"][data-motion=\"desktop\"]:nth-child(2) > .p-6\\.25.transition-\\[border-color\\,box-shadow\\].hover\\:border-lm-border-strong"
+              ],
+              "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": [
+                ".lm-reveal[data-visible=\"true\"][data-motion=\"desktop\"]:nth-child(3) > .p-6\\.25.transition-\\[border-color\\,box-shadow\\].hover\\:border-lm-border-strong"
+              ],
+              "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": [
+                ".lm-reveal[data-visible=\"true\"][data-motion=\"desktop\"]:nth-child(4) > .p-6\\.25.transition-\\[border-color\\,box-shadow\\].hover\\:border-lm-border-strong"
+              ],
+              "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": [
+                ".lm-reveal[data-visible=\"true\"][data-motion=\"desktop\"]:nth-child(5) > .p-6\\.25.transition-\\[border-color\\,box-shadow\\].hover\\:border-lm-border-strong"
+              ],
+              "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": [
+                ".lm-reveal[data-visible=\"true\"][data-motion=\"desktop\"]:nth-child(6) > .p-6\\.25.transition-\\[border-color\\,box-shadow\\].hover\\:border-lm-border-strong"
+              ],
+              "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": [
+                ".lm-hero-line:nth-child(1) > .lm-hero-word:nth-child(1)"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it's partially obscured by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "54.0pt (72px)",
+                  "fontWeight": "normal",
+                  "messageKey": "elmPartiallyObscured",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-hero-line:nth-child(1) > .lm-hero-word:nth-child(2)"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "54.0pt (72px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-hero-line:nth-child(1) > .lm-hero-word:nth-child(3)"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "54.0pt (72px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-hero-line:nth-child(1) > .lm-hero-word:nth-child(4)"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "54.0pt (72px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-hero-line:nth-child(2) > .lm-hero-word:nth-child(1)"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "54.0pt (72px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-hero-line:nth-child(2) > .lm-hero-word:nth-child(2)"
+              ],
+              "summary": "Fix any of the following: Element content is too short to determine if it is actual text content",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "54.0pt (72px)",
+                  "fontWeight": "normal",
+                  "messageKey": "shortTextContent",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-text-gradient.lm-hero-word:nth-child(3)"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "54.0pt (72px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-text-gradient.lm-hero-word:nth-child(4)"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "54.0pt (72px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".mt-5\\.5"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "13.5pt (18px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-hero-in.mt-3\\.5.text-lm-muted"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".mr-1\\.5"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".md\\:mt-14 > figure > figcaption"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".mt-2.font-lm-bold.text-lm-14"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because element contains an image node",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "bold",
+                  "messageKey": "imgNode",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lg\\:absolute > .text-lm-muted.text-lm-10"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because element contains an image node",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "7.5pt (10px)",
+                  "fontWeight": "normal",
+                  "messageKey": "imgNode",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".rounded-b-lm-frame > .text-center.mt-2.text-lm-muted"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".text-lm-dark-muted.tracking-\\[0\\.14em\\].uppercase"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                "#pricing-contact-title"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "17.3pt (23px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".text-lm-dark-muted.mt-3.text-lm-14"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".text-lm-dark-ink.leading-relaxed"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-line:nth-child(1) > span"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "48.0pt (64px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-line:nth-child(2) > span"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "48.0pt (64px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lm-line:nth-child(3) > span"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined due to a background gradient",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "48.0pt (64px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgGradient",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".max-w-\\[32rem\\]"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "14.3pt (19px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".hover\\:bg-lm-surface-accent.px-5.md\\:h-13"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "11.3pt (15px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".border-lm-cta-border"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "11.3pt (15px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".text-lm-cta-muted.mt-4\\.5"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".gap-3.justify-between.items-center > .font-lm-bold.text-lm-14.text-lm-ink"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "bold",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".gap-3.justify-between.items-center > .text-lm-ink-soft.text-lm-12.font-lm-semibold"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".py-2\\.5.gap-3.justify-between:nth-child(1) > .gap-2\\.5.min-w-0.items-center > .truncate.text-lm-ink-soft.text-lm-12"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".py-2\\.5.gap-3.justify-between:nth-child(1) > .text-lm-10.shrink-0.text-lm-ink-soft"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "7.5pt (10px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".py-2\\.5.gap-3.justify-between:nth-child(2) > .gap-2\\.5.min-w-0.items-center > .truncate.text-lm-ink-soft.text-lm-12"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".py-2\\.5.gap-3.justify-between:nth-child(2) > .text-lm-10.shrink-0.text-lm-ink-soft"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "7.5pt (10px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".gap-2\\.5.min-w-0.items-center > .truncate.text-lm-ink.text-lm-12"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".-mx-2 > .text-lm-ink-accent.text-lm-10.shrink-0"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "7.5pt (10px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".py-2\\.5.gap-3.justify-between:nth-child(4) > .gap-2\\.5.min-w-0.items-center > .truncate.text-lm-ink-soft.text-lm-12"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".py-2\\.5.gap-3.justify-between:nth-child(4) > .text-lm-10.shrink-0.text-lm-ink-soft"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "7.5pt (10px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".lg\\:grid-cols-\\[1\\.12fr_0\\.88fr\\] > figure > figcaption"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".tracking-\\[-0\\.01em\\].text-lm-16.font-lm-bold"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "12.0pt (16px)",
+                  "fontWeight": "bold",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".mt-1.text-lm-14.text-lm-ink-accent"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".max-w-\\[44rem\\].mt-2\\.5.text-lm-muted-readable"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                ".underline.underline-offset-4[href=\"/vs\"]"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because it is overlapped by another element",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                }
+              ]
+            },
+            {
+              "target": [
+                "text"
+              ],
+              "summary": "Fix any of the following: Element's background color could not be determined because element contains an image node",
+              "data": [
+                {
+                  "contrastRatio": 0,
+                  "fontSize": "147.0pt (196px)",
+                  "fontWeight": "bold",
+                  "messageKey": "imgNode",
+                  "expectedContrastRatio": "3:1"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "reducedMotion": {
+    "prefersReducedMotion": true,
+    "heroOpacity": "1",
+    "heroText": "visible",
+    "runningAnimations": 0,
+    "heroAnimations": [
+      {
+        "class": "lm-hero-line",
+        "animationDuration": "0s",
+        "transitionDuration": "0.001s",
+        "opacity": "1"
+      },
+      {
+        "class": "lm-hero-word",
+        "animationDuration": "0s",
+        "transitionDuration": "0.001s",
+        "opacity": "1"
+      },
+      {
+        "class": "lm-hero-word",
+        "animationDuration": "0s",
+        "transitionDuration": "0.001s",
+        "opacity": "1"
+      },
+      {
+        "class": "lm-hero-word",
+        "animationDuration": "0s",
+        "transitionDuration": "0.001s",
+        "opacity": "1"
+      },
+      {
+        "class": "lm-hero-word",
+        "animationDuration": "0s",
+        "transitionDuration": "0.001s",
+        "opacity": "1"
+      }
+    ]
+  },
+  "noJavaScript": {
+    "status": 200,
+    "containsHero": true,
+    "containsFooter": true,
+    "containsFaq": true,
+    "scriptDisabled": true,
+    "heroVisible": true,
+    "faqVisible": true,
+    "detailsCount": 6
+  },
+  "screenshots": [
+    "/home/user/roducq/docs/screenshots/forma-homepage-post-merge/homepage-full-1440.png"
+  ]
+}

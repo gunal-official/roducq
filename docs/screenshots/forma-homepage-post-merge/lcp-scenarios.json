@@ -1,0 +1,361 @@
+{
+  "testedUrl": "http://127.0.0.1:3100",
+  "gitCommit": "9e774ac5ca88998fdd52fbfbf75bdcdf49f5d9af",
+  "browser": "Chromium 153.0.8010.0",
+  "method": "PerformanceObserver for largest-contentful-paint and layout-shift; 3 fresh browser contexts per scenario; observe through 2.8s after load; no user input; local Next production build; page self-hosted; network unthrottled unless specified; no external production endpoint measured.",
+  "scenarios": [
+    {
+      "scenario": "A-mobile-unthrottled",
+      "conditions": "412x823 CSS px, DPR 1.75, animations enabled, no network/CPU throttle",
+      "runCount": 3,
+      "medianLcpMs": 184,
+      "medianCls": 0,
+      "lcpCandidate": [
+        "P.lm-hero-in.mt-5.5.max-w-lm-measure-lead.text-lm-16.text-lm-ink-soft.md:text-lm-18 — Capture the original context, shape a brief with open questions surfaced, draft a proposal from it, and prepare client u"
+      ],
+      "runs": [
+        {
+          "run": 1,
+          "status": 200,
+          "lcpEntries": [
+            {
+              "time": 168,
+              "size": 36158,
+              "url": "",
+              "tag": "P",
+              "id": "",
+              "className": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "Capture the original context, shape a brief with open questions surfaced, draft a proposal from it, and prepare client u"
+            }
+          ],
+          "cls": 0,
+          "shifts": [],
+          "error": null,
+          "readyState": "complete",
+          "heroOpacity": "1",
+          "heroText": "visible"
+        },
+        {
+          "run": 2,
+          "status": 200,
+          "lcpEntries": [
+            {
+              "time": 216,
+              "size": 36158,
+              "url": "",
+              "tag": "P",
+              "id": "",
+              "className": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "Capture the original context, shape a brief with open questions surfaced, draft a proposal from it, and prepare client u"
+            }
+          ],
+          "cls": 0,
+          "shifts": [],
+          "error": null,
+          "readyState": "complete",
+          "heroOpacity": "1",
+          "heroText": "visible"
+        },
+        {
+          "run": 3,
+          "status": 200,
+          "lcpEntries": [
+            {
+              "time": 184,
+              "size": 36158,
+              "url": "",
+              "tag": "P",
+              "id": "",
+              "className": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "Capture the original context, shape a brief with open questions surfaced, draft a proposal from it, and prepare client u"
+            }
+          ],
+          "cls": 0,
+          "shifts": [],
+          "error": null,
+          "readyState": "complete",
+          "heroOpacity": "1",
+          "heroText": "visible"
+        }
+      ]
+    },
+    {
+      "scenario": "B-mobile-4x-cpu",
+      "conditions": "412x823 CSS px, DPR 1.75, animations enabled, CDP CPU throttle 4x; network unthrottled",
+      "runCount": 3,
+      "medianLcpMs": 364,
+      "medianCls": 0,
+      "lcpCandidate": [
+        "P.lm-hero-in.mt-5.5.max-w-lm-measure-lead.text-lm-16.text-lm-ink-soft.md:text-lm-18 — Capture the original context, shape a brief with open questions surfaced, draft a proposal from it, and prepare client u"
+      ],
+      "runs": [
+        {
+          "run": 1,
+          "status": 200,
+          "lcpEntries": [
+            {
+              "time": 364,
+              "size": 36158,
+              "url": "",
+              "tag": "P",
+              "id": "",
+              "className": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "Capture the original context, shape a brief with open questions surfaced, draft a proposal from it, and prepare client u"
+            }
+          ],
+          "cls": 0,
+          "shifts": [],
+          "error": null,
+          "readyState": "complete",
+          "heroOpacity": "1",
+          "heroText": "visible"
+        },
+        {
+          "run": 2,
+          "status": 200,
+          "lcpEntries": [
+            {
+              "time": 376,
+              "size": 36158,
+              "url": "",
+              "tag": "P",
+              "id": "",
+              "className": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "Capture the original context, shape a brief with open questions surfaced, draft a proposal from it, and prepare client u"
+            }
+          ],
+          "cls": 0,
+          "shifts": [],
+          "error": null,
+          "readyState": "complete",
+          "heroOpacity": "1",
+          "heroText": "visible"
+        },
+        {
+          "run": 3,
+          "status": 200,
+          "lcpEntries": [
+            {
+              "time": 316,
+              "size": 36158,
+              "url": "",
+              "tag": "P",
+              "id": "",
+              "className": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "Capture the original context, shape a brief with open questions surfaced, draft a proposal from it, and prepare client u"
+            }
+          ],
+          "cls": 0.2523686113940097,
+          "shifts": [
+            {
+              "value": 0.2523686113940097,
+              "startTime": 328.70000000018626,
+              "sources": [
+                {
+                  "tag": "DIV",
+                  "id": "",
+                  "className": "lm-bloom-b lm-drift"
+                },
+                {
+                  "tag": "DIV",
+                  "id": "",
+                  "className": "lm-bloom-a lm-drift"
+                },
+                {
+                  "tag": "LI",
+                  "id": "",
+                  "className": "inline-flex h-9 items-center gap-1.5 rounded-lm-row border border-lm-border-soft"
+                },
+                {
+                  "tag": "LI",
+                  "id": "",
+                  "className": "inline-flex h-9 items-center gap-1.5 rounded-lm-row border border-lm-border-soft"
+                }
+              ]
+            }
+          ],
+          "error": null,
+          "readyState": "complete",
+          "heroOpacity": "1",
+          "heroText": "visible"
+        }
+      ]
+    },
+    {
+      "scenario": "C-desktop-unthrottled",
+      "conditions": "1440x900 CSS px, DPR 1, animations enabled, no network/CPU throttle",
+      "runCount": 3,
+      "medianLcpMs": 272,
+      "medianCls": 0,
+      "lcpCandidate": [
+        "P.lm-hero-in.mt-5.5.max-w-lm-measure-lead.text-lm-16.text-lm-ink-soft.md:text-lm-18 — Capture the original context, shape a brief with open questions surfaced, draft a proposal from it, and prepare client u"
+      ],
+      "runs": [
+        {
+          "run": 1,
+          "status": 200,
+          "lcpEntries": [
+            {
+              "time": 268,
+              "size": 50962,
+              "url": "",
+              "tag": "P",
+              "id": "",
+              "className": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "Capture the original context, shape a brief with open questions surfaced, draft a proposal from it, and prepare client u"
+            }
+          ],
+          "cls": 0,
+          "shifts": [],
+          "error": null,
+          "readyState": "complete",
+          "heroOpacity": "1",
+          "heroText": "visible"
+        },
+        {
+          "run": 2,
+          "status": 200,
+          "lcpEntries": [
+            {
+              "time": 384,
+              "size": 50962,
+              "url": "",
+              "tag": "P",
+              "id": "",
+              "className": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "Capture the original context, shape a brief with open questions surfaced, draft a proposal from it, and prepare client u"
+            }
+          ],
+          "cls": 0,
+          "shifts": [],
+          "error": null,
+          "readyState": "complete",
+          "heroOpacity": "1",
+          "heroText": "visible"
+        },
+        {
+          "run": 3,
+          "status": 200,
+          "lcpEntries": [
+            {
+              "time": 272,
+              "size": 50962,
+              "url": "",
+              "tag": "P",
+              "id": "",
+              "className": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "Capture the original context, shape a brief with open questions surfaced, draft a proposal from it, and prepare client u"
+            }
+          ],
+          "cls": 0,
+          "shifts": [],
+          "error": null,
+          "readyState": "complete",
+          "heroOpacity": "1",
+          "heroText": "visible"
+        }
+      ]
+    },
+    {
+      "scenario": "D-mobile-reduced-motion",
+      "conditions": "412x823 CSS px, DPR 1.75, prefers-reduced-motion: reduce before navigation; no network/CPU throttle",
+      "runCount": 3,
+      "medianLcpMs": 224,
+      "medianCls": 0,
+      "lcpCandidate": [
+        "P.lm-hero-in.mt-5.5.max-w-lm-measure-lead.text-lm-16.text-lm-ink-soft.md:text-lm-18 — Capture the original context, shape a brief with open questions surfaced, draft a proposal from it, and prepare client u"
+      ],
+      "runs": [
+        {
+          "run": 1,
+          "status": 200,
+          "lcpEntries": [
+            {
+              "time": 148,
+              "size": 5644,
+              "url": "",
+              "tag": "SPAN",
+              "id": "",
+              "className": "text-lm-12 text-lm-muted-readable",
+              "text": "Intake, briefs, proposals and client updates in one workspace"
+            },
+            {
+              "time": 288,
+              "size": 36158,
+              "url": "",
+              "tag": "P",
+              "id": "",
+              "className": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "Capture the original context, shape a brief with open questions surfaced, draft a proposal from it, and prepare client u"
+            }
+          ],
+          "cls": 0.3441849345000731,
+          "shifts": [
+            {
+              "value": 0.3441849345000731,
+              "startTime": 175.4000000001397,
+              "sources": [
+                {
+                  "tag": "DIV",
+                  "id": "",
+                  "className": "lm-bloom-b lm-drift"
+                },
+                {
+                  "tag": "DIV",
+                  "id": "",
+                  "className": "lm-bloom-a lm-drift"
+                }
+              ]
+            }
+          ],
+          "error": null,
+          "readyState": "complete",
+          "heroOpacity": "1",
+          "heroText": "visible"
+        },
+        {
+          "run": 2,
+          "status": 200,
+          "lcpEntries": [
+            {
+              "time": 200,
+              "size": 36158,
+              "url": "",
+              "tag": "P",
+              "id": "",
+              "className": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "Capture the original context, shape a brief with open questions surfaced, draft a proposal from it, and prepare client u"
+            }
+          ],
+          "cls": 0,
+          "shifts": [],
+          "error": null,
+          "readyState": "complete",
+          "heroOpacity": "1",
+          "heroText": "visible"
+        },
+        {
+          "run": 3,
+          "status": 200,
+          "lcpEntries": [
+            {
+              "time": 224,
+              "size": 36158,
+              "url": "",
+              "tag": "P",
+              "id": "",
+              "className": "lm-hero-in mt-5.5 max-w-lm-measure-lead text-lm-16 text-lm-ink-soft md:text-lm-18",
+              "text": "Capture the original context, shape a brief with open questions surfaced, draft a proposal from it, and prepare client u"
+            }
+          ],
+          "cls": 0,
+          "shifts": [],
+          "error": null,
+          "readyState": "complete",
+          "heroOpacity": "1",
+          "heroText": "visible"
+        }
+      ]
+    }
+  ]
+}

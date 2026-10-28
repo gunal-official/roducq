@@ -1,0 +1,222 @@
+{
+  "mode": "after",
+  "results": [
+    {
+      "page": "marketing-home",
+      "width": 320,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [
+        {
+          "tag": "SECTION",
+          "cls": "relative isolate overflow-hidden bg-lm-card",
+          "text": "RoducqA clearer client-work processF",
+          "sw": 563,
+          "cw": 320
+        }
+      ],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "A",
+        "h": 44,
+        "w": 116,
+        "label": "Explore solutions"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Open menu"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "marketing-home",
+      "width": 375,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [
+        {
+          "tag": "SECTION",
+          "cls": "relative isolate overflow-hidden bg-lm-card",
+          "text": "RoducqA clearer client-work processF",
+          "sw": 556,
+          "cw": 375
+        }
+      ],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "A",
+        "h": 44,
+        "w": 116,
+        "label": "Explore solutions"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Switch to light theme"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "marketing-home",
+      "width": 390,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [
+        {
+          "tag": "SECTION",
+          "cls": "relative isolate overflow-hidden bg-lm-card",
+          "text": "RoducqA clearer client-work processF",
+          "sw": 553,
+          "cw": 390
+        }
+      ],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "A",
+        "h": 44,
+        "w": 116,
+        "label": "Explore solutions"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Switch to light theme"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "marketing-home",
+      "width": 768,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [
+        {
+          "tag": "SECTION",
+          "cls": "relative isolate overflow-hidden bg-lm-card",
+          "text": "RoducqA clearer client-work processF",
+          "sw": 866,
+          "cw": 768
+        }
+      ],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "A",
+        "h": 44,
+        "w": 116,
+        "label": "Explore solutions"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Switch to light theme"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "marketing-home",
+      "width": 1024,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [
+        {
+          "tag": "SECTION",
+          "cls": "relative isolate overflow-hidden bg-lm-card",
+          "text": "RoducqA clearer client-work processF",
+          "sw": 1153,
+          "cw": 1024
+        }
+      ],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "A",
+        "h": 44,
+        "w": 116,
+        "label": "Explore solutions"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Switch to light theme"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "marketing-home",
+      "width": 1200,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [
+        {
+          "tag": "SECTION",
+          "cls": "relative isolate overflow-hidden bg-lm-card",
+          "text": "RoducqA clearer client-work processF",
+          "sw": 1350,
+          "cw": 1200
+        }
+      ],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "A",
+        "h": 44,
+        "w": 116,
+        "label": "Explore solutions"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Switch to light theme"
+      },
+      "pageErrors": []
+    },
+    {
+      "page": "marketing-home",
+      "width": 1440,
+      "overflowX": 0,
+      "offenders": [],
+      "cutoffs": [
+        {
+          "tag": "SECTION",
+          "cls": "relative isolate overflow-hidden bg-lm-card",
+          "text": "RoducqA clearer client-work processF",
+          "sw": 1619,
+          "cw": 1440
+        }
+      ],
+      "fixedEscapes": [],
+      "smallTaps": [],
+      "nearMiss": [],
+      "minH": {
+        "tag": "A",
+        "h": 44,
+        "w": 116,
+        "label": "Explore solutions"
+      },
+      "minW": {
+        "tag": "BUTTON",
+        "w": 44,
+        "h": 44,
+        "label": "Switch to light theme"
+      },
+      "pageErrors": []
+    }
+  ]
+}
