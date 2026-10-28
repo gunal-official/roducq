@@ -21,6 +21,7 @@ import { saveUpdateContent } from "@/app/(app)/updates/[id]/actions";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useUnsavedChangesGuard } from "@/components/ui/unsaved-changes-guard";
 import {
   Select,
   SelectContent,
@@ -30,6 +31,7 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import type { Template } from "@/lib/types/template";
+import { isEditorDirty } from "@/lib/ui/unsaved-changes";
 
 function FieldLabel({ children }: { children: React.ReactNode }) {
   return (
@@ -65,7 +67,17 @@ export function UpdateComposer({
     setBody(initialBody);
   }
 
-  const dirty = title !== initialTitle || body !== initialBody;
+  // Unsaved = differs from the last SUCCESSFULLY saved state (the server
+  // props). Reverting an edit makes the editor clean again; a failed save can
+  // never clear it, and only a save that re-renders fresh props can.
+  const dirty = isEditorDirty(
+    { title, body },
+    { title: initialTitle, body: initialBody }
+  );
+
+  // Hold in-app link navigation (and refresh/tab close) behind an accessible
+  // confirmation while there is unsaved content; completely inert otherwise.
+  const { dialog: unsavedChangesDialog } = useUnsavedChangesGuard({ dirty });
 
   async function handleSave() {
     setPending(true);
@@ -145,7 +157,9 @@ export function UpdateComposer({
         </p>
       </div>
       <div className="composer-actions">
-        <div className="text-xs">
+        {/* Polite live region: the saved/unsaved flip is announced once,
+            mirroring the visible chip rather than every keystroke. */}
+        <div className="text-xs" role="status" aria-live="polite">
           {dirty ? (
             <Badge className="border-accent bg-accent-soft text-accent">
               Unsaved changes
@@ -172,6 +186,7 @@ export function UpdateComposer({
           {error}
         </p>
       )}
+      {unsavedChangesDialog}
     </div>
   );
 }

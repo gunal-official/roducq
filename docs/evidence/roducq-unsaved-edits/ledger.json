@@ -1,0 +1,388 @@
+{
+  "settings": {
+    "widths": [
+      320,
+      375,
+      390,
+      768,
+      1024,
+      1200,
+      1440
+    ],
+    "heights": {
+      "320": 568,
+      "375": 667,
+      "390": 844,
+      "768": 900,
+      "1024": 900,
+      "1200": 900,
+      "1440": 900
+    },
+    "locale": "en-US",
+    "timezoneId": "UTC",
+    "deviceScaleFactor": 1,
+    "reducedMotion": "reduce",
+    "serviceWorkers": "block",
+    "network": "browser limited to the local app and the fictional loopback fixture"
+  },
+  "scenarios": [
+    {
+      "name": "cleanEditor",
+      "cleanNavigates": true,
+      "revertClearsDirty": true
+    },
+    {
+      "name": "layout-320",
+      "width": 320,
+      "geometry": {
+        "x": 16,
+        "y": 145.25,
+        "width": 288,
+        "height": 277.5
+      },
+      "overflow": 0,
+      "buttons": [
+        {
+          "text": "Keep editing",
+          "width": 238,
+          "height": 44
+        },
+        {
+          "text": "Discard changes",
+          "width": 238,
+          "height": 44
+        }
+      ],
+      "focus": {
+        "tag": "BUTTON",
+        "text": "Keep editing",
+        "label": null,
+        "className": "inline-flex min-h-11 min-w-11 shrink-0 items-center justify-"
+      },
+      "dialogVisible": true
+    },
+    {
+      "name": "layout-375",
+      "width": 375,
+      "geometry": {
+        "x": 16,
+        "y": 217.125,
+        "width": 343,
+        "height": 232.75
+      },
+      "overflow": 0,
+      "buttons": [
+        {
+          "text": "Keep editing",
+          "width": 293,
+          "height": 44
+        },
+        {
+          "text": "Discard changes",
+          "width": 293,
+          "height": 44
+        }
+      ],
+      "focus": {
+        "tag": "BUTTON",
+        "text": "Keep editing",
+        "label": null,
+        "className": "inline-flex min-h-11 min-w-11 shrink-0 items-center justify-"
+      },
+      "dialogVisible": true
+    },
+    {
+      "name": "layout-390",
+      "width": 390,
+      "geometry": {
+        "x": 16,
+        "y": 305.625,
+        "width": 358,
+        "height": 232.75
+      },
+      "overflow": 0,
+      "buttons": [
+        {
+          "text": "Keep editing",
+          "width": 308,
+          "height": 44
+        },
+        {
+          "text": "Discard changes",
+          "width": 308,
+          "height": 44
+        }
+      ],
+      "focus": {
+        "tag": "BUTTON",
+        "text": "Keep editing",
+        "label": null,
+        "className": "inline-flex min-h-11 min-w-11 shrink-0 items-center justify-"
+      },
+      "dialogVisible": true
+    },
+    {
+      "name": "layout-768",
+      "width": 768,
+      "geometry": {
+        "x": 128,
+        "y": 359.625,
+        "width": 512,
+        "height": 180.75
+      },
+      "overflow": 0,
+      "buttons": [
+        {
+          "text": "Keep editing",
+          "width": 127,
+          "height": 44
+        },
+        {
+          "text": "Discard changes",
+          "width": 154,
+          "height": 44
+        }
+      ],
+      "focus": {
+        "tag": "BUTTON",
+        "text": "Keep editing",
+        "label": null,
+        "className": "inline-flex min-h-11 min-w-11 shrink-0 items-center justify-"
+      },
+      "dialogVisible": true
+    },
+    {
+      "name": "layout-1024",
+      "width": 1024,
+      "geometry": {
+        "x": 256,
+        "y": 359.625,
+        "width": 512,
+        "height": 180.75
+      },
+      "overflow": 0,
+      "buttons": [
+        {
+          "text": "Keep editing",
+          "width": 127,
+          "height": 44
+        },
+        {
+          "text": "Discard changes",
+          "width": 154,
+          "height": 44
+        }
+      ],
+      "focus": {
+        "tag": "BUTTON",
+        "text": "Keep editing",
+        "label": null,
+        "className": "inline-flex min-h-11 min-w-11 shrink-0 items-center justify-"
+      },
+      "dialogVisible": true
+    },
+    {
+      "name": "layout-1200",
+      "width": 1200,
+      "geometry": {
+        "x": 344,
+        "y": 359.625,
+        "width": 512,
+        "height": 180.75
+      },
+      "overflow": 0,
+      "buttons": [
+        {
+          "text": "Keep editing",
+          "width": 127,
+          "height": 44
+        },
+        {
+          "text": "Discard changes",
+          "width": 154,
+          "height": 44
+        }
+      ],
+      "focus": {
+        "tag": "BUTTON",
+        "text": "Keep editing",
+        "label": null,
+        "className": "inline-flex min-h-11 min-w-11 shrink-0 items-center justify-"
+      },
+      "dialogVisible": true
+    },
+    {
+      "name": "layout-1440",
+      "width": 1440,
+      "geometry": {
+        "x": 464,
+        "y": 359.625,
+        "width": 512,
+        "height": 180.75
+      },
+      "overflow": 0,
+      "buttons": [
+        {
+          "text": "Keep editing",
+          "width": 127,
+          "height": 44
+        },
+        {
+          "text": "Discard changes",
+          "width": 154,
+          "height": 44
+        }
+      ],
+      "focus": {
+        "tag": "BUTTON",
+        "text": "Keep editing",
+        "label": null,
+        "className": "inline-flex min-h-11 min-w-11 shrink-0 items-center justify-"
+      },
+      "dialogVisible": true
+    },
+    {
+      "name": "navigation",
+      "sidebar": {
+        "held": true,
+        "url": "http://127.0.0.1:45533/updates/11111111-1111-4111-8111-111111111111"
+      },
+      "drawer": {
+        "held": true,
+        "discarded": true,
+        "url": "http://127.0.0.1:45533/proposals"
+      }
+    },
+    {
+      "name": "stayAndEscape",
+      "keepEditing": true,
+      "escape": true,
+      "overlay": true,
+      "focusRestored": {
+        "tag": "A",
+        "text": "Updates",
+        "label": null,
+        "className": "work-back"
+      },
+      "discardNavigated": true
+    },
+    {
+      "name": "backForward",
+      "backCancelled": true,
+      "backConfirmed": true,
+      "forwardCancelled": true,
+      "forwardConfirmed": true
+    },
+    {
+      "name": "reloadAndClose",
+      "reloadDismissed": {
+        "prompt": true,
+        "editsKept": true
+      },
+      "reloadAccepted": {
+        "prompt": true,
+        "reloaded": true
+      },
+      "tabCloseDismissed": {
+        "prompt": true,
+        "closed": false
+      }
+    },
+    {
+      "name": "saves",
+      "saveSuccess": {
+        "chipCleared": true,
+        "navigatedWithoutPrompt": true,
+        "persisted": true,
+        "writes": 1
+      },
+      "saveFailure": {
+        "errorShown": true,
+        "dirtyKept": true,
+        "guardedAfterFailure": true,
+        "retryReleased": true
+      },
+      "statusSaveKeepsDraft": {
+        "editsKept": true,
+        "stillGuarded": true
+      }
+    },
+    {
+      "name": "fullPageNavigation",
+      "formPrompt": true,
+      "skipLinkUntouched": true,
+      "downloadUntouched": true
+    },
+    {
+      "name": "noScript",
+      "guardRuns": false,
+      "guardMarkup": 0,
+      "editorInteractiveWithoutJs": false,
+      "hiddenByStreaming": true,
+      "navigation": "full page load, no prompt",
+      "note": "the guard, like Save, requires JavaScript; the page body is JS-revealed in this app"
+    },
+    {
+      "name": "normalMotion",
+      "motion": "no-preference",
+      "dialogUsable": true
+    }
+  ],
+  "scans": [
+    {
+      "width": 1440,
+      "scheme": "light",
+      "violations": [],
+      "incomplete": [
+        "aria-hidden-focus",
+        "color-contrast"
+      ],
+      "passes": 34
+    },
+    {
+      "width": 375,
+      "scheme": "dark",
+      "violations": [],
+      "incomplete": [
+        "aria-hidden-focus"
+      ],
+      "passes": 34
+    },
+    {
+      "width": 390,
+      "scheme": "light",
+      "violations": [],
+      "incomplete": [
+        "aria-hidden-focus"
+      ],
+      "passes": 34
+    }
+  ],
+  "screenshots": [
+    "/tmp/roducq-unsaved-18Trjj/dirty-dialog-320.png",
+    "/tmp/roducq-unsaved-18Trjj/dirty-dialog-375.png",
+    "/tmp/roducq-unsaved-18Trjj/dirty-dialog-390.png",
+    "/tmp/roducq-unsaved-18Trjj/dirty-dialog-768.png",
+    "/tmp/roducq-unsaved-18Trjj/dirty-dialog-1024.png",
+    "/tmp/roducq-unsaved-18Trjj/dirty-dialog-1200.png",
+    "/tmp/roducq-unsaved-18Trjj/dirty-dialog-1440.png",
+    "/tmp/roducq-unsaved-18Trjj/dialog-light-1440.png",
+    "/tmp/roducq-unsaved-18Trjj/dialog-dark-375.png",
+    "/tmp/roducq-unsaved-18Trjj/dialog-light-390.png"
+  ],
+  "browserErrors": [],
+  "limitations": [
+    "Native beforeunload text is not customisable; Chromium requires prior user interaction and some mobile browsers suppress the prompt.",
+    "Back/Forward is only cancellable where the Navigation API exists (Chrome/Edge 102+, Firefox 147+, Safari 26.2+). Older engines keep click and unload protection only.",
+    "Programmatic router navigation (sign out, workspace switch, server-action redirects) cannot be intercepted without a global blocker and is out of scope.",
+    "With JavaScript disabled the guard cannot run; the editor cannot save either.",
+    "Headless Chromium viewports are simulations, not physical devices or assistive technology."
+  ],
+  "browserVersion": "153.0.8010.0",
+  "packageVersions": {
+    "node": "v22.22.3",
+    "next": "16.4.3",
+    "playwright": "1.63.0",
+    "axe": "4.14.0"
+  }
+}
