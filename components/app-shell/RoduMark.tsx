@@ -129,10 +129,16 @@ export function RoduMark({
 }
 
 /**
- * The wordmark. "rodu" sits in the ink colour and "cq" in the brand
- * purple — the same split the marketing shell has used since Phase A.
+ * The wordmark. Entire wordmark renders in one color when monochrome is true.
  */
-export function Wordmark({ className }: { className?: string }) {
+export function Wordmark({
+  className,
+  monochrome = false,
+}: {
+  className?: string;
+  /** Render entire wordmark in one inherited color (no accent on "cq"). */
+  monochrome?: boolean;
+}) {
   return (
     <span
       className={cn(
@@ -140,7 +146,7 @@ export function Wordmark({ className }: { className?: string }) {
         className
       )}
     >
-      rodu<span className="text-accent">cq</span>
+      rodu<span className={monochrome ? "text-inherit" : "text-accent"}>cq</span>
     </span>
   );
 }

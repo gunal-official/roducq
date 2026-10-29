@@ -125,7 +125,7 @@ export function SiteHeader() {
           {/* The shared wordmark, re-toned to the landing ink. `cn` inside
               Wordmark resolves the conflicts, so the landing size and colour
               win without the app's own lockup changing anywhere else. */}
-          <Wordmark className="font-lm-bold text-lm-22 tracking-[-0.06em] text-lm-ink md:text-lm-28" />
+          <Wordmark className="font-lm-bold text-lm-22 tracking-[-0.06em] text-lm-ink md:text-lm-28" monochrome />
         </Link>
 
         <nav
