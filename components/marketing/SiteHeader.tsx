@@ -81,7 +81,7 @@ import { clsx as cn } from "clsx";
  * only product-driven difference, recorded in
  * docs/RODUCQ_MARKETING_CONSISTENCY_AUDIT.md §4.
  */
-export const NAV = [
+const NAV = [
   { href: "/features", label: "Features" },
   { href: "/solutions", label: "Solutions" },
   { href: "/integrations", label: "Integrations" },
