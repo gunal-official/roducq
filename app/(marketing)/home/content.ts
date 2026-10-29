@@ -557,6 +557,7 @@ export const FOOTER = {
       title: "Company",
       links: [
         { href: "/about", label: "About" },
+        { href: "/contact", label: "Contact" },
         { href: "/security", label: "Security" },
       ],
     },
