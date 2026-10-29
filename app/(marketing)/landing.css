@@ -251,6 +251,10 @@
   color: var(--lm-ink);
 }
 
+.rdq-marketing h2 {
+  font-weight: 600;
+}
+
 @media (min-width: 768px) {
   .rdq-marketing {
     --lm-gutter: 16px;
