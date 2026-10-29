@@ -25,14 +25,13 @@ function sourceFiles(dir: string): string[] {
 describe("Forma F — inventory and honest browser evidence", () => {
   it("inventories every actual App Router page and handler, without imagined features", () => {
     const inventory = discoverRoutes(ROOT);
-    // 39 pages: the marketing surface grew with /changelog
+    // 41 pages: the marketing surface grew with /changelog, /privacy, /terms
     // (Forma-referenced release history page, 2026-10-26), after
     // /integrations, /features and /solutions, /security, and /contact. The handler count is
-    // unchanged: /changelog, /security and /contact add no API routes.
-    assert.equal(inventory.filter((route) => route.kind === "page").length, 39);
+    // unchanged: /changelog, /privacy, /terms, /security and /contact add no API routes.
+    assert.equal(inventory.filter((route) => route.kind === "page").length, 41);
     assert.equal(inventory.filter((route) => route.kind === "handler").length, 18);
-    for (const absent of ["/privacy", "/terms"]) assert.ok(!inventory.some((route) => route.pattern === absent));
-    for (const present of ["/forgot-password", "/reset-password", "/dashboard", "/proposals/[id]/versions/[versionId]", "/share/[token]", "/invoice/[token]", "/invite/[token]"]) assert.ok(inventory.some((route) => route.pattern === present));
+    for (const present of ["/privacy", "/terms", "/forgot-password", "/reset-password", "/dashboard", "/proposals/[id]/versions/[versionId]", "/share/[token]", "/invoice/[token]", "/invite/[token]"]) assert.ok(inventory.some((route) => route.pattern === present));
   });
   it("fails the coverage gate if any App Router page has no fixture", () => {
     assert.throws(() => assertRouteCoverage(ROOT, []), /Every App Router page/);

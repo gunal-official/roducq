@@ -559,6 +559,8 @@ export const FOOTER = {
         { href: "/about", label: "About" },
         { href: "/contact", label: "Contact" },
         { href: "/security", label: "Security" },
+        { href: "/privacy", label: "Privacy" },
+        { href: "/terms", label: "Terms" },
       ],
     },
   ],
