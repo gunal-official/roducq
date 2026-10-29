@@ -92,11 +92,11 @@ describe("/contact — shell and metadata are preserved", () => {
   });
 
   it("renders the contact content in the correct order", () => {
-    const heroIdx = PAGE.indexOf("Hero Section");
-    const categoriesIdx = PAGE.indexOf("Contact Categories and Form");
+    const heroIdx = PAGE.indexOf("Contact");
+    const categoriesIdx = PAGE.indexOf("Sales");
     const whatNextIdx = PAGE.indexOf("What happens next");
     
-    assert.ok(heroIdx > 0, "hero section exists");
+    assert.ok(heroIdx > 0, "hero eyebrow exists");
     assert.ok(categoriesIdx > heroIdx, "categories section follows hero");
     assert.ok(whatNextIdx > categoriesIdx, "what happens next section follows categories");
   });
