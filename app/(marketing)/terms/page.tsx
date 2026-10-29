@@ -194,10 +194,9 @@ export default function TermsPage() {
                 <section id="governing-law">
                   <h2>Governing law</h2>
                   <p>
-                    These terms are governed by the laws of [Jurisdiction]
-                    without regard to its conflict of law rules. Disputes will
-                    be handled in the courts of [Venue] unless applicable law
-                    requires otherwise.
+                    <strong>[REQUIRES LEGAL REVIEW]</strong> These Terms are
+                    governed by the laws of India, subject to applicable
+                    mandatory consumer protection laws.
                   </p>
                 </section>
 
