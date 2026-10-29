@@ -24,6 +24,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/changelog",
     "/security",
     "/contact",
+    "/privacy",
+    "/terms",
     ...VS_PAGE_LIST.map((entry) => `/vs/${entry.slug}`),
   ];
   return paths.map((path) => ({
