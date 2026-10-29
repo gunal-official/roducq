@@ -28,6 +28,7 @@ const MARKETING_METADATA: Array<{ file: string; canonical: string }> = [
   { file: "app/(marketing)/pricing/page.tsx", canonical: "/pricing" },
   { file: "app/(marketing)/vs/page.tsx", canonical: "/vs" },
   { file: "app/(marketing)/changelog/page.tsx", canonical: "/changelog" },
+  { file: "app/(marketing)/security/page.tsx", canonical: "/security" },
 ];
 
 describe("production readiness — site origin", () => {
@@ -115,13 +116,13 @@ describe("production readiness — crawl files", () => {
       process.env.NEXT_PUBLIC_SITE_URL = "https://example.test";
       const { default: sitemap } = await import("../../app/sitemap.ts");
       const urls = sitemap().map((entry) => entry.url);
-      for (const path of ["/", "/about", "/pricing", "/vs", "/changelog"]) {
+      for (const path of ["/", "/about", "/pricing", "/vs", "/changelog", "/security"]) {
         assert.ok(urls.includes(`https://example.test${path}`), `sitemap ${path}`);
       }
       for (const entry of VS_PAGE_LIST) {
         assert.ok(urls.includes(`https://example.test/vs/${entry.slug}`), `sitemap /vs/${entry.slug}`);
       }
-      assert.equal(urls.length, 5 + VS_PAGE_LIST.length);
+      assert.equal(urls.length, 6 + VS_PAGE_LIST.length);
       assert.ok(urls.every((u) => !u.includes("/dashboard") && !u.includes("/api")), "no app/API URLs");
     } finally {
       if (previous === undefined) delete process.env.NEXT_PUBLIC_SITE_URL;

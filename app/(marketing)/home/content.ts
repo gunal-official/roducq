@@ -532,7 +532,6 @@ export const FOOTER = {
     {
       title: "Product",
       links: [
-        { href: "/about", label: "About" },
         { href: "/pricing", label: "Pricing" },
         { href: "/vs", label: "Compare" },
         { href: "/changelog", label: "Changelog" },
@@ -552,6 +551,13 @@ export const FOOTER = {
       links: [
         { href: "/login", label: "Log in" },
         { href: "/signup", label: "Sign up" },
+      ],
+    },
+    {
+      title: "Company",
+      links: [
+        { href: "/about", label: "About" },
+        { href: "/security", label: "Security" },
       ],
     },
   ],
