@@ -1101,10 +1101,10 @@ describe("/ landing routes", () => {
     const footerAccount = read("components/marketing/FooterAccountCta.tsx");
     assert.ok(announcement.includes("homepage ? HOME_ANNOUNCEMENT : ANNOUNCEMENT"));
     assert.ok(HEADER.includes('<AnnouncementBar homepage={pathname === "/"} />'));
-    assert.ok(footerAccount.includes('pathname === "/" ? homepageLabel : "Start free"'));
+    assert.ok(footerAccount.includes('pathname === "/" ? homepageLabel : "Get started"'));
     assert.match(FOOTER_TSX, /homepageLabel=\{HOME_FOOTER_CTA\.label\}/);
     assert.equal(ANNOUNCEMENT.label, "Included on the free plan");
-    assert.equal(FOOTER.cta.label, "Start free");
+    assert.equal(FOOTER.cta.label, "Get started");
     assert.equal(HOME_FOOTER_CTA.label, "Create an account");
     assert.equal(HOME_ANNOUNCEMENT.label, "Client work, made clearer");
   });

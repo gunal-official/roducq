@@ -521,36 +521,27 @@ export const LIMITATION = {
  */
 export const FOOTER = {
   tagline:
-    "A client-work writing studio: intake → briefs → proposals → plans → updates.",
-  cta: { label: "Start free", href: "/signup" },
+    "Turn client conversations into clear briefs, proposals, plans, and updates — all in one workspace.",
+  cta: { label: "Get started", href: "/signup" },
   limits:
     "No e-signature, no payment collection. roducq writes the work; you and your tools handle the rest.",
-  legal: "© 2026 roducq — client-work writing studio.",
-  built: "Built on Next.js and Supabase, with row-level security per workspace.",
+  legal: "© 2026 roducq. All rights reserved.",
   wordmark: "roducq.",
   columns: [
     {
       title: "Product",
       links: [
+        { href: "/features", label: "Features" },
+        { href: "/integrations", label: "Integrations" },
         { href: "/pricing", label: "Pricing" },
-        { href: "/vs", label: "Compare" },
         { href: "/changelog", label: "Changelog" },
       ],
     },
     {
-      title: "Workspace",
+      title: "Explore",
       links: [
-        { href: "/intake", label: "Intake" },
-        { href: "/briefs", label: "Briefs" },
-        { href: "/proposals", label: "Proposals" },
-        { href: "/plans", label: "Plans" },
-      ],
-    },
-    {
-      title: "Account",
-      links: [
-        { href: "/login", label: "Log in" },
-        { href: "/signup", label: "Sign up" },
+        { href: "/solutions", label: "Solutions" },
+        { href: "/vs", label: "Compare" },
       ],
     },
     {
@@ -559,6 +550,11 @@ export const FOOTER = {
         { href: "/about", label: "About" },
         { href: "/contact", label: "Contact" },
         { href: "/security", label: "Security" },
+      ],
+    },
+    {
+      title: "Legal",
+      links: [
         { href: "/privacy", label: "Privacy" },
         { href: "/terms", label: "Terms" },
       ],

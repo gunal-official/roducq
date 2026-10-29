@@ -12,7 +12,7 @@ export function FooterAccountCta({
   homepageLabel: string;
 }) {
   const pathname = usePathname();
-  const label = pathname === "/" ? homepageLabel : "Start free";
+  const label = pathname === "/" ? homepageLabel : "Get started";
 
   return (
     <Link

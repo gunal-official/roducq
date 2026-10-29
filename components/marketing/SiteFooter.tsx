@@ -18,15 +18,15 @@ export function SiteFooter() {
   return (
     <footer className="mt-auto overflow-hidden border-t border-lm-border-soft bg-lm-card">
       <div className="lm-shell py-12 md:py-16">
-        <Reveal className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
+        <Reveal className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr_1fr]">
           <div className="max-w-xs">
             <Link
               href="/"
               aria-label="roducq home"
               className="inline-flex min-h-11 items-center gap-2"
             >
-              <RoduMark size={26} />
-              <Wordmark className="font-lm-bold text-lm-18 tracking-[-0.02em] text-lm-ink" />
+              <RoduMark size={26} solid />
+              <Wordmark className="font-lm-bold text-lm-18 tracking-[-0.02em] text-lm-ink" monochrome />
             </Link>
             <p className="mt-3.5 text-lm-12 leading-relaxed text-lm-muted-readable">
               {FOOTER.tagline}
@@ -65,16 +65,13 @@ export function SiteFooter() {
 
         <div className="mt-10 flex flex-col gap-1.5 border-t border-lm-border-soft pt-6.5 text-lm-12 text-lm-muted sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
           <p>{FOOTER.legal}</p>
-          <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-1.5">
-            <p>{FOOTER.built}</p>
-            <Link
-              href="#top"
-              className="inline-flex min-h-11 items-center gap-1.5 text-lm-12 text-lm-muted-readable transition-colors duration-200 hover:text-lm-ink-accent"
-            >
-              Back to top
-              <ArrowUp className="h-4 w-4" aria-hidden="true" />
-            </Link>
-          </div>
+          <Link
+            href="#top"
+            className="inline-flex min-h-11 items-center gap-1.5 text-lm-12 text-lm-muted-readable transition-colors duration-200 hover:text-lm-ink-accent"
+          >
+            Back to top
+            <ArrowUp className="h-4 w-4" aria-hidden="true" />
+          </Link>
         </div>
 
         {/* Very large pale Roducq wordmark matching the Forma footer */}
