@@ -121,11 +121,11 @@ export function SiteHeader() {
           aria-label="roducq home"
           className="inline-flex min-h-11 shrink-0 items-center gap-2"
         >
-          <RoduMark size={30} />
+          <RoduMark size={30} solid />
           {/* The shared wordmark, re-toned to the landing ink. `cn` inside
               Wordmark resolves the conflicts, so the landing size and colour
               win without the app's own lockup changing anywhere else. */}
-          <Wordmark className="font-lm-bold text-lm-22 tracking-[-0.06em] text-lm-ink md:text-lm-28" />
+          <Wordmark className="font-lm-bold text-lm-22 tracking-[-0.06em] text-lm-ink md:text-lm-28" monochrome />
         </Link>
 
         <nav

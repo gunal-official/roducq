@@ -34,12 +34,15 @@ export function RoduMark({
   size = 32,
   animated = false,
   title,
+  solid = false,
 }: {
   className?: string;
   size?: number;
   /** Draw the glyph on mount (the rail and the auth panel). */
   animated?: boolean;
   title?: string;
+  /** Render plate in a single solid purple color instead of gradient. */
+  solid?: boolean;
 }) {
   const uid = useId().replace(/[^a-zA-Z0-9]/g, "");
   const plateId = `roducq-plate-${uid}`;
@@ -58,18 +61,20 @@ export function RoduMark({
     >
       {title ? <title>{title}</title> : null}
       <defs>
-        <linearGradient
-          id={plateId}
-          x1="3"
-          y1="2"
-          x2="29"
-          y2="30"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="var(--forma-plum)" />
-          <stop offset="0.52" stopColor="var(--forma-purple)" />
-          <stop offset="1" stopColor="var(--forma-purple-hover)" />
-        </linearGradient>
+        {!solid && (
+          <linearGradient
+            id={plateId}
+            x1="3"
+            y1="2"
+            x2="29"
+            y2="30"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stopColor="var(--forma-plum)" />
+            <stop offset="0.52" stopColor="var(--forma-purple)" />
+            <stop offset="1" stopColor="var(--forma-purple-hover)" />
+          </linearGradient>
+        )}
         <radialGradient
           id={sheenId}
           cx="0"
@@ -88,7 +93,7 @@ export function RoduMark({
         width="30"
         height="30"
         rx="9.5"
-        fill={`url(#${plateId})`}
+        fill={solid ? "var(--forma-purple)" : `url(#${plateId})`}
       />
       <rect
         x="1"
@@ -124,10 +129,16 @@ export function RoduMark({
 }
 
 /**
- * The wordmark. "rodu" sits in the ink colour and "cq" in the brand
- * purple — the same split the marketing shell has used since Phase A.
+ * The wordmark. Entire wordmark renders in one color when monochrome is true.
  */
-export function Wordmark({ className }: { className?: string }) {
+export function Wordmark({
+  className,
+  monochrome = false,
+}: {
+  className?: string;
+  /** Render entire wordmark in one inherited color (no accent on "cq"). */
+  monochrome?: boolean;
+}) {
   return (
     <span
       className={cn(
@@ -135,7 +146,7 @@ export function Wordmark({ className }: { className?: string }) {
         className
       )}
     >
-      rodu<span className="text-accent">cq</span>
+      rodu<span className={monochrome ? "text-inherit" : "text-accent"}>cq</span>
     </span>
   );
 }

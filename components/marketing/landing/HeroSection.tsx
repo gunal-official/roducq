@@ -92,7 +92,7 @@ export function HeroSection() {
 
           <h1
             aria-label={HERO.title}
-            className="mt-6 font-lm-regular tracking-[-0.03em] text-lm-43 text-lm-ink lg:text-lm-48 xl:text-lm-72"
+            className="mt-6 font-lm-semibold tracking-[-0.03em] text-lm-43 text-lm-ink lg:text-lm-48 xl:text-lm-72"
           >
             {HERO.titleLines.map((line, lineIndex) => (
               <span key={line} className="lm-hero-line">
