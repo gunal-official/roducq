@@ -34,12 +34,15 @@ export function RoduMark({
   size = 32,
   animated = false,
   title,
+  solid = false,
 }: {
   className?: string;
   size?: number;
   /** Draw the glyph on mount (the rail and the auth panel). */
   animated?: boolean;
   title?: string;
+  /** Render plate in a single solid purple color instead of gradient. */
+  solid?: boolean;
 }) {
   const uid = useId().replace(/[^a-zA-Z0-9]/g, "");
   const plateId = `roducq-plate-${uid}`;
@@ -58,18 +61,20 @@ export function RoduMark({
     >
       {title ? <title>{title}</title> : null}
       <defs>
-        <linearGradient
-          id={plateId}
-          x1="3"
-          y1="2"
-          x2="29"
-          y2="30"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="var(--forma-plum)" />
-          <stop offset="0.52" stopColor="var(--forma-purple)" />
-          <stop offset="1" stopColor="var(--forma-purple-hover)" />
-        </linearGradient>
+        {!solid && (
+          <linearGradient
+            id={plateId}
+            x1="3"
+            y1="2"
+            x2="29"
+            y2="30"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stopColor="var(--forma-plum)" />
+            <stop offset="0.52" stopColor="var(--forma-purple)" />
+            <stop offset="1" stopColor="var(--forma-purple-hover)" />
+          </linearGradient>
+        )}
         <radialGradient
           id={sheenId}
           cx="0"
@@ -88,7 +93,7 @@ export function RoduMark({
         width="30"
         height="30"
         rx="9.5"
-        fill={`url(#${plateId})`}
+        fill={solid ? "var(--forma-purple)" : `url(#${plateId})`}
       />
       <rect
         x="1"
