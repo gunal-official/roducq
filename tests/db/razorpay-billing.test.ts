@@ -175,6 +175,19 @@ describe("atomic apply: valid subscription", () => {
 });
 
 describe("atomic apply: idempotency", () => {
+  it("SECURITY CHARACTERIZATION: a pre-existing pending ledger row is treated as duplicate, not resumed", async () => {
+    await db.query(
+      "insert into public.billing_webhook_events (event_key, event_type, outcome) values ($1, $2, 'pending')",
+      ["e_pending_existing", "subscription.activated"],
+    );
+
+    const res = await apply({ eventKey: "e_pending_existing", bodySha256: HASH_A });
+
+    assert.equal(res.outcome, "duplicate");
+    assert.equal(await billingFor(WS_A), null, "the pending ledger row does not resume billing application");
+    assert.equal(await ledgerOutcome("e_pending_existing"), "pending", "the pending outcome remains stuck");
+  });
+
   it("duplicate delivery (same event key) is a no-op", async () => {
     await apply();
     const before = await billingFor(WS_A);
@@ -249,7 +262,7 @@ describe("atomic apply: event ordering", () => {
 });
 
 describe("atomic apply: workspace binding and takeover", () => {
-  it("cross-workspace: a subscription bound to A cannot be applied to workspace B", async () => {
+  it("SECURITY INVARIANT: the atomic function rejects a conflicting workspace binding", async () => {
     await apply();
     const res = await apply({ eventKey: "e_cross", workspaceId: WS_B, status: "canceled", eventType: "subscription.cancelled", eventCreatedAt: T4, bodySha256: "1".repeat(64), razorpayEventId: null });
     assert.equal(res.outcome, "rejected");

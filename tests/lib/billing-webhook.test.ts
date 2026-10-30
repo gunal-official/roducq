@@ -133,7 +133,7 @@ function logsOf(result: { log?: string }): string {
 }
 
 describe("valid Razorpay subscription", () => {
-  test("activation records the server-owned plan price and Razorpay's paid-through date", async () => {
+  test("a known Plan ID supplies server-owned currency and amount metadata", async () => {
     const db = fakeDb();
     const raw = subEvent("subscription.activated");
     const r = await processRazorpayWebhook(input(raw), deps(db));
@@ -142,7 +142,7 @@ describe("valid Razorpay subscription", () => {
     const call = db.calls[0];
     assert.equal(call.status, "active");
     assert.equal(call.currency, "INR");
-    assert.equal(call.amount, 1499, "amount comes from RAZORPAY_PLANS, not the payload");
+    assert.equal(call.amount, 1499, "amount comes from configured server plans, not the payload");
     assert.equal(call.paidThrough, new Date(CURRENT_END * 1000).toISOString());
     assert.equal(call.paidThroughSource, "razorpay_webhook");
     assert.equal(call.workspaceId, WS);
@@ -154,9 +154,17 @@ describe("valid Razorpay subscription", () => {
     assert.equal(db.calls[0].eventCreatedAt, new Date((NOW_SEC - 500) * 1000).toISOString());
   });
 
-  test("an unknown plan id still updates status but cannot change the server-owned price", async () => {
+  test("SECURITY CHARACTERIZATION: an unknown Plan ID reaches mocked apply and its active status is applied", async () => {
     const db = fakeDb();
-    await processRazorpayWebhook(input(subEvent("subscription.activated", { planId: "plan_UNKNOWN" })), deps(db));
+    const result = await processRazorpayWebhook(
+      input(subEvent("subscription.activated", { planId: "plan_UNKNOWN" })),
+      deps(db),
+    );
+
+    assert.equal(result.status, 200);
+    assert.equal(result.body.outcome, "applied");
+    assert.equal(db.calls.length, 1, "the unknown Plan event reaches the apply layer");
+    assert.equal(db.calls[0].status, "active");
     assert.equal(db.calls[0].amount, null);
     assert.equal(db.calls[0].currency, null);
   });
@@ -249,6 +257,29 @@ describe("duplicates and concurrency", () => {
     assert.equal(again.body.outcome, "duplicate");
   });
 
+  test("SECURITY CHARACTERIZATION: a shared unauthenticated event-ID header collides across different signed bodies", async () => {
+    const db = fakeDb();
+    const firstRaw = subEvent("subscription.activated", { createdAt: NOW_SEC });
+    const secondRaw = subEvent("subscription.halted", { status: "halted", createdAt: NOW_SEC + 10 });
+    const sharedHeader = "evt_reused_header";
+
+    assert.notEqual(sha256Hex(firstRaw), sha256Hex(secondRaw), "the signed bodies are different");
+    assert.equal(
+      deriveEventKey(sharedHeader, sha256Hex(firstRaw)),
+      deriveEventKey(sharedHeader, sha256Hex(secondRaw)),
+      "the unsigned event-ID header wins over each distinct body hash",
+    );
+
+    const first = await processRazorpayWebhook(input(firstRaw, { eventId: sharedHeader }), deps(db));
+    const second = await processRazorpayWebhook(input(secondRaw, { eventId: sharedHeader }), deps(db));
+
+    assert.equal(first.body.outcome, "applied");
+    assert.equal(second.status, 200);
+    assert.equal(second.body.outcome, "duplicate", "the second distinct event is suppressed as a duplicate");
+    assert.equal(db.rows.get(WS)?.status, "active", "the second event did not update stored state to halted");
+    assert.equal(db.ledger.size, 1);
+  });
+
   test("event key is the Razorpay event id when present, else the body hash", () => {
     const raw = subEvent("subscription.activated");
     assert.equal(deriveEventKey("evt_123", sha256Hex(raw)), "evt_123");
@@ -302,6 +333,21 @@ describe("ordering", () => {
 });
 
 describe("workspace binding", () => {
+  test("SECURITY CHARACTERIZATION: the first webhook binds an unbound subscription using workspace_id from notes", async () => {
+    const db = fakeDb();
+    assert.equal(db.rows.size, 0, "there is no prior subscription binding or checkout intent in this fixture");
+
+    const result = await processRazorpayWebhook(
+      input(subEvent("subscription.activated", { notes: { workspace_id: WS } })),
+      deps(db),
+    );
+
+    assert.equal(result.body.outcome, "applied");
+    assert.equal(db.calls.length, 1);
+    assert.equal(db.calls[0].workspaceId, WS, "the parsed notes workspace reaches the apply layer");
+    assert.equal(db.rows.get(WS)?.sub, SUB, "the new binding is created from this webhook");
+  });
+
   test("cross-workspace: a subscription bound to one workspace cannot be applied to another", async () => {
     const db = fakeDb();
     await processRazorpayWebhook(input(subEvent("subscription.activated")), deps(db));
