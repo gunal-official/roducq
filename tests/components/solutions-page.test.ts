@@ -172,7 +172,7 @@ describe("Solutions page (shape)", () => {
       "Try roducq with your own client project",
     );
     assert.equal(SOLUTIONS_CLOSING.primaryCta.href, "/signup");
-    assert.equal(SOLUTIONS_CLOSING.secondaryCta.href, "mailto:hello@roducq.dev");
+    assert.equal(SOLUTIONS_CLOSING.secondaryCta.href, "mailto:contact@nanexi.com");
   });
 
   it("the getting-started miniature is a four-step, two-done checklist", () => {

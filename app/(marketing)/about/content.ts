@@ -109,7 +109,7 @@ export const ABOUT_CARDS = [
     description:
       "Questions, bug reports, and feature requests go to the people building roducq. It's in early access, so feedback shapes what ships next.",
     linkLabel: "Get in touch",
-    href: "mailto:hello@roducq.dev",
+    href: "mailto:contact@nanexi.com",
   },
 ] as const;
 

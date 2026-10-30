@@ -311,7 +311,7 @@ export const REQUEST = {
     /** One action, and it leaves the page: no fake pending state. */
     cta: {
       label: "Email the request",
-      href: "mailto:hello@roducq.dev?subject=Integration%20request&body=App%3A%20%0D%0AWhat%20it%20should%20do%3A%20%0D%0AImport%2C%20export%20or%20both%3A%20%0D%0A",
+      href: "mailto:contact@nanexi.com?subject=Integration%20request&body=App%3A%20%0D%0AWhat%20it%20should%20do%3A%20%0D%0AImport%2C%20export%20or%20both%3A%20%0D%0A",
     },
     note: "Opens your email app with the details pre-filled.",
   },
@@ -331,7 +331,7 @@ export const INTEGRATIONS_CLOSING = {
   primaryCta: { label: "Start free", href: "/signup" },
   // Same pair as SOLUTIONS_CLOSING and FEATURES_CLOSING: the closing band is
   // shared furniture, so its two actions are too.
-  secondaryCta: { label: "Talk to us", href: "mailto:hello@roducq.dev" },
+  secondaryCta: { label: "Talk to us", href: "mailto:contact@nanexi.com" },
   note: "The whole pipeline is free, with no trial clock to watch.",
 } as const;
 

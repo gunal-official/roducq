@@ -162,7 +162,7 @@ function ContactPanel() {
         </p>
       </div>
       <Link
-        href="mailto:hello@roducq.dev?subject=roducq%20pricing%20question"
+        href="mailto:contact@nanexi.com?subject=roducq%20pricing%20question"
         className="mt-5 inline-flex min-h-11 items-center justify-center rounded-lm-button bg-lm-card px-4 text-center text-lm-14 font-lm-regular text-lm-ink transition-colors duration-200 hover:bg-lm-surface-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lm-accent"
       >
         Send a question

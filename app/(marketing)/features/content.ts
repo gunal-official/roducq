@@ -55,7 +55,7 @@ export const FEATURES_HERO = {
   primaryCta: { label: "Start free", href: "/signup" },
   /** Roducq has no demo product, so the reference's "Try the demo"
    *  slot takes the same secondary action the rest of the shell uses. */
-  secondaryCta: { label: "Talk to us", href: "mailto:hello@roducq.dev" },
+  secondaryCta: { label: "Talk to us", href: "mailto:contact@nanexi.com" },
 } as const;
 
 /**
@@ -416,7 +416,7 @@ export const FEATURES_CLOSING = {
   intro:
     "Start on the free plan, bring one live engagement, and see how much of the week the pipeline takes care of.",
   primaryCta: { label: "Start free", href: "/signup" },
-  secondaryCta: { label: "Talk to us", href: "mailto:hello@roducq.dev" },
+  secondaryCta: { label: "Talk to us", href: "mailto:contact@nanexi.com" },
   note: "The whole pipeline is free, with no trial clock to watch.",
 } as const;
 

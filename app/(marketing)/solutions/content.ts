@@ -287,7 +287,7 @@ export const PLAN_BAND = {
   title: "One workspace, one price, the whole pipeline",
   copy: "Billed per workspace, never per seat. One product, no feature paywalls — the paid plan is the same product with a subscription behind it, and it cancels from Settings at any time.",
   primaryCta: { label: "Compare plans", href: "/pricing" },
-  secondaryCta: { label: "Talk to us", href: "mailto:hello@roducq.dev" },
+  secondaryCta: { label: "Talk to us", href: "mailto:contact@nanexi.com" },
 } as const;
 
 /* ── Closing CTA ──────────────────────────────────────────────────── */
@@ -304,7 +304,7 @@ export const SOLUTIONS_CLOSING = {
   intro:
     "Start on the free plan, bring one live engagement, and see how much of the week the pipeline takes care of.",
   primaryCta: { label: "Start free", href: "/signup" },
-  secondaryCta: { label: "Talk to us", href: "mailto:hello@roducq.dev" },
+  secondaryCta: { label: "Talk to us", href: "mailto:contact@nanexi.com" },
   note: "The whole pipeline is free, with no trial clock to watch.",
 } as const;
 

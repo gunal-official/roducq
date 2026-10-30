@@ -232,7 +232,7 @@ export const PLAN_TIERS: PlanTier[] = [
     ],
     cta: {
       label: "Talk to us",
-      href: "mailto:hello@roducq.dev?subject=roducq%20Studio%20enquiry",
+      href: "mailto:contact@nanexi.com?subject=roducq%20Studio%20enquiry",
     },
   },
 ];

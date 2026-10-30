@@ -65,7 +65,7 @@ const REQUIRED_FIELDS = ["Full name", "Work email", "What would you like roducq 
 const OPTIONAL_FIELDS = ["Company", "Team size"];
 
 // Mailto data
-const MAILTO_BASE = "mailto:hello@roducq.dev";
+const MAILTO_BASE = "mailto:contact@nanexi.com";
 
 // What happens next section
 const WHAT_HAPPENS_NEXT_TITLE = "What happens next";
@@ -324,8 +324,8 @@ describe("/contact — product truthfulness", () => {
     assert.ok(lowerPage.includes("roducq"), "uses roducq branding");
   });
 
-  it("mailto links point to hello@roducq.dev", () => {
-    assert.match(CONTACT_FORM, /mailto:hello@roducq.dev/);
+  it("mailto links point to contact@nanexi.com", () => {
+    assert.match(CONTACT_FORM, /mailto:contact@nanexi.com/);
   });
 
   it("Sales mode uses correct subject", () => {
@@ -346,5 +346,67 @@ describe("/contact — product truthfulness", () => {
   it("uses SiteFooter from shared layout", () => {
     assert.doesNotMatch(PAGE, /from "@\/components\/marketing\/SiteFooter"/);
     assert.doesNotMatch(PAGE, /<SiteFooter \/>/);
+  });
+});
+
+// Public email consolidation regression test
+describe("Public email consolidation", () => {
+  it("Contact form uses contact@nanexi.com", () => {
+    assert.match(CONTACT_FORM, /mailto:contact@nanexi.com/);
+  });
+
+  it("Security disclosure uses contact@nanexi.com", () => {
+    const SECURITY_PAGE = read("app/(marketing)/security/page.tsx");
+    assert.match(SECURITY_PAGE, /mailto:contact@nanexi.com/);
+  });
+
+  it("Marketing mailto links use contact@nanexi.com", () => {
+    const ABOUT_CONTENT = read("app/(marketing)/about/content.ts");
+    const FEATURES_CONTENT = read("app/(marketing)/features/content.ts");
+    const HOME_CONTENT = read("app/(marketing)/home/content.ts");
+    const INTEGRATIONS_CONTENT = read("app/(marketing)/integrations/content.ts");
+    const PRICING_PLANS = read("app/(marketing)/pricing/plans.ts");
+    const PRICING_CONTENT = read("app/(marketing)/pricing/pricing-content.ts");
+    const SOLUTIONS_CONTENT = read("app/(marketing)/solutions/content.ts");
+    const PRICING_SECTION = read("components/marketing/landing/PricingSection.tsx");
+
+    assert.match(ABOUT_CONTENT, /mailto:contact@nanexi.com/);
+    assert.match(FEATURES_CONTENT, /mailto:contact@nanexi.com/);
+    assert.match(HOME_CONTENT, /mailto:contact@nanexi.com/);
+    assert.match(INTEGRATIONS_CONTENT, /mailto:contact@nanexi.com/);
+    assert.match(PRICING_PLANS, /mailto:contact@nanexi.com/);
+    assert.match(PRICING_CONTENT, /mailto:contact@nanexi.com/);
+    assert.match(SOLUTIONS_CONTENT, /mailto:contact@nanexi.com/);
+    assert.match(PRICING_SECTION, /mailto:contact@nanexi.com/);
+  });
+
+  it("Privacy and Terms retain contact@nanexi.com", () => {
+    const PRIVACY_PAGE = read("app/(marketing)/privacy/page.tsx");
+    const TERMS_PAGE = read("app/(marketing)/terms/page.tsx");
+
+    assert.match(PRIVACY_PAGE, /mailto:contact@nanexi.com/);
+    assert.match(TERMS_PAGE, /mailto:contact@nanexi.com/);
+  });
+
+  it("No old public email addresses remain in active marketing source files", () => {
+    // Check key marketing files for old email addresses
+    const MARKETING_FILES = [
+      "app/(marketing)/about/content.ts",
+      "app/(marketing)/contact/ContactForm.tsx",
+      "app/(marketing)/features/content.ts",
+      "app/(marketing)/home/content.ts",
+      "app/(marketing)/integrations/content.ts",
+      "app/(marketing)/pricing/plans.ts",
+      "app/(marketing)/pricing/pricing-content.ts",
+      "app/(marketing)/security/page.tsx",
+      "app/(marketing)/solutions/content.ts",
+      "components/marketing/landing/PricingSection.tsx",
+    ];
+
+    MARKETING_FILES.forEach((file) => {
+      const content = read(file);
+      assert.doesNotMatch(content, /hello@roducq\.dev/, `Old email found in ${file}`);
+      assert.doesNotMatch(content, /security@roducq\.dev/, `Old email found in ${file}`);
+    });
   });
 });

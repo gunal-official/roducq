@@ -424,7 +424,7 @@ export const FAQ_SECTION = {
   title: "Questions before getting started",
   intro: "Something else on your mind?",
   /** Inline mailto — roducq has no support form or hosted help centre. */
-  contact: { label: "Send us a message", href: "mailto:hello@roducq.dev" },
+  contact: { label: "Send us a message", href: "mailto:contact@nanexi.com" },
   cta: { label: "See plan details", href: "/pricing" },
 };
 
@@ -478,7 +478,7 @@ export const CLOSING = {
   intro:
     "Start on the free plan, bring one live engagement, and see how much of the week the pipeline takes care of.",
   primaryCta: { label: "Start free", href: "/signup" },
-  secondaryCta: { label: "Talk to us", href: "mailto:hello@roducq.dev" },
+  secondaryCta: { label: "Talk to us", href: "mailto:contact@nanexi.com" },
   note: "The whole pipeline is free, with no trial clock to watch.",
 };
 
