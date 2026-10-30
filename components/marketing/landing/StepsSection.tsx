@@ -168,62 +168,14 @@ export function StepsSection() {
                 aria-hidden="true"
                 className="relative flex min-w-0 flex-col items-center justify-center py-4"
               >
-                {/* Animated particles - small glowing dots that flow along the connectors */}
-                <div className="absolute inset-0 pointer-events-none hidden lg:block">
-                  {/* Particle 1 - flows from top-left to center */}
-                  <div
-                    className="absolute h-1.5 w-1.5 rounded-lm-dot bg-lm-accent opacity-0"
-                    style={{
-                      top: "20%",
-                      left: "10%",
-                      animation: "lm-particle-flow-1 2000ms linear infinite",
-                    }}
-                  />
-                  {/* Particle 2 - flows from middle-left to center */}
-                  <div
-                    className="absolute h-1.5 w-1.5 rounded-lm-dot bg-lm-accent opacity-0"
-                    style={{
-                      top: "40%",
-                      left: "10%",
-                      animation: "lm-particle-flow-2 2000ms linear infinite 500ms",
-                    }}
-                  />
-                  {/* Particle 3 - flows from bottom-left to center */}
-                  <div
-                    className="absolute h-1.5 w-1.5 rounded-lm-dot bg-lm-accent opacity-0"
-                    style={{
-                      top: "60%",
-                      left: "10%",
-                      animation: "lm-particle-flow-3 2000ms linear infinite 1000ms",
-                    }}
-                  />
-                  {/* Particle 4 - flows from center to top-right */}
-                  <div
-                    className="absolute h-1.5 w-1.5 rounded-lm-dot bg-lm-accent opacity-0"
-                    style={{
-                      top: "45%",
-                      left: "50%",
-                      animation: "lm-particle-flow-4 2000ms linear infinite 1500ms",
-                    }}
-                  />
-                  {/* Particle 5 - flows from center to bottom-right */}
-                  <div
-                    className="absolute h-1.5 w-1.5 rounded-lm-dot bg-lm-accent opacity-0"
-                    style={{
-                      top: "45%",
-                      left: "50%",
-                      animation: "lm-particle-flow-5 2000ms linear infinite 2000ms",
-                    }}
-                  />
-                </div>
-
-                {/* SVG Connectors - curved dashed lines */}
+                {/* SVG Connectors and Particles - all in one SVG for coordinate alignment */}
                 <svg
                   viewBox="0 0 280 180"
                   className="pointer-events-none hidden h-40 w-full lg:block"
                 >
-                  {/* Left to center connectors - curved paths */}
+                  {/* Connector paths with unique IDs for particle motion */}
                   <path
+                    id="pipeline-conn-1"
                     className="lm-connector"
                     d="M 4 28 C 72 28, 92 90, 140 90"
                     fill="none"
@@ -232,6 +184,7 @@ export function StepsSection() {
                     strokeDasharray="4 4"
                   />
                   <path
+                    id="pipeline-conn-2"
                     className="lm-connector"
                     d="M 4 70 C 72 70, 92 90, 140 90"
                     fill="none"
@@ -240,6 +193,7 @@ export function StepsSection() {
                     strokeDasharray="4 4"
                   />
                   <path
+                    id="pipeline-conn-3"
                     className="lm-connector"
                     d="M 4 114 C 72 114, 92 90, 140 90"
                     fill="none"
@@ -248,6 +202,7 @@ export function StepsSection() {
                     strokeDasharray="4 4"
                   />
                   <path
+                    id="pipeline-conn-4"
                     className="lm-connector"
                     d="M 4 152 C 72 152, 92 90, 140 90"
                     fill="none"
@@ -255,8 +210,8 @@ export function StepsSection() {
                     strokeWidth="1.5"
                     strokeDasharray="4 4"
                   />
-                  {/* Center to right connector - straight line */}
                   <path
+                    id="pipeline-conn-5"
                     className="lm-connector"
                     d="M 140 90 L 276 90"
                     fill="none"
@@ -264,6 +219,84 @@ export function StepsSection() {
                     strokeWidth="1.5"
                     strokeDasharray="4 4"
                   />
+
+                  {/* Animated particles as SVG circles following the connector paths */}
+                  {/* Particles are hidden by default and shown via CSS when JS is available and visible */}
+                  <circle
+                    className="lm-particle"
+                    r="3"
+                    fill="var(--lm-accent)"
+                    data-connector="pipeline-conn-1"
+                  >
+                    <animateMotion
+                      dur="2s"
+                      repeatCount="indefinite"
+                      rotate="auto"
+                      begin="0s"
+                    >
+                      <mpath href="#pipeline-conn-1" />
+                    </animateMotion>
+                  </circle>
+                  <circle
+                    className="lm-particle"
+                    r="3"
+                    fill="var(--lm-accent)"
+                    data-connector="pipeline-conn-2"
+                  >
+                    <animateMotion
+                      dur="2s"
+                      repeatCount="indefinite"
+                      rotate="auto"
+                      begin="0.5s"
+                    >
+                      <mpath href="#pipeline-conn-2" />
+                    </animateMotion>
+                  </circle>
+                  <circle
+                    className="lm-particle"
+                    r="3"
+                    fill="var(--lm-accent)"
+                    data-connector="pipeline-conn-3"
+                  >
+                    <animateMotion
+                      dur="2s"
+                      repeatCount="indefinite"
+                      rotate="auto"
+                      begin="1s"
+                    >
+                      <mpath href="#pipeline-conn-3" />
+                    </animateMotion>
+                  </circle>
+                  <circle
+                    className="lm-particle"
+                    r="3"
+                    fill="var(--lm-accent)"
+                    data-connector="pipeline-conn-4"
+                  >
+                    <animateMotion
+                      dur="2s"
+                      repeatCount="indefinite"
+                      rotate="auto"
+                      begin="1.5s"
+                    >
+                      <mpath href="#pipeline-conn-4" />
+                    </animateMotion>
+                  </circle>
+                  <circle
+                    className="lm-particle"
+                    r="3"
+                    fill="var(--lm-accent)"
+                    data-connector="pipeline-conn-5"
+                  >
+                    <animateMotion
+                      dur="2s"
+                      repeatCount="indefinite"
+                      rotate="auto"
+                      begin="2s"
+                    >
+                      <mpath href="#pipeline-conn-5" />
+                    </animateMotion>
+                  </circle>
                 </svg>
                 <div className="flex flex-col items-center lg:absolute">
                   <div className="flex h-14 w-14 items-center justify-center rounded-lm-card bg-lm-accent shadow-lm-md">
@@ -310,17 +343,14 @@ function OutputPanel() {
       </div>
 
       <ol className="mt-4 flex flex-1 flex-col gap-2">
-        {PIPELINE_OUTPUTS.map((output, index) => {
+        {PIPELINE_OUTPUTS.map((item, index) => {
           const isAccent = index === 1;
           const isMint = index === PIPELINE_OUTPUTS.length - 1;
           return (
             <li
-              key={output}
-              className="grid grid-cols-[2.75rem_1fr] items-start gap-2.5"
+              key={item.label}
+              className="grid grid-cols-[1fr] items-start gap-2.5"
             >
-              <span className="pt-2 text-lm-12 font-lm-semibold text-lm-muted">
-                {ENGAGEMENT_PANEL.events[index]?.time ?? "--:--"}
-              </span>
               <div
                 className={cn(
                   "rounded-lm-row border-l-2 px-3 py-2",
@@ -341,10 +371,10 @@ function OutputPanel() {
                         : "text-lm-ink"
                   )}
                 >
-                  {output}
+                  {item.label}
                 </p>
                 <p className="text-lm-12 text-lm-ink-soft">
-                  {ENGAGEMENT_PANEL.events[index]?.detail ?? ""}
+                  {item.detail}
                 </p>
               </div>
             </li>

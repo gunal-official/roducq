@@ -794,109 +794,25 @@
   animation: lm-connector-flow 1000ms linear infinite;
 }
 
-/* ── Animated glowing particles for workflow pipeline ────────────────────
-   Small accent-colored dots that flow along the connector paths, creating
-   a glowing effect. Each particle follows a curved path from inputs to
-   workspace hub and from hub to outputs. */
-@keyframes lm-particle-flow-1 {
-  0% {
-    opacity: 0;
-    transform: translate(0, 0) scale(0.5);
-  }
-  10% {
-    opacity: 1;
-    transform: translate(0, 0) scale(1);
-  }
-  90% {
-    opacity: 1;
-    transform: translate(100px, -30px) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(120px, -36px) scale(0.5);
-  }
+/* ── SVG particle animations for workflow pipeline ───────────────────
+   Particles are SVG circles with native <animateMotion> following the
+   connector paths. The lm-particle class controls visibility and
+   animation state based on JS availability and viewport visibility. */
+
+/* By default, particles are hidden (opacity: 0). They become visible
+   when JS is available and the Reveal component is in view. */
+.lm-particle {
+  opacity: 0;
 }
 
-@keyframes lm-particle-flow-2 {
-  0% {
-    opacity: 0;
-    transform: translate(0, 0) scale(0.5);
-  }
-  10% {
-    opacity: 1;
-    transform: translate(0, 0) scale(1);
-  }
-  90% {
-    opacity: 1;
-    transform: translate(100px, 0) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(120px, 0) scale(0.5);
-  }
-}
-
-@keyframes lm-particle-flow-3 {
-  0% {
-    opacity: 0;
-    transform: translate(0, 0) scale(0.5);
-  }
-  10% {
-    opacity: 1;
-    transform: translate(0, 0) scale(1);
-  }
-  90% {
-    opacity: 1;
-    transform: translate(100px, 30px) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(120px, 36px) scale(0.5);
-  }
-}
-
-@keyframes lm-particle-flow-4 {
-  0% {
-    opacity: 0;
-    transform: translate(0, 0) scale(0.5);
-  }
-  10% {
-    opacity: 1;
-    transform: translate(0, 0) scale(1);
-  }
-  90% {
-    opacity: 1;
-    transform: translate(100px, -40px) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(120px, -48px) scale(0.5);
-  }
-}
-
-@keyframes lm-particle-flow-5 {
-  0% {
-    opacity: 0;
-    transform: translate(0, 0) scale(0.5);
-  }
-  10% {
-    opacity: 1;
-    transform: translate(0, 0) scale(1);
-  }
-  90% {
-    opacity: 1;
-    transform: translate(100px, 40px) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(120px, 48px) scale(0.5);
-  }
-}
-
-/* Gating particle animations on .lm-js ensures they only run when
-   JavaScript is available. Without JS, particles remain hidden. */
-.lm-js .lm-reveal[data-visible="true"] [style*="animation: lm-particle-flow"] {
+/* Show particles when JS is available and Reveal is visible */
+.lm-js .lm-reveal[data-visible="true"] .lm-particle {
   opacity: 1;
+}
+
+/* Hide particles when Reveal is not visible (offscreen) */
+.lm-js .lm-reveal:not([data-visible="true"]) .lm-particle {
+  opacity: 0;
 }
 
 /* ── Reduced motion ──────────────────────────────────────────────────────
@@ -925,6 +841,13 @@
     opacity: 1;
     transform: none;
     transition: none;
+  }
+  /* SVG particles: stop motion along connector paths */
+  .lm-particle animateMotion {
+    display: none;
+  }
+  .lm-particle {
+    opacity: 1;
   }
   /* The mock panel and its status pill swap instantly:
      the content change stays, the crossfade goes. */

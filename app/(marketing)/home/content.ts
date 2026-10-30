@@ -259,10 +259,10 @@ export const ENGAGEMENT_PANEL = {
 
 /** Pipeline output items for the workflow illustration */
 export const PIPELINE_OUTPUTS = [
-  "Client brief",
-  "Proposal",
-  "Project plan",
-  "Client update",
+  { label: "Client brief", detail: "Client needs and project context" },
+  { label: "Proposal", detail: "Scope, deliverables, and pricing" },
+  { label: "Project plan", detail: "Tasks, milestones, and next steps" },
+  { label: "Client update", detail: "Progress and decisions to share" },
 ];
 
 /** The onboarding checklist chip the reference floats over the CTA section. */
