@@ -9,6 +9,7 @@ import {
 
 import {
   ENGAGEMENT_PANEL,
+  PIPELINE_OUTPUTS,
   STEPS,
   STEPS_SECTION,
 } from "@/app/(marketing)/home/content";
@@ -29,6 +30,8 @@ const CONNECTS_TO_ICONS = [
 
 const SOURCE_ICONS = [MessageSquare, FileText, Inbox, Upload] as const;
 
+const OUTPUT_ICONS = [FileText, FileText, FileText, FileText] as const;
+
 /**
  * Getting started — the reference's three-step band:
  * - Clean white background (`bg-lm-card`).
@@ -37,7 +40,7 @@ const SOURCE_ICONS = [MessageSquare, FileText, Inbox, Upload] as const;
  *   sitting directly above the large purple demonstration panel.
  * - Large purple demonstration panel (`.lm-purple-frame`) wrapping the white
  *   product interface (connected sources → central roducq hub with dashed
- *   connector lines → one-day engagement workflow card).
+ *   connector lines → workspace outputs panel).
  */
 export function StepsSection() {
   return (
@@ -115,7 +118,7 @@ export function StepsSection() {
         >
           <div className="rounded-lm-card border border-lm-border-soft bg-lm-card p-5 shadow-lm-lg md:p-9">
             <div className="grid items-center gap-6 lg:grid-cols-[0.9fr_1fr_1.1fr]">
-              {/* Left: Connected sources list */}
+              {/* Left: Client inputs list */}
               <div
                 aria-hidden="true"
                 className="min-w-0"
@@ -160,15 +163,66 @@ export function StepsSection() {
                 </ul>
               </div>
 
-              {/* Center: Central roducq hub with dashed purple connector curves */}
+              {/* Center: Central roducq hub with curved dashed connectors and animated particles */}
               <div
                 aria-hidden="true"
                 className="relative flex min-w-0 flex-col items-center justify-center py-4"
               >
+                {/* Animated particles - small glowing dots that flow along the connectors */}
+                <div className="absolute inset-0 pointer-events-none hidden lg:block">
+                  {/* Particle 1 - flows from top-left to center */}
+                  <div
+                    className="absolute h-1.5 w-1.5 rounded-lm-dot bg-lm-accent opacity-0"
+                    style={{
+                      top: "20%",
+                      left: "10%",
+                      animation: "lm-particle-flow-1 2000ms linear infinite",
+                    }}
+                  />
+                  {/* Particle 2 - flows from middle-left to center */}
+                  <div
+                    className="absolute h-1.5 w-1.5 rounded-lm-dot bg-lm-accent opacity-0"
+                    style={{
+                      top: "40%",
+                      left: "10%",
+                      animation: "lm-particle-flow-2 2000ms linear infinite 500ms",
+                    }}
+                  />
+                  {/* Particle 3 - flows from bottom-left to center */}
+                  <div
+                    className="absolute h-1.5 w-1.5 rounded-lm-dot bg-lm-accent opacity-0"
+                    style={{
+                      top: "60%",
+                      left: "10%",
+                      animation: "lm-particle-flow-3 2000ms linear infinite 1000ms",
+                    }}
+                  />
+                  {/* Particle 4 - flows from center to top-right */}
+                  <div
+                    className="absolute h-1.5 w-1.5 rounded-lm-dot bg-lm-accent opacity-0"
+                    style={{
+                      top: "45%",
+                      left: "50%",
+                      animation: "lm-particle-flow-4 2000ms linear infinite 1500ms",
+                    }}
+                  />
+                  {/* Particle 5 - flows from center to bottom-right */}
+                  <div
+                    className="absolute h-1.5 w-1.5 rounded-lm-dot bg-lm-accent opacity-0"
+                    style={{
+                      top: "45%",
+                      left: "50%",
+                      animation: "lm-particle-flow-5 2000ms linear infinite 2000ms",
+                    }}
+                  />
+                </div>
+
+                {/* SVG Connectors - curved dashed lines */}
                 <svg
                   viewBox="0 0 280 180"
                   className="pointer-events-none hidden h-40 w-full lg:block"
                 >
+                  {/* Left to center connectors - curved paths */}
                   <path
                     className="lm-connector"
                     d="M 4 28 C 72 28, 92 90, 140 90"
@@ -201,6 +255,7 @@ export function StepsSection() {
                     strokeWidth="1.5"
                     strokeDasharray="4 4"
                   />
+                  {/* Center to right connector - straight line */}
                   <path
                     className="lm-connector"
                     d="M 140 90 L 276 90"
@@ -223,8 +278,8 @@ export function StepsSection() {
                 </div>
               </div>
 
-              {/* Right: One engagement, one day workflow card ("Your day" equivalent) */}
-              <EngagementPanel />
+              {/* Right: Workspace outputs panel */}
+              <OutputPanel />
             </div>
           </div>
           <p className="mt-2 text-center text-lm-12 text-lm-muted">
@@ -236,14 +291,14 @@ export function StepsSection() {
   );
 }
 
-/** One engagement, one day — the pipeline's real stage sequence. */
-function EngagementPanel() {
+/** Workspace outputs panel - shows the pipeline output items */
+function OutputPanel() {
   return (
     <div className="flex min-w-0 flex-col rounded-lm-card border border-lm-border-soft bg-lm-card p-5 shadow-lm-md">
       <div className="flex flex-wrap items-start justify-between gap-2">
         <div className="min-w-0">
           <p className="text-lm-12 font-lm-semibold uppercase tracking-[0.16em] text-lm-muted-label">
-            {ENGAGEMENT_PANEL.date}
+            WORKSPACE OUTPUTS
           </p>
           <h3 className="mt-1 font-lm-bold tracking-[-0.015em] text-lm-18 text-lm-ink">
             {ENGAGEMENT_PANEL.heading}
@@ -255,16 +310,16 @@ function EngagementPanel() {
       </div>
 
       <ol className="mt-4 flex flex-1 flex-col gap-2">
-        {ENGAGEMENT_PANEL.events.map((event, index) => {
+        {PIPELINE_OUTPUTS.map((output, index) => {
           const isAccent = index === 1;
-          const isMint = index === ENGAGEMENT_PANEL.events.length - 1;
+          const isMint = index === PIPELINE_OUTPUTS.length - 1;
           return (
             <li
-              key={event.time}
+              key={output}
               className="grid grid-cols-[2.75rem_1fr] items-start gap-2.5"
             >
               <span className="pt-2 text-lm-12 font-lm-semibold text-lm-muted">
-                {event.time}
+                {ENGAGEMENT_PANEL.events[index]?.time ?? "--:--"}
               </span>
               <div
                 className={cn(
@@ -286,9 +341,11 @@ function EngagementPanel() {
                         : "text-lm-ink"
                   )}
                 >
-                  {event.label}
+                  {output}
                 </p>
-                <p className="text-lm-12 text-lm-ink-soft">{event.detail}</p>
+                <p className="text-lm-12 text-lm-ink-soft">
+                  {ENGAGEMENT_PANEL.events[index]?.detail ?? ""}
+                </p>
               </div>
             </li>
           );

@@ -240,14 +240,14 @@ export const STEPS: readonly Step[] = [
  * engagement looks like inside the pipeline instead of pretending otherwise.
  */
 export const ENGAGEMENT_PANEL = {
-  sourcesTitle: "ILLUSTRATIVE SOURCES",
-  sources: ["Slack import", "Notion import", "Mailbox", "Uploaded files"],
+  sourcesTitle: "CLIENT INPUTS",
+  sources: ["Client messages", "Meeting notes", "Documents", "Emails"],
   hubName: "roducq",
   hubSubtitle: "Your workspace",
   workspace: "Fictional studio · example",
   workspaceMeta: "4 members",
   date: "MONDAY · EXAMPLE",
-  heading: "One engagement, one day",
+  heading: "Workspace outputs",
   cta: { label: "Create an account", href: "/signup" },
   events: [
     { time: "09:00", label: "Client context captured", detail: "Kickoff notes kept with the source" },
@@ -256,6 +256,14 @@ export const ENGAGEMENT_PANEL = {
     { time: "16:00", label: "Client update drafted", detail: "Based on recorded plan progress" },
   ],
 };
+
+/** Pipeline output items for the workflow illustration */
+export const PIPELINE_OUTPUTS = [
+  "Client brief",
+  "Proposal",
+  "Project plan",
+  "Client update",
+];
 
 /** The onboarding checklist chip the reference floats over the CTA section. */
 export const ONBOARDING_CHECKLIST = {
