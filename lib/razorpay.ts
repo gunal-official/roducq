@@ -57,6 +57,154 @@ export const findPrice = findPlan;
 export function findPlanById(plans: RazorpayPlanConfig[], planId: string) { return plans.find((p) => p.planId === planId) ?? null; }
 export const findPriceById = findPlanById;
 
+// ── Isolated Starter/Team tier catalog (not wired into billing) ───────
+/** Product tiers eligible for future automatic checkout. Studio is deliberately excluded. */
+export type RazorpayTier = "starter" | "team";
+export type RazorpayTierCurrency = "USD";
+
+/**
+ * A validated, server-owned future tier mapping. marketingPriceMajor is for
+ * display/catalog policy only; amountMinor is an explicit provider-facing
+ * representation. Neither is connected to a Razorpay request in this module.
+ */
+export interface RazorpayTierCatalogPlan {
+  tier: RazorpayTier;
+  currency: RazorpayTierCurrency;
+  marketingPriceMajor: number;
+  amountMinor: number;
+  includedSeats: number;
+  period: "monthly";
+  interval: 1;
+  planId: string;
+}
+
+export type RazorpayTierCatalogParse =
+  | { ok: true; plans: RazorpayTierCatalogPlan[] }
+  | { ok: false; error: string };
+
+const TIER_CATALOG_RULES = {
+  starter: { currency: "USD", marketingPriceMajor: 29, amountMinor: 2900, includedSeats: 1 },
+  team: { currency: "USD", marketingPriceMajor: 79, amountMinor: 7900, includedSeats: 5 },
+} as const;
+const TIER_CATALOG_FIELDS = [
+  "tier", "currency", "marketingPriceMajor", "amountMinor", "includedSeats", "period", "interval", "planId",
+] as const;
+const RAZORPAY_PLAN_ID_PATTERN = /^plan_[A-Za-z0-9]{1,80}$/;
+
+/**
+ * Parse an explicit JSON catalog without reading environment variables or
+ * performing I/O. This is intentionally separate from parsePlansEnv:
+ * existing RAZORPAY_PLANS behavior and checkout selection are unchanged.
+ */
+export function parseRazorpayTierCatalog(raw: string): RazorpayTierCatalogParse {
+  if (typeof raw !== "string" || !raw.trim()) {
+    return { ok: false, error: "Tier catalog configuration is empty." };
+  }
+
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(raw);
+  } catch {
+    return { ok: false, error: "Tier catalog configuration is not valid JSON." };
+  }
+  if (!Array.isArray(parsed)) {
+    return { ok: false, error: "Tier catalog configuration must be a non-empty array." };
+  }
+  if (parsed.length === 0) {
+    return { ok: false, error: "Tier catalog configuration must be a non-empty array." };
+  }
+
+  const plans: RazorpayTierCatalogPlan[] = [];
+  const tierCurrencyPairs = new Set<string>();
+  const planIds = new Set<string>();
+
+  for (let i = 0; i < parsed.length; i++) {
+    const entry: unknown = parsed[i];
+    if (typeof entry !== "object" || entry === null || Array.isArray(entry)) {
+      return { ok: false, error: `Tier catalog entry ${i} must be an object.` };
+    }
+
+    const fields = Object.keys(entry);
+    const missing = TIER_CATALOG_FIELDS.filter((field) => !Object.hasOwn(entry, field));
+    if (missing.length > 0) {
+      return { ok: false, error: `Tier catalog entry ${i} is missing required fields: ${missing.join(", ")}.` };
+    }
+    const unexpected = fields.filter((field) => !(TIER_CATALOG_FIELDS as readonly string[]).includes(field));
+    if (unexpected.length > 0) {
+      return { ok: false, error: `Tier catalog entry ${i} has unexpected fields: ${unexpected.join(", ")}.` };
+    }
+
+    const value = entry as Record<string, unknown>;
+    if (value.tier !== "starter" && value.tier !== "team") {
+      return { ok: false, error: `Tier catalog entry ${i} has an unsupported tier.` };
+    }
+    const tier = value.tier;
+    const rule = TIER_CATALOG_RULES[tier];
+
+    if (value.currency !== "USD") {
+      return { ok: false, error: `Tier catalog entry ${i} currency must be USD.` };
+    }
+    if (typeof value.marketingPriceMajor !== "number" || !Number.isInteger(value.marketingPriceMajor) || value.marketingPriceMajor !== rule.marketingPriceMajor) {
+      return { ok: false, error: `Tier catalog entry ${i} has an unapproved marketing price.` };
+    }
+    if (typeof value.amountMinor !== "number" || !Number.isInteger(value.amountMinor) || value.amountMinor !== rule.amountMinor) {
+      return { ok: false, error: `Tier catalog entry ${i} has an unapproved provider amount in minor units.` };
+    }
+    if (typeof value.includedSeats !== "number" || !Number.isInteger(value.includedSeats) || value.includedSeats !== rule.includedSeats) {
+      return { ok: false, error: `Tier catalog entry ${i} has an unapproved included-seat count.` };
+    }
+    if (value.period !== "monthly") {
+      return { ok: false, error: `Tier catalog entry ${i} period must be monthly.` };
+    }
+    if (value.interval !== 1) {
+      return { ok: false, error: `Tier catalog entry ${i} interval must be one month.` };
+    }
+    if (typeof value.planId !== "string" || !RAZORPAY_PLAN_ID_PATTERN.test(value.planId)) {
+      return { ok: false, error: `Tier catalog entry ${i} has an invalid Razorpay Plan ID.` };
+    }
+
+    const pair = `${tier}/${value.currency}`;
+    if (tierCurrencyPairs.has(pair)) {
+      return { ok: false, error: `Tier catalog contains duplicate ${pair} entries.` };
+    }
+    if (planIds.has(value.planId)) {
+      return { ok: false, error: "Tier catalog Plan IDs must be globally unique." };
+    }
+    tierCurrencyPairs.add(pair);
+    planIds.add(value.planId);
+
+    plans.push({
+      tier,
+      currency: "USD",
+      marketingPriceMajor: rule.marketingPriceMajor,
+      amountMinor: rule.amountMinor,
+      includedSeats: rule.includedSeats,
+      period: "monthly",
+      interval: 1,
+      planId: value.planId,
+    });
+  }
+
+  return { ok: true, plans };
+}
+
+/** Resolve only exact values from a catalog returned by parseRazorpayTierCatalog. */
+export function findRazorpayTierPlan(
+  plans: readonly RazorpayTierCatalogPlan[],
+  tier: string,
+  currency: string,
+): RazorpayTierCatalogPlan | null {
+  return plans.find((plan) => plan.tier === tier && plan.currency === currency) ?? null;
+}
+
+/** Resolve an exact configured Razorpay Plan ID; unknown IDs fail closed. */
+export function findRazorpayTierPlanById(
+  plans: readonly RazorpayTierCatalogPlan[],
+  planId: string,
+): RazorpayTierCatalogPlan | null {
+  return plans.find((plan) => plan.planId === planId) ?? null;
+}
+
 export function formatPrice(amount: number, currency: string): string {
   const whole = Number.isInteger(amount);
   return new Intl.NumberFormat("en", { style: "currency", currency, minimumFractionDigits: whole ? 0 : 2, maximumFractionDigits: whole ? 0 : 2 }).format(amount);
