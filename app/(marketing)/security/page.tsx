@@ -75,7 +75,7 @@ const RESPONSIBLE_DISCLOSURE = {
     "Avoid testing that degrades service for other people.",
   ],
   cta: "Report an issue",
-  ctaHref: "mailto:security@roducq.dev",
+  ctaHref: "mailto:contact@nanexi.com",
 };
 
 const DISCLAIMER = {

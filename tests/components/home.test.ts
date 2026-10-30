@@ -419,7 +419,7 @@ describe("/ pricing band", () => {
     assert.match(PRICING_CARDS[2].seats, /Up to 15 seats/);
     assert.equal(PRICING_CARDS[0].cta.href, "/signup");
     assert.equal(PRICING_CARDS[1].cta.href, "/signup");
-    assert.equal(PRICING_CARDS[2].cta.href, "mailto:hello@roducq.dev?subject=roducq%20Studio%20enquiry");
+    assert.equal(PRICING_CARDS[2].cta.href, "mailto:contact@nanexi.com?subject=roducq%20Studio%20enquiry");
   });
 
   it("prints every approved billing and enforcement disclosure on the homepage", () => {

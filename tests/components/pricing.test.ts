@@ -174,7 +174,7 @@ describe("/pricing hero + Forma layout + provisional source", () => {
     assert.equal(studio.seatsLabel, "Up to 15 seats");
     assert.equal(studio.additionalSeatsLabel, undefined);
     assert.equal(studio.cta.label, "Talk to us");
-    assert.match(studio.cta.href, /^mailto:hello@roducq\.dev/);
+    assert.match(studio.cta.href, /^mailto:contact@nanexi\.com/);
     assert.equal(studio.featured, false);
     assert.equal(studio.badge, undefined);
     assert.equal(studio.featuresHeading, "EVERYTHING IN TEAM, PLUS");
@@ -545,7 +545,7 @@ describe("/pricing approved public content and billing disclosures", () => {
       },
       {
         slug: "studio", name: "Studio", tagline: "For growing teams running full client operations", price: "$199", cadence: "/ month", seats: "Up to 15 seats", badge: undefined, featured: false,
-        cta: {label: "Talk to us", href: "mailto:hello@roducq.dev?subject=roducq%20Studio%20enquiry"}, featuresHeading: "Everything in Team, with the same availability notes, plus:",
+        cta: {label: "Talk to us", href: "mailto:contact@nanexi.com?subject=roducq%20Studio%20enquiry"}, featuresHeading: "Everything in Team, with the same availability notes, plus:",
         features: ["Configurable update templates.", "Intake inbox with threaded sources.", "Revocable client-update links."],
       },
     ]);
@@ -591,7 +591,7 @@ describe("/pricing approved public content and billing disclosures", () => {
   });
 
   it("uses the approved CTA routes and labels the fictional illustration", () => {
-    assert.equal(STUDIO_CONTACT, "mailto:hello@roducq.dev?subject=roducq%20Studio%20enquiry");
+    assert.equal(STUDIO_CONTACT, "mailto:contact@nanexi.com?subject=roducq%20Studio%20enquiry");
     assert.match(PAGE, /href=\{STUDIO_CONTACT\}[^>]*data-testid="studio-banner-cta"/);
     assert.match(PAGE, /href="\/signup"[^>]*data-testid="pricing-bottom-cta"/);
     assert.match(PAGE, /Start organizing client work/);

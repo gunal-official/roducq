@@ -10,7 +10,7 @@
  */
 
 export const STUDIO_CONTACT =
-  "mailto:hello@roducq.dev?subject=roducq%20Studio%20enquiry";
+  "mailto:contact@nanexi.com?subject=roducq%20Studio%20enquiry";
 
 export const PRICING_HERO = {
   eyebrow: "Pricing",

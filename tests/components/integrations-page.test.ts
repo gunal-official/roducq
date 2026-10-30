@@ -243,7 +243,7 @@ describe("Integrations page (shape)", () => {
     // the request's contents and one mailto action. No form, no POST.
     assert.equal(REQUEST.card.rows.length, 3);
     assert.ok(REQUEST.card.cta.href.startsWith("mailto:"));
-    assert.ok(REQUEST.card.cta.href.includes("hello@roducq.dev"));
+    assert.ok(REQUEST.card.cta.href.includes("contact@nanexi.com"));
     assert.ok(!REQUEST_TSX.includes("<form"));
     assert.ok(!REQUEST_TSX.includes("action="));
     assert.ok(!REQUEST_TSX.includes('type="submit"'));
@@ -255,7 +255,7 @@ describe("Integrations page (shape)", () => {
     assert.equal(INTEGRATIONS_CLOSING.primaryCta.href, "/signup");
     assert.equal(
       INTEGRATIONS_CLOSING.secondaryCta.href,
-      "mailto:hello@roducq.dev",
+      "mailto:contact@nanexi.com",
     );
     const home = read("app/(marketing)/home/content.ts");
     assert.ok(
@@ -573,7 +573,7 @@ describe("Integrations page (routes + a11y)", () => {
     assert.ok(hrefs.length >= 2);
     for (const href of hrefs) {
       if (href.startsWith("mailto:")) {
-        assert.ok(href.startsWith("mailto:hello@roducq.dev"));
+        assert.ok(href.startsWith("mailto:contact@nanexi.com"));
         continue;
       }
       if (href.startsWith("#")) {

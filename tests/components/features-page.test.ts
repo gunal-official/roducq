@@ -235,7 +235,7 @@ describe("Features page (shape)", () => {
     assert.equal(FEATURES_CLOSING.primaryCta.href, "/signup");
     assert.equal(
       FEATURES_CLOSING.secondaryCta.href,
-      "mailto:hello@roducq.dev",
+      "mailto:contact@nanexi.com",
     );
   });
 

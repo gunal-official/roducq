@@ -70,7 +70,7 @@ export function ContactForm() {
       `Team size: ${teamSize}\n` +
       `Message: ${message}`;
     
-    const mailtoUrl = `mailto:hello@roducq.dev?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const mailtoUrl = `mailto:contact@nanexi.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     
     window.location.href = mailtoUrl;
   };

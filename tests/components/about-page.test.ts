@@ -117,7 +117,7 @@ describe("/about — approved copy", () => {
   it("cards point at real destinations with visible-label link names", () => {
     assert.deepEqual(
       ABOUT_CARDS.map((c) => c.href),
-      ["/changelog", "/vs", "mailto:hello@roducq.dev"]
+      ["/changelog", "/vs", "mailto:contact@nanexi.com"]
     );
     // WCAG 2.5.3: the accessible name is the visible label — the card
     // uses a stretched link, never an aria-label override.

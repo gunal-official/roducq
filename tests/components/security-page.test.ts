@@ -42,7 +42,7 @@ const METADATA_DESCRIPTION = "Encryption, access controls, connected apps, and w
 // Responsible disclosure data
 const RESPONSIBLE_DISCLOSURE_TITLE = "Reporting a security issue";
 const RESPONSIBLE_DISCLOSURE_CTA = "Report an issue";
-const RESPONSIBLE_DISCLOSURE_HREF = "mailto:security@roducq.dev";
+const RESPONSIBLE_DISCLOSURE_HREF = "mailto:contact@nanexi.com";
 
 // Disclaimer
 const DISCLAIMER_TEXT = "This page describes how roducq is designed to handle security. No third-party compliance certifications are claimed.";
@@ -134,7 +134,7 @@ describe("/security — approved copy", () => {
     assert.match(PAGE, /Do not access, change, or delete data that is not yours/);
     assert.match(PAGE, /Avoid testing that degrades service for other people/);
     assert.match(PAGE, /Report an issue/);
-    assert.match(PAGE, /mailto:security@roducq.dev/);
+    assert.match(PAGE, /mailto:contact@nanexi.com/);
   });
 
   it("disclaimer text is present", () => {
