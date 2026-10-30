@@ -218,8 +218,8 @@ describe("/ landing structure", () => {
     );
     assert.deepEqual(
       client,
-      ["Reveal.tsx"],
-      "only the scroll-reveal wrapper may be a client component in the landing set",
+      ["PipelineSVG.tsx", "Reveal.tsx"],
+      "only the scroll-reveal wrapper and pipeline SVG may be client components in the landing set",
     );
   });
 
