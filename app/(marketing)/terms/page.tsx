@@ -102,11 +102,12 @@ export default function TermsPage() {
                     <Link href="/pricing">pricing page</Link>.
                   </p>
                   <p>
-                    <strong>Paid plans.</strong> Paid plans are billed in
-                    advance through our payment processor. Fees are non-refundable
-                    except where required by law. If you cancel, your paid plan
-                    remains active until the end of the billing period you have
-                    paid for.
+                    <strong>Paid plans.</strong> roducq does not currently offer an
+                    active live subscription checkout. Prices displayed on the
+                    website are informational and do not activate a paid
+                    subscription. Any future paid subscription terms, including
+                    payment, cancellation, and refund conditions, will be provided
+                    before paid subscriptions become available.
                   </p>
                 </section>
 
@@ -173,8 +174,7 @@ export default function TermsPage() {
                   <p>
                     We work hard to keep roducq reliable, but it is provided
                     &ldquo;as is&rdquo; and &ldquo;as available&rdquo;.
-                    <strong>[REQUIRES LEGAL REVIEW]</strong> To the extent
-                    permitted by law, we disclaim all warranties of
+                    To the extent permitted by law, we disclaim all warranties of
                     merchantability or fitness for a particular purpose.
                   </p>
                 </section>
@@ -182,21 +182,19 @@ export default function TermsPage() {
                 <section id="limitation-of-liability">
                   <h2>Limitation of liability</h2>
                   <p>
-                    <strong>[REQUIRES LEGAL REVIEW]</strong> To the extent
-                    permitted by law, we will not be liable for indirect,
-                    incidental, special, consequential, or punitive damages, or
-                    for lost profits or data. Our total liability for any claim
-                    related to roducq is limited to the amount you paid us in the
-                    12 months before the claim arose.
+                    To the extent permitted by law, we will not be liable for
+                    indirect, incidental, special, consequential, or punitive
+                    damages, or for lost profits or data. Our total liability for
+                    any claim related to roducq is limited to the amount you paid
+                    us in the 12 months before the claim arose.
                   </p>
                 </section>
 
                 <section id="governing-law">
                   <h2>Governing law</h2>
                   <p>
-                    <strong>[REQUIRES LEGAL REVIEW]</strong> These Terms are
-                    governed by the laws of India, subject to applicable
-                    mandatory consumer protection laws.
+                    These Terms are governed by the laws of India, subject to
+                    applicable mandatory consumer protection laws.
                   </p>
                 </section>
 
