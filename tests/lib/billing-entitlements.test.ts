@@ -22,9 +22,10 @@ const rzp = (status: string, paid_through: string | null) => ({ provider: "razor
 const stripe = (status: string, paid_through: string | null) => ({ provider: "stripe", status, paid_through });
 
 describe("Razorpay states", () => {
-  test("active with a future verified paid-through grants Pro", () => {
+  test("generic Razorpay active with a future verified paid-through remains Pro (not a new tier)", () => {
     const e = resolveEntitlement(rzp("active", FUTURE), NOW);
     assert.equal(e.plan, "pro");
+    assert.equal("tier" in e, false, "current generic Pro entitlement does not infer Starter or Team");
     assert.equal(e.reason, "razorpay_active");
     assert.equal(e.needsOperatorReconciliation, false);
   });
