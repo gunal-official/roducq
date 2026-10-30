@@ -1,3 +1,5 @@
+"use client";
+
 import {
   ArrowUpRight,
   FileText,
@@ -6,6 +8,7 @@ import {
   Upload,
   Webhook,
 } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 import {
   ENGAGEMENT_PANEL,
@@ -29,6 +32,146 @@ const CONNECTS_TO_ICONS = [
 ] as const;
 
 const SOURCE_ICONS = [MessageSquare, FileText, Inbox, Upload] as const;
+
+/**
+ * Pipeline SVG with animated particles that respect viewport visibility
+ * and reduced-motion preferences. Uses IntersectionObserver for visibility
+ * and matchMedia for reduced-motion, with proper cleanup.
+ */
+function PipelineSVG() {
+  const svgRef = useRef<SVGSVGElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
+
+  // Track viewport visibility with IntersectionObserver (not once: true)
+  useEffect(() => {
+    const svg = svgRef.current;
+    if (!svg) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        setIsVisible(entry.isIntersecting);
+      },
+      {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.1,
+      }
+    );
+
+    observer.observe(svg);
+    return () => observer.disconnect();
+  }, []);
+
+  // Track reduced-motion preference with live updates
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const handler = (event: MediaQueryListEvent | { matches: boolean }) => {
+      setReduceMotion(event.matches);
+    };
+
+    // Initialize with current value
+    handler({ matches: mediaQuery.matches });
+
+    // Modern browsers
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener("change", handler);
+      return () => mediaQuery.removeEventListener("change", handler);
+    } else {
+      // Legacy browsers (Safari < 14)
+      mediaQuery.addListener(handler);
+      return () => mediaQuery.removeListener(handler);
+    }
+  }, []);
+
+  // Should animate: visible AND not reduced motion
+  const shouldAnimate = isVisible && !reduceMotion;
+
+  // Generate unique path IDs using index (stable, no useId needed as there's only one instance)
+  const paths = [
+    { id: "pipeline-conn-1", d: "M 4 28 C 72 28, 92 90, 140 90", stroke: "var(--lm-border-soft)", strokeWidth: "1.5" },
+    { id: "pipeline-conn-2", d: "M 4 70 C 72 70, 92 90, 140 90", stroke: "var(--lm-border-soft)", strokeWidth: "1.5" },
+    { id: "pipeline-conn-3", d: "M 4 114 C 72 114, 92 90, 140 90", stroke: "var(--lm-accent)", strokeWidth: "1.75" },
+    { id: "pipeline-conn-4", d: "M 4 152 C 72 152, 92 90, 140 90", stroke: "var(--lm-border-soft)", strokeWidth: "1.5" },
+    { id: "pipeline-conn-5", d: "M 140 90 L 276 90", stroke: "var(--lm-border)", strokeWidth: "1.5" },
+  ];
+
+  return (
+    <svg
+      ref={svgRef}
+      viewBox="0 0 280 180"
+      className="pointer-events-none hidden h-40 w-full lg:block"
+      aria-hidden="true"
+    >
+      {/* Connector paths - always visible */}
+      {paths.map((path) => (
+        <path
+          key={path.id}
+          id={path.id}
+          className="lm-connector"
+          d={path.d}
+          fill="none"
+          stroke={path.stroke}
+          strokeWidth={path.strokeWidth}
+          strokeDasharray="4 4"
+        />
+      ))}
+
+      {/* Animated particles - conditionally rendered based on visibility and reduced motion */}
+      {shouldAnimate && (
+        <>
+          <circle r="3" fill="var(--lm-accent)">
+            <animateMotion
+              dur="2s"
+              repeatCount="indefinite"
+              begin="0s"
+            >
+              <mpath href="#pipeline-conn-1" />
+            </animateMotion>
+          </circle>
+          <circle r="3" fill="var(--lm-accent)">
+            <animateMotion
+              dur="2s"
+              repeatCount="indefinite"
+              begin="0.5s"
+            >
+              <mpath href="#pipeline-conn-2" />
+            </animateMotion>
+          </circle>
+          <circle r="3" fill="var(--lm-accent)">
+            <animateMotion
+              dur="2s"
+              repeatCount="indefinite"
+              begin="1s"
+            >
+              <mpath href="#pipeline-conn-3" />
+            </animateMotion>
+          </circle>
+          <circle r="3" fill="var(--lm-accent)">
+            <animateMotion
+              dur="2s"
+              repeatCount="indefinite"
+              begin="1.5s"
+            >
+              <mpath href="#pipeline-conn-4" />
+            </animateMotion>
+          </circle>
+          <circle r="3" fill="var(--lm-accent)">
+            <animateMotion
+              dur="2s"
+              repeatCount="indefinite"
+              begin="2s"
+            >
+              <mpath href="#pipeline-conn-5" />
+            </animateMotion>
+          </circle>
+        </>
+      )}
+    </svg>
+  );
+}
 
 const OUTPUT_ICONS = [FileText, FileText, FileText, FileText] as const;
 
@@ -168,136 +311,8 @@ export function StepsSection() {
                 aria-hidden="true"
                 className="relative flex min-w-0 flex-col items-center justify-center py-4"
               >
-                {/* SVG Connectors and Particles - all in one SVG for coordinate alignment */}
-                <svg
-                  viewBox="0 0 280 180"
-                  className="pointer-events-none hidden h-40 w-full lg:block"
-                >
-                  {/* Connector paths with unique IDs for particle motion */}
-                  <path
-                    id="pipeline-conn-1"
-                    className="lm-connector"
-                    d="M 4 28 C 72 28, 92 90, 140 90"
-                    fill="none"
-                    stroke="var(--lm-border-soft)"
-                    strokeWidth="1.5"
-                    strokeDasharray="4 4"
-                  />
-                  <path
-                    id="pipeline-conn-2"
-                    className="lm-connector"
-                    d="M 4 70 C 72 70, 92 90, 140 90"
-                    fill="none"
-                    stroke="var(--lm-border-soft)"
-                    strokeWidth="1.5"
-                    strokeDasharray="4 4"
-                  />
-                  <path
-                    id="pipeline-conn-3"
-                    className="lm-connector"
-                    d="M 4 114 C 72 114, 92 90, 140 90"
-                    fill="none"
-                    stroke="var(--lm-accent)"
-                    strokeWidth="1.75"
-                    strokeDasharray="4 4"
-                  />
-                  <path
-                    id="pipeline-conn-4"
-                    className="lm-connector"
-                    d="M 4 152 C 72 152, 92 90, 140 90"
-                    fill="none"
-                    stroke="var(--lm-border-soft)"
-                    strokeWidth="1.5"
-                    strokeDasharray="4 4"
-                  />
-                  <path
-                    id="pipeline-conn-5"
-                    className="lm-connector"
-                    d="M 140 90 L 276 90"
-                    fill="none"
-                    stroke="var(--lm-border)"
-                    strokeWidth="1.5"
-                    strokeDasharray="4 4"
-                  />
-
-                  {/* Animated particles as SVG circles following the connector paths */}
-                  {/* Particles are hidden by default and shown via CSS when JS is available and visible */}
-                  <circle
-                    className="lm-particle"
-                    r="3"
-                    fill="var(--lm-accent)"
-                    data-connector="pipeline-conn-1"
-                  >
-                    <animateMotion
-                      dur="2s"
-                      repeatCount="indefinite"
-                      rotate="auto"
-                      begin="0s"
-                    >
-                      <mpath href="#pipeline-conn-1" />
-                    </animateMotion>
-                  </circle>
-                  <circle
-                    className="lm-particle"
-                    r="3"
-                    fill="var(--lm-accent)"
-                    data-connector="pipeline-conn-2"
-                  >
-                    <animateMotion
-                      dur="2s"
-                      repeatCount="indefinite"
-                      rotate="auto"
-                      begin="0.5s"
-                    >
-                      <mpath href="#pipeline-conn-2" />
-                    </animateMotion>
-                  </circle>
-                  <circle
-                    className="lm-particle"
-                    r="3"
-                    fill="var(--lm-accent)"
-                    data-connector="pipeline-conn-3"
-                  >
-                    <animateMotion
-                      dur="2s"
-                      repeatCount="indefinite"
-                      rotate="auto"
-                      begin="1s"
-                    >
-                      <mpath href="#pipeline-conn-3" />
-                    </animateMotion>
-                  </circle>
-                  <circle
-                    className="lm-particle"
-                    r="3"
-                    fill="var(--lm-accent)"
-                    data-connector="pipeline-conn-4"
-                  >
-                    <animateMotion
-                      dur="2s"
-                      repeatCount="indefinite"
-                      rotate="auto"
-                      begin="1.5s"
-                    >
-                      <mpath href="#pipeline-conn-4" />
-                    </animateMotion>
-                  </circle>
-                  <circle
-                    className="lm-particle"
-                    r="3"
-                    fill="var(--lm-accent)"
-                    data-connector="pipeline-conn-5"
-                  >
-                    <animateMotion
-                      dur="2s"
-                      repeatCount="indefinite"
-                      rotate="auto"
-                      begin="2s"
-                    >
-                      <mpath href="#pipeline-conn-5" />
-                    </animateMotion>
-                  </circle>
-                </svg>
+                {/* Pipeline SVG with visibility-controlled particles */}
+                <PipelineSVG />
                 <div className="flex flex-col items-center lg:absolute">
                   <div className="flex h-14 w-14 items-center justify-center rounded-lm-card bg-lm-accent shadow-lm-md">
                     <RoduMark size={36} />

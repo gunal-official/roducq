@@ -794,27 +794,6 @@
   animation: lm-connector-flow 1000ms linear infinite;
 }
 
-/* ── SVG particle animations for workflow pipeline ───────────────────
-   Particles are SVG circles with native <animateMotion> following the
-   connector paths. The lm-particle class controls visibility and
-   animation state based on JS availability and viewport visibility. */
-
-/* By default, particles are hidden (opacity: 0). They become visible
-   when JS is available and the Reveal component is in view. */
-.lm-particle {
-  opacity: 0;
-}
-
-/* Show particles when JS is available and Reveal is visible */
-.lm-js .lm-reveal[data-visible="true"] .lm-particle {
-  opacity: 1;
-}
-
-/* Hide particles when Reveal is not visible (offscreen) */
-.lm-js .lm-reveal:not([data-visible="true"]) .lm-particle {
-  opacity: 0;
-}
-
 /* ── Reduced motion ──────────────────────────────────────────────────────
    Reveals resolve to their end state instantly; the decorative loop stops. */
 @media (prefers-reduced-motion: reduce) {
@@ -841,13 +820,6 @@
     opacity: 1;
     transform: none;
     transition: none;
-  }
-  /* SVG particles: stop motion along connector paths */
-  .lm-particle animateMotion {
-    display: none;
-  }
-  .lm-particle {
-    opacity: 1;
   }
   /* The mock panel and its status pill swap instantly:
      the content change stays, the crossfade goes. */
