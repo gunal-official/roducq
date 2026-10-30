@@ -99,8 +99,9 @@ export default function PrivacyPage() {
                   </p>
                   <h3>Billing information</h3>
                   <p>
-                    Payments are processed by our payment processor, Razorpay.
-                    We do not store your full card details.
+                    Live subscription payments are not currently available through
+                    roducq. We do not collect payment card details through an active
+                    subscription checkout.
                   </p>
                   <h3>Usage data</h3>
                   <p>
@@ -126,7 +127,6 @@ export default function PrivacyPage() {
                       briefs, proposals, plans, summaries, and client updates based
                       on the content in your workspace
                     </li>
-                    <li>Process payments and manage your subscriptions</li>
                     <li>Respond to your requests and provide support</li>
                     <li>
                       Understand how roducq is used so we can improve it
