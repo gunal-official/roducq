@@ -188,6 +188,29 @@ describe("atomic apply: idempotency", () => {
     assert.equal(await ledgerOutcome("e_pending_existing"), "pending", "the pending outcome remains stuck");
   });
 
+  it("SECURITY CHARACTERIZATION: reusing an event-ID-derived key suppresses a distinct body hash", async () => {
+    const first = await apply({
+      eventKey: "evt_shared_header",
+      razorpayEventId: "evt_shared_header",
+      eventCreatedAt: T1,
+      bodySha256: HASH_A,
+    });
+    const second = await apply({
+      eventKey: "evt_shared_header",
+      razorpayEventId: "evt_shared_header",
+      eventType: "subscription.halted",
+      eventCreatedAt: T2,
+      status: "halted",
+      bodySha256: HASH_B,
+    });
+
+    assert.equal(first.outcome, "applied");
+    assert.notEqual(HASH_A, HASH_B, "these represent different raw bodies");
+    assert.equal(second.outcome, "duplicate", "the primary-key conflict wins over the distinct body hash");
+    assert.equal((await billingFor(WS_A))?.status, "active", "the second event has no effect");
+    assert.equal(await ledgerCount("evt_shared_header"), 1);
+  });
+
   it("duplicate delivery (same event key) is a no-op", async () => {
     await apply();
     const before = await billingFor(WS_A);
