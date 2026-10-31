@@ -66,11 +66,11 @@ begin
   end if;
 
   if row(
-       new.provider_mode, new.provider_plan_id, new.tier, new.currency,
+       new.id, new.provider_mode, new.provider_plan_id, new.tier, new.currency,
        new.amount_minor, new.interval_unit, new.interval_count,
        new.included_seats, new.created_at, new.created_by
      ) is distinct from row(
-       old.provider_mode, old.provider_plan_id, old.tier, old.currency,
+       old.id, old.provider_mode, old.provider_plan_id, old.tier, old.currency,
        old.amount_minor, old.interval_unit, old.interval_count,
        old.included_seats, old.created_at, old.created_by
      ) then

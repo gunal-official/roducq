@@ -32,8 +32,11 @@ const SUB_A = "sub_FoundationA001";
 const SUB_B = "sub_FoundationB002";
 const HASH_A = "a".repeat(64);
 const HASH_B = "b".repeat(64);
+const INTENT_CREATED_AT = "2020-01-01T00:00:00Z";
 const FUTURE = "2099-01-01T00:00:00Z";
-const NOWISH = "2026-10-30T12:00:00Z";
+const NOWISH = "2020-01-01T00:01:00Z";
+const PROVIDER_CREATED_AT = "2020-01-01T00:02:00Z";
+const VERIFIED_AT = "2020-01-01T00:03:00Z";
 const APPLY_SIGNATURE = "public.apply_razorpay_subscription_event(text,text,timestamptz,text,uuid,text,text,timestamptz,text,text,numeric,boolean,text,text)";
 
 let db: PGlite;
@@ -93,17 +96,17 @@ async function addIntent(opts: {
   const started = ["provider_create_started", "provider_created", "verified", "reconciliation_required"].includes(state)
     ? NOWISH
     : null;
-  const providerCreated = ["provider_created", "verified"].includes(state) ? "2026-10-30T12:01:00Z" : null;
-  const verified = state === "verified" ? "2026-10-30T12:02:00Z" : null;
-  const closed = ["failed", "expired"].includes(state) ? "2026-10-30T12:02:00Z" : null;
+  const providerCreated = ["provider_created", "verified"].includes(state) ? PROVIDER_CREATED_AT : null;
+  const verified = state === "verified" ? VERIFIED_AT : null;
+  const closed = ["failed", "expired"].includes(state) ? VERIFIED_AT : null;
   await db.query(
     `insert into public.razorpay_checkout_intents
        (id, workspace_id, initiating_owner_id, plan_catalog_id, request_key, state,
-        reservation_expires_at, provider_create_started_at, provider_created_at,
+        created_at, reservation_expires_at, provider_create_started_at, provider_created_at,
         verified_at, closed_at)
-     values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
+     values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
     [id, opts.workspaceId, OWNER, opts.planId, opts.requestKey ?? crypto.randomUUID(), state,
-      FUTURE, started, providerCreated, verified, closed],
+      INTENT_CREATED_AT, FUTURE, started, providerCreated, verified, closed],
   );
   return id;
 }
@@ -348,6 +351,10 @@ describe("Stage 1A Plan catalog constraints", () => {
 
   it("prevents reassignment of Plan identity and pricing while allowing retirement", async () => {
     await addPlan({ id: PLAN_STARTER, planId: "plan_Immutable001", tier: "starter", amountMinor: 2900, seats: 1 });
+    await expectSqlFailure(db.query(
+      `update public.razorpay_plan_catalog set id = '30000000-0000-0000-0000-000000000099' where id = $1`,
+      [PLAN_STARTER],
+    ), /immutable/);
     await expectSqlFailure(db.query(
       `update public.razorpay_plan_catalog set provider_plan_id = 'plan_Reassigned1' where id = $1`,
       [PLAN_STARTER],
