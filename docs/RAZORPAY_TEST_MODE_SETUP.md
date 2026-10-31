@@ -174,45 +174,69 @@ not the price charged.
 
 ## 4. Supabase migrations
 
-Two migration files carry the Razorpay schema. Both are **additive** — no
-column, table or historical row is dropped, and legacy Stripe columns
-(`stripe_customer_id`, `stripe_subscription_id`) are preserved.
+Three migration files carry the Razorpay schema. They are additive; existing
+Stripe columns and billing history are preserved.
 
 | File | What it does |
 | --- | --- |
-| `supabase/migrations/20261016000000_razorpay_billing.sql` | Adds `razorpay_customer_id`, `razorpay_subscription_id` (unique), `provider`, `last_billing_event_at`; widens the `status` CHECK; creates the `billing_webhook_events` idempotency ledger |
-| `supabase/migrations/20261016120000_razorpay_atomic_ledger_entitlements.sql` | Adds `paid_through` / `paid_through_source`, the event-ordering ledger columns, the unique body-hash index, and the atomic `apply_razorpay_subscription_event()` SECURITY DEFINER function |
+| `supabase/migrations/20261016000000_razorpay_billing.sql` | Adds Razorpay billing columns and the `billing_webhook_events` ledger; widens the billing status CHECK. |
+| `supabase/migrations/20261016120000_razorpay_atomic_ledger_entitlements.sql` | Adds verified paid-through fields and the atomic `apply_razorpay_subscription_event()` function. |
+| `supabase/migrations/20261030100000_razorpay_stage1a_schema_foundation.sql` | Adds the inert Plan catalog, checkout intents, subscription bindings, webhook work table, and nullable composite-checked `billing_subscriptions.razorpay_binding_id`. |
 
-### Apply
+### Stage 1A prerequisites and scope
+
+Before applying Stage 1A to a non-production staging project, confirm that the
+first two Razorpay migrations have been applied in timestamp order and that the
+project has the referenced `public.workspaces`, `public.billing_subscriptions`,
+and `auth.users` objects. The migration also revokes access for the standard
+Supabase `anon`, `authenticated`, and `service_role` roles when they exist.
+
+Stage 1A is schema foundation only: it inserts no Plan IDs or checkout rows,
+adds no billing RPC, grants no runtime-role access to the new tables, and does
+not wire application checkout or webhook behavior to them. It does not enable
+Live Mode. Do not infer historical Plan IDs or populate the catalog without a
+separately reviewed source of truth.
+
+> **PRODUCTION SAFETY GATE:** Do **not** apply
+> `20261030100000_razorpay_stage1a_schema_foundation.sql` to production without
+> separate, explicit approval. Merging this PR is not approval to run the
+> migration. Do not run `supabase db push` against a production-linked project
+> as part of merge or CI. Confirm the linked Supabase project/ref before any
+> manual `db push` or SQL Editor use.
+
+### Apply to staging only
+
+After staging prerequisites and the target project have been verified, the
+repository’s normal migration command is:
 
 ```bash
 supabase db push
 ```
 
-or paste each file, in the order above, into Supabase Dashboard → SQL Editor.
-The second file depends on the first.
+This applies pending migrations for the linked project, not just the Stage 1A
+file. Alternatively, apply all required files in timestamp order using the
+Supabase Dashboard SQL Editor. Confirm the project is non-production before
+either method. Production application requires the separate approval above.
 
-### Verify after applying
+### Verify after staging apply
 
 ```bash
 npm run verify:live           # schema shape
 npm run verify:live:policies  # RLS policies
 ```
 
-(Both need real production Supabase credentials, which is why CI excludes them.)
+Use credentials for the staging project. These checks need a real Supabase
+connection and are intentionally excluded from CI; do not point them at
+production without separate approval.
 
-### Offline check — already passing
+### Offline check
 
-`npm run verify:db` applies **every** migration into an in-memory PGlite
-Postgres and asserts the billing invariants. Confirmed in this milestone:
-
-```
-· applied migration 20261016000000_razorpay_billing.sql
-· applied migration 20261016120000_razorpay_atomic_ledger_entitlements.sql
-✓ billing: absent row reads as Free (0 rows)
-✓ RLS: users cannot write billing state (service role only)
-✓ billing.status CHECK rejects invented values
-```
+`npm run verify:db` applies every migration into an in-memory PGlite Postgres;
+it does not connect to Supabase or apply production changes. The focused
+`tests/db/razorpay-foundation.test.ts` also checks the Stage 1A constraints,
+role ACL metadata, preserved billing row/function state, and inactive/no-seed
+catalog behavior. PGlite is single-connection and does not prove real
+multi-connection concurrency or all managed-Supabase role/ACL behavior.
 
 ### Security model (already in place)
 
