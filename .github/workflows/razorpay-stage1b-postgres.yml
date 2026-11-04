@@ -38,4 +38,16 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run test:db:stage1b-concurrency
+      - name: Run and report PostgreSQL concurrency tests
+        shell: bash
+        run: |
+          status=0
+          npm run test:db:stage1b-concurrency > /tmp/stage1b-postgres.log 2>&1 || status=$?
+          cat /tmp/stage1b-postgres.log
+          if [ "$status" -ne 0 ]; then
+            tail -n 30 /tmp/stage1b-postgres.log | while IFS= read -r line; do
+              safe_line=$(printf '%s' "$line" | sed 's/%/%25/g; s/\r/%0D/g')
+              echo "::error title=Stage1B PostgreSQL test output::$safe_line"
+            done
+          fi
+          exit "$status"
