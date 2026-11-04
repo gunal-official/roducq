@@ -1,0 +1,53 @@
+name: Razorpay Stage 1B PostgreSQL concurrency
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/razorpay-stage1b-postgres.yml"
+      - "lib/billing/stage1b-adapters.ts"
+      - "package.json"
+      - "package-lock.json"
+      - "scripts/test.mjs"
+      - "supabase/migrations/**"
+      - "tests/db/razorpay-stage1b*.test.ts"
+      - "tests/lib/stage1b-adapters.test.ts"
+
+jobs:
+  postgres-concurrency:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: roducq_stage1b_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d roducq_stage1b_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 12
+    env:
+      STAGE1B_TEST_DATABASE_URL: postgres://postgres:postgres@localhost:5432/roducq_stage1b_test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Run and report PostgreSQL concurrency tests
+        shell: bash
+        run: |
+          status=0
+          npm run test:db:stage1b-concurrency > /tmp/stage1b-postgres.log 2>&1 || status=$?
+          cat /tmp/stage1b-postgres.log
+          if [ "$status" -ne 0 ]; then
+            tail -n 30 /tmp/stage1b-postgres.log | while IFS= read -r line; do
+              safe_line=$(printf '%s' "$line" | sed 's/%/%25/g; s/\r/%0D/g')
+              echo "::error title=Stage1B PostgreSQL test output::$safe_line"
+            done
+          fi
+          exit "$status"
