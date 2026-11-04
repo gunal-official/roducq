@@ -174,14 +174,22 @@ not the price charged.
 
 ## 4. Supabase migrations
 
-Three migration files carry the Razorpay schema. They are additive; existing
-Stripe columns and billing history are preserved.
+Five migration files carry the Razorpay schema. The Stage 1C additions are
+additive; existing Stripe columns and billing history are preserved.
 
 | File | What it does |
 | --- | --- |
 | `supabase/migrations/20261016000000_razorpay_billing.sql` | Adds Razorpay billing columns and the `billing_webhook_events` ledger; widens the billing status CHECK. |
 | `supabase/migrations/20261016120000_razorpay_atomic_ledger_entitlements.sql` | Adds verified paid-through fields and the atomic `apply_razorpay_subscription_event()` function. |
-| `supabase/migrations/20261030100000_razorpay_stage1a_schema_foundation.sql` | Adds the inert Plan catalog, checkout intents, subscription bindings, webhook work table, and nullable composite-checked `billing_subscriptions.razorpay_binding_id`. |
+| `supabase/migrations/20261030100000_razorpay_stage1a_schema_foundation.sql` | Stage 1A: adds the initially inert Plan catalog, checkout intents, subscription bindings, webhook work table, and nullable composite-checked `billing_subscriptions.razorpay_binding_id`. |
+| `supabase/migrations/20261104100000_razorpay_stage1b_rpcs.sql` | Stage 1B: adds owner-gated reservation/create authorization, binding, webhook ingestion/lease/finalization RPCs; grants narrowly scoped runtime execution. |
+| `supabase/migrations/20261104120000_razorpay_stage1c_runtime.sql` | Stage 1C: adds server-owned plan/seat metadata, `past_due`, accepts `payment.captured`, and updates atomic apply/webhook RPC validation. |
+
+### Staged implementation status
+
+The prerequisite code milestones are merged to `main`: PR #96 (isolated Starter/Team catalog), #97 (baseline characterization), #98 (Stage 1A inert schema), #99 (Stage 1B guarded RPCs/adapters), and #100 (multi-connection PostgreSQL concurrency verification). Stage 1C adds the authenticated checkout route and durable webhook worker; its public UI is deliberately not wired. PR merges do not apply any Supabase migration.
+
+Apply the Razorpay migrations in timestamp order only to a verified non-production project. The offline `npm run verify:db` applies the repository migrations to disposable in-memory PGlite and is not a Supabase operation.
 
 ### Stage 1A prerequisites and scope
 
@@ -198,11 +206,12 @@ Live Mode. Do not infer historical Plan IDs or populate the catalog without a
 separately reviewed source of truth.
 
 > **PRODUCTION SAFETY GATE:** Do **not** apply
-> `20261030100000_razorpay_stage1a_schema_foundation.sql` to production without
-> separate, explicit approval. Merging this PR is not approval to run the
-> migration. Do not run `supabase db push` against a production-linked project
-> as part of merge or CI. Confirm the linked Supabase project/ref before any
-> manual `db push` or SQL Editor use.
+> any Razorpay migration to production without separate, explicit approval.
+> Merging a PR is not approval to run a migration. Do not run `supabase db push`
+> against a production-linked project as part of merge or CI. Confirm the linked
+> Supabase project/ref before any manual `db push` or SQL Editor use. The Stage
+> 1C migration replaces SECURITY DEFINER functions and changes billing metadata;
+> it must first be reviewed and tested on a disposable/non-production database.
 
 ### Apply to staging only
 
@@ -213,9 +222,9 @@ repository’s normal migration command is:
 supabase db push
 ```
 
-This applies pending migrations for the linked project, not just the Stage 1A
-file. Alternatively, apply all required files in timestamp order using the
-Supabase Dashboard SQL Editor. Confirm the project is non-production before
+This applies all pending migrations for the linked project, not just the
+Razorpay Stage 1C file. Alternatively, apply all required files in timestamp
+order using the Supabase Dashboard SQL Editor. Confirm the project is non-production before
 either method. Production application requires the separate approval above.
 
 ### Verify after staging apply
@@ -233,16 +242,18 @@ production without separate approval.
 
 `npm run verify:db` applies every migration into an in-memory PGlite Postgres;
 it does not connect to Supabase or apply production changes. The focused
-`tests/db/razorpay-foundation.test.ts` also checks the Stage 1A constraints,
-role ACL metadata, preserved billing row/function state, and inactive/no-seed
-catalog behavior. PGlite is single-connection and does not prove real
-multi-connection concurrency or all managed-Supabase role/ACL behavior.
+`tests/db/razorpay-foundation.test.ts` checks the Stage 1A constraints, role ACL
+metadata, preserved billing state, and inactive/no-seed catalog behavior;
+`tests/db/razorpay-billing.test.ts` applies the full migration sequence including
+Stage 1B/1C. PGlite is single-connection and does not prove real multi-connection
+concurrency or all managed-Supabase role/ACL behavior; PR #100 provides the
+separate disposable-PostgreSQL concurrency suite.
 
 ### Security model (already in place)
 
 - `billing_subscriptions` has a **SELECT** policy for workspace members and
-  **no** insert/update/delete policy — the verified webhook and verify routes are
-  the only writers, via the service role.
+  **no** insert/update/delete policy — verified webhook-worker and checkout-verify
+  processing are the only billing writers, via the service role and atomic RPCs.
 - `billing_webhook_events` has **no** user policies at all.
 - `INSERT/UPDATE/DELETE` are additionally revoked from `anon` and
   `authenticated` at the role level (defence in depth).
@@ -257,7 +268,7 @@ write path is not reachable from the browser.
 ### URL
 
 ```
-https://<your-vercel-domain>/api/razorpay/webhook
+https://<your-vercel-domain>/api/billing/webhook
 ```
 
 For local testing, expose your dev server (e.g. `ngrok http 3000`) and register
@@ -265,7 +276,7 @@ the tunnel URL — Razorpay must reach it from the public internet.
 
 The endpoint is **publicly reachable by design**: the Next.js middleware
 (`proxy.ts` → `lib/supabase/middleware.ts`) only gates the `APP_PREFIXES` page
-routes (`/settings`, `/dashboard`, …). `/api/razorpay/webhook` is not in that
+routes (`/settings`, `/dashboard`, …). `/api/billing/webhook` is not in that
 list and is not in `RATE_LIMITED_PREFIXES`, so an unauthenticated Razorpay POST
 passes straight through to the route. Authentication is the HMAC signature, not
 a session.
@@ -287,16 +298,17 @@ These are the events RoduCQ actually handles
 
 | Event | RoduCQ behaviour |
 | --- | --- |
-| `subscription.authenticated` | status → `authenticated` (first payment authorised; **not** Pro yet) |
+| `subscription.authenticated` | after provider re-fetch and binding checks, status → `active` only with verified paid-through evidence |
 | `subscription.activated` | status → `active` + verified `paid_through` → Pro |
 | `subscription.charged` | renewal: status → `active`, `paid_through` advances |
 | `subscription.pending` | charge failed, Razorpay still retrying → Pro **off** |
-| `subscription.halted` | retries exhausted → Pro **off**, needs manual retry |
+| `subscription.halted` | status → `past_due`; Pro **off**, needs payment recovery |
 | `subscription.cancelled` | status → `canceled`; Pro kept only until `paid_through` |
 | `subscription.completed` | all invoices generated → `completed` → Free |
 | `subscription.paused` / `subscription.resumed` | → `paused` / `active` |
 | `subscription.updated` | accepted (idempotency ledger records it); no state change unless the payload carries a newer status |
 | `payment.failed` | moves an **active** subscription to `pending`; can never create or revive one |
+| `payment.captured` | after binding/provider verification, marks the subscription `active` and advances verified paid-through |
 
 Anything not on the list is acknowledged with `200 { received: true, ignored: … }`
 so Razorpay stops retrying, and nothing is written.
@@ -305,34 +317,30 @@ so Razorpay stops retrying, and nothing is written.
 
 Razorpay requires **2xx within 5 seconds**; non-2xx triggers exponential-backoff
 retries for 24 h, after which the webhook is **disabled** until you re-enable it.
-RoduCQ therefore:
+RoduCQ therefore acknowledges a **verified queue insertion** with `200 { received: true }`; the separate cron worker (`POST /api/cron/webhooks`, authenticated by `CRON_SECRET`) claims and applies work asynchronously through the lease and atomic-apply RPCs. Duplicate body hashes are also acknowledged safely.
 
-- returns `200` for handled events, ignored events and duplicate deliveries
-  (a duplicate is a *normal* outcome, not an error);
-- returns `400` only for an invalid signature or an unparseable payload;
-- returns `500` only on a genuine database failure — and because the whole apply
-  runs in **one transaction**, the rollback also releases the idempotency claim,
-  so the retry starts clean.
+- returns `401` for a signature mismatch, `400` for malformed signed event data, and `413` for an oversized body;
+- returns `500` for missing webhook configuration or a transient queue/database failure so Razorpay retries;
+- the worker returns each leased item to an applied, ignored/rejected, or retryable/dead-letter state. Database event ordering, binding checks, and entitlement writes remain atomic.
 
 ### What the handler guarantees
 
 1. HMAC-SHA256 over the **raw** body against `RAZORPAY_WEBHOOK_SECRET`, compared
-   with `timingSafeEqual` (constant time).
-2. Rejects before any state change when: the secret is unset (`500`), the
-   signature is wrong (`400`), or the payload has no trusted `created_at` (`400`).
-3. Event identity = `X-Razorpay-Event-Id` when present, else `sha256(raw body)`.
-   Both are unique in the ledger, so a redelivery is recognised either way.
-4. Ordering is enforced on Razorpay's own timestamp — an out-of-order or stale
-   event is recorded as `stale` and **cannot** reactivate a cancelled
-   subscription.
-5. Currency/amount come from `RAZORPAY_PLANS`, **never** from the payload.
-6. Workspace binding: the subscription id, once bound, is authoritative; a
-   notes-supplied workspace that disagrees is `rejected`.
-7. `paid_through` is Razorpay's `current_end` from the payload, or — when the
-   payload omits it for an access-granting state — from a server-side
-   `GET /subscriptions/{id}`. No code path invents a date.
-8. Nothing sensitive is logged: no signature, no secret, no raw payload. The
-   only log line is a sanitised `[razorpay] …` message plus a database error.
+   with `timingSafeEqual` (constant time), before JSON parsing or database access.
+2. Secret unset returns `500`; a signature mismatch returns `401`; signed but
+   malformed data or missing trusted `created_at` returns `400`.
+3. `sha256(raw body)` uniquely keys durable queue insertion. The event header (or
+   body hash fallback) is used by the atomic event ledger for idempotent apply.
+4. The cron worker leases one item at a time with `SKIP LOCKED`, fetches the
+   provider subscription using Test Mode credentials, and finalizes each result.
+5. Ordering is enforced on Razorpay's own timestamp — a stale event cannot
+   reactivate a cancelled subscription.
+6. Tier/price/seat values come from the bound server-side Plan catalog, never
+   from the payload. Subscription-id binding is authoritative; disagreeing
+   notes hints are rejected.
+7. `paid_through` comes from Razorpay's `current_end` in the signed payload or
+   server-side `GET /subscriptions/{id}`. No code path invents a date.
+8. No signature, secret, or raw payload is logged or returned.
 
 ## 6. Vercel configuration
 
@@ -348,12 +356,14 @@ Set env vars in Project → Settings → Environment Variables for **Production*
 | Variable | Production | Preview | Dev | Sensitive? |
 | --- | --- | --- | --- | --- |
 | `RAZORPAY_MODE` | `test` | `test` | `test` | no |
+| `RAZORPAY_LIVE_MODE_ENABLED` | `false` | `false` | `false` | no |
 | `RAZORPAY_KEY_ID` | `rzp_test_…` | ✓ | ✓ | no (public key) |
 | `RAZORPAY_KEY_SECRET` | test secret | ✓ | ✓ | **yes** |
 | `RAZORPAY_WEBHOOK_SECRET` | webhook secret | ✓ | ✓ | **yes** |
 | `RAZORPAY_PLANS` | the JSON array | ✓ | ✓ | no |
 | `NEXT_PUBLIC_SUPABASE_URL` | ✓ | ✓ | ✓ | no |
 | `SUPABASE_SERVICE_ROLE_KEY` | ✓ | ✓ | ✓ | **yes** |
+| `CRON_SECRET` | ✓ | ✓ | ✓ | **yes** |
 | `NEXT_PUBLIC_RAZORPAY_KEY_ID` | optional | optional | optional | no |
 
 Do **not** mark `RAZORPAY_KEY_ID` or `RAZORPAY_PLANS` as sensitive-only if you
@@ -362,8 +372,9 @@ server per request, so plain variables are correct here.
 
 Notes:
 
-- Mark the three secrets **Sensitive** in Vercel so their values cannot be read
-  back in the dashboard or logs.
+- Mark the secrets (`RAZORPAY_KEY_SECRET`, `RAZORPAY_WEBHOOK_SECRET`,
+  `SUPABASE_SERVICE_ROLE_KEY`, and `CRON_SECRET`) **Sensitive** in Vercel so
+  their values cannot be read back in the dashboard or logs.
 - A **production deploy does not enable live payments.** `RAZORPAY_MODE=test` in
   Production is the intended state for this milestone, and Live Mode is refused
   by code regardless of what is set. See §11.
@@ -374,18 +385,23 @@ Notes:
 ### Check the deployment
 
 ```bash
-curl -i -X POST https://<your-domain>/api/razorpay/webhook \
+curl -i -X POST https://<your-domain>/api/billing/webhook \
   -H 'content-type: application/json' -H 'x-razorpay-signature: deadbeef' \
   --data '{"event":"subscription.activated"}'
 ```
 
-Expected: **HTTP 400 `{"error":"Invalid signature."}`** — proof the endpoint is
+Expected: **HTTP 401 `{"error":"Invalid signature."}`** — proof the endpoint is
 reachable, not blocked by middleware, and enforcing signature verification.
 
-Then send a correctly signed body (HMAC-SHA256 of the raw body with your
-webhook secret) and expect `200 {"received":true,"outcome":…}`.
+A correctly signed, supported event is durably queued and acknowledged with
+`200 {"received":true}`; its subscription state is applied asynchronously by
+the authenticated `/api/cron/webhooks` worker.
 
-## 7. Test checkout walkthrough
+## 7. Existing Pro checkout walkthrough
+
+This section describes the existing Pro/Checkout.js surface. Stage 1C adds the
+separate Starter/Team API at `/api/billing/checkout` but deliberately does not
+wire public buttons or a modal; use the Test Mode runbook in §12 for that API.
 
 Test payment methods in Razorpay Test Mode:
 
@@ -595,54 +611,69 @@ Other safeguards preserved from the existing architecture:
 5. Set live credentials + `RAZORPAY_MODE=live` in Vercel.
 6. Re-run the §8 lifecycle matrix against live credentials before announcing.
 
-## 12. Verification results
+## 12. Verification results and Test Mode E2E
 
-Legend: **PASS** verified by a command run in this milestone · **FAIL** ·
-**BLOCKED** needs external credentials/access · **NOT TESTED**.
+Legend: **PASS** verified in this code milestone · **BLOCKED** needs external
+credentials/access or a separate checkout surface · **NOT TESTED** not run.
 
 | # | Item | Status | Evidence / what is needed |
 | --- | --- | --- | --- |
-| 1 | Razorpay Test Mode credentials configured | **BLOCKED** | No `RAZORPAY_KEY_ID`/`SECRET` in this environment. Supply Test Mode keys (§1) |
-| 2 | Test plans created and mapped correctly | **BLOCKED** | `npm run billing:plans -- --dry-run` **PASS** (spec validation, offline). Actual plan creation needs credentials. **No plan ids were invented** |
-| 3 | Supabase migrations apply | **PASS** (offline) | `npm run verify:db`: both Razorpay migrations apply in PGlite; RLS blocks user writes to billing state. Applying to the live project is **BLOCKED** |
-| 4 | Webhook URL registered | **BLOCKED** | Needs Dashboard access (§5) |
-| 5 | Webhook signing secret configured | **BLOCKED** | Needs Dashboard access (§5) |
-| 6 | Vercel environment variables configured | **BLOCKED** | Env vars are not set — no Dashboard/CLI access (`vercel` CLI not installed). Manual steps in §6. Note: a Vercel project **is** connected to this repo (see the row below) |
-| 6b | Vercel deployment build succeeds | **PASS** | The `Vercel` status check on PR #45 passed — the preview deployment built. Env-var configuration is still outstanding |
-| 7 | Test workspace created | **NOT TESTED** | Needs a deployed instance + auth |
-| 8 | Subscription checkout opened | **BLOCKED** | Needs items 1, 2, 6 |
-| 9 | Test payment completed | **BLOCKED** | Needs item 8 |
-| 10 | Webhook signature verified | **PASS** (mocked) | `tests/lib/razorpay-security.test.ts`, `tests/lib/billing-webhook.test.ts`: valid signature accepted, tampered/missing/wrong-body rejected. Live round-trip **BLOCKED** |
-| 11 | Subscription activated | **PASS** (mocked) | `tests/db/razorpay-billing.test.ts`: activation records the verified paid-through date and ledger row, against real Postgres (PGlite) |
-| 12 | Workspace access updated | **PASS** (mocked) | `tests/lib/billing-entitlements.test.ts` covers every entitlement branch |
-| 13 | Renewal behaviour verified | **PASS** (mocked) | `subscription.charged` advances `paid_through`; duplicate creates no second record |
-| 14 | Payment failure behaviour verified | **PASS** (mocked) | Newer failure → `pending`; stale failure cannot downgrade a recovered subscription; `payment.failed` never creates or revives |
-| 15 | Cancellation behaviour verified | **PASS** (mocked) | `cancel_at_cycle_end` sent; `canceled` keeps Pro until `paid_through` then Free |
-| 16 | Duplicate webhook handled safely | **PASS** (mocked) | Same event key **and** same body under a different key both → `duplicate`, no second record |
-| 17 | Production payments remain disabled | **PASS** | 30 tests in `tests/lib/razorpay-test-mode.test.ts`. Negative control: widening `ALLOWED_RAZORPAY_MODES` to include `"live"` makes 4 of them fail |
+| 1 | Stage 1 prerequisite PRs | **PASS** | PRs #96, #97, #98, #99 and #100 are merged to `main`; see §4. |
+| 2 | Test Mode checkout/webhook implementation | **PASS** (automated) | Stage 1C reservation → create authorization → provider create → success/failure recording, raw-body signature queueing, and leased worker are covered by focused tests. |
+| 3 | Razorpay schema migrations | **PASS** (offline) | `npm run verify:db` applies all 35 migrations, including Stage 1C, to disposable PGlite. This is not a Supabase action. |
+| 4 | Staging migration application | **NOT TESTED** | No Supabase project was connected or migrated. Verify the target is non-production and obtain separate approval before any real apply. |
+| 5 | Live/Test Mode credentials and Test Plans | **BLOCKED** | No external Razorpay API was contacted. Supply Test Mode credentials and activate reviewed Test Mode Plan IDs in the Stage 1A catalog; no Plan IDs are guessed or seeded. |
+| 6 | Webhook registration and Test Mode round-trip | **BLOCKED** | Requires Razorpay Dashboard access, Test Mode webhook secret, and deployed staging/preview configuration (§5–6). |
+| 7 | Customer-facing checkout/payment | **BLOCKED** | This PR deliberately does not wire public UI buttons or a Checkout.js modal. The authenticated API creates a provider subscription; a separately reviewed private Test Mode harness/UI is needed to complete a customer payment. |
+| 8 | Worker/cron execution | **PASS** (automated), **BLOCKED** (external) | Unit tests cover claim/process/finalize outcomes. Live scheduling requires a protected `/api/cron/webhooks` call with `CRON_SECRET`. |
+| 9 | Live billing / production migrations | **DISABLED / NOT RUN** | `ALLOWED_RAZORPAY_MODES` remains Test-only; `RAZORPAY_LIVE_MODE_ENABLED` must remain `false`. No production Supabase migration or Live Razorpay API call was made. |
 
-### Milestone verdict
+### Test Mode E2E runbook (staging only; not executed here)
 
-**PARTIALLY COMPLETE.**
+1. **Select a disposable Supabase staging project.** Confirm its project ref
+   independently before any SQL or migration command. Apply migrations through
+   `20261104120000_razorpay_stage1c_runtime.sql` in timestamp order only after
+   staging prerequisites are met. Never use a production-linked project for
+   this runbook.
+2. Create/verify Razorpay **Test Mode** Plans using the reviewed catalog; do not
+   copy Live Plan IDs. Keep `RAZORPAY_MODE=test` and
+   `RAZORPAY_LIVE_MODE_ENABLED=false`, set only `rzp_test_…` credentials,
+   `RAZORPAY_WEBHOOK_SECRET`, `SUPABASE_SERVICE_ROLE_KEY`, and the matching
+   active Stage 1A `razorpay_plan_catalog` rows for Starter/Team. Configure
+   `RAZORPAY_PLANS` separately only for the existing Pro checkout surface.
+3. Register `https://<staging-host>/api/billing/webhook` in the Razorpay Test
+   Mode Dashboard with the same webhook secret. Enable the supported events in
+   §5, including `payment.captured`. Configure the protected cron call to
+   `POST /api/cron/webhooks` with `Authorization: Bearer $CRON_SECRET`.
+4. Sign in as a workspace owner and POST
+   `{"tier":"starter","request_key":"<fresh UUID>"}` or
+   `{"tier":"team","request_key":"<fresh UUID>"}` to
+   `/api/billing/checkout` using that authenticated session. Expect HTTP 201
+   with an intent and Test Mode subscription ID. `studio` and other tiers must
+   be rejected; a member/viewer must not create a subscription.
+5. Inspect the subscription in the Razorpay **Test Mode** Dashboard and, using
+   a separately reviewed private Test Mode customer-payment harness (not added
+   by this PR), complete a test payment. Confirm Razorpay sends the signed
+   event to `/api/billing/webhook`, which responds `{ "received": true }` only
+   after durable queue ingestion.
+6. Invoke the protected cron endpoint. Confirm the worker claims the event,
+   verifies the provider subscription, and the bound workspace row records the
+   catalog-derived `plan_name`/`seat_limit`, status, and verified
+   `paid_through`. Exercise renewal, `payment.failed`, `subscription.halted`,
+   `subscription.cancelled`, duplicate delivery, and stale delivery; confirm
+   `past_due`/`canceled` remain non-entitled or paid-through-limited as expected.
+7. Repeat only with Test Mode keys. Do not set Live Mode true, use Live keys,
+   apply migrations to production, or treat a mocked test as a payment E2E.
 
-- Implementation, automated tests, offline schema verification and documentation:
-  **done and passing**.
-- Live Test Mode checkout + live webhook round-trip: **BLOCKED** on Razorpay Test
-  Mode credentials, Supabase project access, and Vercel environment-variable
-  access. (The Vercel project itself is connected and its deployment build is
-  verified — see item 6b.)
-- The mocked results above exercise the real `lib/billing/*` code paths and a
-  real Postgres (PGlite), but they are **not** a substitute for a live Test Mode
-  payment. Do not treat this milestone as verified end to end until items 1, 2,
-  4, 5, 6 and 8–10 pass against real Test Mode credentials.
+### Automated results for this PR
 
-### Automated results from this milestone
+The four required gates are recorded after the final local run below. They do
+not establish Razorpay, Supabase staging, or customer-payment E2E readiness.
 
 | Gate | Result |
 | --- | --- |
-| `npx tsc --noEmit` | pass |
-| `npm run lint` | pass |
-| `npm test` | **1039 pass, 0 fail** (was 1009; +44 new) |
-| `npm run build` | pass |
-| `npm run verify:db` | pass |
-| `npm run verify:pdf` | pass |
+| `npx tsc --noEmit` | **PASS** |
+| `npm run lint` | **PASS** |
+| `npm test` | **PASS** — 1,493 tests, 0 failures (1,480 standard + 13 server-only adapter/worker) |
+| `npm run build` | **PASS** |
+| `npm run verify:db` | **PASS** — 35 migrations apply in PGlite; no external database touched |

@@ -328,8 +328,8 @@ export function verifyWebhookSignature(input: { webhookSecret: string; signature
 }
 
 // ── Status mapping / entitlements ─────────────────────────────────────
-export type BillingStatus = "created" | "authenticated" | "active" | "pending" | "halted" | "paused" | "canceled" | "completed" | "expired";
-const STATUS_MAP: Record<string, BillingStatus> = { created: "created", authenticated: "authenticated", active: "active", pending: "pending", halted: "halted", paused: "paused", cancelled: "canceled", canceled: "canceled", completed: "completed", expired: "expired" };
+export type BillingStatus = "created" | "authenticated" | "active" | "pending" | "past_due" | "halted" | "paused" | "canceled" | "completed" | "expired";
+const STATUS_MAP: Record<string, BillingStatus> = { created: "created", authenticated: "authenticated", active: "active", pending: "pending", past_due: "past_due", halted: "past_due", paused: "paused", cancelled: "canceled", canceled: "canceled", completed: "completed", expired: "expired" };
 export function mapRazorpayStatus(raw: string | null | undefined): BillingStatus | null {
   if (!raw) return null; return STATUS_MAP[raw.toLowerCase()] ?? null;
 }
@@ -337,10 +337,11 @@ export function mapRazorpayStatus(raw: string | null | undefined): BillingStatus
 export function grantsPro(status: BillingStatus | string | null | undefined): boolean { return status === "active"; }
 
 // ── Webhook parsing (actual Razorpay event names) ─────────────────────
-export const RAZORPAY_WEBHOOK_EVENTS = new Set(["subscription.authenticated","subscription.activated","subscription.charged","subscription.pending","subscription.halted","subscription.paused","subscription.resumed","subscription.cancelled","subscription.completed","subscription.updated","payment.failed"]);
+export const RAZORPAY_WEBHOOK_EVENTS = new Set(["subscription.authenticated","subscription.activated","subscription.charged","subscription.pending","subscription.halted","subscription.paused","subscription.resumed","subscription.cancelled","subscription.completed","subscription.updated","payment.failed","payment.captured"]);
 export type RazorpayWebhookEvent =
   | { kind: "subscription"; eventType: string; subscriptionId: string; customerId: string | null; planId: string | null; razorpayStatus: string | null; workspaceId: string | null; createdAt: number | null; currentEnd: number | null }
   | { kind: "payment_failed"; eventType: string; subscriptionId: string | null; createdAt: number | null }
+  | { kind: "payment_captured"; eventType: string; subscriptionId: string | null; createdAt: number | null }
   | { kind: "ignored"; type: string }
   | { kind: "invalid" };
 function str(v: unknown): string | null { return typeof v === "string" && v ? v : null; }
@@ -351,19 +352,33 @@ export function parseRazorpayWebhookEvent(raw: string): RazorpayWebhookEvent {
   if (!body || typeof body.event !== "string") return { kind: "invalid" };
   if (!RAZORPAY_WEBHOOK_EVENTS.has(body.event)) return { kind: "ignored", type: body.event };
   const createdAt = typeof body.created_at === "number" ? body.created_at : null;
-  if (body.event === "payment.failed") {
-    return { kind: "payment_failed", eventType: body.event, subscriptionId: str(body.payload?.payment?.entity?.subscription_id), createdAt };
+  if (body.event === "payment.failed" || body.event === "payment.captured") {
+    return { kind: body.event === "payment.failed" ? "payment_failed" : "payment_captured", eventType: body.event, subscriptionId: str(body.payload?.payment?.entity?.subscription_id), createdAt };
   }
   const sub = body.payload?.subscription?.entity;
   if (!sub || !str(sub.id)) return { kind: "invalid" };
   const notes = (sub.notes ?? {}) as Record<string, unknown>;
   return { kind: "subscription", eventType: body.event, subscriptionId: sub.id, customerId: str(sub.customer_id), planId: str(sub.plan_id), razorpayStatus: str(sub.status), workspaceId: str(notes.workspace_id), createdAt, currentEnd: unixSeconds(sub.current_end) };
 }
-/** Event-type → status when payload status is absent (defensive). */
+/** Event-type transitions; generic `subscription.updated` uses the provider payload status. */
 export function statusForWebhookEvent(eventType: string, payloadStatus: string | null): BillingStatus | null {
-  const fromPayload = mapRazorpayStatus(payloadStatus); if (fromPayload) return fromPayload;
-  const byEvent: Record<string, BillingStatus> = { "subscription.activated": "active", "subscription.charged": "active", "subscription.authenticated": "authenticated", "subscription.pending": "pending", "subscription.halted": "halted", "subscription.paused": "paused", "subscription.resumed": "active", "subscription.cancelled": "canceled", "subscription.completed": "completed" };
-  return byEvent[eventType] ?? null;
+  const byEvent: Record<string, BillingStatus> = {
+    "subscription.activated": "active",
+    "subscription.charged": "active",
+    "subscription.authenticated": "active",
+    "subscription.pending": "pending",
+    "subscription.halted": "past_due",
+    "subscription.paused": "paused",
+    "subscription.resumed": "active",
+    "subscription.cancelled": "canceled",
+    "subscription.completed": "completed",
+    "payment.captured": "active",
+  };
+  // These event names carry their own definitive transition. For generic
+  // subscription.updated, prefer the current provider status in the payload.
+  if (eventType !== "subscription.updated" && byEvent[eventType]) return byEvent[eventType];
+  const fromPayload = mapRazorpayStatus(payloadStatus);
+  return fromPayload ?? byEvent[eventType] ?? null;
 }
 
 // ── Razorpay API (server-only) ────────────────────────────────────────

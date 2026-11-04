@@ -133,8 +133,8 @@ const defaultDependencies: Stage1BDependencies = {
 };
 
 /**
- * Server-only Stage 1B adapter factory. It is deliberately not imported by
- * checkout pages, actions, or webhook routes in this implementation.
+ * Server-only Stage 1B adapter factory used by the guarded Stage 1C checkout,
+ * webhook-ingestion, and leased-worker paths.
  */
 export function createStage1BAdapters(deps: Stage1BDependencies = defaultDependencies) {
   const service = () => deps.createServiceClient();
@@ -324,7 +324,8 @@ export function createStage1BAdapters(deps: Stage1BDependencies = defaultDepende
     const webhookSecret = deps.getWebhookSecret();
     // HMAC of the exact raw request bytes is checked before parsing, hashing,
     // client creation, or any database call.
-    if (!webhookSecret || !verifyWebhookSignature({
+    if (!webhookSecret) return fail("webhook_secret_unconfigured");
+    if (!verifyWebhookSignature({
       webhookSecret,
       signature: input.signature ?? "",
       raw: input.rawBody,
@@ -340,7 +341,9 @@ export function createStage1BAdapters(deps: Stage1BDependencies = defaultDepende
     const planId = event.kind === "subscription" ? event.planId : null;
     const status = isPaymentFailed
       ? "pending"
-      : statusForWebhookEvent(event.eventType, event.razorpayStatus);
+      : event.kind === "payment_captured"
+        ? "active"
+        : statusForWebhookEvent(event.eventType, event.razorpayStatus);
     const currentEnd = event.kind === "subscription" ? event.currentEnd : null;
     let intentHint: string | null = null;
     if (event.kind === "subscription") {
@@ -429,9 +432,19 @@ export function createStage1BAdapters(deps: Stage1BDependencies = defaultDepende
       });
     }
 
+    const providerStatus = mapRazorpayStatus(subscription.status);
+    const entitlementEvents = new Set([
+      "subscription.authenticated", "subscription.activated", "subscription.charged",
+      "subscription.resumed", "payment.captured",
+    ]);
     const status = lease.event_type === "payment.failed"
       ? "pending"
-      : statusForWebhookEvent(lease.event_type, mapRazorpayStatus(lease.claimed_status ?? subscription.status));
+      : entitlementEvents.has(lease.event_type)
+        ? (providerStatus === "active" || providerStatus === "authenticated" ? "active" : providerStatus)
+        : statusForWebhookEvent(
+          lease.event_type,
+          providerStatus ?? (lease.claimed_status === "active" || lease.claimed_status === "authenticated" ? null : lease.claimed_status),
+        );
     if (!status) {
       return finalize({
         p_body_sha256: lease.body_sha256,

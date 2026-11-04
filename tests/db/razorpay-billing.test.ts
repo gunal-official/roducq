@@ -85,7 +85,11 @@ before(async () => {
     create role authenticated nologin;
     create role service_role nologin;
     create schema auth;
-    create table auth.users (id uuid primary key, email varchar(255));
+    create table auth.users (
+      id uuid primary key,
+      email varchar(255),
+      raw_user_meta_data jsonb not null default '{}'::jsonb
+    );
     create or replace function auth.uid() returns uuid language sql stable as $$
       select nullif(current_setting('app.jwt_sub', true), '')::uuid;
     $$;
@@ -148,6 +152,34 @@ async function ledgerOutcome(key: string) {
   return r.rows[0]?.outcome ?? null;
 }
 
+describe("Stage 1C webhook queue schema", () => {
+  it("accepts payment.captured into the durable queue with a subscription reference", async () => {
+    const hash = crypto.randomUUID().replaceAll("-", "").padEnd(64, "a");
+    const result = await db.query<{ inserted: boolean; work_row: { event_type: string; state: string; provider_subscription_id: string } }>(
+      `select * from public.ingest_razorpay_webhook_work(
+         $1, 'evt_stage1c_capture', 'payment.captured', $2, $3, null, 'active', null, null, null
+       )`,
+      [hash, T1, SUB],
+    );
+    assert.equal(result.rows[0].inserted, true);
+    assert.equal(result.rows[0].work_row.event_type, "payment.captured");
+    assert.equal(result.rows[0].work_row.state, "received");
+    assert.equal(result.rows[0].work_row.provider_subscription_id, SUB);
+  });
+
+  it("accepts the past_due claim produced by subscription.halted", async () => {
+    const hash = crypto.randomUUID().replaceAll("-", "").padEnd(64, "b");
+    const result = await db.query<{ inserted: boolean; work_row: { claimed_status: string } }>(
+      `select * from public.ingest_razorpay_webhook_work(
+         $1, null, 'subscription.halted', $2, $3, null, 'past_due', null, null, null
+       )`,
+      [hash, T1, SUB],
+    );
+    assert.equal(result.rows[0].inserted, true);
+    assert.equal(result.rows[0].work_row.claimed_status, "past_due");
+  });
+});
+
 describe("atomic apply: valid subscription", () => {
   it("activates a Razorpay subscription, records the verified paid-through date and the ledger row", async () => {
     const res = await apply();
@@ -161,6 +193,63 @@ describe("atomic apply: valid subscription", () => {
     assert.equal(row?.amount, "1499");
     assert.ok(row?.paid_through && new Date(row.paid_through).toISOString() === new Date(PT_FUTURE).toISOString());
     assert.equal(await ledgerOutcome("evt_1"), "applied");
+  });
+
+  it("persists past_due as a valid non-entitling billing status with Stage 1C plan metadata columns", async () => {
+    const result = await apply({
+      eventKey: "evt_past_due",
+      eventType: "subscription.halted",
+      status: "past_due",
+      bodySha256: "c".repeat(64),
+      razorpayEventId: null,
+    });
+    assert.equal(result.outcome, "applied");
+    const row = await db.query<{ status: string; plan_name: string | null; seat_limit: number | null }>(
+      "select status, plan_name, seat_limit from public.billing_subscriptions where workspace_id = $1",
+      [WS_A],
+    );
+    assert.deepEqual(row.rows[0], { status: "past_due", plan_name: null, seat_limit: null });
+  });
+
+  it("derives plan_name and seat_limit only from the verified subscription binding", async () => {
+    const owner = "20000000-0000-0000-0000-000000000001";
+    const catalogId = crypto.randomUUID();
+    const intentId = crypto.randomUUID();
+    const bindingId = crypto.randomUUID();
+    await db.query("insert into auth.users (id, email) values ($1, 'stage1c@example.invalid') on conflict (id) do nothing", [owner]);
+    await db.query(
+      `insert into public.razorpay_plan_catalog
+         (id, provider_mode, provider_plan_id, tier, currency, amount_minor, included_seats, created_by)
+       values ($1, 'test', $2, 'team', 'USD', 7900, 5, $3)`,
+      [catalogId, `plan_${catalogId.replaceAll('-', '').slice(0, 16)}`, owner],
+    );
+    const planId = (await db.query<{ provider_plan_id: string }>(
+      "select provider_plan_id from public.razorpay_plan_catalog where id = $1", [catalogId],
+    )).rows[0].provider_plan_id;
+    await db.query(
+      `insert into public.razorpay_checkout_intents
+         (id, workspace_id, initiating_owner_id, plan_catalog_id, request_key, state,
+          created_at, reservation_expires_at, provider_create_started_at, provider_created_at)
+       values ($1, $2, $3, $4, $5, 'provider_created', $6, $7, $8, $9)`,
+      [intentId, WS_A, owner, catalogId, crypto.randomUUID(), T1, T4, T2, T3],
+    );
+    await db.query(
+      `insert into public.razorpay_subscription_bindings
+         (id, provider_subscription_id, workspace_id, plan_catalog_id, checkout_intent_id,
+          source, state, bound_at, verified_at)
+       values ($1, $2, $3, $4, $5, 'checkout_intent', 'verified', $6, $7)`,
+      [bindingId, SUB, WS_A, catalogId, intentId, T2, T3],
+    );
+    assert.equal((await apply()).outcome, "applied");
+    await db.query(
+      "update public.billing_subscriptions set razorpay_binding_id = $1 where workspace_id = $2",
+      [bindingId, WS_A],
+    );
+    const row = await db.query<{ plan_name: string | null; seat_limit: number | null }>(
+      "select plan_name, seat_limit from public.billing_subscriptions where workspace_id = $1", [WS_A],
+    );
+    assert.deepEqual(row.rows[0], { plan_name: "team", seat_limit: 5 });
+    assert.ok(planId.startsWith("plan_"));
   });
 
   it("stores the Razorpay event id and body hash for audit", async () => {

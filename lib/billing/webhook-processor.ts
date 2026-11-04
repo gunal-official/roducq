@@ -130,6 +130,32 @@ export async function processRazorpayWebhook(input: WebhookInput, deps: WebhookD
     return respond(result, event.eventType);
   }
 
+  if (event.kind === "payment_captured") {
+    if (!event.subscriptionId) return { status: 200, body: { received: true, ignored: event.eventType } };
+    const fetched = await deps.fetchSubscription(event.subscriptionId);
+    if (!fetched.ok) {
+      return { status: 500, body: { error: "Webhook handling failed." }, log: "[razorpay] could not verify captured payment subscription" };
+    }
+    const subscription = fetched.subscription;
+    const plan = deps.plans.find((p) => p.planId === subscription.plan_id) ?? null;
+    if (!plan || subscription.status !== "active" || !subscription.current_end) {
+      return { status: 200, body: { received: true, ignored: event.eventType } };
+    }
+    const result = await deps.apply({
+      ...common,
+      subscriptionId: subscription.id,
+      workspaceId: subscription.notes.workspace_id ?? null,
+      status: "active",
+      customerId: subscription.customer_id,
+      paidThrough: isoFromUnixSeconds(subscription.current_end),
+      paidThroughSource: "razorpay_api",
+      currency: plan.currency,
+      amount: plan.amount,
+      onlyIfActive: false,
+    });
+    return respond(result, event.eventType);
+  }
+
   const status = statusForWebhookEvent(event.eventType, event.razorpayStatus);
   if (!status) return { status: 200, body: { received: true, ignored: event.eventType } };
 

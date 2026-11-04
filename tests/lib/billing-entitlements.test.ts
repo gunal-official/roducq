@@ -177,8 +177,11 @@ describe("Checkout gate mirrors the database takeover rules", () => {
   });
   test("live Razorpay subscription blocks a second checkout", () => {
     assert.notEqual(canStartNewRazorpaySubscription(rzp("active", FUTURE), NOW), null);
-    assert.notEqual(canStartNewRazorpaySubscription(rzp("halted", null), NOW), null);
     assert.notEqual(canStartNewRazorpaySubscription(rzp("pending", FUTURE), NOW), null);
+  });
+  test("past_due or halted subscriptions may be replaced", () => {
+    assert.equal(canStartNewRazorpaySubscription(rzp("past_due", null), NOW), null);
+    assert.equal(canStartNewRazorpaySubscription(rzp("halted", null), NOW), null);
   });
   test("abandoned or ended Razorpay subscriptions may be replaced", () => {
     for (const s of ["created", "authenticated", "canceled", "completed", "expired"]) {

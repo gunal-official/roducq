@@ -202,10 +202,10 @@ describe("SECURITY: webhook event allowlist", () => {
       "subscription.authenticated", "subscription.activated", "subscription.charged",
       "subscription.pending", "subscription.halted", "subscription.paused",
       "subscription.resumed", "subscription.cancelled", "subscription.completed",
-      "subscription.updated", "payment.failed",
+      "subscription.updated", "payment.failed", "payment.captured",
     ];
     for (const evt of allowed) {
-      const payload = evt === "payment.failed"
+      const payload = evt === "payment.failed" || evt === "payment.captured"
         ? JSON.stringify({ event: evt, payload: { payment: { entity: { subscription_id: "sub_1" } } } })
         : JSON.stringify({ event: evt, payload: { subscription: { entity: { id: "sub_1", status: "active" } } } });
       const parsed = parseRazorpayWebhookEvent(payload);
@@ -215,7 +215,7 @@ describe("SECURITY: webhook event allowlist", () => {
   });
 
   test("non-allowlisted events are ignored (not processed, not invalid)", () => {
-    const ignored = ["order.paid", "refund.processed", "payment.authorized", "payment.captured"];
+    const ignored = ["order.paid", "refund.processed", "payment.authorized"];
     for (const evt of ignored) {
       const parsed = parseRazorpayWebhookEvent(JSON.stringify({ event: evt }));
       assert.equal(parsed.kind, "ignored", `${evt} must be ignored`);
@@ -281,7 +281,7 @@ describe("SECURITY: out-of-order event guard", () => {
   test("statusForWebhookEvent provides fallback when payload status is absent", () => {
     assert.equal(statusForWebhookEvent("subscription.activated", null), "active");
     assert.equal(statusForWebhookEvent("subscription.cancelled", null), "canceled");
-    assert.equal(statusForWebhookEvent("subscription.halted", null), "halted");
+    assert.equal(statusForWebhookEvent("subscription.halted", null), "past_due");
     assert.equal(statusForWebhookEvent("subscription.completed", null), "completed");
     assert.equal(statusForWebhookEvent("subscription.unknown", null), null);
   });
