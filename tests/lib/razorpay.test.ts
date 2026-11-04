@@ -47,7 +47,7 @@ describe("status mapping / entitlements", () => {
     assert.equal(mapRazorpayStatus("cancelled"), "canceled");
     assert.equal(mapRazorpayStatus("bogus"), null);
   });
-  test("event fallback mapping", () => { assert.equal(statusForWebhookEvent("subscription.halted", null), "halted"); assert.equal(statusForWebhookEvent("subscription.cancelled", null), "canceled"); });
+  test("event fallback mapping", () => { assert.equal(statusForWebhookEvent("subscription.halted", null), "past_due"); assert.equal(statusForWebhookEvent("subscription.cancelled", null), "canceled"); });
 });
 describe("Razorpay API (mocked fetch)", () => {
   test("create subscription sends server plan + workspace notes, Basic auth", async () => {

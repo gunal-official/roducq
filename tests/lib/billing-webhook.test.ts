@@ -323,7 +323,7 @@ describe("ordering", () => {
   });
 
   test("halted, paused, and cancelled map to non-entitling states", async () => {
-    for (const [event, status] of [["subscription.halted", "halted"], ["subscription.paused", "paused"], ["subscription.cancelled", "canceled"]] as const) {
+    for (const [event, status] of [["subscription.halted", "past_due"], ["subscription.paused", "paused"], ["subscription.cancelled", "canceled"]] as const) {
       const db = fakeDb();
       await processRazorpayWebhook(input(subEvent("subscription.activated")), deps(db));
       await processRazorpayWebhook(input(subEvent(event, { status: event === "subscription.cancelled" ? "cancelled" : status, createdAt: NOW_SEC + 10 })), deps(db));

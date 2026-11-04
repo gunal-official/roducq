@@ -189,6 +189,26 @@ describe("Stage 1B webhook adapter", () => {
     assert.equal(rpcCalls[0].name, "finalize_razorpay_webhook_work");
     assert.equal(rpcCalls[0].args?.p_lease_token, "lease-token");
     assert.equal(rpcCalls[0].args?.p_verified_plan_id, PLAN);
+    assert.equal(rpcCalls[0].args?.p_verified_status, "active");
     assert.equal(rpcCalls[0].args?.p_paid_through_source, "razorpay_api");
+  });
+
+  it("does not reactivate an event when the provider re-fetch reports canceled", async () => {
+    const lease: WebhookLease = {
+      body_sha256: "c".repeat(64), event_id_header: "evt_canceled", event_type: "subscription.activated",
+      event_created_at: "2026-11-04T09:00:00Z", provider_subscription_id: SUB,
+      claimed_plan_id: PLAN, claimed_status: "active", claimed_current_end: null,
+      candidate_intent_id: INTENT, candidate_workspace_hint_id: WORKSPACE,
+      attempt_count: 1, lease_token: "lease-canceled", lease_expires_at: "2026-11-04T09:02:00Z",
+    };
+    const { adapters, rpcCalls } = setup({
+      rpc: () => ({ outcome: "applied" }),
+      fetchFn: async () => response({
+        id: SUB, plan_id: PLAN, customer_id: "cus_test", status: "cancelled", notes: {}, current_end: 1796083200,
+      }),
+    });
+    const result = await adapters.processWebhookLease(lease);
+    assert.equal(result.ok, true);
+    assert.equal(rpcCalls.at(-1)?.args?.p_verified_status, "canceled");
   });
 });

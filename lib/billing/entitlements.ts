@@ -13,8 +13,8 @@
  *                 the grace window → Free, needs reconciliation. No date → Free
  *                 (fail closed; never assume an indefinite period).
  *     canceled  → Pro only until the verified paid_through; then Free.
- *     anything else (created, authenticated, pending, halted, paused,
- *                 completed, expired) → Free. 'pending' = a payment failed and
+     *     anything else (created, authenticated, pending, past_due, halted, paused,
+     *                 completed, expired) → Free. 'pending' = a payment failed and
  *                 Razorpay is still retrying; access is off until it recovers.
  *
  *   Legacy Stripe (provider = 'stripe', pre-Razorpay rows)
@@ -138,7 +138,7 @@ export function resolveEntitlement(
 export function canStartNewRazorpaySubscription(row: BillingRowLike | null | undefined, now: Date): string | null {
   if (!row) return null;
   if (row.provider === "razorpay") {
-    if (["created", "authenticated", "canceled", "completed", "expired"].includes(row.status)) return null;
+    if (["created", "authenticated", "past_due", "halted", "canceled", "completed", "expired"].includes(row.status)) return null;
     return "Your workspace already has a Razorpay subscription that is still in progress (" + row.status + "). Contact support before starting a new one.";
   }
   const pt = parseInstant(row.paid_through);
