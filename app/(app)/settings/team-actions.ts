@@ -22,6 +22,7 @@ import { sendInviteEmail } from "@/lib/invite-email";
 import { getWorkspaceContext } from "@/lib/data/workspace-context";
 import { recordEvent } from "@/lib/events";
 import { createClient } from "@/lib/supabase/server";
+import { canInviteMember } from "@/lib/billing/seat-limits";
 import { isUuid } from "@/lib/utils";
 
 export type TeamActionResult = { error?: string; warning?: string } | undefined;
@@ -78,6 +79,19 @@ export async function createTeamInviteAction(input: {
     };
   }
 
+  let seatAvailability: Awaited<ReturnType<typeof canInviteMember>>;
+  try {
+    seatAvailability = await canInviteMember(membership.workspace_id);
+  } catch (error) {
+    console.error("seat availability check failed:", error);
+    return { error: "Could not check workspace seat availability. Please try again." };
+  }
+  if (!seatAvailability.allowed) {
+    return {
+      error: `Workspace seat limit reached (${seatAvailability.currentCount}/${seatAvailability.limit}). Change plan before inviting another member.`,
+    };
+  }
+
   const expiresAt = new Date(Date.now() + INVITE_TTL_MS);
   const {
     data: invite,
@@ -94,6 +108,11 @@ export async function createTeamInviteAction(input: {
     .single();
 
   if (error) {
+    // The database trigger is the atomic backstop for concurrent invite
+    // requests; translate its capacity error to the same friendly UI copy.
+    if (error.message.includes("workspace_seat_limit_reached")) {
+      return { error: "Workspace seat limit reached. Change plan before inviting another member." };
+    }
     // Partial unique index: one pending invite per (workspace, email).
     if (error.code === "23505") {
       return { error: "There's already a pending invite for this email." };

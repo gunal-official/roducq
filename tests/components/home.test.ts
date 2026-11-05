@@ -426,8 +426,9 @@ describe("/ pricing band", () => {
     const pricing = read("components/marketing/landing/PricingSection.tsx");
     assert.match(pricing, /PRICING_DISCLOSURE\.map/);
     assert.match(PRICING_DISCLOSURE.join(" "), /Annual checkout is not available/i);
-    assert.match(PRICING_DISCLOSURE.join(" "), /brief and seat limits are not currently enforced/i);
-    assert.match(PRICING_DISCLOSURE.join(" "), /Additional-seat billing is not currently implemented/i);
+    assert.match(PRICING_DISCLOSURE.join(" "), /Brief limits are not currently enforced/i);
+    assert.match(PRICING_DISCLOSURE.join(" "), /Seat caps are enforced for new invitations/i);
+    assert.match(PRICING_DISCLOSURE.join(" "), /additional-seat billing is not implemented/i);
     assert.match(PRICING_DISCLOSURE.join(" "), /does not purchase or activate a paid plan/i);
     assert.doesNotMatch(pricing, /Razorpay|priceLines|billingConfigured/);
   });

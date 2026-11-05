@@ -559,4 +559,54 @@ describe("function and table privileges", () => {
       assert.ok(cols.includes(c), `${c} must exist`);
     }
   });
+
+  it("enforces Team seats atomically across active members and live pending invites", async () => {
+    const ws = "00000000-0000-0000-0000-0000000000d4";
+    const owner = "00000000-0000-0000-0000-0000000000d5";
+    await db.query("insert into public.workspaces (id, name) values ($1, 'Seat Test') on conflict do nothing", [ws]);
+    await db.query("insert into auth.users (id, email) values ($1, 'owner@seat.test') on conflict do nothing", [owner]);
+    await db.query("insert into public.workspace_members (workspace_id, user_id, role) values ($1, $2, 'owner')", [ws, owner]);
+    await db.query(
+      "insert into public.billing_subscriptions (workspace_id, provider, status, plan_name, seat_limit, paid_through) values ($1, 'razorpay', 'active', 'team', 5, $2)",
+      [ws, PT_FUTURE],
+    );
+
+    for (let i = 0; i < 4; i++) {
+      await db.query(
+        "insert into public.team_invites (workspace_id, email, invited_by, expires_at) values ($1, $2, $3, now() + interval '14 days')",
+        [ws, `pending-${i}@seat.test`, owner],
+      );
+    }
+    await assert.rejects(
+      db.query(
+        "insert into public.team_invites (workspace_id, email, invited_by, expires_at) values ($1, 'over-limit@seat.test', $2, now() + interval '14 days')",
+        [ws, owner],
+      ),
+      /workspace_seat_limit_reached/,
+    );
+  });
+
+  it("rechecks pending invites when a paid plan is downgraded before acceptance", async () => {
+    const ws = "00000000-0000-0000-0000-0000000000d6";
+    const owner = "00000000-0000-0000-0000-0000000000d7";
+    const invitee = "00000000-0000-0000-0000-0000000000d8";
+    const token = "00000000-0000-0000-0000-0000000000d9";
+    await db.query("insert into public.workspaces (id, name) values ($1, 'Downgrade Test') on conflict do nothing", [ws]);
+    await db.query("insert into auth.users (id, email) values ($1, 'owner@downgrade.test'), ($2, 'invitee@downgrade.test') on conflict do nothing", [owner, invitee]);
+    await db.query("insert into public.workspace_members (workspace_id, user_id, role) values ($1, $2, 'owner')", [ws, owner]);
+    await db.query(
+      "insert into public.billing_subscriptions (workspace_id, provider, status, plan_name, seat_limit, paid_through) values ($1, 'razorpay', 'active', 'team', 5, $2)",
+      [ws, PT_FUTURE],
+    );
+    await db.query(
+      "insert into public.team_invites (workspace_id, email, token, invited_by, expires_at) values ($1, 'invitee@downgrade.test', $2, $3, now() + interval '14 days')",
+      [ws, token, owner],
+    );
+    await db.query("update public.billing_subscriptions set plan_name = 'starter', seat_limit = 1 where workspace_id = $1", [ws]);
+    await db.query("select set_config('app.jwt_sub', $1, false)", [invitee]);
+    await assert.rejects(
+      db.query("select public.accept_team_invite($1)", [token]),
+      /workspace_seat_limit_reached/,
+    );
+  });
 });

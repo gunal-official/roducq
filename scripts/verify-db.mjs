@@ -2325,13 +2325,13 @@ await db.query("reset role");
   await db.query("set role nstester");
   const freeRow = await db.query(
     "select count(*)::int as n from public.billing_subscriptions where workspace_id = $1",
-    [SEED_WS]
+    [SECOND_WS]
   );
   check("billing: absent row reads as Free (0 rows)", freeRow.rows[0]?.n === 0);
   const userWrite = await db
     .query(
       "insert into public.billing_subscriptions (workspace_id, status) values ($1, 'active')",
-      [SEED_WS]
+      [SECOND_WS]
     )
     .then(() => ({ ok: true }))
     .catch(() => ({ ok: false }));
@@ -2340,12 +2340,12 @@ await db.query("reset role");
   // service-role stand-in (superuser — the Razorpay webhook route's client)
   await db.query(
     "insert into public.billing_subscriptions (workspace_id, stripe_customer_id, stripe_subscription_id, currency, amount, status) values ($1, 'cus_test', 'sub_test', 'USD', 19, 'active')",
-    [SEED_WS]
+    [SECOND_WS]
   );
   const badStatus = await db
     .query(
       "update public.billing_subscriptions set status = 'invented' where workspace_id = $1",
-      [SEED_WS]
+      [SECOND_WS]
     )
     .then(() => ({ ok: true }))
     .catch(() => ({ ok: false }));
@@ -2357,7 +2357,7 @@ await db.query("reset role");
   const badCur = await db
     .query(
       "update public.billing_subscriptions set currency = 'XX' where workspace_id = $1",
-      [SEED_WS]
+      [SECOND_WS]
     )
     .then(() => ({ ok: true }))
     .catch(() => ({ ok: false }));
@@ -2366,7 +2366,7 @@ await db.query("reset role");
   await db.query("set role nstester");
   const proRow = await db.query(
     "select status, currency, amount::text as a from public.billing_subscriptions where workspace_id = $1",
-    [SEED_WS]
+    [SECOND_WS]
   );
   check("billing: owner sees the active subscription (Pro)", proRow.rows[0]?.status === "active");
   check(
@@ -2381,9 +2381,9 @@ await db.query("reset role");
   check("billing: Razorpay columns exist", rzpCols.rows[0]?.n === 4);
   await db.query(
     "update public.billing_subscriptions set provider = 'razorpay', razorpay_subscription_id = 'sub_test_rzp', status = 'halted' where workspace_id = $1",
-    [SEED_WS]
+    [SECOND_WS]
   );
-  const rzpRow = await db.query("select provider, razorpay_subscription_id, status from public.billing_subscriptions where workspace_id = $1", [SEED_WS]);
+  const rzpRow = await db.query("select provider, razorpay_subscription_id, status from public.billing_subscriptions where workspace_id = $1", [SECOND_WS]);
   check("billing: Razorpay halted status is representable", rzpRow.rows[0]?.status === "halted" && rzpRow.rows[0]?.provider === "razorpay");
   const evt = await db.query("insert into public.billing_webhook_events (event_key, event_type) values ('verifydb-key', 'subscription.activated') on conflict do nothing returning event_key");
   const evtDup = await db.query("insert into public.billing_webhook_events (event_key, event_type) values ('verifydb-key', 'subscription.activated') on conflict do nothing returning event_key");

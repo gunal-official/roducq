@@ -69,10 +69,13 @@ export async function handleBillingCheckout(
   if (!body || typeof body !== "object" || Array.isArray(body)) {
     return json({ error: "Invalid checkout request." }, 400);
   }
-  if (body.tier === "studio") {
+  // The browser sends the logical tier slug as planId; provider Plan IDs are
+  // deliberately never accepted from a client and remain catalog-owned.
+  const tier = body.tier ?? body.planId;
+  if (tier === "studio") {
     return json({ error: "Studio is contact-only. Please contact sales." }, 400);
   }
-  if (body.tier !== "starter" && body.tier !== "team") {
+  if ((tier !== "starter" && tier !== "team") || (body.tier !== undefined && body.planId !== undefined && body.tier !== body.planId)) {
     return json({ error: "Choose the Starter or Team plan." }, 400);
   }
   const requestKey = body.request_key === undefined ? randomUUID() : body.request_key;
@@ -92,7 +95,7 @@ export async function handleBillingCheckout(
   const reserved = await deps.adapters.reserveIntent({
     workspaceId: context.id,
     actorUserId: context.userId,
-    tier: body.tier,
+    tier,
     currency: "USD",
     requestKey,
   });
@@ -141,6 +144,7 @@ export async function handleBillingCheckout(
   return json({
     intentId: authorized.value.intent.id,
     subscriptionId: created.value.id,
+    keyId: config.keyId,
     state: recorded.value.outcome,
   }, 201);
 }

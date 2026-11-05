@@ -197,7 +197,7 @@ describe("/pricing hero + Forma layout + provisional source", () => {
     assert.match(bySlug("team").billingNote, /not per seat/i);
     assert.deepEqual(PRICING_DISCLOSURE, [
       "Monthly prices shown. Annual checkout is not available.",
-      "Brief and seat limits are not currently enforced by tier. Additional-seat billing is not currently implemented. Starter, Team, and Studio are not mapped to separate paid-plan checkout. Creating an account does not purchase or activate a paid plan.",
+      "Brief limits are not currently enforced by tier. Seat caps are enforced for new invitations: Free/Starter include 1 seat, Team 5, and Studio 15; active members and unexpired pending invitations both occupy seats. Existing members are not removed after a downgrade, and additional-seat billing is not implemented. Workspace owners can start Starter or Team checkout from Billing Settings in Test Mode; Studio is contact-only. Creating an account does not purchase or activate a paid plan.",
     ]);
     assert.match(PAGE, /<PricingDisclosure context="cards" \/>/);
     assert.match(PAGE, /<PricingDisclosure context="comparison" \/>/);
@@ -258,7 +258,7 @@ describe("/pricing monthly-only presentation & Razorpay safety", () => {
 
   it("does not invoke checkout configuration to imply paid-plan activation", () => {
     assert.doesNotMatch(PAGE + PLANS_TSX, /buildMonthlyView|buildAnnualView|getPricesConfig|formatPrice|getPricingOffer/);
-    assert.match(PRICING_DISCLOSURE[1], /not mapped to separate paid-plan checkout/);
+    assert.match(PRICING_DISCLOSURE[1], /checkout from Billing Settings in Test Mode/);
     assert.match(PRICING_DISCLOSURE[1], /does not purchase or activate a paid plan/);
   });
 });
@@ -556,7 +556,7 @@ describe("/pricing approved public content and billing disclosures", () => {
   });
 
   it("publishes the entire corrected comparison matrix and notes", () => {
-    assert.equal(COMPARISON_LEGEND, "✓ indicates a capability described in the plan. Access is not currently enforced by Starter, Team, or Studio tier. — means not listed for that plan.");
+    assert.equal(COMPARISON_LEGEND, "✓ indicates a capability described in the plan; not every feature is tier-enforced. Seat caps are enforced for new invitations. — means not listed for that plan.");
     assert.deepEqual(COMPARISON_GROUPS.flatMap((group) => group.rows).map(({feature, values}) => [feature, ...values]), [
       ["Monthly price", "$29 / month", "$79 / month", "$199 / month"],
       ["Seats", "1 seat", "Up to 5 seats", "Up to 15 seats"],
@@ -580,11 +580,11 @@ describe("/pricing approved public content and billing disclosures", () => {
 
   it("publishes all five exact approved FAQ answers in native disclosures", () => {
     assert.deepEqual(BILLING_FAQ, [
-      {question: "How many seats are listed for each plan?", answer: "Starter is listed with 1 seat, Team with up to 5 seats, and Studio with up to 15 seats. Seat limits are not currently enforced by tier."},
+      {question: "How many seats are listed for each plan?", answer: "Free and Starter allow 1 seat, Team allows up to 5, and Studio allows up to 15. Active members and unexpired pending invitations both occupy seats. New invitations are blocked when the workspace is at its limit; existing members are not removed after a downgrade."},
       {question: "What are the brief limits?", answer: "Starter is listed with 15 briefs per month; Team and Studio are listed with unlimited briefs. Brief limits are not currently enforced by tier."},
       {question: "What is Team’s additional-seat price?", answer: "Team lists an additional $12 per seat after 5 seats. Additional-seat billing is not currently implemented."},
       {question: "Is annual checkout available?", answer: "No. Annual checkout is not available. The prices shown are monthly."},
-      {question: "Does creating an account purchase or activate a paid plan?", answer: "No. Creating an account does not purchase or activate a paid plan. Starter, Team, and Studio are not mapped to separate paid-plan checkout."},
+      {question: "Does creating an account purchase or activate a paid plan?", answer: "No. Creating an account does not purchase or activate a paid plan. Workspace owners can start Starter or Team checkout from Billing Settings (currently Test Mode); Studio is contact-only."},
     ]);
     assert.match(PAGE, /BILLING_FAQ\.map/);
     assert.match(PAGE, /<details className="lm-faq rp-faq"/);

@@ -169,6 +169,9 @@ export function PlanCard({
               </a>
             </Button>
           )}
+          <Button asChild variant="outline">
+            <Link href="/settings/billing">Billing settings</Link>
+          </Button>
           <Link
             href="/pricing"
             className="inline-flex min-h-11 min-w-11 items-center gap-1.5 text-sm text-accent underline-offset-2 hover:underline"

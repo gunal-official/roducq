@@ -73,16 +73,22 @@ describe("POST /api/billing/checkout", () => {
       intentId: INTENT,
     });
     assert.deepEqual(await response.json(), {
-      intentId: INTENT, subscriptionId: "sub_TestSubscription001", state: "recorded",
+      intentId: INTENT, subscriptionId: "sub_TestSubscription001", keyId: "rzp_test_checkout", state: "recorded",
     });
   });
 
-  it("rejects studio as contact-only and all tiers outside starter/team before database work", async () => {
-    for (const tier of ["studio", "pro", "unknown"]) {
-      const { deps, calls } = setup();
-      const response = await handleBillingCheckout(request({ tier }), deps);
+  it("accepts the public planId tier slug and rejects Studio as contact-only", async () => {
+    const { deps, calls, seen } = setup();
+    const selected = await handleBillingCheckout(request({ planId: "team", request_key: KEY }), deps);
+    assert.equal(selected.status, 201);
+    assert.equal((seen.reservation as { tier?: string }).tier, "team");
+    assert.deepEqual(calls, ["reserve", "authorize", "provider", "record"]);
+
+    for (const body of [{ tier: "studio" }, { planId: "studio" }, { tier: "pro" }, { planId: "unknown" }]) {
+      const invalid = setup();
+      const response = await handleBillingCheckout(request(body), invalid.deps);
       assert.equal(response.status, 400);
-      assert.deepEqual(calls, []);
+      assert.deepEqual(invalid.calls, []);
     }
   });
 
