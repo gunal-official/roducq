@@ -25,10 +25,9 @@ function sourceFiles(dir: string): string[] {
 describe("Forma F — inventory and honest browser evidence", () => {
   it("inventories every actual App Router page and handler, without imagined features", () => {
     const inventory = discoverRoutes(ROOT);
-    // 41 pages: the marketing surface grew with /changelog, /privacy, /terms
-    // after /integrations, /features, /solutions, /security, and /contact.
+    // 42 pages: includes the Stage 2 authenticated /settings/billing page.
     // Stage 1C adds the authenticated checkout and public signed-webhook handlers.
-    assert.equal(inventory.filter((route) => route.kind === "page").length, 41);
+    assert.equal(inventory.filter((route) => route.kind === "page").length, 42);
     assert.equal(inventory.filter((route) => route.kind === "handler").length, 20);
     for (const present of ["/privacy", "/terms", "/forgot-password", "/reset-password", "/dashboard", "/proposals/[id]/versions/[versionId]", "/share/[token]", "/invoice/[token]", "/invite/[token]"]) assert.ok(inventory.some((route) => route.pattern === present));
   });

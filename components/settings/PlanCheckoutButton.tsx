@@ -10,10 +10,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/components/ui/toast";
 import { formatPrice, type RazorpayPlanConfig } from "@/lib/razorpay";
 
-declare global { interface Window { Razorpay?: new (opts: Record<string, unknown>) => { open: () => void; on: (e: string, cb: (r: unknown) => void) => void } } }
+type LegacyRazorpayConstructor = new (opts: Record<string, unknown>) => { open: () => void; on: (e: string, cb: (r: unknown) => void) => void };
+const getLegacyRazorpay = () => (window as unknown as { Razorpay?: LegacyRazorpayConstructor }).Razorpay;
 function loadCheckoutJs(): Promise<boolean> {
   return new Promise((resolve) => {
-    if (window.Razorpay) return resolve(true);
+    if (getLegacyRazorpay()) return resolve(true);
     const script = document.createElement("script");
     script.src = "https://checkout.razorpay.com/v1/checkout.js";
     script.onload = () => resolve(true); script.onerror = () => resolve(false);
@@ -38,8 +39,10 @@ export function PlanCheckoutButton({ prices }: { prices: RazorpayPlanConfig[] })
         startTransition(async () => {
           const result = await createRazorpayCheckout(chosen.currency);
           if ("error" in result) { toast(result.error); return; }
-          if (!(await loadCheckoutJs()) || !window.Razorpay) { toast("Could not load Razorpay Checkout — check your connection and try again."); return; }
-          const rzp = new window.Razorpay({
+          if (!(await loadCheckoutJs())) { toast("Could not load Razorpay Checkout — check your connection and try again."); return; }
+          const Razorpay = getLegacyRazorpay();
+          if (!Razorpay) { toast("Could not load Razorpay Checkout — check your connection and try again."); return; }
+          const rzp = new Razorpay({
             key: result.keyId, subscription_id: result.subscriptionId, name: "RoduCQ", description: "RoduCQ Pro — per workspace / month",
             handler: async (response: unknown) => {
               const res = await fetch("/api/razorpay/verify", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(response) });

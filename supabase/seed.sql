@@ -360,6 +360,15 @@ values ('00000000-0000-0000-0000-000000000064', '00000000-0000-0000-0000-0000000
 on conflict (workspace_id, user_id) do nothing;
 
 -- ── Team invite: a PENDING invite on the demo workspace (Step 15) ──
+-- This local-only demo billing row supplies the five-seat Team capacity needed
+-- for the seeded invite. It is not a real payment or a production billing seed.
+insert into public.billing_subscriptions (
+  workspace_id, provider, status, plan_name, seat_limit, currency, amount, paid_through
+) values (
+  '00000000-0000-0000-0000-000000000002', 'razorpay', 'active', 'team', 5,
+  'USD', 79, now() + interval '14 days'
+) on conflict (workspace_id) do nothing;
+
 -- Token is deterministic so local manual testing has a stable URL:
 --   http://localhost:3000/invite/00000000-0000-0000-0000-000000000063
 -- Accept it by creating the account teammate@brightloop.co (any password)

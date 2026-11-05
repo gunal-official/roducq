@@ -128,11 +128,11 @@ export const PRICING_CARDS: readonly PricingCard[] = [
 
 export const PRICING_DISCLOSURE = [
   "Monthly prices shown. Annual checkout is not available.",
-  "Brief and seat limits are not currently enforced by tier. Additional-seat billing is not currently implemented. Starter, Team, and Studio are not mapped to separate paid-plan checkout. Creating an account does not purchase or activate a paid plan.",
+  "Brief limits are not currently enforced by tier. Seat caps are enforced for new invitations: Free/Starter include 1 seat, Team 5, and Studio 15; active members and unexpired pending invitations both occupy seats. Existing members are not removed after a downgrade, and additional-seat billing is not implemented. Workspace owners can start Starter or Team checkout from Billing Settings in Test Mode; Studio is contact-only. Creating an account does not purchase or activate a paid plan.",
 ] as const;
 
 export const COMPARISON_LEGEND =
-  "✓ indicates a capability described in the plan. Access is not currently enforced by Starter, Team, or Studio tier. — means not listed for that plan.";
+  "✓ indicates a capability described in the plan; not every feature is tier-enforced. Seat caps are enforced for new invitations. — means not listed for that plan.";
 
 export type ComparisonRow = {
   feature: string;
@@ -190,7 +190,7 @@ export const BILLING_FAQ = [
   {
     question: "How many seats are listed for each plan?",
     answer:
-      "Starter is listed with 1 seat, Team with up to 5 seats, and Studio with up to 15 seats. Seat limits are not currently enforced by tier.",
+      "Free and Starter allow 1 seat, Team allows up to 5, and Studio allows up to 15. Active members and unexpired pending invitations both occupy seats. New invitations are blocked when the workspace is at its limit; existing members are not removed after a downgrade.",
   },
   {
     question: "What are the brief limits?",
@@ -209,6 +209,6 @@ export const BILLING_FAQ = [
   {
     question: "Does creating an account purchase or activate a paid plan?",
     answer:
-      "No. Creating an account does not purchase or activate a paid plan. Starter, Team, and Studio are not mapped to separate paid-plan checkout.",
+      "No. Creating an account does not purchase or activate a paid plan. Workspace owners can start Starter or Team checkout from Billing Settings (currently Test Mode); Studio is contact-only.",
   },
 ] as const;

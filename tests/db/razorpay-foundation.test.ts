@@ -16,6 +16,7 @@ const MIGRATIONS_DIR = "supabase/migrations";
 const FOUNDATION_MIGRATION = "20261030100000_razorpay_stage1a_schema_foundation.sql";
 const STAGE1B_MIGRATION = "20261104100000_razorpay_stage1b_rpcs.sql";
 const STAGE1C_MIGRATION = "20261104120000_razorpay_stage1c_runtime.sql";
+const STAGE2_MIGRATION = "20261105100000_billing_stage2_seat_limits.sql";
 const WS_A = "10000000-0000-0000-0000-0000000000a1";
 const WS_B = "10000000-0000-0000-0000-0000000000b2";
 const WS_C = "10000000-0000-0000-0000-0000000000c3";
@@ -169,7 +170,7 @@ before(async () => {
   `);
 
   const files = readdirSync(MIGRATIONS_DIR)
-    .filter((file) => file.endsWith(".sql") && file !== FOUNDATION_MIGRATION && file !== STAGE1B_MIGRATION && file !== STAGE1C_MIGRATION)
+    .filter((file) => file.endsWith(".sql") && file !== FOUNDATION_MIGRATION && file !== STAGE1B_MIGRATION && file !== STAGE1C_MIGRATION && file !== STAGE2_MIGRATION)
     .sort();
   for (const file of files) {
     await db.exec(readFileSync(join(MIGRATIONS_DIR, file), "utf8"));

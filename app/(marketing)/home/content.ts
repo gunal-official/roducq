@@ -445,7 +445,7 @@ export const FAQ: readonly FaqItem[] = [
   },
   {
     q: "Does creating an account purchase or activate a paid plan?",
-    a: "No. Creating an account does not purchase or activate a paid plan. Starter, Team and Studio are not mapped to separate paid-plan checkout, so review the plan terms before making a decision.",
+    a: "No. Creating an account does not purchase or activate a paid plan. Workspace owners can start Starter or Team checkout from Billing Settings (currently Test Mode); Studio is contact-only.",
   },
   {
     q: "Is annual checkout available?",
@@ -453,7 +453,7 @@ export const FAQ: readonly FaqItem[] = [
   },
   {
     q: "Are seat and brief limits enforced by plan?",
-    a: "Not currently. The listed seat and brief limits are not enforced by Starter, Team or Studio. Team lists an additional $12 per seat after five seats, but additional-seat billing is not currently implemented.",
+    a: "Seat caps are enforced for new invitations: Free and Starter allow 1 seat, Team 5, and Studio 15. Active members and unexpired pending invitations occupy seats; existing members are not removed after a downgrade. Brief limits and additional-seat billing are not currently enforced.",
   },
   {
     q: "Which sources and client links are supported?",
