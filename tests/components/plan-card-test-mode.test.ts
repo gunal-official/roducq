@@ -1,103 +1,59 @@
-/**
- * Plan & billing — Razorpay Test Mode indicator.
- *
- * Source-level, like the rest of tests/components (node:test, zero test
- * deps). These guards exist because a billing screen that lies is worse than
- * one that is blank: the indicator must appear ONLY in Test Mode, must use
- * the exact operator-approved wording, and the card must never claim a
- * payment succeeded on the strength of the browser alone.
- */
-
+/** Regression coverage for the authenticated billing settings surfaces. */
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 
-const read = (p: string) => readFileSync(new URL(`../../${p}`, import.meta.url), "utf8");
-const planCard = read("components/settings/PlanCard.tsx");
+const read = (path: string) => readFileSync(new URL(`../../${path}`, import.meta.url), "utf8");
 const settingsPage = read("app/(app)/settings/page.tsx");
+const billingPage = read("app/(app)/settings/billing/page.tsx");
+const pricingTable = read("components/billing/pricing-table.tsx");
+const seatLimits = read("lib/billing/seat-limits.ts");
 
-describe("Razorpay Test Mode indicator — copy", () => {
-  it("uses the exact required title", () => {
-    assert.match(planCard, /TEST_MODE_TITLE = "Razorpay Test Mode"/);
+describe("Settings billing rendering", () => {
+  it("uses the new pricing table and no longer renders the legacy Free/Pro roadmap card", () => {
+    assert.match(settingsPage, /<PricingTable workspaceName=\{workspace\.name\} userEmail=\{user\?\.email \?\? ""\} \/>/);
+    assert.match(settingsPage, /workspace && isOwner \?/);
+    assert.doesNotMatch(settingsPage, /<PlanCard/);
+    assert.doesNotMatch(settingsPage, /Early access|Pro roadmap/);
+    assert.match(settingsPage, /href="\/settings\/billing"/);
   });
 
-  it("uses the exact required supporting text", () => {
-    assert.match(planCard, /TEST_MODE_TEXT =/);
-    assert.match(
-      planCard,
-      /"Payments are currently being tested\. No live Razorpay charges will be processed\."/,
-    );
-  });
-
-  it("renders both strings from the named constants (no drift)", () => {
-    assert.match(planCard, /\{TEST_MODE_TITLE\}/);
-    assert.match(planCard, /\{TEST_MODE_TEXT\}/);
-    // The literal copy must appear exactly once each — a second hardcoded
-    // copy is how wording drifts out of sync with the constants.
-    assert.equal(planCard.match(/Razorpay Test Mode"/g)?.length, 1);
+  it("keeps Starter/Team checkout in Test Mode and Studio contact-only", () => {
+    assert.match(pricingTable, /Razorpay Test Mode/);
+    assert.match(pricingTable, /Studio is arranged with our team and does not start an online checkout/);
+    assert.match(pricingTable, /mailto:contact@nanexi\.com/);
+    assert.match(pricingTable, /payload\.keyId\?\.startsWith\("rzp_test_"\)/);
   });
 });
 
-describe("Razorpay Test Mode indicator — conditional rendering", () => {
-  it("renders only when razorpayTestMode is true", () => {
-    assert.match(planCard, /\{razorpayTestMode \?\s*\(/);
+describe("Billing settings runtime resilience", () => {
+  it("awaits createClient and catches subscription/seat reads with a Free fallback", () => {
+    assert.match(billingPage, /const supabase = await createClient\(\)/);
+    assert.match(billingPage, /try \{[\s\S]*canInviteMember\(workspace\.id\)[\s\S]*catch \(error\)/);
+    assert.match(billingPage, /let billing: BillingSettingsRecord \| null = null/);
+    assert.match(billingPage, /let seats = \{ allowed: false, currentCount: 1, limit: 1 \}/);
+    assert.match(billingPage, /showing the Free-tier fallback/);
   });
 
-  it("the prop is optional and documented", () => {
-    assert.match(planCard, /razorpayTestMode\?: boolean;/);
-    assert.match(planCard, /isRazorpayTestModeActive/);
+  it("derives the current billing plan from server data and never from Checkout.js success", () => {
+    assert.match(billingPage, /effectiveSeatPlan\(billing\)/);
+    assert.match(billingPage, /resolveEntitlement\(\s*billing/);
+    assert.match(billingPage, /planLabel\(currentPlan\)/);
+    assert.doesNotMatch(billingPage, /razorpay_payment_id|checkout_success/);
   });
 
-  it("the settings page derives it from isRazorpayTestModeActive, not from raw env", () => {
-    assert.match(settingsPage, /const razorpayTestMode = isRazorpayTestModeActive\(\);/);
-    assert.match(settingsPage, /razorpayTestMode=\{razorpayTestMode\}/);
-    // The badge must not be wired to a bare env check, which could be true
-    // while the mode gate is refusing the configuration.
-    assert.doesNotMatch(
-      settingsPage,
-      /razorpayTestMode=\{Boolean\(process\.env/,
-    );
+  it("shows actual payment states and paid-through date without fabricated history", () => {
+    assert.match(billingPage, /Payment past due/);
+    assert.match(billingPage, /Paid through/);
+    assert.match(billingPage, /formatDate\(billing\?\.paid_through\)/);
+    assert.doesNotMatch(billingPage, /payment_history|transactions|billing_history/i);
   });
 
-  it("the indicator is machine-findable for automated checks", () => {
-    assert.match(planCard, /data-testid="razorpay-test-mode"/);
-  });
-});
-
-describe("Billing UI honesty", () => {
-  it("never shows Pro/Active from checkout alone — the plan comes from resolveEntitlement", () => {
-    assert.match(settingsPage, /resolveEntitlement\(billing, new Date\(\)/);
-    assert.match(settingsPage, /const plan = entitlement\.plan;/);
-  });
-
-  it("surfaces payment failure instead of a success message", () => {
-    assert.match(planCard, /did not complete — Pro stays off until a payment succeeds/);
-  });
-
-  it("introduces no fake transaction history", () => {
-    assert.doesNotMatch(planCard, /payment_history|transactions|billing_history/i);
-  });
-
-  it("shows the real subscription status when a subscription exists", () => {
-    assert.match(planCard, /billing\.status/);
-    assert.match(planCard, /Payment needs attention/);
-  });
-
-  it("checkout tells the truth about when the plan actually updates", () => {
-    const checkout = read("components/settings/PlanCheckoutButton.tsx");
-    assert.match(checkout, /your plan will update here shortly/);
-    assert.doesNotMatch(checkout, /Payment successful — you are now on Pro/i);
-  });
-
-  it("dismissal and failure are reported honestly", () => {
-    const checkout = read("components/settings/PlanCheckoutButton.tsx");
-    assert.match(checkout, /Checkout closed — nothing was charged\./);
-    assert.match(checkout, /Payment failed — nothing was charged\./);
-  });
-
-  it("the upgrade button cannot double-submit (duplicate-click prevention)", () => {
-    const checkout = read("components/settings/PlanCheckoutButton.tsx");
-    assert.match(checkout, /disabled=\{pending \|\| !selected\}/);
-    assert.match(checkout, /useTransition/);
+  it("seat lookups count both active members and unexpired pending invitations", () => {
+    assert.match(seatLimits, /from\("workspace_members"\)/);
+    assert.match(seatLimits, /from\("team_invites"\)/);
+    assert.match(seatLimits, /\.is\("accepted_at", null\)/);
+    assert.match(seatLimits, /\.is\("revoked_at", null\)/);
+    assert.match(seatLimits, /\.gt\("expires_at"/);
   });
 });

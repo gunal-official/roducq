@@ -237,7 +237,6 @@ describe("Settings (/settings)", () => {
       "branding",
       "team",
       "templates",
-      "plan",
       "webhooks",
       "mailbox",
       "integrations",
@@ -246,6 +245,7 @@ describe("Settings (/settings)", () => {
     ]) {
       assert.ok(settings.includes(`sectionId="${id}"`), `sectionId="${id}"`);
     }
+    assert.ok(settings.includes('id="plan"'), 'id="plan"');
   });
 
   it("keeps every preserved surface: workspace, branding, team, templates, plan, webhooks, mailbox, integrations, activity, danger", () => {
@@ -254,7 +254,7 @@ describe("Settings (/settings)", () => {
       "<WorkspaceBrandingCard",
       "<TeamCard",
       "<TemplatesList",
-      "<PlanCard",
+      "<PricingTable",
       "<WebhooksCard",
       "<MailboxCard",
       "<IntegrationsCard",
