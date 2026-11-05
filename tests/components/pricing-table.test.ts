@@ -4,6 +4,8 @@ import { readFileSync } from "node:fs";
 
 const source = readFileSync(new URL("../../components/billing/pricing-table.tsx", import.meta.url), "utf8");
 const checkoutClient = readFileSync(new URL("../../lib/razorpay-client.ts", import.meta.url), "utf8");
+const settingsPage = readFileSync(new URL("../../app/(app)/settings/page.tsx", import.meta.url), "utf8");
+const billingPage = readFileSync(new URL("../../app/(app)/settings/billing/page.tsx", import.meta.url), "utf8");
 
 describe("billing pricing table", () => {
   it("shows the three approved monthly tiers and seat allowances", () => {
@@ -37,5 +39,20 @@ describe("billing pricing table", () => {
     assert.match(checkoutClient, /https:\/\/checkout\.razorpay\.com\/v1\/checkout\.js/);
     assert.match(checkoutClient, /subscription_id: subscriptionId/);
     assert.match(checkoutClient, /key: keyId/);
+  });
+
+  it("renders the new pricing table in Settings instead of the legacy Pro roadmap card", () => {
+    assert.match(settingsPage, /import \{ PricingTable \} from "@\/components\/billing\/pricing-table"/);
+    assert.match(settingsPage, /<PricingTable workspaceName=\{workspace\.name\} userEmail=\{user\?\.email \?\? ""\} \/>/);
+    assert.doesNotMatch(settingsPage, /<PlanCard/);
+    assert.doesNotMatch(settingsPage, /Early access|Pro roadmap|PlanCheckoutButton/);
+  });
+
+  it("awaits the server Supabase client and falls back to Free when billing reads fail", () => {
+    assert.match(billingPage, /const supabase = await createClient\(\)/);
+    assert.match(billingPage, /try \{[\s\S]*canInviteMember\(workspace\.id\)[\s\S]*catch \(error\)/);
+    assert.match(billingPage, /let seats = \{ allowed: false, currentCount: 1, limit: 1 \}/);
+    assert.match(billingPage, /let billing: BillingSettingsRecord \| null = null/);
+    assert.match(billingPage, /showing the Free-tier fallback/);
   });
 });

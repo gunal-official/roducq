@@ -6,6 +6,7 @@ import { RoduMark, Wordmark } from "@/components/app-shell/RoduMark";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { canInviteMember, effectiveSeatPlan, type SeatBillingRecord } from "@/lib/billing/seat-limits";
+import { parseLegacyAccessUntil, resolveEntitlement } from "@/lib/billing/entitlements";
 import { getWorkspaceContext } from "@/lib/data/workspace-context";
 import { createClient } from "@/lib/supabase/server";
 
@@ -34,7 +35,8 @@ function paymentLabel(status: string | null | undefined): string {
 }
 
 function planLabel(plan: string): string {
-  return plan === "team" ? "Team"
+  return plan === "pro" ? "Pro"
+    : plan === "team" ? "Team"
     : plan === "studio" ? "Studio"
       : plan === "starter" ? "Starter"
         : "Free";
@@ -49,22 +51,43 @@ export default async function BillingSettingsPage() {
   if (!user) redirect("/login");
   if (!workspace) redirect("/onboarding");
 
-  const [{ data: billingData }, seats] = await Promise.all([
-    supabase
-      .from("billing_subscriptions")
-      .select("plan_name, status, paid_through, currency, amount")
-      .eq("workspace_id", workspace.id)
-      .maybeSingle(),
-    canInviteMember(workspace.id),
-  ]);
-
-  const billing = billingData as (SeatBillingRecord & {
-    status?: string | null;
-    paid_through?: string | null;
+  type BillingSettingsRecord = SeatBillingRecord & {
+    provider: string | null;
+    status: string;
+    paid_through: string | null;
     currency?: string | null;
     amount?: number | null;
-  }) | null;
+  };
+  let billing: BillingSettingsRecord | null = null;
+  // The workspace context guarantees at least the current member exists. If
+  // billing migrations or seat queries are unavailable, fail closed to Free.
+  let seats = { allowed: false, currentCount: 1, limit: 1 };
+  try {
+    const [billingResult, seatAvailability] = await Promise.all([
+      supabase
+        .from("billing_subscriptions")
+        .select("provider, plan_name, status, paid_through, currency, amount")
+        .eq("workspace_id", workspace.id)
+        .maybeSingle(),
+      canInviteMember(workspace.id),
+    ]);
+    if (billingResult.error) throw billingResult.error;
+    billing = billingResult.data as BillingSettingsRecord | null;
+    seats = seatAvailability;
+  } catch (error) {
+    console.error("Billing settings lookup failed; showing the Free-tier fallback.", error);
+  }
   const effective = effectiveSeatPlan(billing);
+  // Preserve the historical provider-aware Pro display for verified legacy
+  // billing rows while seat capacity remains governed by the tier policy.
+  const legacyEntitlement = resolveEntitlement(
+    billing,
+    new Date(),
+    parseLegacyAccessUntil(process.env.LEGACY_STRIPE_ACCESS_UNTIL),
+  );
+  const currentPlan = effective.plan === "free" && legacyEntitlement.plan === "pro"
+    ? "pro"
+    : effective.plan;
   const seatRatio = effective.limit > 0 ? Math.min(100, (seats.currentCount / effective.limit) * 100) : 0;
   const isOverLimit = seats.currentCount > seats.limit;
 
@@ -92,7 +115,7 @@ export default async function BillingSettingsPage() {
           <CardHeader className="flex-row items-start justify-between gap-4 space-y-0">
             <div className="space-y-1">
               <p className="text-sm font-medium text-muted-foreground">Current plan</p>
-              <CardTitle id="current-plan-title" className="text-2xl">{planLabel(effective.plan)}</CardTitle>
+              <CardTitle id="current-plan-title" className="text-2xl">{planLabel(currentPlan)}</CardTitle>
             </div>
             <Badge variant={billing?.status === "active" ? "success" : billing?.status ? "warning" : "secondary"}>
               {paymentLabel(billing?.status)}

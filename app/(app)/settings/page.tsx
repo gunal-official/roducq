@@ -54,9 +54,8 @@ import { getIntegrationConnections } from "@/lib/data/integrations";
 import { getMailboxAccounts } from "@/lib/data/mailbox";
 import { hasTokenKey } from "@/lib/email/crypto";
 import { hasIntegrationKey } from "@/lib/integrations/crypto";
-import { getPricesConfig, isRazorpayTestModeActive } from "@/lib/razorpay";
+import { PricingTable } from "@/components/billing/pricing-table";
 import { EventsCard } from "@/components/settings/EventsCard";
-import { PlanCard } from "@/components/settings/PlanCard";
 import { WebhooksCard } from "@/components/settings/WebhooksCard";
 import { TeamCard } from "@/components/settings/TeamCard";
 import { TemplatesList } from "@/components/settings/TemplatesList";
@@ -67,7 +66,6 @@ import { getWorkspaceBranding } from "@/lib/data/workspace-branding";
 import { getPendingInvites, getTeamMembers } from "@/lib/data/team";
 import { getTemplates } from "@/lib/data/templates";
 import { getWorkspaceContext } from "@/lib/data/workspace-context";
-import { legacyBillingNotice, parseLegacyAccessUntil, resolveEntitlement } from "@/lib/billing/entitlements";
 import { createClient } from "@/lib/supabase/server";
 import { PageHeader } from "@/components/ui/page";
 import { SettingsNav, type SettingsSectionLink } from "@/components/settings/SettingsNav";
@@ -99,7 +97,6 @@ export default async function SettingsPage() {
     members,
     pendingInvites,
     webhookEndpoints,
-    billing,
     webhookDeliveries,
     recentEvents,
     mailboxAccounts,
@@ -117,14 +114,6 @@ export default async function SettingsPage() {
             .order("created_at", { ascending: true })
             .then(({ data }) => data ?? [])
         : Promise.resolve([]),
-      workspace
-        ? supabase
-            .from("billing_subscriptions")
-            .select("provider, status, currency, amount, paid_through, razorpay_subscription_id")
-            .eq("workspace_id", workspace.id)
-            .maybeSingle()
-            .then(({ data }) => data)
-        : Promise.resolve(null),
       // Delivery audit rows for the Webhooks card (suggestions pass 1/10).
       // Owners read them; RLS yields [] for members (the card's "View only"
       // precedent — nothing is rendered for non-owners).
@@ -179,20 +168,6 @@ export default async function SettingsPage() {
       .in("id", missingDeliveryEventIds);
     for (const row of extra ?? []) eventTypes[row.id] = row.event_type;
   }
-  // Provider-aware entitlement (lib/billing/entitlements.ts): Razorpay rows and
-  // operator-verified legacy Stripe rows are both honoured; nothing is granted
-  // on status alone, and nothing is revoked silently.
-  const entitlement = resolveEntitlement(billing, new Date(), parseLegacyAccessUntil(process.env.LEGACY_STRIPE_ACCESS_UNTIL));
-  const plan = entitlement.plan;
-  const legacyNotice = billing?.provider === "stripe" ? legacyBillingNotice(entitlement) : null;
-  const pricesConfig = getPricesConfig();
-  const prices = pricesConfig.ok ? pricesConfig.prices : [];
-  const billingConfigured =
-    Boolean(process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_SECRET) && pricesConfig.ok;
-  // Test Mode indicator: true only when the whole Razorpay test path is
-  // configured and provably in Test Mode. Live Mode never reaches here —
-  // getRazorpayServerConfig refuses it (see lib/razorpay.ts safety gate).
-  const razorpayTestMode = isRazorpayTestModeActive();
   const isOwner = workspace?.role === "owner";
 
   // The section nav lists only the cards this page actually renders — a
@@ -264,17 +239,26 @@ export default async function SettingsPage() {
             isOwner={isOwner}
             sectionId="templates"
           />
-          <PlanCard
-            memberCount={members.length}
-            templateCount={templates.length}
-            plan={plan}
-            billingConfigured={billingConfigured}
-            razorpayTestMode={razorpayTestMode}
-            prices={prices}
-            billing={billing}
-            legacyNotice={legacyNotice}
-            sectionId="plan"
-          />
+          <section id="plan" className="space-y-4 animate-rise-in" aria-labelledby="plan-heading">
+            <div className="flex flex-wrap items-end justify-between gap-3">
+              <div>
+                <h2 id="plan-heading" className="font-display text-xl font-bold tracking-tight">Plans &amp; billing</h2>
+                <p className="mt-1 text-sm text-muted-foreground">Choose the plan that fits this workspace.</p>
+              </div>
+              {workspace && (
+                <a href="/settings/billing" className="inline-flex min-h-11 items-center text-sm font-semibold text-accent underline-offset-4 hover:underline">
+                  View billing details
+                </a>
+              )}
+            </div>
+            {workspace && isOwner ? (
+              <PricingTable workspaceName={workspace.name} userEmail={user?.email ?? ""} />
+            ) : (
+              <p className="rounded-control border border-border bg-card p-4 text-sm text-muted-foreground">
+                Only workspace owners can change plans. Contact an owner to manage billing.
+              </p>
+            )}
+          </section>
           <WebhooksCard
             endpoints={webhookEndpoints}
             deliveries={webhookDeliveries}

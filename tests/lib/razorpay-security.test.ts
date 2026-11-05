@@ -288,14 +288,14 @@ describe("SECURITY: out-of-order event guard", () => {
 });
 
 describe("SECURITY: legacy Stripe entitlements are provider-aware (not blocked, not granted blindly)", () => {
-  test("settings page no longer filters billing by provider='razorpay' (that hid legacy paid periods)", () => {
-    const src = readFileSync(new URL("../../app/(app)/settings/page.tsx", import.meta.url), "utf8");
+  test("billing settings page no longer filters by provider='razorpay' (that hid legacy paid periods)", () => {
+    const src = readFileSync(new URL("../../app/(app)/settings/billing/page.tsx", import.meta.url), "utf8");
     assert.doesNotMatch(src, /\.eq\("provider",\s*"razorpay"\)/, "provider filter must not hide legacy rows");
-    assert.match(src, /resolveEntitlement\(billing/, "entitlement comes from the shared policy");
+    assert.match(src, /resolveEntitlement\(\s*billing/, "entitlement comes from the shared policy");
   });
 
-  test("settings page never grants Pro from status alone", () => {
-    const src = readFileSync(new URL("../../app/(app)/settings/page.tsx", import.meta.url), "utf8");
+  test("billing settings page never grants Pro from status alone", () => {
+    const src = readFileSync(new URL("../../app/(app)/settings/billing/page.tsx", import.meta.url), "utf8");
     assert.doesNotMatch(src, /billing\?\.status === "active" \? "pro"/, "status-only grant removed");
   });
 
