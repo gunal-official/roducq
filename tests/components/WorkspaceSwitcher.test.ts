@@ -5,6 +5,12 @@ import { readFileSync } from "node:fs";
 const read = (rel: string) => readFileSync(new URL(`../../${rel}`, import.meta.url), "utf8");
 
 describe("WorkspaceSwitcher", () => {
+  it("keeps the trigger's custom flex content inline and truncates the value itself", () => {
+    const select = read("components/ui/select.tsx");
+    assert.doesNotMatch(select, /line-clamp-1/);
+    assert.ok(select.includes('className={cn("min-w-0 truncate", className)}'));
+  });
+
   it("renders a real control and a plain name when only one workspace", () => {
     const src = read("components/app-shell/WorkspaceSwitcher.tsx");
     assert.ok(src.includes("export function WorkspaceSwitcher"));
