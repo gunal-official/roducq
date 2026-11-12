@@ -36,6 +36,7 @@ export const NAV_GROUPS: readonly NavGroup[] = [
   {
     label: "Workspace",
     items: [
+      { label: "Overview", href: "/overview", icon: LayoutDashboard },
       { label: "Pipeline", href: "/", icon: LayoutDashboard },
       { label: "Intake", href: "/intake", icon: PenLine },
       { label: "Inbox", href: "/intake/inbox", icon: Inbox },

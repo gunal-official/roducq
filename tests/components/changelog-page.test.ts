@@ -285,7 +285,8 @@ describe("Changelog page — truthfulness & content corrections", () => {
       workspaceEntry.summary,
       "Extended a unified workspace design system across signed-in screens and completed security, accessibility, and performance improvements.",
     );
-    for (const nav of NAV_ITEMS) {
+    // Overview is a newly added screen, after this historical October release.
+    for (const nav of NAV_ITEMS.filter((item) => item.href !== "/overview")) {
       assert.ok(
         workspaceEntry.bullets[0].includes(nav.label),
         `workspace bullet missing real nav screen ${nav.label}`,

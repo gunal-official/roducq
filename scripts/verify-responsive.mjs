@@ -113,6 +113,7 @@ const PAGES = [
   { slug: "marketing-home", url: "/", auth: false },
   { slug: "pipeline", url: "/", auth: true },
   { slug: "dashboard-direct", url: "/dashboard", auth: true },
+  { slug: "overview", url: "/overview", auth: true, expected: "Overview" },
   { slug: "marketing-about", url: "/about", auth: false },
   { slug: "marketing-solutions", url: "/solutions", auth: false },
   { slug: "marketing-features", url: "/features", auth: false },
@@ -1602,8 +1603,9 @@ async function main() {
     const DIR = process.env.FORMA_SHOTS_DIR || join(SHOTS, "forma");
     mkdirSync(DIR, { recursive: true });
     const FORMA_SHOTS = [
+      { slug: "overview", url: "/overview", auth: true },
       { slug: "pipeline", url: "/", auth: true },
-  { slug: "dashboard-direct", url: "/dashboard", auth: true },
+      { slug: "dashboard-direct", url: "/dashboard", auth: true },
       { slug: "login", url: "/login", auth: false },
       { slug: "signup", url: "/signup", auth: false },
       { slug: "onboarding", url: "/onboarding", auth: true, fresh: true },
