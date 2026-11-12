@@ -53,6 +53,53 @@ export async function getPlans(
   });
 }
 
+/** Open checklist item surfaced on the workspace overview. */
+export interface OpenPlanTask {
+  id: string;
+  text: string;
+  planId: string;
+  planTitle: string;
+  clientName: string | null;
+}
+
+/** A small, recent-first set of unchecked items from active plans. */
+export async function getOpenPlanTasks(
+  workspaceId: string,
+  limit = 4
+): Promise<OpenPlanTask[]> {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from("plans")
+    .select("id, title, client_name, status, tasks, updated_at")
+    .eq("workspace_id", workspaceId)
+    .neq("status", "done")
+    .order("updated_at", { ascending: false })
+    .limit(30);
+
+  if (error) throw error;
+
+  const rows = (data ?? []) as Array<{
+    id: string;
+    title: string;
+    client_name: string | null;
+    status: PlanStatus;
+    tasks: PlanTask[] | null;
+  }>;
+
+  return rows.flatMap((plan) =>
+    (plan.tasks ?? [])
+      .filter((task) => !task.checked)
+      .map((task) => ({
+        id: task.id,
+        text: task.text,
+        planId: plan.id,
+        planTitle: plan.title,
+        clientName: plan.client_name,
+      }))
+  ).slice(0, Math.max(0, limit));
+}
+
 /** A single plan with its source proposal (id + title) embedded via the
  *  proposals FK. Returns null when not found (or not visible via RLS). */
 export async function getPlanById(

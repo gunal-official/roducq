@@ -18,6 +18,7 @@ export const APP_PREFIXES = [
   "/settings",
   "/onboarding",
   "/dashboard",
+  "/overview",
   "/search",
 ] as const;
 

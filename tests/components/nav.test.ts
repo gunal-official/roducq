@@ -20,7 +20,7 @@ const read = (rel: string) => readFileSync(new URL(`../../${rel}`, import.meta.u
 describe("Navigation (Step 33)", () => {
   it("one nav model carries every section with a semantic icon", () => {
     const src = read("components/app-shell/nav-items.ts");
-    for (const label of ["Intake", "Inbox", "Briefs", "Proposals", "Plans", "Updates", "Invoices", "Time", "Contracts", "Reports", "Settings"]) {
+    for (const label of ["Overview", "Pipeline", "Intake", "Inbox", "Briefs", "Proposals", "Plans", "Updates", "Invoices", "Time", "Contracts", "Reports", "Settings"]) {
       assert.ok(src.includes(`label: "${label}"`));
     }
     for (const icon of ["PenLine", "Inbox", "ClipboardList", "FileText", "ListChecks", "MessageSquare", "Receipt", "Clock", "FileSignature", "BarChart3", "Settings"]) {
@@ -124,7 +124,7 @@ describe("Navigation behavior (Step 34 wrap)", () => {
     const hrefs = viewer.flatMap((g) => g.items.map((i) => i.href));
     assert.ok(!hrefs.includes("/invoices"));
     assert.ok(!hrefs.includes("/time"));
-    for (const kept of ["/", "/intake", "/briefs", "/contracts", "/reports", "/settings"]) {
+    for (const kept of ["/", "/overview", "/intake", "/briefs", "/contracts", "/reports", "/settings"]) {
       assert.ok(hrefs.includes(kept), kept);
     }
     // Money hiding is exactly the MONEY_HREFS set — nothing else drops.
@@ -158,11 +158,12 @@ describe("Navigation behavior (Step 34 wrap)", () => {
     assert.ok(isNavActive("/intake", "/intake"), "Intake page itself still lights Intake");
     assert.ok(isNavActive("/briefs/abc-123", "/briefs"), "detail pages light their section");
     assert.ok(isNavActive("/", "/"));
+    assert.ok(isNavActive("/overview", "/overview"));
     assert.ok(!isNavActive("/dashboard", "/"), "the dashboard rewrite keeps the URL as /");
 
     // Across the whole registry, every app pathname activates at most one item.
     const pathnames = [
-      "/", "/intake", "/intake/inbox", "/briefs", "/briefs/x", "/proposals",
+      "/", "/overview", "/intake", "/intake/inbox", "/briefs", "/briefs/x", "/proposals",
       "/proposals/x/versions/y", "/plans", "/plans/x", "/updates", "/updates/x",
       "/invoices", "/invoices/x", "/time", "/contracts", "/contracts/x",
       "/reports", "/settings", "/search",
@@ -176,6 +177,6 @@ describe("Navigation behavior (Step 34 wrap)", () => {
   it("NAV_GROUPS covers every destination exactly once", () => {
     const hrefs = NAV_GROUPS.flatMap((g) => g.items.map((i) => i.href));
     assert.equal(new Set(hrefs).size, hrefs.length, "duplicate hrefs");
-    assert.equal(hrefs.length, 12, "7 workspace + 4 money + 1 account");
+    assert.equal(hrefs.length, 13, "8 workspace + 4 money + 1 account");
   });
 });

@@ -25,11 +25,11 @@ function sourceFiles(dir: string): string[] {
 describe("Forma F — inventory and honest browser evidence", () => {
   it("inventories every actual App Router page and handler, without imagined features", () => {
     const inventory = discoverRoutes(ROOT);
-    // 42 pages: includes the Stage 2 authenticated /settings/billing page.
+    // 43 pages: includes /overview and the Stage 2 authenticated /settings/billing page.
     // Stage 1C adds the authenticated checkout and public signed-webhook handlers.
-    assert.equal(inventory.filter((route) => route.kind === "page").length, 42);
+    assert.equal(inventory.filter((route) => route.kind === "page").length, 43);
     assert.equal(inventory.filter((route) => route.kind === "handler").length, 20);
-    for (const present of ["/privacy", "/terms", "/forgot-password", "/reset-password", "/dashboard", "/proposals/[id]/versions/[versionId]", "/share/[token]", "/invoice/[token]", "/invite/[token]"]) assert.ok(inventory.some((route) => route.pattern === present));
+    for (const present of ["/privacy", "/terms", "/forgot-password", "/reset-password", "/dashboard", "/overview", "/proposals/[id]/versions/[versionId]", "/share/[token]", "/invoice/[token]", "/invite/[token]"]) assert.ok(inventory.some((route) => route.pattern === present));
   });
   it("fails the coverage gate if any App Router page has no fixture", () => {
     assert.throws(() => assertRouteCoverage(ROOT, []), /Every App Router page/);
