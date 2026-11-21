@@ -989,7 +989,7 @@ card). All vars are commented out in `.env.local.example`.
   the browser opens Razorpay Checkout.js. Paid access is granted only
   after HMAC payment-signature verification plus a server-side
   subscription fetch (`/api/razorpay/verify`), or a verified
-  `/api/razorpay/webhook`. Cancellation happens in Settings (cancel at
+  `/api/billing/webhook`. Cancellation happens in Settings (cancel at
   cycle end) — there is no Stripe-style portal. The prices shown
   (Settings + /pricing) are the operator's `RAZORPAY_PLANS` config —
   one Razorpay Plan per currency; the charged amount is always
@@ -1011,11 +1011,11 @@ all migrations.
 | Var | Needed for |
 |---|---|
 | `RAZORPAY_KEY_ID` + `RAZORPAY_KEY_SECRET` + `RAZORPAY_PLANS` | the in-app upgrade button — JSON array, one Razorpay Plan per currency, e.g. `[{"currency":"INR","planId":"plan_...","amount":1499}]` |
-| `RAZORPAY_WEBHOOK_SECRET` + `SUPABASE_SERVICE_ROLE_KEY` | `/api/razorpay/webhook` — allowlisted `subscription.*` + `payment.failed` events |
+| `RAZORPAY_WEBHOOK_SECRET` + `SUPABASE_SERVICE_ROLE_KEY` | `/api/billing/webhook` — allowlisted `subscription.*` + `payment.failed` events |
 | `CRON_SECRET` | the retry sweep at `/api/cron/webhooks` |
 
 Local dev: use Razorpay TEST-mode keys (`rzp_test_...`) and a local
-webhook tunnel to `/api/razorpay/webhook`. Do not use live keys or real
+webhook tunnel to `/api/billing/webhook`. Do not use live keys or real
 charges without authorization. Full checklist:
 `docs/razorpay-production-audit.md`.
 

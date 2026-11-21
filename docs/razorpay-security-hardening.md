@@ -46,7 +46,7 @@ POST /api/razorpay/verify  (owner-only, getWorkspaceContext)
 billing_subscriptions  (one row per workspace; service-role writes only)
 
 Razorpay servers
-  │  POST /api/razorpay/webhook   (X-Razorpay-Signature over RAW body)
+  │  POST /api/billing/webhook   (X-Razorpay-Signature over RAW body)
   ▼
 billing_webhook_events (ledger)   billing_subscriptions (state)
 
@@ -308,7 +308,7 @@ Results from this session (`arena/47215b0d-roducq`):
 The brief says production billing must not be declared ready until these pass. **None has been run.** Do not treat production billing as ready until they have.
 
 - [ ] Razorpay **Test Mode** checkout completes end-to-end with a test card or UPI.
-- [ ] Webhook delivery reaches `/api/razorpay/webhook` with a valid signature, and the response is `200 outcome=applied`.
+- [ ] Webhook delivery reaches `/api/billing/webhook` with a valid signature, and the response is `200 {received:true}` (Stage 1B queue ingest).
 - [ ] `X-Razorpay-Event-Id` is present on real deliveries (it is documented by Razorpay, but not observed here).
 - [ ] `current_end` is present on `subscription.activated` and `subscription.charged` in Test Mode payloads.
 - [ ] Renewal, `payment.failed` → `pending` → recovery, `halted`, `cancelled` at cycle end, and `completed` each produce the state in §4.
@@ -366,7 +366,7 @@ REQUIRES OPERATOR ACTION, in this order:
 - Policy: `lib/billing/entitlements.ts`
 - Webhook core: `lib/billing/webhook-processor.ts`, adapter `lib/billing/apply-event.ts`
 - Checkout verify core: `lib/billing/checkout-verify.ts`
-- Routes (thin): `app/api/razorpay/webhook/route.ts`, `app/api/razorpay/verify/route.ts`
+- Routes (thin): `app/api/billing/webhook/route.ts` (canonical), `app/api/razorpay/verify/route.ts`; `app/api/razorpay/webhook/route.ts` is a retired 410 tombstone
 - Settings: `app/(app)/settings/page.tsx`, `app/(app)/settings/actions.ts`, `components/settings/PlanCard.tsx`
 - Razorpay helpers: `lib/razorpay.ts` (adds `current_end` parsing)
 - Tests: `tests/db/razorpay-billing.test.ts`, `tests/lib/billing-entitlements.test.ts`, `tests/lib/billing-webhook.test.ts`; updated `tests/lib/razorpay-security.test.ts`, `tests/lib/razorpay.test.ts`

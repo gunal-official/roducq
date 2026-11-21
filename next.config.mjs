@@ -44,12 +44,25 @@ const nextConfig = {
               "default-src 'self'",
               // Next.js App Router hydration needs inline bootstrap scripts;
               // styles include safe-inline for SSR/inlined critical CSS.
-              "script-src 'self' 'unsafe-inline'",
+              //
+              // Razorpay: checkout.js is injected at runtime by
+              // lib/razorpay-client.ts (Settings → Plan, and /pricing), so the
+              // script origin MUST be allowlisted here. This header ships in
+              // production only (dev returns no headers above), which is
+              // exactly why the omission was invisible in local development.
+              "script-src 'self' 'unsafe-inline' https://checkout.razorpay.com",
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data:",
               "font-src 'self' data:",
-              // browser ↔ Supabase Auth/PostgREST (+ realtime websockets)
-              "connect-src 'self' https://*.supabase.co wss://*.supabase.co",
+              // browser ↔ Supabase Auth/PostgREST (+ realtime websockets);
+              // browser ↔ Razorpay Checkout XHR/telemetry endpoints.
+              "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://api.razorpay.com https://checkout.razorpay.com https://lumberjack.razorpay.com",
+              // Razorpay Checkout renders its card/netbanking/UPI surfaces in
+              // an iframe, so frame-src must permit it. config-src is kept in
+              // sync deliberately; omitting it here would silently drop the
+              // directive from `default-src 'self'` and break the same flows.
+              "frame-src 'self' https://checkout.razorpay.com https://api.razorpay.com",
+              "config-src 'self' https://checkout.razorpay.com https://api.razorpay.com",
               // NOTE: enabling Sentry later ALSO needs
               //   https://*.ingest.sentry.io
               // added to connect-src for browser event submission.

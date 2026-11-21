@@ -105,15 +105,83 @@ describe("normalizeWebhookUrl (SSRF guard)", () => {
     });
     assert.equal(normalizeWebhookUrl("http://localhost:8787/h").ok, true);
     assert.equal(normalizeWebhookUrl("http://127.0.0.1/h").ok, true);
+    assert.equal(normalizeWebhookUrl("http://[::1]:8787/h").ok, true);
     assert.equal(normalizeWebhookUrl("http://example.com/h").ok, false);
     assert.equal(normalizeWebhookUrl("ftp://example.com/h").ok, false);
     assert.equal(normalizeWebhookUrl("not a url").ok, false);
     assert.equal(normalizeWebhookUrl("  ").ok, false);
-    assert.equal(
-      normalizeWebhookUrl("http://169.254.169.254/latest/meta-data").ok,
-      false,
-      "cloud metadata endpoints must never qualify"
+  });
+
+  // The registrant is a workspace OWNER, so this guard is the only thing
+  // between a customer and the server's private network / cloud metadata.
+  test("cloud metadata endpoints are rejected over https and http", () => {
+    for (const url of [
+      "https://169.254.169.254/latest/meta-data",
+      "http://169.254.169.254/latest/meta-data",
+      "https://metadata.google.internal/computeMetadata/v1/",
+      "https://METADATA.GOOGLE.INTERNAL./x",
+      "https://instance-data/x",
+      "https://[::ffff:169.254.169.254]/x",
+    ]) {
+      assert.equal(normalizeWebhookUrl(url).ok, false, url);
+    }
+  });
+
+  test("private network ranges are rejected", () => {
+    for (const url of [
+      "https://10.0.0.1/h",
+      "https://10.255.255.254/h",
+      "https://172.16.0.1/h",
+      "https://172.31.255.255/h",
+      "https://192.168.1.10/h",
+      "https://100.64.0.1/h", // CGNAT
+      "https://[fc00::1]/x", // unique local
+      "https://[fd12:3456::1]/x",
+      "https://[fe80::1]/x", // link-local
+    ]) {
+      assert.equal(normalizeWebhookUrl(url).ok, false, url);
+    }
+  });
+
+  test("loopback and unspecified addresses are rejected over https", () => {
+    for (const url of [
+      "https://localhost/x",
+      "https://127.0.0.1:8080/x",
+      "https://[::1]/x",
+      "https://[::ffff:127.0.0.1]/x",
+      "https://0.0.0.0/x",
+      "https://[::]/x",
+    ]) {
+      assert.equal(normalizeWebhookUrl(url).ok, false, url);
+    }
+  });
+
+  test("the boundary just outside the private ranges is still allowed", () => {
+    assert.equal(normalizeWebhookUrl("https://172.32.0.1/h").ok, true);
+    assert.equal(normalizeWebhookUrl("https://[2606:4700::1111]/x").ok, true);
+    assert.equal(normalizeWebhookUrl("https://11.0.0.1/h").ok, true);
+  });
+
+  test("single-label internal hostnames are rejected", () => {
+    assert.equal(normalizeWebhookUrl("https://intranet/h").ok, false);
+  });
+
+  test("the rejection names the reason so the Settings card can explain it", () => {
+    const metadata = normalizeWebhookUrl("https://169.254.169.254/x");
+    assert.equal(metadata.ok, false);
+    assert.match(
+      metadata.ok ? "" : metadata.error,
+      /cloud metadata/i,
+      "metadata rejection must be self-explanatory"
     );
+
+    const loopback = normalizeWebhookUrl("https://[::1]/x");
+    assert.equal(loopback.ok, false);
+    assert.match(loopback.ok ? "" : loopback.error, /loopback/i);
+
+    const priv = normalizeWebhookUrl("https://10.0.0.1/x");
+    assert.equal(priv.ok, false);
+    assert.match(priv.ok ? "" : priv.error, /private or internal/i);
   });
 });
 

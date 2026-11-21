@@ -274,6 +274,11 @@ https://<your-vercel-domain>/api/billing/webhook
 For local testing, expose your dev server (e.g. `ngrok http 3000`) and register
 the tunnel URL — Razorpay must reach it from the public internet.
 
+**Only one webhook URL is live.** `/api/billing/webhook` is the canonical
+ingress (Stage 1B queue). The older `/api/razorpay/webhook` was retired and now
+answers **410 Gone** — if the Razorpay dashboard points there, every delivery
+fails with a terminal error. Update the Dashboard URL if you still see it.
+
 The endpoint is **publicly reachable by design**: the Next.js middleware
 (`proxy.ts` → `lib/supabase/middleware.ts`) only gates the `APP_PREFIXES` page
 routes (`/settings`, `/dashboard`, …). `/api/billing/webhook` is not in that
