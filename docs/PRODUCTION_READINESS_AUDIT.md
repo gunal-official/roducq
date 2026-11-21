@@ -162,7 +162,7 @@ There are **15 route-handler files** and **19 server-action modules**. Route han
 | `GET /api/pdf/[kind]/[id]`, `/api/pdf/reports`, `/api/pdf/time` | Session/workspace data access; UUID/kind checks; invoices additionally require money role | No authenticated request or production data. |
 | `GET /api/pdf/shared/invoice/[token]` | Public token-based access to eligible shared invoice | No production token exercised. |
 | `POST /api/razorpay/verify` | Workspace context; owner check in verifier; payment HMAC + server-side subscription fetch + plan/workspace binding | Mocked/unit only; no provider call. |
-| `POST /api/razorpay/webhook` | Raw-body HMAC, event id/body-hash idempotency and atomic ledger/application path | Mocked/unit only; no webhook sent. |
+| `POST /api/billing/webhook` | Raw-body HMAC, event id/body-hash idempotency and atomic ledger/application path | Mocked/unit only; no webhook sent. |
 
 Server-action modules are: app shell/workspace switch; brief detail; contract create/detail; intake; invoice create/detail; plan detail; proposal detail/version; settings base/email/integration/team/webhook; time; update detail; auth workspace creation; password recovery; invite acceptance. Source review found session, workspace-context/role checks on write actions, with RLS as the final guard on normal user-client operations. Owner-only settings and service-role operations have corresponding checks. API response/output validation and explicit request-size ceilings vary by endpoint; no production fuzzing or load test was attempted. No destructive input testing was performed.
 

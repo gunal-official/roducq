@@ -36,8 +36,25 @@ const T1 = "2026-10-16T10:00:00Z";
 const T2 = "2026-10-16T11:00:00Z";
 const T3 = "2026-10-16T12:00:00Z";
 const T4 = "2026-10-16T13:00:00Z";
-const PT_FUTURE = "2026-11-16T10:00:00Z";
-const PT_PAST = "2026-01-16T10:00:00Z";
+/**
+ * Paid-through fixtures are generated RELATIVE TO NOW, never hardcoded.
+ *
+ * These were literal timestamps ("2026-11-16T10:00:00Z") until 2026-11-21,
+ * when they silently crossed into the past: workspace_billing_seat_limit()
+ * and resolveEntitlement() both fail closed on a stale paid_through, so the
+ * seat-limit and takeover tests started failing on a date nobody changed the
+ * code for. A generated value keeps the fixtures correct forever.
+ *
+ * Offset is 30 days: comfortably beyond the 3-day Razorpay renewal grace
+ * window that resolveEntitlement() allows, so "future" is never ambiguous.
+ */
+const getFutureIso = (days = 30) =>
+  new Date(Date.now() + days * 86_400_000).toISOString();
+const getPastIso = (days = 30) =>
+  new Date(Date.now() - days * 86_400_000).toISOString();
+
+const PT_FUTURE = getFutureIso();
+const PT_PAST = getPastIso();
 const HASH_A = "a".repeat(64);
 const HASH_B = "b".repeat(64);
 
@@ -358,11 +375,12 @@ describe("atomic apply: event ordering", () => {
   it("recovery after halt: a newer charged event re-activates with the new paid-through date", async () => {
     await apply({ eventKey: "e_act", eventCreatedAt: T1, bodySha256: HASH_A });
     await apply({ eventKey: "e_halt", eventCreatedAt: T2, status: "halted", eventType: "subscription.halted", bodySha256: HASH_B, razorpayEventId: null });
-    const res = await apply({ eventKey: "e_recover", eventCreatedAt: T3, eventType: "subscription.charged", paidThrough: "2026-12-16T10:00:00Z", bodySha256: "f".repeat(64), razorpayEventId: null });
+    const charged = getFutureIso(60);
+    const res = await apply({ eventKey: "e_recover", eventCreatedAt: T3, eventType: "subscription.charged", paidThrough: charged, bodySha256: "f".repeat(64), razorpayEventId: null });
     assert.equal(res.outcome, "applied");
     const row = await billingFor(WS_A);
     assert.equal(row?.status, "active");
-    assert.equal(new Date(row!.paid_through!).toISOString(), "2026-12-16T10:00:00.000Z");
+    assert.equal(new Date(row!.paid_through!).toISOString(), new Date(charged).toISOString());
   });
 
   it("missing trusted timestamp for a keyed event is rejected before any state change", async () => {
@@ -392,7 +410,7 @@ describe("atomic apply: workspace binding and takeover", () => {
 
   it("a notes-less event for a known subscription resolves the workspace from the binding", async () => {
     await apply();
-    const res = await apply({ eventKey: "e_nonotes", workspaceId: null, eventType: "subscription.charged", eventCreatedAt: T2, bodySha256: "3".repeat(64), razorpayEventId: null, paidThrough: "2026-12-16T10:00:00Z" });
+    const res = await apply({ eventKey: "e_nonotes", workspaceId: null, eventType: "subscription.charged", eventCreatedAt: T2, bodySha256: "3".repeat(64), razorpayEventId: null, paidThrough: getFutureIso(60) });
     assert.equal(res.outcome, "applied");
     assert.equal(res.workspace_id, WS_A);
   });

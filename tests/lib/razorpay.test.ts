@@ -78,7 +78,10 @@ describe("route/action wiring guards", () => {
     assert.doesNotMatch(read("app/(app)/settings/actions.ts"), /STRIPE|createCheckoutSession|openCustomerPortal/);
     // Webhook and verify logic moved into lib/billing/* (dependency-injected, unit-tested).
     assert.match(read("lib/billing/webhook-processor.ts"), /verifyWebhookSignature/);
-    assert.match(read("app/api/razorpay/webhook/route.ts"), /processRazorpayWebhook/);
+    // Canonical webhook ingress is /api/billing/webhook; the old
+    // /api/razorpay/webhook is now a 410 tombstone (see razorpay-security).
+    assert.match(read("app/api/billing/webhook/route.ts"), /ingestWebhook/);
+    assert.match(read("lib/billing/stage1b-adapters.ts"), /verifyWebhookSignature/);
     assert.match(read("lib/billing/checkout-verify.ts"), /verifyPaymentSignature/);
     assert.match(read("app/api/razorpay/verify/route.ts"), /verifyRazorpayCheckout/);
     assert.match(read("lib/billing/checkout-verify.ts"), /fetchSubscription/);

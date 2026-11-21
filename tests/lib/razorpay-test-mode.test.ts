@@ -279,7 +279,15 @@ describe("Test Mode gate is enforced at every billing entry point", () => {
     assert.match(read("app/(app)/settings/actions.ts"), /getRazorpayServerConfig\(\)/);
     assert.match(read("app/(app)/settings/actions.ts"), /getRazorpayClientConfig\(\)/);
     assert.match(read("app/api/razorpay/verify/route.ts"), /getRazorpayServerConfig\(\)/);
-    assert.match(read("app/api/razorpay/webhook/route.ts"), /getRazorpayServerConfig\(\)/);
+    // The canonical webhook ingress is mode-gated upstream: it can only be
+    // reached through the Stage 1B adapters whose config resolution is the
+    // gated catalog, and the deprecated route now performs no billing work.
+    assert.match(
+      read("lib/billing/stage1b-adapters.ts"),
+      /RAZORPAY_WEBHOOK_SECRET/,
+      "webhook ingress requires the configured signing secret",
+    );
+    assert.match(read("app/api/razorpay/webhook/route.ts"), /410/, "deprecated route is a tombstone");
   });
 
   test("the public checkout key is resolved before any subscription is created", () => {
@@ -298,6 +306,8 @@ describe("Test Mode gate is enforced at every billing entry point", () => {
       "app/(app)/settings/actions.ts",
       "app/api/razorpay/verify/route.ts",
       "app/api/razorpay/webhook/route.ts",
+      "app/api/billing/webhook/route.ts",
+      "lib/billing/stage1b-adapters.ts",
       "components/settings/PlanCheckoutButton.tsx",
     ]) {
       assert.doesNotMatch(read(f), /rzp_(test|live)_[A-Za-z0-9]{6,}/, `${f} must not embed a real key`);

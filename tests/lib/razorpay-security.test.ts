@@ -115,10 +115,19 @@ describe("SECURITY: webhook signature — raw-body requirement", () => {
     assert.equal(verifyWebhookSignature({ webhookSecret: secret, signature: "", raw: payload }), false);
   });
 
-  test("source: webhook route uses raw request.text() for signature verification", () => {
-    const src = readFileSync(new URL("../../app/api/razorpay/webhook/route.ts", import.meta.url), "utf8");
+  // Retargeted: the canonical ingress is /api/billing/webhook. The raw-body
+  // read lives in lib/billing/webhook-handler (framework-free, unit-tested),
+  // and the HMAC check in lib/billing/stage1b-adapters.
+  test("source: canonical webhook reads the raw body for signature verification", () => {
+    const src = readFileSync(new URL("../../lib/billing/webhook-handler.ts", import.meta.url), "utf8");
     assert.match(src, /await request\.text\(\)/, "webhook must read raw body for HMAC");
-    assert.match(readFileSync(new URL("../../lib/billing/webhook-processor.ts", import.meta.url), "utf8"), /verifyWebhookSignature\(\{/, "webhook must verify signature over the raw body");
+    assert.match(readFileSync(new URL("../../lib/billing/stage1b-adapters.ts", import.meta.url), "utf8"), /verifyWebhookSignature\(\{/, "webhook must verify signature over the raw body");
+    // The route itself must stay a thin shell over that handler.
+    assert.match(
+      readFileSync(new URL("../../app/api/billing/webhook/route.ts", import.meta.url), "utf8"),
+      /handleBillingWebhook/,
+      "canonical route must delegate to the tested handler",
+    );
   });
 });
 
@@ -233,16 +242,31 @@ describe("SECURITY: webhook event allowlist", () => {
 });
 
 describe("SECURITY: atomic webhook processing (single transaction)", () => {
-  test("webhook route no longer performs separate ledger and billing writes", () => {
-    const src = readFileSync(new URL("../../app/api/razorpay/webhook/route.ts", import.meta.url), "utf8") + readFileSync(new URL("../../lib/billing/webhook-processor.ts", import.meta.url), "utf8");
+  // Canonical ingress: the route is a shell over handleBillingWebhook, and
+  // the ONLY write it can reach is the atomic ingest RPC. There is no
+  // direct table access anywhere on the path.
+  test("canonical webhook route performs no separate ledger and billing writes", () => {
+    const src = readFileSync(new URL("../../app/api/billing/webhook/route.ts", import.meta.url), "utf8")
+      + readFileSync(new URL("../../lib/billing/webhook-handler.ts", import.meta.url), "utf8")
+      + readFileSync(new URL("../../lib/billing/stage1b-adapters.ts", import.meta.url), "utf8");
     assert.doesNotMatch(src, /billing_webhook_events"\)\.insert/, "no standalone ledger insert");
     assert.doesNotMatch(src, /billing_subscriptions"\)\.upsert/, "no standalone billing upsert");
     assert.doesNotMatch(src, /billing_subscriptions"\)\.update/, "no standalone billing update");
   });
 
   test("state change and ledger record happen in ONE database function call", () => {
-    const src = readFileSync(new URL("../../lib/billing/webhook-processor.ts", import.meta.url), "utf8") + readFileSync(new URL("../../app/api/razorpay/webhook/route.ts", import.meta.url), "utf8");
-    assert.match(src, /apply_razorpay_subscription_event/, "the atomic function is the only write path");
+    // The Stage 1B ingest RPC replaces the synchronous apply function as the
+    // canonical single write path; the atomic apply function below is still
+    // what the leased worker calls, so both are pinned here.
+    const src = readFileSync(new URL("../../lib/billing/stage1b-adapters.ts", import.meta.url), "utf8");
+    assert.match(src, /ingest_razorpay_webhook_work/, "the atomic ingest RPC is the canonical write path");
+    assert.match(
+      readFileSync(new URL("../../supabase/migrations/20261104120000_razorpay_stage1c_runtime.sql", import.meta.url), "utf8"),
+      /ingest_razorpay_webhook_work[\s\S]*?security definer[\s\S]*?set search_path = pg_catalog, public/i,
+      "ingest RPC is SECURITY DEFINER with a pinned search_path",
+    );
+    assert.match(readFileSync(new URL("../../lib/billing/webhook-processor.ts", import.meta.url), "utf8"), /apply_razorpay_subscription_event/, "the legacy atomic apply function remains the single-transaction write");
+    assert.match(readFileSync(new URL("../../app/api/billing/webhook/route.ts", import.meta.url), "utf8"), /handleBillingWebhook/, "canonical route is a shell over the atomic ingest");
     const mig = readFileSync(new URL("../../supabase/migrations/20261016120000_razorpay_atomic_ledger_entitlements.sql", import.meta.url), "utf8");
     assert.match(mig, /language plpgsql[\s\S]*security definer/i, "function is SECURITY DEFINER");
     assert.match(mig, /set search_path = public, pg_temp/, "fixed search_path");
@@ -257,10 +281,32 @@ describe("SECURITY: atomic webhook processing (single transaction)", () => {
     assert.ok(claim > 0 && write > claim && update > claim, "claim must come before the state write");
   });
 
-  test("the security comment documents the atomic design and the failure mode", () => {
+  test("the canonical path documents its signature-before-parse ordering", () => {
+    // The route is deliberately a 5-line shell, so the security reasoning
+    // lives next to the code it constrains, not in the route.
+    const adapters = readFileSync(new URL("../../lib/billing/stage1b-adapters.ts", import.meta.url), "utf8");
+    assert.match(
+      adapters,
+      /HMAC of the exact raw request bytes is checked before parsing/,
+      "the verification-before-parse ordering must stay documented",
+    );
+    // And the tombstone route must explain why it is terminal rather than a
+    // redirect (Razorpay does not follow 3xx for deliveries).
+    const tombstone = readFileSync(new URL("../../app/api/razorpay/webhook/route.ts", import.meta.url), "utf8");
+    assert.match(tombstone, /410/, "must document the 410 choice");
+    assert.match(tombstone, /retry budget|does not follow 3xx/, "must explain why not a redirect");
+  });
+
+  // The retired duplicate ingress must stay retired: a 410 here is what
+  // tells an operator in the Razorpay dashboard that their URL is wrong
+  // (Razorpay does not follow 3xx, so a redirect would just look like a
+  // failing delivery and burn the retry budget).
+  test("the deprecated /api/razorpay/webhook route is a tombstone naming the canonical path", () => {
     const src = readFileSync(new URL("../../app/api/razorpay/webhook/route.ts", import.meta.url), "utf8");
-    assert.match(src, /SECURITY/, "must have a SECURITY comment");
-    assert.match(src, /ONE database transaction/, "must document the single-transaction design");
+    assert.match(src, /status:\s*410/, "must answer 410 Gone");
+    assert.match(src, /\/api\/billing\/webhook/, "must name the replacement endpoint");
+    assert.doesNotMatch(src, /processRazorpayWebhook\(/, "must not process any webhook");
+    assert.doesNotMatch(src, /createServiceClient/, "must not touch the database");
   });
 });
 
@@ -453,10 +499,15 @@ describe("SECURITY: key mode detection prevents test/live confusion", () => {
 });
 
 describe("SECURITY: no secrets are logged", () => {
-  test("webhook route does not log signature material", () => {
-    const src = readFileSync(new URL("../../app/api/razorpay/webhook/route.ts", import.meta.url), "utf8");
-    assert.match(src, /console\.error\(result\.log\)/, "must log only the processor's sanitized log line");
+  test("canonical webhook path does not log signature material", () => {
+    // The canonical ingress logs NOTHING by design: handleBillingWebhook
+    // returns a sanitized JSON body and the adapters surface a short error
+    // code, so there is no log line that could carry signature material.
+    const src = readFileSync(new URL("../../lib/billing/webhook-handler.ts", import.meta.url), "utf8")
+      + readFileSync(new URL("../../app/api/billing/webhook/route.ts", import.meta.url), "utf8")
+      + readFileSync(new URL("../../lib/billing/stage1b-adapters.ts", import.meta.url), "utf8");
     assert.doesNotMatch(src, /console\.log.*signature|console\.log.*secret|console\.log.*key/i, "must not log secrets");
+    assert.doesNotMatch(src, /console\.log\(/, "canonical ingress must not console.log at all");
   });
 
   test("verify route does not log signature material", () => {
