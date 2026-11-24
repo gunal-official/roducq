@@ -60,7 +60,7 @@ export const findPriceById = findPlanById;
 // ── Isolated Starter/Team tier catalog (not wired into billing) ───────
 /** Product tiers eligible for future automatic checkout. Studio is deliberately excluded. */
 export type RazorpayTier = "starter" | "team";
-export type RazorpayTierCurrency = "USD";
+export type RazorpayTierCurrency = "INR";
 
 /**
  * A validated, server-owned future tier mapping. marketingPriceMajor is for
@@ -82,9 +82,20 @@ export type RazorpayTierCatalogParse =
   | { ok: true; plans: RazorpayTierCatalogPlan[] }
   | { ok: false; error: string };
 
+/**
+ * The approved Starter/Team price list, in INR.
+ *
+ * Razorpay Test Mode only offers INR, so the sellable currency is INR and the
+ * figures come from the Test Mode Plans that actually exist:
+ *   Starter  ₹2,900 / month   (290000 paise)
+ *   Team     ₹7,900 / month   (790000 paise)
+ * amountMinor is PAISE, i.e. major units × 100 — rupee amounts are much larger
+ * than the dollar figures they replaced, so 2900 here would mean ₹29.
+ * Keep this in step with scripts/create-razorpay-plans.mjs.
+ */
 const TIER_CATALOG_RULES = {
-  starter: { currency: "USD", marketingPriceMajor: 29, amountMinor: 2900, includedSeats: 1 },
-  team: { currency: "USD", marketingPriceMajor: 79, amountMinor: 7900, includedSeats: 5 },
+  starter: { currency: "INR", marketingPriceMajor: 2900, amountMinor: 290000, includedSeats: 1 },
+  team: { currency: "INR", marketingPriceMajor: 7900, amountMinor: 790000, includedSeats: 5 },
 } as const;
 const TIER_CATALOG_FIELDS = [
   "tier", "currency", "marketingPriceMajor", "amountMinor", "includedSeats", "period", "interval", "planId",
@@ -141,8 +152,8 @@ export function parseRazorpayTierCatalog(raw: string): RazorpayTierCatalogParse 
     const tier = value.tier;
     const rule = TIER_CATALOG_RULES[tier];
 
-    if (value.currency !== "USD") {
-      return { ok: false, error: `Tier catalog entry ${i} currency must be USD.` };
+    if (value.currency !== "INR") {
+      return { ok: false, error: `Tier catalog entry ${i} currency must be INR.` };
     }
     if (typeof value.marketingPriceMajor !== "number" || !Number.isInteger(value.marketingPriceMajor) || value.marketingPriceMajor !== rule.marketingPriceMajor) {
       return { ok: false, error: `Tier catalog entry ${i} has an unapproved marketing price.` };
@@ -175,7 +186,7 @@ export function parseRazorpayTierCatalog(raw: string): RazorpayTierCatalogParse 
 
     plans.push({
       tier,
-      currency: "USD",
+      currency: "INR",
       marketingPriceMajor: rule.marketingPriceMajor,
       amountMinor: rule.amountMinor,
       includedSeats: rule.includedSeats,

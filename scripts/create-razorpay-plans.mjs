@@ -1,7 +1,7 @@
 /**
  * Razorpay Test Mode Plan setup helper.
  *
- *   node scripts/create-razorpay-plans.mjs --dry-run --specs '[{"name":"RoduCQ Pro","amount":1499,"currency":"INR"}]'
+ *   node scripts/create-razorpay-plans.mjs --dry-run --specs '[{"name":"RoduCQ Starter","amount":2900,"currency":"INR"}]'
  *   node scripts/create-razorpay-plans.mjs --interval monthly --period 1 --file razorpay-plans.local.json
  *   node scripts/create-razorpay-plans.mjs --list
  *
@@ -88,8 +88,8 @@ function loadSpecs(args) {
   if (!raw) {
     fail(
       "No plan specs. Pass --specs '[...]' or --file razorpay-plans.local.json.\n" +
-        '  Each spec: {"name":"RoduCQ Pro","amount":1499,"currency":"INR"}\n' +
-        "  amount is in MAJOR units (1499 = ₹1,499).",
+        '  Each spec: {"name":"RoduCQ Starter","amount":2900,"currency":"INR"}\n' +
+        "  amount is in MAJOR units (2900 = ₹2,900). Razorpay Test Mode is INR only.",
     );
   }
   let parsed;
@@ -109,12 +109,12 @@ function loadSpecs(args) {
       fail(`Spec ${i}.currency must be an uppercase 3-letter ISO-4217 code (e.g. "INR").`);
     }
     if (typeof s.amount !== "number" || !Number.isFinite(s.amount) || s.amount <= 0) {
-      fail(`Spec ${i}.amount must be a positive number in major units (e.g. 1499).`);
+      fail(`Spec ${i}.amount must be a positive number in major units (e.g. 2900 = ₹2,900).`);
     }
     const tier = resolveTier(s, i);
     // RAZORPAY_PLANS (the legacy single-plan-per-currency config) is the only
     // thing that cannot express two plans in one currency. The Stage 1B
-    // catalog keys on tier, and legitimately holds starter AND team in USD,
+    // catalog keys on tier, and legitimately holds starter AND team in INR,
     // so uniqueness is enforced per tier here and reported separately below.
     if (out.some((o) => o.tier === tier)) {
       fail(`Two plan specs both target tier "${tier}"; one plan per tier is expected.`);
@@ -153,23 +153,35 @@ function resolveTier(spec, i) {
 }
 
 /**
- * The approved USD price list, mirrored from lib/razorpay.ts
+ * The approved INR price list, mirrored from lib/razorpay.ts
  * (TIER_CATALOG_RULES). Seeding a catalog row whose amount disagrees with what
  * the app shows would charge a different price than the pricing page renders,
  * so a mismatch is refused rather than silently written.
+ *
+ * amountMinor is PAISE (major units × 100). Razorpay Test Mode only offers INR,
+ * so ₹2,900/month is 290000 paise — not 2900, which would charge ₹29.
  */
 const APPROVED_TIERS = {
-  starter: { currency: "USD", amountMinor: 2900, includedSeats: 1 },
-  team: { currency: "USD", amountMinor: 7900, includedSeats: 5 },
+  starter: { currency: "INR", amountMinor: 290000, includedSeats: 1 },
+  team: { currency: "INR", amountMinor: 790000, includedSeats: 5 },
 };
 function assertApproved(spec, i) {
+  // Razorpay Test Mode is INR-only. Any other currency cannot correspond to a
+  // provisioned plan, so refuse it before reaching the API or the catalog.
+  if (spec.currency !== "INR") {
+    fail(
+      `Spec ${i} ("${spec.name}") is ${spec.currency}, but Razorpay Test Mode only offers INR. ` +
+        `The provisioned plans are INR: Starter 2900, Team 7900 (major units).`,
+    );
+  }
   const rule = APPROVED_TIERS[spec.tier];
   if (!rule) return;
   const minor = Math.round(spec.amount * 100);
   if (spec.currency !== rule.currency || minor !== rule.amountMinor) {
     fail(
       `Spec ${i} ("${spec.name}") is ${spec.amount} ${spec.currency}, but the approved ` +
-        `${spec.tier} price is ${rule.amountMinor / 100} ${rule.currency}. ` +
+        `${spec.tier} price is ${rule.amountMinor / 100} ${rule.currency} ` +
+        `(${rule.amountMinor} minor units). ` +
         `Seeding it would charge a different amount than /pricing shows. ` +
         `Update lib/razorpay.ts TIER_CATALOG_RULES first if the price really changed.`,
     );
@@ -207,7 +219,7 @@ async function main() {
   if (args.help) {
     process.stdout.write(
       "Usage:\n" +
-        "  node scripts/create-razorpay-plans.mjs --dry-run --specs '[{\"name\":\"RoduCQ Pro\",\"amount\":1499,\"currency\":\"INR\"}]'\n" +
+        "  node scripts/create-razorpay-plans.mjs --dry-run --specs '[{\"name\":\"RoduCQ Starter\",\"amount\":2900,\"currency\":\"INR\"}]'\n" +
         "  node scripts/create-razorpay-plans.mjs --interval month --period 1 --file razorpay-plans.local.json\n" +
         "  node scripts/create-razorpay-plans.mjs --catalog --specs '...'\n" +
         "  node scripts/create-razorpay-plans.mjs --list\n\n" +
@@ -319,6 +331,9 @@ async function main() {
  *
  * Emitted in two statements because the trigger allows only inactive -> active
  * and makes provider_plan_id/amount immutable once the row exists.
+ *
+ * amount_minor is written in PAISE: `Math.round(amount * 100)`, so a spec of
+ * ₹2,900 becomes 290000. Writing 2900 would create a ₹29 plan.
  */
 function catalogSql(specs, { mode, interval, period }) {
   const sqlString = (v) => `'${String(v).replace(/'/g, "''")}'`;

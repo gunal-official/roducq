@@ -124,7 +124,7 @@ describe("/pricing hero + Forma layout + provisional source", () => {
     // Plan 1 — Starter
     assert.equal(starter.name, "Starter");
     assert.equal(starter.tagline, "For solo consultants and freelancers");
-    assert.equal(starter.priceDisplay, "$29");
+    assert.equal(starter.priceDisplay, "₹2,900");
     assert.equal(starter.cadence, "/ month");
     assert.equal(starter.seatsLabel, "1 seat");
     assert.equal(starter.additionalSeatsLabel, undefined);
@@ -145,10 +145,10 @@ describe("/pricing hero + Forma layout + provisional source", () => {
     assert.equal(team.name, "Team");
     assert.equal(team.badge, "MOST POPULAR");
     assert.equal(team.tagline, "For small agencies getting organized");
-    assert.equal(team.priceDisplay, "$79");
+    assert.equal(team.priceDisplay, "₹7,900");
     assert.equal(team.cadence, "/ month");
     assert.equal(team.seatsLabel, "Up to 5 seats");
-    assert.equal(team.additionalSeatsLabel, "+$12/seat after 5 seats");
+    assert.equal(team.additionalSeatsLabel, undefined, "additional-seat billing is not implemented");
     assert.equal(team.cta.label, "Start free trial");
     assert.equal(team.cta.href, "/signup");
     assert.equal(team.cta.primary, true);
@@ -169,8 +169,8 @@ describe("/pricing hero + Forma layout + provisional source", () => {
       studio.tagline,
       "For growing teams running full client operations"
     );
-    assert.equal(studio.priceDisplay, "$199");
-    assert.equal(studio.cadence, "/ month");
+    assert.equal(studio.priceDisplay, "Contact us");
+    assert.equal(studio.cadence, "", "Studio is contact-only: no billing cadence");
     assert.equal(studio.seatsLabel, "Up to 15 seats");
     assert.equal(studio.additionalSeatsLabel, undefined);
     assert.equal(studio.cta.label, "Talk to us");
@@ -250,10 +250,12 @@ describe("/pricing monthly-only presentation & Razorpay safety", () => {
     assert.equal(missing.unavailableNote, PRICES_UNCONFIGURED_NOTE);
 
     const monthlyTiers = plansForInterval("monthly", configuredPrices);
-    assert.equal(monthlyTiers[0].resolvedPriceDisplay, "$29");
-    assert.equal(monthlyTiers[1].resolvedPriceDisplay, "$79");
+    assert.equal(monthlyTiers[0].resolvedPriceDisplay, "₹2,900");
+    assert.equal(monthlyTiers[1].resolvedPriceDisplay, "₹7,900");
+    // priceNote renders whatever RAZORPAY_PLANS holds, in that config's own
+    // currency, so the fixture (INR 2499) is what must appear here.
     assert.match(monthlyTiers[1].priceNote ?? "", /₹2,499/);
-    assert.equal(monthlyTiers[2].resolvedPriceDisplay, "$199");
+    assert.equal(monthlyTiers[2].resolvedPriceDisplay, "Contact us");
   });
 
   it("does not invoke checkout configuration to imply paid-plan activation", () => {
@@ -534,17 +536,17 @@ describe("/pricing approved public content and billing disclosures", () => {
       slug, name, tagline, price, cadence, seats, badge, featured, cta, featuresHeading, features: features.map(({text}) => text),
     })), [
       {
-        slug: "starter", name: "Starter", tagline: "For solo consultants and freelancers", price: "$29", cadence: "/ month", seats: "1 seat", badge: undefined, featured: false,
+        slug: "starter", name: "Starter", tagline: "For solo consultants and freelancers", price: "₹2,900", cadence: "/ month", seats: "1 seat", badge: undefined, featured: false,
         cta: {label: "Create account", href: "/signup"}, featuresHeading: "Includes",
         features: ["15 briefs / month — tier limits are not currently enforced.", "Intake workspace with source preservation.", "Brief drafting with flagged gaps (AI when configured; otherwise a non-AI fallback).", "Generate proposal drafts from briefs."],
       },
       {
-        slug: "team", name: "Team", tagline: "For small agencies getting organized", price: "$79", cadence: "/ month", seats: "Up to 5 seats · +$12 / additional seat after 5 seats", badge: "MOST POPULAR", featured: true,
+        slug: "team", name: "Team", tagline: "For small agencies getting organized", price: "₹7,900", cadence: "/ month", seats: "Up to 5 seats", badge: "MOST POPULAR", featured: true,
         cta: {label: "Create account", href: "/signup"}, featuresHeading: "Everything in Starter, with the Team brief allowance replacing the Starter allowance, plus:",
         features: ["Unlimited briefs — tier limits are not currently enforced.", "Generate task plans from proposal deliverables.", "Per-task owners — Not currently available.", "Per-task due dates — Not currently available.", "Client-update composer.", "Read-only brief sharing — Not currently available.", "Edit history and audit trails — Partial."],
       },
       {
-        slug: "studio", name: "Studio", tagline: "For growing teams running full client operations", price: "$199", cadence: "/ month", seats: "Up to 15 seats", badge: undefined, featured: false,
+        slug: "studio", name: "Studio", tagline: "For growing teams running full client operations", price: "Contact us", cadence: "", seats: "Up to 15 seats", badge: undefined, featured: false,
         cta: {label: "Talk to us", href: "mailto:contact@nanexi.com?subject=roducq%20Studio%20enquiry"}, featuresHeading: "Everything in Team, with the same availability notes, plus:",
         features: ["Configurable update templates.", "Intake inbox with threaded sources.", "Revocable client-update links."],
       },
@@ -558,9 +560,9 @@ describe("/pricing approved public content and billing disclosures", () => {
   it("publishes the entire corrected comparison matrix and notes", () => {
     assert.equal(COMPARISON_LEGEND, "✓ indicates a capability described in the plan; not every feature is tier-enforced. Seat caps are enforced for new invitations. — means not listed for that plan.");
     assert.deepEqual(COMPARISON_GROUPS.flatMap((group) => group.rows).map(({feature, values}) => [feature, ...values]), [
-      ["Monthly price", "$29 / month", "$79 / month", "$199 / month"],
+      ["Monthly price", "₹2,900 / month", "₹7,900 / month", "Contact us"],
       ["Seats", "1 seat", "Up to 5 seats", "Up to 15 seats"],
-      ["Additional seats", "—", "+$12 / additional seat after 5 seats", "—"],
+      ["Additional seats", "—", "Not billed today", "—"],
       ["Briefs", "15 / month*", "Unlimited*", "Unlimited*"],
       ["Intake workspace with source preservation", "✓", "✓", "✓"],
       ["Brief drafting with flagged gaps†", "✓", "✓", "✓"],
@@ -582,7 +584,7 @@ describe("/pricing approved public content and billing disclosures", () => {
     assert.deepEqual(BILLING_FAQ, [
       {question: "How many seats are listed for each plan?", answer: "Free and Starter allow 1 seat, Team allows up to 5, and Studio allows up to 15. Active members and unexpired pending invitations both occupy seats. New invitations are blocked when the workspace is at its limit; existing members are not removed after a downgrade."},
       {question: "What are the brief limits?", answer: "Starter is listed with 15 briefs per month; Team and Studio are listed with unlimited briefs. Brief limits are not currently enforced by tier."},
-      {question: "What is Team’s additional-seat price?", answer: "Team lists an additional $12 per seat after 5 seats. Additional-seat billing is not currently implemented."},
+      {question: "What is Team’s additional-seat price?", answer: "There is no additional-seat price: Team includes up to 5 seats and additional-seat billing is not implemented, so checkout charges the flat monthly plan price."},
       {question: "Is annual checkout available?", answer: "No. Annual checkout is not available. The prices shown are monthly."},
       {question: "Does creating an account purchase or activate a paid plan?", answer: "No. Creating an account does not purchase or activate a paid plan. Workspace owners can start Starter or Team checkout from Billing Settings (currently Test Mode); Studio is contact-only."},
     ]);

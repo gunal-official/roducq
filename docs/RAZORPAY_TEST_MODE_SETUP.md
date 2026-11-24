@@ -245,13 +245,13 @@ cannot seed a price that disagrees with what `/pricing` displays.
 ```bash
 # Preview the SQL with placeholder ids (no credentials needed):
 npm run billing:plans -- --dry-run --catalog \
-  --specs '[{"name":"RoduCQ Starter","amount":29,"currency":"USD"},
-            {"name":"RoduCQ Team","amount":79,"currency":"USD"}]'
+  --specs '[{"name":"RoduCQ Starter","amount":2900,"currency":"INR"},
+            {"name":"RoduCQ Team","amount":7900,"currency":"INR"}]'
 
 # Create the plans, then print the real SQL with the returned plan_ ids:
 npm run billing:plans -- --catalog \
-  --specs '[{"name":"RoduCQ Starter","amount":29,"currency":"USD"},
-            {"name":"RoduCQ Team","amount":79,"currency":"USD"}]'
+  --specs '[{"name":"RoduCQ Starter","amount":2900,"currency":"INR"},
+            {"name":"RoduCQ Team","amount":7900,"currency":"INR"}]'
 ```
 
 Already have the plans? Use `npm run billing:plans -- --list` to get the
@@ -270,8 +270,8 @@ insert into public.razorpay_plan_catalog
   (provider_mode, provider_plan_id, tier, currency, amount_minor, included_seats,
    interval_unit, interval_count)
 values
-  ('test', 'plan_REPLACE_STARTER', 'starter', 'USD', 2900, 1, 'month', 1),
-  ('test', 'plan_REPLACE_TEAM',    'team',    'USD', 7900, 5, 'month', 1)
+  ('test', 'plan_REPLACE_STARTER', 'starter', 'INR', 290000, 1, 'month', 1),
+  ('test', 'plan_REPLACE_TEAM',    'team',    'INR', 790000, 5, 'month', 1)
 on conflict (provider_mode, provider_plan_id) do nothing;
 
 update public.razorpay_plan_catalog

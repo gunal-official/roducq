@@ -10,9 +10,9 @@ const billingPage = readFileSync(new URL("../../app/(app)/settings/billing/page.
 describe("billing pricing table", () => {
   it("shows the three approved monthly tiers and seat allowances", () => {
     for (const detail of [
-      'id: "starter"', 'price: "$29"', 'seats: "1 seat"',
-      'id: "team"', 'price: "$79"', 'seats: "Up to 5 seats"',
-      'id: "studio"', 'price: "$199"', 'seats: "Up to 15 seats"',
+      'id: "starter"', 'price: "₹2,900"', 'seats: "1 seat"',
+      'id: "team"', 'price: "₹7,900"', 'seats: "Up to 5 seats"',
+      'id: "studio"', 'price: "Contact us"', 'seats: "Up to 15 seats"',
     ]) {
       assert.ok(source.includes(detail), `missing approved plan detail: ${detail}`);
     }

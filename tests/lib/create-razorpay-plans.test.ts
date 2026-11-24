@@ -18,9 +18,11 @@ import { resolve } from "node:path";
 
 const SCRIPT = resolve(process.cwd(), "scripts/create-razorpay-plans.mjs");
 
+// Razorpay Test Mode is INR-only. Amounts are MAJOR units (rupees), which the
+// script multiplies by 100 into paise for amount_minor.
 const STARTER_TEAM = JSON.stringify([
-  { name: "RoduCQ Starter", amount: 29, currency: "USD" },
-  { name: "RoduCQ Team", amount: 79, currency: "USD" },
+  { name: "RoduCQ Starter", amount: 2900, currency: "INR" },
+  { name: "RoduCQ Team", amount: 7900, currency: "INR" },
 ]);
 
 /** Run the script with a clean env so no real credentials leak in. */
@@ -44,8 +46,8 @@ describe("create-razorpay-plans.mjs — catalog seeding", () => {
     // Stage 1B catalog keys on tier and legitimately holds both in USD.
     const { code, out } = run(["--dry-run", "--specs", STARTER_TEAM]);
     assert.equal(code, 0, "two tiers in USD must be allowed");
-    assert.match(out, /RoduCQ Starter\s+29 USD/);
-    assert.match(out, /RoduCQ Team\s+79 USD/);
+    assert.match(out, /RoduCQ Starter\s+2900 INR/);
+    assert.match(out, /RoduCQ Team\s+7900 INR/);
   });
 
   it("emits the two-statement insert-then-activate SQL, never a one-shot active insert", () => {
@@ -65,21 +67,22 @@ describe("create-razorpay-plans.mjs — catalog seeding", () => {
 
   it("pins the approved tier prices, seats and intervals", () => {
     const { out } = run(["--dry-run", "--catalog", "--specs", STARTER_TEAM]);
-    // Mirrors lib/razorpay.ts TIER_CATALOG_RULES: starter 2900/1, team 7900/5.
-    assert.match(out, /'starter', 'USD', 2900, 1, 'month', 1/);
-    assert.match(out, /'team', 'USD', 7900, 5, 'month', 1/);
+    // Mirrors lib/razorpay.ts TIER_CATALOG_RULES: starter 290000/1, team 790000/5.
+    // amount_minor is PAISE — ₹2,900 is 290000, not 2900.
+    assert.match(out, /'starter', 'INR', 290000, 1, 'month', 1/);
+    assert.match(out, /'team', 'INR', 790000, 5, 'month', 1/);
   });
 
   it("refuses a spec whose amount disagrees with the approved price", () => {
-    const wrong = JSON.stringify([{ name: "RoduCQ Starter", amount: 199, currency: "USD" }]);
+    const wrong = JSON.stringify([{ name: "RoduCQ Starter", amount: 199, currency: "INR" }]);
     const { code, err } = run(["--dry-run", "--catalog", "--specs", wrong]);
     assert.equal(code, 1);
     assert.match(err, /approved/i);
-    assert.match(err, /29 USD/, "must name the approved price");
+    assert.match(err, /2900 INR/, "must name the approved price");
   });
 
   it("refuses a spec that does not identify a tier", () => {
-    const vague = JSON.stringify([{ name: "RoduCQ Pro", amount: 29, currency: "USD" }]);
+    const vague = JSON.stringify([{ name: "RoduCQ Pro", amount: 2900, currency: "INR" }]);
     // "Pro" is not a sellable catalog tier, so the tier is ambiguous/absent.
     const { code } = run(["--dry-run", "--specs", vague]);
     assert.equal(code, 1);
@@ -87,16 +90,16 @@ describe("create-razorpay-plans.mjs — catalog seeding", () => {
 
   it("resolves the tier from an explicit field when the name is ambiguous", () => {
     const explicit = JSON.stringify([
-      { name: "RoduCQ Team", amount: 79, currency: "USD", tier: "team" },
+      { name: "RoduCQ Team", amount: 7900, currency: "INR", tier: "team" },
     ]);
     const { code, out } = run(["--dry-run", "--catalog", "--specs", explicit]);
     assert.equal(code, 0);
-    assert.match(out, /'team', 'USD', 7900, 5/);
+    assert.match(out, /'team', 'INR', 790000, 5/);
   });
 
   it("warns that checkout needs the catalog when --catalog is omitted", () => {
     // This is the exact gap that produced the reported 409.
-    const fakeCreds = JSON.stringify([{ name: "RoduCQ Starter", amount: 29, currency: "USD" }]);
+    const fakeCreds = JSON.stringify([{ name: "RoduCQ Starter", amount: 2900, currency: "INR" }]);
     const { code, out } = run(
       ["--specs", fakeCreds],
       { RAZORPAY_KEY_ID: "rzp_live_shouldbe_refused" },
@@ -149,5 +152,31 @@ describe("catalog provisioning is not orphaned", () => {
     assert.match(doc, /test_plan_not_available/);
     assert.match(doc, /razorpay_plan_catalog/);
     assert.match(doc, /razorpay_plan_must_start_inactive/);
+  });
+});
+
+describe("INR amounts and the paise unit trap", () => {
+  it("writes amount_minor as paise (rupees × 100)", () => {
+    // ₹2,900 must become 290000. Writing 2900 would create a ₹29 plan — the
+    // single most likely mistake when converting from the old USD figures.
+    const { code, out } = run(["--dry-run", "--catalog", "--specs", STARTER_TEAM]);
+    assert.equal(code, 0);
+    assert.match(out, /290000/);
+    assert.match(out, /790000/);
+    assert.doesNotMatch(out, /INR', 2900,/, "2900 paise would be ₹29");
+  });
+
+  it("refuses a non-INR currency outright", () => {
+    const usd = JSON.stringify([{ name: "RoduCQ Starter", amount: 29, currency: "USD" }]);
+    const { code, err } = run(["--dry-run", "--catalog", "--specs", usd]);
+    assert.equal(code, 1);
+    assert.match(err, /INR only|only offers INR/i);
+  });
+
+  it("refuses a rupee amount entered as if it were paise", () => {
+    const paise = JSON.stringify([{ name: "RoduCQ Starter", amount: 29, currency: "INR" }]);
+    const { code, err } = run(["--dry-run", "--catalog", "--specs", paise]);
+    assert.equal(code, 1);
+    assert.match(err, /2900 INR/, "must state the approved rupee price");
   });
 });

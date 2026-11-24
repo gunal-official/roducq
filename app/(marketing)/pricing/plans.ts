@@ -160,10 +160,12 @@ export const HERO = {
 } as const;
 
 /**
- * Three horizontal pricing tiers from the Roducq pricing PDF specification:
- *   1. Starter ($29 / month, 1 seat)
- *   2. Team — MOST POPULAR ($79 / month, Up to 5 seats, +$12/seat after 5 seats)
- *   3. Studio ($199 / month, Up to 15 seats)
+ * Three horizontal pricing tiers. Prices are INR because Razorpay Test Mode
+ * only offers INR and these are the figures of the provisioned Test Mode Plans:
+ *   1. Starter (₹2,900 / month, 1 seat)
+ *   2. Team — MOST POPULAR (₹7,900 / month, Up to 5 seats)
+ *   3. Studio (contact-only — no per-month figure, no Razorpay plan)
+ * Additional-seat billing is not implemented, so no add-on price is stated.
  */
 export const PLAN_TIERS: PlanTier[] = [
   {
@@ -173,7 +175,7 @@ export const PLAN_TIERS: PlanTier[] = [
     tagline: "For solo consultants and freelancers",
     featured: false,
     pricing: "free",
-    priceDisplay: "$29",
+    priceDisplay: "₹2,900",
     cadence: "/ month",
     seatsLabel: "1 seat",
     billingNote: "1 seat · Billed per workspace",
@@ -195,10 +197,9 @@ export const PLAN_TIERS: PlanTier[] = [
     featured: true,
     badge: "MOST POPULAR",
     pricing: "configured",
-    priceDisplay: "$79",
+    priceDisplay: "₹7,900",
     cadence: "/ month",
     seatsLabel: "Up to 5 seats",
-    additionalSeatsLabel: "+$12/seat after 5 seats",
     billingNote: "Per workspace per month — not per seat in Razorpay checkout today.",
     featuresHeading: "EVERYTHING IN STARTER, PLUS",
     features: [
@@ -218,8 +219,9 @@ export const PLAN_TIERS: PlanTier[] = [
     tagline: "For growing teams running full client operations",
     featured: false,
     pricing: "contact",
-    priceDisplay: "$199",
-    cadence: "/ month",
+    // Contact-only: never guess a figure for a plan with no Razorpay plan ID.
+    priceDisplay: "Contact us",
+    cadence: "",
     seatsLabel: "Up to 15 seats",
     billingNote: "Up to 15 seats · Custom workspace rollout",
     featuresHeading: "EVERYTHING IN TEAM, PLUS",
