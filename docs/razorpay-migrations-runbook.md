@@ -86,7 +86,20 @@ Interpretation:
 
 ---
 
-## 2. Produce the SQL to apply
+## 2. Choose the right bundle
+
+There are two, because "which files are missing" decides whether re-running
+Stage 1A is safe:
+
+| Situation | Use |
+|---|---|
+| `razorpay_*` tables **missing** (`stage1A tables < 4`) | `--set full` |
+| `razorpay_*` tables **present**, RPCs missing (`stage1A tables = 4`, `stage1B RPCs = 0`) | **`--set rpcs`** |
+
+**`--set rpcs` is the common case once Stage 1A has been applied.** Stage 1A
+uses plain `create table`, so including it in a re-run fails with
+`relation "razorpay_plan_catalog" already exists`. `--set rpcs` starts at
+Stage 1B and therefore skips that hazard entirely.
 
 ### Option A — Supabase CLI (preferred when available)
 
@@ -99,13 +112,17 @@ Applies every pending migration in timestamp order. Nothing else needed.
 ### Option B — one paste-able file (browser-only operators)
 
 ```bash
+# RPCs only — the usual case when the razorpay_* tables already exist
+npm run migrations:bundle -- --set rpcs
+# → razorpay-rpc-migrations.bundle.sql  (~63 KB)
+
+# Full stack, from the first Razorpay migration
 npm run migrations:bundle
 # → razorpay-migrations.bundle.sql  (~93 KB)
 ```
 
-The bundle is **generated from `supabase/migrations/`** rather than committed,
-so it can never drift from the canonical files. `npm run migrations:bundle --
---list` shows what goes in it.
+Bundles are **generated from `supabase/migrations/`** rather than committed, so
+they can never drift from the canonical files. `--list` shows what goes in one.
 
 Then: Supabase → **SQL Editor → New query** → paste the whole file → **Run**.
 
@@ -147,13 +164,18 @@ If the editor rejects the size, run the six files individually in the order in
 
 ### The bundle is NOT re-runnable
 
-Stage 1A/1B use plain `create table` (no `IF NOT EXISTS`) and plain
-`create function` (no `OR REPLACE`). A second run stops at the first existing
-object:
+These migrations use plain `create table`, plain `create function`, plain
+`create index`/`create trigger`, and `add column` **without** `IF NOT EXISTS`.
+A second run stops at the first existing object:
 
 ```
 ERROR: relation "razorpay_plan_catalog" already exists
+ERROR: column "candidate_workspace_hint_id" of relation "razorpay_webhook_work" already exists
 ```
+
+That is why `--set rpcs` exists: it contains only statements that begin with
+`create or replace function`, which *are* safe to re-run, plus `if not exists`
+column additions. Do not hand-assemble your own subset — pick a set.
 
 That is safe — nothing is damaged, the batch halts. **Do not just retry.**
 Instead:

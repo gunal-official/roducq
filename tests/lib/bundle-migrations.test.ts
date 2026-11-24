@@ -15,18 +15,20 @@ import { spawnSync } from "node:child_process";
 import { mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
-import { RAZORPAY_BUNDLE as RAW_BUNDLE } from "../../scripts/bundle-migrations.mjs";
+import { RAZORPAY_BUNDLE as RAW_BUNDLE, RAZORPAY_RPC_BUNDLE as RAW_RPC_BUNDLE } from "../../scripts/bundle-migrations.mjs";
 
 /** The generator is plain ESM, so its export arrives untyped. */
 const RAZORPAY_BUNDLE: string[] = RAW_BUNDLE as string[];
+const RAZORPAY_RPC_BUNDLE: string[] = RAW_RPC_BUNDLE as string[];
 
 const SCRIPT = resolve(process.cwd(), "scripts/bundle-migrations.mjs");
 const MIGRATIONS = resolve(process.cwd(), "supabase/migrations");
 
-function bundle() {
+function bundle(set?: string) {
   const dir = mkdtempSync(join(tmpdir(), "migbundle-"));
   const out = join(dir, "bundle.sql");
-  const result = spawnSync(process.execPath, [SCRIPT, "--out", out], { encoding: "utf8" });
+  const args = set ? [SCRIPT, "--set", set, "--out", out] : [SCRIPT, "--out", out];
+  const result = spawnSync(process.execPath, args, { encoding: "utf8" });
   const text = result.status === 0 ? readFileSync(out, "utf8") : "";
   rmSync(dir, { recursive: true, force: true });
   return { status: result.status, out: text, stderr: result.stderr ?? "" };
@@ -101,5 +103,32 @@ describe("bundle-migrations", () => {
     const result = spawnSync(process.execPath, [SCRIPT, "--list"], { encoding: "utf8" });
     assert.equal(result.status, 0);
     for (const name of RAZORPAY_BUNDLE) assert.ok(result.stdout.includes(name), name);
+  });
+});
+
+describe("bundle-migrations --set rpcs", () => {
+  it("emits only Stage 1B onward, starting at the checkout RPCs", () => {
+    // For a project where the razorpay_* tables already exist (Stage 1A
+    // applied) but none of the RPCs do. Re-running stage 1A would fail on
+    // "relation already exists", so it must not be included.
+    const { status, out } = bundle("rpcs");
+    assert.equal(status, 0);
+    assert.deepEqual(RAZORPAY_RPC_BUNDLE, [
+      "20261104100000_razorpay_stage1b_rpcs.sql",
+      "20261104120000_razorpay_stage1c_runtime.sql",
+      "20261105100000_billing_stage2_seat_limits.sql",
+    ]);
+    for (const name of RAZORPAY_RPC_BUNDLE) assert.ok(out.includes(name), name);
+  });
+
+  it("omits Stage 1A, whose create table statements are not idempotent", () => {
+    const { out } = bundle("rpcs");
+    assert.ok(!out.includes("20261030100000_razorpay_stage1a_schema_foundation.sql"));
+    assert.doesNotMatch(out, /create table public\.razorpay_plan_catalog \(/);
+  });
+
+  it("still contains the RPC whose absence caused the 409", () => {
+    const { out } = bundle("rpcs");
+    assert.match(out, /create or replace function public\.reserve_razorpay_checkout_intent/);
   });
 });
