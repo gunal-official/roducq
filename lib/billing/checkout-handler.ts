@@ -100,7 +100,17 @@ export async function handleBillingCheckout(
     requestKey,
   });
   if (!reserved.ok || reserved.value.workspace_id !== context.id) {
-    return json({ error: "Could not reserve checkout." }, 409);
+    // The adapter has already logged the classified DB reason. What used to
+    // happen here is that the reason was silently thrown away, so every
+    // reservation failure — a missing plan catalog row, an open intent, a
+    // stale schema cache — looked identical to the caller and left no trace.
+    // `code` is safe to expose: it is a fixed identifier from a closed set,
+    // never raw database text.
+    const reason = reserved.ok
+      ? "reservation_workspace_mismatch"
+      : reserved.code;
+    console.error(`[checkout] reservation refused: reason=${reason}`);
+    return json({ error: "Could not reserve checkout.", code: reason }, 409);
   }
 
   const authorized = await deps.adapters.startCheckoutCreate({

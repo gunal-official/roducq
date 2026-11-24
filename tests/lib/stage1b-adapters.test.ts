@@ -3,7 +3,9 @@ import { afterEach, describe, it } from "node:test";
 import assert from "node:assert/strict";
 import { createHash, createHmac } from "node:crypto";
 import {
+  classifyRpcFailure,
   createStage1BAdapters,
+  redactHint,
   type Stage1BDependencies,
   type WebhookLease,
 } from "../../lib/billing/stage1b-adapters.ts";
@@ -210,5 +212,84 @@ describe("Stage 1B webhook adapter", () => {
     const result = await adapters.processWebhookLease(lease);
     assert.equal(result.ok, true);
     assert.equal(rpcCalls.at(-1)?.args?.p_verified_status, "canceled");
+  });
+});
+
+/**
+ * The 409 investigation. `reserveIntent` failures used to reach the caller as
+ * a bare `ok:false` carrying only the first WORD of the Postgres message, and
+ * checkout-handler then discarded even that. These tests pin the replacement:
+ * a stable classification bucket plus a redacted, loggable detail.
+ */
+describe("reserve failure classification (diagnosing the 409)", () => {
+  it("classifies an unseeded plan catalog as actionable, not generic", () => {
+    // The exact exception reserve_razorpay_checkout_intent raises when
+    // razorpay_plan_catalog has no active row for the requested tier.
+    const f = classifyRpcFailure("test_plan_not_available", "P0002");
+    assert.equal(f.kind, "plan_not_available");
+    assert.match(f.detail, /razorpay_plan_catalog/);
+    assert.match(f.detail, /active/);
+  });
+
+  it("classifies the other named RPC guards", () => {
+    assert.equal(classifyRpcFailure("workspace_has_current_subscription", "23514").kind, "subscription_exists");
+    assert.equal(classifyRpcFailure("checkout_intent_already_open", "23505").kind, "intent_already_open");
+    assert.equal(classifyRpcFailure("workspace_owner_required", "42501").kind, "not_authorized");
+    assert.equal(classifyRpcFailure("workspace_not_found", "P0002").kind, "not_found");
+  });
+
+  it("separates infrastructure faults that produce a useless first word", () => {
+    // These are exactly the messages rpcErrorCode() degrades on
+    // ("new", "permission", "pgrst202") — which is why the 409 was opaque.
+    assert.equal(classifyRpcFailure('new row violates row-level security policy for table "razorpay_checkout_intents"', "42501").kind, "permission_denied");
+    assert.equal(classifyRpcFailure("permission denied for function reserve_razorpay_checkout_intent", "42501").kind, "permission_denied");
+    assert.equal(classifyRpcFailure("PGRST202: Could not find the function public.reserve_razorpay_checkout_intent in the schema cache", "PGRST202").kind, "schema_cache_stale");
+    assert.equal(classifyRpcFailure("function public.reserve_razorpay_checkout_intent(uuid, text, text, uuid) does not exist", "42883").kind, "function_missing");
+    assert.equal(classifyRpcFailure('relation "public.razorpay_plan_catalog" does not exist', "42P01").kind, "function_missing");
+    assert.equal(classifyRpcFailure("duplicate key value violates unique constraint \"razorpay_checkout_intents_pkey\"", "23505").kind, "constraint_violation");
+  });
+
+  it("falls back safely and echoes only a bounded SQLSTATE", () => {
+    const f = classifyRpcFailure("could not connect to server", "08006");
+    assert.equal(f.kind, "database_error");
+    assert.match(f.detail, /08006/);
+    const bare = classifyRpcFailure("");
+    assert.equal(bare.kind, "database_error");
+  });
+
+  it("never leaks identifiers, UUIDs or credentials through the detail", () => {
+    const dangerous = [
+      "test_plan_not_available for 10000000-0000-0000-0000-0000000000a1",
+      "plan_stage1a001 rejected",
+      "sub_AdapterTest001 missing",
+      "Authorization: Bearer secret-token-value",
+    ];
+    for (const message of dangerous) {
+      const f = classifyRpcFailure(message);
+      assert.doesNotMatch(f.detail, /10000000-0000|plan_stage1a001|sub_AdapterTest001|secret-token/, f.detail);
+    }
+  });
+});
+
+describe("redactHint", () => {
+  it("keeps benign schema guidance", () => {
+    assert.equal(redactHint("Perhaps you need to insert an active test row"), "Perhaps you need to insert an active test row");
+  });
+  it("drops anything carrying an id, token or credential", () => {
+    for (const hint of [
+      "insert a row for 10000000-0000-0000-0000-0000000000a1",
+      "use plan_stage1a001",
+      "sub_AdapterTest001 not found",
+      "Authorization: Bearer abc123",
+      "the password is hunter2",
+    ]) {
+      assert.equal(redactHint(hint), "", hint);
+    }
+  });
+  it("caps length and tolerates non-strings", () => {
+    assert.equal(redactHint("x".repeat(500)).length, 200);
+    assert.equal(redactHint(undefined), "");
+    assert.equal(redactHint(null), "");
+    assert.equal(redactHint(42), "");
   });
 });
