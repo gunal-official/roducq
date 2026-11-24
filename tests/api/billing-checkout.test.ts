@@ -128,3 +128,50 @@ describe("POST /api/billing/checkout", () => {
     assert.deepEqual(calls, ["reserve", "authorize"]);
   });
 });
+
+/**
+ * Regression tests for the opaque 409. Every reservation failure used to
+ * collapse to {"error":"Could not reserve checkout."} with nothing logged,
+ * so an unseeded plan catalog looked identical to an open intent.
+ */
+describe("POST /api/billing/checkout — reservation failures are diagnosable", () => {
+  /** Swap only reserveIntent's result, leaving the rest of the flow intact. */
+  function setupWithReservation(result: Awaited<ReturnType<CheckoutHandlerDependencies["adapters"]["reserveIntent"]>>) {
+    const { deps } = setup();
+    return { ...deps, adapters: { ...deps.adapters, reserveIntent: async () => result } };
+  }
+
+  it("returns the adapter's code with the 409 instead of discarding it", async () => {
+    const deps = setupWithReservation({ ok: false, code: "test_plan_not_available" });
+    const response = await handleBillingCheckout(request({ tier: "starter", request_key: KEY }), deps);
+    assert.equal(response.status, 409);
+    assert.deepEqual(await response.json(), {
+      error: "Could not reserve checkout.",
+      code: "test_plan_not_available",
+    });
+  });
+
+  it("logs the reason so the 409 leaves a server-side trace", async () => {
+    const logged: string[] = [];
+    const original = console.error;
+    console.error = (...args: unknown[]) => { logged.push(args.join(" ")); };
+    try {
+      const deps = setupWithReservation({ ok: false, code: "checkout_intent_already_open" });
+      await handleBillingCheckout(request({ tier: "team", request_key: KEY }), deps);
+    } finally {
+      console.error = original;
+    }
+    assert.ok(logged.some((line) => line.includes("checkout_intent_already_open")), logged.join("\n"));
+    assert.ok(logged.every((line) => !/rzp_|whsec|bearer/i.test(line)), "log must not carry credentials");
+  });
+
+  it("still refuses a reservation that belongs to another workspace, and says so", async () => {
+    const deps = setupWithReservation({ ok: true, value: { id: INTENT, workspace_id: "10000000-0000-0000-0000-0000000000ff" } });
+    const response = await handleBillingCheckout(request({ tier: "starter", request_key: KEY }), deps);
+    assert.equal(response.status, 409);
+    assert.deepEqual(await response.json(), {
+      error: "Could not reserve checkout.",
+      code: "reservation_workspace_mismatch",
+    });
+  });
+});

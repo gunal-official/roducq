@@ -213,6 +213,54 @@ separately reviewed source of truth.
 > 1C migration replaces SECURITY DEFINER functions and changes billing metadata;
 > it must first be reviewed and tested on a disposable/non-production database.
 
+### Seed `razorpay_plan_catalog` before testing checkout
+
+**Stage 1A intentionally inserts no catalog rows.** A freshly migrated project
+therefore has an empty `razorpay_plan_catalog`, and `reserve_razorpay_checkout_intent`
+raises `test_plan_not_available` (SQLSTATE `P0002`) for every tier. The checkout
+API surfaces that as:
+
+```http
+HTTP/1.1 409 Conflict
+{"error":"Could not reserve checkout.","code":"test_plan_not_available"}
+```
+
+with a matching server log line:
+
+```
+[checkout] reserve_razorpay_checkout_intent failed: kind=plan_not_available sqlstate=P0002 tier=starter raw_code=test_plan_not_available — no active test row in razorpay_plan_catalog for this tier/currency; insert one and set its state to active before retrying
+[checkout] reservation refused: reason=plan_not_available
+```
+
+That is configuration, not a bug. Seed one row per tier you intend to sell. The
+guard trigger forces rows to be created `inactive` and only permits
+`inactive → active`, so it takes two statements:
+
+```sql
+-- 1. Insert in the required initial state (the trigger rejects anything else).
+insert into public.razorpay_plan_catalog
+  (provider_mode, provider_plan_id, tier, currency, amount_minor, included_seats, created_by)
+values
+  ('test', 'plan_REPLACE_STARTER', 'starter', 'USD', 2900, 1, null),
+  ('test', 'plan_REPLACE_TEAM',    'team',    'USD', 7900, 5, null);
+
+-- 2. Promote to active (identity and pricing are immutable after insert).
+update public.razorpay_plan_catalog
+   set state = 'active'
+ where provider_plan_id in ('plan_REPLACE_STARTER', 'plan_REPLACE_TEAM');
+```
+
+`provider_plan_id` must be the **real Test Mode Plan ID** from the Razorpay
+Dashboard — the same rows `verify:db` seeds in
+`tests/db/razorpay-stage1b.test.ts`. A unique index allows only one active row
+per `(provider_mode, tier, currency, interval_unit, interval_count)`.
+
+Verify:
+
+```sql
+select tier, provider_mode, state from public.razorpay_plan_catalog order by tier;
+```
+
 ### Apply to staging only
 
 After staging prerequisites and the target project have been verified, the

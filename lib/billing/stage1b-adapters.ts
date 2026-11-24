@@ -16,7 +16,19 @@ import {
 export type Stage1BTier = "pro" | "starter" | "team";
 export type Stage1BStatus = BillingStatus;
 
-type RpcResult = { data: any; error: { message: string } | null };
+/**
+ * Mirrors supabase-js's PostgrestError. `code` carries the SQLSTATE (or a
+ * PostgREST code such as PGRST202) and `hint` frequently holds the actionable
+ * fix — both are needed to diagnose a generic 409, so they are typed here
+ * rather than discarded by a narrower `{ message }` shape.
+ */
+export interface RpcError {
+  message: string;
+  code?: string;
+  details?: string;
+  hint?: string;
+}
+type RpcResult = { data: any; error: RpcError | null };
 type RpcClient = { rpc: (name: string, args?: Record<string, unknown>) => PromiseLike<RpcResult> };
 type AuthClient = RpcClient & { auth: { getUser: () => Promise<{ data: { user: { id: string } | null }; error: unknown }> } };
 
@@ -96,6 +108,118 @@ function rpcErrorCode(message: string): string {
   const match = message.match(/[a-z][a-z0-9_]{2,79}/i);
   return match?.[0]?.toLowerCase() ?? "database_rpc_failed";
 }
+
+/**
+ * A DIAGNOSTIC, not an error code. `rpcErrorCode` above returns the first word
+ * of any Postgres/PostgREST message, which is only meaningful when the RPC
+ * raised one of our own named exceptions (e.g. `test_plan_not_available`).
+ * For infrastructure faults it degrades to a useless fragment such as
+ * "new"/"permission"/"pgrst202", which is why a 409 could not be diagnosed.
+ *
+ * This classifies the SAME message into a fixed, safe bucket and returns a
+ * detail string that is safe to log. What makes it safe:
+ *   - the whole message is never returned, only a known code bucket;
+ *   - no plan IDs, subscription IDs, secrets, session tokens, or UUIDs are
+ *     copied into `detail` (only the object NAMES Postgres prints, such as a
+ *     missing function or table, which are schema identifiers);
+ *   - anything else collapses to `database_error` with no text at all.
+ *
+ * The bucket is what an operator needs: "the plan catalog has no active test
+ * row" is actionable; "Could not reserve checkout." is not.
+ */
+export type RpcFailureKind =
+  | "plan_not_available"
+  | "subscription_exists"
+  | "intent_already_open"
+  | "not_authorized"
+  | "not_found"
+  | "function_missing"
+  | "schema_cache_stale"
+  | "permission_denied"
+  | "constraint_violation"
+  | "database_error";
+
+export interface RpcFailure {
+  kind: RpcFailureKind;
+  /** Safe, redacted log detail. Never contains secrets or identifiers. */
+  detail: string;
+}
+
+export function classifyRpcFailure(message: string, sqlState?: string): RpcFailure {
+  const text = message ?? "";
+  const state = sqlState ?? "";
+
+  // Our own named exceptions come first — they are the actionable ones.
+  if (/test_plan_not_available/.test(text)) {
+    return {
+      kind: "plan_not_available",
+      detail:
+        "no active test row in razorpay_plan_catalog for this tier/currency; " +
+        "insert one and set its state to active before retrying",
+    };
+  }
+  if (/workspace_has_current_subscription/.test(text)) {
+    return { kind: "subscription_exists", detail: "workspace already has an active or paid-through subscription" };
+  }
+  if (/checkout_intent_already_open/.test(text)) {
+    return { kind: "intent_already_open", detail: "another checkout intent is already open for this workspace" };
+  }
+  if (/idempotency_key_reused_for_different_plan/.test(text)) {
+    return { kind: "constraint_violation", detail: "request key was reused for a different plan" };
+  }
+  if (/workspace_owner_required|authentication_required/.test(text)) {
+    return { kind: "not_authorized", detail: "caller is not an authenticated workspace owner" };
+  }
+  if (/workspace_not_found/.test(text)) {
+    return { kind: "not_found", detail: "workspace does not exist" };
+  }
+  if (/invalid_checkout_request/.test(text)) {
+    return { kind: "constraint_violation", detail: "request failed server-side input validation" };
+  }
+
+  // Infrastructure faults. Order matters: a stale schema cache reports the
+  // function as missing, so the cache check must win over function_missing.
+  if (/schema cache|PGRST202/i.test(text)) {
+    return {
+      kind: "schema_cache_stale",
+      detail: "PostgREST cannot see the RPC (schema cache stale after migration; reload it)",
+    };
+  }
+  const missingFunction = text.match(/function\s+(public\.[A-Za-z0-9_]+)\(/i);
+  if (missingFunction || (/does not exist/i.test(text) && /function/i.test(text))) {
+    return {
+      kind: "function_missing",
+      detail: `RPC not installed (${missingFunction?.[1] ?? "unknown function"}); run pending migrations`,
+    };
+  }
+  const missingTable = text.match(/relation\s+"?(public\.[A-Za-z0-9_]+)"?\s+does not exist/i);
+  if (missingTable) {
+    return {
+      kind: "function_missing",
+      detail: `table not installed (${missingTable[1]}); run pending migrations`,
+    };
+  }
+  if (/permission denied/i.test(text)) {
+    return { kind: "permission_denied", detail: "database role lacks EXECUTE on the RPC" };
+  }
+  // SQLSTATE first: RLS denials arrive as 42501 with no recognisable wording
+  // ("new row violates row-level security policy"), so the text alone would
+  // fall through to the generic word-fragment bucket.
+  if (state === "42501") {
+    return { kind: "permission_denied", detail: "database role lacks the required privilege (SQLSTATE 42501)" };
+  }
+  if (/row-level security/i.test(text)) {
+    return { kind: "permission_denied", detail: "row-level security denied the reservation" };
+  }
+  if (state === "23505" || state === "23514" || /duplicate key|unique constraint|violates check constraint/i.test(text)) {
+    return { kind: "constraint_violation", detail: "a database constraint rejected the reservation" };
+  }
+  if (state) {
+    return { kind: "database_error", detail: `unclassified database error (SQLSTATE ${state.slice(0, 5)})` };
+  }
+
+  return { kind: "database_error", detail: "unclassified database error" };
+}
 function toIsoFromUnix(seconds: number | null): string | null {
   return seconds !== null && Number.isFinite(seconds) && seconds > 0
     ? new Date(seconds * 1000).toISOString()
@@ -107,6 +231,28 @@ function validUuid(value: unknown): string | null {
 function safeCode(value: string): string {
   const normalized = value.toLowerCase().replace(/[^a-z0-9_]+/g, "_").replace(/^_+|_+$/g, "");
   return SAFE_CODE_RE.test(normalized) ? normalized : "provider_error";
+}
+
+/**
+ * Make a Postgres `hint` safe to log.
+ *
+ * Hints are schema text ("Perhaps you need to set the state to active"), but
+ * they are generated by the database and could in principle echo a value from
+ * the failing statement — which for this RPC includes UUIDs and a plan
+ * reference. So this keeps only identifier-ish characters, collapses runs,
+ * caps the length, and drops anything that looks like a credential or a token.
+ */
+export function redactHint(hint: unknown): string {
+  if (typeof hint !== "string") return "";
+  const cleaned = hint
+    .replace(/[^A-Za-z0-9 _.,;:'"()\-]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  // UUIDs, plan_/sub_ ids and anything token-shaped never reach the log.
+  if (/[0-9a-f]{8}-[0-9a-f]{4}-/i.test(cleaned)) return "";
+  if (/\b(plan|sub|rzp|whsec|cus)_[A-Za-z0-9]{4,}/i.test(cleaned)) return "";
+  if (/\b(bearer|token|secret|password|apikey|api_key)\b/i.test(cleaned)) return "";
+  return cleaned.slice(0, 200);
 }
 function parseSubscription(value: any): CreatedSubscription | null {
   if (!value || typeof value.id !== "string" || !SUBSCRIPTION_ID_RE.test(value.id)
@@ -155,7 +301,28 @@ export function createStage1BAdapters(deps: Stage1BDependencies = defaultDepende
         p_currency: input.currency,
         p_request_key: input.requestKey,
       });
-      if (error) return fail(rpcErrorCode(error.message));
+      if (error) {
+        // The caller turns this into a generic 409, so the DB reason has to
+        // reach the logs or it is lost entirely. `classifyRpcFailure` returns
+        // a fixed bucket plus a redacted detail — never the raw message, which
+        // can quote plan IDs, UUIDs, or role names.
+        const failure = classifyRpcFailure(error.message ?? "", error.code);
+        // Postgres puts the actionable fix in `hint` more often than in
+        // `message`. It is schema text (not data), but it is still scrubbed
+        // to a whitelist of identifier characters and capped, so nothing
+        // user- or secret-shaped can ride along.
+        const hint = redactHint(error.hint);
+        console.error(
+          `[checkout] reserve_razorpay_checkout_intent failed: ` +
+          `kind=${failure.kind} sqlstate=${error.code || "none"} ` +
+          `tier=${input.tier} raw_code=${rpcErrorCode(error.message ?? "")} — ` +
+          `${failure.detail}${hint ? ` | hint: ${hint}` : ""}`,
+        );
+        // The stable bucket is the caller-facing code. rpcErrorCode() is kept
+        // in the log for correlation but never escapes: for infrastructure
+        // faults it is a meaningless word fragment ("could", "new").
+        return fail(failure.kind);
+      }
       return data ? ok(data as CheckoutIntent) : fail("reservation_not_returned");
     } catch {
       return fail("reservation_unavailable", true);
