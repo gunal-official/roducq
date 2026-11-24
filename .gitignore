@@ -36,3 +36,7 @@ scripts/razorpay-plans.local.json
 
 # Local output of scripts/solutions-verification (screenshots, JSON)
 verify-out/
+
+# Generated migration bundle (npm run migrations:bundle) — never committed,
+# so it cannot drift from supabase/migrations/
+razorpay-migrations.bundle.sql

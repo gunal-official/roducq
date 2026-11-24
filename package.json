@@ -20,7 +20,8 @@
     "test": "node scripts/test.mjs",
     "test:db:stage1b-concurrency": "node --test tests/db/razorpay-stage1b-concurrency.test.ts",
     "verify:responsive:setup": "playwright-core install chromium",
-    "verify:production": "node scripts/verify-production.mjs"
+    "verify:production": "node scripts/verify-production.mjs",
+    "migrations:bundle": "node scripts/bundle-migrations.mjs"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.1",
