@@ -411,11 +411,11 @@ describe("/ pricing band", () => {
   });
 
   it("renders the approved monthly amounts and seat terms from the pricing-page presentation", () => {
-    assert.deepEqual(PRICING_CARDS.map((plan) => plan.price), ["$29", "$79", "$199"]);
-    assert.deepEqual(PRICING_CARDS.map((plan) => plan.cadence), ["/ month", "/ month", "/ month"]);
+    assert.deepEqual(PRICING_CARDS.map((plan) => plan.price), ["₹2,900", "₹7,900", "Contact us"]);
+    assert.deepEqual(PRICING_CARDS.map((plan) => plan.cadence), ["/ month", "/ month", ""]);
     assert.equal(PRICING_CARDS[0].seats, "1 seat");
     assert.match(PRICING_CARDS[1].seats, /Up to 5 seats/);
-    assert.match(PRICING_CARDS[1].seats, /\+\$12/);
+    assert.doesNotMatch(PRICING_CARDS[1].seats, /\$/, "no add-on seat price is stated");
     assert.match(PRICING_CARDS[2].seats, /Up to 15 seats/);
     assert.equal(PRICING_CARDS[0].cta.href, "/signup");
     assert.equal(PRICING_CARDS[1].cta.href, "/signup");
@@ -528,8 +528,11 @@ describe("/ landing truthfulness", () => {
   });
 
   it("publishes only the three approved monthly prices and no fabricated tier", () => {
-    const figures = ALL_COPY.join("\n").match(/\$\d[\d,]*(?:\.\d{2})?/g) ?? [];
-    assert.deepEqual(figures.filter((price) => ["$29", "$79", "$199"].includes(price)), ["$29", "$79", "$199"]);
+    // Prices are INR now; assert against the rupee figures and that no stale
+    // dollar price survives anywhere in the copy.
+    const figures = ALL_COPY.join("\n").match(/₹[\d,]+/g) ?? [];
+    assert.deepEqual(figures, ["₹2,900", "₹7,900"]);
+    assert.doesNotMatch(ALL_COPY.join(" "), /\$\d/, "no dollar price may remain");
     assert.doesNotMatch(ALL_COPY.join(" "), /\b(?:Free|Enterprise) plan\b/i);
     assert.doesNotMatch(ALL_COPY.join(" "), /annual discount|save \d+%/i);
     const pricing = read("components/marketing/landing/PricingSection.tsx");

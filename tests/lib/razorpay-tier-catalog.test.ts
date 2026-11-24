@@ -8,25 +8,27 @@ import {
   type RazorpayTierCatalogPlan,
 } from "../../lib/razorpay.ts";
 
+// Razorpay Test Mode is INR-only. Amounts mirror the provisioned plans:
+// Starter ₹2,900 (290000 paise), Team ₹7,900 (790000 paise).
 const starter = {
   tier: "starter",
-  currency: "USD",
-  marketingPriceMajor: 29,
-  amountMinor: 2900,
+  currency: "INR",
+  marketingPriceMajor: 2900,
+  amountMinor: 290000,
   includedSeats: 1,
   period: "monthly",
   interval: 1,
-  planId: "plan_StarterUSD01",
+  planId: "plan_StarterINR01",
 };
 const team = {
   tier: "team",
-  currency: "USD",
-  marketingPriceMajor: 79,
-  amountMinor: 7900,
+  currency: "INR",
+  marketingPriceMajor: 7900,
+  amountMinor: 790000,
   includedSeats: 5,
   period: "monthly",
   interval: 1,
-  planId: "plan_TeamUSD001",
+  planId: "plan_TeamINR001",
 };
 const encode = (entries: unknown) => JSON.stringify(entries);
 const parseOne = (entry: unknown) => parseRazorpayTierCatalog(encode([entry]));
@@ -38,28 +40,28 @@ function parsedPlans(entries: unknown[] = [starter, team]): RazorpayTierCatalogP
 }
 
 describe("isolated Razorpay tier catalog", () => {
-  test("accepts the approved Starter/USD catalog entry with explicit major and minor units", () => {
+  test("accepts the approved Starter/INR catalog entry with explicit major and minor units", () => {
     const result = parseOne(starter);
     assert.equal(result.ok, true);
     if (!result.ok) return;
     assert.deepEqual(result.plans[0], {
       tier: "starter",
-      currency: "USD",
-      marketingPriceMajor: 29,
-      amountMinor: 2900,
+      currency: "INR",
+      marketingPriceMajor: 2900,
+      amountMinor: 290000,
       includedSeats: 1,
       period: "monthly",
       interval: 1,
-      planId: "plan_StarterUSD01",
+      planId: "plan_StarterINR01",
     });
   });
 
-  test("accepts the approved Team/USD catalog entry", () => {
+  test("accepts the approved Team/INR catalog entry", () => {
     const result = parseOne(team);
     assert.equal(result.ok, true);
     if (!result.ok) return;
-    assert.equal(result.plans[0].marketingPriceMajor, 79);
-    assert.equal(result.plans[0].amountMinor, 7900);
+    assert.equal(result.plans[0].marketingPriceMajor, 7900);
+    assert.equal(result.plans[0].amountMinor, 790000);
     assert.equal(result.plans[0].includedSeats, 5);
   });
 
@@ -71,15 +73,15 @@ describe("isolated Razorpay tier catalog", () => {
     assert.deepEqual(result.plans.map(({ tier, marketingPriceMajor, amountMinor, includedSeats, period, interval }) => ({
       tier, marketingPriceMajor, amountMinor, includedSeats, period, interval,
     })), [
-      { tier: "starter", marketingPriceMajor: 29, amountMinor: 2900, includedSeats: 1, period: "monthly", interval: 1 },
-      { tier: "team", marketingPriceMajor: 79, amountMinor: 7900, includedSeats: 5, period: "monthly", interval: 1 },
+      { tier: "starter", marketingPriceMajor: 2900, amountMinor: 290000, includedSeats: 1, period: "monthly", interval: 1 },
+      { tier: "team", marketingPriceMajor: 7900, amountMinor: 790000, includedSeats: 5, period: "monthly", interval: 1 },
     ]);
   });
 
   test("resolves plans by exact tier/currency and exact provider Plan ID", () => {
     const plans = parsedPlans();
-    assert.equal(findRazorpayTierPlan(plans, "starter", "USD")?.planId, starter.planId);
-    assert.equal(findRazorpayTierPlan(plans, "team", "USD")?.planId, team.planId);
+    assert.equal(findRazorpayTierPlan(plans, "starter", "INR")?.planId, starter.planId);
+    assert.equal(findRazorpayTierPlan(plans, "team", "INR")?.planId, team.planId);
     assert.equal(findRazorpayTierPlanById(plans, starter.planId)?.tier, "starter");
     assert.equal(findRazorpayTierPlanById(plans, team.planId)?.tier, "team");
   });
@@ -87,9 +89,9 @@ describe("isolated Razorpay tier catalog", () => {
   test("unknown Plan IDs, tiers, and currencies fail closed", () => {
     const plans = parsedPlans();
     assert.equal(findRazorpayTierPlanById(plans, "plan_unknown"), null);
-    assert.equal(findRazorpayTierPlan(plans, "studio", "USD"), null);
-    assert.equal(findRazorpayTierPlan(plans, "starter", "usd"), null);
-    assert.equal(findRazorpayTierPlan(plans, "starter", "INR"), null);
+    assert.equal(findRazorpayTierPlan(plans, "studio", "INR"), null);
+    assert.equal(findRazorpayTierPlan(plans, "starter", "inr"), null);
+    assert.equal(findRazorpayTierPlan(plans, "starter", "USD"), null);
   });
 
   test("does not require environment configuration or call fetch/database APIs", () => {
@@ -127,19 +129,21 @@ describe("isolated Razorpay tier catalog", () => {
     }
   });
 
-  test("rejects unsupported currencies, including INR", () => {
-    for (const currency of ["INR", "EUR", "usd", "US", ""]) {
+  test("accepts INR and rejects every other currency", () => {
+    // INR is the one sellable currency (Razorpay Test Mode is INR-only).
+    assert.equal(parseOne({ ...starter, currency: "INR" }).ok, true);
+    for (const currency of ["USD", "EUR", "inr", "IN", ""]) {
       assert.equal(parseOne({ ...starter, currency }).ok, false, currency);
     }
   });
 
   test("rejects incorrect marketing and provider amounts, including fractional minor units", () => {
-    assert.equal(parseOne({ ...starter, marketingPriceMajor: 30 }).ok, false);
-    assert.equal(parseOne({ ...starter, amountMinor: 3000 }).ok, false);
-    assert.equal(parseOne({ ...starter, amountMinor: 2900.5 }).ok, false);
+    assert.equal(parseOne({ ...starter, marketingPriceMajor: 29 }).ok, false);
+    assert.equal(parseOne({ ...starter, amountMinor: 2900 }).ok, false, "2900 is ₹29, not ₹2,900");
+    assert.equal(parseOne({ ...starter, amountMinor: 290000.5 }).ok, false);
     assert.equal(parseOne({ ...starter, amountMinor: 29 }).ok, false);
-    assert.equal(parseOne({ ...team, marketingPriceMajor: 29 }).ok, false);
-    assert.equal(parseOne({ ...team, amountMinor: 7900.25 }).ok, false);
+    assert.equal(parseOne({ ...team, marketingPriceMajor: 2900 }).ok, false);
+    assert.equal(parseOne({ ...team, amountMinor: 7900 }).ok, false, "7900 is ₹79, not ₹7,900");
   });
 
   test("rejects non-integer and incorrect seat counts", () => {
@@ -162,7 +166,7 @@ describe("isolated Razorpay tier catalog", () => {
   });
 
   test("rejects duplicate tier/currency pairs and globally duplicate Plan IDs", () => {
-    assert.equal(parseRazorpayTierCatalog(encode([starter, { ...starter, planId: "plan_StarterUSD02" }])).ok, false);
+    assert.equal(parseRazorpayTierCatalog(encode([starter, { ...starter, planId: "plan_StarterINR02" }])).ok, false);
     assert.equal(parseRazorpayTierCatalog(encode([starter, { ...team, planId: starter.planId }])).ok, false);
   });
 

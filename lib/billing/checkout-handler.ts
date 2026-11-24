@@ -15,7 +15,13 @@ export interface CheckoutFlowAdapters {
     workspaceId: string;
     actorUserId: string;
     tier: "starter" | "team";
-    currency: "USD";
+    /**
+     * Sellable currency. Razorpay Test Mode only offers INR, and the DB
+     * catalog holds matching INR rows, so this is pinned — the reservation
+     * RPC looks up (tier, currency, 'active') and would raise
+     * test_plan_not_available for any other value.
+     */
+    currency: "INR";
     requestKey: string;
   }): Promise<Result<{ id: string; workspace_id: string }>>;
   startCheckoutCreate(input: {
@@ -96,7 +102,7 @@ export async function handleBillingCheckout(
     workspaceId: context.id,
     actorUserId: context.userId,
     tier,
-    currency: "USD",
+    currency: "INR",
     requestKey,
   });
   if (!reserved.ok || reserved.value.workspace_id !== context.id) {

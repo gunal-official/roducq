@@ -45,7 +45,7 @@ export const PRICING_CARDS: readonly PricingCard[] = [
     slug: "starter",
     name: "Starter",
     tagline: "For solo consultants and freelancers",
-    price: "$29",
+    price: "₹2,900",
     cadence: "/ month",
     seats: "1 seat",
     featured: false,
@@ -68,9 +68,9 @@ export const PRICING_CARDS: readonly PricingCard[] = [
     slug: "team",
     name: "Team",
     tagline: "For small agencies getting organized",
-    price: "$79",
+    price: "₹7,900",
     cadence: "/ month",
-    seats: "Up to 5 seats · +$12 / additional seat after 5 seats",
+    seats: "Up to 5 seats",
     badge: "MOST POPULAR",
     featured: true,
     cta: { label: "Create account", href: "/signup" },
@@ -112,8 +112,8 @@ export const PRICING_CARDS: readonly PricingCard[] = [
     slug: "studio",
     name: "Studio",
     tagline: "For growing teams running full client operations",
-    price: "$199",
-    cadence: "/ month",
+    price: "Contact us",
+    cadence: "",
     seats: "Up to 15 seats",
     featured: false,
     cta: { label: "Talk to us", href: STUDIO_CONTACT },
@@ -146,9 +146,9 @@ export const COMPARISON_GROUPS: readonly {
   {
     title: "Plan details",
     rows: [
-      { feature: "Monthly price", values: ["$29 / month", "$79 / month", "$199 / month"] },
+      { feature: "Monthly price", values: ["₹2,900 / month", "₹7,900 / month", "Contact us"] },
       { feature: "Seats", values: ["1 seat", "Up to 5 seats", "Up to 15 seats"] },
-      { feature: "Additional seats", values: ["—", "+$12 / additional seat after 5 seats", "—"] },
+      { feature: "Additional seats", values: ["—", "Not billed today", "—"] },
       { feature: "Briefs", values: ["15 / month*", "Unlimited*", "Unlimited*"] },
     ],
   },
@@ -200,7 +200,7 @@ export const BILLING_FAQ = [
   {
     question: "What is Team’s additional-seat price?",
     answer:
-      "Team lists an additional $12 per seat after 5 seats. Additional-seat billing is not currently implemented.",
+      "There is no additional-seat price: Team includes up to 5 seats and additional-seat billing is not implemented, so checkout charges the flat monthly plan price.",
   },
   {
     question: "Is annual checkout available?",

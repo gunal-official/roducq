@@ -95,9 +95,11 @@ function PlanCard({ plan }: { plan: ApprovedPricingCard }) {
         <div className="mt-4 border-t border-lm-border-soft pt-4">
           <p className="font-lm-medium text-lm-36 tracking-[-0.07em] text-lm-ink lg:text-lm-35 xl:text-lm-46">
             {plan.price}
-            <span className="ml-2 font-lm-regular text-lm-14 tracking-normal text-lm-muted">
-              {plan.cadence}
-            </span>
+            {plan.cadence && (
+              <span className="ml-2 font-lm-regular text-lm-14 tracking-normal text-lm-muted">
+                {plan.cadence}
+              </span>
+            )}
           </p>
           <p className="mt-2 min-h-10 text-lm-12 leading-relaxed text-lm-ink-soft">
             {plan.seats}

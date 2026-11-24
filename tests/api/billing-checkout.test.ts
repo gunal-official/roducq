@@ -61,7 +61,7 @@ describe("POST /api/billing/checkout", () => {
     assert.equal(response.status, 201);
     assert.deepEqual(calls, ["reserve", "authorize", "provider", "record"]);
     assert.deepEqual(seen.reservation, {
-      workspaceId: WORKSPACE, actorUserId: USER, tier: "team", currency: "USD", requestKey: KEY,
+      workspaceId: WORKSPACE, actorUserId: USER, tier: "team", currency: "INR", requestKey: KEY,
     });
     assert.deepEqual(seen.provider, {
       authorization: {
@@ -173,5 +173,19 @@ describe("POST /api/billing/checkout — reservation failures are diagnosable", 
       error: "Could not reserve checkout.",
       code: "reservation_workspace_mismatch",
     });
+  });
+});
+
+/**
+ * Razorpay Test Mode only offers INR, and the catalog holds INR rows. The
+ * reservation RPC matches on (tier, currency, 'active'), so a hardcoded USD
+ * here silently produced test_plan_not_available on every checkout.
+ */
+describe("POST /api/billing/checkout — currency", () => {
+  it("reserves in INR", async () => {
+    const { deps, seen } = setup();
+    const response = await handleBillingCheckout(request({ tier: "starter", request_key: KEY }), deps);
+    assert.equal(response.status, 201);
+    assert.equal((seen.reservation as { currency?: string }).currency, "INR");
   });
 });

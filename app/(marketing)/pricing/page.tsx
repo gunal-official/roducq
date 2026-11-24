@@ -91,9 +91,9 @@ function FeatureComparison() {
             <thead>
               <tr>
                 <th scope="col"><span className="sr-only">Feature</span></th>
-                <th id={COMPARISON_COLUMN_IDS[0]} scope="col"><span>Starter</span><small>$29 / month</small></th>
-                <th id={COMPARISON_COLUMN_IDS[1]} scope="col"><span>Team</span><small>$79 / month</small></th>
-                <th id={COMPARISON_COLUMN_IDS[2]} scope="col"><span>Studio</span><small>$199 / month</small></th>
+                <th id={COMPARISON_COLUMN_IDS[0]} scope="col"><span>Starter</span><small>₹2,900 / month</small></th>
+                <th id={COMPARISON_COLUMN_IDS[1]} scope="col"><span>Team</span><small>₹7,900 / month</small></th>
+                <th id={COMPARISON_COLUMN_IDS[2]} scope="col"><span>Studio</span><small>Contact us</small></th>
               </tr>
             </thead>
             {COMPARISON_GROUPS.map((group, groupIndex) => {

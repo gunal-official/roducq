@@ -21,7 +21,7 @@ const BILLING_PLANS = [
   {
     id: "starter",
     name: "Starter",
-    price: "$29",
+    price: "₹2,900",
     cadence: "/ month",
     seats: "1 seat",
     description: "A focused home for solo client work.",
@@ -31,7 +31,7 @@ const BILLING_PLANS = [
   {
     id: "team",
     name: "Team",
-    price: "$79",
+    price: "₹7,900",
     cadence: "/ month",
     seats: "Up to 5 seats",
     description: "More room for a small agency to collaborate.",
@@ -41,8 +41,9 @@ const BILLING_PLANS = [
   {
     id: "studio",
     name: "Studio",
-    price: "$199",
-    cadence: "/ month",
+    // Contact-only: no Razorpay plan exists, so no per-month figure is shown.
+    price: "Contact us",
+    cadence: "",
     seats: "Up to 15 seats",
     description: "A tailored setup for growing client teams.",
     features: ["Everything in Team", "Studio workspace tools", "Guided onboarding"],
@@ -124,7 +125,9 @@ export function PricingTable({ workspaceName, userEmail }: PricingTableProps) {
                   <p className="text-sm font-semibold text-muted-foreground">{plan.name}</p>
                   <CardTitle className="flex items-baseline gap-1 text-3xl">
                     <span>{plan.price}</span>
-                    <span className="text-sm font-medium text-muted-foreground">{plan.cadence}</span>
+                    {plan.cadence && (
+                      <span className="text-sm font-medium text-muted-foreground">{plan.cadence}</span>
+                    )}
                   </CardTitle>
                   <p className="text-sm font-medium text-text">{plan.seats}</p>
                   <p className="min-h-10 text-sm leading-6 text-muted-foreground">{plan.description}</p>
