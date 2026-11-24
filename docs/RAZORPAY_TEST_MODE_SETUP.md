@@ -215,10 +215,12 @@ separately reviewed source of truth.
 
 ### Seed `razorpay_plan_catalog` before testing checkout
 
-**Stage 1A intentionally inserts no catalog rows.** A freshly migrated project
-therefore has an empty `razorpay_plan_catalog`, and `reserve_razorpay_checkout_intent`
-raises `test_plan_not_available` (SQLSTATE `P0002`) for every tier. The checkout
-API surfaces that as:
+**Stage 1A intentionally inserts no catalog rows**, and application code cannot
+create them: the migrations revoke every privilege on the table from `public`,
+`anon`, `authenticated` **and** `service_role`, so even the service-role key is
+refused. A freshly migrated project therefore has an empty catalog and
+`reserve_razorpay_checkout_intent` raises `test_plan_not_available`
+(SQLSTATE `P0002`) for every tier. The API returns:
 
 ```http
 HTTP/1.1 409 Conflict
@@ -232,33 +234,61 @@ with a matching server log line:
 [checkout] reservation refused: reason=plan_not_available
 ```
 
-That is configuration, not a bug. Seed one row per tier you intend to sell. The
-guard trigger forces rows to be created `inactive` and only permits
-`inactive → active`, so it takes two statements:
+This is configuration, not a code bug. Seeding is a deliberate operator step.
 
-```sql
--- 1. Insert in the required initial state (the trigger rejects anything else).
-insert into public.razorpay_plan_catalog
-  (provider_mode, provider_plan_id, tier, currency, amount_minor, included_seats, created_by)
-values
-  ('test', 'plan_REPLACE_STARTER', 'starter', 'USD', 2900, 1, null),
-  ('test', 'plan_REPLACE_TEAM',    'team',    'USD', 7900, 5, null);
+#### Generate the SQL
 
--- 2. Promote to active (identity and pricing are immutable after insert).
-update public.razorpay_plan_catalog
-   set state = 'active'
- where provider_plan_id in ('plan_REPLACE_STARTER', 'plan_REPLACE_TEAM');
+`--catalog` prints the SQL to run. It also validates the specs against the
+approved price list (`lib/razorpay.ts` → `TIER_CATALOG_RULES`), so a typo
+cannot seed a price that disagrees with what `/pricing` displays.
+
+```bash
+# Preview the SQL with placeholder ids (no credentials needed):
+npm run billing:plans -- --dry-run --catalog \
+  --specs '[{"name":"RoduCQ Starter","amount":29,"currency":"USD"},
+            {"name":"RoduCQ Team","amount":79,"currency":"USD"}]'
+
+# Create the plans, then print the real SQL with the returned plan_ ids:
+npm run billing:plans -- --catalog \
+  --specs '[{"name":"RoduCQ Starter","amount":29,"currency":"USD"},
+            {"name":"RoduCQ Team","amount":79,"currency":"USD"}]'
 ```
 
-`provider_plan_id` must be the **real Test Mode Plan ID** from the Razorpay
-Dashboard — the same rows `verify:db` seeds in
-`tests/db/razorpay-stage1b.test.ts`. A unique index allows only one active row
-per `(provider_mode, tier, currency, interval_unit, interval_count)`.
+Already have the plans? Use `npm run billing:plans -- --list` to get the
+`plan_…` ids and substitute them into the emitted SQL.
+
+#### Why the SQL is two statements
+
+The `guard_razorpay_plan_catalog` trigger **rejects any row not created
+`inactive`** (`razorpay_plan_must_start_inactive`), permits only
+`inactive → active`, and makes `provider_plan_id`/`amount_minor` immutable
+afterwards. So a one-shot `insert … values (…, 'active')` fails. The emitted
+SQL inserts inactive, then promotes:
+
+```sql
+insert into public.razorpay_plan_catalog
+  (provider_mode, provider_plan_id, tier, currency, amount_minor, included_seats,
+   interval_unit, interval_count)
+values
+  ('test', 'plan_REPLACE_STARTER', 'starter', 'USD', 2900, 1, 'month', 1),
+  ('test', 'plan_REPLACE_TEAM',    'team',    'USD', 7900, 5, 'month', 1)
+on conflict (provider_mode, provider_plan_id) do nothing;
+
+update public.razorpay_plan_catalog
+   set state = 'active'
+ where provider_mode = 'test'
+   and provider_plan_id in ('plan_REPLACE_STARTER', 'plan_REPLACE_TEAM');
+```
+
+The seat counts are fixed by a check constraint: `starter`=1, `team`=5,
+`pro`=NULL. A unique index allows one active row per
+`(provider_mode, tier, currency, interval_unit, interval_count)`.
 
 Verify:
 
 ```sql
-select tier, provider_mode, state from public.razorpay_plan_catalog order by tier;
+select tier, provider_mode, currency, amount_minor, included_seats, state
+  from public.razorpay_plan_catalog order by tier;
 ```
 
 ### Apply to staging only
