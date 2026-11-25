@@ -106,7 +106,25 @@ export default async function BillingSettingsPage() {
           </div>
         </div>
         {workspace.role === "owner" && (
-          <ChangePlanDialog workspaceName={workspace.name} userEmail={user.email ?? ""} />
+          <ChangePlanDialog
+            workspaceName={workspace.name}
+            userEmail={user.email ?? ""}
+            current={
+              // identical resolution to /settings#plan: effectiveSeatPlan over
+              // the same billing row, so the two surfaces agree and neither
+              // offers a plan that is already in force.
+              // effective.plan, not currentPlan: currentPlan can be the
+              // legacy "pro" display tier, which has no Razorpay plan and so
+              // must never mark a card as "your plan".
+              effective.plan === "free"
+                ? null
+                : {
+                    planId: effective.plan,
+                    status: billing?.status ?? "active",
+                    paidThrough: billing?.paid_through ?? null,
+                  }
+            }
+          />
         )}
       </header>
 

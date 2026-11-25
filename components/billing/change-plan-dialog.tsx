@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { ArrowUpRight, CreditCard } from "lucide-react";
 
-import { PricingTable } from "@/components/billing/pricing-table";
+import { PricingTable, type CurrentSubscription } from "@/components/billing/pricing-table";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -16,9 +16,13 @@ import {
 export function ChangePlanDialog({
   workspaceName,
   userEmail,
+  current,
 }: {
   workspaceName: string;
   userEmail: string;
+  /** Same resolved subscription the settings page passes, so this dialog
+   * cannot re-sell a plan the workspace already pays for. */
+  current?: CurrentSubscription | null;
 }) {
   const [open, setOpen] = useState(false);
   return (
@@ -37,7 +41,11 @@ export function ChangePlanDialog({
               Select Starter or Team to continue to secure Razorpay Test Mode checkout. Studio is contact-only.
             </DialogDescription>
           </DialogHeader>
-          <PricingTable workspaceName={workspaceName} userEmail={userEmail} />
+          <PricingTable
+            workspaceName={workspaceName}
+            userEmail={userEmail}
+            current={current}
+          />
         </DialogContent>
       </Dialog>
     </>

@@ -159,3 +159,30 @@ describe("the active plan is shown, not re-sold", () => {
     assert.match(source, /const isEntitled = Boolean\(current\) && \(current\?\.status === "active" \|\| current\?\.status === "canceled"\)/);
   });
 });
+
+describe("the billing dialog cannot re-sell an active plan", () => {
+  const dialog = readFileSync(
+    new URL("../../components/billing/change-plan-dialog.tsx", import.meta.url),
+    "utf8",
+  );
+  const billingPage = readFileSync(
+    new URL("../../app/(app)/settings/billing/page.tsx", import.meta.url),
+    "utf8",
+  );
+
+  it("forwards the resolved subscription into PricingTable", () => {
+    // /settings#plan was fixed to pass `current`; the /settings/billing dialog
+    // rendered the same component without it, so it would happily offer a plan
+    // the workspace already pays for and fail with subscription_exists.
+    assert.ok(dialog.includes("current?: CurrentSubscription | null"));
+    assert.ok(dialog.includes("current={current}"));
+  });
+
+  it("derives it from effective.plan, never the legacy pro display tier", () => {
+    // currentPlan can be "pro" for legacy rows; pro has no Razorpay plan, so it
+    // must never mark a card as "your plan".
+    assert.ok(billingPage.includes("effective.plan === \"free\""));
+    assert.ok(billingPage.includes("planId: effective.plan"));
+    assert.doesNotMatch(billingPage, /planId: currentPlan/);
+  });
+});
