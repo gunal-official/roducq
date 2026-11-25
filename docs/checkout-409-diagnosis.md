@@ -153,6 +153,43 @@ Re-run the Step 3 query: `active_test_plans` must be `2` and
 `9 / 2 / 2 / true / HEALTHY - retry checkout`, and `reserve` returns
 `reserved` for both tiers.
 
+## Unblocking a stuck checkout immediately
+
+A checkout that created its subscription but was never confirmed leaves an
+intent in `provider_created`. Before the
+`20261125100000_fix_stuck_checkout_intent.sql` migration, that state blocked
+the workspace forever (`intent_already_open` on every attempt, both tiers),
+because the expiry sweep only covered `reserved`.
+
+Apply the migration, or clear it by hand for an immediate unblock:
+
+```sql
+-- Inspect first: open intents and their age.
+select state, tier, created_at,
+       now() - created_at as age,
+       reservation_expires_at
+  from public.razorpay_checkout_intents i
+  join public.razorpay_plan_catalog c on c.id = i.plan_catalog_id
+ where i.state in ('reserved','provider_create_started','provider_created','reconciliation_required')
+ order by i.created_at desc;
+
+-- Then expire everything that is past its window.
+update public.razorpay_checkout_intents
+   set state = 'expired', closed_at = now(),
+       last_error_code = 'reservation_expired'
+ where state in ('reserved','provider_create_started','provider_created','reconciliation_required')
+   and reservation_expires_at <= now();
+```
+
+`provider_created_at` / `provider_create_started_at` stay populated — only the
+state and `closed_at` change, which is what the timestamp-shape constraint
+requires for `expired`. A binding row in `razorpay_subscription_bindings` is
+**not** touched, so a late webhook for the real `sub_…` still reconciles
+normally.
+
+Verified: with the stuck row present, `reserve` fails for both tiers before the
+migration and returns `reserved` after it.
+
 ## Step 5 — retry
 
 Open `/settings#plan` and start checkout. The Razorpay modal should open at

@@ -2,7 +2,7 @@ import { timingSafeEqual } from "node:crypto";
 import { NextResponse } from "next/server";
 
 import { reprocessDueDeliveries } from "@/lib/webhook-dispatch.ts";
-import { processNextRazorpayWebhookWorkItem } from "@/lib/billing/webhook-worker";
+import { drainRazorpayWebhookWork } from "@/lib/billing/webhook-worker";
 import { createServiceClient } from "@/lib/supabase/service";
 
 /**
@@ -49,13 +49,7 @@ export async function POST(request: Request) {
   try {
     const supabase = createServiceClient();
     const reprocessed = await reprocessDueDeliveries(supabase);
-    const razorpay = { applied: 0, ignored: 0, failed: 0 };
-    for (let index = 0; index < 20; index += 1) {
-      const result = await processNextRazorpayWebhookWorkItem();
-      if (result.outcome === "none") break;
-      razorpay[result.outcome] += 1;
-      if (result.outcome === "failed") break;
-    }
+    const razorpay = await drainRazorpayWebhookWork();
     return NextResponse.json({ reprocessed, razorpay });
   } catch {
     // The sweep is best-effort by design; one failed run is retried by
