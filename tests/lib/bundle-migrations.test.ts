@@ -132,3 +132,39 @@ describe("bundle-migrations --set rpcs", () => {
     assert.match(out, /create or replace function public\.reserve_razorpay_checkout_intent/);
   });
 });
+
+describe("Stage 1B is safely re-appliable", () => {
+  it("adds its diagnostic column with IF NOT EXISTS", () => {
+    // Stage 1B is the file operators apply on a project where Stage 1A exists
+    // but the RPCs do not. It is 9x `create or replace function` plus this one
+    // `alter table`. Without IF NOT EXISTS a re-run fails here — before any
+    // function is created — so checkout would still have no RPC. Verified:
+    // with this clause the file applies cleanly twice in a row.
+    const source = readFileSync(
+      join(MIGRATIONS, "20261104100000_razorpay_stage1b_rpcs.sql"),
+      "utf8",
+    );
+    assert.match(
+      source,
+      /add column if not exists candidate_workspace_hint_id uuid/,
+      "Stage 1B must stay re-appliable",
+    );
+    assert.doesNotMatch(
+      source,
+      /add column candidate_workspace_hint_id uuid/,
+      "plain ADD COLUMN breaks re-application",
+    );
+  });
+
+  it("Stage 1B contains no plain create table / create function", () => {
+    const source = readFileSync(
+      join(MIGRATIONS, "20261104100000_razorpay_stage1b_rpcs.sql"),
+      "utf8",
+    );
+    assert.doesNotMatch(source, /^create table /m);
+    assert.doesNotMatch(source, /^create function /m);
+    // Every function must be create-or-replace.
+    const fnCount = (source.match(/^create or replace function /gm) ?? []).length;
+    assert.equal(fnCount, 9, "expected the 9 Stage 1B RPCs");
+  });
+});
