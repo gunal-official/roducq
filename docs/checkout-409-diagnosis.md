@@ -33,41 +33,65 @@ provides one — a scrubbed `hint`.
 
 ## Step 3 — the state check
 
-Run this in **Supabase → SQL Editor**. It is safe on any state and does not
-error when objects are missing.
+Run this in **Supabase → SQL Editor**. It returns **exactly one row** in every
+state — it has no `FROM` clause on the outer query, so it cannot return zero
+rows — and it does not error when the functions are missing.
 
 ```sql
+with rpc as (
+  select count(*)::int n
+    from pg_proc p join pg_namespace ns on ns.oid = p.pronamespace
+   where ns.nspname = 'public'
+     and p.proname in (
+       'reserve_razorpay_checkout_intent','start_razorpay_checkout_create',
+       'record_razorpay_subscription_created','finish_razorpay_checkout_create_failure',
+       'verify_razorpay_checkout_binding','ingest_razorpay_webhook_work',
+       'claim_razorpay_webhook_work','razorpay_minor_to_major',
+       'finalize_razorpay_webhook_work')
+), cat as (
+  select count(*)::int total,
+         count(*) filter (where provider_mode = 'test' and state = 'active')::int active
+    from public.razorpay_plan_catalog
+), grant_v as (
+  select coalesce(bool_or(has_function_privilege('authenticated', p.oid, 'execute')), false) ok
+    from pg_proc p join pg_namespace ns on ns.oid = p.pronamespace
+   where ns.nspname = 'public' and p.proname = 'reserve_razorpay_checkout_intent'
+     and exists (select 1 from pg_roles where rolname = 'authenticated')
+)
 select
-  (select count(*)::int from pg_proc p join pg_namespace ns on ns.oid = p.pronamespace
-    where ns.nspname = 'public' and p.proname in (
-      'reserve_razorpay_checkout_intent','start_razorpay_checkout_create',
-      'record_razorpay_subscription_created','finish_razorpay_checkout_create_failure',
-      'verify_razorpay_checkout_binding','ingest_razorpay_webhook_work',
-      'claim_razorpay_webhook_work','razorpay_minor_to_major',
-      'finalize_razorpay_webhook_work')) as stage1b_rpcs,
-  (select count(*)::int from public.razorpay_plan_catalog) as catalog_rows,
-  (select count(*)::int from public.razorpay_plan_catalog
-    where provider_mode = 'test' and state = 'active') as active_test_plans,
-  (select coalesce(string_agg(tier || '/' || currency || '/' || amount_minor, ', ' order by tier),
-                   '(none)')
-     from public.razorpay_plan_catalog
-    where provider_mode = 'test' and state = 'active') as active_detail,
-  (select coalesce(bool_or(has_function_privilege('authenticated', p.oid, 'execute')), false)
-     from pg_proc p join pg_namespace ns on ns.oid = p.pronamespace
-    where ns.nspname = 'public' and p.proname = 'reserve_razorpay_checkout_intent')
-    as auth_can_execute;
+  rpc.n as stage1b_rpcs,
+  cat.total as catalog_rows,
+  cat.active as active_test_plans,
+  grant_v.ok as auth_can_execute,
+  case
+    when rpc.n = 0 then 'RPCs MISSING - apply stage1b migration'
+    when cat.active = 0 then 'RPCs OK, CATALOG EMPTY - seed razorpay_plan_catalog'
+    when not grant_v.ok then 'PLANS OK but authenticated cannot EXECUTE - re-run stage1b'
+    else 'HEALTHY - retry checkout'
+  end as verdict
+from rpc, cat, grant_v;
 ```
 
 ### Reading the result
 
-| `stage1b_rpcs` | `active_test_plans` | Diagnosis | Action |
-| --- | --- | --- | --- |
-| `0` | any | RPCs missing → `function_missing` | Apply Stage 1B |
-| `9` | `0` | RPCs fine, catalog empty → `plan_not_available` | Seed the catalog |
-| `9` | `2` | Healthy | `auth_can_execute` must be `true` |
-| `9` | `2` | `auth_can_execute = false` | Re-run Stage 1B (grant block) |
+The `verdict` column names the action. Expected values:
 
-A healthy result is `9 / 2 / starter/INR/290000, team/INR/790000 / true`.
+| `verdict` | Action |
+| --- | --- |
+| `RPCs MISSING - apply stage1b migration` | Step 2 of the operator runbook |
+| `RPCs OK, CATALOG EMPTY - seed razorpay_plan_catalog` | Step 4 below |
+| `PLANS OK but authenticated cannot EXECUTE - re-run stage1b` | Re-run Stage 1B |
+| `HEALTHY - retry checkout` | Retry `/settings#plan` |
+
+> **"Success. No rows returned" means the query did not run.** This statement
+> always emits one row. If you see that message, the editor executed something
+> else — check the statement from `with` to `;` is fully selected and that you
+> are in the right Supabase project. A quick calibration check is
+> `select 1 as ok;`, which must return `1`.
+
+Validated against three states: RPCs absent (`0 / 0 / 0 / false`), RPCs
+installed but unseeded (`9 / 0 / 0 / true`), and healthy
+(`9 / 2 / 2 / true`).
 
 ## Step 4 — seed the catalog
 
