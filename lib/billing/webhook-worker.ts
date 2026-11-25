@@ -64,3 +64,46 @@ const defaultWorker = createRazorpayWebhookWorker({
 });
 
 export const processNextRazorpayWebhookWorkItem = defaultWorker;
+
+export interface DrainRazorpayWebhooksResult {
+  applied: number;
+  ignored: number;
+  failed: number;
+}
+
+/**
+ * Drain due Razorpay webhook work items.
+ *
+ * `/api/billing/webhook` only *ingests*: it verifies the HMAC, writes a row to
+ * razorpay_webhook_work and returns 200. Nothing applies the event until a
+ * worker claims and finalizes that row. That drain used to live only in
+ * `/api/cron/webhooks`, which requires CRON_SECRET and a scheduler — and with
+ * no `crons` entry in vercel.json there was no scheduler, so in production the
+ * queue was ingested and never processed. Subscriptions were created at
+ * Razorpay while the workspace's plan stayed on free.
+ *
+ * Draining straight after ingest closes that gap for the common case: a
+ * payment that confirms within the request. The cron route remains as the
+ * safety net for events that arrive while no request is in flight.
+ */
+export async function drainRazorpayWebhookWork(
+  processNext: () => Promise<ProcessWebhookWorkResult> = processNextRazorpayWebhookWorkItem,
+  max = 20,
+): Promise<DrainRazorpayWebhooksResult> {
+  const result: DrainRazorpayWebhooksResult = { applied: 0, ignored: 0, failed: 0 };
+  for (let index = 0; index < max; index += 1) {
+    let outcome: ProcessWebhookWorkResult;
+    try {
+      outcome = await processNext();
+    } catch {
+      result.failed += 1;
+      break;
+    }
+    if (outcome.outcome === "none") break;
+    result[outcome.outcome] += 1;
+    // A failure leaves the lease to expire; retrying immediately would spin on
+    // the same row and burn the attempt budget.
+    if (outcome.outcome === "failed") break;
+  }
+  return result;
+}
