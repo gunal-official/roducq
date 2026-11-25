@@ -66,6 +66,7 @@ import { getWorkspaceBranding } from "@/lib/data/workspace-branding";
 import { getPendingInvites, getTeamMembers } from "@/lib/data/team";
 import { getTemplates } from "@/lib/data/templates";
 import { getWorkspaceContext } from "@/lib/data/workspace-context";
+import { effectiveSeatPlan } from "@/lib/billing/seat-limit-policy";
 import { createClient } from "@/lib/supabase/server";
 import { PageHeader } from "@/components/ui/page";
 import { SettingsNav, type SettingsSectionLink } from "@/components/settings/SettingsNav";
@@ -102,6 +103,7 @@ export default async function SettingsPage() {
     mailboxAccounts,
     integrationConnections,
     logoDataUrl,
+    billingRow,
   ] = await Promise.all([
       workspace ? getTemplates(workspace.id) : Promise.resolve([]),
       getTeamMembers(),
@@ -147,11 +149,37 @@ export default async function SettingsPage() {
       workspace
         ? getWorkspaceBranding(workspace.id).then((branding) => branding?.logoDataUrl ?? null)
         : Promise.resolve(null),
+      // Current plan for the Plans & billing section. `/settings` previously
+      // rendered PricingTable with no billing state at all, so a workspace with
+      // a live subscription still saw three "Choose plan" buttons and no
+      // indication of what it was paying for. Fail closed to free.
+      workspace
+        ? supabase
+            .from("billing_subscriptions")
+            .select("plan_name, status, paid_through")
+            .eq("workspace_id", workspace.id)
+            .maybeSingle()
+            .then(({ data }) => data ?? null)
+        : Promise.resolve(null),
+
     ]);
 
   // event_id → event_type for the delivery log lines: the recent-25
   // window covers almost everything; one scoped top-up read annotates
   // older deliveries that predate it.
+  // One source of truth for "what am I paying for": the same policy module the
+  // billing page and the seat gate use, so the two pages cannot disagree about
+  // the active tier. `/settings` previously passed nothing, so a workspace with
+  // a live subscription still saw three "Choose plan" buttons.
+  const effectivePlan = effectiveSeatPlan(billingRow);
+  const currentSubscription = effectivePlan.plan === "free"
+    ? null
+    : {
+        planId: effectivePlan.plan,
+        status: billingRow?.status ?? "active",
+        paidThrough: billingRow?.paid_through ?? null,
+      };
+
   const eventTypes: Record<string, string> = {};
   for (const e of recentEvents) eventTypes[e.id] = e.event_type;
   const missingDeliveryEventIds = [
@@ -252,7 +280,11 @@ export default async function SettingsPage() {
               )}
             </div>
             {workspace && isOwner ? (
-              <PricingTable workspaceName={workspace.name} userEmail={user?.email ?? ""} />
+              <PricingTable
+                workspaceName={workspace.name}
+                userEmail={user?.email ?? ""}
+                current={currentSubscription}
+              />
             ) : (
               <p className="rounded-control border border-border bg-card p-4 text-sm text-muted-foreground">
                 Only workspace owners can change plans. Contact an owner to manage billing.

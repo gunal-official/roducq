@@ -43,7 +43,12 @@ describe("billing pricing table", () => {
 
   it("renders the new pricing table in Settings instead of the legacy Pro roadmap card", () => {
     assert.match(settingsPage, /import \{ PricingTable \} from "@\/components\/billing\/pricing-table"/);
-    assert.match(settingsPage, /<PricingTable workspaceName=\{workspace\.name\} userEmail=\{user\?\.email \?\? ""\} \/>/);
+    // Assert the wiring, not the formatting: the component must receive the
+    // workspace name, the owner email, and the resolved current plan.
+    assert.match(settingsPage, /<PricingTable/);
+    assert.match(settingsPage, /workspaceName=\{workspace\.name\}/);
+    assert.match(settingsPage, /userEmail=\{user\?\.email \?\? ""\}/);
+    assert.match(settingsPage, /current=\{currentSubscription\}/);
     assert.doesNotMatch(settingsPage, /<PlanCard/);
     assert.doesNotMatch(settingsPage, /Early access|Pro roadmap|PlanCheckoutButton/);
   });
@@ -114,5 +119,43 @@ describe("checkout failure messages are actionable", () => {
     assert.ok(handler.includes('code: reason'), "handler must expose the reason code");
     assert.ok(!handler.includes("Could not reserve checkout.\" }, "),
       "the generic error must always travel with its code");
+  });
+});
+
+describe("the active plan is shown, not re-sold", () => {
+  const settingsPage = readFileSync(
+    new URL("../../app/(app)/settings/page.tsx", import.meta.url),
+    "utf8",
+  );
+
+  it("the settings page resolves the workspace's plan", () => {
+    // Regression: /settings rendered PricingTable with no billing state, so a
+    // workspace with a live subscription still saw three "Choose plan"
+    // buttons and no indication of what it was paying for.
+    assert.ok(settingsPage.includes("billing_subscriptions"), "must read the subscription");
+    assert.ok(settingsPage.includes("effectiveSeatPlan"), "must reuse the shared policy");
+    assert.ok(settingsPage.includes("current={currentSubscription}"), "must pass it down");
+  });
+
+  it("renders a current-plan banner with status and paid-through", () => {
+    assert.ok(source.includes("Current plan: {planLabel(current.planId)}"));
+    assert.ok(source.includes("formatPaidThrough(current.paidThrough)"));
+    assert.ok(source.includes('current.status === "canceled" ? "· cancelled" : "· active"'));
+  });
+
+  it("disables checkout for the plan already in force", () => {
+    // Buying the same plan twice would create a second Razorpay subscription;
+    // the reserve RPC would then answer subscription_exists, which reads as an
+    // error rather than "you already have this".
+    assert.match(source, /const isCurrent = current\?\.planId === plan\.id/);
+    assert.match(source, /disabled=\{Boolean\(loadingPlan\) \|\| \(isCurrent && isEntitled\)\}/);
+    assert.ok(source.includes('"Current plan"'));
+    assert.ok(source.includes("Your plan"));
+  });
+
+  it("treats a lapsed subscription as not entitled", () => {
+    // isEntitled requires active or canceled-with-paid-time via effectiveSeatPlan;
+    // a stale row must not keep the button disabled.
+    assert.match(source, /const isEntitled = Boolean\(current\) && \(current\?\.status === "active" \|\| current\?\.status === "canceled"\)/);
   });
 });

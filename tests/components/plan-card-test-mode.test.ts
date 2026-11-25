@@ -11,7 +11,11 @@ const seatLimits = read("lib/billing/seat-limits.ts");
 
 describe("Settings billing rendering", () => {
   it("uses the new pricing table and no longer renders the legacy Free/Pro roadmap card", () => {
-    assert.match(settingsPage, /<PricingTable workspaceName=\{workspace\.name\} userEmail=\{user\?\.email \?\? ""\} \/>/);
+    // Assert the wiring, not the formatting: the props are split across lines
+    // now that the resolved current plan is passed alongside them.
+    assert.match(settingsPage, /<PricingTable/);
+    assert.match(settingsPage, /workspaceName=\{workspace\.name\}/);
+    assert.match(settingsPage, /userEmail=\{user\?\.email \?\? ""\}/);
     assert.match(settingsPage, /workspace && isOwner \?/);
     assert.doesNotMatch(settingsPage, /<PlanCard/);
     assert.doesNotMatch(settingsPage, /Early access|Pro roadmap/);

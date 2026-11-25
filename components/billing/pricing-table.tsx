@@ -51,9 +51,36 @@ const BILLING_PLANS = [
   },
 ] as const;
 
+/** The workspace's live subscription, resolved server-side. */
+export interface CurrentSubscription {
+  planId: string;
+  status: string;
+  paidThrough: string | null;
+}
+
 interface PricingTableProps {
   workspaceName: string;
   userEmail: string;
+  current?: CurrentSubscription | null;
+}
+
+function planLabel(planId: string): string {
+  return planId === "team" ? "Team"
+    : planId === "starter" ? "Starter"
+    : planId === "studio" ? "Studio"
+    : planId === "pro" ? "Pro"
+    : planId.charAt(0).toUpperCase() + planId.slice(1);
+}
+
+/** Format an ISO instant as a short local date; never throws on bad input. */
+function formatPaidThrough(iso: string): string {
+  const parsed = new Date(iso);
+  if (Number.isNaN(parsed.getTime())) return iso;
+  return parsed.toLocaleDateString(undefined, {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
 }
 
 /**
@@ -96,7 +123,7 @@ const RESERVATION_FIXES: Record<string, string> = {
     "The database rejected the reservation for an unclassified reason. Check the server logs for the logged SQLSTATE.",
 };
 
-export function PricingTable({ workspaceName, userEmail }: PricingTableProps) {
+export function PricingTable({ workspaceName, userEmail, current }: PricingTableProps) {
   const router = useRouter();
   const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
@@ -155,16 +182,34 @@ export function PricingTable({ workspaceName, userEmail }: PricingTableProps) {
   return (
     <>
       <div className="space-y-5">
+        {current && (
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1 rounded-control border border-accent/40 bg-accent/5 px-4 py-3 text-sm">
+            <Check className="size-4 shrink-0 text-accent" aria-hidden="true" />
+            <span className="font-semibold text-text">
+              Current plan: {planLabel(current.planId)}
+            </span>
+            <span className="text-muted-foreground">
+              {current.status === "canceled" ? "· cancelled" : "· active"}
+              {current.paidThrough
+                ? ` · paid through ${formatPaidThrough(current.paidThrough)}`
+                : ""}
+            </span>
+          </div>
+        )}
         <div className="grid gap-4 md:grid-cols-3">
           {BILLING_PLANS.map((plan) => {
             const isStudio = plan.id === "studio";
             const isLoading = loadingPlan === plan.id;
+            const isCurrent = current?.planId === plan.id;
+            const isEntitled = Boolean(current) && (current?.status === "active" || current?.status === "canceled");
             return (
               <Card
                 key={plan.id}
                 className={`relative flex flex-col ${plan.featured ? "border-accent shadow-card ring-1 ring-accent/25" : ""}`}
               >
-                {plan.featured && (
+                {isCurrent && isEntitled ? (
+                  <Badge className="absolute right-4 top-4 bg-accent text-accent-foreground">Your plan</Badge>
+                ) : plan.featured && (
                   <Badge className="absolute right-4 top-4 bg-accent text-accent-foreground">Popular</Badge>
                 )}
                 <CardHeader className="pb-4">
@@ -192,12 +237,23 @@ export function PricingTable({ workspaceName, userEmail }: PricingTableProps) {
                   <Button
                     className="w-full"
                     variant={plan.featured ? "default" : "outline"}
-                    disabled={Boolean(loadingPlan)}
+                    // A plan the workspace already pays for must not start a
+                    // second subscription. Razorpay would happily create one;
+                    // the reserve RPC then refuses with subscription_exists,
+                    // which reads as an error rather than "you already have it".
+                    disabled={Boolean(loadingPlan) || (isCurrent && isEntitled)}
                     onClick={() => isStudio ? setContactOpen(true) : void startCheckout(plan.id)}
-                    aria-label={isStudio ? "Talk to us about Studio" : `Choose ${plan.name}`}
+                    aria-label={
+                      isCurrent && isEntitled
+                        ? `You are already on ${plan.name}`
+                        : isStudio ? "Talk to us about Studio" : `Choose ${plan.name}`
+                    }
                   >
-                    {isLoading ? <Loader2 className="animate-spin" aria-hidden="true" /> : isStudio ? <Mail aria-hidden="true" /> : <ArrowRight aria-hidden="true" />}
-                    {isLoading ? "Starting secure checkout…" : isStudio ? "Talk to us" : "Choose plan"}
+                    {isLoading ? <Loader2 className="animate-spin" aria-hidden="true" /> : isStudio ? <Mail aria-hidden="true" /> : (isCurrent && isEntitled) ? <Check aria-hidden="true" /> : <ArrowRight aria-hidden="true" />}
+                    {isLoading ? "Starting secure checkout…"
+                      : isStudio ? "Talk to us"
+                      : (isCurrent && isEntitled) ? "Current plan"
+                      : "Choose plan"}
                   </Button>
                 </CardFooter>
               </Card>
