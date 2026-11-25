@@ -117,8 +117,41 @@ update public.razorpay_plan_catalog
    and provider_plan_id in ('plan_YOURstarterID', 'plan_YOURteamID');
 ```
 
+Both statements are required — a trigger rejects rows inserted as `active`.
+
+> **Never put an underscore after `plan_` in a placeholder.** The column is
+> constrained by `provider_plan_id ~ '^plan_[A-Za-z0-9]{1,80}$'` — alphanumerics
+> only after the prefix. A placeholder such as `plan_REPLACE_STARTER` is
+> rejected with
+> `violates check constraint "razorpay_plan_catalog_provider_plan_id_check"`,
+> blocking the operator before they reach the promote step. Real Razorpay ids
+> carry no underscore (`plan_TwL99rKmEDPRMb`), so use a shape like
+> `plan_YOURstarterID` or a real id.
+
+### Worked example
+
+With `plan_TwL99rKmEDPRMb` (Starter, ₹2,900) and `plan_TwL9wmAKLkioj3`
+(Team, ₹7,900) — both verified against the real constraint:
+
+```sql
+insert into public.razorpay_plan_catalog
+  (provider_mode, provider_plan_id, tier, currency, amount_minor, included_seats,
+   interval_unit, interval_count)
+values
+  ('test', 'plan_TwL99rKmEDPRMb', 'starter', 'INR', 290000, 1, 'month', 1),
+  ('test', 'plan_TwL9wmAKLkioj3', 'team',    'INR', 790000, 5, 'month', 1)
+on conflict (provider_mode, provider_plan_id) do nothing;
+
+update public.razorpay_plan_catalog
+   set state = 'active'
+ where provider_mode = 'test'
+   and provider_plan_id in ('plan_TwL99rKmEDPRMb', 'plan_TwL9wmAKLkioj3');
+```
+
 Re-run the Step 3 query: `active_test_plans` must be `2` and
-`auth_can_execute` must be `true`.
+`auth_can_execute` must be `true`. Verified outcome:
+`9 / 2 / 2 / true / HEALTHY - retry checkout`, and `reserve` returns
+`reserved` for both tiers.
 
 ## Step 5 — retry
 
