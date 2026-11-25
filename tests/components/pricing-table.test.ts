@@ -56,3 +56,63 @@ describe("billing pricing table", () => {
     assert.match(billingPage, /showing the Free-tier fallback/);
   });
 });
+
+describe("checkout failure messages are actionable", () => {
+  const adapters = readFileSync(
+    new URL("../../lib/billing/stage1b-adapters.ts", import.meta.url),
+    "utf8",
+  );
+  const handler = readFileSync(
+    new URL("../../lib/billing/checkout-handler.ts", import.meta.url),
+    "utf8",
+  );
+
+  /** Failure kinds the reserve path can hand back as the 409 `code`. */
+  function reservedCodes(): string[] {
+    const fromClassifier = [...adapters.matchAll(/kind: "([a-z_]+)"/g)].map((m) => m[1]);
+    const fromFail = [...adapters.matchAll(/fail\("([a-z_]+)"/g)].map((m) => m[1]);
+    const fromHandler = [...handler.matchAll(/"[a-z]+(?:_[a-z]+)+"/g)].map((m) => m[0].slice(1, -1));
+    return [...new Set([...fromClassifier, ...fromFail, ...fromHandler])].sort();
+  }
+
+  it("maps every code the server can return to specific guidance", () => {
+    const block = source.slice(
+      source.indexOf("const RESERVATION_FIXES"),
+      source.indexOf("export function PricingTable"),
+    );
+    const mapped = new Set([...block.matchAll(/^\s{2}([a-z_]+):/gm)].map((m) => m[1]));
+
+    // Everything classifyRpcFailure() can return reaches the caller as `code`,
+    // because reserveIntent() turns that bucket straight into fail(kind).
+    const classify = adapters.slice(
+      adapters.indexOf("export function classifyRpcFailure"),
+      adapters.indexOf("function toIsoFromUnix"),
+    );
+    const reservationPath = [...classify.matchAll(/kind: "([a-z_]+)"/g)].map((m) => m[1]);
+    assert.ok(reservationPath.length >= 9, "classifier extraction failed");
+    for (const code of new Set(reservationPath)) {
+      assert.ok(mapped.has(code), `no operator guidance for reservation code: ${code}`);
+    }
+    for (const code of ["plan_not_available", "function_missing", "schema_cache_stale",
+      "intent_already_open", "subscription_exists", "permission_denied", "database_error"]) {
+      assert.ok(mapped.has(code), `missing guidance for ${code}`);
+    }
+  });
+
+  it("renders the code next to the guidance", () => {
+    assert.ok(source.includes("RESERVATION_FIXES[noticeCode]"), "notice must look up the fix");
+    assert.ok(source.includes("({noticeCode})"), "notice must show the raw code for support");
+  });
+
+  it("sets the code from the API payload and clears it between attempts", () => {
+    assert.ok(source.includes("code?: string"), "payload type must carry the code");
+    assert.ok(source.includes("setNoticeCode(payload?.code ?? null)"), "code must be captured");
+    assert.ok(source.includes("setNoticeCode(null)"), "code must reset between attempts");
+  });
+
+  it("the API actually returns the code on a reservation refusal", () => {
+    assert.ok(handler.includes('code: reason'), "handler must expose the reason code");
+    assert.ok(!handler.includes("Could not reserve checkout.\" }, "),
+      "the generic error must always travel with its code");
+  });
+});

@@ -56,15 +56,57 @@ interface PricingTableProps {
   userEmail: string;
 }
 
+/**
+ * The checkout API answers 409 with a stable `code` that names the exact reason
+ * a reservation was refused. It was previously discarded, so every failure —
+ * a missing migration, an empty plan catalog, an in-flight intent, a stale
+ * schema cache — surfaced as the same undiagnosable sentence. Each entry here
+ * says what the operator can actually do about it.
+ */
+const RESERVATION_FIXES: Record<string, string> = {
+  plan_not_available:
+    "No active Test Mode plan is configured for this tier. Add a row to razorpay_plan_catalog and set its state to active.",
+  function_missing:
+    "The billing database functions are not installed. Run the pending Stage 1B migration, then retry.",
+  schema_cache_stale:
+    "The database updated but the API layer has not reloaded it yet. Wait a moment and retry; if it persists, reload the schema cache.",
+  intent_already_open:
+    "A checkout for this plan is already in progress. Finish or abandon that payment, then try again.",
+  subscription_exists:
+    "This workspace already has an active subscription. Manage it instead of starting a new checkout.",
+  not_authorized:
+    "Only a workspace owner can start billing.",
+  authentication_required:
+    "Your session expired. Sign in again and retry.",
+  permission_denied:
+    "Billing permissions are not granted to your account. This is a deployment issue, not something you can fix from here.",
+  reservation_not_returned:
+    "The reservation returned no data. Retry once, then report it if it continues.",
+  reservation_unavailable:
+    "Billing is temporarily unreachable. Retry in a moment.",
+  constraint_violation:
+    "The request was rejected as invalid. Reload the page and try again.",
+  not_found:
+    "This workspace no longer exists. Reload the page.",
+  invalid_checkout_request:
+    "The request was rejected before reaching the database. Reload the page and try again.",
+  reservation_workspace_mismatch:
+    "The reservation was created for a different workspace. Reload the page and retry.",
+  database_error:
+    "The database rejected the reservation for an unclassified reason. Check the server logs for the logged SQLSTATE.",
+};
+
 export function PricingTable({ workspaceName, userEmail }: PricingTableProps) {
   const router = useRouter();
   const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
+  const [noticeCode, setNoticeCode] = useState<string | null>(null);
   const [contactOpen, setContactOpen] = useState(false);
 
   async function startCheckout(planId: "starter" | "team") {
     if (loadingPlan) return;
     setNotice(null);
+    setNoticeCode(null);
     setLoadingPlan(planId);
     try {
       const response = await fetch("/api/billing/checkout", {
@@ -82,9 +124,13 @@ export function PricingTable({ workspaceName, userEmail }: PricingTableProps) {
         subscriptionId?: string;
         keyId?: string;
         error?: string;
+        code?: string;
       } | null;
 
       if (!response.ok || !payload?.subscriptionId || !payload.keyId?.startsWith("rzp_test_")) {
+        // Keep the machine-readable code so the notice can explain the fix
+        // instead of just repeating the generic API sentence.
+        setNoticeCode(payload?.code ?? null);
         throw new Error(payload?.error || "Checkout is not available right now. Please try again.");
       }
 
@@ -163,9 +209,19 @@ export function PricingTable({ workspaceName, userEmail }: PricingTableProps) {
           <p>Starter and Team checkout currently runs in Razorpay Test Mode. Studio is available by contacting our team.</p>
         </div>
         {notice && (
-          <p role="status" className="rounded-control border border-border bg-card px-4 py-3 text-sm text-text">
-            {notice}
-          </p>
+          <div
+            role="status"
+            className="rounded-control border border-border bg-card px-4 py-3 text-sm text-text"
+          >
+            <p>{notice}</p>
+            {noticeCode && (
+              <p className="mt-2 text-muted-foreground">
+                {RESERVATION_FIXES[noticeCode]
+                  ?? "No specific guidance is available for this failure."}{" "}
+                <span className="whitespace-nowrap font-mono text-xs">({noticeCode})</span>
+              </p>
+            )}
+          </div>
         )}
       </div>
 
