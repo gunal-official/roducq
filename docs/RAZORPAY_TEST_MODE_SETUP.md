@@ -270,14 +270,14 @@ insert into public.razorpay_plan_catalog
   (provider_mode, provider_plan_id, tier, currency, amount_minor, included_seats,
    interval_unit, interval_count)
 values
-  ('test', 'plan_REPLACE_STARTER', 'starter', 'INR', 290000, 1, 'month', 1),
-  ('test', 'plan_REPLACE_TEAM',    'team',    'INR', 790000, 5, 'month', 1)
+  ('test', 'plan_YOURstarterID', 'starter', 'INR', 290000, 1, 'month', 1),
+  ('test', 'plan_YOURteamID',    'team',    'INR', 790000, 5, 'month', 1)
 on conflict (provider_mode, provider_plan_id) do nothing;
 
 update public.razorpay_plan_catalog
    set state = 'active'
  where provider_mode = 'test'
-   and provider_plan_id in ('plan_REPLACE_STARTER', 'plan_REPLACE_TEAM');
+   and provider_plan_id in ('plan_YOURstarterID', 'plan_YOURteamID');
 ```
 
 The seat counts are fixed by a check constraint: `starter`=1, `team`=5,
