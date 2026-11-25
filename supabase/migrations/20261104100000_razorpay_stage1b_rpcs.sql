@@ -5,8 +5,11 @@
 
 -- Preserve untrusted note hints for diagnostics only. These columns have no FK
 -- and are never used to resolve or authorize a workspace/binding.
+-- `if not exists` so this file can be re-applied on a project where an earlier
+-- run stopped part-way. Without it a re-run fails here, before any of the nine
+-- functions below are reached, leaving checkout without its RPC.
 alter table public.razorpay_webhook_work
-  add column candidate_workspace_hint_id uuid;
+  add column if not exists candidate_workspace_hint_id uuid;
 
 create or replace function public.reserve_razorpay_checkout_intent(
   p_workspace_id uuid,
