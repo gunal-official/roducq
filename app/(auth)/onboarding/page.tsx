@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Building2 } from "lucide-react";
+import { Building2, Loader2 } from "lucide-react";
 
 import { createWorkspaceAction } from "@/app/(auth)/actions";
 import { AuthCard } from "@/components/auth/AuthCard";
@@ -89,7 +89,14 @@ export default function OnboardingPage() {
           className="h-12 w-full"
           disabled={pending || !userId || !configured}
         >
-          {pending ? "Creating…" : "Create workspace"}
+          {pending ? (
+            <>
+              <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+              Creating…
+            </>
+          ) : (
+            "Create workspace"
+          )}
         </Button>
       </form>
     </AuthCard>

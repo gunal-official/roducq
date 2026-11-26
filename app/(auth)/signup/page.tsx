@@ -6,7 +6,7 @@ import { Suspense, useState } from "react";
 
 import { createWorkspaceAction } from "@/app/(auth)/actions";
 import { acceptTeamInviteAction } from "@/app/invite/actions";
-import { Building2, Lock, Mail, User } from "lucide-react";
+import { Building2, Loader2, Lock, Mail, User } from "lucide-react";
 
 import { AuthCard } from "@/components/auth/AuthCard";
 import { AuthField } from "@/components/auth/AuthField";
@@ -227,13 +227,16 @@ function SignupForm() {
           className="h-12 w-full"
           disabled={pending || !configured}
         >
-          {pending
-            ? inviteToken
-              ? "Joining…"
-              : "Creating…"
-            : inviteToken
-              ? "Create account & join"
-              : "Create workspace"}
+          {pending ? (
+            <>
+              <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+              {inviteToken ? "Joining…" : "Creating…"}
+            </>
+          ) : inviteToken ? (
+            "Create account & join"
+          ) : (
+            "Create workspace"
+          )}
         </Button>
       </form>
     </AuthCard>

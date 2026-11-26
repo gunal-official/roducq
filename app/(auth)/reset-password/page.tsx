@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useRef, useState } from "react";
-import { Lock } from "lucide-react";
+import { Loader2, Lock } from "lucide-react";
 
 import { updatePasswordAction } from "@/app/(auth)/reset-password/actions";
 import { AuthCard } from "@/components/auth/AuthCard";
@@ -341,7 +341,14 @@ function ResetPasswordForm() {
             className="h-12 w-full"
             disabled={pending || !configured}
           >
-            {pending ? "Updating…" : "Update password"}
+            {pending ? (
+              <>
+                <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                Updating…
+              </>
+            ) : (
+              "Update password"
+            )}
           </Button>
         </form>
       )}

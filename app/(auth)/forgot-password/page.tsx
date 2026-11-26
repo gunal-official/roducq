@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Mail } from "lucide-react";
+import { Loader2, Mail } from "lucide-react";
 
 import { AuthCard } from "@/components/auth/AuthCard";
 import { AuthField } from "@/components/auth/AuthField";
@@ -154,7 +154,14 @@ export default function ForgotPasswordPage() {
           className="h-12 w-full"
           disabled={pending || !configured}
         >
-          {pending ? "Sending…" : "Send reset link"}
+          {pending ? (
+            <>
+              <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+              Sending…
+            </>
+          ) : (
+            "Send reset link"
+          )}
         </Button>
       </form>
     </AuthCard>

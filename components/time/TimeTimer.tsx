@@ -18,7 +18,7 @@
 import { useEffect, useId, useRef, useState, useSyncExternalStore } from "react";
 import { useRouter } from "next/navigation";
 import * as Dialog from "@radix-ui/react-dialog";
-import { Square, Timer, X } from "lucide-react";
+import { Loader2, Square, Timer, X } from "lucide-react";
 
 import { logTimeAction } from "@/app/(app)/time/actions";
 import { Button } from "@/components/ui/button";
@@ -307,7 +307,14 @@ export function TimeTimer({ briefs }: { briefs: BriefOption[] }) {
           Keep running
         </Button>
         <Button size="sm" onClick={() => void save()} disabled={pending}>
-          {pending ? "Saving…" : "Save"}
+          {pending ? (
+            <>
+              <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+              Saving…
+            </>
+          ) : (
+            "Save"
+          )}
         </Button>
       </div>
     </>

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { Chrome } from "lucide-react";
+import { Chrome, Loader2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { signInWithGoogle } from "@/lib/auth/oauth";
@@ -68,7 +68,10 @@ export function GoogleSignInButton({ next = "/" }: { next?: string }) {
         aria-label="Continue with Google"
       >
         {pending ? (
-          "Redirecting to Google…"
+          <>
+            <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+            Redirecting to Google…
+          </>
         ) : (
           <>
             <Chrome size={16} strokeWidth={1.5} aria-hidden />
