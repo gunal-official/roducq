@@ -125,6 +125,9 @@ export async function createTeamInviteAction(input: {
   let warning: string | undefined;
   const h = await headers();
   const host = h.get("x-forwarded-host") ?? h.get("host");
+  const isLocalHost =
+    !host || host.startsWith("localhost") || host.startsWith("127.");
+  const isDeployed = !isLocalHost;
   if (!host) {
     warning =
       "Invite created — but the email was skipped. Copy the link below and send it yourself.";
@@ -148,9 +151,25 @@ export async function createTeamInviteAction(input: {
       expiresAt,
     });
     if (!sent.ok && sent.reason === "send-failed") {
-      console.error("invite email failed:", sent.detail);
+      // Classified cause, redacted detail: an operator can tell a wrong
+      // password from a blocked port without the log carrying a
+      // credential, an invite URL or a token.
+      console.error(
+        `invite email failed [${sent.code}]: ${sent.detail ?? "no detail"}`
+      );
       warning =
         "Invite created — but the email couldn't be sent. Copy the link below and send it yourself.";
+    } else if (!sent.ok && sent.reason === "not-configured" && isDeployed) {
+      // Missing SMTP config is a legitimate silent skip on a developer's
+      // machine, where copy-link is the only flow. On a deployed host it
+      // means every invite silently loses its email, so it must be
+      // visible — to the operator in the log, and to the inviter in the
+      // UI.
+      console.error(
+        `invite email skipped: SMTP not configured (unset: ${(sent.missing ?? []).join(", ")})`
+      );
+      warning =
+        "Invite created — but email is not configured on this server, so no message was sent. Copy the link below and send it yourself.";
     }
   }
 
