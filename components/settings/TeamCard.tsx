@@ -55,7 +55,7 @@ function MemberRow({
   rowClass,
   leaving,
   removable,
-  roleOptions,
+  canChangeRole,
   leavable,
 }: {
   member: TeamMember;
@@ -66,10 +66,11 @@ function MemberRow({
   /** True when the viewer (an owner) may remove this member: not their
    *  own row, and not the workspace's last owner. */
   removable: boolean;
-  /** Roles the viewer (an owner) may switch this member TO (Step 22/29):
-   *  never their own row, never the last owner, never the member's
-   *  current role. Empty = no role control. */
-  roleOptions: Array<"owner" | "member" | "viewer">;
+  /** True when the viewer (an owner) may switch this member's role
+   *  (Step 22/29): never their own row, never the workspace's last
+   *  owner. The option list is derived here from the resolved role so
+   *  it stays correct while an optimistic override is showing. */
+  canChangeRole: boolean;
   /** True when this is the VIEWER'S OWN row and they may leave (anyone
    *  but the workspace's last owner — Step 26). */
   leavable: boolean;
@@ -102,6 +103,15 @@ function MemberRow({
     setRoleOverride(null);
   }
   const role = roleOverride ?? member.role;
+
+  // The menu offers every role EXCEPT the one currently displayed —
+  // derived from the resolved role so the options match the badge
+  // immediately after an optimistic change. (Previously the list came
+  // from the stale server prop: a freshly-viewer row offered
+  // Owner/Viewer instead of Owner/Member until the refresh landed.)
+  const roleOptions: Array<"owner" | "member" | "viewer"> = canChangeRole
+    ? (["owner", "member", "viewer"] as const).filter((r) => r !== role)
+    : [];
   const router = useRouter();
 
   async function handleRemove() {
@@ -513,16 +523,14 @@ export function TeamCard({
 
   // Role changes (Step 22/29): owners can set anyone else's role among
   // owner / member / viewer — except their own row (self-guard) and the
-  // workspace's last owner (every option would demote them).
-  const roleOptionsFor = (
-    member: TeamMember,
-  ): Array<"owner" | "member" | "viewer"> => {
-    if (!isOwner || member.user_id === currentUserId) return [];
-    if (member.role === "owner" && ownerCount === 1) return [];
-    return (["owner", "member", "viewer"] as const).filter(
-      (r) => r !== member.role,
-    );
-  };
+  // workspace's last owner (every option would demote them). The option
+  // LIST itself is built inside MemberRow from the row's RESOLVED role
+  // (server prop or optimistic override), so the menu matches the badge
+  // the instant an override flips it — not only after the refresh lands.
+  const canChangeRoleFor = (member: TeamMember): boolean =>
+    isOwner &&
+    member.user_id !== currentUserId &&
+    !(member.role === "owner" && ownerCount === 1);
 
   // Leaving (Step 26): the viewer's own row, anyone but the last owner.
   const isLeavable = (member: TeamMember) =>
@@ -575,7 +583,7 @@ export function TeamCard({
             key={item.id}
             member={item.member}
             removable={isRemovable(item.member)}
-            roleOptions={roleOptionsFor(item.member)}
+            canChangeRole={canChangeRoleFor(item.member)}
             leavable={isLeavable(item.member)}
             rowClass={leaving ? "animate-row-out overflow-hidden" : "animate-rise-in"}
             leaving={leaving}
