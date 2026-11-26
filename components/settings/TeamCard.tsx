@@ -88,6 +88,20 @@ function MemberRow({
   const [confirmingLeave, setConfirmingLeave] = useState(false);
   const [leavePending, setLeavePending] = useState(false);
   const [leaveError, setLeaveError] = useState<string | null>(null);
+  // Optimistic badge — the same UX contract as the status selects and
+  // the task checklist: the moment a role change succeeds the row shows
+  // the new role, without waiting for the refresh round-trip. The
+  // override is dropped the moment fresh server props disagree (the
+  // render-time sync below), so the server is always authoritative.
+  const [roleOverride, setRoleOverride] = useState<
+    "owner" | "member" | "viewer" | null
+  >(null);
+  const [prevServerRole, setPrevServerRole] = useState(member.role);
+  if (member.role !== prevServerRole) {
+    setPrevServerRole(member.role);
+    setRoleOverride(null);
+  }
+  const role = roleOverride ?? member.role;
   const router = useRouter();
 
   async function handleRemove() {
@@ -118,6 +132,13 @@ function MemberRow({
       setRoleError(result.error);
       setConfirmingRole(false);
     } else {
+      // Action succeeded: close the confirm immediately and show the new
+      // role optimistically — the confirm used to stay open (local state
+      // survives router.refresh()) until a manual page reload. Fresh
+      // props from the refresh drop the override when they land.
+      setConfirmingRole(false);
+      setPendingRole(null);
+      setRoleOverride(pendingRole);
       router.refresh();
     }
   }
@@ -135,7 +156,7 @@ function MemberRow({
     // /onboarding when none remain) — this card unmounts with it.
   }
 
-  const roleLabel = member.role === "viewer" ? "View only" : member.role;
+  const roleLabel = role === "viewer" ? "View only" : role;
 
   return (
     <li
@@ -156,7 +177,7 @@ function MemberRow({
             Joined {formatDate(member.joined_at)}
           </p>
         </div>
-        <Badge variant={member.role === "owner" ? "default" : "secondary"}>
+        <Badge variant={role === "owner" ? "default" : "secondary"}>
           {roleLabel}
         </Badge>
 
