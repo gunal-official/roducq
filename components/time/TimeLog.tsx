@@ -33,7 +33,7 @@ import {
 import { EmptyState, SectionCard } from "@/components/ui/page";
 import { WorkBand } from "@/components/workflow/WorkCard";
 import { TimeElapsedArt } from "@/components/workflow/FinancialArt";
-import { Clock, Pencil, Trash2, Timer } from "lucide-react";
+import { Clock, Loader2, Pencil, Trash2, Timer } from "lucide-react";
 import { cn, formatDuration, localToday } from "@/lib/utils";
 import type { BriefOption, TimeEntry } from "@/lib/types/time";
 
@@ -352,7 +352,16 @@ export function TimeLog({
               </p>
               <div className="flex flex-wrap items-center gap-2">
                 <Button type="submit" disabled={saving}>
-                  {saving ? "Saving…" : editingId ? "Save changes" : "Save"}
+                  {saving ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                      Saving…
+                    </>
+                  ) : editingId ? (
+                    "Save changes"
+                  ) : (
+                    "Save"
+                  )}
                 </Button>
                 <Button
                   type="button"
@@ -443,7 +452,14 @@ export function TimeLog({
                           void handleDelete(entry.id);
                         }}
                       >
-                        <Trash2 className="h-4 w-4" aria-hidden="true" />
+                        {deleting && confirmDeleteId === entry.id ? (
+                          <Loader2
+                            className="h-4 w-4 animate-spin"
+                            aria-hidden="true"
+                          />
+                        ) : (
+                          <Trash2 className="h-4 w-4" aria-hidden="true" />
+                        )}
                         {confirmDeleteId === entry.id
                           ? deleting
                             ? "…"

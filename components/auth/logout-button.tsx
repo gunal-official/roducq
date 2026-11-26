@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { LogOut } from "lucide-react";
+import { Loader2, LogOut } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { createClient } from "@/lib/supabase/client";
@@ -83,7 +83,11 @@ export function LogoutButton({
         className
       )}
     >
-      <LogOut className="h-4 w-4" aria-hidden="true" />
+      {pending ? (
+        <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+      ) : (
+        <LogOut className="h-4 w-4" aria-hidden="true" />
+      )}
       <span className={iconOnly ? "sr-only" : undefined}>
         {pending ? "Logging out…" : "Log out"}
       </span>

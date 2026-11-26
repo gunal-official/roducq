@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
-import { Lock, Mail } from "lucide-react";
+import { Loader2, Lock, Mail } from "lucide-react";
 
 import { AuthCard } from "@/components/auth/AuthCard";
 import { AuthField } from "@/components/auth/AuthField";
@@ -155,7 +155,14 @@ function LoginForm() {
           className="h-12 w-full"
           disabled={pending || !configured}
         >
-          {pending ? "Logging in…" : "Log in"}
+          {pending ? (
+            <>
+              <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+              Logging in…
+            </>
+          ) : (
+            "Log in"
+          )}
         </Button>
       </form>
     </AuthCard>

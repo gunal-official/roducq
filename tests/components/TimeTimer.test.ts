@@ -15,7 +15,8 @@ describe("TimeTimer", () => {
   it("stop flow collects a label and notes before submitting", () => {
     const src = read("components/time/TimeTimer.tsx");
     assert.ok(src.includes('placeholder="What are you working on?"'));
-    assert.ok(src.includes('pending ? "Saving…"')); // real submit label + pending state
+    assert.ok(src.includes("<Loader2 className=\"h-4 w-4 animate-spin\" aria-hidden=\"true\" />")); // pending spinner on the submit control
+    assert.ok(src.includes("Saving…")); // real submit label + pending state
     assert.ok(src.includes("logTimeAction")); // real server action
     assert.match(src, /role="alert"/);
     for (const field of ["descriptionInvalid", "minutesInvalid", "dateInvalid"]) {
